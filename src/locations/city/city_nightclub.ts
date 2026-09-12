@@ -399,7 +399,9 @@ function enterDanceGuy(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).pcs_horny ?? 0) < 70) {
-      // TODO-QSP: act 'Go to the dance floor': gt 'city_nightclub', 'dance'
+      scene.actions([
+        { label: 'Go to the dance floor', goto: ['city_nightclub', 'dance'] },
+      ]);
     }
     scene.actions([
       { label: 'Suggest going to his place', handler: (st: GameState) => {
@@ -919,7 +921,9 @@ function enterLezbsort1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni_give', 10, 'sub', 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 15  ||  ((s as any).hour ?? 0) <= 3) {
-    // TODO-QSP: act 'Your turn': gt 'city_nightclub', 'lezbsort2'
+    scene.actions([
+      { label: 'Your turn', goto: ['city_nightclub', 'lezbsort2'] },
+    ]);
   }
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -937,7 +941,9 @@ function enterLezbsort2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 10, 'sub', 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) >= 15  ||  ((s as any).hour ?? 0) <= 3) {
-    // TODO-QSP: act 'Lick her': gt 'city_nightclub', 'lezbsort1'
+    scene.actions([
+      { label: 'Lick her', goto: ['city_nightclub', 'lezbsort1'] },
+    ]);
   }
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1026,7 +1032,9 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You hand Erik the empty bottles and he gives you ' + $func('money', 'string_prof...
     scene.text('You hand Erik the empty bottles and he gives you \' + $func(\'money\', \'string_profit\', 200) + \'.');
     if (((s as any).hour ?? 0) < 1  ||  ((s as any).hour ?? 0) >= 18) {
-      // TODO-QSP: act 'Get another job from Erik': gt 'city_nightclub', 'work'
+      scene.actions([
+        { label: 'Get another job from Erik', goto: ['city_nightclub', 'work'] },
+      ]);
     }
     scene.actions([
       { label: 'Go to the dance floor', goto: ['city_nightclub', 'inside'] },
@@ -1059,7 +1067,9 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
     if (((s as any).hour ?? 0) < 1  ||  ((s as any).hour ?? 0) >= 18) {
-      // TODO-QSP: act 'Get another job from Erik': gt 'city_nightclub', 'work'
+      scene.actions([
+        { label: 'Get another job from Erik', goto: ['city_nightclub', 'work'] },
+      ]);
     }
     scene.actions([
       { label: 'Go to the dance floor', goto: ['city_nightclub', 'inside'] },

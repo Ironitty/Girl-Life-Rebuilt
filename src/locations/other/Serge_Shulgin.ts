@@ -111,7 +111,9 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('He sighs and wordlessly moves over to one side of the bed, offering you the other half while he clutches his pillow.');
       if (((s as any).pcs_horny ?? 0) > 30  &&  ((s as any).mesec ?? 0) <= 0) {
-        // TODO-QSP: act 'Try to seduce Sergey': gt 'Serge_Shulgin', 'hide', 'sleep_prstsex'
+        scene.actions([
+          { label: 'Try to seduce Sergey', goto: ['Serge_Shulgin', 'hide', '\'sleep_prstsex\''] },
+        ]);
       }
       scene.actions([
         { label: 'Sleep with Sergey', handler: (st: GameState) => {
@@ -156,7 +158,9 @@ function enterHide(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'porn', 10);
     qspCall(s, 'arousal', 'end');
     if (((s as any).pcs_horny ?? 0) > 30  &&  ((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Try to seduce Sergey': gt 'Serge_Shulgin', 'hide', 'sleep_prstsex'
+      scene.actions([
+        { label: 'Try to seduce Sergey', goto: ['Serge_Shulgin', 'hide', '\'sleep_prstsex\''] },
+      ]);
     }
     qspCall(s, 'stat', '');
     scene.actions([

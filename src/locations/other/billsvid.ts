@@ -175,10 +175,14 @@ function enter10(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if ((!((s as any).bilsvidkiy ?? 0))) {
-    // TODO-QSP: act 'Play with a cue': gt 'billsvid', '12'
+    scene.actions([
+      { label: 'Play with a cue', goto: ['billsvid', '12'] },
+    ]);
   }
   if ((!((s as any).bilsvidukiy ?? 0))) {
-    // TODO-QSP: act 'Ask her to play with a cue': gt 'billsvid', '13'
+    scene.actions([
+      { label: 'Ask her to play with a cue', goto: ['billsvid', '13'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -191,7 +195,9 @@ function enter11(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
   qspCall(s, 'stat', '');
   if ((!((s as any).bilsvidkiy ?? 0))) {
-    // TODO-QSP: act 'Play with a cue': gt 'billsvid', '12'
+    scene.actions([
+      { label: 'Play with a cue', goto: ['billsvid', '12'] },
+    ]);
   }
   if ((!((s as any).bilsvidukiy ?? 0))) {
     qspCall(s, 'willpower', 'sex', 'force');
@@ -259,7 +265,9 @@ function enter13(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal_dildo', 5, 'lesbian');
   qspCall(s, 'stat', '');
   if ((!((s as any).bilsvidkiy ?? 0))) {
-    // TODO-QSP: act 'Play with a cue': gt 'billsvid', '12'
+    scene.actions([
+      { label: 'Play with a cue', goto: ['billsvid', '12'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

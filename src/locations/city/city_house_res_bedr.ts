@@ -18,7 +18,9 @@ function enterBedro(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'daily_routine', 'offer_here');
   qspCall(s, 'library_functions', 'set_read_porn_act');
   if (((s as any).pcs_horny ?? 0) >= 50) {
-    // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
+    scene.actions([
+      { label: 'Masturbate', goto: ['selfplay', 'start'] },
+    ]);
   }
   qspCall(s, 'music_actions', 'start');
   scene.text('It\'s a bright and beautiful room, with a large <a href="exec:gt \'bed\', \'start\'">continental bed</a>.');

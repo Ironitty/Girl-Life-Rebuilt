@@ -295,7 +295,9 @@ function enterBasement(s: GameState, scene: SceneBuilder): void {
     scene.text('The booths are closed until 11am.');
   }
   if (((s as any).masharab ?? 0) === 1) {
-    // TODO-QSP: act 'Go to Masha': gt 'masharoom', 'start'
+    scene.actions([
+      { label: 'Go to Masha', goto: ['masharoom', 'start'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -315,7 +317,9 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/shared/bathroom/publictoilet.jpg');
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    // TODO-QSP: act 'Brush your hair': gt 'mirror', 'brush'
+    scene.actions([
+      { label: 'Brush your hair', goto: ['mirror', 'brush'] },
+    ]);
   }
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');

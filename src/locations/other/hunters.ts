@@ -110,16 +110,24 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 1, 'sub', 'gangbang');
     qspCall(s, 'stat', '');
     if (((s as any).huntsexa ?? 0) < 3) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALasi'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALasi'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 1) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALsi'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALsi'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 2) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALai'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALai'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 3) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALas'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALas'] },
+      ]);
     }
   } },
     ]);
@@ -340,7 +348,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).hunterVars ?? 0)?.['evening'] === 0) {
-        // TODO-QSP: act 'Talk to Andrei': gt 'andreihunter'
+        scene.actions([
+          { label: 'Talk to Andrei', goto: ['andreihunter', ''] },
+        ]);
       }
       scene.actions([
         { label: 'Talk to Sergei', goto: ['sergeihunter', ''] },
@@ -416,16 +426,24 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 2, 'sub', 'gangbang');
     qspCall(s, 'stat', '');
     if (((s as any).huntsexa ?? 0) < 3) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALasi'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALasi'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 1) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALsi'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALsi'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 2) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALai'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALai'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 3) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALas'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALas'] },
+      ]);
     }
   } },
     ]);
@@ -467,16 +485,24 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 2, 'sub', 'gangbang');
     qspCall(s, 'stat', '');
     if (((s as any).huntsexa ?? 0) < 3) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALasi'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALasi'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 1) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALsi'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALsi'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 2) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALai'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALai'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 3) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALas'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALas'] },
+      ]);
     }
   } },
     ]);
@@ -806,16 +832,24 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).huntsexa = Math.floor(Math.random() * 3) + 1;
     (s as any).huntsexb = Math.floor(Math.random() * 3) + 1;
     if (((s as any).huntsexa ?? 0) < 3) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALasi'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALasi'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 1) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALsi'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALsi'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 2) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALai'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALai'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 3) {
-      // TODO-QSP: act 'Suck': gt 'hunters', 'huntersgroupORALas'
+      scene.actions([
+        { label: 'Suck', goto: ['hunters', 'huntersgroupORALas'] },
+      ]);
     }
   }
   if (((s as any).slutgosex ?? 0) === 1  ||  ((s as any).hunterVars ?? 0)?.['forest_sex'] === 1  ||  ((s as any).forest_gopsex ?? 0) === 1) {
@@ -1054,7 +1088,11 @@ function enterHuntersgroupORALi1end(s: GameState, scene: SceneBuilder): void {
   scene.text(`You lick ${((s as any).boydesc ?? 0)}'s penis head until he finishes and walks away satisfied. He leaves you sitting alone on the blanket…`);
   qspCall(s, 'arousal', 'end');
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
-    // TODO-QSP: act 'Further': gt $loc, $loc_arg
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
   }
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
     scene.actions([
@@ -1086,7 +1124,11 @@ function enterHuntersgroupORALa1end(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 2, 'sub');
   qspCall(s, 'arousal', 'end');
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 0) {
-    // TODO-QSP: act 'Further': gt $loc, $loc_arg
+    scene.actions([
+      { label: 'Further', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+    ]);
   }
   if (((s as any).hunterVars ?? 0)?.['forest_sex'] > 0) {
     scene.actions([
@@ -3870,8 +3912,12 @@ function enterHunterslutEND(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'hj', 5, 'sub');
     qspCall(s, 'arousal', 'end');
     if (((s as any).slutgosex ?? 0) === 1) {
-      // TODO-QSP: act 'Go to the river': slutgosex = 0
       scene.actions([{ label: 'Continue', goto: ['gad_backwater', ''] }]);
+      scene.actions([
+        { label: 'Go to the river', handler: (st: GameState) => {
+    (st as any).slutgosex = 0;
+  } },
+      ]);
     }
     if (((s as any).hunterVars ?? 0)?.['forest_sex'] === 1) {
       scene.actions([
@@ -3882,8 +3928,12 @@ function enterHunterslutEND(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).forest_gopsex ?? 0) === 1) {
-      // TODO-QSP: act 'Go to forest': forest_gopsex = 0
       scene.actions([{ label: 'Continue', goto: ['gad_forest', 'forest_edge'] }]);
+      scene.actions([
+        { label: 'Go to forest', handler: (st: GameState) => {
+    (st as any).forest_gopsex = 0;
+  } },
+      ]);
     }
   } },
   ]);
@@ -4371,43 +4421,69 @@ function enterHuntersgroupfaint(s: GameState, scene: SceneBuilder): void {
 function enterRng_1(s: GameState, scene: SceneBuilder): void {
   (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) < 6) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALsi1'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALsi1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) === 6) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALs'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALs'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) === 7) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALi'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) === 8) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALend1'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALend1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) <= 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVis1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupVis1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVi1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupVi1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 6) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVs1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupVs1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 5) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsOi'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupVsOi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVOi'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupVOi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 6) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsO'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupVsO'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPis'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupDPis'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOis'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupOis'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) < 10) {
-    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+    scene.actions([
+      { label: 'Pass out', goto: ['hunters', 'huntersgroupfaint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -4416,31 +4492,49 @@ function enterRng_1(s: GameState, scene: SceneBuilder): void {
 function enterRng_2(s: GameState, scene: SceneBuilder): void {
   (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) <= 4) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALs1'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALs1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) > 4) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALs1end'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALs1end'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAs'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAs'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAsEnd1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAsEnd1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAsEnd2'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAsEnd2'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 3) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVs2'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVs2'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 3) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVs2end'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVs2end'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOsend'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupOsend'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) < 10) {
-    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+    scene.actions([
+      { label: 'Pass out', goto: ['hunters', 'huntersgroupfaint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -4449,28 +4543,44 @@ function enterRng_2(s: GameState, scene: SceneBuilder): void {
 function enterRng_3(s: GameState, scene: SceneBuilder): void {
   (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALi1end'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALi1end'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAi'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAiEnd1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAiEnd1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAiEnd2'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAiEnd2'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 3) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVi3'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVi3'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 3) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVi3end'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVi3end'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOiend'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupOiend'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) < 10) {
-    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+    scene.actions([
+      { label: 'Pass out', goto: ['hunters', 'huntersgroupfaint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -4479,34 +4589,54 @@ function enterRng_3(s: GameState, scene: SceneBuilder): void {
 function enterRng_4(s: GameState, scene: SceneBuilder): void {
   (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) <= 6) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALai1'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALai1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALi1'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALi1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 6) {
-    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVia1'
+    scene.actions([
+      { label: 'Doggy style', goto: ['hunters', 'huntersgroupVia1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 6) {
-    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVi2'
+    scene.actions([
+      { label: 'Doggy style', goto: ['hunters', 'huntersgroupVi2'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVa1'
+    scene.actions([
+      { label: 'Doggy style', goto: ['hunters', 'huntersgroupVa1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 6) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupViOa'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupViOa'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupViO'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupViO'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPia'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupDPia'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOia'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupOia'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) < 10) {
-    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+    scene.actions([
+      { label: 'Pass out', goto: ['hunters', 'huntersgroupfaint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -4515,37 +4645,59 @@ function enterRng_4(s: GameState, scene: SceneBuilder): void {
 function enterRng_5(s: GameState, scene: SceneBuilder): void {
   (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) < 6) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVas1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupVas1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) === 6) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVa'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupVa'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVs'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupVs'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 6) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunters', 'huntersgroupVaOs'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunters', 'huntersgroupVaOs'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunters', 'huntersgroupVOs'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunters', 'huntersgroupVOs'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 6) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunters', 'huntersgroupVaO'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunters', 'huntersgroupVaO'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) < 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAsOa'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAsOa'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAsO'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAsO'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAOa'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAOa'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupOsa'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupOsa'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) < 10) {
-    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+    scene.actions([
+      { label: 'Pass out', goto: ['hunters', 'huntersgroupfaint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -4554,55 +4706,89 @@ function enterRng_5(s: GameState, scene: SceneBuilder): void {
 function enterRng_6(s: GameState, scene: SceneBuilder): void {
   (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALasi'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALasi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 5) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVias'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVias'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 3) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVia'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVia'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 4) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVis'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVis'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 5) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVi'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 3) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVas'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVas'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 5) {
-    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVaOsHi'
+    scene.actions([
+      { label: 'Doggy style', goto: ['hunters', 'huntersgroupVaOsHi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 5) {
-    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVaOHi'
+    scene.actions([
+      { label: 'Doggy style', goto: ['hunters', 'huntersgroupVaOHi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) < 5) {
-    // TODO-QSP: act 'Doggy style': gt 'hunters', 'huntersgroupVOsHi'
+    scene.actions([
+      { label: 'Doggy style', goto: ['hunters', 'huntersgroupVOsHi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4  &&  ((s as any).huntsexb ?? 0) < 5) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPasi'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupDPasi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPas'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupDPas'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4  &&  ((s as any).huntsexb ?? 0) === 6) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPsi'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupDPsi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4  &&  ((s as any).huntsexb ?? 0) === 5) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPai'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupDPai'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5  &&  ((s as any).huntsexb ?? 0) > 5) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsOaHi'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupVsOaHi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5  &&  ((s as any).huntsexb ?? 0) === 5) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsOHi'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupVsOHi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5  &&  ((s as any).huntsexb ?? 0) < 5) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVOaHi'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupVOaHi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) < 10) {
-    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+    scene.actions([
+      { label: 'Pass out', goto: ['hunters', 'huntersgroupfaint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -4611,28 +4797,44 @@ function enterRng_6(s: GameState, scene: SceneBuilder): void {
 function enterRng_7(s: GameState, scene: SceneBuilder): void {
   (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'huntersgroupORALa1end'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'huntersgroupORALa1end'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAa'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAa'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) < 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAaEnd1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAaEnd1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupAaEnd2'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupAaEnd2'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 3) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVa2'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVa2'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 3) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupVa2end'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupVa2end'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Kneel down': gt 'hunters', 'huntersgroupOaend'
+    scene.actions([
+      { label: 'Kneel down', goto: ['hunters', 'huntersgroupOaend'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) < 10) {
-    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+    scene.actions([
+      { label: 'Pass out', goto: ['hunters', 'huntersgroupfaint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -4641,31 +4843,49 @@ function enterRng_7(s: GameState, scene: SceneBuilder): void {
 function enterRng_8(s: GameState, scene: SceneBuilder): void {
   (s as any).huntsexb = Math.floor(Math.random() * 8) + 1;
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) <= 5) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVis1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupVis1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVi1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupVi1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2  &&  ((s as any).huntsexb ?? 0) === 6) {
-    // TODO-QSP: act 'Get down on all fours': gt 'hunters', 'huntersgroupVs1'
+    scene.actions([
+      { label: 'Get down on all fours', goto: ['hunters', 'huntersgroupVs1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) <= 5) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsOi'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupVsOi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) > 6) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVOi'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupVOi'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3  &&  ((s as any).huntsexb ?? 0) === 6) {
-    // TODO-QSP: act 'Sideways': gt 'hunters', 'huntersgroupVsO'
+    scene.actions([
+      { label: 'Sideways', goto: ['hunters', 'huntersgroupVsO'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'huntersgroupDPis'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'huntersgroupDPis'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Kneel down': gt 'hunters', 'huntersgroupOis'
+    scene.actions([
+      { label: 'Kneel down', goto: ['hunters', 'huntersgroupOis'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) < 10) {
-    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+    scene.actions([
+      { label: 'Pass out', goto: ['hunters', 'huntersgroupfaint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -4673,31 +4893,49 @@ function enterRng_8(s: GameState, scene: SceneBuilder): void {
 
 function enterRng_9(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Keep sucking': gt 'hunters', 'hunterslutORAL'
+    scene.actions([
+      { label: 'Keep sucking', goto: ['hunters', 'hunterslutORAL'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Straddle': gt 'hunters', 'hunterslutCOW'
+    scene.actions([
+      { label: 'Straddle', goto: ['hunters', 'hunterslutCOW'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Jump on the hands': gt 'hunters', 'hunterslutHANDS'
+    scene.actions([
+      { label: 'Jump on the hands', goto: ['hunters', 'hunterslutHANDS'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Lean on a tree': gt 'hunters', 'hunterslutTREE'
+    scene.actions([
+      { label: 'Lean on a tree', goto: ['hunters', 'hunterslutTREE'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Lean on a tree and lift your leg': gt 'hunters', 'hunterslutTREELEG'
+    scene.actions([
+      { label: 'Lean on a tree and lift your leg', goto: ['hunters', 'hunterslutTREELEG'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 6) {
-    // TODO-QSP: act 'Turn your back': gt 'hunters', 'hunterslutLEG1'
+    scene.actions([
+      { label: 'Turn your back', goto: ['hunters', 'hunterslutLEG1'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) === 7) {
-    // TODO-QSP: act 'Face him': gt 'hunters', 'hunterslutLEG2'
+    scene.actions([
+      { label: 'Face him', goto: ['hunters', 'hunterslutLEG2'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) >= 10  &&  ((s as any).huntsexa ?? 0) > 7) {
-    // TODO-QSP: act 'Kneel down': gt 'hunters', 'hunterslutEND'
+    scene.actions([
+      { label: 'Kneel down', goto: ['hunters', 'hunterslutEND'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) < 10) {
-    // TODO-QSP: act 'Pass out': gt 'hunters', 'huntersgroupfaint'
+    scene.actions([
+      { label: 'Pass out', goto: ['hunters', 'huntersgroupfaint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();

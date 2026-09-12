@@ -54,24 +54,44 @@ function enterWorkout(s: GameState, scene: SceneBuilder): void {
           scene.text('<b>You need to equip the proper attire before you can exercise</b>');
         } else {
           if (((s as any).exer_stam ?? 0)[1] !== 0  &&  ((s as any).pcs_stam ?? 0) > ((s as any).exer_stam ?? 0)[1]) {
-            // TODO-QSP: act '<<$excer_name[1]>> - (<<exer_stam[1]>> stamina)': exercisex = 1
             scene.actions([{ label: 'Continue', goto: ['exercise', 'auto'] }]);
+            scene.actions([
+              { label: '<<$excer_name[1]>> - (<<exer_stam[1]>> stamina)', handler: (st: GameState) => {
+    (st as any).exercisex = 1;
+  } },
+            ]);
           }
           if (((s as any).exer_stam ?? 0)[2] !== 0  &&  ((s as any).pcs_stam ?? 0) > ((s as any).exer_stam ?? 0)[2]) {
-            // TODO-QSP: act '<<$excer_name[2]>> - (<<exer_stam[2]>> stamina)': exercisex = 2
             scene.actions([{ label: 'Continue', goto: ['exercise', 'auto'] }]);
+            scene.actions([
+              { label: '<<$excer_name[2]>> - (<<exer_stam[2]>> stamina)', handler: (st: GameState) => {
+    (st as any).exercisex = 2;
+  } },
+            ]);
           }
           if (((s as any).exer_stam ?? 0)[3] !== 0  &&  ((s as any).pcs_stam ?? 0) > ((s as any).exer_stam ?? 0)[3]) {
-            // TODO-QSP: act '<<$excer_name[3]>> - (<<exer_stam[3]>> stamina)': exercisex = 3
             scene.actions([{ label: 'Continue', goto: ['exercise', 'auto'] }]);
+            scene.actions([
+              { label: '<<$excer_name[3]>> - (<<exer_stam[3]>> stamina)', handler: (st: GameState) => {
+    (st as any).exercisex = 3;
+  } },
+            ]);
           }
           if (((s as any).exer_stam ?? 0)[4] !== 0  &&  ((s as any).pcs_stam ?? 0) > ((s as any).exer_stam ?? 0)[4]) {
-            // TODO-QSP: act '<<$excer_name[4]>> - (<<exer_stam[4]>> stamina)': exercisex = 4
             scene.actions([{ label: 'Continue', goto: ['exercise', 'auto'] }]);
+            scene.actions([
+              { label: '<<$excer_name[4]>> - (<<exer_stam[4]>> stamina)', handler: (st: GameState) => {
+    (st as any).exercisex = 4;
+  } },
+            ]);
           }
           if (((s as any).exer_stam ?? 0)[5] !== 0  &&  ((s as any).pcs_stam ?? 0) > ((s as any).exer_stam ?? 0)[5]) {
-            // TODO-QSP: act '<<$excer_name[5]>> - (<<exer_stam[5]>> stamina)': exercisex = 5
             scene.actions([{ label: 'Continue', goto: ['exercise', 'auto'] }]);
+            scene.actions([
+              { label: '<<$excer_name[5]>> - (<<exer_stam[5]>> stamina)', handler: (st: GameState) => {
+    (st as any).exercisex = 5;
+  } },
+            ]);
           }
           scene.actions([
             { label: 'Manual routines', goto: ['exercise', 'manual'] },

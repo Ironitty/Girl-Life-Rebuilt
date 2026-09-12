@@ -256,7 +256,9 @@ function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
     if (/^[\t ]/.test(raw)) continue;
     const m = raw.match(/if\s+\$ARGS\[0\]\s*=\s*'((?:[^']|'')*)'/);
     if (m) {
-      sectionStarts.push({ label: unescapeQsp(m[1]), line: i });
+      const isMulti = /or\s+\$ARGS\[0\]/.test(raw);
+      const label = isMulti ? '' : unescapeQsp(m[1]);
+      sectionStarts.push({ label, line: i });
     }
   }
 
@@ -492,10 +494,12 @@ function main() {
       }
 
       const qspSections = parseQspSections(qspSrc);
+      const hasSeparateFns = /function enter[A-Z]/.test(src);
       for (const [qspLabel, qspActions] of qspSections) {
         if (qspActions.length === 0) continue;
         const tsFuncName = qspLabel === '__preamble__' ? 'enterDefault' : qspLabelToTsFunc(qspLabel);
-        const tsFuncBody = extractFunction(src, tsFuncName);
+        let tsFuncBody = extractFunction(src, tsFuncName);
+        if (!tsFuncBody && !hasSeparateFns) tsFuncBody = extractFunction(src, 'enter');
         const tsActions = tsFuncBody ? extractTsActions(tsFuncBody) : [];
 
         const mismatches = compareSectionActions(qspActions, tsActions);

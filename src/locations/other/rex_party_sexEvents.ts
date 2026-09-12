@@ -31,7 +31,9 @@ function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
         scene.text('Rex glares in the direction of Roma and your female companions.');
       }
       if (((s as any).rex_love ?? 0) === 1) {
-        // TODO-QSP: act 'Stay with Rex': gt 'rex_party_smallEvents', 'rex_talk'
+        scene.actions([
+          { label: 'Stay with Rex', goto: ['rex_party_smallEvents', 'rex_talk'] },
+        ]);
       }
       scene.actions([
         { label: 'Go with him', goto: ['rex_party_sexEvents', 'ira_lena_rex'] },
@@ -42,7 +44,9 @@ function enterIraLenaFun(s: GameState, scene: SceneBuilder): void {
         scene.text('Rex glares in the direction of your female companions.');
       }
       if (((s as any).rex_love ?? 0) === 1) {
-        // TODO-QSP: act 'Stay with Rex': gt 'rex_party_smallEvents', 'rex_talk'
+        scene.actions([
+          { label: 'Stay with Rex', goto: ['rex_party_smallEvents', 'rex_talk'] },
+        ]);
       }
       scene.actions([
         { label: 'Go with them', goto: ['rex_party_sexEvents', 'ira_fun_boys'] },
@@ -354,13 +358,19 @@ function enterRexSexCow(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   if ((!((s as any).sexvar ?? 0))) {
-    // TODO-QSP: act 'Make him cum': gt 'rex_party_sexEvents', 'rex_sex_cum'
+    scene.actions([
+      { label: 'Make him cum', goto: ['rex_party_sexEvents', 'rex_sex_cum'] },
+    ]);
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: act 'Lie on your back': gt 'rex_party_sexEvents', 'rex_sex_missionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['rex_party_sexEvents', 'rex_sex_missionary'] },
+    ]);
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: act 'Get on all fours': gt 'rex_party_sexEvents', 'rex_sex_dog'
+    scene.actions([
+      { label: 'Get on all fours', goto: ['rex_party_sexEvents', 'rex_sex_dog'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -389,13 +399,19 @@ function enterRexSexDog(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   if ((!((s as any).sexvar ?? 0))) {
-    // TODO-QSP: act 'Make him cum': gt 'rex_party_sexEvents', 'rex_sex_cum'
+    scene.actions([
+      { label: 'Make him cum', goto: ['rex_party_sexEvents', 'rex_sex_cum'] },
+    ]);
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: act 'Get on top': gt 'rex_party_sexEvents', 'rex_sex_cow'
+    scene.actions([
+      { label: 'Get on top', goto: ['rex_party_sexEvents', 'rex_sex_cow'] },
+    ]);
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: act 'Lie on your back': gt 'rex_party_sexEvents', 'rex_sex_missionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['rex_party_sexEvents', 'rex_sex_missionary'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -419,13 +435,19 @@ function enterRexSexMissionary(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: act 'Get on all fours': gt 'rex_party_sexEvents', 'rex_sex_dog'
+    scene.actions([
+      { label: 'Get on all fours', goto: ['rex_party_sexEvents', 'rex_sex_dog'] },
+    ]);
   }
   if (((s as any).sexvar ?? 0) > 0) {
-    // TODO-QSP: act 'Get on top': gt 'rex_party_sexEvents', 'rex_sex_cow'
+    scene.actions([
+      { label: 'Get on top', goto: ['rex_party_sexEvents', 'rex_sex_cow'] },
+    ]);
   }
   if ((!((s as any).sexvar ?? 0))) {
-    // TODO-QSP: act 'Make him cum': gt 'rex_party_sexEvents', 'rex_sex_cum'
+    scene.actions([
+      { label: 'Make him cum', goto: ['rex_party_sexEvents', 'rex_sex_cum'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();

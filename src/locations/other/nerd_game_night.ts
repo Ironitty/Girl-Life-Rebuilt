@@ -1004,16 +1004,24 @@ function enterGameNight4(s: GameState, scene: SceneBuilder): void {
 
 function enterThreeQuestsActs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nerd_game ?? 0)?.['tavernwoman'] === 0) {
-    // TODO-QSP: act 'Talk to the woman': gt 'nerd_game_night', 'woman'
+    scene.actions([
+      { label: 'Talk to the woman', goto: ['nerd_game_night', 'woman'] },
+    ]);
   }
   if (((s as any).nerd_game ?? 0)?.['taverngroup'] === 0) {
-    // TODO-QSP: act 'Talk to the group of men': gt 'nerd_game_night', 'group'
+    scene.actions([
+      { label: 'Talk to the group of men', goto: ['nerd_game_night', 'group'] },
+    ]);
   }
   if (((s as any).nerd_game ?? 0)?.['tavernman'] === 0) {
-    // TODO-QSP: act 'Talk to the old man': gt 'nerd_game_night', 'oldman'
+    scene.actions([
+      { label: 'Talk to the old man', goto: ['nerd_game_night', 'oldman'] },
+    ]);
   }
   if (((s as any).nerd_game ?? 0)?.['tavernwoman'] + ((s as any).nerd_game ?? 0)?.['taverngroup'] + ((s as any).nerd_game ?? 0)?.['tavernman'] > 0) {
-    // TODO-QSP: act 'Tell your party what you learned': gt 'nerd_game_night', 'inform_them'
+    scene.actions([
+      { label: 'Tell your party what you learned', goto: ['nerd_game_night', 'inform_them'] },
+    ]);
   }
   return;
   // TODO-QSP: end

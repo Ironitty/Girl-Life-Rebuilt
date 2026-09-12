@@ -160,7 +160,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).katjob ?? 0) > 0) {
-    // TODO-QSP: act 'Visit the chief doctor': gt 'city_clinic', 'glavdoc'
+    scene.actions([
+      { label: 'Visit the chief doctor', goto: ['city_clinic', 'glavdoc'] },
+    ]);
   }
   // TODO-QSP: act $func('clinic_functions', 'reception_option_label', 'City Dentist', 'a dentist'):
   if (qspFunc(s, 'appointments', 'get_state', 'City Dentist', '') === 'none') {
@@ -895,7 +897,9 @@ function enterGlavdoc(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).job_status ?? 0)?.['city_hospital_nurse'] === 'employed') {
-    // TODO-QSP: act 'Quit your job': gt 'city_clinic', 'discharge'
+    scene.actions([
+      { label: 'Quit your job', goto: ['city_clinic', 'discharge'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

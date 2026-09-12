@@ -455,34 +455,54 @@ function enterDefaultActions(s: GameState, scene: SceneBuilder): void {
 
 function enterDefaultActionsPage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) !== 1) {
-    // TODO-QSP: act 'See <<$clothing_default_page[1]>> set': gt 'wardrobe', 'default1'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[1]>> set', goto: ['wardrobe', 'default1'] },
+    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 2) {
-    // TODO-QSP: act 'See <<$clothing_default_page[2]>> set': gt 'wardrobe', 'default2'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[2]>> set', goto: ['wardrobe', 'default2'] },
+    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 3) {
-    // TODO-QSP: act 'See <<$clothing_default_page[3]>> set': gt 'wardrobe', 'default3'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[3]>> set', goto: ['wardrobe', 'default3'] },
+    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 4) {
-    // TODO-QSP: act 'See <<$clothing_default_page[4]>> set': gt 'wardrobe', 'default4'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[4]>> set', goto: ['wardrobe', 'default4'] },
+    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 5) {
-    // TODO-QSP: act 'See <<$clothing_default_page[5]>> set': gt 'wardrobe', 'default5'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[5]>> set', goto: ['wardrobe', 'default5'] },
+    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 6) {
-    // TODO-QSP: act 'See <<$clothing_default_page[6]>> set': gt 'wardrobe', 'default6'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[6]>> set', goto: ['wardrobe', 'default6'] },
+    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 7) {
-    // TODO-QSP: act 'See <<$clothing_default_page[7]>> set': gt 'wardrobe', 'default7'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[7]>> set', goto: ['wardrobe', 'default7'] },
+    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 8) {
-    // TODO-QSP: act 'See <<$clothing_default_page[8]>> set': gt 'wardrobe', 'default8'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[8]>> set', goto: ['wardrobe', 'default8'] },
+    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 9) {
-    // TODO-QSP: act 'See <<$clothing_default_page[9]>> set': gt 'wardrobe', 'default9'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[9]>> set', goto: ['wardrobe', 'default9'] },
+    ]);
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 10) {
-    // TODO-QSP: act 'See <<$clothing_default_page[10]>> set': gt 'wardrobe', 'default10'
+    scene.actions([
+      { label: 'See <<$clothing_default_page[10]>> set', goto: ['wardrobe', 'default10'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();

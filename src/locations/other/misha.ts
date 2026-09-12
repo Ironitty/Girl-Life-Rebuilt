@@ -56,8 +56,12 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: He's content just letting you suck him off for a bit, especially when you gather...
     scene.text(`He's content just letting you suck him off for a bit, especially when you gather your courage and start to apply your skills. Then, after a while, he pulls back, saying, "Alright, ${((s as any).pcs_nickname ?? 0)}, that was nice, but not what I had in mind for today. It's time for the main course!"`);
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-      // TODO-QSP: act 'You put your condom on his cock': $temp = {gs 'dinsex','pc_puts_condom'}
       scene.actions([{ label: 'Continue', goto: ['misha', '1_2nd_part'] }]);
+      scene.actions([
+        { label: 'You put your condom on his cock', handler: (st: GameState) => {
+    // TODO-QSP: $temp = {gs 'dinsex','pc_puts_condom'}
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Uncle Misha puts his condom on', handler: (st: GameState) => {

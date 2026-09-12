@@ -14,7 +14,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/sauna/sauna.jpg');
   scene.text('A luxurious high quality public sauna built a long time ago. The sauna houses separate changing rooms and shower facilities for men and women.');
   if (((s as any).saunaWhore ?? 0) >= 1) {
-    // TODO-QSP: act 'Go to work': gt 'city_saunawhore', 'saunawork'
+    scene.actions([
+      { label: 'Go to work', goto: ['city_saunawhore', 'saunawork'] },
+    ]);
   }
   if (((s as any).week ?? 0) === 5  &&  ((s as any).workDisk ?? 0) === 2) {
     scene.text('There\'s a security guard waiting at the entrance for you to arrive.');
@@ -34,7 +36,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).hour ?? 0) >= 8) {
-    // TODO-QSP: act 'Head to the sauna': gt 'city_sauna', 'sauna2'
+    scene.actions([
+      { label: 'Head to the sauna', goto: ['city_sauna', 'sauna2'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -194,7 +198,9 @@ function enterSaunaroom(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'library_functions', 'set_read_porn_act');
   if (((s as any).pcs_horny ?? 0) >= 50) {
-    // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
+    scene.actions([
+      { label: 'Masturbate', goto: ['selfplay', 'start'] },
+    ]);
   }
   if (((s as any).pcs_sleep ?? 0) <= 80) {
     if (((s as any).clothingworntype ?? 0) === 'nude') {

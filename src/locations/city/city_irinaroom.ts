@@ -69,10 +69,14 @@ function enterFirst1(s: GameState, scene: SceneBuilder): void {
   scene.text('You and Irina head into the kitchen, where she takes out a bottle of wine and also some crackers and cheese for you to enjoy. You\'re really enjoying each other\'s company.');
   scene.text('The conversation is turning more heated, as both of you are feeling the effect of the wine.');
   if (((s as any).IrinaQW ?? 0) === 1) {
-    // TODO-QSP: act 'Suggest drinking to sisterhood': gt 'city_irinaroom', 'first2'
+    scene.actions([
+      { label: 'Suggest drinking to sisterhood', goto: ['city_irinaroom', 'first2'] },
+    ]);
   }
   if (((s as any).IrinaQW ?? 0) >= 10) {
-    // TODO-QSP: act 'Kiss her': gt 'city_irinaroom', 'kiss'
+    scene.actions([
+      { label: 'Kiss her', goto: ['city_irinaroom', 'kiss'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

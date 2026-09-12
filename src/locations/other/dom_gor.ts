@@ -107,7 +107,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'kit_din', 'kitchen_acts');
   if (((s as any).hostel ?? 0)?.['status'] > 0) {
-    // TODO-QSP: act 'Go to shared bathroom': gt 'ETO_hostel', 'shared_bathroom'
+    scene.actions([
+      { label: 'Go to shared bathroom', goto: ['ETO_hostel', 'shared_bathroom'] },
+    ]);
   }
   qspCall(s, 'prostitution_functions', 'prostitute_outfit_at_home');
   qspCall(s, 'daily_routine', 'offer_here');

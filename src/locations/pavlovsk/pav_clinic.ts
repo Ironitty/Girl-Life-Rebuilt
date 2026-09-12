@@ -93,7 +93,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('A sign on the notice board catches your attention. It reads <a href="exec: minut += 5 & gt \'pav_clinic\', \'maternity_ward\'">"Maternity ward"</a>.');
       }
       if (((s as any).pcs_know_mward ?? 0) > 0) {
-        // TODO-QSP: act 'Visit the maternity ward (0:05)': gt 'pav_clinic', 'maternity_ward'
+        scene.actions([
+          { label: 'Visit the maternity ward (0:05)', goto: ['pav_clinic', 'maternity_ward'] },
+        ]);
       }
     } else {
       // TODO-QSP: dynamic text: The clinic is closed. It's open every day between '+func('time', 'get_time_strin...

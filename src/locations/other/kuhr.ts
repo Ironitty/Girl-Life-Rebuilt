@@ -72,7 +72,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_horny ?? 0) >= 50) {
-    // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
+    scene.actions([
+      { label: 'Masturbate', goto: ['selfplay', 'start'] },
+    ]);
   }
   if (((s as any).fullmorrout ?? 0) === 1) {
     (s as any).minut = ((s as any).minut ?? 0) + 2;

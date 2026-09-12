@@ -167,7 +167,9 @@ function enterMirabrother(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/sex/mira/mirabromoto8.jpg');
     scene.text('After a couple of minutes, you feel his warm sticky cum hit the back of your throat and begin to swallow it all down. Mira\'s brother stands still for a minute, eyes closed in bliss. Then, finally, he takes his cock out of your mouth and zips up his pants. You put your helmets back on, get on the motorcycle once again, and he drives you back to the village…');
     if (((s as any).grandmaQW ?? 0)?.['block'] === 0) {
-      // TODO-QSP: act 'Ask him to drop you off at your grandparents house': gt 'gad_gpyard', 'start'
+      scene.actions([
+        { label: 'Ask him to drop you off at your grandparents house', goto: ['gad_gpyard', 'start'] },
+      ]);
     }
     scene.actions([
       { label: 'Ask him to take you back to Mira\'s house', goto: ['gad_miroslava_home', 'start'] },

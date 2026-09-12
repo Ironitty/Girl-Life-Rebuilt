@@ -168,19 +168,29 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
     scene.text('Before you can say anything, she turns to you. "What about you? What are your plans for the future?"');
     if (((s as any).rex_love ?? 0) === 1  ||  ((s as any).artemQW ?? 0)?.['bf'] === 1  ||  ((s as any).kotovLoveQW ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) >= 5  ||  ((s as any).NikoVolkovQW ?? 0) >= 5  ||  ((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
       if (((s as any).rex_love ?? 0) === 1) {
-        // TODO-QSP: act 'Get married to Rex': gt 'soniachat', 'telling_marrige_dreams', 'Rex'
+        scene.actions([
+          { label: 'Get married to Rex', goto: ['soniachat', 'telling_marrige_dreams', '\'Rex\''] },
+        ]);
       }
       if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
-        // TODO-QSP: act 'Get married to Artem': gt 'soniachat', 'telling_marrige_dreams', 'Artem'
+        scene.actions([
+          { label: 'Get married to Artem', goto: ['soniachat', 'telling_marrige_dreams', '\'Artem\''] },
+        ]);
       }
       if (((s as any).kotovLoveQW ?? 0) === 1) {
-        // TODO-QSP: act 'Get married to Vitek': gt 'soniachat', 'telling_marrige_dreams', 'Vitek'
+        scene.actions([
+          { label: 'Get married to Vitek', goto: ['soniachat', 'telling_marrige_dreams', '\'Vitek\''] },
+        ]);
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 5) {
-        // TODO-QSP: act 'Get married to Fedor': gt 'soniachat', 'telling_marrige_dreams', 'Fedor'
+        scene.actions([
+          { label: 'Get married to Fedor', goto: ['soniachat', 'telling_marrige_dreams', '\'Fedor\''] },
+        ]);
       }
       if (((s as any).NikoVolkovQW ?? 0) >= 5) {
-        // TODO-QSP: act 'Get married to Niko': gt 'soniachat', 'telling_marrige_dreams', 'Niko'
+        scene.actions([
+          { label: 'Get married to Niko', goto: ['soniachat', 'telling_marrige_dreams', '\'Niko\''] },
+        ]);
       }
       (s as any).i = 0;
       // TODO-QSP: :marrid_looop

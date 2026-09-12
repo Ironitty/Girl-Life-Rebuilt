@@ -51,7 +51,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('A crowd of homeless people have huddled together trying to see if there are any available beds…');
   }
   if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18) {
-    // TODO-QSP: act 'Enter the shelter': gt 'buklinik', 'holl'
+    scene.actions([
+      { label: 'Enter the shelter', goto: ['buklinik', 'holl'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -100,7 +102,9 @@ function enterHoll(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).bumtolik ?? 0) === 0)  ||  ((s as any).bumtolik ?? 0) === 4) {
-    // TODO-QSP: act 'Volunteer': gt 'buklinik', 'registr'
+    scene.actions([
+      { label: 'Volunteer', goto: ['buklinik', 'registr'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -176,7 +180,9 @@ function enterSklad(s: GameState, scene: SceneBuilder): void {
   scene.text('The storage room is filled with all sort of things. From clothing, food, to children toys and even a medicine box in case of need. There is a note next to the medicine box, <i>keep locked at all times!!!</i>');
   scene.text('You see several people sorting through the stuff, trying to make sense what goes where.');
   if (((s as any).bumtolik ?? 0) === 5) {
-    // TODO-QSP: act 'Look for Olga': gt 'buklinik', 'olga'
+    scene.actions([
+      { label: 'Look for Olga', goto: ['buklinik', 'olga'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -322,7 +328,9 @@ function enterSpal(s: GameState, scene: SceneBuilder): void {
   scene.text('A shared dormitory with plenty of beds filled with people from all walks of life. There are plenty of homeless alcoholics, vagrants and drug addicts. Mixed in with them are women with their children that have ran away from their abusive relationships.');
   scene.text('Within the dormitory there is a small unwritten divide as male population stick to one side while the women keep to the other.');
   if (((s as any).bumtolik ?? 0) === 6) {
-    // TODO-QSP: act 'Introduce yourself': gt 'buklinik_event', 'pos1'
+    scene.actions([
+      { label: 'Introduce yourself', goto: ['buklinik_event', 'pos1'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

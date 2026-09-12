@@ -105,7 +105,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <br>If you continue past the shops, you'll eventually find a <<$desc_txt2>>
   scene.text(`<br>If you continue past the shops, you'll eventually find a ${((s as any).desc_txt2 ?? 0)}`);
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
-    // TODO-QSP: act '<b>Go to the hostel</b>': gt 'ETO_hostel', 'town_hostel'
+    scene.actions([
+      { label: '<b>Go to the hostel</b>', goto: ['ETO_hostel', 'town_hostel'] },
+    ]);
   }
   if (((s as any).hypnoSchedule ?? 0) === 1) {
     if (((s as any).therapistday ?? 0) !== ((s as any).daystart ?? 0)) {

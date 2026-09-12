@@ -638,19 +638,29 @@ function enterChatwhilewaiting(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re a bit surprised, since you always hear that she\'s doing badly in school like all the other gopniks. "Oh… I didn\'t know you were doing that good in school."');
     scene.text('She laughs. "Yeah, everyone is surprised by that, but I checked what grades I needed to go to the university and I make sure mine stay above that. Yeah, I\'m a smart bitch as well as a good looking one. What about you?"');
     if (((s as any).rex_love ?? 0) === 1) {
-      // TODO-QSP: act 'Get married to Rex': gt 'anushka', 'telling_marrige_dreams', 'Rex'
+      scene.actions([
+        { label: 'Get married to Rex', goto: ['anushka', 'telling_marrige_dreams', '\'Rex\''] },
+      ]);
     }
     if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
-      // TODO-QSP: act 'Get married to Artem': gt 'anushka', 'telling_marrige_dreams', 'Artem'
+      scene.actions([
+        { label: 'Get married to Artem', goto: ['anushka', 'telling_marrige_dreams', '\'Artem\''] },
+      ]);
     }
     if (((s as any).kotovLoveQW ?? 0) === 1) {
-      // TODO-QSP: act 'Get married to Vitek': gt 'anushka', 'telling_marrige_dreams', 'Vitek'
+      scene.actions([
+        { label: 'Get married to Vitek', goto: ['anushka', 'telling_marrige_dreams', '\'Vitek\''] },
+      ]);
     }
     if (((s as any).fedorKozlovQW ?? 0) >= 5) {
-      // TODO-QSP: act 'Get married to Fedor': gt 'anushka', 'telling_marrige_dreams', 'Fedor'
+      scene.actions([
+        { label: 'Get married to Fedor', goto: ['anushka', 'telling_marrige_dreams', '\'Fedor\''] },
+      ]);
     }
     if (((s as any).NikoVolkovQW ?? 0) >= 5) {
-      // TODO-QSP: act 'Get married to Niko': gt 'anushka', 'telling_marrige_dreams', 'Niko'
+      scene.actions([
+        { label: 'Get married to Niko', goto: ['anushka', 'telling_marrige_dreams', '\'Niko\''] },
+      ]);
     }
     (s as any).i = 0;
     // TODO-QSP: :marrid_looop

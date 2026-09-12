@@ -181,8 +181,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).shared_apt ?? 0)?.['enabled'] === 1) {
-    // TODO-QSP: act '<b>Go Home</b> (Shared Apartment)': minut += 5
     scene.actions([{ label: 'Continue', goto: ['pav_shared_apt', 'start'] }]);
+    scene.actions([
+      { label: '<b>Go Home</b> (Shared Apartment)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  } },
+    ]);
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
     scene.actions([
@@ -240,7 +244,9 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
     scene.text('The converted <a href="exec:minut += 5 & gt \'praiders_garage\', \'band_garage\'">garage</a> the band uses to practice in is around here.');
   }
   if (((s as any).gopnik_initiation ?? 0) === 1  &&  ((s as any).gopnik_initiation_day ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 20) {
-    // TODO-QSP: act '<b>Meet Lena and Lera</b>': gt 'gopnik_initiation', 'initiation'
+    scene.actions([
+      { label: '<b>Meet Lena and Lera</b>', goto: ['gopnik_initiation', 'initiation'] },
+    ]);
   }
   if (((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 22)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) < 22))  &&  (((s as any).ed_event_day ?? 0) !== ((s as any).daystart ?? 0))) {
     if (((s as any).anushkaQW ?? 0)?.['seen_ed'] === 0) {
@@ -657,8 +663,12 @@ function enterGarages(s: GameState, scene: SceneBuilder): void {
   if (((s as any).curacts ?? 0) === '') {
     qspCall(s, 'stat', '');
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      // TODO-QSP: act 'Go to your stepfather''s garage': minut += 5
       scene.actions([{ label: 'Continue', goto: ['gargazel', ''] }]);
+      scene.actions([
+        { label: 'Go to your stepfather\'s garage', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Go back to the courtyard', handler: (st: GameState) => {

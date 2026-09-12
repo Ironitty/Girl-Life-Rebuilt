@@ -538,7 +538,9 @@ function enterOluTaxiSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'cuni', 5);
     qspCall(s, 'stat', '');
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-      // TODO-QSP: act 'Get fucked': gt 'olutaxi', 'olu_taxi_sex_vaginal'
+      scene.actions([
+        { label: 'Get fucked', goto: ['olutaxi', 'olu_taxi_sex_vaginal'] },
+      ]);
     }
     qspCall(s, 'willpower', 'bj', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -594,7 +596,9 @@ function enterOluTaxiSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 5);
     qspCall(s, 'stat', '');
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-      // TODO-QSP: act 'Get fucked': gt 'olutaxi', 'olu_taxi_sex_vaginal'
+      scene.actions([
+        { label: 'Get fucked', goto: ['olutaxi', 'olu_taxi_sex_vaginal'] },
+      ]);
     }
     qspCall(s, 'willpower', 'bj', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {

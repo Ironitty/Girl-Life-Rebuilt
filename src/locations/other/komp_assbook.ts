@@ -27,7 +27,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).shantfoto ?? 0) > 0) {
-      // TODO-QSP: act 'Find the girl you took photos of in the park': gt 'komp_assbook', 'blackmail'
+      scene.actions([
+        { label: 'Find the girl you took photos of in the park', goto: ['komp_assbook', 'blackmail'] },
+      ]);
     }
     scene.actions([
       { label: 'Browse assbook (0:20)', goto: ['komp_assbook', 'browse'] },

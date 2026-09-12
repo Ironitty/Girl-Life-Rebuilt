@@ -243,7 +243,9 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) === 8  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).detention_set ?? 0) === 1  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
-    // TODO-QSP: act 'Go to detention': gt 'gschool_detention', 'start'
+    scene.actions([
+      { label: 'Go to detention', goto: ['gschool_detention', 'start'] },
+    ]);
   }
   if (((s as any).christinaQW ?? 0)?.['pre_fight'] === 1  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) === 14  &&  (!((s as any).kanikuli ?? 0))) {
     scene.actions([
@@ -320,7 +322,9 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hour ?? 0) === 14  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).kanikuli ?? 0) === 0  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
     if (((s as any).ivan_afterschool ?? 0) === 1) {
-      // TODO-QSP: act 'Meet Ivan after school': gt 'gschool_sex', 'afterschool'
+      scene.actions([
+        { label: 'Meet Ivan after school', goto: ['gschool_sex', 'afterschool'] },
+      ]);
     }
     if (((s as any).cfg_vars ?? 0)?.['tablemap'] === 0) {
       if (((s as any).anushkaQW ?? 0)?.['first_visit'] === 0  &&  ((s as any).meet_after_school ?? 0) === 1) {
@@ -983,7 +987,9 @@ function enterChangeRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'wardrobe', 'default_clothing_options');
   qspCall(s, 'din_van', 'publicpan', 'no_prost');
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    // TODO-QSP: act 'Brush your hair': gt 'mirror', 'brush'
+    scene.actions([
+      { label: 'Brush your hair', goto: ['mirror', 'brush'] },
+    ]);
   }
   qspCall(s, 'din_van', 'quickwash');
   qspCall(s, 'din_van', 'basin');

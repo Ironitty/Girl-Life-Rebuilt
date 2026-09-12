@@ -18,11 +18,17 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/sex/car/bj.jpg');
   scene.text('You slide your hand onto his crotch, once you\'re in his car. The man quickly drives to a quiet area, about two streets away. You can feel an impressive bulge when you reach into his pants, and compliment him on his nice cock when you liberate it. He\'s nearly fully erect already, and if you look closely you can actually see the cock throbbing.');
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {
-    // TODO-QSP: act 'Put on a condom, using your mouth': sexcontra = 3
     scene.actions([{ label: 'Continue', goto: ['blowPR', '1'] }]);
+    scene.actions([
+      { label: 'Put on a condom, using your mouth', handler: (st: GameState) => {
+    (st as any).sexcontra = 3;
+  } },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] === 0) {
-    // TODO-QSP: act 'Get him hard with your mouth': gt 'blowPR', '2'
+    scene.actions([
+      { label: 'Get him hard with your mouth', goto: ['blowPR', '2'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();

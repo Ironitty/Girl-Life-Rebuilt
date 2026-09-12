@@ -38,10 +38,14 @@ function enterSlyHouseIntro_2(s: GameState, scene: SceneBuilder): void {
   scene.text('You follow Sly into his bedroom, noticing that he does not close the door behind you. Looking around, you see a large room with a huge bed, a small couch, and a lot of different artsy looking items.');
   scene.text('He leads you to the center of the room, turns to you, and says "Kneel."');
   if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
-    // TODO-QSP: act 'I am a virgin': gt 'Zvereva_Sly_events', 'virgin'
+    scene.actions([
+      { label: 'I am a virgin', goto: ['Zvereva_Sly_events', 'virgin'] },
+    ]);
   }
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
-    // TODO-QSP: act 'Refuse': gt 'Zvereva_Sly_events', 'first_refuse'
+    scene.actions([
+      { label: 'Refuse', goto: ['Zvereva_Sly_events', 'first_refuse'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

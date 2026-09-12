@@ -205,7 +205,9 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).NatashaLoc ?? 0) !== 1) {
       if (((s as any).NatashaLoc ?? 0) === 7) {
-        // TODO-QSP: act 'Laundry Room': gt 'natbel_cp_1', 'laundry'
+        scene.actions([
+          { label: 'Laundry Room', goto: ['natbel_cp_1', 'laundry'] },
+        ]);
       }
       scene.actions([
         { label: '<b>Leave Natasha\'s apartment</b>', goto: ['natbelapt', 'leave_apartment'] },
@@ -752,7 +754,11 @@ function enterNatroom(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).lernHome ?? 0) > 0) {
-        // TODO-QSP: act 'Study together': gs 'natbelEv', 'study_together'
+        scene.actions([
+          { label: 'Study together', handler: (st: GameState) => {
+    qspCall(st, 'natbelEv', 'study_together');
+  } },
+        ]);
       }
       qspCall(s, 'natbel_cp_1', 'make_her_do_homework');
       qspCall(s, 'natbel_cp_1', 'corrupt_choices');

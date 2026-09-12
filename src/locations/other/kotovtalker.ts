@@ -28,7 +28,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
           ]);
         }
         if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).kotovLoveQW ?? 0) > 0  &&  (!((s as any).VitekVsNiko ?? 0))) {
-          // TODO-QSP: act 'Tell him what Niko did to you': gt 'NikoPayback', 'Vitek Help 2'
+          scene.actions([
+            { label: 'Tell him what Niko did to you', goto: ['NikoPayback', 'Vitek Help 2'] },
+          ]);
         }
         scene.actions([
           { label: 'Drink beer', handler: (st: GameState) => {
@@ -188,7 +190,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
     }
     if (((s as any).loc ?? 0) === 'pav_disco') {
-      // TODO-QSP: act 'Move away': gt $loc, $loc_arg
+      scene.actions([
+        { label: 'Move away', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+      ]);
     }
   } },
         ]);
@@ -203,7 +209,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gschool_lessons', 'short_break'] }]);
     }
     if (((s as any).loc ?? 0) === 'pav_disco') {
-      // TODO-QSP: act 'Move away': gt $loc, $loc_arg
+      scene.actions([
+        { label: 'Move away', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+      ]);
     }
   } },
       ]);

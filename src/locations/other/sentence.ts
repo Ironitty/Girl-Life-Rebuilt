@@ -17,7 +17,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re standing in the middle of the Greco-Roman inspired courthouse, the bastion of justice for the city of St. Petersburg.');
   scene.text('There are many statues of political and legal figures in the region going right back to a bust of Catherine the Great.');
   if (((s as any).policeQW_courthearing_dates ?? 0)[0] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 11) {
-    // TODO-QSP: act 'Go to your hearing': gt 'sentence', 'hearing'
+    scene.actions([
+      { label: 'Go to your hearing', goto: ['sentence', 'hearing'] },
+    ]);
   }
   if (((s as any).AlexandriaQW ?? 0) === 13) {
     scene.actions([

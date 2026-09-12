@@ -448,7 +448,9 @@ function enterHangout1(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 1
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '1'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout1'] },
@@ -496,7 +498,9 @@ function enterHangout2(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Lena and Lera hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 2
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '2'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout2'] },
@@ -544,7 +548,9 @@ function enterHangout3(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Lavrenti hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 3
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '3'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout3'] },
@@ -592,7 +598,9 @@ function enterHangout4(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Lavrenti, Lena and Lera hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 4
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '4'] },
+      ]);
     }
     scene.actions([
       { label: 'Just hang out', goto: ['praiders_garage', 'hangout4'] },
@@ -641,7 +649,9 @@ function enterHangout5(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena and Lera hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 5
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '5'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout5'] },
@@ -690,7 +700,9 @@ function enterHangout6(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona and Lavrenti hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 6
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '6'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout6'] },
@@ -740,7 +752,9 @@ function enterHangout7(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona and Roman hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 7
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '7'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout7'] },
@@ -790,7 +804,9 @@ function enterHangout8(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena, Lera and Lavrenti hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 8
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '8'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout8'] },
@@ -841,7 +857,9 @@ function enterHangout9(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena, Lera, Lavrenti and Roman hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 9
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '9'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout9'] },
@@ -893,7 +911,9 @@ function enterHangout10(s: GameState, scene: SceneBuilder): void {
   scene.text('Everyone sits around the small coffee table on the couch and the various chairs scattered around. Beers are handed out and a few people smoke weed or do lines of harder drugs as everyone relaxes and chats, with several conversations going at once. Several stories are shared about past events or bragging rights, many about the band and some of the gigs they\'ve done. In addition to the band and some people you don\'t know, you also see Alyona, Lena, Lera, Lavrenti and Roman hanging out as well.');
   if (((s as any).hour ?? 0) < 23) {
     if (((s as any).gopnikbandQW ?? 0)?.['radomirblocked'] !== 1) {
-      // TODO-QSP: act 'Talk to Radomir': gt 'praiders_garage_chat', 'chat_radomir', 9
+      scene.actions([
+        { label: 'Talk to Radomir', goto: ['praiders_garage_chat', 'chat_radomir', '9'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out', goto: ['praiders_garage', 'hangout9'] },

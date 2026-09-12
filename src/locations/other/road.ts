@@ -31,8 +31,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'You parked <a href="exec:gs ''carF'', ''start''">your <<$car[''name'']>></a>'+iif(prostitute['road'...
     }
     if ((!((s as any).nroad ?? 0))) {
-      // TODO-QSP: act 'Walk to the City Industrial Region (0:15)': minut += 15
       scene.actions([{ label: 'Continue', goto: ['city_industrial', ''] }]);
+      scene.actions([
+        { label: 'Walk to the City Industrial Region (0:15)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  } },
+      ]);
     }
     if (((s as any).nroad ?? 0) === 1) {
       scene.actions([
@@ -42,8 +46,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).nroad ?? 0) === 16) {
-      // TODO-QSP: act 'Check out the construction site (1:00)': minut += 60
       scene.actions([{ label: 'Continue', goto: ['obekt', ''] }]);
+      scene.actions([
+        { label: 'Check out the construction site (1:00)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 60;
+  } },
+      ]);
     }
     if (((s as any).nroad ?? 0) === 19) {
       scene.actions([

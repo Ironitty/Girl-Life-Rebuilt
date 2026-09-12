@@ -45,10 +45,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).loc ?? 0) === 'gad_meadow'  &&  ((s as any).locat ?? 0)?.['A60_loc'] === 'gad_meadow'  &&  ((s as any).pcs_horny ?? 0) >= 40) {
           if (((s as any).MiraVars ?? 0)?.['had_sex'] === 1  &&  ((s as any).npc_QW ?? 0)?.['A63'] < 13  &&  ((s as any).MiraVars ?? 0)?.['cuni_given'] > 0) {
-            // TODO-QSP: act 'Talk to Mira in the meadow': gt 'gad_meadow', 'lesb_talk_mira3'
+            scene.actions([
+              { label: 'Talk to Mira in the meadow', goto: ['gad_meadow', 'lesb_talk_mira3'] },
+            ]);
           }
           if (((s as any).MiraVars ?? 0)?.['had_sex'] === 2  &&  ((s as any).npc_rel ?? 0)?.['A60'] >= 15) {
-            // TODO-QSP: act 'Talk to Mira in the meadow': gt 'gad_meadow', 'lesb_mira'
+            scene.actions([
+              { label: 'Talk to Mira in the meadow', goto: ['gad_meadow', 'lesb_mira'] },
+            ]);
           }
         }
         if (((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10  &&  ((s as any).sunWeather ?? 0) === 1) {

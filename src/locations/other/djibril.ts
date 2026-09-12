@@ -387,10 +387,14 @@ function enterDjibrilChat(s: GameState, scene: SceneBuilder): void {
 
 function enterInvite(s: GameState, scene: SceneBuilder): void {
   if (((s as any).DjibrilQW ?? 0)?.['anya_inv'] >= 1  &&  ((s as any).DjibrilQW ?? 0)?.['anya_busy'] !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Text Anya': gt 'djibril', 'textanya'
+    scene.actions([
+      { label: 'Text Anya', goto: ['djibril', 'textanya'] },
+    ]);
   }
   if (((s as any).DjibrilQW ?? 0)?.['nush_inv'] >= 1  &&  ((s as any).DjibrilQW ?? 0)?.['nush_busy'] !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Text Anushka': gt 'djibril', 'textnush'
+    scene.actions([
+      { label: 'Text Anushka', goto: ['djibril', 'textnush'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

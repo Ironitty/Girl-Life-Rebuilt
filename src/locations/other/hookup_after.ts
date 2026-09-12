@@ -1449,7 +1449,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).hookup ?? 0)?.['get_up'] !== 1) {
     if (((s as any).hour ?? 0) > 20  ||  ((s as any).hour ?? 0) < 5) {
-      // TODO-QSP: act 'Rest your eyes': gt 'hookup_after', 'bed'
+      scene.actions([
+        { label: 'Rest your eyes', goto: ['hookup_after', 'bed'] },
+      ]);
     }
     if (((s as any).npc_smoker ?? 0)?.[String((s as any).npcID ?? 0)] > 0  &&  ((s as any).hookup ?? 0)?.['cigarette'] === 0) {
       scene.actions([

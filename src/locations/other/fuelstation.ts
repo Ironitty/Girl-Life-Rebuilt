@@ -107,7 +107,9 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/bathroom/toilet.jpg');
   scene.text('You are in a dirty gas station toilet. At least it provides some privacy.');
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    // TODO-QSP: act 'Brush your hair': gt 'mirror', 'brush'
+    scene.actions([
+      { label: 'Brush your hair', goto: ['mirror', 'brush'] },
+    ]);
   }
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');

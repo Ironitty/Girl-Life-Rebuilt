@@ -61,7 +61,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'gp_zlatek', 'check_for_chores', 'yard');
   if (((s as any).grandmaQW ?? 0)?.['chore_feed_chickens'] === 1  ||  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).month ?? 0) >= 4  &&  ((s as any).month ?? 0) <= 10)) {
-    // TODO-QSP: act 'Look at your grandparents'' chickens': gt 'gad_gpyard', 'chickens'
+    scene.actions([
+      { label: 'Look at your grandparents\' chickens', goto: ['gad_gpyard', 'chickens'] },
+    ]);
   }
   if (qspFunc(s, 'miroslava_schedule', 'is_here', 'gp')  &&  ((s as any).MiraVars ?? 0)?.['guest'] === 0) {
     (s as any).minut = ((s as any).minut ?? 0) + 5;

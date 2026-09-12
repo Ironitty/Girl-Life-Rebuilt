@@ -49,7 +49,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).nichWork ?? 0) === 2) {
-    // TODO-QSP: act '<b>GO HOME</b> (Nicholas'' apartment)': gt 'nichApartment'
+    scene.actions([
+      { label: '<b>GO HOME</b> (Nicholas\' apartment)', goto: ['nichApartment', ''] },
+    ]);
   }
   qspCall(s, 'music_actions', 'start');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
@@ -186,7 +188,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).PSport ?? 0) === 1  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).AlexandriaQW ?? 0) === 15) {
-    // TODO-QSP: act 'Meet Ana by the courthouse': gt 'alexandriaEv', 'anachase1'
+    scene.actions([
+      { label: 'Meet Ana by the courthouse', goto: ['alexandriaEv', 'anachase1'] },
+    ]);
   }
   if (((s as any).AlexandriaQW ?? 0) === 3  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 23) {
     scene.actions([

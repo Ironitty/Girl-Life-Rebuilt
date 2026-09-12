@@ -120,8 +120,12 @@ function enterKotovkom(s: GameState, scene: SceneBuilder): void {
   scene.text('His bedroom doesn\'t look like it has been cleaned in weeks or maybe ever; dirty clothes lie on the floor, cleaner looking clothes are scattered around. Several empty beer bottles and other alcohol bottles are scattered around, a full ashtray rests on a wooden box he is using as a night stand next to the bed. The only thing in decent shape in the whole room is a newer looking TV.');
   scene.text('<a href="exec:gt \'kotovdom\', \'vitek_chat\'">Vitek</a> is lying on his bed, relaxing and watching TV.');
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    // TODO-QSP: act 'Dress yourself': gs 'shortgs', 'dress'
     scene.actions([{ label: 'Continue', goto: ['kotovdom', 'kotovkom'] }]);
+    scene.actions([
+      { label: 'Dress yourself', handler: (st: GameState) => {
+    qspCall(st, 'shortgs', 'dress');
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -365,8 +369,12 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'dinsex', 'after_anal', 'no_plug\' else gs \'dinsex', 'after_anal', 'boy', ((s as any).boydesc ?? 0));
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    // TODO-QSP: act 'Dress yourself': gs 'shortgs', 'dress'
     scene.actions([{ label: 'Continue', goto: ['kotovdom', 'after_sex'] }]);
+    scene.actions([
+      { label: 'Dress yourself', handler: (st: GameState) => {
+    qspCall(st, 'shortgs', 'dress');
+  } },
+    ]);
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] > 50  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
     scene.text('"Are you ready to go?" he asks while looking up at you from the bed.');

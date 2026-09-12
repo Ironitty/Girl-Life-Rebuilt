@@ -110,7 +110,9 @@ function enterFedorChat(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if ((((s as any).fedorKozlovQW ?? 0) > 1  ||  ((s as any).fedorKozlovQW ?? 0) < -10)  &&  ((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).FyodorVsNiko ?? 0) === 0  &&  (!((s as any).FedorVsNiko ?? 0))) {
-      // TODO-QSP: act 'Ask for help with Niko': gt 'NikoPayback', 'Fedor Help'
+      scene.actions([
+        { label: 'Ask for help with Niko', goto: ['NikoPayback', 'Fedor Help'] },
+      ]);
     }
   }
   // TODO-QSP: end

@@ -26,7 +26,9 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/police/cityrec.jpg');
   scene.text('Upon entering the station, you\'re welcomed by a reception desk. The officers sitting here are protected by thick glass and you see several monitors and computers keeping an eye on everything that\'s happening inside and outside the building.');
   if (((s as any).rape_count ?? 0) > 0  &&  ((s as any).daystart ?? 0) < ((s as any).rape_day ?? 0) + 2) {
-    // TODO-QSP: act 'Report a rape': gt 'police_station', 'rape_report'
+    scene.actions([
+      { label: 'Report a rape', goto: ['police_station', 'rape_report'] },
+    ]);
   }
   qspCall(s, 'blackmailer', 'set_police_act');
   // TODO-QSP: end

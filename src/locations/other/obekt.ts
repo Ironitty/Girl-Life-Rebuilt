@@ -95,8 +95,12 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).obekt ?? 0)?.['openstateDM2'] === 2) {
-    // TODO-QSP: act 'Sign in third room': minut += 5
     scene.actions([{ label: 'Continue', goto: ['obekt', 'dungeon5'] }]);
+    scene.actions([
+      { label: 'Sign in third room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

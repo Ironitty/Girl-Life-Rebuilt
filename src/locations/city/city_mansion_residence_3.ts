@@ -22,12 +22,20 @@ function enterYgym(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).bassMansion ?? 0) === 1) {
-    // TODO-QSP: act 'Go to your pool area': minut += 1
     scene.actions([{ label: 'Continue', goto: ['city_mansion_residence_3', 'ypool'] }]);
+    scene.actions([
+      { label: 'Go to your pool area', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  } },
+    ]);
   }
   if (((s as any).banaMansion ?? 0) >= 1) {
-    // TODO-QSP: act 'Go to your sauna': minut += 1
     scene.actions([{ label: 'Continue', goto: ['city_mansion_residence_3', 'ysauna'] }]);
+    scene.actions([
+      { label: 'Go to your sauna', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  } },
+    ]);
   }
   if (((s as any).ymanrem ?? 0)[11] === 2) {
     scene.text('Your private gym with all the necessities to live a healthy life. From here you can walk over to the pool or relax in the sauna.');

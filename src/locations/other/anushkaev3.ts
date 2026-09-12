@@ -209,7 +209,9 @@ function enterBedstrapongive(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'vaginal_strap_give', 5, 'lesbian');
     qspCall(s, 'stat', '');
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-      // TODO-QSP: act 'Have her fuck you now': gt 'anushkaev3', 'bedstraponget'
+      scene.actions([
+        { label: 'Have her fuck you now', goto: ['anushkaev3', 'bedstraponget'] },
+      ]);
     }
     scene.actions([
       { label: 'Have her fuck your ass now', goto: ['anushkaev3', 'bedstrapongetanal'] },
@@ -387,7 +389,9 @@ function enterBedstrapongiveanal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'anal_strap_give', 3, 'lesbian', 'rough', 'dom');
     qspCall(s, 'stat', '');
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-      // TODO-QSP: act 'Have her fuck you now': gt 'anushkaev3', 'bedstraponget'
+      scene.actions([
+        { label: 'Have her fuck you now', goto: ['anushkaev3', 'bedstraponget'] },
+      ]);
     }
     scene.actions([
       { label: 'Have her fuck your ass now', goto: ['anushkaev3', 'bedstrapongetanal'] },

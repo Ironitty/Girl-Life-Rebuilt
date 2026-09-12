@@ -54,8 +54,12 @@ function enterOleg(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: <font color=#<<$Oleg['font']>>>"Hello <<$pcs_firstname>>, what do you need?"</a>
         scene.text(`<font color=#${((s as any).Oleg ?? 0)?.['font']}>"Hello ${((s as any).pcs_firstname ?? 0)}, what do you need?"</a>`);
         if (((s as any).Oleg ?? 0)?.['serve'] === 1) {
-          // TODO-QSP: act 'Offer him to serve': Oleg['served'] = totminut
           scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Serve'] }]);
+          scene.actions([
+            { label: 'Offer him to serve', handler: (st: GameState) => {
+    // TODO-QSP: Oleg['served'] = totminut
+  } },
+          ]);
         }
         scene.actions([
           { label: 'Just say hello and leave', goto: ['pav_shared_apt', 'start'] },
@@ -1530,12 +1534,20 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).Oleg ?? 0)?.['pornPos'] >= 1) {
-      // TODO-QSP: act 'Take me full nelson': shared_apt['step'] = 4
       scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Vag'] }]);
+      scene.actions([
+        { label: 'Take me full nelson', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 4
+  } },
+      ]);
     }
     if (((s as any).Oleg ?? 0)?.['pornPos'] >= 2) {
-      // TODO-QSP: act 'Take me pile driver': shared_apt['step'] = 5
       scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Vag'] }]);
+      scene.actions([
+        { label: 'Take me pile driver', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 5
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Let him choose', handler: (st: GameState) => {
@@ -1581,8 +1593,12 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
           if (((s as any).orgB ?? 0) < 100) {
-            // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
             scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Vag'] }]);
+            scene.actions([
+              { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+            ]);
           }
           if (((s as any).orgB ?? 0) >= 100) {
             scene.actions([
@@ -1623,8 +1639,12 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
             if (((s as any).orgB ?? 0) < 100) {
-              // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
               scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Vag'] }]);
+              scene.actions([
+                { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+              ]);
             }
             if (((s as any).orgB ?? 0) >= 100) {
               scene.actions([
@@ -1668,8 +1688,12 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
               if (((s as any).orgB ?? 0) < 100) {
-                // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                 scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Vag'] }]);
+                scene.actions([
+                  { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                ]);
               }
               if (((s as any).orgB ?? 0) >= 100) {
                 scene.actions([
@@ -1714,8 +1738,12 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'stat', '');
                 (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 30);
                 if (((s as any).orgB ?? 0) < 100) {
-                  // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                   scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Vag'] }]);
+                  scene.actions([
+                    { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                  ]);
                 }
                 if (((s as any).orgB ?? 0) >= 100) {
                   scene.actions([
@@ -1759,8 +1787,12 @@ function enterOleg_Sex_Vag(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'stat', '');
                   (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 30);
                   if (((s as any).orgB ?? 0) < 100) {
-                    // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                     scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Vag'] }]);
+                    scene.actions([
+                      { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                    ]);
                   }
                   if (((s as any).orgB ?? 0) >= 100) {
                     scene.actions([
@@ -2013,12 +2045,20 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).Oleg ?? 0)?.['pornPos'] >= 1) {
-      // TODO-QSP: act 'Take me full nelson': shared_apt['step'] = 4
       scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Anal'] }]);
+      scene.actions([
+        { label: 'Take me full nelson', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 4
+  } },
+      ]);
     }
     if (((s as any).Oleg ?? 0)?.['pornPos'] >= 2) {
-      // TODO-QSP: act 'Take me pile driver': shared_apt['step'] = 5
       scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Anal'] }]);
+      scene.actions([
+        { label: 'Take me pile driver', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 5
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Let him choose', handler: (st: GameState) => {
@@ -2076,8 +2116,12 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
           if (((s as any).orgB ?? 0) < 100) {
-            // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
             scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Anal'] }]);
+            scene.actions([
+              { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+            ]);
           }
           if (((s as any).orgB ?? 0) >= 100) {
             scene.actions([
@@ -2127,8 +2171,12 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
             if (((s as any).orgB ?? 0) < 100) {
-              // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
               scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Anal'] }]);
+              scene.actions([
+                { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+              ]);
             }
             if (((s as any).orgB ?? 0) >= 100) {
               scene.actions([
@@ -2179,8 +2227,12 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
               if (((s as any).orgB ?? 0) < 100) {
-                // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                 scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Anal'] }]);
+                scene.actions([
+                  { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                ]);
               }
               if (((s as any).orgB ?? 0) >= 100) {
                 scene.actions([
@@ -2225,8 +2277,12 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'stat', '');
                 (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 30);
                 if (((s as any).orgB ?? 0) < 100) {
-                  // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                   scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Anal'] }]);
+                  scene.actions([
+                    { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                  ]);
                 }
                 if (((s as any).orgB ?? 0) >= 100) {
                   scene.actions([
@@ -2281,8 +2337,12 @@ function enterOleg_Sex_Anal(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'stat', '');
                   (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 30);
                   if (((s as any).orgB ?? 0) < 100) {
-                    // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                     scene.actions([{ label: 'Continue', goto: ['pav_shared_oleg', 'Oleg_Sex_Anal'] }]);
+                    scene.actions([
+                      { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                    ]);
                   }
                   if (((s as any).orgB ?? 0) >= 100) {
                     scene.actions([

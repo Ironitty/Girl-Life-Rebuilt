@@ -793,10 +793,14 @@ function enterLesbMira(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).MiraVars ?? 0)?.['arousal'] < 20) {
-    // TODO-QSP: act 'Continue': gt 'mirasex', 'mirakiss'
+    scene.actions([
+      { label: 'Continue', goto: ['mirasex', 'mirakiss'] },
+    ]);
   }
   if (((s as any).MiraVars ?? 0)?.['arousal'] >= 20) {
-    // TODO-QSP: act 'Continue': gt 'mirasex', 'foreplay'
+    scene.actions([
+      { label: 'Continue', goto: ['mirasex', 'foreplay'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -813,10 +817,14 @@ function enterMiraLesb(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) < 20) {
-    // TODO-QSP: act 'Agree': gt 'mirasex', 'mirakiss'
+    scene.actions([
+      { label: 'Agree', goto: ['mirasex', 'mirakiss'] },
+    ]);
   }
   if (((s as any).pcs_horny ?? 0) >= 20) {
-    // TODO-QSP: act 'Agree': gt 'mirasex', 'foreplay'
+    scene.actions([
+      { label: 'Agree', goto: ['mirasex', 'foreplay'] },
+    ]);
   }
   if (((s as any).pcs_horny ?? 0) < 40) {
     scene.actions([

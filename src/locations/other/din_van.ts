@@ -1703,7 +1703,9 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               if (((s as any).pcs_horny ?? 0) >= 50  ||  qspFunc(s, 'archetypes', 'get_lvl', 'bimbo') === 3) {
-                // TODO-QSP: act 'Aroused': gt 'din_van', 'ArousedReact1'
+                scene.actions([
+                  { label: 'Aroused', goto: ['din_van', 'ArousedReact1'] },
+                ]);
               }
               scene.actions([
                 { label: 'Excited', goto: ['din_van', 'ExcitedReact1'] },

@@ -30,7 +30,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['tech_game_ds'] > 0) {
-    // TODO-QSP: act 'Play Dead City': gt 'KGZstart'
+    scene.actions([
+      { label: 'Play Dead City', goto: ['KGZstart', ''] },
+    ]);
   }
   (s as any).elektro = ((s as any).elektro ?? 0) + (5);
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] > 0) {
@@ -84,7 +86,9 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
     scene.text('You head to your favourite start page while you decide what you want to do.');
     scene.text('A blinking banner for a <a href="exec: gt \'komp\',\'agent\'">Kirsanova Real Estate Agency</a> keeps popping up in the corner.');
     if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'owned', 'city_apartment')  &&  ((s as any).husID ?? 0) === ''  &&  ((s as any).wifID ?? 0) === '') {
-      // TODO-QSP: act 'Rent your apartment out': gt 'komp', 'sale'
+      scene.actions([
+        { label: 'Rent your apartment out', goto: ['komp', 'sale'] },
+      ]);
     }
     if (((s as any).access ?? 0)?.['noporn'] === '') {
       scene.actions([
@@ -103,26 +107,46 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).shantfoto ?? 0) > 0) {
-      // TODO-QSP: act 'Find the girl you took photos of in the park': gt 'komp_assbook', 'blackmail'
+      scene.actions([
+        { label: 'Find the girl you took photos of in the park', goto: ['komp_assbook', 'blackmail'] },
+      ]);
     }
     if (((s as any).fuckornot ?? 0) === 3) {
-      // TODO-QSP: act 'Visit ''Fuckable or not'' site': $view_location = 'komp'
       scene.actions([{ label: 'Continue', goto: ['komp_HF_or_not', 'fuckornot'] }]);
+      scene.actions([
+        { label: 'Visit \'Fuckable or not\' site', handler: (st: GameState) => {
+    // TODO-QSP: $view_location = 'komp'
+  } },
+      ]);
     }
     if (((s as any).hotornot ?? 0) >= 2) {
-      // TODO-QSP: act 'Visit ''Hot or not'' site': $view_location = 'komp'
       scene.actions([{ label: 'Continue', goto: ['komp_HF_or_not', 'hotornot'] }]);
+      scene.actions([
+        { label: 'Visit \'Hot or not\' site', handler: (st: GameState) => {
+    // TODO-QSP: $view_location = 'komp'
+  } },
+      ]);
     }
     if (((s as any).fuckornot_uni ?? 0) === 1) {
-      // TODO-QSP: act 'Visit ''Fuckable or not'' University site': $view_location = 'komp'
       scene.actions([{ label: 'Continue', goto: ['komp_HF_or_not', 'fuckornot_uni'] }]);
+      scene.actions([
+        { label: 'Visit \'Fuckable or not\' University site', handler: (st: GameState) => {
+    // TODO-QSP: $view_location = 'komp'
+  } },
+      ]);
     }
     if (((s as any).hotornot_uni ?? 0) === 1) {
-      // TODO-QSP: act 'Visit ''Hot or not'' University site': $view_location = 'komp'
       scene.actions([{ label: 'Continue', goto: ['komp_HF_or_not', 'hotornot_uni'] }]);
+      scene.actions([
+        { label: 'Visit \'Hot or not\' University site', handler: (st: GameState) => {
+    // TODO-QSP: $view_location = 'komp'
+  } },
+      ]);
     }
     if (((s as any).hostel ?? 0)?.['status'] === 7) {
-      // TODO-QSP: act 'Read letter from Eugene': gt 'pav_voc_school', 'dating_profile'
+      scene.actions([
+        { label: 'Read letter from Eugene', goto: ['pav_voc_school', 'dating_profile'] },
+      ]);
     }
     if (((s as any).camGirl ?? 0)?.['MFC_account'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['tech_webcam'] === 1) {
       if (((s as any).access ?? 0)?.['nocamshow'] === '') {
@@ -134,10 +158,14 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
       }
     }
     if ((((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0)  ||  qspFunc(s, 'uniutil', 'student', 'enrolled')) {
-      // TODO-QSP: act 'Spend time studying': gt 'komp', 'study'
+      scene.actions([
+        { label: 'Spend time studying', goto: ['komp', 'study'] },
+      ]);
     }
     if (((s as any).sucpcinfo ?? 0) === 0  &&  ((s as any).succubxp ?? 0) > 0) {
-      // TODO-QSP: act 'Research the strange feelings you''ve been having': gt 'succubus', 'kompresearch'
+      scene.actions([
+        { label: 'Research the strange feelings you\'ve been having', goto: ['succubus', 'kompresearch'] },
+      ]);
     }
     scene.actions([
       { label: 'Browse a dating website (1:00)', goto: ['komp', 'znak'] },
@@ -292,7 +320,9 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
         ]);
       }
       if (((s as any).pcs_horny ?? 0) >= 50) {
-        // TODO-QSP: act 'Masturbate': gt 'komp', 'masturbate'
+        scene.actions([
+          { label: 'Masturbate', goto: ['komp', 'masturbate'] },
+        ]);
       }
       scene.actions([
         { label: 'Watch vanilla porn', handler: (st: GameState) => {
@@ -393,7 +423,9 @@ function enterMasturbate(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).pcs_horny ?? 0) >= 50) {
-      // TODO-QSP: act 'Masturbate some more': gt 'komp', 'masturbate'
+      scene.actions([
+        { label: 'Masturbate some more', goto: ['komp', 'masturbate'] },
+      ]);
     }
     scene.actions([
       { label: 'Stop masturbating', handler: (st: GameState) => {
@@ -765,7 +797,9 @@ function enterRabota(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).hour ?? 0) < 20  &&  ((s as any).hour ?? 0) > 7) {
-      // TODO-QSP: act 'Search for more jobs': gt 'komp', 'rabota'
+      scene.actions([
+        { label: 'Search for more jobs', goto: ['komp', 'rabota'] },
+      ]);
     }
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },

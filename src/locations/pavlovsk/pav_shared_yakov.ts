@@ -54,8 +54,12 @@ function enterYakov(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: <font color=#<<$Yakov['font']>>>"Hey sweetie, how are you?"</font>
         scene.text(`<font color=#${((s as any).Yakov ?? 0)?.['font']}>"Hey sweetie, how are you?"</font>`);
         if (((s as any).Yakov ?? 0)?.['serve'] === 1) {
-          // TODO-QSP: act 'Offer him to serve': Yakov['served'] = totminut
           scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_Serve'] }]);
+          scene.actions([
+            { label: 'Offer him to serve', handler: (st: GameState) => {
+    // TODO-QSP: Yakov['served'] = totminut
+  } },
+          ]);
         }
         scene.actions([
           { label: 'Just say hello and leave', goto: ['pav_shared_apt', 'start'] },
@@ -1121,8 +1125,12 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
           if (((s as any).orgB ?? 0) < 100) {
-            // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
             scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] }]);
+            scene.actions([
+              { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+            ]);
           }
           if (((s as any).orgB ?? 0) >= 100) {
             scene.actions([
@@ -1162,8 +1170,12 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
             if (((s as any).orgB ?? 0) < 100) {
-              // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
               scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] }]);
+              scene.actions([
+                { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+              ]);
             }
             if (((s as any).orgB ?? 0) >= 100) {
               scene.actions([
@@ -1204,8 +1216,12 @@ function enterYakov_SexVaginal(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
               if (((s as any).orgB ?? 0) < 100) {
-                // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                 scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexVaginal'] }]);
+                scene.actions([
+                  { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                ]);
               }
               if (((s as any).orgB ?? 0) >= 100) {
                 scene.actions([
@@ -1477,8 +1493,12 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
           if (((s as any).orgB ?? 0) < 100) {
-            // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
             scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexAnal'] }]);
+            scene.actions([
+              { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+            ]);
           }
           if (((s as any).orgB ?? 0) >= 100) {
             scene.actions([
@@ -1517,8 +1537,12 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
             if (((s as any).orgB ?? 0) < 100) {
-              // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
               scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexAnal'] }]);
+              scene.actions([
+                { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+              ]);
             }
             if (((s as any).orgB ?? 0) >= 100) {
               scene.actions([
@@ -1558,8 +1582,12 @@ function enterYakov_SexAnal(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
               if (((s as any).orgB ?? 0) < 100) {
-                // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                 scene.actions([{ label: 'Continue', goto: ['pav_shared_yakov', 'Yakov_SexAnal'] }]);
+                scene.actions([
+                  { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                ]);
               }
               if (((s as any).orgB ?? 0) >= 100) {
                 scene.actions([

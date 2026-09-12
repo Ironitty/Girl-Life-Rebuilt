@@ -49,10 +49,14 @@ function enterHotelEnter(s: GameState, scene: SceneBuilder): void {
 function enterSet_Hotelacts(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 22) {
     if (((s as any).university ?? 0)?.['student'] === 1) {
-      // TODO-QSP: act 'Study(1:00)': gt 'therapist_home', 'study'
+      scene.actions([
+        { label: 'Study(1:00)', goto: ['therapist_home', 'study'] },
+      ]);
     }
     if (((s as any).locat ?? 0)?.['A186'] === 2  &&  ((s as any).hour ?? 0) >= 21) {
-      // TODO-QSP: act 'Make love to you Husband': gt 'therapist_home', 'sex'
+      scene.actions([
+        { label: 'Make love to you Husband', goto: ['therapist_home', 'sex'] },
+      ]);
     }
     scene.actions([
       { label: 'Play on your laptop', handler: (st: GameState) => {

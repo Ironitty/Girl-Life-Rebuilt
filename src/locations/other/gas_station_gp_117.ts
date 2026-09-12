@@ -43,7 +43,9 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).prostitute ?? 0)?.['wl_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['full_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['gas_station'] === 1  &&  ((s as any).prostitute ?? 0)?.['work_clothes']) {
-    // TODO-QSP: act 'Go to work': gt 'gas_station_gp_117', 'work'
+    scene.actions([
+      { label: 'Go to work', goto: ['gas_station_gp_117', 'work'] },
+    ]);
   }
   // TODO-QSP: end
   if (((s as any).locArgs?.[0] ?? 0) === 'shop'  ||  ((s as any).gas_shop_inside ?? 0) === 'yes') {

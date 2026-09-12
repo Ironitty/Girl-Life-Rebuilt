@@ -49,13 +49,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterVar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).picrand ?? 0) !== 11) {
-    // TODO-QSP: act 'Get eaten out': gt 'lezbsex', 'kuni'
+    scene.actions([
+      { label: 'Get eaten out', goto: ['lezbsex', 'kuni'] },
+    ]);
   }
   if (((s as any).picrand ?? 0) !== 12  &&  ((s as any).picrand ?? 0) !== 13  &&  ((s as any).picrand ?? 0) !== 14  &&  ((s as any).picrand ?? 0) !== 16  &&  ((s as any).picrand ?? 0) !== 17  &&  ((s as any).picrand ?? 0) !== 18  &&  ((s as any).picrand ?? 0) !== 21) {
-    // TODO-QSP: act 'Get a rimjob': gt 'lezbsex', 'anuli'
+    scene.actions([
+      { label: 'Get a rimjob', goto: ['lezbsex', 'anuli'] },
+    ]);
   }
   if (((s as any).picrand ?? 0) !== 12  &&  ((s as any).picrand ?? 0) !== 13  &&  ((s as any).picrand ?? 0) !== 14  &&  ((s as any).picrand ?? 0) !== 16  &&  ((s as any).picrand ?? 0) !== 17  &&  ((s as any).picrand ?? 0) !== 18  &&  ((s as any).picrand ?? 0) !== 21) {
-    // TODO-QSP: act 'Give her a rimjob': gt 'lezbsex', 'uanuli'
+    scene.actions([
+      { label: 'Give her a rimjob', goto: ['lezbsex', 'uanuli'] },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  ((s as any).picrand ?? 0) !== 11  &&  ((s as any).picrand ?? 0) !== 12  &&  ((s as any).picrand ?? 0) !== 13  &&  ((s as any).picrand ?? 0) !== 14  &&  ((s as any).picrand ?? 0) !== 15  &&  ((s as any).picrand ?? 0) !== 16  &&  ((s as any).picrand ?? 0) !== 17  &&  ((s as any).picrand ?? 0) !== 18  &&  ((s as any).picrand ?? 0) !== 19  &&  ((s as any).picrand ?? 0) !== 20  &&  ((s as any).picrand ?? 0) !== 21  &&  ((s as any).picrand ?? 0) !== 22) {
     scene.actions([
@@ -67,13 +73,19 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['dildo_small'] === 1  &&  ((s as any).picrand ?? 0) !== 12  &&  ((s as any).picrand ?? 0) !== 19  &&  ((s as any).picrand ?? 0) !== 20  &&  ((s as any).picrand ?? 0) !== 22) {
     if (((s as any).picrand ?? 0) !== 11  &&  ((s as any).picrand ?? 0) !== 15  &&  ((s as any).picrand ?? 0) !== 16  &&  ((s as any).picrand ?? 0) !== 17  &&  ((s as any).picrand ?? 0) !== 18  &&  ((s as any).picrand ?? 0) !== 21) {
-      // TODO-QSP: act 'Anal play with the dildo': gt 'lezbsex', 'danal'
+      scene.actions([
+        { label: 'Anal play with the dildo', goto: ['lezbsex', 'danal'] },
+      ]);
     }
     if (((s as any).picrand ?? 0) !== 11) {
-      // TODO-QSP: act 'Let her play with the dildo': gt 'lezbsex', 'udvag'
+      scene.actions([
+        { label: 'Let her play with the dildo', goto: ['lezbsex', 'udvag'] },
+      ]);
     }
     if (((s as any).picrand ?? 0) !== 11  &&  ((s as any).picrand ?? 0) !== 14  &&  ((s as any).picrand ?? 0) !== 15  &&  ((s as any).picrand ?? 0) !== 16  &&  ((s as any).picrand ?? 0) !== 17  &&  ((s as any).picrand ?? 0) !== 18  &&  ((s as any).picrand ?? 0) !== 21) {
-      // TODO-QSP: act 'Let her put the dildo in your ass': gt 'lezbsex', 'udanal'
+      scene.actions([
+        { label: 'Let her put the dildo in your ass', goto: ['lezbsex', 'udanal'] },
+      ]);
     }
     scene.actions([
       { label: 'Play with the dildo', goto: ['lezbsex', 'dvag'] },

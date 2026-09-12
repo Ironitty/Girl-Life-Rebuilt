@@ -341,8 +341,12 @@ function enterDBag(s: GameState, scene: SceneBuilder): void {
     scene.text('You have <a href="exec:gt\'camera\',\'start\'">a camera</a> in your purse.');
   }
   if (((s as any).mc_inventory ?? 0)?.['newspaper'] === 1) {
-    // TODO-QSP: act 'Read your newspaper': newspaperVars['dbag'] = 1
     scene.actions([{ label: 'Continue', goto: ['newspaper', 'start'] }]);
+    scene.actions([
+      { label: 'Read your newspaper', handler: (st: GameState) => {
+    // TODO-QSP: newspaperVars['dbag'] = 1
+  } },
+    ]);
   }
   scene.text('</td></tr></table></center>');
   // TODO-QSP: end

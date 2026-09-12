@@ -70,10 +70,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'rented', 'old_town_apartment')) {
-    // TODO-QSP: act '<b>Go home</b>': gt 'korr2x'
+    scene.actions([
+      { label: '<b>Go home</b>', goto: ['korr2x', ''] },
+    ]);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18  &&  ((s as any).exhibitionQW ?? 0) === 3) {
-    // TODO-QSP: act 'Search for the shop on the card from Kseniya': gt 'shop_exhibitionist', 'start'
+    scene.actions([
+      { label: 'Search for the shop on the card from Kseniya', goto: ['shop_exhibitionist', 'start'] },
+    ]);
   }
   qspCall(s, 'lover', 'lover_events');
   if ((Math.floor(Math.random() * 51) + 0) === 0  &&  ((s as any).fame ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 21) {

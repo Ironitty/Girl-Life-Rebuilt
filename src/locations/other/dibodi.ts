@@ -21,7 +21,9 @@ function enterOs1(s: GameState, scene: SceneBuilder): void {
     scene.text('You consider it. Having your naked body painted and then walking around in public sounds a little shameful, but it\'d be really interesting too.');
   }
   if (((s as any).pcs_inhib ?? 0) > 30) {
-    // TODO-QSP: act 'Agree': gt 'dibodi', 'bodiart'
+    scene.actions([
+      { label: 'Agree', goto: ['dibodi', 'bodiart'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -72,7 +74,9 @@ function enterBodiart1(s: GameState, scene: SceneBuilder): void {
     scene.text('Galina chats about a variety of things, using her hands to gesture often. However after a few minutes, she tells you, "Our place is in the Old Town. You can come visit anytime. It was nice meeting you, but I need to get back to work."');
   }
   if (((s as any).pcs_inhib ?? 0) > 30) {
-    // TODO-QSP: act 'Agree': gt 'ugol'
+    scene.actions([
+      { label: 'Agree', goto: ['ugol', ''] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

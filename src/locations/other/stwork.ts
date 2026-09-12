@@ -66,10 +66,14 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).hour ?? 0) < 3  ||  (((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) < 45)) {
-    // TODO-QSP: act 'Take a break': gt 'stwork', 'rest'
+    scene.actions([
+      { label: 'Take a break', goto: ['stwork', 'rest'] },
+    ]);
   }
   if ((((s as any).hour ?? 0) < 3  ||  (((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) < 45))  &&  ((s as any).drugVars ?? 0)?.['cigarettes_used'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
-    // TODO-QSP: act 'Take a smoke break': gt 'stwork', 'smoke_break'
+    scene.actions([
+      { label: 'Take a smoke break', goto: ['stwork', 'smoke_break'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

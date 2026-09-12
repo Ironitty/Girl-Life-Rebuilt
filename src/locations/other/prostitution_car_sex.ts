@@ -1008,7 +1008,9 @@ function enterRegularCumshot(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).pcs_horny ?? 0) >= 80) {
-    // TODO-QSP: act 'Get yourself off': gt 'prostitution_car_sex', 'regular_main_lick'
+    scene.actions([
+      { label: 'Get yourself off', goto: ['prostitution_car_sex', 'regular_main_lick'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

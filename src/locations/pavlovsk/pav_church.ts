@@ -961,8 +961,12 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the church and the scent of incense and beeswax fills your lungs. Your eyes are drawn past the Narthex into the Nave with its walls covered in lovingly painted icons while a thousand points of light dance in joy throughout God\'s house from the magnificent chandelier that hangs from the ceiling.');
   scene.text('To your left is a counter where a deacon sells candles, icons and prayer books. He smiles and nods at you absently, acknowledging your presence without really seeing you.');
   if (((((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 9)  ||  (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 18))  &&  ((s as any).confessday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Go to confession': confessday = daystart
     scene.actions([{ label: 'Continue', goto: ['pav_church2', 'confession'] }]);
+    scene.actions([
+      { label: 'Go to confession', handler: (st: GameState) => {
+    (st as any).confessday = ((st as any).daystart ?? 0);
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

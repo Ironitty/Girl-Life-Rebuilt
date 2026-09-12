@@ -599,7 +599,9 @@ function enterPos24(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Nastya: "<<$pcs_nickname>>, I just had a fun idea. I 've seen this on the intern...
   scene.text(`Nastya: "${((s as any).pcs_nickname ?? 0)}, I just had a fun idea. I 've seen this on the internet: A girl orders a pizza and then wraps up her naked body in a towel, like she just came out of the shower, and answers the door. And when she's paid and is about to close the door, she 'accidentally' drops the towel. I've been fantasizing about this for such a long time but if I did that at my place, I could get into really big trouble because of my father. But… you aren't scared like me, are you?"`);
   if (((s as any).pcs_inhib ?? 0) >= 50) {
-    // TODO-QSP: act 'That sounds exciting - Agree': gt 'nastja', 'pos26'
+    scene.actions([
+      { label: 'That sounds exciting - Agree', goto: ['nastja', 'pos26'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

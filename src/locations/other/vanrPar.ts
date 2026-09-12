@@ -130,7 +130,9 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/resident/kolka/event/shower/spotkolka.jpg');
       scene.text('You hear the bathroom door creaking open over the sound of the running water and turn around, immediately spotting Kolka watching you through the crack in the door.');
       if (((s as any).brotherQW ?? 0)?.['shower_talk'] < 1) {
-        // TODO-QSP: act 'Tell him off': gt 'brother_voyeur', 'brother_go_away2'
+        scene.actions([
+          { label: 'Tell him off', goto: ['brother_voyeur', 'brother_go_away2'] },
+        ]);
       }
       if ((((s as any).pcs_inhib ?? 0) >= 30  &&  ((s as any).npc_rel ?? 0)?.['A34'] > 60)  ||  ((s as any).npc_rel ?? 0)?.['A34'] > 90) {
         qspCall(s, 'willpower', 'exhib', 'self', 'easy', 'incest');
@@ -167,7 +169,9 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).brotherQW ?? 0)?.['shower_talk'] > 0) {
-        // TODO-QSP: act 'Tell him that you''re too busy to talk': gt 'brother_voyeur', 'showertalkbusy'
+        scene.actions([
+          { label: 'Tell him that you\'re too busy to talk', goto: ['brother_voyeur', 'showertalkbusy'] },
+        ]);
       }
       return;
       scene.actions([

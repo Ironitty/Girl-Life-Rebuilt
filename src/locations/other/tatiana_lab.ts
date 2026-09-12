@@ -368,11 +368,17 @@ function enterTatiana(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).tatisucsex ?? 0) !== 0  &&  ((s as any).tatisucsexask ?? 0) !== ((s as any).daystart ?? 0)) {
-      // TODO-QSP: act 'Ask if she wants to have sex': tatianasucsexask = daystart
       scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'Tatianasucsexask'] }]);
+      scene.actions([
+        { label: 'Ask if she wants to have sex', handler: (st: GameState) => {
+    (st as any).tatianasucsexask = ((st as any).daystart ?? 0);
+  } },
+      ]);
     }
     if (((s as any).sucpcinfo ?? 0) >= 4) {
-      // TODO-QSP: act 'Ask her about Succubae': gt 'tatiana_lab', 'Tatianasuctalk'
+      scene.actions([
+        { label: 'Ask her about Succubae', goto: ['tatiana_lab', 'Tatianasuctalk'] },
+      ]);
     }
   }
   if (((s as any).cheatVars ?? 0)?.['tatiana_apprnc_change'] === 0) {
@@ -1278,8 +1284,12 @@ function enterTatianasuctalk(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).tatisucsex ?? 0) === 0  &&  ((s as any).tatisucsexask ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Ask Tatiana if she wants to try Succubus Sex': tatisucsexask = daystart
     scene.actions([{ label: 'Continue', goto: ['tatiana_lab', 'Tatianasucsexask'] }]);
+    scene.actions([
+      { label: 'Ask Tatiana if she wants to try Succubus Sex', handler: (st: GameState) => {
+    (st as any).tatisucsexask = ((st as any).daystart ?? 0);
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

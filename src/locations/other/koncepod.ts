@@ -17,16 +17,22 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['koncepod', 'read_notice_board_leave'] }]);
   }
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).pavserhom ?? 0) === 0  &&  ((s as any).koncepo ?? 0) === 1  ||  ((s as any).psiha ?? 0) === 1  ||  ((s as any).pavserhom ?? 0) === 3) {
-    // TODO-QSP: act 'Read the notice on the door': gt 'koncepod', 'prs'
+    scene.actions([
+      { label: 'Read the notice on the door', goto: ['koncepod', 'prs'] },
+    ]);
   }
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 21  &&  ((s as any).pavserhom ?? 0) === 1  &&  ((s as any).psiho ?? 0) === 0  &&  (!((s as any).psiha ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['koncepod', 'read_notice_board'] }]);
   }
   if (((s as any).pavserhom ?? 0) === 1  &&  ((s as any).psiho ?? 0) === 1  &&  ((s as any).psiha ?? 0) === 0  &&  ((s as any).mesec ?? 0) === 0  &&  ((s as any).pavserpsiday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Enter the house': gt 'koncepod', 'enter'
+    scene.actions([
+      { label: 'Enter the house', goto: ['koncepod', 'enter'] },
+    ]);
   }
   if (((s as any).psi1day ?? 0) ===1  &&  ((s as any).pavserpsiday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Enter the house': gt 'koncepod', 'krr2x'
+    scene.actions([
+      { label: 'Enter the house', goto: ['koncepod', 'krr2x'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

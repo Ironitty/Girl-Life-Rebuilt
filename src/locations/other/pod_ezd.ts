@@ -72,7 +72,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('There\'s a <a href="exec: gt \'pod_ezd\', \'occupants\'">list</a> of the people who live here on the wall.');
   scene.text('Someone put up some <a href="exec:gt \'pod_ezd\',\'pod_objava\'">advertisements</a> on the wall, near the entrance.');
   if (((s as any).ArtemBeInHome ?? 0) > 0  &&  ((s as any).artemQW ?? 0)?.['artemblok'] === 0) {
-    // TODO-QSP: act 'Apartment 2: Artem Chebotarev': gt 'artemhome', 'home'
+    scene.actions([
+      { label: 'Apartment 2: Artem Chebotarev', goto: ['artemhome', 'home'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -217,7 +219,9 @@ function enterEtaj_3(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>The third floor stairwell was renovated not long ago, but some hoodlums already sprayed graffiti on the walls.</center>');
   scene.text('<br>The stairwell is empty.');
   if (((s as any).juliaQW ?? 0)?.['home_unlocked'] === 1) {
-    // TODO-QSP: act 'Apartment 15: Julia Milova': gt 'JuliaMilHome', 'home'
+    scene.actions([
+      { label: 'Apartment 15: Julia Milova', goto: ['JuliaMilHome', 'home'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -249,7 +253,9 @@ function enterEtaj_4(s: GameState, scene: SceneBuilder): void {
   scene.text('');
   scene.text('<br>The stairwell is empty.');
   if (((s as any).NatbelQW ?? 0)?.['VisitedHome'] === 1) {
-    // TODO-QSP: act 'Apartment 19: Natasha Belova': gt 'natbelapt', 'home'
+    scene.actions([
+      { label: 'Apartment 19: Natasha Belova', goto: ['natbelapt', 'home'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

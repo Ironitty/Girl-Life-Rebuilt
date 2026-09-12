@@ -16,10 +16,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).pcs_mana ?? 0) >= ((((s as any).pcs_intel ?? 0) * ((s as any).pcs_magik ?? 0) + ((s as any).pcs_magik ?? 0) * 100 + ((s as any).pcs_vital ?? 0) * 10 + ((s as any).rikudo ?? 0)) / 2)) {
-        // TODO-QSP: act 'Be nice and chat with the fairy': gt 'MagEncounterFairy', 'fairy_chat'
+        scene.actions([
+          { label: 'Be nice and chat with the fairy', goto: ['MagEncounterFairy', 'fairy_chat'] },
+        ]);
       }
       if (((s as any).pcs_mana ?? 0) >= ((((s as any).pcs_intel ?? 0) * ((s as any).pcs_magik ?? 0) + ((s as any).pcs_magik ?? 0) * 100 + ((s as any).pcs_vital ?? 0) * 10 + ((s as any).rikudo ?? 0)) / 4)) {
-        // TODO-QSP: act 'Just ignore the fairy': gt $loc, $loc_arg
+        scene.actions([
+          { label: 'Just ignore the fairy', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+        ]);
       }
       scene.actions([
         { label: 'Shoo the pesky fairy away', goto: ['MagEncounterFairy', 'fairy_shoo'] },

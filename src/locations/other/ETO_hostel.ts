@@ -16,16 +16,24 @@ function enterTownHostel(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hostel/dom_gor.jpg');
   scene.text('Your room in the hostel. It\'s in poor condition, but still better than nothing. In the courtyard, there is a clothesline and a shed for storing junk. Strangely, even though there seem to be no tenants around, the hostel is crammed to capacity.');
   if (((s as any).hostel ?? 0)?.['status'] > 0) {
-    // TODO-QSP: act 'Go to your room': gt 'dom_gor'
+    scene.actions([
+      { label: 'Go to your room', goto: ['dom_gor', ''] },
+    ]);
   }
   if (((s as any).hostel ?? 0)?.['status'] === 0) {
-    // TODO-QSP: act 'See the superintendent': gt 'comendant', 'pos1'
+    scene.actions([
+      { label: 'See the superintendent', goto: ['comendant', 'pos1'] },
+    ]);
   }
   if (((s as any).hostel ?? 0)?.['status'] === 2) {
-    // TODO-QSP: act 'Search for the superintendent': gt 'comendant', 'pos3'
+    scene.actions([
+      { label: 'Search for the superintendent', goto: ['comendant', 'pos3'] },
+    ]);
   }
   if (((s as any).hostel ?? 0)?.['status'] >= 3) {
-    // TODO-QSP: act 'Inspect the shed': gt 'ETO_hostel', 'shed'
+    scene.actions([
+      { label: 'Inspect the shed', goto: ['ETO_hostel', 'shed'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -43,7 +51,9 @@ function enterSharedBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('The bathroom is in a terrible state: dirty walls, a mess on the floor, old plumbing, and virtually no water flow. A strange odor comes from the pipes—if only you were smarter, you might understand what it is.');
   qspCall(s, 'din_van', 'private');
   if (((s as any).pcs_intel ?? 0) > 50  &&  ((s as any).hostel ?? 0)?.['status'] === 1) {
-    // TODO-QSP: act 'Inspect pipes': gt 'ETO_hostel', 'rusty_pipes'
+    scene.actions([
+      { label: 'Inspect pipes', goto: ['ETO_hostel', 'rusty_pipes'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

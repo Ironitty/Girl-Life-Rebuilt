@@ -13,7 +13,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The newly opened cafe "Del Parco", with its striking facade, lots of tables and ...
     scene.text('The newly opened cafe "Del Parco", with its striking facade, lots of tables and a summer terrace. Opening hours are between \' + $func(\'time\', \'get_time_string\', 14, 0) + \' and \' + $func(\'time\', \'get_time_string\', 21, 0) + \'.');
     if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 21) {
-      // TODO-QSP: act 'Enter the cafe': gt 'cafe_parco', 'inner'
+      scene.actions([
+        { label: 'Enter the cafe', goto: ['cafe_parco', 'inner'] },
+      ]);
     }
     scene.actions([
       { label: 'Return to the square', goto: ['pav_park', 'start'] },
@@ -42,7 +44,9 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).LariskaQW ?? 0)?.['story'] === 12  &&  ((s as any).week ?? 0) === 6) {
-    // TODO-QSP: act 'Join Lariska and Lev': gt 'lariska_storyline', 'Boyfriend_3'
+    scene.actions([
+      { label: 'Join Lariska and Lev', goto: ['lariska_storyline', 'Boyfriend_3'] },
+    ]);
   }
   if (((s as any).NatbelQW ?? 0)?.['bday_invite'] === 1  &&  ((s as any).daystart ?? 0) === ((s as any).NatbelQW ?? 0)?.['bday_day']  &&  ((s as any).day ?? 0) < 13  &&  (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) >= 30  ||  ((s as any).hour ?? 0) === 19)) {
     qspCall(s, 'natbel_friend', 'bday_del_parco');

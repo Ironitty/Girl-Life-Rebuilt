@@ -1147,7 +1147,9 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
     scene.text('<b style="color:#FF0000">You are at work, so you need to be dressed as a secretary!</b>');
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    // TODO-QSP: act 'Brush your hair': gt 'mirror', 'brush'
+    scene.actions([
+      { label: 'Brush your hair', goto: ['mirror', 'brush'] },
+    ]);
   }
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');

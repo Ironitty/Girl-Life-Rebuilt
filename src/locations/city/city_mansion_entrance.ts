@@ -52,8 +52,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).property_owned ?? 0)) {
     if (((s as any).property_construction_status ?? 0) === 2) {
-      // TODO-QSP: act 'Walk inside the mansion': minut += 4
       scene.actions([{ label: 'Continue', goto: ['city_mansion_residence_1', 'yfoyer'] }]);
+      scene.actions([
+        { label: 'Walk inside the mansion', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 4;
+  } },
+      ]);
     }
     if ((!((s as any).property_construction_status ?? 0))) {
       scene.actions([

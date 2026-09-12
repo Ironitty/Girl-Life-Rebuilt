@@ -1824,8 +1824,12 @@ function enterHuntersmokBJ(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).temp_sh ?? 0) === 1) {
-    // TODO-QSP: act 'Keep sucking': hunterVars['smokeBJ'] = 1
     qspCall(s, 'gad_swamphouse', 'huntersmokBJ');
+    scene.actions([
+      { label: 'Keep sucking', handler: (st: GameState) => {
+    // TODO-QSP: hunterVars['smokeBJ'] = 1
+  } },
+    ]);
   }
   if (((s as any).temp_sh ?? 0) === 2) {
     scene.actions([

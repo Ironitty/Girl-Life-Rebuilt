@@ -77,10 +77,16 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) < 3) {
-    // TODO-QSP: act 'More': xgt 'sexdvanadva', 'var'
+    scene.actions([
+      { label: 'More', handler: (st: GameState) => {
+    // TODO-QSP: xgt 'sexdvanadva', 'var'
+  } },
+    ]);
   }
   if (((s as any).sexvar ?? 0) >= 3) {
-    // TODO-QSP: act 'Finish': gt 'sexdvanadva', 'end'
+    scene.actions([
+      { label: 'Finish', goto: ['sexdvanadva', 'end'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();

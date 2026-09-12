@@ -79,7 +79,9 @@ function enterHunterStand(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/market/hunter_stand.jpg');
   scene.text('A small stand selling dried meat');
   if (((s as any).hunterVars ?? 0)?.['were_met'] === 1) {
-    // TODO-QSP: act 'Talk to one of the hunters': gt 'gad_market', 'hunter_talk'
+    scene.actions([
+      { label: 'Talk to one of the hunters', goto: ['gad_market', 'hunter_talk'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

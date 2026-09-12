@@ -1347,7 +1347,11 @@ function enterPregreact(s: GameState, scene: SceneBuilder): void {
         scene.text('Kolka looks at your stomach for moment before asking, "Wow, you\'re pregnant again? Is it mine?"');
         if ((Array.isArray((s as any).wombpotfath) ? ((s as any).wombpotfath as any[]).indexOf('A34') : -1) >= 0) {
           if (((s as any).wombthfathID ?? 0) === 'A34'  &&  ((s as any).npc_rel ?? 0)?.['A34'] > 50) {
-            // TODO-QSP: act 'Yes': gs 'brother', 'brotherknows6'
+            scene.actions([
+              { label: 'Yes', handler: (st: GameState) => {
+    qspCall(st, 'brother', 'brotherknows6');
+  } },
+            ]);
           }
           scene.actions([
             { label: 'Maybe', handler: (st: GameState) => {

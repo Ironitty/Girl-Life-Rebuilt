@@ -37,7 +37,9 @@ function enterWatchNushrad(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 5);
     qspCall(s, 'stat', '');
     if (((s as any).npc_had_sex ?? 0)?.['A144']) {
-      // TODO-QSP: act 'Walk in and join them': gt 'anushkaev2', 'rad3some'
+      scene.actions([
+        { label: 'Walk in and join them', goto: ['anushkaev2', 'rad3some'] },
+      ]);
     }
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
@@ -559,7 +561,9 @@ function enterWatchNushval(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur', 8);
     qspCall(s, 'stat', '');
     if (((s as any).npc_had_sex ?? 0)?.['A144']) {
-      // TODO-QSP: act 'Walk in and join them': gt 'anushkaev2', 'val3some'
+      scene.actions([
+        { label: 'Walk in and join them', goto: ['anushkaev2', 'val3some'] },
+      ]);
     }
     scene.actions([
       { label: 'Leave apartment', handler: (st: GameState) => {
@@ -962,7 +966,9 @@ function enterWatchNushmar(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur', 5);
   qspCall(s, 'stat', '');
   if (((s as any).npc_had_sex ?? 0)?.['A144']) {
-    // TODO-QSP: act 'Walk in and join them': gt 'anushkaev2', 'mar3some'
+    scene.actions([
+      { label: 'Walk in and join them', goto: ['anushkaev2', 'mar3some'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

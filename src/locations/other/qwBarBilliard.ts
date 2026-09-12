@@ -473,7 +473,9 @@ function enterBilliardEv2(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: "<<$func('money', 'string_profit', 1000)>> each."
         scene.text(`"${qspFunc(s, 'money', 'string_profit', 1000)} each."`);
         if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 1) {
-          // TODO-QSP: act 'Sure, let''s play (for cash)': gt 'qwBarBilliard2', 'VicArt_Ev1_Cash'
+          scene.actions([
+            { label: 'Sure, let\'s play (for cash)', goto: ['qwBarBilliard2', 'VicArt_Ev1_Cash'] },
+          ]);
         }
         scene.actions([
           { label: 'I don\'t wanna play for that much', handler: (st: GameState) => {

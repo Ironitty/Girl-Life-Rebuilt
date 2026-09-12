@@ -28,8 +28,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('"So what can I get for you, honey?"');
   if (((s as any).drugUser ?? 0) === 1) {
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).drugVars ?? 0)?.['pav_dropoff'] === 0) {
-      // TODO-QSP: act 'Ask for a drop-off point in Pavlovsk':  minut += 5
       qspCall(s, 'events', 'ask_pav_drug_dropoff');
+      scene.actions([
+        { label: 'Ask for a drop-off point in Pavlovsk', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

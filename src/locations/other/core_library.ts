@@ -95,7 +95,9 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'din_van', 'basin');
   qspCall(s, 'din_van', 'tampon');
   if ((!((s as any).pcs_hairbsh ?? 0))) {
-    // TODO-QSP: act 'Brush your hair': gt 'mirror', 'brush'
+    scene.actions([
+      { label: 'Brush your hair', goto: ['mirror', 'brush'] },
+    ]);
   }
   if (((s as any).deodorant ?? 0) > 0  &&  (!((s as any).deodorant_on ?? 0))) {
     // TODO-QSP: 'Your deodorant will last you for <b><<deodorant>></b> more '+iif(deodorant = 1, 'application.', 'ap...

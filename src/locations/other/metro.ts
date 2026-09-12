@@ -440,8 +440,12 @@ function enterSuburbs(s: GameState, scene: SceneBuilder): void {
   scene.text('The Suburbs metro stop');
   qspCall(s, 'transport_functions', 'set_metro_wait_time', 'suburbs');
   if (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) < 23) {
-    // TODO-QSP: act 'Walk to the Bus station (0:15)': minut += 15
     scene.actions([{ label: 'Continue', goto: ['bus', 'suburbs'] }]);
+    scene.actions([
+      { label: 'Walk to the Bus station (0:15)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  } },
+    ]);
   }
   if (((s as any).transportVars ?? 0)?.['metro_wait_island'] > 60) {
     // TODO-QSP: dynamic text: It's too late to take the metro. The next one arrives in <<transportVars['metro_...

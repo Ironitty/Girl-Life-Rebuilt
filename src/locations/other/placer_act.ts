@@ -55,7 +55,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (((s as any).placerParameter ?? 0)?.['friend_index'] === 0) {
-      // TODO-QSP: act 'Decline and leave': gt 'pav_park', 'start'
+      scene.actions([
+        { label: 'Decline and leave', goto: ['pav_park', 'start'] },
+      ]);
     }
     if (((s as any).placerParameter ?? 0)?.['friend_index'] > 0) {
       scene.actions([

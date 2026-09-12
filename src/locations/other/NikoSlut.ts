@@ -1346,8 +1346,12 @@ function enterNoCustomers(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/highway/borisdiner/interior1.jpg');
   scene.text('You and Niko wait for a few minutes, but no one approaches, so you continue chatting while trying to pass the time.');
   if (((s as any).NikoProfit ?? 0) >= 1) {
-    // TODO-QSP: act 'Leave early': NikoDiner = 0
     scene.actions([{ label: 'Continue', goto: ['NikoSlut', 'Customers'] }]);
+    scene.actions([
+      { label: 'Leave early', handler: (st: GameState) => {
+    (st as any).NikoDiner = 0;
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1711,7 +1715,9 @@ function enterTruckers(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).VK ?? 0) === 1  ||  ((s as any).VK ?? 0) === 2) {
     (s as any).VKPartner = 1;
-    // TODO-QSP: act 'Accept his offer (Eat a burger)': gt 'NikoSlut', 'Friendly Meal'
+    scene.actions([
+      { label: 'Accept his offer (Eat a burger)', goto: ['NikoSlut', 'Friendly Meal'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1763,7 +1769,9 @@ function enterBikers(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).VK ?? 0) === 1) {
     (s as any).VKPartner = 2;
-    // TODO-QSP: act 'Accept his offer (Eat a burger)': gt 'NikoSlut', 'Friendly Meal'
+    scene.actions([
+      { label: 'Accept his offer (Eat a burger)', goto: ['NikoSlut', 'Friendly Meal'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

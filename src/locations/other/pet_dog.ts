@@ -115,10 +115,14 @@ function enterActivitiesNormal(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).rex ?? 0)?.['count_bath'] > 0) {
-    // TODO-QSP: act 'Bath <<$rex[''name'']>> (0:25)': gt 'pet_dog', 'bath'
+    scene.actions([
+      { label: 'Bath <<$rex[\'name\']>> (0:25)', goto: ['pet_dog', 'bath'] },
+    ]);
   }
   if (((s as any).rex ?? 0)?.['play_inside'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).objects ?? 0)?.['toys'] === 1) {
-    // TODO-QSP: act 'Play with him inside (0:20)': gt 'pet_dog', 'play_inside'
+    scene.actions([
+      { label: 'Play with him inside (0:20)', goto: ['pet_dog', 'play_inside'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();

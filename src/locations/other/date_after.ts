@@ -264,14 +264,20 @@ function enterEveningAfterMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['at_home'] === 0) {
     if (((s as any).hour ?? 0) < 21) {
       if ((Array.isArray((s as any).date_ev) ? ((s as any).date_ev as any[]).indexOf('dinner_date') : -1) < 0) {
-        // TODO-QSP: act 'Get dinner': gt 'date_ev', 'dinner_after_ask'
+        scene.actions([
+          { label: 'Get dinner', goto: ['date_ev', 'dinner_after_ask'] },
+        ]);
       }
     }
     if ((Array.isArray((s as any).date_ev) ? ((s as any).date_ev as any[]).indexOf('park_date') : -1) < 0) {
-      // TODO-QSP: act 'Go for a walk': gt 'date_ev', 'dinner_after_ask'
+      scene.actions([
+        { label: 'Go for a walk', goto: ['date_ev', 'dinner_after_ask'] },
+      ]);
     }
     if ((Array.isArray((s as any).date_ev) ? ((s as any).date_ev as any[]).indexOf('cinema_date') : -1) < 0) {
-      // TODO-QSP: act 'Go see a movie': gt 'date_ev', 'cinema_after_ask'
+      scene.actions([
+        { label: 'Go see a movie', goto: ['date_ev', 'cinema_after_ask'] },
+      ]);
     }
     scene.actions([
       { label: 'Say goodbye', goto: ['date_after', 'goodbye_route'] },

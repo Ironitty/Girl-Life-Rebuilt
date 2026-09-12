@@ -431,7 +431,9 @@ function enterJoinThem(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).soniaQW ?? 0)?.['soniafall'] <= 6) {
-      // TODO-QSP: act 'Encourage her': gt 'soniadisco', 'soniadrinkmore'
+      scene.actions([
+        { label: 'Encourage her', goto: ['soniadisco', 'soniadrinkmore'] },
+      ]);
     }
     scene.actions([
       { label: 'Take another drink', handler: (st: GameState) => {

@@ -38,7 +38,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('The university and shops and clubs that cater to the students dominate this area of the city.');
   qspCall(s, 'random_events', '');
   if (qspFunc(s, 'homes_properties', 'has_access', 'university_dorm')) {
-    // TODO-QSP: act 'Return to your dorm': gt 'uni_dorm'
+    scene.actions([
+      { label: 'Return to your dorm', goto: ['uni_dorm', ''] },
+    ]);
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> stands in the parkin...

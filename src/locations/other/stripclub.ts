@@ -296,7 +296,9 @@ function enterMainFloor(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: As you enter the club, you see a half naked girl performing on the stage to the ...
   scene.text('As you enter the club, you see a half naked girl performing on the stage to the loud, booming music as others walk around trying to entice customers into buying a private dance. You notice a sign stating that private dances cost \' + $func(\'money\', \'string_price\', 1000) + \'.');
   if (((s as any).hour ?? 0) < 2  ||  (((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) < 45)) {
-    // TODO-QSP: act 'Watch a striptease': gt 'stripclub', 'striptease'
+    scene.actions([
+      { label: 'Watch a striptease', goto: ['stripclub', 'striptease'] },
+    ]);
   }
   if ((((s as any).AlbinaQW ?? 0)?.['seen_strip'] === 1  ||  ((s as any).AlbinaQW ?? 0)?.['working_stripclub'] === 1)  &&  ((s as any).locat ?? 0)?.['A23'] === 22) {
     scene.actions([
@@ -310,7 +312,9 @@ function enterMainFloor(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).hour ?? 0) < 2  ||  (((s as any).hour ?? 0) === 2  &&  ((s as any).minut ?? 0) < 30)) {
-    // TODO-QSP: act 'Get a drink at the bar': gt 'stripclub', 'bar'
+    scene.actions([
+      { label: 'Get a drink at the bar', goto: ['stripclub', 'bar'] },
+    ]);
   }
   if (((s as any).job_status ?? 0)?.['city_strip_stripper'] !== 'employed') {
     scene.actions([

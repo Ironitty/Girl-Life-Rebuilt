@@ -19,7 +19,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You enter the studio and are greeted by a busy scene of actors, actresses and other studio employees going about their business or chatting to each other. It looks like the manager is in his office.');
   if (((s as any).job_status ?? 0)?.['city_pornstudio_delivery'] === 'employed'  &&  ((s as any).week ?? 0) === 4  &&  (!((s as any).workDisk ?? 0))) {
-    // TODO-QSP: act 'Arrive for work': gt 'pornstudio', 'delivery'
+    scene.actions([
+      { label: 'Arrive for work', goto: ['pornstudio', 'delivery'] },
+    ]);
   }
   if (((s as any).job_hiring_step ?? 0)?.['city_pornstudio_delivery'] === 1  &&  (((s as any).age ?? 0) >= 18  ||  ((s as any).fakepassport ?? 0) === 1)) {
     scene.actions([

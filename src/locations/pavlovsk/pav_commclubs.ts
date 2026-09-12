@@ -11,7 +11,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The community center</b></center>');
   scene.img('images/locations/pavlovsk/community/gdkkru.jpg');
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 20  &&  ((s as any).yearstart ?? 0) === 1) {
-    // TODO-QSP: act '<b>Join nerds</b>': gt 'nerd_game_night', 'game'
+    scene.actions([
+      { label: '<b>Join nerds</b>', goto: ['nerd_game_night', 'game'] },
+    ]);
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 20) {
     scene.text('At this time of day, the community center operates various clubs.');

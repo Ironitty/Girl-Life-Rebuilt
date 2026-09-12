@@ -47,7 +47,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_horny ?? 0) >= 50) {
-    // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
+    scene.actions([
+      { label: 'Masturbate', goto: ['selfplay', 'start'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -205,12 +207,20 @@ function enterBarnRoom(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['vintage_card'] > 0) {
-    // TODO-QSP: act 'View your vintage porn cards': card_deck = 0
     scene.actions([{ label: 'Continue', goto: ['card', ''] }]);
+    scene.actions([
+      { label: 'View your vintage porn cards', handler: (st: GameState) => {
+    (st as any).card_deck = 0;
+  } },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['card'] > 0) {
-    // TODO-QSP: act 'View your new porn cards': card_deck = 1
     scene.actions([{ label: 'Continue', goto: ['card', ''] }]);
+    scene.actions([
+      { label: 'View your new porn cards', handler: (st: GameState) => {
+    (st as any).card_deck = 1;
+  } },
+    ]);
   }
   qspCall(s, 'music_actions', 'start');
   scene.text('At the foot of your bed is a small <a href="exec:gt \'wardrobe\', \'start\'">chest</a> containing some of your clothes.');

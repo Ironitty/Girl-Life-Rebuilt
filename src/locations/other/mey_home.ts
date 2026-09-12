@@ -124,8 +124,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 30) {
-    // TODO-QSP: act 'Guest room': minut += 1
     scene.actions([{ label: 'Continue', goto: ['mey_home', 'guest_bedroom'] }]);
+    scene.actions([
+      { label: 'Guest room', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  } },
+    ]);
   }
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0  &&  qspFunc(s, 'homes_properties', 'can_live_here')  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 30) {
     scene.actions([
@@ -273,7 +277,9 @@ function enterGuestBedroom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'start');
   qspCall(s, 'music_actions', 'start');
   if (((s as any).pcs_horny ?? 0) >= 50) {
-    // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
+    scene.actions([
+      { label: 'Masturbate', goto: ['selfplay', 'start'] },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['mag_porn'] > 0) {
     scene.text('You hide your porn magazines under the mattress of your bed.');

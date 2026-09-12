@@ -78,7 +78,9 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You nod your head and dig in your purse, pulling out the money and handing it to him. He takes his time slowly counting it out, then nods as it seems to all be there. You briefly talk back and forth as he puts the money away.');
     if (((s as any).dimarudorient ?? 0) === 1) {
-      // TODO-QSP: act 'Ask for some pale lady': gt 'pav_disco_coolkids', 'dim_drugs'
+      scene.actions([
+        { label: 'Ask for some pale lady', goto: ['pav_disco_coolkids', 'dim_drugs'] },
+      ]);
     }
     scene.actions([
       { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
@@ -126,7 +128,9 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
               scene.text('"Relax, she doesn\'t have the plague," he playfully chides everyone and you\'re soon engaged in a conversation with Dimka.');
             }
             if (((s as any).dimarudorient ?? 0) === 1) {
-              // TODO-QSP: act 'Ask for some pale lady': gt 'pav_disco_coolkids', 'dim_drugs'
+              scene.actions([
+                { label: 'Ask for some pale lady', goto: ['pav_disco_coolkids', 'dim_drugs'] },
+              ]);
             }
             scene.actions([
               { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
@@ -154,7 +158,9 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
                 scene.text('You try talking to him, but he acts like he is barely tolerating you, like a Tsar might a peasant in his court.');
               }
               if (((s as any).dimarudorient ?? 0) === 1) {
-                // TODO-QSP: act 'Ask for some pale lady': gt 'pav_disco_coolkids', 'dim_drugs'
+                scene.actions([
+                  { label: 'Ask for some pale lady', goto: ['pav_disco_coolkids', 'dim_drugs'] },
+                ]);
               }
               scene.actions([
                 { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },
@@ -170,7 +176,9 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
                 scene.text('He smiles and waves back to them. "Sorry, I hope you don\'t mind."');
                 scene.text('He starts heading towards them - you could quickly ask him something or just let him go.');
                 if (((s as any).dimarudorient ?? 0) === 1) {
-                  // TODO-QSP: act 'Ask for some pale lady': gt 'pav_disco_coolkids', 'dim_drugs'
+                  scene.actions([
+                    { label: 'Ask for some pale lady', goto: ['pav_disco_coolkids', 'dim_drugs'] },
+                  ]);
                 }
                 scene.actions([
                   { label: 'Do something else', goto: ['pav_disco_classmates', 'classmates'] },

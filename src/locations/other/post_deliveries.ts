@@ -689,13 +689,19 @@ function enterFinishround(s: GameState, scene: SceneBuilder): void {
     scene.text('You receive your \' + func(\'money\', \'string_profit\', 450) + \' pay for the day.');
   }
   if (((s as any).post_vars ?? 0)?.['qw_1'] === 2) {
-    // TODO-QSP: act 'Return to the married man''s house': gt 'post_events', '1'
+    scene.actions([
+      { label: 'Return to the married man\'s house', goto: ['post_events', '1'] },
+    ]);
   }
   if (((s as any).post_vars ?? 0)?.['qw_2'] === 2) {
-    // TODO-QSP: act 'Go back to Jenya and Arsen''s apartment': gt 'post_events', '2'
+    scene.actions([
+      { label: 'Go back to Jenya and Arsen\'s apartment', goto: ['post_events', '2'] },
+    ]);
   }
   if (((s as any).post_vars ?? 0)?.['qw_3'] === 2) {
-    // TODO-QSP: act 'Return to the businessman''s house': gt 'post_events', '3'
+    scene.actions([
+      { label: 'Return to the businessman\'s house', goto: ['post_events', '3'] },
+    ]);
   }
   return;
   // TODO-QSP: end

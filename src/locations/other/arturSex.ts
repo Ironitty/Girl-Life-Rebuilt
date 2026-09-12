@@ -66,13 +66,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5);
     qspCall(s, 'stat', '');
     if ((!((s as any).temp ?? 0))) {
-      // TODO-QSP: act 'Continue': gt 'arturdin', 'bed'
+      scene.actions([
+        { label: 'Continue', goto: ['arturdin', 'bed'] },
+      ]);
     }
     if (((s as any).temp ?? 0) === 1) {
-      // TODO-QSP: act 'Continue': gt 'arturdin', 'bedmiss'
+      scene.actions([
+        { label: 'Continue', goto: ['arturdin', 'bedmiss'] },
+      ]);
     }
     if (((s as any).temp ?? 0) === 2) {
-      // TODO-QSP: act 'Continue': gt 'arturdin', 'facefuck'
+      scene.actions([
+        { label: 'Continue', goto: ['arturdin', 'facefuck'] },
+      ]);
     }
   } },
   ]);

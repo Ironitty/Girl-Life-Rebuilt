@@ -42,7 +42,9 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Father, it has been ${((s as any).lastconf ?? 0)} days since my last confession."`);
   }
   if (((s as any).sisterLesb ?? 0) > 3  ||  ((s as any).seepornofut ?? 0) !== 0) {
-    // TODO-QSP: act 'Confess a secret about incest': gt 'pav_church2', 'secrets'
+    scene.actions([
+      { label: 'Confess a secret about incest', goto: ['pav_church2', 'secrets'] },
+    ]);
   }
   if (((s as any).stat ?? 0)?.['lesbian_count'] === 0) {
     scene.actions([

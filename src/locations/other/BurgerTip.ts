@@ -818,7 +818,9 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: After a short time, Anatoly groans, "<<$pcs_nickname>> if you keep sucking, I'm ...
       scene.text(`After a short time, Anatoly groans, "${((s as any).pcs_nickname ?? 0)} if you keep sucking, I'm going to finish"`);
       if (((s as any).stat ?? 0)?.['think_virgin'] === 0  ||  ((s as any).pcs_ass ?? 0) > 0) {
-        // TODO-QSP: act 'Bend over the desk': gt 'BurgerTip', 'bend'
+        scene.actions([
+          { label: 'Bend over the desk', goto: ['BurgerTip', 'bend'] },
+        ]);
       }
       scene.actions([
         { label: 'Finish him by hand', goto: ['BurgerTip', 'bj_cum'] },

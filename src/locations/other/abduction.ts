@@ -140,7 +140,9 @@ function enterAbdSomeoneComing(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).broken ?? 0))) {
       scene.text('You fearfully back away from the man and curl up against the wall, your body trembling in fear of what\'s going to happen next.');
       if (((s as any).rapeCount ?? 0) >= 5) {
-        // TODO-QSP: act 'Plead that you can''t take any more': gt 'abduction', 'abdBreak1'
+        scene.actions([
+          { label: 'Plead that you can\'t take any more', goto: ['abduction', 'abdBreak1'] },
+        ]);
       }
       scene.actions([
         { label: 'Cower in fear', goto: ['abduction', 'abdRape'] },
@@ -365,14 +367,18 @@ function enterAbdBreak1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tortureCount ?? 0) >= 5  ||  ((s as any).rapeCount ?? 0) >= 10) {
     if (((s as any).broken ?? 0) > 0) {
       if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
-        // TODO-QSP: act 'Please fuck my pussy, Master': gt 'abduction', 'abdBreak2FuckA1'
+        scene.actions([
+          { label: 'Please fuck my pussy, Master', goto: ['abduction', 'abdBreak2FuckA1'] },
+        ]);
       }
       scene.actions([
         { label: 'Please fuck my mouth Master', goto: ['abduction', 'abdBreak2FuckB1'] },
       ]);
     } else {
       if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
-        // TODO-QSP: act 'You… you are my master. Please accept my pussy for your use…': gt 'abduction', 'abdBreak2FuckA1...
+        scene.actions([
+          { label: 'You… you are my master. Please accept my pussy for your use…', goto: ['abduction', 'abdBreak2FuckA1'] },
+        ]);
       }
       scene.actions([
         { label: 'You… you are my master. Please accept my mouth for your use…', goto: ['abduction', 'abdBreak2FuckB1'] },
@@ -451,13 +457,19 @@ function enterAbdBrokenAsk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('Your master responds. "Very good. What do you want me to do to you, slave?"');
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
-    // TODO-QSP: act 'Please fuck my pussy, Master': gt 'abduction', 'abdBreak2FuckA1'
+    scene.actions([
+      { label: 'Please fuck my pussy, Master', goto: ['abduction', 'abdBreak2FuckA1'] },
+    ]);
   }
   if (((s as any).broken ?? 0) >= 5) {
-    // TODO-QSP: act 'Please rape me, Master': gt 'abduction', 'abdRape'
+    scene.actions([
+      { label: 'Please rape me, Master', goto: ['abduction', 'abdRape'] },
+    ]);
   }
   if (((s as any).broken ?? 0) >= 10) {
-    // TODO-QSP: act 'Please punish me, Master': gt 'abduction', 'abdTorture'
+    scene.actions([
+      { label: 'Please punish me, Master', goto: ['abduction', 'abdTorture'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -687,7 +699,9 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).abdTools ?? 0) === 1) {
     if (((s as any).mc_inventory ?? 0)?.['breast_pump'] > 0  &&  ((s as any).bp_unbox ?? 0) >= 1) {
-      // TODO-QSP: act 'Use breast pump': gt 'lact_bp', 'bp_milking'
+      scene.actions([
+        { label: 'Use breast pump', goto: ['lact_bp', 'bp_milking'] },
+      ]);
     }
     scene.actions([
       { label: 'Train with dildos', goto: ['abduction', 'abdTrainDildos'] },
@@ -715,7 +729,9 @@ function enterAbdFood(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    // TODO-QSP: act 'Brush your hair': gt 'mirror', 'brush'
+    scene.actions([
+      { label: 'Brush your hair', goto: ['mirror', 'brush'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

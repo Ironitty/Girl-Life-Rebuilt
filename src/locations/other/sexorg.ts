@@ -67,7 +67,9 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).sexvar ?? 0) >= 3) {
-    // TODO-QSP: act 'Let the guys finish.': gt 'sexorg', 'end'
+    scene.actions([
+      { label: 'Let the guys finish.', goto: ['sexorg', 'end'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

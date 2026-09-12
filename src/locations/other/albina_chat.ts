@@ -1609,19 +1609,29 @@ function enterZoyaConversation(s: GameState, scene: SceneBuilder): void {
     scene.text('"Anyway, she went to Moscow, where she earned her degree before she moved back here and got her dream job working at a hospital in the city, right under his nose. She\'s looking into getting me into uni myself," she says with a warm smile and a twinkle in her eye. You\'ve never seen her look so… happy before.');
     scene.text('She turns to you. "So what about you? What do you want to do after school?" she asks warmly.');
     if (((s as any).rex_love ?? 0) === 1) {
-      // TODO-QSP: act 'Get married to Rex': gt 'albina_chat', 'telling_marrige_dreams', 'Rex'
+      scene.actions([
+        { label: 'Get married to Rex', goto: ['albina_chat', 'telling_marrige_dreams', '\'Rex\''] },
+      ]);
     }
     if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
-      // TODO-QSP: act 'Get married to Artem': gt 'albina_chat', 'telling_marrige_dreams', 'Artem'
+      scene.actions([
+        { label: 'Get married to Artem', goto: ['albina_chat', 'telling_marrige_dreams', '\'Artem\''] },
+      ]);
     }
     if (((s as any).kotovLoveQW ?? 0) === 1) {
-      // TODO-QSP: act 'Get married to Vitek': gt 'albina_chat', 'telling_marrige_dreams', 'Vitek'
+      scene.actions([
+        { label: 'Get married to Vitek', goto: ['albina_chat', 'telling_marrige_dreams', '\'Vitek\''] },
+      ]);
     }
     if (((s as any).fedorKozlovQW ?? 0) >= 5) {
-      // TODO-QSP: act 'Get married to Fedor': gt 'albina_chat', 'telling_marrige_dreams', 'Fedor'
+      scene.actions([
+        { label: 'Get married to Fedor', goto: ['albina_chat', 'telling_marrige_dreams', '\'Fedor\''] },
+      ]);
     }
     if (((s as any).NikoVolkovQW ?? 0) >= 5) {
-      // TODO-QSP: act 'Get married to Niko': gt 'albina_chat', 'telling_marrige_dreams', 'Niko'
+      scene.actions([
+        { label: 'Get married to Niko', goto: ['albina_chat', 'telling_marrige_dreams', '\'Niko\''] },
+      ]);
     }
     (s as any).i = 0;
     // TODO-QSP: :marrid_looop

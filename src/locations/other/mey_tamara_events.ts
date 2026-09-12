@@ -13,16 +13,26 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Tamara Meynold, the twins\' mother, is a tall, big busted woman, quite outspoken just like a man. She\'s a very attractive woman just under "fifty" years old, redheaded just like the daughters.');
     scene.text('If it wasn\'t for the fiery hair color, no one would ever think that Katja and Vicky are her daughters. Tamara works in the city Bank holding a middle management position, even though she often complains about the work, the pay is good so she stays put.');
     if (((s as any).curloc ?? 0) === 'bank') {
-      // TODO-QSP: act 'Go home with her': minut += 10
       scene.actions([{ label: 'Continue', goto: ['mey_home', 'start'] }]);
+      scene.actions([
+        { label: 'Go home with her', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 10;
+  } },
+      ]);
     }
     if (((s as any).curloc ?? 0) === 'mey_home'  &&  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] >= 32  &&  ((s as any).mey_tamara ?? 0)?.['qw_end'] === 0) {
       if (((s as any).week ?? 0) >= 6  ||  ((s as any).kanikuli ?? 0) > 0) {
-        // TODO-QSP: act 'Ask to go to the city': minut += 30
         scene.actions([{ label: 'Continue', goto: ['city_center', ''] }]);
+        scene.actions([
+          { label: 'Ask to go to the city', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+  } },
+        ]);
       }
       if (((s as any).fame ?? 0)?.['pav_slut'] >= 150  &&  ((s as any).mey_tamara ?? 0)?.['reputation_qw'] === 0) {
-        // TODO-QSP: act 'To talk about the fall': gt 'mey_tamara_events', 'reputation'
+        scene.actions([
+          { label: 'To talk about the fall', goto: ['mey_tamara_events', 'reputation'] },
+        ]);
       }
     }
     scene.actions([
@@ -601,8 +611,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/vicky/event/party\'+rand(8, 10)+\'.jpg');
     scene.text('"You must try the food, it\'s what the oligarchs usually eat…" someone points you in the direction of a luxurious table filled with appetizers.');
     if (((s as any).hour ?? 0) === 23  ||  ((s as any).hour ?? 0) < 2) {
-      // TODO-QSP: act 'Return to the Meynolds residence': minut += 30
       scene.actions([{ label: 'Continue', goto: ['mey_home', 'start'] }]);
+      scene.actions([
+        { label: 'Return to the Meynolds residence', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Try the food', handler: (st: GameState) => {

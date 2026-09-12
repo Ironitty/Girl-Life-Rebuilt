@@ -381,8 +381,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((!((s as any).katalkinNoexit ?? 0))) {
-    // TODO-QSP: act 'Leave his office': minut += 1
     scene.actions([{ label: 'Continue', goto: ['pav_station', 'station_inside'] }]);
+    scene.actions([
+      { label: 'Leave his office', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  } },
+    ]);
   }
   scene.build();
 }

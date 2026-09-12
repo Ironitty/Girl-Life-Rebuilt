@@ -39,8 +39,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('Rumor has it that you can find some spicy toys around here somewhere.');
   }
   if (((s as any).arturQW ?? 0) === 1  &&  (((s as any).week ?? 0) === 6  ||  ((s as any).week ?? 0) === 7)  &&  ((s as any).hour ?? 0) < 12) {
-    // TODO-QSP: act 'Wait for Arthur to arrive': hour = 12
     scene.actions([{ label: 'Continue', goto: ['pav_train_market', 'start'] }]);
+    scene.actions([
+      { label: 'Wait for Arthur to arrive', handler: (st: GameState) => {
+    (st as any).hour = 12;
+  } },
+    ]);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 18) {
     scene.text('The market stalls are buzzing with shoppers. Everyone seems to be in a good mood, and you can hear back-and-forth bargaining as you pass by.');
@@ -60,12 +64,20 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).pavtrain_book ?? 0) === 1) {
-      // TODO-QSP: act 'Go to the book stall': minut += 5
       scene.actions([{ label: 'Continue', goto: ['pav_train_market', '', '3'] }]);
+      scene.actions([
+        { label: 'Go to the book stall', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  } },
+      ]);
     }
     if (((s as any).pavmarket_porn ?? 0) === 1) {
-      // TODO-QSP: act 'Go to the porn stall': minut += 5
       scene.actions([{ label: 'Continue', goto: ['pav_train_market', '', '4'] }]);
+      scene.actions([
+        { label: 'Go to the porn stall', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 5;
+  } },
+      ]);
     }
     if (((s as any).arturKnow ?? 0) === 1  &&  (!((s as any).arturQW ?? 0))) {
       scene.actions([

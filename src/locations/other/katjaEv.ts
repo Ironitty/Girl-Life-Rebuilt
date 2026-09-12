@@ -54,10 +54,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).lernHome ?? 0) > 0  &&  ((s as any).katjaQW ?? 0)?.['QWstage'] >= 2) {
-    // TODO-QSP: act '"Let''s do our homework together"': gt 'katjaEV', '1'
+    scene.actions([
+      { label: '"Let\'s do our homework together"', goto: ['katjaEV', '1'] },
+    ]);
   }
   if (((s as any).lernHome ?? 0) > 0  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['knows_artem_is_boyfreind'] === 1  &&  ((s as any).artemQW ?? 0)?.['katja_threesome'] === 2  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 8  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 9  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 12  &&  ((s as any).locat ?? 0)?.['Vicky'] !== 13) {
-    // TODO-QSP: act 'Ask Katja if she wants to do homework with Artem': gt 'artem_katja_sex', 'home_work_ask_player_...
+    scene.actions([
+      { label: 'Ask Katja if she wants to do homework with Artem', goto: ['artem_katja_sex', 'home_work_ask_player_katja'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

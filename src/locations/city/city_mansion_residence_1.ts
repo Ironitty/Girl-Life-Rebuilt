@@ -64,12 +64,20 @@ function enterYfoyer(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).bassMansion ?? 0) === 1) {
-    // TODO-QSP: act 'Go to your pool': minut += 1
     scene.actions([{ label: 'Continue', goto: ['city_mansion_residence_3', 'ypool'] }]);
+    scene.actions([
+      { label: 'Go to your pool', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  } },
+    ]);
   }
   if (((s as any).banaMansion ?? 0) >= 1) {
-    // TODO-QSP: act 'Go to your sauna': minut += 1
     scene.actions([{ label: 'Continue', goto: ['city_mansion_residence_3', 'ysauna'] }]);
+    scene.actions([
+      { label: 'Go to your sauna', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 1;
+  } },
+    ]);
   }
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
     scene.actions([

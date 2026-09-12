@@ -35,10 +35,14 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
     scene.img(((s as any).setloc ?? {})?.['imagepath'] + 'mariinsky_hall');
     qspCall(s, 'city_mariinsky', 'setup', 'hall');
     if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 0) {
-      // TODO-QSP: act 'Tickets Booth': gt 'city_mariinsky', 'tickets'
+      scene.actions([
+        { label: 'Tickets Booth', goto: ['city_mariinsky', 'tickets'] },
+      ]);
     }
     if (((s as any).mariinskyqw ?? 0)?.['ticket'] === 1) {
-      // TODO-QSP: act 'Main Stage': gt 'city_mariinsky', 'main'
+      scene.actions([
+        { label: 'Main Stage', goto: ['city_mariinsky', 'main'] },
+      ]);
     }
     if (((s as any).hour ?? 0) >= 8) {
       qspCall(s, 'willpower', 'exhib', 'self');

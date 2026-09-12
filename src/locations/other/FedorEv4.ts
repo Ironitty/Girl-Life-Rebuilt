@@ -254,7 +254,9 @@ function enterHome3(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).VKwip ?? 0) === 100) {
-    // TODO-QSP: act 'Is that a yoga ball?': gt 'FedorEv4_sex', 'LivingRoom 3'
+    scene.actions([
+      { label: 'Is that a yoga ball?', goto: ['FedorEv4_sex', 'LivingRoom 3'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -985,7 +987,9 @@ function enterReginaChat(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).FedorShelter ?? 0) === 1) {
-    // TODO-QSP: act 'Ask about moving in': gt 'FedorEv4', 'Fedor Shelter 2'
+    scene.actions([
+      { label: 'Ask about moving in', goto: ['FedorEv4', 'Fedor Shelter 2'] },
+    ]);
   }
   if (((s as any).ReginaIntro ?? 0) === 1  &&  ((s as any).ReginaKoz_Daystart ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
@@ -1122,7 +1126,9 @@ function enterFedorLivingroom(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0  &&  (!((s as any).FedorShelter ?? 0))) {
-    // TODO-QSP: act 'Ask about moving in': gt 'FedorEv4', 'Fedor Shelter'
+    scene.actions([
+      { label: 'Ask about moving in', goto: ['FedorEv4', 'Fedor Shelter'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1185,7 +1191,9 @@ function enterFedorKitchen(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0  &&  (!((s as any).FedorShelter ?? 0))) {
-    // TODO-QSP: act 'Ask about moving in': gt 'FedorEv4', 'Fedor Shelter'
+    scene.actions([
+      { label: 'Ask about moving in', goto: ['FedorEv4', 'Fedor Shelter'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1217,7 +1225,9 @@ function enterFedorBedroom(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor reaches over, then begins, gently rubbing your vagina, "Your body is so perfect, ${((s as any).pcs_firstname ?? 0)}."`);
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0  &&  (!((s as any).FedorShelter ?? 0))) {
-    // TODO-QSP: act 'Ask about moving in': gt 'FedorEv4', 'Fedor Shelter'
+    scene.actions([
+      { label: 'Ask about moving in', goto: ['FedorEv4', 'Fedor Shelter'] },
+    ]);
   }
   if (((s as any).FedorLove ?? 0) === 0  &&  ((s as any).strelaQW ?? 0) === -1) {
     scene.actions([
@@ -1303,7 +1313,9 @@ function enterFedorBedroom2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Fedor reaches over, then begins gently squeezing your breasts, "You have great tits, ${((s as any).pcs_firstname ?? 0)}."`);
   }
   if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home') === 0  &&  (!((s as any).FedorShelter ?? 0))) {
-    // TODO-QSP: act 'Ask about moving in': gt 'FedorEv4', 'Fedor Shelter'
+    scene.actions([
+      { label: 'Ask about moving in', goto: ['FedorEv4', 'Fedor Shelter'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

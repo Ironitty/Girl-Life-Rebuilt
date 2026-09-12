@@ -77,26 +77,40 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['music_guitarlesson', 'advertisement'] }]);
     }
     if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20)) {
-      // TODO-QSP: act 'Go to the sports section': gt 'gdksport', 'start'
+      scene.actions([
+        { label: 'Go to the sports section', goto: ['gdksport', 'start'] },
+      ]);
     }
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
-      // TODO-QSP: act 'Go to the library': gt 'pav_library'
+      scene.actions([
+        { label: 'Go to the library', goto: ['pav_library', ''] },
+      ]);
     }
     if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 20) {
-      // TODO-QSP: act 'Go upstairs to the hobby clubs': gt 'pav_commclubs'
+      scene.actions([
+        { label: 'Go upstairs to the hobby clubs', goto: ['pav_commclubs', ''] },
+      ]);
     }
   } else {
     scene.text('The community center is closed for New Years Eve.');
   }
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 19  &&  ((s as any).yearstart ?? 0) === 1) {
-    // TODO-QSP: act 'Wait for game night to start': minut += 60 - minut
     scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'game'] }]);
+    scene.actions([
+      { label: 'Wait for game night to start', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + (60 - ((st as any).minut ?? 0));
+  } },
+    ]);
   }
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 20  &&  ((s as any).yearstart ?? 0) === 1) {
-    // TODO-QSP: act 'Go up stairs to the hobby clubs and <b>Join nerds</b>': gt 'nerd_game_night', 'game'
+    scene.actions([
+      { label: 'Go up stairs to the hobby clubs and <b>Join nerds</b>', goto: ['nerd_game_night', 'game'] },
+    ]);
   }
   if (((s as any).hour ?? 0) >= 8) {
-    // TODO-QSP: act 'Go to the toilets': gt 'gdktoilet', 'start'
+    scene.actions([
+      { label: 'Go to the toilets', goto: ['gdktoilet', 'start'] },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
     scene.actions([

@@ -439,7 +439,11 @@ function enterHomework(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).feet_track ?? 0) !== ((s as any).daystart ?? 0)) {
-      // TODO-QSP: act 'Take care of your feet (30m)': gt $loc, 'feetcare'
+      scene.actions([
+        { label: 'Take care of your feet (30m)', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'feetcare');
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Barre Practice (30m)', goto: ['pushkin_ballet_evt', 'barre_exercise'] },

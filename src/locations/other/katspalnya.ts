@@ -35,7 +35,9 @@ function enterKatslip(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: When you awaken Kat, she rubs her eyes tiredly: "Hey, <<$pcs_nickname>>… what's ...
   scene.text(`When you awaken Kat, she rubs her eyes tiredly: "Hey, ${((s as any).pcs_nickname ?? 0)}… what's up?"`);
   if (((s as any).npc_rel ?? 0)?.['A219'] > 50) {
-    // TODO-QSP: act 'Seduce her': gt 'lezbsex', 'start'
+    scene.actions([
+      { label: 'Seduce her', goto: ['lezbsex', 'start'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -53,7 +55,9 @@ function enterKat(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Kat smiles when she sees you approach and says cheerfully: "<<$pcs_nickname>>, h...
   scene.text(`Kat smiles when she sees you approach and says cheerfully: "${((s as any).pcs_nickname ?? 0)}, hi! How's it going? Come, sit with me!"`);
   if (((s as any).npc_rel ?? 0)?.['A219'] > 50) {
-    // TODO-QSP: act 'Seduce her': gt 'lezbsex', 'start'
+    scene.actions([
+      { label: 'Seduce her', goto: ['lezbsex', 'start'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

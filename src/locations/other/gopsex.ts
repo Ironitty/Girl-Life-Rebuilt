@@ -376,7 +376,9 @@ function enterShgopsexEnd(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).sh_bjandhj_cum ?? 0) <= 0) {
       if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
-        // TODO-QSP: act 'In your pussy': gt 'gopsex', 'hide', 'shgopsex_cumvag'
+        scene.actions([
+          { label: 'In your pussy', goto: ['gopsex', 'hide', '\'shgopsex_cumvag\''] },
+        ]);
       }
       scene.actions([
         { label: 'In your mouth', goto: ['gopsex', 'hide', '\'shgopsex_swallow\''] },

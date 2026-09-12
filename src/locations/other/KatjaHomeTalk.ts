@@ -239,7 +239,9 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).katjaQW ?? 0)?.['anal_quest'] === 1  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] === 0  &&  ((s as any).katjaQW ?? 0)?.['boy_block'] === 0) {
-    // TODO-QSP: act 'Tell her you''ll find a boy for her to try anal with': gt 'KatjaHomeTalk', 'anal_discussion'
+    scene.actions([
+      { label: 'Tell her you\'ll find a boy for her to try anal with', goto: ['KatjaHomeTalk', 'anal_discussion'] },
+    ]);
   }
   if (((s as any).katjaQW ?? 0)?.['slut'] >= 50  &&  ((s as any).katjaQW ?? 0)?.['horny'] >= 80  &&  ((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2) {
     scene.actions([

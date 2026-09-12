@@ -732,7 +732,9 @@ function enterKatjachat(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).VKKatjaChat ?? 0) > 0) {
-    // TODO-QSP: act 'Walk away': gt 'NikoMeyHome', 'katja_room'
+    scene.actions([
+      { label: 'Walk away', goto: ['NikoMeyHome', 'katja_room'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();

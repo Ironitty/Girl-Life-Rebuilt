@@ -13,11 +13,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/library/gdkbibl.jpg');
   scene.text('For such a small town, the library is surprisingly large, containing many interesting books on a wide variety of subjects.');
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 19) {
-    // TODO-QSP: act 'Wait for game night to start': minut = 60
     scene.actions([{ label: 'Continue', goto: ['pav_library', ''] }]);
+    scene.actions([
+      { label: 'Wait for game night to start', handler: (st: GameState) => {
+    (st as any).minut = 60;
+  } },
+    ]);
   }
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 20) {
-    // TODO-QSP: act 'Join the nerds': gt 'nerd_game_night', 'game'
+    scene.actions([
+      { label: 'Join the nerds', goto: ['nerd_game_night', 'game'] },
+    ]);
   }
   if (((s as any).hour ?? 0) < 8  ||  ((s as any).hour ?? 0) >= 18) {
     scene.text('The library is closed.');

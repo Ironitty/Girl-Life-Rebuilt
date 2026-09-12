@@ -26,13 +26,19 @@ function enterBench(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You take a seat on one of the benches in the courtyard and relax.');
   if (((s as any).mc_inventory ?? 0)?.['mag_cooking'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['mag_fashion'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['mag_computer'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['mag_biography'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['mag_knitting'] === 1  ||  ((s as any).mc_inventory ?? 0)?.['mag_fitness'] === 1) {
-    // TODO-QSP: act 'Read a magazine': gt 'pav_aptcourtev', 'read'
+    scene.actions([
+      { label: 'Read a magazine', goto: ['pav_aptcourtev', 'read'] },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
-    // TODO-QSP: act 'Smoke': gt 'pav_aptcourtev', 'smoke'
+    scene.actions([
+      { label: 'Smoke', goto: ['pav_aptcourtev', 'smoke'] },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
-    // TODO-QSP: act 'Smoke a joint': gt 'pav_aptcourtev', 'smoke_joint'
+    scene.actions([
+      { label: 'Smoke a joint', goto: ['pav_aptcourtev', 'smoke_joint'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -110,7 +116,9 @@ function enterSmoke(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/events/benchsmoke.jpg');
   scene.text('You take out a pack of smokes and light a cigarette before taking a long slow drag off it as you relax on the bench.');
   if (((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
-    // TODO-QSP: act 'Have another cigarette': gt 'pav_aptcourtev', 'smoke'
+    scene.actions([
+      { label: 'Have another cigarette', goto: ['pav_aptcourtev', 'smoke'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

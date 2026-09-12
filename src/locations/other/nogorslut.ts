@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -64,13 +64,21 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text(`He gives you a one armed hug. "${((s as any).pcs_nickname ?? 0)} your the best, not only are you smoking hot but you are a super cool chick too. If you want to hang out some time you can stop by my place." He pauses a moment and then looks around and leans in close. "Or if you get a little bored during lunch break, you can let me know too." He says with a suggestive tone and waggled eyebrows.`);
     scene.text('You laugh at his silly antics, it is nice to have found a fun guy to hang out with, perhaps you will stop by his place, or maybe even take him up on his offer to make lunch break less boring. "Sure Ivan, I\'ll think about it."');
     if (((s as any).loc ?? 0) !== 'pav_disco') {
-      // TODO-QSP: act 'Move away': gt 'gschool_lessons', 'short_break'
+      scene.actions([
+        { label: 'Move away', goto: ['gschool_lessons', 'short_break'] },
+      ]);
     }
     if (((s as any).loc ?? 0) === 'pav_disco') {
-      // TODO-QSP: act 'Move away': gt $loc, $loc_arg
+      scene.actions([
+        { label: 'Move away', handler: (st: GameState) => {
+    dynamicGoto(st, 'loc', 'loc_arg');
+  } },
+      ]);
     }
     if (((s as any).loc ?? 0) !== 'pav_disco') {
-      // TODO-QSP: act 'Tell him you''re bored': gt 'IvanEv', 'Ivan_bored'
+      scene.actions([
+        { label: 'Tell him you\'re bored', goto: ['IvanEv', 'Ivan_bored'] },
+      ]);
     }
   } },
                   ]);

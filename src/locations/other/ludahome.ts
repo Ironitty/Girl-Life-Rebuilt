@@ -225,13 +225,19 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
 
 function enterInvite(s: GameState, scene: SceneBuilder): void {
   if (((s as any).OluQW ?? 0)?.['anya_inv'] === 1  &&  ((s as any).OluQW ?? 0)?.['anya_busy'] !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Text Anya': gt 'ludahome', 'textanya'
+    scene.actions([
+      { label: 'Text Anya', goto: ['ludahome', 'textanya'] },
+    ]);
   }
   if (((s as any).OluQW ?? 0)?.['nush_inv'] === 1  &&  ((s as any).OluQW ?? 0)?.['nush_busy'] !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Text Anushka': gt 'ludahome', 'textnush'
+    scene.actions([
+      { label: 'Text Anushka', goto: ['ludahome', 'textnush'] },
+    ]);
   }
   if (((s as any).OluQW ?? 0)?.['nat_inv'] === 1  &&  ((s as any).NatbelQW ?? 0)?.['Debt'] > 0  &&  ((s as any).OluQW ?? 0)?.['nat_busy'] !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Text Natasha': gt 'ludahome', 'textnatasha'
+    scene.actions([
+      { label: 'Text Natasha', goto: ['ludahome', 'textnatasha'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

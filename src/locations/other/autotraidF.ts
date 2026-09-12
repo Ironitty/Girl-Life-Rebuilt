@@ -24,7 +24,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'autotraidF', 'is_open')) {
     if (qspFunc(s, 'car_funcs', 'has_car')) {
-      // TODO-QSP: act 'Ask about selling your car': gt 'autotraidF', 'manager1'
+      scene.actions([
+        { label: 'Ask about selling your car', goto: ['autotraidF', 'manager1'] },
+      ]);
     }
     scene.actions([
       { label: 'Look at the new cars for sale', goto: ['autosalonF', 'start'] },
@@ -114,7 +116,11 @@ function enterCar(s: GameState, scene: SceneBuilder): void {
       (s as any).car = 0;
     }
     if (((s as any).used_car ?? 0)?.['1_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['1_price'] !== -1) {
-      // TODO-QSP: act 'Inspect a 2107': gt 'autotraidF', 'inspect', 1, 1, 3
+      scene.actions([
+        { label: 'Inspect a 2107', handler: (st: GameState) => {
+    // TODO-QSP: gt 'autotraidF', 'inspect', 1, 1, 3
+  } },
+      ]);
     }
     if (((s as any).used_car ?? 0)?.['wrek_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['wrek_price'] !== -1) {
       scene.actions([
@@ -122,22 +128,46 @@ function enterCar(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).used_car ?? 0)?.['2_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['2_price'] !== -1) {
-      // TODO-QSP: act 'Inspect a VAZ 2115': gt 'autotraidF', 'inspect', 2, 1, 3
+      scene.actions([
+        { label: 'Inspect a VAZ 2115', handler: (st: GameState) => {
+    // TODO-QSP: gt 'autotraidF', 'inspect', 2, 1, 3
+  } },
+      ]);
     }
     if (((s as any).used_car ?? 0)?.['3_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['3_price'] !== -1) {
-      // TODO-QSP: act 'Inspect a VAZ 2113': gt 'autotraidF', 'inspect', 3, 1, 3
+      scene.actions([
+        { label: 'Inspect a VAZ 2113', handler: (st: GameState) => {
+    // TODO-QSP: gt 'autotraidF', 'inspect', 3, 1, 3
+  } },
+      ]);
     }
     if (((s as any).used_car ?? 0)?.['4_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['4_price'] !== -1) {
-      // TODO-QSP: act 'Inspect a VAZ 2114': gt 'autotraidF', 'inspect', 4, 1, 3
+      scene.actions([
+        { label: 'Inspect a VAZ 2114', handler: (st: GameState) => {
+    // TODO-QSP: gt 'autotraidF', 'inspect', 4, 1, 3
+  } },
+      ]);
     }
     if (((s as any).used_car ?? 0)?.['5_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['5_price'] !== -1) {
-      // TODO-QSP: act 'Inspect a VAZ 2110': gt 'autotraidF', 'inspect', 5, 1, 3
+      scene.actions([
+        { label: 'Inspect a VAZ 2110', handler: (st: GameState) => {
+    // TODO-QSP: gt 'autotraidF', 'inspect', 5, 1, 3
+  } },
+      ]);
     }
     if (((s as any).used_car ?? 0)?.['11_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['11_price'] !== -1) {
-      // TODO-QSP: act 'Inspect a GAZ 3102': gt 'autotraidF', 'inspect', 11, 2, 5
+      scene.actions([
+        { label: 'Inspect a GAZ 3102', handler: (st: GameState) => {
+    // TODO-QSP: gt 'autotraidF', 'inspect', 11, 2, 5
+  } },
+      ]);
     }
     if (((s as any).used_car ?? 0)?.['12_condition'] !== -1  &&  ((s as any).used_car ?? 0)?.['12_price'] !== -1) {
-      // TODO-QSP: act 'Inspect a GAZ 3110': gt 'autotraidF', 'inspect', 12, 2, 5
+      scene.actions([
+        { label: 'Inspect a GAZ 3110', handler: (st: GameState) => {
+    // TODO-QSP: gt 'autotraidF', 'inspect', 12, 2, 5
+  } },
+      ]);
     }
   }
   // TODO-QSP: end

@@ -357,13 +357,21 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['strapon'] > 0  &&  ((s as any).IgorQW ?? 0)?.['strap'] >= 1) {
-    // TODO-QSP: act 'Be my bitch': gt 'igorsex', 'strap on'
+    scene.actions([
+      { label: 'Be my bitch', goto: ['igorsex', 'strap on'] },
+    ]);
   }
   if (((s as any).IgorQW ?? 0)?.['crossdress'] === 1) {
-    // TODO-QSP: act 'Let''s go for walk': gt 'igorev', 'walk'
+    scene.actions([
+      { label: 'Let\'s go for walk', goto: ['igorev', 'walk'] },
+    ]);
   }
   if ((((s as any).IgorQW ?? 0)?.['DimaNos'] === 2  ||  ((s as any).IgorQW ?? 0)?.['DimaNos'] === 3)  &&  ((s as any).IgorQW ?? 0)?.['DimaNos_day'] < ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'How was your date?': gt 'igorev', 'Ask about Diana''s date'
+    scene.actions([
+      { label: 'How was your date?', handler: (st: GameState) => {
+    // TODO-QSP: gt 'igorev', 'Ask about Diana''s date'
+  } },
+    ]);
   }
   if (((s as any).IgorQW ?? 0)?.['Love'] === 1) {
     scene.actions([

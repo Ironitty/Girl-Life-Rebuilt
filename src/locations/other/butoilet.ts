@@ -12,7 +12,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>WC</b></center>');
   scene.img('images/locations/shared/bathroom/publictoilet.jpg');
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    // TODO-QSP: act 'Brush your hair': gt 'mirror', 'brush'
+    scene.actions([
+      { label: 'Brush your hair', goto: ['mirror', 'brush'] },
+    ]);
   }
   qspCall(s, 'din_van', 'tampon');
   qspCall(s, 'din_van', 'quickwash');

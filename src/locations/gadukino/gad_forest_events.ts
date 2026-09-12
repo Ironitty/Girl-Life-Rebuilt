@@ -436,8 +436,12 @@ function enterPicnic(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).gad_meadow_found ?? 0) === 1) {
-      // TODO-QSP: act 'Go to the meadow': minut += 15
       scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'start'] }]);
+      scene.actions([
+        { label: 'Go to the meadow', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Go further into the forest', goto: ['gad_forest', 'forest_outskirts'] },

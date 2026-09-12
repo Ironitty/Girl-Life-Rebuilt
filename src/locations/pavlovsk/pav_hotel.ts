@@ -82,7 +82,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'pav_hotelWork', 'set_hotel_acts');
   if (((s as any).hotelcouple ?? 0) === 2  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).hour ?? 0) >= 20  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).hcday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Visit the couple in room 207': gt 'pav_hotelWork', 'hotcouple'
+    scene.actions([
+      { label: 'Visit the couple in room 207', goto: ['pav_hotelWork', 'hotcouple'] },
+    ]);
   }
   if (((s as any).hour ?? 0) === 20  &&  ((s as any).IgorevnaBDSM ?? 0) >= 5  &&  ((s as any).IgorevnaBDSM ?? 0) < 14  &&  ((s as any).week ?? 0) < 3  &&  ((s as any).AnnaQW ?? 0)?.['daystart'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
@@ -291,7 +293,9 @@ function enterPavlin(s: GameState, scene: SceneBuilder): void {
     scene.text(`You and ${((s as any).npc_nickname ?? 0)?.['A217']} have a great relationship.`);
   }
   if (((s as any).proshotelday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Perform your duty': gt 'pavlin', 'pavgenpros'
+    scene.actions([
+      { label: 'Perform your duty', goto: ['pavlin', 'pavgenpros'] },
+    ]);
   }
   if (((s as any).firstfemalecust ?? 0) === 1) {
     if (((s as any).pavprosnofemales ?? 0) === 1) {

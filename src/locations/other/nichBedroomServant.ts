@@ -74,7 +74,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_horny ?? 0) >= 50) {
-    // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
+    scene.actions([
+      { label: 'Masturbate', goto: ['selfplay', 'start'] },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['mag_porn'] > 0) {
     scene.text('You hide a porn magazine under your mattress.');

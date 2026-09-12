@@ -35,13 +35,19 @@ function enterForest1(s: GameState, scene: SceneBuilder): void {
   scene.text(`Entering deeper into the thicket ${((s as any).boydesc ?? 0)} comes up to you and Mira. He undresses you both and makes you kneel before him…`);
   (s as any).huntsexa = Math.floor(Math.random() * 3) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral1_1'
+    scene.actions([
+      { label: 'Suck', goto: ['mitkasex', 'forestOral1_1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral1_2'
+    scene.actions([
+      { label: 'Suck', goto: ['mitkasex', 'forestOral1_2'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral1_3'
+    scene.actions([
+      { label: 'Suck', goto: ['mitkasex', 'forestOral1_3'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -115,13 +121,19 @@ function enterForest3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/sex/mitka/mitkaforestsex3.jpg');
   scene.text('Entering deeper into the thicket the guys come up to you and Mira. They undress you both and make you kneel before them…');
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral3_1'
+    scene.actions([
+      { label: 'Suck', goto: ['mitkasex', 'forestOral3_1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral3_2'
+    scene.actions([
+      { label: 'Suck', goto: ['mitkasex', 'forestOral3_2'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral3_3'
+    scene.actions([
+      { label: 'Suck', goto: ['mitkasex', 'forestOral3_3'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -214,13 +226,19 @@ function enterGad2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) < 100) {
       if (((s as any).huntsexa ?? 0) === 1) {
-        // TODO-QSP: act 'Bend': gt 'mitkasex', 'gadStan'
+        scene.actions([
+          { label: 'Bend', goto: ['mitkasex', 'gadStan'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCow2'
+        scene.actions([
+          { label: 'Sit down', goto: ['mitkasex', 'gadCow2'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 3) {
-        // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDog2'
+        scene.actions([
+          { label: 'Doggy', goto: ['mitkasex', 'gadDog2'] },
+        ]);
       }
     } else {
       if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) >= 100) {
@@ -279,22 +297,34 @@ function enterGadOralCum2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+    scene.actions([
+      { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 6) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -331,22 +361,34 @@ function enterGadOralCum2_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+    scene.actions([
+      { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 6) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -436,10 +478,14 @@ function enterGadDog2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Bend over': gt 'mitkasex', 'gadStan'
+      scene.actions([
+        { label: 'Bend over', goto: ['mitkasex', 'gadStan'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCow2'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCow2'] },
+      ]);
     }
   } else {
     if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) >= 100) {
@@ -496,22 +542,34 @@ function enterGadDogCum2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+    scene.actions([
+      { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 6) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -557,22 +615,34 @@ function enterGadDogCum2_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+    scene.actions([
+      { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 6) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -627,10 +697,14 @@ function enterGadCow2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Bend': gt 'mitkasex', 'gadStan'
+      scene.actions([
+        { label: 'Bend', goto: ['mitkasex', 'gadStan'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDog2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDog2'] },
+      ]);
     }
   } else {
     if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) >= 100) {
@@ -686,22 +760,34 @@ function enterGadCowCum2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+    scene.actions([
+      { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 6) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -739,22 +825,34 @@ function enterGadCowCum2_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+    scene.actions([
+      { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 6) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -809,10 +907,14 @@ function enterGadStan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCow2'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCow2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDog2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDog2'] },
+      ]);
     }
   } else {
     if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) >= 100) {
@@ -868,22 +970,34 @@ function enterGadStanCum2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+    scene.actions([
+      { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 6) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -919,22 +1033,34 @@ function enterGadStanCum2_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+    scene.actions([
+      { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+    scene.actions([
+      { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 5) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 6) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+    ]);
   }
   // TODO-QSP: end
   if (((s as any).args ?? 0)[0] === 'gadsexOral1') {
@@ -956,22 +1082,34 @@ function enterGadStanCum2_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).horny_boyA ?? 0) < 100) {
       if (((s as any).huntsexa ?? 0) === 1) {
-        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+        scene.actions([
+          { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 2) {
-        // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+        scene.actions([
+          { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 3) {
-        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+        scene.actions([
+          { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 4) {
-        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+        scene.actions([
+          { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 5) {
-        // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+        scene.actions([
+          { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 6) {
-        // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+        scene.actions([
+          { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+        ]);
       }
     } else {
       scene.actions([
@@ -1029,19 +1167,29 @@ function enterGadSideVag1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1098,19 +1246,29 @@ function enterGadMisVag1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1143,19 +1301,29 @@ function enterGadDogVag1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1192,19 +1360,29 @@ function enterGadCowVag1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1261,19 +1439,29 @@ function enterGadDogAnal1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowAnal1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowAnal1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1336,19 +1524,29 @@ function enterGadCowAnal1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'gadSideVag1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'gadSideVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'gadMisVag1'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'gadMisVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'gadCowVag1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'gadCowVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogVag1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogVag1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'gadDogAnal1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'gadDogAnal1'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1394,25 +1592,39 @@ function enterForestOral1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 7) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1447,25 +1659,39 @@ function enterForestOral1_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 7) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1500,25 +1726,39 @@ function enterForestOral1_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 7) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1572,22 +1812,34 @@ function enterForestSide1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1640,33 +1892,51 @@ function enterForestSide1_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horny_boyA ?? 0) < 100) {
     (s as any).huntsexa = Math.floor(Math.random() * 6) + 1;
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     (s as any).huntsexa = Math.floor(Math.random() * 3) + 1;
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral1_1'
+      scene.actions([
+        { label: 'Suck', goto: ['mitkasex', 'forestOral1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral1_2'
+      scene.actions([
+        { label: 'Suck', goto: ['mitkasex', 'forestOral1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Suck': gt 'mitkasex', 'forestOral1_3'
+      scene.actions([
+        { label: 'Suck', goto: ['mitkasex', 'forestOral1_3'] },
+      ]);
     }
   }
   // TODO-QSP: end
@@ -1706,22 +1976,34 @@ function enterForestCow1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1777,22 +2059,34 @@ function enterForestCow1_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1813,22 +2107,34 @@ function enterForestCowKiss1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1888,22 +2194,34 @@ function enterForestCowOral1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -1938,22 +2256,34 @@ function enterForestDog1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2010,22 +2340,34 @@ function enterForestDog1_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2074,22 +2416,34 @@ function enterForestDog1_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide1_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestSide1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestSide1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow1_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow1_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog1_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog1_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 6) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog1_2'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog1_2'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2142,13 +2496,19 @@ function enterForestOral2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestCow2_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestCow2_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog2_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog2_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog2_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog2_2'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2191,22 +2551,32 @@ function enterForestDog2_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) < 100) {
     (s as any).huntsexa = Math.floor(Math.random() * 2) + 1;
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog2_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog2_2'] },
+      ]);
     }
   } else {
     if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) >= 100) {
       (s as any).huntsexa = Math.floor(Math.random() * 3) + 1;
       if (((s as any).huntsexa ?? 0) === 1) {
-        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_2'
+        scene.actions([
+          { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_2'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 2) {
-        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_3'
+        scene.actions([
+          { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_3'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 3) {
-        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow2_1'
+        scene.actions([
+          { label: 'Sit down', goto: ['mitkasex', 'forestCow2_1'] },
+        ]);
       }
     } else {
       scene.actions([
@@ -2250,22 +2620,32 @@ function enterForestDog2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) < 100) {
     (s as any).huntsexa = Math.floor(Math.random() * 2) + 1;
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestCow2_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestCow2_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog2_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog2_1'] },
+      ]);
     }
   } else {
     if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) >= 100) {
       (s as any).huntsexa = Math.floor(Math.random() * 3) + 1;
       if (((s as any).huntsexa ?? 0) === 1) {
-        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_2'
+        scene.actions([
+          { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_2'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 2) {
-        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_3'
+        scene.actions([
+          { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_3'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 3) {
-        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow2_1'
+        scene.actions([
+          { label: 'Sit down', goto: ['mitkasex', 'forestCow2_1'] },
+        ]);
       }
     } else {
       scene.actions([
@@ -2310,22 +2690,32 @@ function enterForestDogSide2_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) < 100) {
     (s as any).huntsexa = Math.floor(Math.random() * 2) + 1;
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog2_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog2_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog2_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog2_2'] },
+      ]);
     }
   } else {
     if (((s as any).horny_boyA ?? 0) < 100  &&  ((s as any).horny_boyB ?? 0) >= 100) {
       (s as any).huntsexa = Math.floor(Math.random() * 3) + 1;
       if (((s as any).huntsexa ?? 0) === 1) {
-        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_2'
+        scene.actions([
+          { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_2'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 2) {
-        // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_3'
+        scene.actions([
+          { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_3'] },
+        ]);
       }
       if (((s as any).huntsexa ?? 0) === 3) {
-        // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow2_1'
+        scene.actions([
+          { label: 'Sit down', goto: ['mitkasex', 'forestCow2_1'] },
+        ]);
       }
     } else {
       scene.actions([
@@ -2387,10 +2777,14 @@ function enterForestRelax2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horny_boyB ?? 0) < 100) {
     (s as any).temp_ms = Math.floor(Math.random() * 2) + 1;
     if (((s as any).temp_ms ?? 0) === 1) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestDog_mira2_1'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestDog_mira2_1'] },
+      ]);
     }
     if (((s as any).temp_ms ?? 0) === 2) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestCow_mira2_1'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestCow_mira2_1'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2436,10 +2830,14 @@ function enterForestSide2_2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horny_boyA ?? 0) < 100) {
     (s as any).huntsexa = Math.floor(Math.random() * 2) + 1;
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_3'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow2_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow2_1'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2485,10 +2883,14 @@ function enterForestSide2_3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horny_boyA ?? 0) < 100) {
     (s as any).huntsexa = Math.floor(Math.random() * 2) + 1;
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_2'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow2_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow2_1'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2534,10 +2936,14 @@ function enterForestCow2_1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horny_boyA ?? 0) < 100) {
     (s as any).huntsexa = Math.floor(Math.random() * 2) + 1;
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_2'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_3'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2557,13 +2963,19 @@ function enterForestOralMira2_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).horny_boyA ?? 0) < 100) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestCow2_1'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestCow2_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog2_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog2_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestDog2_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestDog2_2'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2585,13 +2997,19 @@ function enterForestRelax3(s: GameState, scene: SceneBuilder): void {
     scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
     (s as any).huntsexa = Math.floor(Math.random() * 3) + 1;
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_2'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Lie on your side': gt 'mitkasex', 'forestSide2_3'
+      scene.actions([
+        { label: 'Lie on your side', goto: ['mitkasex', 'forestSide2_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Sit down': gt 'mitkasex', 'forestCow2_1'
+      scene.actions([
+        { label: 'Sit down', goto: ['mitkasex', 'forestCow2_1'] },
+      ]);
     }
   } else {
     qspCall(s, 'arousal', 'end');
@@ -2678,16 +3096,24 @@ function enterForestRelax(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2716,19 +3142,29 @@ function enterForestOral3_3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2791,19 +3227,29 @@ function enterForestOral3_2(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "mitkasex" })}`);
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2857,19 +3303,29 @@ function enterForestOral3_1(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -2973,19 +3429,29 @@ function enterForestVag3(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "mitkasex" })}`);
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3102,19 +3568,29 @@ function enterForestAnal3_3(s: GameState, scene: SceneBuilder): void {
   (s as any).lubonus = ((s as any).lubonus ?? 0) + (1);
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3214,19 +3690,29 @@ function enterForestAnal3_2(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[5]", { location: "mitkasex" })}`);
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3290,19 +3776,29 @@ function enterForestAnal3_1(s: GameState, scene: SceneBuilder): void {
   scene.text(`${qspUntranslated(s, "textsexhunter[4]", { location: "mitkasex" })}`);
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3471,19 +3967,29 @@ function enterForestRelaxMira(s: GameState, scene: SceneBuilder): void {
   scene.text('Mira is sitting next to you while the boys are not up to it, watching as you fuck…');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3512,16 +4018,24 @@ function enterForestDPMira3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 1);
   qspCall(s, 'stat', '');
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -3535,16 +4049,24 @@ function enterForestCowMira3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'voyeur_sex', 1);
   qspCall(s, 'stat', '');
   if (((s as any).huntsexa ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 2) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 3) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+    ]);
   }
   if (((s as any).huntsexa ?? 0) === 4) {
-    // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+    scene.actions([
+      { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -3559,19 +4081,29 @@ function enterForestCowMira2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3591,19 +4123,29 @@ function enterForestSideMira2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3623,19 +4165,29 @@ function enterForestMisMira2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3655,19 +4207,29 @@ function enterForestDogMira2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3687,19 +4249,29 @@ function enterForestCowMira1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3719,19 +4291,29 @@ function enterForestDogVMira1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3761,19 +4343,29 @@ function enterForestDogAMira1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3793,19 +4385,29 @@ function enterForestThroatMira1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([
@@ -3825,19 +4427,29 @@ function enterForestOralMira1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).mitboysex ?? 0) < ((s as any).mitboysexrand ?? 0)) {
     if (((s as any).huntsexa ?? 0) === 1) {
-      // TODO-QSP: act 'Lie on your back': gt 'mitkasex', 'forestVag3'
+      scene.actions([
+        { label: 'Lie on your back', goto: ['mitkasex', 'forestVag3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 2) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_1'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_1'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 3) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_2'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_2'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 4) {
-      // TODO-QSP: act 'Doggy': gt 'mitkasex', 'forestAnal3_3'
+      scene.actions([
+        { label: 'Doggy', goto: ['mitkasex', 'forestAnal3_3'] },
+      ]);
     }
     if (((s as any).huntsexa ?? 0) === 5) {
-      // TODO-QSP: act 'Watch': gt 'mitkasex', 'forestRelax'
+      scene.actions([
+        { label: 'Watch', goto: ['mitkasex', 'forestRelax'] },
+      ]);
     }
   } else {
     scene.actions([

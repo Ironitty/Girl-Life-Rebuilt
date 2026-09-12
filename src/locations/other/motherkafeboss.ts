@@ -40,16 +40,24 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcafejob ?? 0) >=2  &&  ((s as any).pcafejob ?? 0) <= 4) {
-    // TODO-QSP: act 'Work a shift': gt 'motherkafeboss', 'work_shift'
+    scene.actions([
+      { label: 'Work a shift', goto: ['motherkafeboss', 'work_shift'] },
+    ]);
   }
   if (((s as any).momslut ?? 0) === 2  &&  (!((s as any).slavatalk ?? 0))) {
-    // TODO-QSP: act 'Confront him about your mother': gt 'motherkafeboss', 'confrontation'
+    scene.actions([
+      { label: 'Confront him about your mother', goto: ['motherkafeboss', 'confrontation'] },
+    ]);
   }
   if (((s as any).slavatalk ?? 0) === 2) {
-    // TODO-QSP: act 'Confront him about your deal': gt 'motherkafeboss', 'dealbreaker'
+    scene.actions([
+      { label: 'Confront him about your deal', goto: ['motherkafeboss', 'dealbreaker'] },
+    ]);
   }
   if (((s as any).pcafejob ?? 0) === 4  &&  ((s as any).slavadealfuck ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Fuck Slava': gt 'motherkafeboss', 'slava_deal'
+    scene.actions([
+      { label: 'Fuck Slava', goto: ['motherkafeboss', 'slava_deal'] },
+    ]);
   }
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {

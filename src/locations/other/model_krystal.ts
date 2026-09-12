@@ -638,7 +638,9 @@ function enterKrystalChat(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pornstudio ?? 0) < 1) {
-    // TODO-QSP: act 'Ask her for the porn business card': gt 'model_krystal', 'krystal_porn_card2'
+    scene.actions([
+      { label: 'Ask her for the porn business card', goto: ['model_krystal', 'krystal_porn_card2'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

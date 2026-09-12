@@ -189,7 +189,9 @@ function enterEvents(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/stripclub/stripclub_interior.jpg');
   scene.text('It\'s eventually time for you to take your break.');
   if (((s as any).drugVars ?? 0)?.['cigarettes_used'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['cigarettes'] > 0) {
-    // TODO-QSP: act 'Take a smoke break': gt 'stwork3', 'smoke_break'
+    scene.actions([
+      { label: 'Take a smoke break', goto: ['stwork3', 'smoke_break'] },
+    ]);
   }
   if (((s as any).week ?? 0) === 3  ||  ((s as any).week ?? 0) === 4) {
     scene.actions([

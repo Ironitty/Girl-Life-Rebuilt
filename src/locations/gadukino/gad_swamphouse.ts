@@ -176,23 +176,39 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).stovefire ?? 0) === 0  ||  (((s as any).meat_stew ?? 0) === 0  &&  ((s as any).raw_meat ?? 0) > 0)  ||  (((s as any).mushroom_soup ?? 0) === 0  &&  ((s as any).boletus ?? 0) > 0)) {
-    // TODO-QSP: act 'Use the rickety stove': gt 'gad_swamphouse', 'stove'
+    scene.actions([
+      { label: 'Use the rickety stove', goto: ['gad_swamphouse', 'stove'] },
+    ]);
   }
   if (((s as any).pcs_energy ?? 0) < 80) {
-    // TODO-QSP: act 'Grab something to eat': gs 'gad_swamphouse', 'food'
+    scene.actions([
+      { label: 'Grab something to eat', handler: (st: GameState) => {
+    qspCall(st, 'gad_swamphouse', 'food');
+  } },
+    ]);
   }
   if (((s as any).bucket ?? 0) > 0  &&  ((s as any).pcs_hydra ?? 0) < 80) {
-    // TODO-QSP: act 'Grab a drink of water': gt 'gad_swamphouse', 'bucket'
+    scene.actions([
+      { label: 'Grab a drink of water', goto: ['gad_swamphouse', 'bucket'] },
+    ]);
   }
   if (((s as any).bucket ?? 0) > 0  &&  (!((s as any).pcs_hairbsh ?? 0))) {
-    // TODO-QSP: act 'Use the wash basin': gt 'gad_swamphouse', 'washstand'
+    scene.actions([
+      { label: 'Use the wash basin', goto: ['gad_swamphouse', 'washstand'] },
+    ]);
   }
   if (((s as any).hotwater ?? 0) === 1  &&  ((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pcs_sweat ?? 0) > 19) {
-    // TODO-QSP: act 'Bathe in the old tub': gt 'gad_swamphouse', 'tub'
+    scene.actions([
+      { label: 'Bathe in the old tub', goto: ['gad_swamphouse', 'tub'] },
+    ]);
   }
   if (((s as any).dirty_swamphouse ?? 0) > 25) {
-    // TODO-QSP: act 'Clean the hut': hunterVars['slut'] -= 1
     scene.actions([{ label: 'Continue', goto: ['gad_swamphouse', 'dirty_swamphouse'] }]);
+    scene.actions([
+      { label: 'Clean the hut', handler: (st: GameState) => {
+    // TODO-QSP: hunterVars['slut'] -= 1
+  } },
+    ]);
   }
   if (((s as any).hunterVars ?? 0)?.['IgorLove'] > 0  &&  ((s as any).hour ?? 0) > 8  &&  ((s as any).hour ?? 0) < 19  &&  ((s as any).hunterVars ?? 0)?.['IgorQW'] >= 10  &&  ((s as any).temp_sh ?? 0) === 1  &&  ((s as any).hunterVars ?? 0)?.['Igorsex'] === 0) {
     ((s as any).hunterVars ?? {})['Igorsex'] = (((s as any).hunterVars ?? {})['Igorsex'] ?? 0) + (Math.floor(Math.random() * 25) + 12);
@@ -963,8 +979,12 @@ function enterHunterstableBJ(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).hunterVars ?? 0)?.['tableBJA'] === 1  &&  ((s as any).hunterVars ?? 0)?.['tableBJS'] === 1  &&  ((s as any).hunterVars ?? 0)?.['tableBJI'] === 1) {
-    // TODO-QSP: act 'Get out from under the table': edahot = 1
     qspCall(s, 'gad_swamphouse', 'hunterstable');
+    scene.actions([
+      { label: 'Get out from under the table', handler: (st: GameState) => {
+    (st as any).edahot = 1;
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.build();
@@ -1926,8 +1946,12 @@ function enterHuntersmokBJ(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).temp_sh ?? 0) === 1) {
-    // TODO-QSP: act 'Keep sucking': hunterVars['smokeBJ'] = 1
     qspCall(s, 'gad_swamphouse', 'huntersmokBJ');
+    scene.actions([
+      { label: 'Keep sucking', handler: (st: GameState) => {
+    // TODO-QSP: hunterVars['smokeBJ'] = 1
+  } },
+    ]);
   }
   if (((s as any).temp_sh ?? 0) === 2) {
     scene.actions([

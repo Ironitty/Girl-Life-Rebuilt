@@ -24,8 +24,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if ((!((s as any).billrand ?? 0))) {
         scene.text('You play one of the guys here and he asks if you want to make it more interesting.');
         if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1) {
-          // TODO-QSP: act 'Play for his ass, sex if you lose': billvar = 1
           scene.actions([{ label: 'Continue', goto: ['billiard', 'randwin'] }]);
+          scene.actions([
+            { label: 'Play for his ass, sex if you lose', handler: (st: GameState) => {
+    (st as any).billvar = 1;
+  } },
+          ]);
         }
         qspCall(s, 'willpower', 'anal', 'resist');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
@@ -62,8 +66,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).billrand ?? 0) === 1) {
           scene.text('You play a couple of the guys here and they ask if you want to make it more interesting.');
           if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1) {
-            // TODO-QSP: act 'Play for their asses, sex if you lose': billvar = 2
             scene.actions([{ label: 'Continue', goto: ['billiard', 'randwin'] }]);
+            scene.actions([
+              { label: 'Play for their asses, sex if you lose', handler: (st: GameState) => {
+    (st as any).billvar = 2;
+  } },
+            ]);
           }
           qspCall(s, 'willpower', 'anal', 'resist', 'hard');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {

@@ -50,7 +50,9 @@ function enterSaunawork(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'stat', '');
   if (((s as any).workDolg ?? 0) <= 0) {
-    // TODO-QSP: act 'Leave': gt 'city_sauna'
+    scene.actions([
+      { label: 'Leave', goto: ['city_sauna', ''] },
+    ]);
   }
   if (((s as any).workDolg ?? 0) > 0  &&  (((s as any).pcs_mood ?? 0) <= 10  ||  ((s as any).drugVars ?? 0)?.['heroin_need'] > 0)) {
     qspCall(s, 'money', 'debt_add', 'workDolg', 420);
@@ -584,7 +586,9 @@ function enterClientGate(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     if (((s as any).pcs_dancero ?? 0) >= 10) {
-      // TODO-QSP: act 'Do a little striptease': gt 'city_saunawhore', 'striptease'
+      scene.actions([
+        { label: 'Do a little striptease', goto: ['city_saunawhore', 'striptease'] },
+      ]);
     }
     scene.actions([
       { label: 'Take off your clothes', goto: ['city_saunawhore', 'simplystrip'] },
@@ -641,10 +645,14 @@ function enterStrippedGate(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/residential/sauna/sex/nakedstand.jpg');
   scene.text('You are fully naked in front of the client, his eyes devouring every inch of your body.');
   if (((s as any).pcs_dancero ?? 0) >= 20) {
-    // TODO-QSP: act 'Dance naked': gt 'city_saunawhore', 'nakeddance'
+    scene.actions([
+      { label: 'Dance naked', goto: ['city_saunawhore', 'nakeddance'] },
+    ]);
   }
   if (((s as any).stat ?? 0)?.['men_fucked'] >= 20) {
-    // TODO-QSP: act 'Present your holes to him': gt 'city_saunawhore', 'holeshow'
+    scene.actions([
+      { label: 'Present your holes to him', goto: ['city_saunawhore', 'holeshow'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

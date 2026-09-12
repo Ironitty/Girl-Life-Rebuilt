@@ -2049,7 +2049,9 @@ function enterBrotherVoyeurEv1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 2, 'incest');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 40) {
-    // TODO-QSP: act 'Play with your tits': gt 'brother_voyeur', 'brother_voyeur_ev2'
+    scene.actions([
+      { label: 'Play with your tits', goto: ['brother_voyeur', 'brother_voyeur_ev2'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -2072,7 +2074,9 @@ function enterBrotherVoyeurEv2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 80) {
     if (((s as any).npc_QW ?? 0)?.['A34'] >= 4  &&  ((s as any).npc_rel ?? 0)?.['A34'] > 60) {
-      // TODO-QSP: act 'Invite him in': gt 'brother_voyeur', 'brother_voyeur_ev3_2'
+      scene.actions([
+        { label: 'Invite him in', goto: ['brother_voyeur', 'brother_voyeur_ev3_2'] },
+      ]);
     }
     scene.actions([
       { label: 'Direct the water at your pussy', goto: ['brother_voyeur', 'brother_voyeur_ev3'] },

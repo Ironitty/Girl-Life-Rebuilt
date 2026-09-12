@@ -27,7 +27,9 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).grigory_flower ?? 0) > 0  &&  ((s as any).grigory_flower ?? 0) < 10) {
-    // TODO-QSP: act 'Talk to him about the flowers': gt 'grigory', 'flower3'
+    scene.actions([
+      { label: 'Talk to him about the flowers', goto: ['grigory', 'flower3'] },
+    ]);
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_gather_mushrooms'] === 1) {
     // TODO-QSP: dynamic text: You promised to bring grandpa <<grandpaQW['chore_mushroom_quantity']>> kg of mus...
@@ -1109,8 +1111,12 @@ function enterEventLeadcowtofield(s: GameState, scene: SceneBuilder): void {
     scene.text('You lead Dawn to the field, where your grandfather awaits you. It\'s his turn to keep an eye on the cows..');
   }
   if (((s as any).grandpaQW ?? 0)?.['chore_lead_cow_to_field'] === 2) {
-    // TODO-QSP: act 'Return back to your grandfather (0:30)': minut += 30
     scene.actions([{ label: 'Continue', goto: ['gp_zlatek', 'talk'] }]);
+    scene.actions([
+      { label: 'Return back to your grandfather (0:30)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 30;
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

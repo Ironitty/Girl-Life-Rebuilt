@@ -386,12 +386,20 @@ function enterPcsRoom(s: GameState, scene: SceneBuilder): void {
     scene.text('Your <a href="exec:gorodokKomp = 1 & gt \'komp\',\'start\'">computer</a> is sitting on small table.');
   }
   if (((s as any).mc_inventory ?? 0)?.['vintage_card'] > 0) {
-    // TODO-QSP: act 'View your vintage porn cards': card_deck = 0
     scene.actions([{ label: 'Continue', goto: ['card', ''] }]);
+    scene.actions([
+      { label: 'View your vintage porn cards', handler: (st: GameState) => {
+    (st as any).card_deck = 0;
+  } },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['card'] > 0) {
-    // TODO-QSP: act 'View your new porn cards': card_deck = 1
     scene.actions([{ label: 'Continue', goto: ['card', ''] }]);
+    scene.actions([
+      { label: 'View your new porn cards', handler: (st: GameState) => {
+    (st as any).card_deck = 1;
+  } },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
     // TODO-QSP: dynamic text: You have <<mc_inventory['cocaine']>> doses of Pale Lady, hidden from the other h...

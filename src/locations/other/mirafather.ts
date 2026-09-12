@@ -312,7 +312,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         }
                         if (((s as any).MiraVars ?? 0)?.['prostitute'] > 0) {
                           (s as any).minut = ((s as any).minut ?? 0) + (20);
-                          // TODO-QSP: act 'Go to the highway': gt 'gad_prostitutes', 'start'
+                          scene.actions([
+                            { label: 'Go to the highway', goto: ['gad_prostitutes', 'start'] },
+                          ]);
                         }
                       }
                     }

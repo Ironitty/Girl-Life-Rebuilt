@@ -106,10 +106,14 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 10);
     qspCall(s, 'stat', '');
     if (((s as any).sisterQW ?? 0)?.['rexbday'] === 2) {
-      // TODO-QSP: act 'Congratulate Rex personally': gt 'rex_party_firstTime', 'reks'
+      scene.actions([
+        { label: 'Congratulate Rex personally', goto: ['rex_party_firstTime', 'reks'] },
+      ]);
     }
     if (((s as any).sisterQW ?? 0)?.['AnyaRomaQW'] === 0) {
-      // TODO-QSP: act 'Look for Anya': gt 'rex_party_firstTime', 'anya_find'
+      scene.actions([
+        { label: 'Look for Anya', goto: ['rex_party_firstTime', 'anya_find'] },
+      ]);
     }
     scene.actions([
       { label: 'Dance with them', goto: ['rex_party_firstTime', 'two_boy'] },

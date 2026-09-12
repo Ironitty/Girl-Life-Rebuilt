@@ -36,7 +36,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_horny ?? 0) >= 90) {
-    // TODO-QSP: act 'Masturbate in the garden': gt 'ugol1', 'start'
+    scene.actions([
+      { label: 'Masturbate in the garden', goto: ['ugol1', 'start'] },
+    ]);
   }
   scene.actions([
     { label: 'Exit the alley', handler: (st: GameState) => {

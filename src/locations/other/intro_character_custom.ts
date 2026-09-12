@@ -150,80 +150,156 @@ function enterModcloMenu(s: GameState, scene: SceneBuilder): void {
 
 function enterModcloTattoos(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_tattoos ?? 0)?.['total'] > 0) {
-    // TODO-QSP: act 'Remove all tattoos':    gs 'tattoo_management', 'full_reset'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_menu'] }]);
+    scene.actions([
+      { label: 'Remove all tattoos', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'full_reset');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['face'] > 0) {
-    // TODO-QSP: act 'Remove face tattoo':    gs 'tattoo_management', 'remove', 'face'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove face tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'face');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['lip'] > 0) {
-    // TODO-QSP: act 'Remove lip tattoo':    gs 'tattoo_management', 'remove', 'lip'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove lip tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'lip');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['neck'] > 0) {
-    // TODO-QSP: act 'Remove neck tattoo':    gs 'tattoo_management', 'remove', 'neck'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove neck tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'neck');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['back'] > 0) {
-    // TODO-QSP: act 'Remove back tattoo':    gs 'tattoo_management', 'remove', 'back'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove back tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'back');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['shoulder'] > 0) {
-    // TODO-QSP: act 'Remove shoulder tattoo':  gs 'tattoo_management', 'remove', 'shoulder'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove shoulder tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'shoulder');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['breast'] > 0) {
-    // TODO-QSP: act 'Remove breast tattoo':    gs 'tattoo_management', 'remove', 'breast'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove breast tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'breast');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['under'] > 0) {
-    // TODO-QSP: act 'Remove under tattoo':    gs 'tattoo_management', 'remove', 'under'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove under tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'under');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['chest'] > 0) {
-    // TODO-QSP: act 'Remove chest tattoo':    gs 'tattoo_management', 'remove', 'chest'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove chest tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'chest');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['side'] > 0) {
-    // TODO-QSP: act 'Remove side tattoo':    gs 'tattoo_management', 'remove', 'side'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove side tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'side');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['belly'] > 0) {
-    // TODO-QSP: act 'Remove belly tattoo':    gs 'tattoo_management', 'remove', 'belly'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove belly tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'belly');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['arm'] > 0) {
-    // TODO-QSP: act 'Remove arm tattoo':    gs 'tattoo_management', 'remove', 'arm'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove arm tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'arm');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['wrist'] > 0) {
-    // TODO-QSP: act 'Remove wrist tattoo':    gs 'tattoo_management', 'remove', 'wrist'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove wrist tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'wrist');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['hand'] > 0) {
-    // TODO-QSP: act 'Remove hand tattoo':    gs 'tattoo_management', 'remove', 'hand'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove hand tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'hand');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['leg'] > 0) {
-    // TODO-QSP: act 'Remove leg tattoo':    gs 'tattoo_management', 'remove', 'leg'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove leg tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'leg');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ankle'] > 0) {
-    // TODO-QSP: act 'Remove ankle tattoo':    gs 'tattoo_management', 'remove', 'ankle'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove ankle tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'ankle');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['tramp'] > 0) {
-    // TODO-QSP: act 'Remove tramp tattoo':    gs 'tattoo_management', 'remove', 'tramp'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove tramp tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'tramp');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['ass'] > 0) {
-    // TODO-QSP: act 'Remove ass tattoo':    gs 'tattoo_management', 'remove', 'ass'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove ass tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'ass');
+  } },
+    ]);
   }
   if (((s as any).pcs_tattoos ?? 0)?.['pussy'] > 0) {
-    // TODO-QSP: act 'Remove pussy tattoo':    gs 'tattoo_management', 'remove', 'pussy'
     scene.actions([{ label: 'Continue', goto: ['intro_character_custom', 'modclo_tattoos'] }]);
+    scene.actions([
+      { label: 'Remove pussy tattoo', handler: (st: GameState) => {
+    qspCall(st, 'tattoo_management', 'remove', 'pussy');
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

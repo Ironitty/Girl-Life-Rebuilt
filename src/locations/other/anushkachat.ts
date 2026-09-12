@@ -802,19 +802,29 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     scene.text('Before you can say something she asks you "What about you? What are your plans for the future?"');
     if (((s as any).rex_love ?? 0) === 1  ||  ((s as any).artemQW ?? 0)?.['bf'] === 1  ||  ((s as any).kotovLoveQW ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0)  ||  ((s as any).NikoVolkovQW ?? 0) >= 5  ||  ((s as any).stat ?? 0)?.['boyfriends_current'] > 0) {
       if (((s as any).rex_love ?? 0) === 1) {
-        // TODO-QSP: act 'Get married to Rex': gt 'anushkachat', 'telling_marrige_dreams', 'Rex'
+        scene.actions([
+          { label: 'Get married to Rex', goto: ['anushkachat', 'telling_marrige_dreams', '\'Rex\''] },
+        ]);
       }
       if (((s as any).artemQW ?? 0)?.['bf'] === 1) {
-        // TODO-QSP: act 'Get married to Artem': gt 'anushkachat', 'telling_marrige_dreams', 'Artem'
+        scene.actions([
+          { label: 'Get married to Artem', goto: ['anushkachat', 'telling_marrige_dreams', '\'Artem\''] },
+        ]);
       }
       if (((s as any).kotovLoveQW ?? 0) === 1) {
-        // TODO-QSP: act 'Get married to Vitek': gt 'anushkachat', 'telling_marrige_dreams', 'Vitek'
+        scene.actions([
+          { label: 'Get married to Vitek', goto: ['anushkachat', 'telling_marrige_dreams', '\'Vitek\''] },
+        ]);
       }
       if (((s as any).fedorKozlovQW ?? 0) >= 5) {
-        // TODO-QSP: act 'Get married to Fedor': gt 'anushkachat', 'telling_marrige_dreams', 'Fedor'
+        scene.actions([
+          { label: 'Get married to Fedor', goto: ['anushkachat', 'telling_marrige_dreams', '\'Fedor\''] },
+        ]);
       }
       if (((s as any).NikoVolkovQW ?? 0) >= 5) {
-        // TODO-QSP: act 'Get married to Niko': gt 'anushkachat', 'telling_marrige_dreams', 'Niko'
+        scene.actions([
+          { label: 'Get married to Niko', goto: ['anushkachat', 'telling_marrige_dreams', '\'Niko\''] },
+        ]);
       }
       (s as any).i = 0;
       // TODO-QSP: :marrid_looop
@@ -1300,7 +1310,9 @@ function enterTellAboutOlu(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).npc_had_sex ?? 0)?.['A144']) {
-      // TODO-QSP: act 'Ask her if she wants join in': gt 'anushkachat', 'invite_olu'
+      scene.actions([
+        { label: 'Ask her if she wants join in', goto: ['anushkachat', 'invite_olu'] },
+      ]);
     }
     scene.actions([
       { label: 'Tell her about your experiences with Olu', handler: (st: GameState) => {
@@ -1523,7 +1535,9 @@ function enterTellAboutDjibrilGangbang(s: GameState, scene: SceneBuilder): void 
     scene.text('She gives a look of mock surprise. "Oh my god, you dirty fucking slut! So how was it?" She\'s grinning as she asks.');
     scene.text('You get into some pretty graphic details as you tell your story and are feeling more than a little turned on; by the looks of things, she is as well. Maybe you could invite her to join in next time?');
     if (((s as any).npc_had_sex ?? 0)?.['A144']) {
-      // TODO-QSP: act 'Ask her if she wants join in': gt 'anushkachat', 'invite_djibril_gangbang'
+      scene.actions([
+        { label: 'Ask her if she wants join in', goto: ['anushkachat', 'invite_djibril_gangbang'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out in her room', goto: ['anush_bedroom', 'anushroom'] },

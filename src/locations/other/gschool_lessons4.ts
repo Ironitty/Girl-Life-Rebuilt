@@ -2679,7 +2679,9 @@ function enterPostDress(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    // TODO-QSP: act 'Brush your hair': gt 'mirror', 'brush'
+    scene.actions([
+      { label: 'Brush your hair', goto: ['mirror', 'brush'] },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['deodorant'] > 0  &&  (!((s as any).deodorant_on ?? 0))) {
     // TODO-QSP: 'Your deodorant will last you for <b><<mc_inventory[''deodorant'']>></b> more ' + iif(mc_inventory['...

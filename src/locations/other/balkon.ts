@@ -52,7 +52,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['cigarettes'] >= 1) {
-    // TODO-QSP: act 'Light a cigarette': gt 'balkon2', 'kurit'
+    scene.actions([
+      { label: 'Light a cigarette', goto: ['balkon2', 'kurit'] },
+    ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
     scene.actions([
@@ -63,7 +65,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).pcs_horny ?? 0) >= 50  &&  ((s as any).pcs_inhib ?? 0) > 30) {
-    // TODO-QSP: act 'Masturbate': gt 'balkon2', 'masopt'
+    scene.actions([
+      { label: 'Masturbate', goto: ['balkon2', 'masopt'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

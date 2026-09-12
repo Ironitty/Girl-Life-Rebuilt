@@ -321,7 +321,9 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).alko ?? 0)<6) {
-    // TODO-QSP: act 'Drink some more with the guys': gt 'zsoft_gopskverGorSlut', '2'
+    scene.actions([
+      { label: 'Drink some more with the guys', goto: ['zsoft_gopskverGorSlut', '2'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

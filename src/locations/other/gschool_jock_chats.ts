@@ -1987,7 +1987,9 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big3.jpg');
   if (((s as any).npc_rel ?? 0)?.['A3'] >= 80  &&  ((s as any).NikoPayback ?? 0) === 2  &&  (!((s as any).IvanVsNiko ?? 0))) {
-    // TODO-QSP: act 'Ask for help with Niko': gt 'NikoPayback', 'Ivan Help'
+    scene.actions([
+      { label: 'Ask for help with Niko', goto: ['NikoPayback', 'Ivan Help'] },
+    ]);
   }
   if (((s as any).fame ?? 0)?.['pav_slut'] < 225  &&  ((s as any).IvanShowerQW ?? 0) === 1) {
     (s as any).IvanShowerQW = 11;
@@ -2002,7 +2004,9 @@ function enterIvan(s: GameState, scene: SceneBuilder): void {
     scene.text('You laugh at his silly antics. It\'s nice to have found a fun guy to hang out with. Perhaps you will stop by his place, or maybe even take him up on his offer to make lunch break less boring. "Sure Ivan, I\'ll think about it."');
     // TODO-QSP: $func('npc_reactions', 'general', 'A3')
     if (((s as any).npc_rel ?? 0)?.['A3'] >= 80  &&  ((s as any).NikoPayback ?? 0) === 2  &&  (!((s as any).IvanVsNiko ?? 0))) {
-      // TODO-QSP: act 'Ask for help with Niko': gt 'NikoPayback', 'Ivan Help'
+      scene.actions([
+        { label: 'Ask for help with Niko', goto: ['NikoPayback', 'Ivan Help'] },
+      ]);
     }
     scene.actions([
       { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },

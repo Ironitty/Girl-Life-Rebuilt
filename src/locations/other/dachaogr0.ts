@@ -35,7 +35,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.text('Your kitchen garden has been plowed, vegetable beds are finished and apple trees have been planted.');
             scene.text('The tired workers are resting in the shade.');
             if (((s as any).exhib ?? 0)?.['status'] === 15  &&  ((s as any).pcs_horny ?? 0) > 30) {
-              // TODO-QSP: act 'Pay with your body': gt 'ETO_village', 'garden_strip'
+              scene.actions([
+                { label: 'Pay with your body', goto: ['ETO_village', 'garden_strip'] },
+              ]);
             }
             scene.actions([
               { label: 'Pay them [+$func(\'money\', \'get_cost_string\', 3000, ...]', handler: (st: GameState) => {

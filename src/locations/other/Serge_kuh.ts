@@ -73,7 +73,9 @@ function enterKuhBuh(s: GameState, scene: SceneBuilder): void {
   scene.text(`Sergey is sitting at the kitchen table, drinking vodka. "Hi, ${((s as any).pcs_nickname ?? 0)}! Great day, isn't it?" he shouts cheerfully as he raises his glass to you.`);
   qspCall(s, 'Serge_Shulgin', 'rep');
   if (((s as any).npc_rel ?? 0)?.['A112'] >= 50) {
-    // TODO-QSP: act 'Ask if you can have some too': gt 'Serge_kuh', 'vodka'
+    scene.actions([
+      { label: 'Ask if you can have some too', goto: ['Serge_kuh', 'vodka'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -1626,10 +1628,14 @@ function enterIzdev15(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).randkuhizn = Math.floor(Math.random() * 100) + 1;
     if (((s as any).randkuhizn ?? 0) < 50) {
-      // TODO-QSP: act 'Continue': gt 'Serge_kuh', 'izn1'
+      scene.actions([
+        { label: 'Continue', goto: ['Serge_kuh', 'izn1'] },
+      ]);
     }
     if (((s as any).randkuhizn ?? 0) >= 50) {
-      // TODO-QSP: act 'Continue': gt 'Serge_kuh', 'izn2'
+      scene.actions([
+        { label: 'Continue', goto: ['Serge_kuh', 'izn2'] },
+      ]);
     }
   } },
     ]);

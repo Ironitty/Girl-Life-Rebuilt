@@ -24,7 +24,9 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You nod your head and dig around in your purse before pulling out the money and handing it to him. He takes his time slowly counting it out, then nods in satisfaction. You briefly talk back and forth as he puts the money away.');
     if (((s as any).dimarudorient ?? 0) === 1) {
-      // TODO-QSP: act 'Ask for some pale lady': gt 'gschool_coolkid_chats', 'dim_drugs'
+      scene.actions([
+        { label: 'Ask for some pale lady', goto: ['gschool_coolkid_chats', 'dim_drugs'] },
+      ]);
     }
     scene.actions([
       { label: 'Time for the next class', goto: ['gschool_lessons', 'short_break'] },
@@ -83,7 +85,9 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
               scene.text('"Just the person I was hoping to see!" he smiles. "Take a look at this." He pulls out his phone and shows you some photos from his latest trip to Moscow. "You would\'ve loved it out there. It really made me realize we\'re wasting away out here in a place like this."');
               scene.text('You then chat about the other places he has visited.');
               if (((s as any).dimarudorient ?? 0) === 1) {
-                // TODO-QSP: act 'Ask for some pale lady': gt 'gschool_coolkid_chats', 'dim_drugs'
+                scene.actions([
+                  { label: 'Ask for some pale lady', goto: ['gschool_coolkid_chats', 'dim_drugs'] },
+                ]);
               }
             } else {
               if (((s as any).npc_rel ?? 0)?.['A1'] <= 20) {
@@ -103,7 +107,9 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
                 scene.text('"Have I shown you my photos from my last trip?" he smiles. "Take a look at this." He pulls out his phone and shows you some photos from his latest trip to Moscow. "You would\'ve loved it out there. It really made me realize we\'re wasting away out here in a place like this."');
                 scene.text('You then chat about the other places he\'s visited.');
                 if (((s as any).dimarudorient ?? 0) === 1) {
-                  // TODO-QSP: act 'Ask for some pale lady': gt 'gschool_coolkid_chats', 'dim_drugs'
+                  scene.actions([
+                    { label: 'Ask for some pale lady', goto: ['gschool_coolkid_chats', 'dim_drugs'] },
+                  ]);
                 }
               } else {
                 if (((s as any).npc_rel ?? 0)?.['A1'] <= 20) {
@@ -123,7 +129,9 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
                   scene.text('Dimka greets you with a friendly smile, making room for you in the group made up of Bella, Igor and a few other students. Some of them give you an odd look, but Dimka makes you feel welcome.');
                   scene.text('"Relax, she doesn\'t have the plague," he playfully chides everyone and you\'re soon engaged in a conversation with Dimka.');
                   if (((s as any).dimarudorient ?? 0) === 1) {
-                    // TODO-QSP: act 'Ask for some pale lady': gt 'gschool_coolkid_chats', 'dim_drugs'
+                    scene.actions([
+                      { label: 'Ask for some pale lady', goto: ['gschool_coolkid_chats', 'dim_drugs'] },
+                    ]);
                   }
                 } else {
                   if (((s as any).npc_rel ?? 0)?.['A1'] <= 20) {
@@ -144,7 +152,9 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
                     scene.text('Dimka greets you with a friendly smile, making room for you in the group made up of Bella, Igor and a few other students. Some of them give you an odd look, but Dimka makes you feel welcome.');
                     scene.text('"Relax, she doesn\'t have the plague," he playfully chides everyone and you\'re soon engaged in a conversation with Dimka.');
                     if (((s as any).dimarudorient ?? 0) === 1) {
-                      // TODO-QSP: act 'Ask for some pale lady': gt 'gschool_coolkid_chats', 'dim_drugs'
+                      scene.actions([
+                        { label: 'Ask for some pale lady', goto: ['gschool_coolkid_chats', 'dim_drugs'] },
+                      ]);
                     }
                   } else {
                     if (((s as any).npc_rel ?? 0)?.['A1'] <= 20) {

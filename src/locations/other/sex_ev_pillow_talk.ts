@@ -290,7 +290,9 @@ function enterCondomTalk(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sex_ev ?? 0)?.['npc_condom_motive'] !== ''  &&  ((s as any).sex_ev ?? 0)?.['no_condom'] === 0  &&  ((s as any).sex_ev ?? 0)?.['fuck_count'] > 0  &&  ((s as any).sex_ev ?? 0)?.['sex_over'] > 0) {
     if (((s as any).sex_ev ?? 0)?.['condom_wasnt_bad'] === 0) {
-      // TODO-QSP: act 'Using condoms wasn''t so bad': gt 'sex_ev_pillow_talk', 'condom_wasnt_bad'
+      scene.actions([
+        { label: 'Using condoms wasn\'t so bad', goto: ['sex_ev_pillow_talk', 'condom_wasnt_bad'] },
+      ]);
     }
     if (((s as any).sex_ev ?? 0)?.['bareback_next_time'] === 0) {
       if (((s as any).sex_ev ?? 0)?.['condom_motive'] === '') {

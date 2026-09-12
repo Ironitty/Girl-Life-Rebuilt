@@ -20,7 +20,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('A zombie survival game where your only goal is to survive as long as possible, through whatever means necessary.');
   if (((s as any).KGZVars ?? 0)?.['HP'] > 0) {
-    // TODO-QSP: act 'Load a saved game': gt 'KGZgame'
+    scene.actions([
+      { label: 'Load a saved game', goto: ['KGZgame', ''] },
+    ]);
   }
   scene.actions([
     { label: 'Play a new game', handler: (st: GameState) => {

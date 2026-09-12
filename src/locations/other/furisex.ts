@@ -72,13 +72,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     (s as any).furisex = 0;
     if (((s as any).nroad ?? 0) !== 0) {
-      // TODO-QSP: act 'Have him drop you off in St. Petersburg': gt 'city_industrial'
+      scene.actions([
+        { label: 'Have him drop you off in St. Petersburg', goto: ['city_industrial', ''] },
+      ]);
     }
     if (((s as any).nroad ?? 0) !== 20) {
-      // TODO-QSP: act 'Have him drop you off in Pavlovsk': gt 'pav_commercial'
+      scene.actions([
+        { label: 'Have him drop you off in Pavlovsk', goto: ['pav_commercial', ''] },
+      ]);
     }
     if (((s as any).nroad ?? 0) !== 10) {
-      // TODO-QSP: act 'Have him drop you off in Gadukino': gt 'gadukino'
+      scene.actions([
+        { label: 'Have him drop you off in Gadukino', goto: ['gadukino', ''] },
+      ]);
     }
   }
   if (((s as any).locArgs?.[0] ?? 0) === 100) {
@@ -178,13 +184,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     (s as any).furisex = 0;
     if (((s as any).nroad ?? 0) !== 0) {
-      // TODO-QSP: act 'Have him drop you off in St. Petersburg': gt 'city_industrial'
+      scene.actions([
+        { label: 'Have him drop you off in St. Petersburg', goto: ['city_industrial', ''] },
+      ]);
     }
     if (((s as any).nroad ?? 0) !== 20) {
-      // TODO-QSP: act 'Have him drop you off in Pavlovsk': gt 'pav_commercial'
+      scene.actions([
+        { label: 'Have him drop you off in Pavlovsk', goto: ['pav_commercial', ''] },
+      ]);
     }
     if (((s as any).nroad ?? 0) !== 10) {
-      // TODO-QSP: act 'Have him drop you off in Gadukino': gt 'gadukino'
+      scene.actions([
+        { label: 'Have him drop you off in Gadukino', goto: ['gadukino', ''] },
+      ]);
     }
   }
   scene.build();

@@ -120,7 +120,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
-      // TODO-QSP: act 'Look for your classmates': gt 'pav_disco_classmates', 'classmates'
+      scene.actions([
+        { label: 'Look for your classmates', goto: ['pav_disco_classmates', 'classmates'] },
+      ]);
     }
     scene.actions([
       { label: 'Go outside', goto: ['pav_commcenter', ''] },

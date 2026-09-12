@@ -56,7 +56,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).drugVars ?? 0)?.['pav_dropoff'] === 1  &&  ((s as any).drugVars ?? 0)?.['heroin_day'] !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Find the drug dealer': gs 'events', 'pav_drug_dropoff'
+    scene.actions([
+      { label: 'Find the drug dealer', handler: (st: GameState) => {
+    qspCall(st, 'events', 'pav_drug_dropoff');
+  } },
+    ]);
   }
   if (((s as any).job_status ?? 0)?.['pav_train_cleaner'] === 'employed') {
     if (((s as any).cleZalDay ?? 0) !== ((s as any).daystart ?? 0)  ||  ((s as any).cleMTDay ?? 0) !== ((s as any).daystart ?? 0)  ||  ((s as any).cleWTDay ?? 0) !== ((s as any).daystart ?? 0)) {

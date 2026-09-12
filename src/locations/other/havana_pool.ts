@@ -17,8 +17,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You stand beside the large pool, the peaceful tranquility of the water feeling very inviting.');
   scene.text('A large sign states that you must wear swimwear and shower before entering the water.');
   if (((s as any).db ?? 0) >= 1  &&  ((s as any).Goraday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Search ZHoru': Goraday = daystart
     scene.actions([{ label: 'Continue', goto: ['city_jorahouse', 'ev42'] }]);
+    scene.actions([
+      { label: 'Search ZHoru', handler: (st: GameState) => {
+    (st as any).Goraday = ((st as any).daystart ?? 0);
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

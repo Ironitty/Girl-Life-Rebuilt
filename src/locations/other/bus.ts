@@ -141,8 +141,12 @@ function enterPavstation(s: GameState, scene: SceneBuilder): void {
   scene.text('The Pavlovsk train station bus stop');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'pavstation');
   if (((s as any).daystart ?? 0) < ((s as any).transportVars ?? 0)?.['trainpass_day']) {
-    // TODO-QSP: act 'Walk to the train platform (0:02)': minut += 2
     scene.actions([{ label: 'Continue', goto: ['pav_train_hall', 'platform'] }]);
+    scene.actions([
+      { label: 'Walk to the train platform (0:02)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 2;
+  } },
+    ]);
   }
   if (((s as any).transportVars ?? 0)?.['bus_wait_pavlovsk'] > 60  &&  ((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] > 60) {
     // TODO-QSP: dynamic text: It's too late to take the bus. The next one arrives in <<min(transportVars['bus_...
@@ -714,8 +718,12 @@ function enterSuburbs(s: GameState, scene: SceneBuilder): void {
   scene.text('The bus stop near the suburbs of St. Petersburg');
   qspCall(s, 'transport_functions', 'set_bus_wait_time', 'suburbs');
   if (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) < 23) {
-    // TODO-QSP: act 'Walk to the Metro station (0:15)': minut += 15
     scene.actions([{ label: 'Continue', goto: ['metro', 'suburbs'] }]);
+    scene.actions([
+      { label: 'Walk to the Metro station (0:15)', handler: (st: GameState) => {
+    (st as any).minut = ((st as any).minut ?? 0) + 15;
+  } },
+    ]);
   }
   if (((s as any).transportVars ?? 0)?.['bus_wait_gadukino'] > 60) {
     // TODO-QSP: dynamic text: It's too late to take the bus. The next one arrives in <<transportVars['bus_wait...

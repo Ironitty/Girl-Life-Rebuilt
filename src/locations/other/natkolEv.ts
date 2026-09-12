@@ -84,7 +84,11 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 5, 'dom');
     qspCall(s, 'arousal', 'end');
     if (((s as any).NatbelQW ?? 0)?.['KolkaSex'] > 5) {
-      // TODO-QSP: act 'Continue': gs 'natkolEv', 'softsex'
+      scene.actions([
+        { label: 'Continue', handler: (st: GameState) => {
+    qspCall(st, 'natkolEv', 'softsex');
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Let Kolka cum', goto: ['natkolEv', 'kolkacum', '0'] },
@@ -103,7 +107,11 @@ function enterKolkabj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'voyeur_sex', 5, 'dom');
     qspCall(s, 'arousal', 'end');
     if (((s as any).NatbelQW ?? 0)?.['KolkaSex'] > 5) {
-      // TODO-QSP: act 'Continue': gs 'natkolEv', 'softsex'
+      scene.actions([
+        { label: 'Continue', handler: (st: GameState) => {
+    qspCall(st, 'natkolEv', 'softsex');
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Let Kolka cum', handler: (st: GameState) => {

@@ -81,13 +81,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).music_loop = 0;
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
-    // TODO-QSP: act 'Go to the library': gt 'pav_library'
+    scene.actions([
+      { label: 'Go to the library', goto: ['pav_library', ''] },
+    ]);
   }
   if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 20) {
-    // TODO-QSP: act 'Go upstairs to the hobby clubs': gt 'pav_commclubs'
+    scene.actions([
+      { label: 'Go upstairs to the hobby clubs', goto: ['pav_commclubs', ''] },
+    ]);
   }
   if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 20)  ||  (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 20)) {
-    // TODO-QSP: act 'Go to the gym': gt 'gdksport', 'start'
+    scene.actions([
+      { label: 'Go to the gym', goto: ['gdksport', 'start'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

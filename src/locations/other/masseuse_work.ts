@@ -489,7 +489,9 @@ function enterPrepareNext(s: GameState, scene: SceneBuilder): void {
 
 function enterPrepareNextMenu(s: GameState, scene: SceneBuilder): void {
   if (((s as any).masseuse ?? 0)?.['break'] === 0) {
-    // TODO-QSP: act 'Take a break': gt 'masseuse_break', 'start'
+    scene.actions([
+      { label: 'Take a break', goto: ['masseuse_break', 'start'] },
+    ]);
   }
   qspCall(s, 'masseuse_work', 'stretch_out');
   // TODO-QSP: end

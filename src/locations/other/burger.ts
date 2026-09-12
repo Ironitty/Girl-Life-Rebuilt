@@ -20,7 +20,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:gt \'burger\', \'boss\'">The Office of the Director</a> Anatoly Borisovich');
   }
   if (((s as any).BurgerQW ?? 0)?.['IlyQW'] === 2) {
-    // TODO-QSP: act 'Go into the office to Anatoly Borisovich': gt 'burger', 'office'
+    scene.actions([
+      { label: 'Go into the office to Anatoly Borisovich', goto: ['burger', 'office'] },
+    ]);
   }
   if (((s as any).job_status ?? 0)?.['city_diner_dishwasher'] === '') {
     scene.actions([

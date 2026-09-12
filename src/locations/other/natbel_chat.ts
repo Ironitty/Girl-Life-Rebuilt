@@ -1225,7 +1225,9 @@ function enterFriendChat(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).NatbelQW ?? 0)?.['disco_invite'] === 2) {
       if (((s as any).week ?? 0) === 6  &&  (((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) < 21)) {
-        // TODO-QSP: act 'Go to disco' : gt 'natbel_friend', 'disco_2'
+        scene.actions([
+          { label: 'Go to disco', goto: ['natbel_friend', 'disco_2'] },
+        ]);
       }
     } else {
       if (((s as any).NatbelQW ?? 0)?.['disco_invite'] === 3  &&  ((s as any).NatbelQW ?? 0)?.['FriendLover'] < 3) {

@@ -155,7 +155,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('One of the buildings facing the square has a sign saying, General Store. A sign on the door proclaims it "CLOSED". It looks like the only place in the village to buy goods.');
     }
     if ((((s as any).week ?? 0) === 4  ||  ((s as any).week ?? 0) === 7)  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 20) {
-      // TODO-QSP: act 'Go to the nearby farmers market': gt 'gad_market', 'start'
+      scene.actions([
+        { label: 'Go to the nearby farmers market', goto: ['gad_market', 'start'] },
+      ]);
     }
     if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 20) {
       scene.actions([
@@ -171,7 +173,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).month ?? 0) >= 6  &&  ((s as any).month ?? 0) <= 9  &&  ((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 16) {
-      // TODO-QSP: act 'Sell mushrooms and berries': gt 'gadukino', 'collection_point'
+      scene.actions([
+        { label: 'Sell mushrooms and berries', goto: ['gadukino', 'collection_point'] },
+      ]);
     }
     if ((((s as any).hour ?? 0) <= 5  ||  ((s as any).hour ?? 0) >= 21)  &&  ((s as any).succubusQW ?? 0) === 14  &&  ((s as any).suchuntday ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([

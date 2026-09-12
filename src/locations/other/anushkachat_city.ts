@@ -1215,7 +1215,9 @@ function enterTellAboutDjibrilGangbang(s: GameState, scene: SceneBuilder): void 
     scene.text('She gives a look of mock surprise. "Oh my god, you dirty fucking slut! So how was it?" She\'s grinning as she asks.');
     scene.text('You get into some pretty graphic details as you tell your story and are feeling more than a little turned on; by the looks of things, she is as well. Maybe you could invite her to join in next time?');
     if (((s as any).npc_had_sex ?? 0)?.['A144']) {
-      // TODO-QSP: act 'Ask her if she wants join in': gt 'anushkachat_city', 'invite_djibril_gangbang'
+      scene.actions([
+        { label: 'Ask her if she wants join in', goto: ['anushkachat_city', 'invite_djibril_gangbang'] },
+      ]);
     }
     scene.actions([
       { label: 'Hang out in her room', goto: ['anush_bedroom_city', 'anushroom'] },

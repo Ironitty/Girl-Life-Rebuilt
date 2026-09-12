@@ -87,7 +87,9 @@ function enterReadBook(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/books/kamasutra/ik\' + kamasutra_page + \'.jpg');
   if (((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).family_trip ?? 0) === 1) {
-    // TODO-QSP: act 'Masturbate': gt 'selfplay', 'start'
+    scene.actions([
+      { label: 'Masturbate', goto: ['selfplay', 'start'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

@@ -114,7 +114,9 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.text('When you turn around, you see the problem. His dick is covered in shit! You really should have given yourself an enema first before you sold your ass like this…');
   scene.text('The man shouts angrily, "Get lost you whore… you\'re lucky I\'m letting you leave without beating you up! You can forget about your money!"');
   if (((s as any).pcs_intel ?? 0) >= 50) {
-    // TODO-QSP: act 'Apologize and make amends': gt 'AnalPR', '5'
+    scene.actions([
+      { label: 'Apologize and make amends', goto: ['AnalPR', '5'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

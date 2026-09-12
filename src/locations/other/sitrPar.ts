@@ -264,7 +264,11 @@ function enterSofa(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).locat ?? 0)?.['Fam_livingroom'] === 0) {
-        // TODO-QSP: act 'Take a nap (1:00)': gs 'sleep_simple', 'nap'
+        scene.actions([
+          { label: 'Take a nap (1:00)', handler: (st: GameState) => {
+    qspCall(st, 'sleep_simple', 'nap');
+  } },
+        ]);
       }
       scene.actions([
         { label: 'Watch TV', goto: ['TV', 'pav'] },

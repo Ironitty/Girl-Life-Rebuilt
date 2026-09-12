@@ -407,7 +407,9 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['vaginal'] > 0  ||  ((s as any).stat ?? 0)?.['anal'] > 0) {
-    // TODO-QSP: act 'Undress': gt 'gloryhole', 'ghsex'
+    scene.actions([
+      { label: 'Undress', goto: ['gloryhole', 'ghsex'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -475,7 +477,9 @@ function enterGhsex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'hj', 5, 'unknown', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['anal'] > 0) {
-    // TODO-QSP: act 'Ass': gt 'gloryhole', 'anal'
+    scene.actions([
+      { label: 'Ass', goto: ['gloryhole', 'anal'] },
+    ]);
   }
   if (((s as any).stat ?? 0)?.['vaginal'] > 0) {
     if (((s as any).mc_inventory ?? 0)?.['equipped_condoms'] > 0) {

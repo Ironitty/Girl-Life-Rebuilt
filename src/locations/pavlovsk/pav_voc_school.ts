@@ -357,16 +357,24 @@ function enterThirdFloor(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/altschool/ptu_3korr.jpg');
   scene.text('On this floor, there is a classroom for optional subjects.');
   if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 13) {
-    // TODO-QSP: act 'Go to class': gt 'pav_voc_school', 'classroom'
+    scene.actions([
+      { label: 'Go to class', goto: ['pav_voc_school', 'classroom'] },
+    ]);
   }
   if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 15) {
-    // TODO-QSP: act 'Start teaching': gt 'pav_voc_school', 'teaching_start'
+    scene.actions([
+      { label: 'Start teaching', goto: ['pav_voc_school', 'teaching_start'] },
+    ]);
   }
   if (((s as any).hour ?? 0) >= 15  &&  ((s as any).hour ?? 0) <= 18) {
-    // TODO-QSP: act 'Go to class': gt 'pav_voc_school', 'classroom'
+    scene.actions([
+      { label: 'Go to class', goto: ['pav_voc_school', 'classroom'] },
+    ]);
   }
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) <= 20) {
-    // TODO-QSP: act 'Staff room': gt 'pav_voc_school', 'staff_room'
+    scene.actions([
+      { label: 'Staff room', goto: ['pav_voc_school', 'staff_room'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -489,7 +497,9 @@ function enterClassroom(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).teacher ?? 0)?.['level'] > 10) {
-    // TODO-QSP: act 'Read the school magazine': gt 'pav_voc_school', 'school_magazine'
+    scene.actions([
+      { label: 'Read the school magazine', goto: ['pav_voc_school', 'school_magazine'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

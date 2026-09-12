@@ -927,7 +927,9 @@ function enterShowerCumAsk(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).sex_ev ?? 0)?.['orgasm'] < ((s as any).orgasm ?? 0)) {
-    // TODO-QSP: act 'Come together': gt 'sex_ev_shower', 'shower_cum_together1'
+    scene.actions([
+      { label: 'Come together', goto: ['sex_ev_shower', 'shower_cum_together1'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

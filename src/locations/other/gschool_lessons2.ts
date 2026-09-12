@@ -71,12 +71,20 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).fuckornot ?? 0) >= 3) {
-    // TODO-QSP: act 'Check the listings on "Fuck or Not"': $view_location = 'school_lesson'
     scene.actions([{ label: 'Continue', goto: ['komp_HF_or_not', 'fuckornot'] }]);
+    scene.actions([
+      { label: 'Check the listings on "Fuck or Not"', handler: (st: GameState) => {
+    // TODO-QSP: $view_location = 'school_lesson'
+  } },
+    ]);
   }
   if (((s as any).hotornot ?? 0) >= 2) {
-    // TODO-QSP: act 'Check the listings on "Hot or Not"': $view_location = 'school_lesson'
     scene.actions([{ label: 'Continue', goto: ['komp_HF_or_not', 'hotornot'] }]);
+    scene.actions([
+      { label: 'Check the listings on "Hot or Not"', handler: (st: GameState) => {
+    // TODO-QSP: $view_location = 'school_lesson'
+  } },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

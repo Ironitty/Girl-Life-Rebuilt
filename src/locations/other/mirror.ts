@@ -357,7 +357,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['umbrella'] === 0) {
   }
   if (((s as any).pcs_hairbsh ?? 0) < 1) {
-    // TODO-QSP: act 'Brush your hair': xgt 'mirror', 'brush'
+    scene.actions([
+      { label: 'Brush your hair', handler: (st: GameState) => {
+    // TODO-QSP: xgt 'mirror', 'brush'
+  } },
+    ]);
   }
   if (((s as any).pcs_makeup ?? 0) === ((s as any).makeup ?? 0)?.['base']  &&  ((s as any).mc_inventory ?? 0)?.['cosmetics'] > 0) {
     scene.actions([

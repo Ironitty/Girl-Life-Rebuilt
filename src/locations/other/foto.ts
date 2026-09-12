@@ -255,7 +255,9 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'foto', 'microcamera_ask');
   if (((s as any).parkblackmail ?? 0) === 2) {
-    // TODO-QSP: act 'Look around for the blackmailer': gt 'foto', 'blackm'
+    scene.actions([
+      { label: 'Look around for the blackmailer', goto: ['foto', 'blackm'] },
+    ]);
   }
   if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] !== 'employed') {
     qspCall(s, 'foto', 'hiring_ask');
@@ -338,7 +340,9 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "Hello <<$temp_name>>. Are you here to work?"
       scene.text(`"Hello ${((s as any).temp_name ?? 0)}. Are you here to work?"`);
       if (((s as any).first_fame_event ?? 0) === 2) {
-        // TODO-QSP: act 'Ask if there''s special work available': gt 'foto_events', 'special'
+        scene.actions([
+          { label: 'Ask if there\'s special work available', goto: ['foto_events', 'special'] },
+        ]);
       }
       scene.actions([
         { label: 'Perform the shoots', handler: (st: GameState) => {

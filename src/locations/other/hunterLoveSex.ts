@@ -93,49 +93,73 @@ function enterDinHuntersBjH1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 2) + 1;
     if (((s as any).bj ?? 0) <= 10) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
       (s as any).i = Math.floor(Math.random() * 4) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).bj ?? 0) <= 10) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+          scene.actions([
+            { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+          ]);
         }
       } else {
         if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
           (s as any).i = Math.floor(Math.random() * 2) + 1;
           if (((s as any).i ?? 0) === 1) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+            ]);
           }
           if (((s as any).i ?? 0) === 2) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+            ]);
           }
         }
       }
@@ -209,49 +233,73 @@ function enterDinHuntersBjH2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 2) + 1;
     if (((s as any).bj ?? 0) <= 10) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
       (s as any).i = Math.floor(Math.random() * 4) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).bj ?? 0) <= 10) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+          scene.actions([
+            { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+          ]);
         }
       } else {
         if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
           (s as any).i = Math.floor(Math.random() * 2) + 1;
           if (((s as any).i ?? 0) === 1) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+            ]);
           }
           if (((s as any).i ?? 0) === 2) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+            ]);
           }
         }
       }
@@ -316,49 +364,73 @@ function enterDinHuntersBjH3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 2) + 1;
     if (((s as any).bj ?? 0) <= 10) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
       (s as any).i = Math.floor(Math.random() * 4) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Bend': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+        scene.actions([
+          { label: 'Bend', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).bj ?? 0) <= 10) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+          scene.actions([
+            { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+          ]);
         }
       } else {
         if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
           (s as any).i = Math.floor(Math.random() * 2) + 1;
           if (((s as any).i ?? 0) === 1) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+            ]);
           }
           if (((s as any).i ?? 0) === 2) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+            ]);
           }
         }
       }
@@ -426,21 +498,31 @@ function enterDinHuntersBjH4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
-    // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bjH6'
+    scene.actions([
+      { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bjH6'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
     (s as any).i = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+      scene.actions([
+        { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+      scene.actions([
+        { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3) {
-      // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+      scene.actions([
+        { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4) {
-      // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+      scene.actions([
+        { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -451,10 +533,14 @@ function enterDinHuntersBjH4(s: GameState, scene: SceneBuilder): void {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -529,40 +615,60 @@ function enterDinHuntersBjH6(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 2) + 1;
     if (((s as any).bj ?? 0) <= 10) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
       (s as any).i = Math.floor(Math.random() * 4) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).bj ?? 0) <= 10) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+          scene.actions([
+            { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+          ]);
         }
       } else {
         if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
@@ -632,49 +738,73 @@ function enterDinHuntersBjH7(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 2) + 1;
     if (((s as any).bj ?? 0) <= 10) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
       (s as any).i = Math.floor(Math.random() * 4) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Bend': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+        scene.actions([
+          { label: 'Bend', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).bj ?? 0) <= 10) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+          scene.actions([
+            { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+          ]);
         }
       } else {
         if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
           (s as any).i = Math.floor(Math.random() * 2) + 1;
           if (((s as any).i ?? 0) === 1) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+            ]);
           }
           if (((s as any).i ?? 0) === 2) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+            ]);
           }
         }
       }
@@ -746,49 +876,73 @@ function enterDinHuntersBjH8(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 2) + 1;
     if (((s as any).bj ?? 0) <= 10) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
       (s as any).i = Math.floor(Math.random() * 4) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Bend': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+        scene.actions([
+          { label: 'Bend', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).bj ?? 0) <= 10) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bjH7'
+          scene.actions([
+            { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bjH7'] },
+          ]);
         }
         if (((s as any).bj ?? 0) > 10  &&  ((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bjH8'
+          scene.actions([
+            { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bjH8'] },
+          ]);
         }
       } else {
         if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
           (s as any).i = Math.floor(Math.random() * 2) + 1;
           if (((s as any).i ?? 0) === 1) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+            ]);
           }
           if (((s as any).i ?? 0) === 2) {
-            // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+            scene.actions([
+              { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+            ]);
           }
         }
       }
@@ -811,16 +965,24 @@ function enterDinHuntersBj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).i = Math.floor(Math.random() * 4) + 1;
     if (((s as any).bj ?? 0) > 10) {
-      // TODO-QSP: act 'Suck on the head': gt 'hunterLoveSex', 'din_hunters_bjH2'
+      scene.actions([
+        { label: 'Suck on the head', goto: ['hunterLoveSex', 'din_hunters_bjH2'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 5  &&  ((s as any).bj ?? 0) <= 10) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bjH1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bjH1'] },
+      ]);
     }
     if (((s as any).bj ?? 0) > 2  &&  ((s as any).bj ?? 0) <= 5) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bjH3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bjH3'] },
+      ]);
     }
     if (((s as any).bj ?? 0) <= 2) {
-      // TODO-QSP: act 'Caress his head with your hand': gt 'hunterLoveSex', 'din_hunters_bjH4'
+      scene.actions([
+        { label: 'Caress his head with your hand', goto: ['hunterLoveSex', 'din_hunters_bjH4'] },
+      ]);
     }
   } },
   ]);
@@ -845,19 +1007,29 @@ function enterDinHuntersSexBellAnalH(s: GameState, scene: SceneBuilder): void {
     scene.text('Have you had enough of this position he asks you…');
   }
   if (((s as any).h ?? 0) === 1  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 1  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum5'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum5'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 1) {
-    // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+    scene.actions([
+      { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 3) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_bell_analH ---
   scene.build();
@@ -881,19 +1053,29 @@ function enterDinHuntersSexCowAnalH(s: GameState, scene: SceneBuilder): void {
     scene.text('Have you had enough of this position he asks you…');
   }
   if (((s as any).h ?? 0) === 1  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 1  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum4'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 1) {
-    // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+    scene.actions([
+      { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_cow_analH ---
   scene.build();
@@ -917,19 +1099,29 @@ function enterDinHuntersSexDogAnalH(s: GameState, scene: SceneBuilder): void {
     scene.text('Have you had enough of this position he asks you…');
   }
   if (((s as any).h ?? 0) === 1  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 1  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum3'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum3'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 1) {
-    // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary_analH'
+    scene.actions([
+      { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_analH'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_dog_analH ---
   scene.build();
@@ -953,19 +1145,29 @@ function enterDinHuntersSexMisionaryAnalH(s: GameState, scene: SceneBuilder): vo
     scene.text('Have you had enough of this position he asks you…');
   }
   if (((s as any).h ?? 0) === 1  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 1  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum2'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum2'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 1) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow_analH'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow_analH'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog_analH'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog_analH'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 2  &&  ((s as any).j ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell_analH'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell_analH'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_misionary_analH ---
   scene.build();
@@ -1014,22 +1216,34 @@ function enterDinHuntersSexCumface7(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1053,22 +1267,34 @@ function enterDinHuntersSexCumface7(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1126,22 +1352,34 @@ function enterDinHuntersSexCumface6(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1165,22 +1403,34 @@ function enterDinHuntersSexCumface6(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1239,22 +1489,34 @@ function enterDinHuntersSexCumface5(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1278,22 +1540,34 @@ function enterDinHuntersSexCumface5(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1353,22 +1627,34 @@ function enterDinHuntersSexCumface4(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1392,22 +1678,34 @@ function enterDinHuntersSexCumface4(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1466,22 +1764,34 @@ function enterDinHuntersSexCumface3(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1505,22 +1815,34 @@ function enterDinHuntersSexCumface3(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1589,22 +1911,34 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1628,22 +1962,34 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1698,22 +2044,34 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1737,22 +2095,34 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1812,22 +2182,34 @@ function enterDinHuntersSexCumface1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1851,22 +2233,34 @@ function enterDinHuntersSexCumface1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1922,22 +2316,34 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -1961,22 +2367,34 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2028,22 +2446,34 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2067,22 +2497,34 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2139,22 +2581,34 @@ function enterDinHuntersSexCum10(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2178,22 +2632,34 @@ function enterDinHuntersSexCum10(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2250,22 +2716,34 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2289,22 +2767,34 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2356,22 +2846,34 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2395,22 +2897,34 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2468,22 +2982,34 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2507,22 +3033,34 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2574,22 +3112,34 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2613,22 +3163,34 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2686,22 +3248,34 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2725,22 +3299,34 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2792,22 +3378,34 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2831,22 +3429,34 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2904,22 +3514,34 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -2943,22 +3565,34 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3010,22 +3644,34 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3049,22 +3695,34 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3122,22 +3780,34 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3161,22 +3831,34 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3228,22 +3910,34 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3267,22 +3961,34 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3339,22 +4045,34 @@ function enterDinHuntersSexCum5(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3378,22 +4096,34 @@ function enterDinHuntersSexCum5(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3449,22 +4179,34 @@ function enterDinHuntersSexCum41(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3488,22 +4230,34 @@ function enterDinHuntersSexCum41(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3559,22 +4313,34 @@ function enterDinHuntersSexCum4(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3598,22 +4364,34 @@ function enterDinHuntersSexCum4(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3677,22 +4455,34 @@ function enterDinHuntersSexCum3(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3716,22 +4506,34 @@ function enterDinHuntersSexCum3(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3791,22 +4593,34 @@ function enterDinHuntersSexCum2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3830,22 +4644,34 @@ function enterDinHuntersSexCum2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3901,22 +4727,34 @@ function enterDinHuntersSexCum1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3940,22 +4778,34 @@ function enterDinHuntersSexCum1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-        // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+        scene.actions([
+          { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1) {
-        // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+        scene.actions([
+          { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
     }
   } },
@@ -3982,10 +4832,14 @@ function enterDinHuntersSexBellAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
   if (((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum5'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum5'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_bell_anal ---
   scene.build();
@@ -4002,10 +4856,14 @@ function enterDinHuntersSexCowAnal2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
   if (((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum4'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_cow_anal2 ---
   scene.build();
@@ -4022,10 +4880,14 @@ function enterDinHuntersSexCowAnal1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
   if (((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum4'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_cow_anal1 ---
   scene.build();
@@ -4042,10 +4904,14 @@ function enterDinHuntersSexCowAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
   if (((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum4'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_cow_anal ---
   scene.build();
@@ -4062,10 +4928,14 @@ function enterDinHuntersSexDogAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
   if (((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum3'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum3'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_dog_anal ---
   scene.build();
@@ -4082,10 +4952,14 @@ function enterDinHuntersSexMisionaryAnal(s: GameState, scene: SceneBuilder): voi
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
   if (((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum1'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum1'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum2'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum2'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_misionary_anal ---
   scene.build();
@@ -4104,16 +4978,24 @@ function enterDinHuntersSexAnalNo(s: GameState, scene: SceneBuilder): void {
   scene.text(`${((s as any).boydesc ?? 0)} asks you…`);
   (s as any).i = Math.floor(Math.random() * 4) + 1;
   if (((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_anal_no ---
   scene.build();
@@ -4145,37 +5027,59 @@ function enterDinHuntersSex_69(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and your realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_dog_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_dog_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface7'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface7'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_69 ---
   scene.build();
@@ -4199,41 +5103,65 @@ function enterDinHuntersSexHandBonus(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and your realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_dog_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_dog_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum10'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum10'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum11'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum11'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_hand_bonus ---
   scene.build();
@@ -4261,41 +5189,65 @@ function enterDinHuntersSexHand(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_dog_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_dog_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum10'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum10'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum11'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum11'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_hand ---
   scene.build();
@@ -4329,41 +5281,65 @@ function enterDinHuntersSexBellBonus1(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_bell_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_bell_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum5'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum5'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum9'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum9'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_bell_bonus1 ---
   scene.build();
@@ -4388,41 +5364,65 @@ function enterDinHuntersSexBellBonus(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_bell_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_bell_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum5'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum5'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum9'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum9'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_bell_bonus ---
   scene.build();
@@ -4453,41 +5453,65 @@ function enterDinHuntersSexBell(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_bell_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_bell_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum5'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum5'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum9'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum9'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_bell ---
   scene.build();
@@ -4511,41 +5535,65 @@ function enterDinHuntersSexCowBonus3(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_cow_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_cow_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum4'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum8'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum8'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_cow_bonus3 ---
   scene.build();
@@ -4575,41 +5623,65 @@ function enterDinHuntersSexCowBonus2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_cow_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_cow_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum4'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum8'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum8'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_cow_bonus2 ---
   scene.build();
@@ -4640,41 +5712,65 @@ function enterDinHuntersSexCowBonus1(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_cow_anal2'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_cow_anal2'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum41'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum41'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum81'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum81'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_cow_bonus1 ---
   scene.build();
@@ -4702,41 +5798,65 @@ function enterDinHuntersSexCowBonus(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_cow_anal1'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_cow_anal1'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum4'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum8'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum8'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_cow_bonus ---
   scene.build();
@@ -4768,41 +5888,65 @@ function enterDinHuntersSexCow(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_cow_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_cow_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum4'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum4'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum8'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum8'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_cow ---
   scene.build();
@@ -4837,41 +5981,65 @@ function enterDinHuntersSexDogBonus(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_dog_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_dog_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum3'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum3'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum7'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum7'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_dog_bonus ---
   scene.build();
@@ -4894,41 +6062,65 @@ function enterDinHuntersSexDogBonus1(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_dog_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_dog_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum3'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum3'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum7'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum7'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_dog_bonus1 ---
   scene.build();
@@ -4952,41 +6144,65 @@ function enterDinHuntersSexDogBonus2(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_dog_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_dog_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum3'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum3'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum7'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum7'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_dog_bonus2 ---
   scene.build();
@@ -5021,41 +6237,65 @@ function enterDinHuntersSexDog(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_dog_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_dog_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Lie on your back': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Lie on your back', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum3'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum3'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum7'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum7'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_dog ---
   scene.build();
@@ -5080,41 +6320,65 @@ function enterDinHuntersSexMisionaryBonus2(s: GameState, scene: SceneBuilder): v
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_misionary_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum2'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum2'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum6'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum6'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_misionary_bonus2 ---
   scene.build();
@@ -5139,43 +6403,71 @@ function enterDinHuntersSexMisionaryBonus1(s: GameState, scene: SceneBuilder): v
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_misionary_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': sexa += 1
     scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_sex_cum2'] }]);
+    scene.actions([
+      { label: 'Cum', handler: (st: GameState) => {
+    (st as any).sexa = ((st as any).sexa ?? 0) + (1);
+  } },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': sexa += 1
     scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_sex_cum6'] }]);
+    scene.actions([
+      { label: 'Cum', handler: (st: GameState) => {
+    (st as any).sexa = ((st as any).sexa ?? 0) + (1);
+  } },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_misionary_bonus1 ---
   scene.build();
@@ -5203,41 +6495,65 @@ function enterDinHuntersSexMisionaryBonus(s: GameState, scene: SceneBuilder): vo
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_misionary_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_anal'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 0  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 1) {
-    // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).anal_no ?? 0) === 1  &&  ((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum2'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum2'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum6'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum6'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_misionary_bonus ---
   scene.build();
@@ -5378,19 +6694,29 @@ function enterDinHuntersSexKuni(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).i = Math.floor(Math.random() * 5) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+      scene.actions([
+        { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+      scene.actions([
+        { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3) {
-      // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+      scene.actions([
+        { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4) {
-      // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+      scene.actions([
+        { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 5) {
-      // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+      scene.actions([
+        { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+      ]);
     }
   } },
       ]);
@@ -5412,19 +6738,29 @@ function enterDinHuntersSexKuni(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).i = Math.floor(Math.random() * 5) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+      scene.actions([
+        { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+      scene.actions([
+        { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3) {
-      // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+      scene.actions([
+        { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4) {
-      // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+      scene.actions([
+        { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 5) {
-      // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+      scene.actions([
+        { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+      ]);
     }
   }
   // TODO-QSP: end & !! --- din_hunters_sex_kuni ---
@@ -5460,35 +6796,55 @@ function enterDinHuntersSexMisionary(s: GameState, scene: SceneBuilder): void {
     scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0  &&  ((s as any).i ?? 0) === 8  ||  ((s as any).i ?? 0) === 1  ||  ((s as any).i ?? 0) === 2) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0  &&  ((s as any).i ?? 0) === 9  ||  ((s as any).i ?? 0) === 3  ||  ((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'Bend': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'Bend', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 5  ||  ((s as any).i ?? 0) === 6) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 7) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1  &&  ((s as any).i ?? 0) === 8) {
-    // TODO-QSP: act 'Spread your legs for him': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+    scene.actions([
+      { label: 'Spread your legs for him', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 1  &&  ((s as any).i ?? 0) === 9) {
-    // TODO-QSP: act 'Mutually caress each other': gt 'hunterLoveSex', 'din_hunters_sex_69'
+    scene.actions([
+      { label: 'Mutually caress each other', goto: ['hunterLoveSex', 'din_hunters_sex_69'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_misionary_anal'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_misionary_anal'] },
+    ]);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) === 3  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Substitute the ass': gt 'hunterLoveSex', 'din_hunters_sex_anal_no'
+    scene.actions([
+      { label: 'Substitute the ass', goto: ['hunterLoveSex', 'din_hunters_sex_anal_no'] },
+    ]);
   }
   (s as any).k = Math.floor(Math.random() * 2) + 1;
   if (((s as any).k ?? 0) === 1  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum2'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum2'] },
+    ]);
   }
   if (((s as any).k ?? 0) === 2  &&  ((s as any).h ?? 0) === 3) {
-    // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cum6'
+    scene.actions([
+      { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cum6'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sex_misionary ---
   scene.build();
@@ -5531,55 +6887,87 @@ function enterDinHuntersBj14(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 4) + 1;
     (s as any).j = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4  &&  ((s as any).j ?? 0) === 1) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4  &&  ((s as any).j ?? 0) === 2) {
-      // TODO-QSP: act 'Suck on the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+      scene.actions([
+        { label: 'Suck on the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4  &&  ((s as any).j ?? 0) === 3) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4  &&  ((s as any).j ?? 0) === 4) {
-      // TODO-QSP: act 'Hold your tongue against his cock': gt 'hunterLoveSex', 'din_hunters_bj5'
+      scene.actions([
+        { label: 'Hold your tongue against his cock', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
@@ -5629,55 +7017,87 @@ function enterDinHuntersBj13(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 4) + 1;
     (s as any).j = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4  &&  ((s as any).j ?? 0) === 1) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4  &&  ((s as any).j ?? 0) === 2) {
-      // TODO-QSP: act 'Suck the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+      scene.actions([
+        { label: 'Suck the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4  &&  ((s as any).j ?? 0) === 3) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 4  &&  ((s as any).j ?? 0) === 4) {
-      // TODO-QSP: act 'Lick the shaft': gt 'hunterLoveSex', 'din_hunters_bj5'
+      scene.actions([
+        { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
@@ -5759,58 +7179,90 @@ function enterDinHuntersBj12(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     (s as any).j = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 1) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 2) {
-      // TODO-QSP: act 'Suck the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+      scene.actions([
+        { label: 'Suck the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 3) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 4) {
-      // TODO-QSP: act 'Lick the shaft': gt 'hunterLoveSex', 'din_hunters_bj5'
+      scene.actions([
+        { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -5884,58 +7336,90 @@ function enterDinHuntersBj11(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     (s as any).j = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 1) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 2) {
-      // TODO-QSP: act 'Suck the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+      scene.actions([
+        { label: 'Suck the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 3) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 4) {
-      // TODO-QSP: act 'Lick the shaft': gt 'hunterLoveSex', 'din_hunters_bj5'
+      scene.actions([
+        { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -5982,49 +7466,77 @@ function enterDinHuntersBj10(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     (s as any).j = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 1) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 2) {
-      // TODO-QSP: act 'Suck the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+      scene.actions([
+        { label: 'Suck the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 3) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 4) {
-      // TODO-QSP: act 'Lick the shaft': gt 'hunterLoveSex', 'din_hunters_bj5'
+      scene.actions([
+        { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
@@ -6075,49 +7587,77 @@ function enterDinHuntersBj9(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     (s as any).j = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 1) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 2) {
-      // TODO-QSP: act 'Suck the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+      scene.actions([
+        { label: 'Suck the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 3) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 4) {
-      // TODO-QSP: act 'Lick the shaft': gt 'hunterLoveSex', 'din_hunters_bj5'
+      scene.actions([
+        { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
@@ -6205,61 +7745,95 @@ function enterDinHuntersBj8(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     (s as any).j = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 1) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 2) {
-      // TODO-QSP: act 'Suck the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+      scene.actions([
+        { label: 'Suck the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 3) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 4) {
-      // TODO-QSP: act 'Lick the shaft': gt 'hunterLoveSex', 'din_hunters_bj5'
+      scene.actions([
+        { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -6325,61 +7899,95 @@ function enterDinHuntersBj7(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     (s as any).j = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 1) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 2) {
-      // TODO-QSP: act 'Suck the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+      scene.actions([
+        { label: 'Suck the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 3) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 4) {
-      // TODO-QSP: act 'Lick the shaft': gt 'hunterLoveSex', 'din_hunters_bj5'
+      scene.actions([
+        { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -6458,52 +8066,82 @@ function enterDinHuntersBj6(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     (s as any).j = Math.floor(Math.random() * 4) + 1;
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 1  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 1) {
-      // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+      scene.actions([
+        { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 2) {
-      // TODO-QSP: act 'Suck the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+      scene.actions([
+        { label: 'Suck the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 3) {
-      // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+      scene.actions([
+        { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).j ?? 0) === 4) {
-      // TODO-QSP: act 'Lick the shaft': gt 'hunterLoveSex', 'din_hunters_bj5'
+      scene.actions([
+        { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
@@ -6572,58 +8210,90 @@ function enterDinHuntersBj5(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -6692,58 +8362,90 @@ function enterDinHuntersBj4(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -6808,58 +8510,90 @@ function enterDinHuntersBj3(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -6935,58 +8669,90 @@ function enterDinHuntersBj2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -7062,58 +8828,90 @@ function enterDinHuntersBj1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     (s as any).i = Math.floor(Math.random() * 3) + 1;
     if (((s as any).i ?? 0) === 1) {
-      // TODO-QSP: act 'Jerk off': gt 'hunterLoveSex', 'din_hunters_bj6'
+      scene.actions([
+        { label: 'Jerk off', goto: ['hunterLoveSex', 'din_hunters_bj6'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick balls': gt 'hunterLoveSex', 'din_hunters_bj7'
+      scene.actions([
+        { label: 'Lick balls', goto: ['hunterLoveSex', 'din_hunters_bj7'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2) {
-      // TODO-QSP: act 'Lick head': gt 'hunterLoveSex', 'din_hunters_bj8'
+      scene.actions([
+        { label: 'Lick head', goto: ['hunterLoveSex', 'din_hunters_bj8'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Swallow deeply': gt 'hunterLoveSex', 'din_hunters_bj9'
+      scene.actions([
+        { label: 'Swallow deeply', goto: ['hunterLoveSex', 'din_hunters_bj9'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) > 15) {
-      // TODO-QSP: act 'Relax your throat': gt 'hunterLoveSex', 'din_hunters_bj10'
+      scene.actions([
+        { label: 'Relax your throat', goto: ['hunterLoveSex', 'din_hunters_bj10'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck hard': gt 'hunterLoveSex', 'din_hunters_bj11'
+      scene.actions([
+        { label: 'Suck hard', goto: ['hunterLoveSex', 'din_hunters_bj11'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 3  &&  ((s as any).pcs_throat ?? 0) <= 15) {
-      // TODO-QSP: act 'Suck without hands': gt 'hunterLoveSex', 'din_hunters_bj12'
+      scene.actions([
+        { label: 'Suck without hands', goto: ['hunterLoveSex', 'din_hunters_bj12'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) < 3) {
-      // TODO-QSP: act 'Rub his cock on your titties': gt 'hunterLoveSex', 'din_hunters_bj13'
+      scene.actions([
+        { label: 'Rub his cock on your titties', goto: ['hunterLoveSex', 'din_hunters_bj13'] },
+      ]);
     }
     if (((s as any).i ?? 0) === 2  &&  ((s as any).tits ?? 0) >= 3) {
-      // TODO-QSP: act 'Squeeze between your Tits': gt 'hunterLoveSex', 'din_hunters_bj14'
+      scene.actions([
+        { label: 'Squeeze between your Tits', goto: ['hunterLoveSex', 'din_hunters_bj14'] },
+      ]);
     }
   } else {
     if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
       (s as any).i = Math.floor(Math.random() * 5) + 1;
       if (((s as any).i ?? 0) === 1) {
-        // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+        scene.actions([
+          { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 2) {
-        // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+        scene.actions([
+          { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 3) {
-        // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+        scene.actions([
+          { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 4) {
-        // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+        scene.actions([
+          { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+        ]);
       }
       if (((s as any).i ?? 0) === 5) {
-        // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+        scene.actions([
+          { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+        ]);
       }
     } else {
       if (((s as any).h ?? 0) === 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] >= 3) {
         (s as any).i = Math.floor(Math.random() * 2) + 1;
         if (((s as any).i ?? 0) === 1) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface1'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface1'] },
+          ]);
         }
         if (((s as any).i ?? 0) === 2) {
-          // TODO-QSP: act 'Cum': gt 'hunterLoveSex', 'din_hunters_sex_cumface2'
+          scene.actions([
+            { label: 'Cum', goto: ['hunterLoveSex', 'din_hunters_sex_cumface2'] },
+          ]);
         }
       }
     }
@@ -7131,19 +8929,29 @@ function enterDinHuntersBj200(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj\' + rand(0, 5) + \'.mp4');
   scene.text('You kneel in front of your boyfriend. He looks at you, waiting to see what you\'ll do…');
   if (((s as any).bj ?? 0) >= 10  &&  ((s as any).bj ?? 0) < 15) {
-    // TODO-QSP: act 'Lick the head': gt 'hunterLoveSex', 'din_hunters_bj1'
+    scene.actions([
+      { label: 'Lick the head', goto: ['hunterLoveSex', 'din_hunters_bj1'] },
+    ]);
   }
   if (((s as any).bj ?? 0) >= 20) {
-    // TODO-QSP: act 'Suck the head': gt 'hunterLoveSex', 'din_hunters_bj2'
+    scene.actions([
+      { label: 'Suck the head', goto: ['hunterLoveSex', 'din_hunters_bj2'] },
+    ]);
   }
   if (((s as any).bj ?? 0) >= 5  &&  ((s as any).bj ?? 0) < 10) {
-    // TODO-QSP: act 'Kiss the head': gt 'hunterLoveSex', 'din_hunters_bj3'
+    scene.actions([
+      { label: 'Kiss the head', goto: ['hunterLoveSex', 'din_hunters_bj3'] },
+    ]);
   }
   if (((s as any).bj ?? 0) < 5) {
-    // TODO-QSP: act 'Jack his cock': gt 'hunterLoveSex', 'din_hunters_bj4'
+    scene.actions([
+      { label: 'Jack his cock', goto: ['hunterLoveSex', 'din_hunters_bj4'] },
+    ]);
   }
   if (((s as any).bj ?? 0) >= 15  &&  ((s as any).bj ?? 0) < 20) {
-    // TODO-QSP: act 'Lick the shaft': gt 'hunterLoveSex', 'din_hunters_bj5'
+    scene.actions([
+      { label: 'Lick the shaft', goto: ['hunterLoveSex', 'din_hunters_bj5'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_bj200 ---
   scene.build();
@@ -7159,22 +8967,34 @@ function enterDinHuntersSub(s: GameState, scene: SceneBuilder): void {
   scene.text(`Like the obedient girl you are, you fully obey his will. Would you like something more, ${((s as any).boydesc ?? 0)} asks you…`);
   (s as any).i = Math.floor(Math.random() * 8) + 1;
   if (((s as any).i ?? 0) === 1  ||  ((s as any).i ?? 0) === 7) {
-    // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+    scene.actions([
+      { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 2  ||  ((s as any).i ?? 0) === 8) {
-    // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+    scene.actions([
+      { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 3) {
-    // TODO-QSP: act 'Sit down': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+    scene.actions([
+      { label: 'Sit down', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 4) {
-    // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+    scene.actions([
+      { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 5) {
-    // TODO-QSP: act 'Lie on your stomach': gt 'hunterLoveSex', 'din_hunters_sex_bell'
+    scene.actions([
+      { label: 'Lie on your stomach', goto: ['hunterLoveSex', 'din_hunters_sex_bell'] },
+    ]);
   }
   if (((s as any).i ?? 0) === 6) {
-    // TODO-QSP: act 'Take him in your hands': gt 'hunterLoveSex', 'din_hunters_sex_hand'
+    scene.actions([
+      { label: 'Take him in your hands', goto: ['hunterLoveSex', 'din_hunters_sex_hand'] },
+    ]);
   }
   // TODO-QSP: end & !! --- din_hunters_sub ---
   scene.build();
@@ -7273,7 +9093,9 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
     if (((s as any).hunterVars ?? 0)?.['IgorQW'] > 45) {
-      // TODO-QSP: act 'To lose innocence': gt 'hunterLoveSex', 'din_hunters_first_sex'
+      scene.actions([
+        { label: 'To lose innocence', goto: ['hunterLoveSex', 'din_hunters_first_sex'] },
+      ]);
     }
     if (((s as any).hunterVars ?? 0)?.['IgorQW'] > 45) {
       scene.actions([
@@ -7324,7 +9146,9 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You quickly peel off each other's clothes and <<$boydesc>> sees you naked for th...
     scene.text(`You quickly peel off each other's clothes and ${((s as any).boydesc ?? 0)} sees you naked for the first time.`);
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+      scene.actions([
+        { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7375,10 +9199,14 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5, 'sub');
     qspCall(s, 'stat', '');
     if (((s as any).pcs_horny ?? 0) >= 80  &&  ((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Take his dick': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+      scene.actions([
+        { label: 'Take his dick', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+      ]);
     }
     if (((s as any).pcs_horny ?? 0) < 80  &&  ((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+      scene.actions([
+        { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
@@ -7392,16 +9220,24 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You quickly took off <<$boydesc>>'s clothes and gaze at his gorgeous naked body.
     scene.text(`You quickly took off ${((s as any).boydesc ?? 0)}'s clothes and gaze at his gorgeous naked body.`);
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+      scene.actions([
+        { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+      scene.actions([
+        { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+      scene.actions([
+        { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Obey him': gt 'hunterLoveSex', 'din_hunters_sub'
+      scene.actions([
+        { label: 'Obey him', goto: ['hunterLoveSex', 'din_hunters_sub'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
@@ -7419,7 +9255,9 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'arousal', 'kiss', 5, 'sub');
           qspCall(s, 'stat', '');
           if (((s as any).mesec ?? 0) <= 0) {
-            // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+            scene.actions([
+              { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+            ]);
           }
           if (((s as any).mesec ?? 0) > 0) {
             scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7433,7 +9271,9 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'arousal', 'foreplay', 5, 'sub');
             qspCall(s, 'stat', '');
             if (((s as any).mesec ?? 0) <= 0) {
-              // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+              scene.actions([
+                { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+              ]);
             }
             if (((s as any).mesec ?? 0) > 0) {
               scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7448,7 +9288,9 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
-                // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+                scene.actions([
+                  { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+                ]);
               }
               if (((s as any).mesec ?? 0) > 0) {
                 scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7461,7 +9303,9 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
-                // TODO-QSP: act 'Bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+                scene.actions([
+                  { label: 'Bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+                ]);
               }
               if (((s as any).mesec ?? 0) > 0) {
                 scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7571,10 +9415,14 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5, 'sub');
     qspCall(s, 'stat', '');
     if (((s as any).pcs_horny ?? 0) >= 80  &&  ((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Take the dick': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+      scene.actions([
+        { label: 'Take the dick', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+      ]);
     }
     if (((s as any).pcs_horny ?? 0) < 80  &&  ((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+      scene.actions([
+        { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
@@ -7588,16 +9436,24 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You quickly take off his clothes and stare at <<$boydesc>>'s naked body for the ...
     scene.text(`You quickly take off his clothes and stare at ${((s as any).boydesc ?? 0)}'s naked body for the first time.`);
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+      scene.actions([
+        { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+      scene.actions([
+        { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+      scene.actions([
+        { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Obey him': gt 'hunterLoveSex', 'din_hunters_sub'
+      scene.actions([
+        { label: 'Obey him', goto: ['hunterLoveSex', 'din_hunters_sub'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
@@ -7615,7 +9471,9 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'arousal', 'foreplay', 5, 'sub');
           qspCall(s, 'stat', '');
           if (((s as any).mesec ?? 0) <= 0) {
-            // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+            scene.actions([
+              { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+            ]);
           }
           if (((s as any).mesec ?? 0) > 0) {
             scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7629,7 +9487,9 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'arousal', 'foreplay', 5, 'sub');
             qspCall(s, 'stat', '');
             if (((s as any).mesec ?? 0) <= 0) {
-              // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+              scene.actions([
+                { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+              ]);
             }
             if (((s as any).mesec ?? 0) > 0) {
               scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7644,7 +9504,9 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
-                // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+                scene.actions([
+                  { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+                ]);
               }
               if (((s as any).mesec ?? 0) > 0) {
                 scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7657,7 +9519,9 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
-                // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+                scene.actions([
+                  { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+                ]);
               }
               if (((s as any).mesec ?? 0) > 0) {
                 scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7714,7 +9578,9 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] > 35) {
-      // TODO-QSP: act 'To lose innocence': gt 'hunterLoveSex', 'din_hunters_first_sex'
+      scene.actions([
+        { label: 'To lose innocence', goto: ['hunterLoveSex', 'din_hunters_first_sex'] },
+      ]);
     }
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] > 35) {
       scene.actions([
@@ -7763,7 +9629,9 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You quickly take off his clothes and see <<$boydesc>> naked for the first time.
     scene.text(`You quickly take off his clothes and see ${((s as any).boydesc ?? 0)} naked for the first time.`);
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+      scene.actions([
+        { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7815,10 +9683,14 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'foreplay', 5, 'sub');
     qspCall(s, 'stat', '');
     if (((s as any).pcs_horny ?? 0) >= 80  &&  ((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Take the dick': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+      scene.actions([
+        { label: 'Take the dick', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+      ]);
     }
     if (((s as any).pcs_horny ?? 0) < 80  &&  ((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+      scene.actions([
+        { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
@@ -7832,16 +9704,24 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You quickly took off <<$boydesc>>'s clothes, exsposing his naked body to your gr...
     scene.text(`You quickly took off ${((s as any).boydesc ?? 0)}'s clothes, exsposing his naked body to your greedy eyes for the first time.`);
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Jump on top of him': gt 'hunterLoveSex', 'din_hunters_sex_cow'
+      scene.actions([
+        { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+      scene.actions([
+        { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+      scene.actions([
+        { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) <= 0) {
-      // TODO-QSP: act 'Obey him': gt 'hunterLoveSex', 'din_hunters_sub'
+      scene.actions([
+        { label: 'Obey him', goto: ['hunterLoveSex', 'din_hunters_sub'] },
+      ]);
     }
     if (((s as any).mesec ?? 0) > 0) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
@@ -7859,7 +9739,9 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'arousal', 'foreplay', 5, 'sub');
           qspCall(s, 'stat', '');
           if (((s as any).mesec ?? 0) <= 0) {
-            // TODO-QSP: act 'Spread your legs ': gt 'hunterLoveSex', 'din_hunters_sex_misionary'
+            scene.actions([
+              { label: 'Spread your legs ', goto: ['hunterLoveSex', 'din_hunters_sex_misionary'] },
+            ]);
           }
           if (((s as any).mesec ?? 0) > 0) {
             scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7873,7 +9755,9 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'arousal', 'foreplay', 5, 'sub');
             qspCall(s, 'stat', '');
             if (((s as any).mesec ?? 0) <= 0) {
-              // TODO-QSP: act 'Enjoy': gt 'hunterLoveSex', 'din_hunters_sex_kuni'
+              scene.actions([
+                { label: 'Enjoy', goto: ['hunterLoveSex', 'din_hunters_sex_kuni'] },
+              ]);
             }
             if (((s as any).mesec ?? 0) > 0) {
               scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7889,7 +9773,9 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
-                // TODO-QSP: act 'Kneel': gt 'hunterLoveSex', 'din_hunters_bj200'
+                scene.actions([
+                  { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
+                ]);
               }
               if (((s as any).mesec ?? 0) > 0) {
                 scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);
@@ -7902,7 +9788,9 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
-                // TODO-QSP: act 'bend over': gt 'hunterLoveSex', 'din_hunters_sex_dog'
+                scene.actions([
+                  { label: 'bend over', goto: ['hunterLoveSex', 'din_hunters_sex_dog'] },
+                ]);
               }
               if (((s as any).mesec ?? 0) > 0) {
                 scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_mesec'] }]);

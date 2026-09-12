@@ -14,7 +14,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$FSpers['text']>>
   scene.text(`${((s as any).FSpers ?? 0)?.['text']}`);
   if (((s as any).FSpers ?? 0) === 1) {
-    // TODO-QSP: act 'Load a saved game': gt 'KGZgame'
+    scene.actions([
+      { label: 'Load a saved game', goto: ['KGZgame', ''] },
+    ]);
   }
   scene.actions([
     { label: 'Play a new game', handler: (st: GameState) => {

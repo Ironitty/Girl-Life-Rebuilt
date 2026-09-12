@@ -34,25 +34,39 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     (s as any).AnalBan = qspUntranslated(s, "arrpos('AnalArray', picrand)", { location: "sex" });
   }
   if (((s as any).BlowBan ?? 0) <= 0) {
-    // TODO-QSP: act 'Give him a blowjob': gt 'sex', 'minet'
+    scene.actions([
+      { label: 'Give him a blowjob', goto: ['sex', 'minet'] },
+    ]);
   }
   if (((s as any).CooneyBan ?? 0) <= 0) {
-    // TODO-QSP: act 'Cooney': gt 'sex', 'kuni'
+    scene.actions([
+      { label: 'Cooney', goto: ['sex', 'kuni'] },
+    ]);
   }
   if (((s as any).MissionBan ?? 0) <= 0) {
-    // TODO-QSP: act 'Missionary': gt 'sex', 'vag'
+    scene.actions([
+      { label: 'Missionary', goto: ['sex', 'vag'] },
+    ]);
   }
   if (((s as any).CowgirlBan ?? 0) <= 0) {
-    // TODO-QSP: act 'Cowgirl': gt 'sex', 'nae'
+    scene.actions([
+      { label: 'Cowgirl', goto: ['sex', 'nae'] },
+    ]);
   }
   if (((s as any).DoggyBan ?? 0) <= 0) {
-    // TODO-QSP: act 'Doggy style': gt 'sex', 'rak'
+    scene.actions([
+      { label: 'Doggy style', goto: ['sex', 'rak'] },
+    ]);
   }
   if (((s as any).SidewaysBan ?? 0) <= 0) {
-    // TODO-QSP: act 'Sideways': gt 'sex', 'bok'
+    scene.actions([
+      { label: 'Sideways', goto: ['sex', 'bok'] },
+    ]);
   }
   if (((s as any).AnalBan ?? 0) <= 0) {
-    // TODO-QSP: act 'In the ass': gt 'sex', 'anal'
+    scene.actions([
+      { label: 'In the ass', goto: ['sex', 'anal'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();

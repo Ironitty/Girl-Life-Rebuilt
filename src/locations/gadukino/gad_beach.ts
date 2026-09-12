@@ -48,7 +48,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (qspFunc(s, 'changingroom', 'count_swim_item') > 0) {
-    // TODO-QSP: act 'Get changed': gt 'changingroom'
+    scene.actions([
+      { label: 'Get changed', goto: ['changingroom', ''] },
+    ]);
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     scene.actions([

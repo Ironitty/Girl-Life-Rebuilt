@@ -294,7 +294,9 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
       scene.text('"Interesting how?" you ask.');
       scene.text('He grins. "If I win, you have to show me your boobs, but if you win, I\'ll tell you a secret about Nush that you don\'t know."');
       if (((s as any).pcs_inhib ?? 0) > 30) {
-        // TODO-QSP: act 'Deal (Go easy on Maksim)': gt 'anushaptbr', 'race_maksim_result', 1
+        scene.actions([
+          { label: 'Deal (Go easy on Maksim)', goto: ['anushaptbr', 'race_maksim_result', '1'] },
+        ]);
       }
       scene.actions([
         { label: 'I don\'t think so', handler: (st: GameState) => {

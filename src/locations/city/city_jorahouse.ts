@@ -87,7 +87,9 @@ function enterEv2(s: GameState, scene: SceneBuilder): void {
   scene.text('"I see. I don\'t know your names.');
   scene.text('"Call me Jora, and my sidekick Semyon, and now you\'re introduced, hurry up and clean up this in the apartment."');
   if (((s as any).pcs_horny ?? 0) < 75) {
-    // TODO-QSP: act 'Leave': gt 'city_jorahouse', 'ev3'
+    scene.actions([
+      { label: 'Leave', goto: ['city_jorahouse', 'ev3'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

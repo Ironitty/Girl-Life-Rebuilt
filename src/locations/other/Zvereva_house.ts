@@ -63,7 +63,9 @@ function enterHallw(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).slyQW ?? 0)?.['met'] === 2) {
-    // TODO-QSP: act 'Silvestr''s bedroom': gt 'Zvereva_house', 'sly_bedro'
+    scene.actions([
+      { label: 'Silvestr\'s bedroom', goto: ['Zvereva_house', 'sly_bedro'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

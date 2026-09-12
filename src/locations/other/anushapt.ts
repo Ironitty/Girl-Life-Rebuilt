@@ -1570,7 +1570,9 @@ function enterBand(s: GameState, scene: SceneBuilder): void {
     scene.text('She just shakes her head. "Oh I\'m sure he did, but if she wasn\'t cheating, she probably got all clingy and smothering with him, constantly being jealous any time a girl even looked at him. Men don\'t like that and she had to know that he was going to attract girls with his talent. She should have done a better job making him happy and then he wouldn\'t have had to break up with her. If she was smart, she would do everything in her power to win him back while she can."');
     scene.text('You just sigh. You can tell there\'s nothing you can say that will convince her otherwise, so you decide it would be best to just change the topic.');
     if ((!((s as any).nush_album ?? 0))) {
-      // TODO-QSP: act 'Ask about the photo album': gt 'anushapt', 'album'
+      scene.actions([
+        { label: 'Ask about the photo album', goto: ['anushapt', 'album'] },
+      ]);
     }
     scene.actions([
       { label: 'Leave', goto: ['anushapt', 'hallway'] },
@@ -1583,7 +1585,9 @@ function enterBand(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Listen here ${((s as any).pcs_nickname ?? 0)}, I might not give two shits about Anushka, but the best outcome for me-" She stops and takes a deep breath. "For her I mean… is to hook up with Radomir and that's the end of the story."`);
     scene.text('Seeing you\'re not getting anywhere with her, you sigh, say goodbye and turn around to leave.');
     if ((!((s as any).nush_album ?? 0))) {
-      // TODO-QSP: act 'Ask about the photo album': gt 'anushapt', 'album'
+      scene.actions([
+        { label: 'Ask about the photo album', goto: ['anushapt', 'album'] },
+      ]);
     }
     scene.actions([
       { label: 'Leave', goto: ['anushapt', 'hallway'] },
@@ -1603,7 +1607,9 @@ function enterBand(s: GameState, scene: SceneBuilder): void {
     scene.text(`"Listen here ${((s as any).pcs_nickname ?? 0)}, I might not give two shits about Anushka, but the best outcome for me-" She stops and takes a deep breath. "For her I mean… is to hook up with Radomir and that's the end of the story."`);
     scene.text('Seeing you\'re not getting anywhere with her, you sigh, say goodbye and turn around to leave.');
     if ((!((s as any).nush_album ?? 0))) {
-      // TODO-QSP: act 'Ask about the photo album': gt 'anushapt', 'album'
+      scene.actions([
+        { label: 'Ask about the photo album', goto: ['anushapt', 'album'] },
+      ]);
     }
     scene.actions([
       { label: 'Leave', goto: ['anushapt', 'hallway'] },
@@ -1634,7 +1640,9 @@ function enterAlbum(s: GameState, scene: SceneBuilder): void {
     scene.text('Valeria looks at you like you just said the stupidest thing ever. "What kind of nonsense is that? Mark my words, if she doesn\'t latch onto a good man, she\'ll end up knocked up by some boy and then end up with a no good husband along with a bunch of ungrateful kids." You can\'t help but feel that she\'s almost talking about herself.');
     scene.text('She puts down the album and turns the volume on the TV up more than is needed. You take the hint, thank her for the story, and leave. At least you learned a lot more about why Anushka acts the way she does.');
     if ((!((s as any).nush_band ?? 0))) {
-      // TODO-QSP: act 'Bring up the band': gt 'anushapt', 'band'
+      scene.actions([
+        { label: 'Bring up the band', goto: ['anushapt', 'band'] },
+      ]);
     }
     scene.actions([
       { label: 'Leave', goto: ['anushapt', 'hallway'] },

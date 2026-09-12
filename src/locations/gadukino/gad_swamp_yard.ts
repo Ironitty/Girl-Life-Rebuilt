@@ -138,10 +138,18 @@ function enterCampfire(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).bucket ?? 0) > 0) {
       if (((s as any).boletus ?? 0) > 0  &&  (!((s as any).mushroom_soup ?? 0))) {
-        // TODO-QSP: act 'Cook some mushroom soup (0:30)': gs 'hunter_favors', 'mushroom_soup'
+        scene.actions([
+          { label: 'Cook some mushroom soup (0:30)', handler: (st: GameState) => {
+    qspCall(st, 'hunter_favors', 'mushroom_soup');
+  } },
+        ]);
       }
       if (((s as any).raw_meat ?? 0) > 0  &&  (!((s as any).meat_stew ?? 0))) {
-        // TODO-QSP: act 'Cook some meat stew (1:00)': gs 'hunter_favors', 'meat_stew'
+        scene.actions([
+          { label: 'Cook some meat stew (1:00)', handler: (st: GameState) => {
+    qspCall(st, 'hunter_favors', 'meat_stew');
+  } },
+        ]);
       }
     }
     if (((s as any).bucket ?? 0) >= 5  &&  (!((s as any).hotwater ?? 0))) {

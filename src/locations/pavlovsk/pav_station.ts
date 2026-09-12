@@ -32,7 +32,9 @@ function enterStationInside(s: GameState, scene: SceneBuilder): void {
   scene.text('The interior has seen better days and you\'re reminded of the stories you\'ve heard from your parents about how everything used to look run-down even during their younger days.');
   if (((s as any).katalkinSexOnce ?? 0) === 1  &&  ((s as any).hour ?? 0) >= 8) {
     (s as any).minut = ((s as any).minut ?? 0) + (1);
-    // TODO-QSP: act 'Visit Captain Katalkin': gt 'katalkin'
+    scene.actions([
+      { label: 'Visit Captain Katalkin', goto: ['katalkin', ''] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -51,7 +53,9 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/police/pavrec.jpg');
   scene.text('As you approach the reception, the clerk looks at you with disdain in their eyes. "What do you want?"');
   if (((s as any).rape_count ?? 0) > 0  &&  ((s as any).rape_day ?? 0) + 2 > ((s as any).daystart ?? 0)) {
-    // TODO-QSP: act 'Report a rape': gt 'pav_station', 'rape_report'
+    scene.actions([
+      { label: 'Report a rape', goto: ['pav_station', 'rape_report'] },
+    ]);
   }
   qspCall(s, 'blackmailer', 'set_police_act');
   // TODO-QSP: end

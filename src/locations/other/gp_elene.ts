@@ -24,7 +24,9 @@ function enterTalk(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).grigory_flower ?? 0) > 0  &&  ((s as any).grigory_flower ?? 0) < 10) {
-    // TODO-QSP: act 'Talk to her about the flowers': gt 'grigory', 'flower4'
+    scene.actions([
+      { label: 'Talk to her about the flowers', goto: ['grigory', 'flower4'] },
+    ]);
   }
   qspCall(s, 'gp_elene', 'set_report_chores_acts');
   qspCall(s, 'gp_elene', 'get_random_chore_act');

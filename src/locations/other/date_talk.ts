@@ -958,7 +958,9 @@ function enterAwkwardMenu2(s: GameState, scene: SceneBuilder): void {
 
 function enterAwkwardRelaxAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['talk_mood'] === 'awkward') {
-    // TODO-QSP: act 'Start to relax': gt 'date_talk', 'awkward_relax'
+    scene.actions([
+      { label: 'Start to relax', goto: ['date_talk', 'awkward_relax'] },
+    ]);
   }
   // TODO-QSP: end
   scene.build();

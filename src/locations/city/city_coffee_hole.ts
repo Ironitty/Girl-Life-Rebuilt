@@ -12,7 +12,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Opening hours are ' + $func('time', 'get_time_string', 7, 0) + ' to ' + $func('t...
   scene.text('Opening hours are \' + $func(\'time\', \'get_time_string\', 7, 0) + \' to \' + $func(\'time\', \'get_time_string\', 23, 0) + \'.');
   if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 22) {
-    // TODO-QSP: act 'Enter the cafe': gt 'city_coffee_hole', 'inner'
+    scene.actions([
+      { label: 'Enter the cafe', goto: ['city_coffee_hole', 'inner'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([
@@ -56,7 +58,9 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'natbel_uni_chat', 'set_coffee_hole_chats');
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) === 18) {
-    // TODO-QSP: act '<b>Join nerds</b>': gt 'nerd_game_night', 'game'
+    scene.actions([
+      { label: '<b>Join nerds</b>', goto: ['nerd_game_night', 'game'] },
+    ]);
   }
   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 17) {
     (s as any).temprand = Math.floor(Math.random() * 10) + 1;

@@ -139,7 +139,9 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Lariska <<$text_home>>.
   scene.text(`Lariska ${((s as any).text_home ?? 0)}.`);
   if (((s as any).LariskaQW ?? 0)?.['metAnna'] >= 1) {
-    // TODO-QSP: act 'Anna''s Bedroom': gt 'LariskaHome', 'anna_bedroom'
+    scene.actions([
+      { label: 'Anna\'s Bedroom', goto: ['LariskaHome', 'anna_bedroom'] },
+    ]);
   }
   // TODO-QSP: end
   scene.actions([

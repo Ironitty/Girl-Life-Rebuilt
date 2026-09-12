@@ -54,8 +54,12 @@ function enterNestor(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: <font color=#<<$Nestor['font']>>>"Hey chick, here for fun?"</font>
         scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font']}>"Hey chick, here for fun?"</font>`);
         if (((s as any).Nestor ?? 0)?.['serve'] === 1) {
-          // TODO-QSP: act 'Offer to serve him': Nestor['served'] = totminut
           scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_Serve'] }]);
+          scene.actions([
+            { label: 'Offer to serve him', handler: (st: GameState) => {
+    // TODO-QSP: Nestor['served'] = totminut
+  } },
+          ]);
         }
         scene.actions([
           { label: 'Just say hello and leave', goto: ['pav_shared_apt', 'start'] },
@@ -1336,16 +1340,28 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).Nestor ?? 0)?.['pornPos'] >= 1) {
-      // TODO-QSP: act 'Take me Full Nelson': shared_apt['step'] = 4
       scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+      scene.actions([
+        { label: 'Take me Full Nelson', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 4
+  } },
+      ]);
     }
     if (((s as any).Nestor ?? 0)?.['pornPos'] >= 2) {
-      // TODO-QSP: act 'Take me Pile Driver': shared_apt['step'] = 5
       scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+      scene.actions([
+        { label: 'Take me Pile Driver', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 5
+  } },
+      ]);
     }
     if (((s as any).Nestor ?? 0)?.['vacuum'] === 1) {
-      // TODO-QSP: act 'Take me using the vacuum enlarger on your dick': shared_apt['step'] = 6
       scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+      scene.actions([
+        { label: 'Take me using the vacuum enlarger on your dick', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 6
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Let him choose', handler: (st: GameState) => {
@@ -1394,8 +1410,12 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 30);
           if (((s as any).orgB ?? 0) < 100) {
-            // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
             scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+            scene.actions([
+              { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+            ]);
           }
           if (((s as any).orgB ?? 0) >= 100) {
             scene.actions([
@@ -1439,8 +1459,12 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
             if (((s as any).orgB ?? 0) < 100) {
-              // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
               scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+              scene.actions([
+                { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+              ]);
             }
             if (((s as any).orgB ?? 0) >= 100) {
               scene.actions([
@@ -1486,8 +1510,12 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 30);
               if (((s as any).orgB ?? 0) < 100) {
-                // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                 scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+                scene.actions([
+                  { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                ]);
               }
               if (((s as any).orgB ?? 0) >= 100) {
                 scene.actions([
@@ -1531,8 +1559,12 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'stat', '');
                 (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 40);
                 if (((s as any).orgB ?? 0) < 100) {
-                  // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                   scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+                  scene.actions([
+                    { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                  ]);
                 }
                 if (((s as any).orgB ?? 0) >= 100) {
                   scene.actions([
@@ -1576,8 +1608,12 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'stat', '');
                   (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 40);
                   if (((s as any).orgB ?? 0) < 100) {
-                    // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                     scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+                    scene.actions([
+                      { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                    ]);
                   }
                   if (((s as any).orgB ?? 0) >= 100) {
                     scene.actions([
@@ -1634,8 +1670,12 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                       (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 40);
                       qspCall(s, 'pain', '', 1, 'vaginal', 'stretch');
                       if (((s as any).orgB ?? 0) < 100) {
-                        // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 2
                         scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+                        scene.actions([
+                          { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 2
+  } },
+                        ]);
                       }
                       if (((s as any).orgB ?? 0) >= 100) {
                         scene.actions([
@@ -1764,12 +1804,20 @@ function enterNestor_SexVaginal(s: GameState, scene: SceneBuilder): void {
                                 // TODO-QSP: dynamic text: <font color=#<<$Nestor['font']>>>"I will cum in your pussy or you will swallow i...
                                 scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font']}>"I will cum in your pussy or you will swallow it. Make your choice before it's too late, ${((s as any).pcs_firstname ?? 0)}!"</font>`);
                                 if (((s as any).Nestor ?? 0)?.['mood'] <= 4) {
-                                  // TODO-QSP: act 'Neither!': shared_apt['subStep'] = 30
                                   scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+                                  scene.actions([
+                                    { label: 'Neither!', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 30
+  } },
+                                  ]);
                                 }
                                 if (((s as any).Nestor ?? 0)?.['mood'] > 4) {
-                                  // TODO-QSP: act 'Neither!': shared_apt['subStep'] = 5
                                   scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexVaginal'] }]);
+                                  scene.actions([
+                                    { label: 'Neither!', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 5
+  } },
+                                  ]);
                                 }
                                 scene.actions([
                                   { label: 'Swallow', handler: (st: GameState) => {
@@ -1907,16 +1955,28 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
       ]);
     }
     if (((s as any).Nestor ?? 0)?.['pornPos'] >= 1) {
-      // TODO-QSP: act 'Take me Full Nelson': shared_apt['step'] = 4
       scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+      scene.actions([
+        { label: 'Take me Full Nelson', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 4
+  } },
+      ]);
     }
     if (((s as any).Nestor ?? 0)?.['pornPos'] >= 2) {
-      // TODO-QSP: act 'Take me Pile Driver': shared_apt['step'] = 5
       scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+      scene.actions([
+        { label: 'Take me Pile Driver', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 5
+  } },
+      ]);
     }
     if (((s as any).Nestor ?? 0)?.['vacuum'] >= 1) {
-      // TODO-QSP: act 'Take me using the vacuum enlarger on your dick': shared_apt['step'] = 6
       scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+      scene.actions([
+        { label: 'Take me using the vacuum enlarger on your dick', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['step'] = 6
+  } },
+      ]);
     }
     scene.actions([
       { label: 'Let him choose', handler: (st: GameState) => {
@@ -1975,8 +2035,12 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
           if (((s as any).orgB ?? 0) < 100) {
-            // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
             scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+            scene.actions([
+              { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+            ]);
           }
           if (((s as any).orgB ?? 0) >= 100) {
             scene.actions([
@@ -2027,8 +2091,12 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
             if (((s as any).orgB ?? 0) < 100) {
-              // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
               scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+              scene.actions([
+                { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+              ]);
             }
             if (((s as any).orgB ?? 0) >= 100) {
               scene.actions([
@@ -2082,8 +2150,12 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 20);
               if (((s as any).orgB ?? 0) < 100) {
-                // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                 scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+                scene.actions([
+                  { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                ]);
               }
               if (((s as any).orgB ?? 0) >= 100) {
                 scene.actions([
@@ -2127,8 +2199,12 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'stat', '');
                 (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 30);
                 if (((s as any).orgB ?? 0) < 100) {
-                  // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                   scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+                  scene.actions([
+                    { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                  ]);
                 }
                 if (((s as any).orgB ?? 0) >= 100) {
                   scene.actions([
@@ -2183,8 +2259,12 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'stat', '');
                   (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 30);
                   if (((s as any).orgB ?? 0) < 100) {
-                    // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 1
                     scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+                    scene.actions([
+                      { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 1
+  } },
+                    ]);
                   }
                   if (((s as any).orgB ?? 0) >= 100) {
                     scene.actions([
@@ -2241,8 +2321,12 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                       qspCall(s, 'pain', '', 1, 'asshole', 'stretch');
                       (s as any).orgB = ((s as any).orgB ?? 0) + (Math.floor(Math.random() * 21) + 40);
                       if (((s as any).orgB ?? 0) < 100) {
-                        // TODO-QSP: act 'Let him continue': shared_apt['subStep'] = 2
                         scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+                        scene.actions([
+                          { label: 'Let him continue', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 2
+  } },
+                        ]);
                       }
                       if (((s as any).orgB ?? 0) >= 100) {
                         scene.actions([
@@ -2367,12 +2451,20 @@ function enterNestor_SexAnal(s: GameState, scene: SceneBuilder): void {
                                 // TODO-QSP: dynamic text: <font color=#<<$Nestor['font']>>>"I will cum in your ass or you will swallow it....
                                 scene.text(`<font color=#${((s as any).Nestor ?? 0)?.['font']}>"I will cum in your ass or you will swallow it. Make your choice before it's too late, ${((s as any).pcs_firstname ?? 0)}!"</font>`);
                                 if (((s as any).Nestor ?? 0)?.['mood'] <= 4) {
-                                  // TODO-QSP: act 'Neither!': shared_apt['subStep'] = 30
                                   scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+                                  scene.actions([
+                                    { label: 'Neither!', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 30
+  } },
+                                  ]);
                                 }
                                 if (((s as any).Nestor ?? 0)?.['mood'] > 4) {
-                                  // TODO-QSP: act 'Neither!': shared_apt['subStep'] = 5
                                   scene.actions([{ label: 'Continue', goto: ['pav_shared_nestor', 'Nestor_SexAnal'] }]);
+                                  scene.actions([
+                                    { label: 'Neither!', handler: (st: GameState) => {
+    // TODO-QSP: shared_apt['subStep'] = 5
+  } },
+                                  ]);
                                 }
                                 scene.actions([
                                   { label: 'Swallow', handler: (st: GameState) => {
