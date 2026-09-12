@@ -3,6 +3,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).nichGentleclubVisits ?? 0))) {
     scene.actions([{ label: 'Continue', goto: ['nichClub', 'firstVisit'] }]);
   }
@@ -197,6 +201,9 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'firstVisit':
       enterFirstVisit(s, scene);
       break;

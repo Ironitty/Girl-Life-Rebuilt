@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterBuilding(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pav_pool', 'building');
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/entrance.jpg');
@@ -955,6 +959,9 @@ function enterLifeguardOffer(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'building':
+      enterBuilding(s, scene);
+      break;
     case 'entrance':
       enterEntrance(s, scene);
       break;
@@ -1005,6 +1012,5 @@ export const pav_pool: LocationDef = {
   title: '<br>You need to change out of your swimwear if you want to leave!',
   region: 'pavlovsk',
   locationType: 'public_indoors',
-  description: ['Pavlovsk\'s public swimming pool is rather dated, but still serves it\'s purpose quite well.'],
   enter: enter,
 };

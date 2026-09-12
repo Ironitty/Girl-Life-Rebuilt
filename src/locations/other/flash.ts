@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCanFlash(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloOnePiece ?? 0) === 1) {
     // TODO-QSP: jump 'flash_can_flash_end'
@@ -224,7 +228,7 @@ function enterPantyrear(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterButt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'flash', 'exhibitionism', 2, $ARGS[1], ARGS[2]
   ((s as any).flashVars ?? {})['text_before'] = 'You glance around to see who is in the area, then you pull \' + iif(PCloSkirt > 0, \'up the back of your skirt\', \'down the back of your pants\') + \' to show off your butt. Most people don\'t notice but a few do, some smile, others frown or shake their head in disgust.';
   ((s as any).flashVars ?? {})['text_after'] = 'You \' + iif(PCloSkirt > 0, \'lower the skirt back in place\', \'pull your pants back up\') + \', feeling the thrill of excitement running down your spine.';
@@ -610,6 +614,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'pantyrear':
       enterPantyrear(s, scene);
+      break;
+    case 'butt':
+      enterButt(s, scene);
       break;
     case 'pussy':
       enterPussy(s, scene);

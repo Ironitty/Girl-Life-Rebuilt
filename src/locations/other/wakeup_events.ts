@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['events_active'] === 1) {
     ((s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 0  &&  ((s as any).MarishaQW ?? 0)?.['marisha_sleepover'] === 0) {
@@ -229,6 +233,9 @@ function enterSgSleptIn(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'mod_sleepevents':
       enterModSleepevents(s, scene);
       break;

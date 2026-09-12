@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sleepVars ?? 0)?.['dreams_active'] === 1) {
     ((s as any).sleepVars ?? {})['events_done'] = 0;
     if (((s as any).stepdadQW ?? 0) === 3) {
@@ -676,6 +680,9 @@ function enterPregDreams(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'mod_sleepevents':
       enterModSleepevents(s, scene);
       break;

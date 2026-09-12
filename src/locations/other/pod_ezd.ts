@@ -6,6 +6,17 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  if (((s as any).liftnotwork_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).liftnotwork_count = 1;
+  }
+  if (((s as any).mishahouse_day ?? 0) !== ((s as any).daystart ?? 0)) {
+    (s as any).mishahouse_count = 1;
+  }
+  (s as any).rnd_money_sex = Math.floor(Math.random() * 501) + 250;
+  scene.build();
+}
+
 function enterOccupants(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'occupants');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -51,14 +62,7 @@ function enterLeaveBuilding(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).liftnotwork_day ?? 0) !== ((s as any).daystart ?? 0)) {
-    (s as any).liftnotwork_count = 1;
-  }
-  if (((s as any).mishahouse_day ?? 0) !== ((s as any).daystart ?? 0)) {
-    (s as any).mishahouse_count = 1;
-  }
-  (s as any).rnd_money_sex = Math.floor(Math.random() * 501) + 250;
+function enterEtaj_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pod_ezd', 'etaj_1');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -2719,6 +2723,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'leave_building':
       enterLeaveBuilding(s, scene);
       break;
+    case 'etaj_1':
+      enterEtaj_1(s, scene);
+      break;
     case 'etaj_2':
       enterEtaj_2(s, scene);
       break;
@@ -2928,6 +2935,5 @@ export const pod_ezd: LocationDef = {
   title: 'Ground floor of the apartment building',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['Floor 1 - Apartment number 2: Artem Chebotarev'],
   enter: enter,
 };

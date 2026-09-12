@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.build();
@@ -60,7 +64,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterContent(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['StageTitle'] = 'St Petersburg Canals';
   qspCall(s, 'city_canals', 'setup', 'start');
   if (((s as any).month ?? 0) >= 3  &&  ((s as any).month ?? 0) < 12) {
@@ -177,6 +181,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'exit':
       enterExit(s, scene);
+      break;
+    case 'content':
+      enterContent(s, scene);
       break;
     case 'tickets':
       enterTickets(s, scene);

@@ -6,6 +6,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterAutosave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cfg_vars ?? 0)?.['disable_autosave'] === 0) {
     if (((s as any).start_type ?? 0)?.['loc'] === 'city') {
@@ -690,7 +694,7 @@ function enterSetStat(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterSPow(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'math', 'int_power', qspUntranslated(s, "ARGS[1]", { location: "shortgs" }), qspUntranslated(s, "ARGS[2]", { location: "shortgs" }));
   return;
   // TODO-QSP: end
@@ -1004,6 +1008,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'setStat':
       enterSetStat(s, scene);
+      break;
+    case 's_pow':
+      enterSPow(s, scene);
       break;
     case 'coupled_array_sort':
       enterCoupledArraySort(s, scene);

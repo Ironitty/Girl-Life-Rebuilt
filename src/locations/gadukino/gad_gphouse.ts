@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'give_access', 'grandparents_house');
   qspCall(s, 'gad_gphouse', 'nudity_trouble_limit');
@@ -51,7 +55,7 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterMain(s: GameState, scene: SceneBuilder): void {
   ((s as any).setloc ?? {})['room_title'] = 'Your Grandparents\' Cottage';
   ((s as any).setloc ?? {})['room_image'] = 'izba.jpg';
   qspCall(s, 'gad_gphouse', 'setup', 'main');
@@ -738,6 +742,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'exit':
       enterExit(s, scene);
+      break;
+    case 'main':
+      enterMain(s, scene);
       break;
     case 'kitchen':
       enterKitchen(s, scene);

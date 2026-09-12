@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterDispose(s: GameState, scene: SceneBuilder): void {
   if (((s as any).underwear ?? 0)?.['type'] === 2) {
     if (((s as any).bodysuitworntype ?? 0) !== 'none') {
@@ -41,7 +45,7 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterStrip(s: GameState, scene: SceneBuilder): void {
   if (((((s as any).clothingworntype ?? 0)).indexOf(('swimsuit'))) + 1 <= 0  &&  ((((s as any).clothingworntype ?? 0)).indexOf(('bikinis'))) + 1 <= 0) {
     if (((s as any).underwear ?? 0)?.['type'] === 2) {
       qspCall(s, 'underwear_bodysuits', 'strip');
@@ -106,6 +110,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'backup':
       enterBackup(s, scene);
+      break;
+    case 'strip':
+      enterStrip(s, scene);
       break;
     case 'restore':
       enterRestore(s, scene);

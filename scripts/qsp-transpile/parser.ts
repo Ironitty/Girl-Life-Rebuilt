@@ -253,8 +253,9 @@ interface ParseResult {
       if (!stopAtEnd) {
         return { nodes, endIdx: i };
       }
+      const firstVal = sceneMultiMatch[1];
       const inner = parseBlock(lines, i + 1, unsupported, false);
-      const scene: QspScene = { kind: 'scene', arg: '', body: inner.nodes };
+      const scene: QspScene = { kind: 'scene', arg: firstVal === '' ? '' : firstVal, body: inner.nodes };
       nodes.push(scene);
       i = inner.endIdx;
       continue;

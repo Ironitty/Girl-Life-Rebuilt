@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCalc(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'dnd');
   (s as any).will_calc = ((s as any).will_dnd ?? 0);
@@ -471,7 +475,7 @@ function enterCuni(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'calc', ((s as any).locArgs?.[3] ?? 0));
   (s as any).fetish_mod = 0;
   (s as any).fetish_count = 1;
@@ -556,7 +560,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterGangbang(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'calc', ((s as any).locArgs?.[3] ?? 0));
   if (((s as any).locArgs?.[1] ?? 0) === 'self') {
     if (((s as any).missCum ?? 0) >= ((s as any).timeTresh ?? 0)) {
@@ -1274,7 +1278,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault3(s: GameState, scene: SceneBuilder): void {
+function enterMisc(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'calc', ((s as any).locArgs?.[3] ?? 0));
   if (((s as any).locArgs?.[1] ?? 0) === 'force') {
     if (((s as any).locArgs?.[2] ?? 0) === 'easy') {
@@ -1387,8 +1391,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'cuni':
       enterCuni(s, scene);
       break;
+    case 'sex':
+      enterSex(s, scene);
+      break;
     case 'anal':
       enterAnal(s, scene);
+      break;
+    case 'gangbang':
+      enterGangbang(s, scene);
       break;
     case 'group':
       enterGroup(s, scene);
@@ -1461,6 +1471,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'sleep':
       enterSleep(s, scene);
+      break;
+    case 'misc':
+      enterMisc(s, scene);
       break;
     case 'dnd':
       enterDnd(s, scene);

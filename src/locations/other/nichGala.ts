@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/gala/02.jpg');
   if (((s as any).nichTemp ?? 0) === 'sleep') {
     scene.text('Gala is sleeping. It would be a bad idea to wake her up now.');
@@ -1603,6 +1607,9 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'approach':
       enterApproach(s, scene);
       break;
@@ -1658,6 +1665,5 @@ export const nichGala: LocationDef = {
   name: 'nichGala',
   title: 'Gala is sleeping. It would be a bad idea to wake her up now.',
   region: 'other',
-  description: ['Gala is sleeping. It would be a bad idea to wake her up now.'],
   enter: enter,
 };

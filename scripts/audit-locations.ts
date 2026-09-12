@@ -263,8 +263,9 @@ function parseQspSections(qspSrc: string): Map<string, QspAction[]> {
     if (/^[\t ]/.test(raw)) continue;
     const m = raw.match(/if\s+\$ARGS\[0\]\s*=\s*'((?:[^']|'')*)'/i);
     if (m) {
+      const firstVal = unescapeQsp(m[1]);
       const isMulti = /or\s+\$ARGS\[0\]/.test(raw) || /or\s+\$loc_arg/.test(raw);
-      const label = isMulti ? '' : unescapeQsp(m[1]);
+      const label = isMulti ? (firstVal === '' ? '' : firstVal) : firstVal;
       const isOneline = /\S/.test(trimmed.split(/:\s*/).slice(1).join(':') || '');
       sectionStarts.push({ label, line: i, isOneline });
     }

@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   if (((s as any).loc ?? 0) !== 'shop') {
   }
@@ -846,6 +846,9 @@ function enterAnya(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'move':
       enterMove(s, scene);
       break;

@@ -4,6 +4,10 @@ import { qspCall, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'core_library', 'setloc', 'city_hermitage', 'start');
@@ -30,7 +34,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterStart2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 8) {
     scene.text('The museum is not open yet so it is too early to enjoy any of the collections now.');
   } else {
@@ -217,6 +221,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'return':
       enterReturn(s, scene);
       break;
+    case 'start':
+      enterStart2(s, scene);
+      break;
     case 'peacock':
       enterPeacock(s, scene);
       break;
@@ -239,6 +246,5 @@ export const city_hermitage: LocationDef = {
   name: 'city_hermitage',
   title: 'You see in the distance The State Hermitage Museum. It\'s the',
   region: 'city',
-  description: ['You see in the distance The State Hermitage Museum. It\'s the second largest art museum in the world and was founded in 1764 by Empress Catherine the Great and has been open to the public since 1852.'],
   enter: enter,
 };

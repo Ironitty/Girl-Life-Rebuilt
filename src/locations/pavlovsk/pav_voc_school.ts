@@ -4,6 +4,10 @@ import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCommunityCenter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Community Center</b></center>');
@@ -135,7 +139,7 @@ function enterDisco(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterReception(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Reception</b></center>');
   scene.img('images/locations/pavlovsk/altschool/ptu_holl.jpg');
@@ -1009,6 +1013,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       break;
     case 'disco':
       enterDisco(s, scene);
+      break;
+    case 'reception':
+      enterReception(s, scene);
       break;
     case 'outside':
       enterOutside(s, scene);

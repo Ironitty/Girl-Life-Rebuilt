@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   ((s as any).sleepVars ?? {})['slept_in'] = 0;
   scene.actions([{ label: 'Continue', goto: ['pre_sleep_events', 'start'] }]);
   // TODO-QSP: end
@@ -176,6 +180,9 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'pre_sleep2':
       enterPreSleep2(s, scene);
       break;

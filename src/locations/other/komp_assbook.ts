@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterMain(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Assbook</b></center>');
   if (((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 1) {
@@ -366,6 +370,9 @@ function enterBlackmail(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'main':
+      enterMain(s, scene);
+      break;
     case 'signup':
       enterSignup(s, scene);
       break;

@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -111,6 +115,9 @@ function enterCart(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'atm':
       enterAtm(s, scene);
       break;
@@ -128,6 +135,5 @@ export const uni_shop: LocationDef = {
   title: 'ATM',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['The store is currently closed.'],
   enter: enter,
 };

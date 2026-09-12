@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterBed2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clo_flag ?? 0)?.['bed'] === 1) {
     ((s as any).clo_flag ?? {})['bed'] = 0;
     qspCall(s, 'outfit', 'restore', 'bed');
@@ -136,6 +140,9 @@ function enterFin(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'bed2':
+      enterBed2(s, scene);
+      break;
     case 'mod_sleeptriggers':
       enterModSleeptriggers(s, scene);
       break;

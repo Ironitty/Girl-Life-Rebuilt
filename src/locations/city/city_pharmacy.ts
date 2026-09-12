@@ -4,6 +4,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -30,7 +34,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterShop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Pharmacy</b></center>');
   if (((s as any).pharma_day ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -102,6 +106,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   switch (arg) {
     case 'start':
       enterStart(s, scene);
+      break;
+    case 'shop':
+      enterShop(s, scene);
       break;
     case 'buy_antifungal':
       enterBuyAntifungal(s, scene);

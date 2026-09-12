@@ -137,7 +137,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterSexshopMenu(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'item_cart', 'shopping_aisle', 'sexshop');
   qspCall(s, 'stat', '');
@@ -977,6 +977,9 @@ function enterShprod(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'sexshop_menu':
+      enterSexshopMenu(s, scene);
+      break;
     case 'dress':
       enterDress(s, scene);
       break;

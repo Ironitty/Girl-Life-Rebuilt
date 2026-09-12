@@ -4,6 +4,10 @@ import { qspCall } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterChrisSub(s: GameState, scene: SceneBuilder): void {
   ((s as any).socialchg ?? {})['tChristina_day'] = ((s as any).daystart ?? 0);
   if (((s as any).LariskaQW ?? 0)?.['story'] === 3) {
@@ -253,7 +257,7 @@ function enterChrisSub(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterShowers(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/gym/locker/chrispeek.jpg');
   scene.text('After your gym class you go to the locker room with the rest of the girls. Christina theatrically moves over to you, and the eyes of all the girls in the locker room are on you now.');
@@ -822,6 +826,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'chris_sub':
       enterChrisSub(s, scene);
       break;
+    case 'showers':
+      enterShowers(s, scene);
+      break;
     case '0':
       enter0(s, scene);
       break;
@@ -886,6 +893,5 @@ export const Zvereva_sub_1: LocationDef = {
   name: 'Zvereva_sub_1',
   title: '"Hey Christina, can I talk to you about something?"',
   region: 'other',
-  description: ['"Hey Christina, can I talk to you about something?"'],
   enter: enter,
 };

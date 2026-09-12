@@ -7,6 +7,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'core_library', 'setloc', 'uni_library', 'start');
   qspCall(s, 'katja_meynold_schedule', '');
@@ -636,6 +640,9 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'study':
       enterStudy(s, scene);
       break;
@@ -677,6 +684,5 @@ export const uni_library: LocationDef = {
   title: 'The University Library',
   region: 'other',
   locationType: 'public_indoors',
-  description: ['One of the medium sized buildings is the university\'s library. It is three stories tall and filled with books, sections with tables scattered around to study or relax at and computer stations to help students with their studying.'],
   enter: enter,
 };

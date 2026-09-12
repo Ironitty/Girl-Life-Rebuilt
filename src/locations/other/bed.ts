@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).shour = 24 - ((s as any).hour ?? 0);
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', goto: ['bed', 'mod_sleeptriggers'] }]);
@@ -22,6 +26,9 @@ function enterModSleeptriggers(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'mod_sleeptriggers':
       enterModSleeptriggers(s, scene);
       break;

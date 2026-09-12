@@ -5,6 +5,10 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
+function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Brothel</b></center>');
   scene.img('images/locations/city/residential/sauna/bordel.jpg');
@@ -329,6 +333,9 @@ function enterCloseHour(s: GameState, scene: SceneBuilder): void {
 function enter(s: GameState, scene: SceneBuilder): void {
   const arg = s.locArg;
   switch (arg) {
+    case 'start':
+      enterStart(s, scene);
+      break;
     case 'brothel':
       enterBrothel(s, scene);
       break;
@@ -359,6 +366,5 @@ export const bordel: LocationDef = {
   region: 'other',
   locationType: 'event',
   locclass: 'restroom',
-  description: ['The brothel madam looks you over as you enter.'],
   enter: enter,
 };

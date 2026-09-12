@@ -6,6 +6,10 @@ import { qspCall, qspFunc } from '../_shared/qspBridge';
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
+function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.build();
+}
+
 function enterCikl(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'cocaine_cikl');
   qspCall(s, 'drugs', 'mentats_cikl');
@@ -595,7 +599,7 @@ function enterCaffeineStat(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault(s: GameState, scene: SceneBuilder): void {
+function enterSmoke(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory ?? {})['cigarettes'] = (((s as any).mc_inventory ?? {})['cigarettes'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['cigarettes'] <= 0) {
@@ -671,7 +675,7 @@ function enterCigaretteHourlyEvents(s: GameState, scene: SceneBuilder): void {
   scene.build();
 }
 
-function enterDefault2(s: GameState, scene: SceneBuilder): void {
+function enterWeed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 0  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
     ((s as any).mc_inventory ?? {})['joints'] = (((s as any).mc_inventory ?? {})['joints'] ?? 0) - (1);
     if (((s as any).mc_inventory ?? 0)?.['joints'] <= 0) {
@@ -1495,8 +1499,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
     case 'caffeine_stat':
       enterCaffeineStat(s, scene);
       break;
+    case 'smoke':
+      enterSmoke(s, scene);
+      break;
     case 'cigarette_hourly_events':
       enterCigaretteHourlyEvents(s, scene);
+      break;
+    case 'weed':
+      enterWeed(s, scene);
       break;
     case 'weed_hourly_events':
       enterWeedHourlyEvents(s, scene);
