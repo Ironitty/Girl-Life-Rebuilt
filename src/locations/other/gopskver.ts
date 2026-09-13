@@ -6,7 +6,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).gopniksev) (s as any).gopniksev = {}; (s as any).gopniksev['gopskver'] = ((s as any).daystart ?? 0);
-  if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1 > 0) {
+  if ((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1 > 0) {
   }
   qspCall(s, 'stat', '');
   qspCall(s, 'dinsexFX', '');

@@ -450,7 +450,7 @@ function enterCyc2(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: fert_thresh *= 2
       }
       if (((s as any).fert_thresh ?? 0) <= ((s as any).cum_total ?? 0)  &&  ((s as any).trait_vars ?? 0)?.['fertility'] !== -2) {
-        (s as any).lotto_idx = (Math.floor(Math.random() * (cfl_sz - 1 - 0 + 1)) + (0));
+        (s as any).lotto_idx = (Math.floor(Math.random() * (((s as any).cfl_sz ?? 0) - 1 - 0 + 1)) + (0));
         (s as any).UnfertEgg = ((s as any).UnfertEgg ?? 0) - (1);
         (s as any).FertEgg = ((s as any).FertEgg ?? 0) + (1);
         (s as any).nextBaby = 0;
@@ -703,7 +703,7 @@ function enterPreg(s: GameState, scene: SceneBuilder): void {
   (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) + (qspFunc(s, '_difficulty', 'get_multiplied', ((s as any).cheatVars ?? 0)?.['preg_speed'], 100, ((s as any).cheatVars ?? 0)?.['preg_speed_custom']));
   (s as any).pregChem = ((s as any).pregChem ?? 0) + (((s as any).pregChemFrac ?? 0) / 100);
   (s as any).pregChemFrac = ((s as any).pregChemFrac ?? 0) % 100;
-  (s as any).temprand = (Math.floor(Math.random() * (800 - -400 + 1)) + (-400));
+  (s as any).temprand = (Math.floor(Math.random() * (800 - (-400) + 1)) + ((-400)));
   (s as any).temprand = ((s as any).temprand ?? 0) - ((((s as any).babyembryo ?? 0) - 1) * 588);
   if (((s as any).pregChem ?? 0) > 6573 + ((s as any).temprand ?? 0)  &&  ((s as any).preg ?? 0) !== 2) {
     scene.text('A sharp pain pierces your abdomen, and you feel something flow down your legs. Your water has broken!');

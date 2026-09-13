@@ -53,7 +53,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).SpellFuncVar) (s as any).SpellFuncVar = {}; (s as any).SpellFuncVar['Damage'] = qspUntranslated(s, "ARGS[1]", { location: "spell" });
   // TODO-QSP: dynamic "
   // TODO-QSP: :DamageAllLoop1
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)(((s as any).SpellFuncVar ?? 0)?.['TargetType'] + '_health')) {
+  if (((s as any).i ?? 0) < Object.keys((s as any)['' + qspUntranslated(s, "SpellFuncVar['TargetType']>", { location: "spell" }) + '_health'] ?? {}).length) {
     // TODO-QSP: gs 'fight', 'applyDamage', '<<$SpellFuncVar['TargetType']>>', i, <<SpellFuncVar['Damage']>>
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'DamageAllLoop1'

@@ -1076,8 +1076,8 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat_cfg ?? 0)?.['image_headers'] >= 2) {
         if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['short_' + ((s as any).sd_si ?? {})?.['key']];
         if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = qspUntranslated(s, "replace(sd_si['hdr'], 'number ', '#')", { location: "stat_display" });
-        if (((((s as any).sd_si ?? 0)?.['hdr']).slice((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1, ((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1)+(1))) === '.') {
-          if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((((s as any).sd_si ?? 0)?.['hdr']).slice((1)-1, ((1)-1)+(((((s as any).sd_si ?? 0)?.['hdr']).length) - 1)));
+        if ((String(((s as any).sd_si ?? 0)?.['hdr']).slice((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1, ((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1)+(1))) === '.') {
+          if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = (String(((s as any).sd_si ?? 0)?.['hdr']).slice((1)-1, ((1)-1)+((String(((s as any).sd_si ?? 0)?.['hdr']).length) - 1)));
         }
       }
     }
@@ -1142,8 +1142,8 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
     if (((s as any).stat_cfg ?? 0)?.['image_headers'] >= 2) {
       if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['short_' + ((s as any).sd_si ?? {})?.['key']];
       if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = qspUntranslated(s, "replace(sd_si['hdr'], 'number ', '#')", { location: "stat_display" });
-      if (((((s as any).sd_si ?? 0)?.['hdr']).slice((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1, ((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1)+(1))) === '.') {
-        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((((s as any).sd_si ?? 0)?.['hdr']).slice((1)-1, ((1)-1)+(((((s as any).sd_si ?? 0)?.['hdr']).length) - 1)));
+      if ((String(((s as any).sd_si ?? 0)?.['hdr']).slice((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1, ((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1)+(1))) === '.') {
+        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = (String(((s as any).sd_si ?? 0)?.['hdr']).slice((1)-1, ((1)-1)+((String(((s as any).sd_si ?? 0)?.['hdr']).length) - 1)));
       }
     }
   }

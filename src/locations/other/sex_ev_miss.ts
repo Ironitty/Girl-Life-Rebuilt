@@ -1313,7 +1313,7 @@ function enterMiss1_2(s: GameState, scene: SceneBuilder): void {
                 scene.text(`All your dirty talk is just that: talk. Your pussy still barely feels anything other than the occasional bump, but you don't want ${((s as any).npcdesc ?? 0)} to feel bad about it either so you play along, pretending it feels good.`);
               } else {
                 if (((s as any).sex_ev ?? 0)?.['casual_talk'] > 0) {
-                  if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
+                  if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
                     qspCall(s, 'sex_ev_sex_talk_<<$npcID>>', 'talk_output');
                   } else {
                     qspCall(s, 'sex_ev_sex_talk_npc', 'talk_output');
@@ -1358,7 +1358,7 @@ function enterMiss1_2(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'sex_ev_miss', 'miss1_boy_talk2');
             } else {
               if (((s as any).sex_ev ?? 0)?.['casual_talk'] > 0) {
-                if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
+                if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
                   qspCall(s, 'sex_ev_sex_talk_<<$npcID>>', 'talk_output');
                 } else {
                   qspCall(s, 'sex_ev_sex_talk_npc', 'talk_output');
@@ -1781,7 +1781,7 @@ function enterMiss2_2(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'sex_ev_miss', 'miss2_boy_talk2');
           } else {
             if (((s as any).sex_ev ?? 0)?.['casual_talk'] > 0) {
-              if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
+              if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
                 qspCall(s, 'sex_ev_sex_talk_<<$npcID>>', 'talk_output');
               } else {
                 qspCall(s, 'sex_ev_sex_talk_npc', 'talk_output');

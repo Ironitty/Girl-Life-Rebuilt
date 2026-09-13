@@ -5,7 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterIsHome(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = (((((s as any).locat ?? 0)?.['A2']).slice((1)-1, ((1)-1)+(4))) === 'home');
+  (s as any).result = ((String(((s as any).locat ?? 0)?.['A2']).slice((1)-1, ((1)-1)+(4))) === 'home');
   return;
   // TODO-QSP: end
   scene.build();

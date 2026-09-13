@@ -236,15 +236,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<FSgem>> of coins. Food enough for <<FSsup>> days
   scene.text(`${((s as any).FSgem ?? 0)} of coins. Food enough for ${((s as any).FSsup ?? 0)} days`);
   scene.text('');
-  (s as any).KGOLzas = (Math.floor(Math.random() * (FSagilV - FSagilV / 4 + 1)) + (FSagilV / 4));
-  (s as any).KGOLataka = (Math.floor(Math.random() * (FSspeed * 2 - FSspeed / 2 + 1)) + (FSspeed / 2));
+  (s as any).KGOLzas = (Math.floor(Math.random() * (((s as any).FSagilV ?? 0) - ((s as any).FSagilV ?? 0) / 4 + 1)) + (((s as any).FSagilV ?? 0) / 4));
+  (s as any).KGOLataka = (Math.floor(Math.random() * (((s as any).FSspeed ?? 0) * 2 - ((s as any).FSspeed ?? 0) / 2 + 1)) + (((s as any).FSspeed ?? 0) / 2));
   if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0)) {
     if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0) * 2) {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (FSstren - FSstren/2 + 1)) + (FSstren/2))+ (Math.floor(Math.random() * (FSweaponDam - FSweaponDam/2 + 1)) + (FSweaponDam/2));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstren ?? 0) - ((s as any).FSstren ?? 0)/2 + 1)) + (((s as any).FSstren ?? 0)/2))+ (Math.floor(Math.random() * (((s as any).FSweaponDam ?? 0) - ((s as any).FSweaponDam ?? 0)/2 + 1)) + (((s as any).FSweaponDam ?? 0)/2));
       (s as any).FSHPV = ((s as any).FSHPV ?? 0) - (((s as any).KGHPnpow ?? 0));
       scene.text(`CRETE ${((s as any).KGHPnpow ?? 0)}`);
     } else {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (FSstren/2 - FSstren/4 + 1)) + (FSstren/4))+ (Math.floor(Math.random() * (FSweaponDam/2 - FSweaponDam/4 + 1)) + (FSweaponDam/4));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstren ?? 0)/2 - ((s as any).FSstren ?? 0)/4 + 1)) + (((s as any).FSstren ?? 0)/4))+ (Math.floor(Math.random() * (((s as any).FSweaponDam ?? 0)/2 - ((s as any).FSweaponDam ?? 0)/4 + 1)) + (((s as any).FSweaponDam ?? 0)/4));
       (s as any).KGHPntpow = ((s as any).KGHPnpow ?? 0) - ((s as any).FSbronaV ?? 0);
       if (((s as any).KGHPntpow ?? 0) <= 0) {
         (s as any).KGHPntpow = 1;
@@ -255,15 +255,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text(`${((s as any).FSnameV ?? 0)?.['text']} dodged your attack`);
   }
-  (s as any).KGOLzas = (Math.floor(Math.random() * (FSagil - FSagil / 4 + 1)) + (FSagil / 4));
-  (s as any).KGOLataka = (Math.floor(Math.random() * (FSspeedV * 2 - FSspeedV / 2 + 1)) + (FSspeedV / 2));
+  (s as any).KGOLzas = (Math.floor(Math.random() * (((s as any).FSagil ?? 0) - ((s as any).FSagil ?? 0) / 4 + 1)) + (((s as any).FSagil ?? 0) / 4));
+  (s as any).KGOLataka = (Math.floor(Math.random() * (((s as any).FSspeedV ?? 0) * 2 - ((s as any).FSspeedV ?? 0) / 2 + 1)) + (((s as any).FSspeedV ?? 0) / 2));
   if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0)) {
     if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0) * 2) {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (FSstrenV - FSstrenV/2 + 1)) + (FSstrenV/2))+ (Math.floor(Math.random() * (FSweaponDamV - FSweaponDamV/2 + 1)) + (FSweaponDamV/2));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstrenV ?? 0) - ((s as any).FSstrenV ?? 0)/2 + 1)) + (((s as any).FSstrenV ?? 0)/2))+ (Math.floor(Math.random() * (((s as any).FSweaponDamV ?? 0) - ((s as any).FSweaponDamV ?? 0)/2 + 1)) + (((s as any).FSweaponDamV ?? 0)/2));
       (s as any).FSHP = ((s as any).FSHP ?? 0) - (((s as any).KGHPnpow ?? 0));
       scene.text(`CRETE ${((s as any).KGHPnpow ?? 0)}`);
     } else {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (FSstrenV/2 - FSstrenV/4 + 1)) + (FSstrenV/4))+ (Math.floor(Math.random() * (FSweaponDamV/2 - FSweaponDamV/4 + 1)) + (FSweaponDamV/4));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstrenV ?? 0)/2 - ((s as any).FSstrenV ?? 0)/4 + 1)) + (((s as any).FSstrenV ?? 0)/4))+ (Math.floor(Math.random() * (((s as any).FSweaponDamV ?? 0)/2 - ((s as any).FSweaponDamV ?? 0)/4 + 1)) + (((s as any).FSweaponDamV ?? 0)/4));
       (s as any).KGHPntpow = ((s as any).KGHPnpow ?? 0) - ((s as any).FSbrona ?? 0);
       if (((s as any).KGHPntpow ?? 0) <= 0) {
         (s as any).KGHPntpow = 1;

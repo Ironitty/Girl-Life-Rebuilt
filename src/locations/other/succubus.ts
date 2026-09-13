@@ -691,7 +691,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
         if (((s as any).loc ?? 0) === 'bedr2x') {
           (s as any).sucslpzone = 4;
         } else {
-          if (((((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp') {
+          if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp') {
             (s as any).sucslpzone = 5;
           } else {
             return;
@@ -777,7 +777,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).succublvl ?? 0) < 3) {
     // TODO-QSP: :oops
-    (s as any).clopickrand = (Math.floor(Math.random() * (temp_succubus_x - 1 - 0 + 1)) + (0));
+    (s as any).clopickrand = (Math.floor(Math.random() * (((s as any).temp_succubus_x ?? 0) - 1 - 0 + 1)) + (0));
     if (((s as any).succlolistn ?? 0)?.[String((s as any).clopickrand ?? 0)] === '') {
       // TODO-QSP: jump 'oops'
     }
@@ -850,7 +850,7 @@ function enterSucwalkinginit(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: :oops2
-  (s as any).clopickrand = (Math.floor(Math.random() * (z - 1 - 0 + 1)) + (0));
+  (s as any).clopickrand = (Math.floor(Math.random() * (((s as any).z ?? 0) - 1 - 0 + 1)) + (0));
   if (((s as any).succlorandn ?? 0)?.[String((s as any).clopickrand ?? 0)] === '') {
     // TODO-QSP: jump 'oops2'
   }
@@ -905,7 +905,7 @@ function enterSucwalkinggo(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: You dream that you are arguing with <<$sucselftmp>>.
   scene.text(`You dream that you are arguing with ${((s as any).sucselftmp ?? 0)}.`);
   scene.text('You don\'t know what it\'s about, but you think you <b><i>lost</i></b>…');
-  (s as any).sucencntrand = (1 + ((s as any).succublvl ?? 0))/2 + (Math.floor(Math.random() * (succublvl - 0 + 1)) + (0));
+  (s as any).sucencntrand = (1 + ((s as any).succublvl ?? 0))/2 + (Math.floor(Math.random() * (((s as any).succublvl ?? 0) - 0 + 1)) + (0));
   (s as any).scfeed = (((s as any).succublvl ?? 0) * ((s as any).sucencntrand ?? 0)) + ((s as any).rand ?? 0)(1, (4 * ((s as any).sucencntrand ?? 0)));
   (s as any).minut = ((s as any).minut ?? 0) + (180 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0)));
   (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (5 * (360 + ((((s as any).scfeed ?? 0) * 10) / ((s as any).succublvl ?? 0))));

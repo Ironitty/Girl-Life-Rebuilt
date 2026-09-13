@@ -1067,7 +1067,7 @@ function enterSet_5(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 4;
     scene.img(`images/shared/prostitution/pavlovsk/street/set_${((s as any).pro_rand ?? 0)}/public/end_bj.mp4`);
     (s as any).minut = ((s as any).minut ?? 0) + 4;
-    (s as any).pro_temp = (Math.floor(Math.random() * (8 - -8 + 1)) + (-8));
+    (s as any).pro_temp = (Math.floor(Math.random() * (8 - (-8) + 1)) + ((-8)));
     qspCall(s, 'fame', 'pav', 'prostitute', 0);
     // TODO-QSP: 'Too late... you can see a train approaching behind him at the same time as he unloads inside ' + ii...
     if (((s as any).prostitute ?? 0)?.['pav_condom'] === 0) {

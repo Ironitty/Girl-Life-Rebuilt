@@ -48,7 +48,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_gr_ind = 1;
   // TODO-QSP: :generate_random_loop
   if (((s as any).temp_gr_ind ?? 0) <= ((s as any).locArgs?.[1] ?? 0)) {
-    if (!(s as any).temp_rand) (s as any).temp_rand = {}; (s as any).temp_rand[String((s as any).temp_gr_ind ?? 0)] = (Math.floor(Math.random() * (2 - -2 + 1)) + (-2));
+    if (!(s as any).temp_rand) (s as any).temp_rand = {}; (s as any).temp_rand[String((s as any).temp_gr_ind ?? 0)] = (Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2)));
     (s as any).temp_tot_sum = ((s as any).temp_tot_sum ?? 0) + (((s as any).temp_rand ?? 0)?.[String((s as any).temp_gr_ind ?? 0)]);
     (s as any).temp_gr_ind = ((s as any).temp_gr_ind ?? 0) + (1);
     // TODO-QSP: jump 'generate_random_loop'

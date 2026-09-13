@@ -104,19 +104,19 @@ function enterSetTemplate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetGroup(s: GameState, scene: SceneBuilder): void {
-  if (((';nerdqueen;goodstudent;computergeek;chessplayer;').indexOf((';\' + $ARGS[1] + \';'))) + 1) {
+  if ((String(';nerdqueen;goodstudent;computergeek;chessplayer;').indexOf(String(';\' + $ARGS[1] + \';'))) + 1) {
     if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'nerd';
   } else {
-    if (((';volleyball;dancer;runner;football;').indexOf((';\' + $ARGS[1] + \';'))) + 1) {
+    if ((String(';volleyball;dancer;runner;football;').indexOf(String(';\' + $ARGS[1] + \';'))) + 1) {
       if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'jock';
     } else {
-      if (((';socialite;beautiful;anorexic;bimbo;').indexOf((';\' + $ARGS[1] + \';'))) + 1) {
+      if ((String(';socialite;beautiful;anorexic;bimbo;').indexOf(String(';\' + $ARGS[1] + \';'))) + 1) {
         if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'cool';
       } else {
-        if (((';gopnikstart;troublemaker;vitekgf;alternative;').indexOf((';\' + $ARGS[1] + \';'))) + 1) {
+        if ((String(';gopnikstart;troublemaker;vitekgf;alternative;').indexOf(String(';\' + $ARGS[1] + \';'))) + 1) {
           if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'gopnik';
         } else {
-          if (((';friendless;uglyduckling;goodgirl;slut;goth;poor;').indexOf((';\' + $ARGS[1] + \';'))) + 1) {
+          if ((String(';friendless;uglyduckling;goodgirl;slut;goth;poor;').indexOf(String(';\' + $ARGS[1] + \';'))) + 1) {
             if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['group'] = 'outcast';
           } else {
             return;

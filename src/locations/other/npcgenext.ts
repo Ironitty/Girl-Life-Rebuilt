@@ -15,7 +15,7 @@ function enterRstd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
     if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 'A' + qspUntranslated(s, "ARGS[1]>", { location: "npcgenext" }) + '';
   }
-  if (!isNaN(((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))) && ((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== ''  &&  parseFloat(((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))) < 10) {
+  if (!isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== ''  &&  parseFloat((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))) < 10) {
   }
   if ((Math.floor(Math.random() * 101) + 0) === 100) {
     (s as any).tempvenerial = Math.floor(Math.random() * 4) + 1;

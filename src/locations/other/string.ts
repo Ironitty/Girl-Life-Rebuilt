@@ -17,20 +17,20 @@ function enterParseString(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[3] ?? 0) === '') {
     if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[3] = '|';
   }
-  if (((s as any).locArgs?.[2] ?? 0) === ''  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf((((s as any).locArgs?.[3] ?? 0)))) + 1 <= 0) {
+  if (((s as any).locArgs?.[2] ?? 0) === ''  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String(((s as any).locArgs?.[3] ?? 0)))) + 1 <= 0) {
     return;
   }
   // TODO-QSP: :StringParser01
   (s as any).ParserTmpIdx = 0;
   if (((s as any).ParserTmpIdx ?? 0) > 0) {
-    if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
+    if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
       // TODO-QSP: $ParserTmpArr[] = $mid($ParserTmpStr, 1, ParserTmpIdx-1)
     } else {
       // TODO-QSP: ParserTmpArr[] = val($mid($ParserTmpStr, 1, ParserTmpIdx-1))
     }
     // TODO-QSP: jump 'StringParser01'
   } else {
-    if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
+    if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
       // TODO-QSP: $ParserTmpArr[] = $ParserTmpStr
       // TODO-QSP: copyarr $ARGS[1], '$ParserTmpArr'
     } else {
@@ -55,7 +55,7 @@ function enterEnumerateList(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['i_max'] = 0;
   } else {
     if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['i_max'] = ((s as any).temp_stringVars ?? {})?.['i'] + ((s as any).ARGS ?? 0)[3];
-    if (((s as any).temp_stringVars ?? 0)?.['i_max'] > ((s as any).arrsize ?? 0)(((s as any).temp_stringVars ?? 0)?.['name'])) {
+    if (((s as any).temp_stringVars ?? 0)?.['i_max'] > Object.keys((s as any)[((s as any).temp_stringVars ?? 0)?.['name']] ?? {}).length) {
       if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['i_max'] = 0;
     }
   }
@@ -331,7 +331,7 @@ function enterHash(s: GameState, scene: SceneBuilder): void {
   (s as any).result = ((s as any).result ?? 0) + (((s as any).temp_stringVars ?? {})?.['counter'] * qspFunc(s, 'string', 'to_ascii', qspUntranslated(s, "mid(\u00000\u0000, temp_stringVars['index'], 1)", { location: "string" })));
   if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['counter'] = ((s as any).temp_stringVars['counter'] ?? 0) + ((1 + ((s as any).temp_stringVars ?? {})?.['index']) / 2);
   if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['index'] = ((s as any).temp_stringVars['index'] ?? 0) + (1);
-  if (((s as any).temp_stringVars ?? 0)?.['index'] <= ((((s as any).locArgs?.[1] ?? 0)).length)) {
+  if (((s as any).temp_stringVars ?? 0)?.['index'] <= (String(((s as any).locArgs?.[1] ?? 0)).length)) {
     // TODO-QSP: jump 'hash_loop'
   }
   return;
@@ -340,17 +340,17 @@ function enterHash(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterToAscii(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).locArgs?.[1] ?? 0)).length) !== 1) {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).length) !== 1) {
     // TODO-QSP: msg 'ERROR: string, to_ascii did not get a single character as an argument'
   }
-  (s as any).result = 31 + ((' !"#$%&\'()*+,-./123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~').indexOf((((s as any).locArgs?.[1] ?? 0)))) + 1;
+  (s as any).result = 31 + (String(' !"#$%&\'()*+,-./123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~').indexOf(String(((s as any).locArgs?.[1] ?? 0)))) + 1;
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSplitKeyValue(s: GameState, scene: SceneBuilder): void {
-  if ((!((((s as any).locArgs?.[1] ?? 0)).length))) {
+  if ((!(String(((s as any).locArgs?.[1] ?? 0)).length))) {
     return;
   }
   if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['key-value-string'] = ((s as any).locArgs?.[1] ?? 0);
@@ -365,17 +365,17 @@ function enterSplitKeyValue(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['outer_jump'] = qspUntranslated(s, "len(temp_stringVars['pair_sep'])", { location: "string" });
   if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['inner_jump'] = qspUntranslated(s, "len(temp_stringVars['kv_sep'])", { location: "string" });
   // TODO-QSP: :split_key_value_outer_loop
-  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['outer_index'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).indexOf((((s as any).temp_stringVars ?? 0)?.['pair_sep']))) + 1;
+  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['outer_index'] = (String(((s as any).temp_stringVars ?? 0)?.['key-value-string']).indexOf(String(((s as any).temp_stringVars ?? 0)?.['pair_sep']))) + 1;
   if (((s as any).temp_stringVars ?? 0)?.['outer_index'] === 0) {
-    if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['outer_index'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).length) + 1;
+    if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['outer_index'] = (String(((s as any).temp_stringVars ?? 0)?.['key-value-string']).length) + 1;
   }
-  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['sub_string'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).slice((1)-1, ((1)-1)+(((s as any).temp_stringVars ?? {})?.['outer_index'] - 1)));
+  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['sub_string'] = (String(((s as any).temp_stringVars ?? 0)?.['key-value-string']).slice((1)-1, ((1)-1)+(((s as any).temp_stringVars ?? {})?.['outer_index'] - 1)));
   if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['inner_index'] = qspUntranslated(s, "instr(temp_stringVars['sub_string'], temp_stringVars['kv_sep'])", { location: "string" });
   if (((s as any).temp_stringVars ?? 0)?.['inner_index'] === 0) {
     return;
   }
-  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['key'] = ((((((s as any).temp_stringVars ?? 0)?.['sub_string']).slice((1)-1, ((1)-1)+(((s as any).temp_stringVars ?? {})?.['inner_index'] - 1)))).trim());
-  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['value'] = ((((((s as any).temp_stringVars ?? 0)?.['sub_string']).slice((((s as any).temp_stringVars ?? {})?.['inner_index'] + ((s as any).temp_stringVars ?? {})?.['inner_jump'])-1))).trim());
+  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['key'] = (String((String(((s as any).temp_stringVars ?? 0)?.['sub_string']).slice((1)-1, ((1)-1)+(((s as any).temp_stringVars ?? {})?.['inner_index'] - 1)))).trim());
+  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['value'] = (String((String(((s as any).temp_stringVars ?? 0)?.['sub_string']).slice((((s as any).temp_stringVars ?? {})?.['inner_index'] + ((s as any).temp_stringVars ?? {})?.['inner_jump'])-1))).trim());
   // TODO-QSP: dynamic "
   // TODO-QSP: $<<$temp_stringVars['keys_array']>>[] = $temp_stringVars['key']
   // TODO-QSP: "
@@ -394,8 +394,8 @@ function enterSplitKeyValue(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: "
     }
   }
-  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['key-value-string'] = ((((s as any).temp_stringVars ?? 0)?.['key-value-string']).slice((((s as any).temp_stringVars ?? {})?.['outer_index'] + ((s as any).temp_stringVars ?? {})?.['outer_jump'])-1));
-  if (((((s as any).temp_stringVars ?? 0)?.['key-value-string']).length) > 0) {
+  if (!(s as any).temp_stringVars) (s as any).temp_stringVars = {}; (s as any).temp_stringVars['key-value-string'] = (String(((s as any).temp_stringVars ?? 0)?.['key-value-string']).slice((((s as any).temp_stringVars ?? {})?.['outer_index'] + ((s as any).temp_stringVars ?? {})?.['outer_jump'])-1));
+  if ((String(((s as any).temp_stringVars ?? 0)?.['key-value-string']).length) > 0) {
     // TODO-QSP: jump 'split_key_value_outer_loop'
   }
   return;

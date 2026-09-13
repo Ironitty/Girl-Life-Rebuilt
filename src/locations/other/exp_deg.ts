@@ -14,7 +14,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['deg_loss_mult'] = qspFunc(s, '_difficulty', 'get_deg_loss');
-  if (((';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf((';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1 > 0) {
+  if ((String(';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf(String(';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1 > 0) {
     if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['statName'] = 'vball';
     if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
     if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['deg_loss_mult'] = 75 * ((s as any).expdegVars ?? {})?.['deg_loss_mult'] / 100;

@@ -78,7 +78,7 @@ function enterGenerateEventSchedule(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: :find_open_date_loop
   // TODO-QSP: gs 'time', 'to_date', evt_transient['search_day']
-  if (((((s as any).evt_transient ?? 0)?.['week_string']).indexOf((((s as any).dateVars ?? 0)?.['week']))) + 1 <= 0) {
+  if ((String(((s as any).evt_transient ?? 0)?.['week_string']).indexOf(String(((s as any).dateVars ?? 0)?.['week']))) + 1 <= 0) {
     if (!(s as any).evt_transient) (s as any).evt_transient = {}; (s as any).evt_transient['search_day'] = ((s as any).evt_transient['search_day'] ?? 0) + (1);
     if (((s as any).evt_transient ?? 0)?.['search_day'] <= ((s as any).evt_transient ?? 0)?.['search_limit']) {
       // TODO-QSP: jump 'find_open_date_loop'

@@ -259,7 +259,7 @@ function enterBoyPubeTalkFirst(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesShavedResponse(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).npcLikes ?? 0)).indexOf((';hair_pubes_'))) + 1 > 0  &&  ((((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';pube_talk'))) + 1 > 0) {
+  if ((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1 > 0  &&  (String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1 > 0) {
     // TODO-QSP: dynamic text: "I love how sexy your pussy is," <<$npcdesc>> says, admiringly running his finge...
     scene.text(`"I love how sexy your pussy is," ${((s as any).npcdesc ?? 0)} says, admiringly running his fingers across the smooth skin of your pubic area.`);
     qspCall(s, 'sex_ev_body_talk', 'boy_likes_pubes2');
@@ -307,7 +307,7 @@ function enterPubesShavedResponse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesStubbleResponse(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';pube_talk'))) + 1 > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === 'shaved') {
+  if ((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1 > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === 'shaved') {
     // TODO-QSP: dynamic text: "You forget to shave today?" <<$npcdesc>> says eyeing your stubbly pussy.
     scene.text(`"You forget to shave today?" ${((s as any).npcdesc ?? 0)} says eyeing your stubbly pussy.`);
     qspCall(s, 'sex_ev_body_talk', 'boy_likes_pubes2');
@@ -354,7 +354,7 @@ function enterPubesStubbleResponse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubesTrimmedResponse(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';pube_talk'))) + 1 > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).pube_style ?? 0)?.['word']) {
+  if ((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1 > 0  &&  ((s as any).npc_know_pubes ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).pube_style ?? 0)?.['word']) {
     if (((s as any).npc_know_pubeshape ?? 0)?.[String((s as any).npcID ?? 0)] === ((s as any).pube_style ?? 0)?.['shape']) {
       // TODO-QSP: dynamic text: "I still can't get over how sexy your bush is," <<$npcdesc>> says, looking admir...
       scene.text(`"I still can't get over how sexy your bush is," ${((s as any).npcdesc ?? 0)} says, looking admiringly at your neatly trimmed pussy hair.`);
@@ -461,7 +461,7 @@ function enterPubesBushResponse(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBoyPubesResponse(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).npcLikes ?? 0)).indexOf((';hair_pubes_'))) + 1 > 0) {
+  if ((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1 > 0) {
     if (qspFunc(s, 'pcs_has_attr', 'hair_pubes_shaven')) {
       scene.text('"I think it\'s hot," he grins. "No one likes to find a gorilla between a girl\'s legs. Bare pussy is the best."');
     } else {
@@ -516,7 +516,7 @@ function enterDontShaveLikeTalk(s: GameState, scene: SceneBuilder): void {
 
 function enterBoyBushResponse(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_style_label ?? 0)?.[String((s as any).npcID ?? 0)] === 'fashionable') {
-    if (((((s as any).npcLikes ?? 0)).indexOf((';hair_pubes_'))) + 1 > 0) {
+    if ((String(((s as any).npcLikes ?? 0)).indexOf(String(';hair_pubes_'))) + 1 > 0) {
       scene.text('"Most girls consider it unfashionable to keep a bush. Not that I mind. I love a nice beautiful bush. But I\'m surprised to find a girl who doesn\'t mind either."');
       scene.actions([{ label: 'Continue', goto: ['sex_ev_body_talk', 'boy_likes_pubes'] }]);
     } else {
@@ -973,7 +973,7 @@ function enterPubesOtherLovers(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPubeTalkEnd(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';pube_talk'))) + 1 === 0) {
+  if ((String(((s as any).npc_talk_history ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';pube_talk'))) + 1 === 0) {
     qspCall(s, 'lover', 'add_topic', ((s as any).npcID ?? 0), 'pube_talk');
   }
   // TODO-QSP: $npc_know_pubes[$npcID] = $pube_style['word']

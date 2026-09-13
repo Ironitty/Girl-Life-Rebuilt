@@ -305,7 +305,7 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
         { label: 'Shoot', handler: (st: GameState) => {
     (s as any).tirkoef = ((s as any).pcs_agil ?? 0) + ((s as any).pcs_shoot ?? 0);
     (s as any).tirmin = ((s as any).tirkoef ?? 0) * 20 / 100;
-    (s as any).tirand = (Math.floor(Math.random() * (tirkoef + tirmin - tirkoef - tirmin + 1)) + (tirkoef - tirmin));
+    (s as any).tirand = (Math.floor(Math.random() * (((s as any).tirkoef ?? 0) + ((s as any).tirmin ?? 0) - ((s as any).tirkoef ?? 0) - ((s as any).tirmin ?? 0) + 1)) + (((s as any).tirkoef ?? 0) - ((s as any).tirmin ?? 0)));
     if (((s as any).tirand ?? 0) >= 80) {
       (s as any).mishka = ((s as any).mishka ?? 0) + (1);
       qspCall(s, 'mood', 'raise', 'tiny');
@@ -370,7 +370,7 @@ function enterLuna(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 25;
     qspCall(s, 'money', 'pay', 20);
     (s as any).stKo = ((s as any).pcs_stren ?? 0) * 20/100;
-    (s as any).damage = (Math.floor(Math.random() * (pcs_stren + stKo - pcs_stren - stKo + 1)) + (pcs_stren - stKo));
+    (s as any).damage = (Math.floor(Math.random() * (((s as any).pcs_stren ?? 0) + ((s as any).stKo ?? 0) - ((s as any).pcs_stren ?? 0) - ((s as any).stKo ?? 0) + 1)) + (((s as any).pcs_stren ?? 0) - ((s as any).stKo ?? 0)));
     qspCall(s, 'exercise', 'tier2', 5, 'stren');
     // TODO-QSP: dynamic text: An LED screen lights up and shows you your score: <<damage>>
     scene.text(`An LED screen lights up and shows you your score: ${((s as any).damage ?? 0)}`);

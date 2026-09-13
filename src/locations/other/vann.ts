@@ -25,7 +25,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).vannin = 1;
   scene.img('images/shared/home/bathroom/wash1.jpg');
-  if ((('uni_dorm;Palatka;bordel').indexOf((((s as any).locM ?? 0)))) + 1 > 0) {
+  if ((String('uni_dorm;Palatka;bordel').indexOf(String(((s as any).locM ?? 0)))) + 1 > 0) {
     qspCall(s, 'din_van', 'private');
   }
   // TODO-QSP: end

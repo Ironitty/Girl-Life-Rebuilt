@@ -71,7 +71,7 @@ function enterSwap(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === 0  &&  ((s as any).locArgs?.[3] ?? 0) === 'up') {
     // TODO-QSP: jump 'swap_cleanup'
   }
-  if (((s as any).locArgs?.[2] ?? 0) === (((s as any).arrsize ?? 0)('$' + ((s as any).temp_arr ?? 0)) - 1)  &&  ((s as any).locArgs?.[3] ?? 0) === 'down') {
+  if (((s as any).locArgs?.[2] ?? 0) === (Object.keys((s as any)['$' + ((s as any).temp_arr ?? 0)] ?? {}).length - 1)  &&  ((s as any).locArgs?.[3] ?? 0) === 'down') {
     // TODO-QSP: jump 'swap_cleanup'
   }
   if (((s as any).locArgs?.[3] ?? 0) === 'up') {
@@ -180,7 +180,7 @@ function enterToggleMenuSymOpt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :toggle_menu_sym_opt_loop
   if (((s as any).ARGS ?? 0)?.[String((s as any).temp_tms_pi ?? 0)] !== '') {
     (s as any).temp_tms_colon = qspUntranslated(s, "instr(ARGS[temp_tms_pi], ':')", { location: "_menu_settings" });
-    if (!(s as any).tms_opt_val) (s as any).tms_opt_val = {}; (s as any).tms_opt_val[String((s as any).tms_opt_count ?? 0)] = parseFloat(((qspUntranslated(s, "$\u00000\u0000", { location: "_menu_settings" })).slice((1)-1, ((1)-1)+(((s as any).temp_tms_colon ?? 0) - 1))));
+    if (!(s as any).tms_opt_val) (s as any).tms_opt_val = {}; (s as any).tms_opt_val[String((s as any).tms_opt_count ?? 0)] = parseFloat((String(qspUntranslated(s, "$\u00000\u0000", { location: "_menu_settings" })).slice((1)-1, ((1)-1)+(((s as any).temp_tms_colon ?? 0) - 1))));
     // TODO-QSP: $tms_opt_lbl[tms_opt_count] = mid($ARGS[temp_tms_pi], temp_tms_colon + 1)
     (s as any).tms_opt_count = ((s as any).tms_opt_count ?? 0) + (1);
     (s as any).temp_tms_pi = ((s as any).temp_tms_pi ?? 0) + (1);
@@ -827,13 +827,13 @@ function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'rgb') {
     (s as any).result = qspUntranslated(s, "ARGS[3]", { location: "_menu_settings" });
     if (((s as any).temp_input ?? 0) !== '') {
-      if (!isNaN($temp_input) && $temp_input !== '' !== 0) {
+      if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
         if (parseFloat(((s as any).temp_input ?? 0)) < 0  ||  parseFloat(((s as any).temp_input ?? 0)) > 255) {
         } else {
           (s as any).temp_result = qspUntranslated(s, "val(temp_input)", { location: "_menu_settings" });
         }
       } else {
-        if (((((s as any).temp_input ?? 0)).length) > 2  ||  (('123456789ABCDEF').indexOf((((((s as any).temp_input ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 === 0  ||  (('123456789ABCDEF').indexOf((((((s as any).temp_input ?? 0)).slice((2)-1, ((2)-1)+(1)))))) + 1 === 0) {
+        if ((String(((s as any).temp_input ?? 0)).length) > 2  ||  (String('123456789ABCDEF').indexOf(String((String(((s as any).temp_input ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 === 0  ||  (String('123456789ABCDEF').indexOf(String((String(((s as any).temp_input ?? 0)).slice((2)-1, ((2)-1)+(1)))))) + 1 === 0) {
         } else {
           (s as any).temp_result = qspFunc(s, 'shortgs', 'hex_str_to_int', ((s as any).temp_input ?? 0));
         }
@@ -860,7 +860,7 @@ function enterThemeCustomizeInput(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_length ?? 0) === 3  ||  ((s as any).temp_length ?? 0) === 6) {
           (s as any).temp_index = 1;
           // TODO-QSP: :is_hex_loop
-          if ((('123456789ABCDEF').indexOf((((((s as any).temp_input ?? 0)).slice((((s as any).temp_index ?? 0))-1, ((((s as any).temp_index ?? 0))-1)+(1)))))) + 1 === 0) {
+          if ((String('123456789ABCDEF').indexOf(String((String(((s as any).temp_input ?? 0)).slice((((s as any).temp_index ?? 0))-1, ((((s as any).temp_index ?? 0))-1)+(1)))))) + 1 === 0) {
           }
           if (((s as any).temp_index ?? 0) < ((s as any).temp_length ?? 0)) {
             (s as any).temp_index = ((s as any).temp_index ?? 0) + (1);
@@ -888,7 +888,7 @@ function enterThemeCustomizeInputFname(s: GameState, scene: SceneBuilder): void 
 
 function enterThemeCustomizeInputFsize(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_input ?? 0) !== '') {
-    if (!isNaN($temp_input) && $temp_input !== '') {
+    if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '') {
       if (!(s as any).custom_theme) (s as any).custom_theme = {}; (s as any).custom_theme['fsize'] = ((parseFloat(((s as any).temp_input ?? 0)) <= 9) ? (9) : (qspUntranslated(s, "val(temp_input)", { location: "_menu_settings" })));
     }
   }
@@ -898,7 +898,7 @@ function enterThemeCustomizeInputFsize(s: GameState, scene: SceneBuilder): void 
 
 function enterThemeCustomizeInputIncrement(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_input ?? 0) !== '') {
-    if (!isNaN($temp_input) && $temp_input !== '') {
+    if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '') {
       if (!(s as any).custom_theme) (s as any).custom_theme = {}; (s as any).custom_theme['increment'] = ((parseFloat(((s as any).temp_input ?? 0)) <= 1) ? (1) : (qspUntranslated(s, "val(temp_input)", { location: "_menu_settings" })));
     }
   }
@@ -912,7 +912,7 @@ function enterThemeCustomizeInputHexStr(s: GameState, scene: SceneBuilder): void
     if (((s as any).temp_hsi_len ?? 0) === 3  ||  ((s as any).temp_hsi_len ?? 0) === 6) {
       (s as any).temp_hsi_idx = 1;
       // TODO-QSP: :hsi_hex_loop
-      if ((('123456789ABCDEF').indexOf((((((s as any).temp_hsi ?? 0)).slice((((s as any).temp_hsi_idx ?? 0))-1, ((((s as any).temp_hsi_idx ?? 0))-1)+(1)))))) + 1 === 0) {
+      if ((String('123456789ABCDEF').indexOf(String((String(((s as any).temp_hsi ?? 0)).slice((((s as any).temp_hsi_idx ?? 0))-1, ((((s as any).temp_hsi_idx ?? 0))-1)+(1)))))) + 1 === 0) {
       }
       if (((s as any).temp_hsi_idx ?? 0) < ((s as any).temp_hsi_len ?? 0)) {
         (s as any).temp_hsi_idx = ((s as any).temp_hsi_idx ?? 0) + (1);

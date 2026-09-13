@@ -176,7 +176,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $medcn[0] = 'intel'
   // TODO-QSP: $medcn[1] = 'react'
   // TODO-QSP: $medcn[2] = 'prcptn'
-  (s as any).pcs_heels = (((s as any).heels_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0)) / 2) / 2 + ((s as any).arch_effects ?? 0)?.['heels_effect'] + ((s as any).iif ?? 0)(((s as any).trait_vars ?? 0)?.['heel_preference'] > 0, ((s as any).trait_vars ?? 0)?.['heel_preference'] * 5, 0);
+  (s as any).pcs_heels = (((s as any).heels_lvl ?? 0) + (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0)) / 2) / 2 + ((s as any).arch_effects ?? {})?.['heels_effect'] + ((((s as any).trait_vars ?? 0)?.['heel_preference'] > 0) ? (((s as any).trait_vars ?? {})?.['heel_preference'] * 5) : (0));
   if (((s as any).trait_vars ?? 0)?.['heel_preference'] < 0) {
     (s as any).pcs_heels = ((s as any).pcs_heels ?? 0) + (((s as any).trait_vars ?? {})?.['heel_preference_exp'] / 625);
   }

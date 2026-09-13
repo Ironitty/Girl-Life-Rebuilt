@@ -447,7 +447,7 @@ function enterDebtPay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClientGate(s: GameState, scene: SceneBuilder): void {
-  (s as any).moodTypeRand = (Math.floor(Math.random() * (3 - -3 + 1)) + (-3));
+  (s as any).moodTypeRand = (Math.floor(Math.random() * (3 - (-3) + 1)) + ((-3)));
   (s as any).bodyTypeRand = 3;
   (s as any).heightTypeRand = 3;
   (s as any).customerAge = Math.floor(Math.random() * 76) + 15;
@@ -456,13 +456,13 @@ function enterClientGate(s: GameState, scene: SceneBuilder): void {
   (s as any).raceRand = Math.floor(Math.random() * 10) + 1;
   if (((s as any).raceRand ?? 0) <= 7) {
     (s as any).dickChance = 30;
-    (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (8 - -2 + 1)) + (-2)));
-    (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (6 - -1 + 1)) + (-1)));
+    (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (8 - (-2) + 1)) + ((-2))));
+    (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (6 - (-1) + 1)) + ((-1))));
   } else {
     if (((s as any).raceRand ?? 0) <= 9) {
       (s as any).dickChance = 20;
-      (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - -6 + 1)) + (-6)));
-      (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (1 - -4 + 1)) + (-4)));
+      (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - (-6) + 1)) + ((-6))));
+      (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (1 - (-4) + 1)) + ((-4))));
     } else {
       (s as any).dickChance = 40;
       (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + (Math.floor(Math.random() * 7) + 0);
@@ -774,7 +774,7 @@ function enterBlowjobCaress(s: GameState, scene: SceneBuilder): void {
   scene.text(`You try to deepthroat him, but his ${((s as any).dick_girth ?? 0)} cock is just too big for you to handle, and you end up gagging yourself and coughing.`);
   qspCall(s, 'arousal', 'bj', 5, 'prostitution', 'deepthroat');
   scene.text('');
-  (s as any).moodChange = (Math.floor(Math.random() * (0 - -2 + 1)) + (-2));
+  (s as any).moodChange = (Math.floor(Math.random() * (0 - (-2) + 1)) + ((-2)));
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (((s as any).moodChange ?? 0));
   if (((s as any).moodType ?? 0) === 'good') {
     scene.img('images/locations/city/residential/sauna/sex/blowjob\'+rand(1, 5)+\'.mp4');
@@ -819,7 +819,7 @@ function enterBlowjobCaress(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBlowjobDeepthroat(s: GameState, scene: SceneBuilder): void {
-  (s as any).moodChange = ((s as any).moodChange ?? 0) + ((Math.floor(Math.random() * (2 - -1 + 1)) + (-1)));
+  (s as any).moodChange = ((s as any).moodChange ?? 0) + ((Math.floor(Math.random() * (2 - (-1) + 1)) + ((-1))));
   (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + (((s as any).moodChange ?? 0));
   scene.img('images/locations/city/residential/sauna/sex/deepthroat\'+rand(1, 5)+\'.mp4');
   // TODO-QSP: dynamic text: The client groans as you take him all the way to the hilt - his <<$dick_girth>> ...
@@ -1191,7 +1191,7 @@ function enterCumVaginal(s: GameState, scene: SceneBuilder): void {
     scene.text('The client\'s cock twitches several more times as he cums into the condom.');
     // TODO-QSP: dynamic text: He rips the condom from his dick, and you see that it has <<$cumType>> cum in it...
     scene.text(`He rips the condom from his dick, and you see that it has ${((s as any).cumType ?? 0)} cum in it.`);
-    (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - -2 + 1)) + (-2)));
+    (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2))));
     if (((s as any).moodType ?? 0) === 'bad') {
       scene.img('images/locations/city/residential/sauna/sex/cumcondompourface.jpg');
       scene.text('He then suddenly grabs your head and pours the contents over your face.');
@@ -1231,7 +1231,7 @@ function enterCumAnal(s: GameState, scene: SceneBuilder): void {
     scene.text('The client\'s cock twitches several more times as he cums into the condom.');
     // TODO-QSP: dynamic text: He rips the condom from his dick, and you see that it has <<$cumType>> cum in it...
     scene.text(`He rips the condom from his dick, and you see that it has ${((s as any).cumType ?? 0)} cum in it.`);
-    (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - -2 + 1)) + (-2)));
+    (s as any).moodTypeRand = ((s as any).moodTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2))));
     if (((s as any).moodType ?? 0) === 'bad') {
       scene.img('images/locations/city/residential/sauna/sex/cumcondompourface.jpg');
       scene.text('He then suddenly grabs your head and pours the contents over your face.');

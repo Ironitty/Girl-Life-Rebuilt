@@ -109,7 +109,7 @@ function enterProstituteWorkHours(s: GameState, scene: SceneBuilder): void {
   if (((s as any).region ?? 0) === 'pushkin') {
     (s as any).result = (((s as any).hour ?? 0) >= 0  &&  ((s as any).hour ?? 0) < 2)  ||  (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) <= 23);
   } else {
-    if (((s as any).region ?? 0) === 'pav'  ||  ((((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pav_') {
+    if (((s as any).region ?? 0) === 'pav'  ||  (String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pav_') {
       (s as any).result = (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) < 14)  ||  (((s as any).hour ?? 0) >= 17  &&  ((s as any).hour ?? 0) <= 23);
     } else {
       (s as any).result = 0;
@@ -610,7 +610,7 @@ function enterHisCondom(s: GameState, scene: SceneBuilder): void {
   (s as any).protect = 1;
   (s as any).sexcontra = 3;
   // TODO-QSP: dynamic text: <<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom...
-  scene.text(`${qspUntranslated(s, "ucase(mid(bwa_boy,1,1))", { location: "prostitution_functions" })}${((((s as any).bwa_boy ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).bwa_boy ?? 0)).length)-1)))} takes his condom and puts it on his ${((s as any).dick ?? 0)} centimeter dick.`);
+  scene.text(`${qspUntranslated(s, "ucase(mid(bwa_boy,1,1))", { location: "prostitution_functions" })}${(String(((s as any).bwa_boy ?? 0)).slice((2)-1, ((2)-1)+((String(((s as any).bwa_boy ?? 0)).length)-1)))} takes his condom and puts it on his ${((s as any).dick ?? 0)} centimeter dick.`);
   // TODO-QSP: end
   scene.build();
 }

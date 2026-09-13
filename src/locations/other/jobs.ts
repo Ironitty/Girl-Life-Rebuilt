@@ -339,7 +339,7 @@ function enterIsWorkDay(s: GameState, scene: SceneBuilder): void {
     (s as any).result = qspFunc(s, 'jobs', 'matches_recurring_schedule', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_check_day ?? 0));
   } else {
     if (((s as any).job_schedule_mode ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'on_demand') {
-      if (((' \' + $job_available_days[$ARGS[1]] + \' ').indexOf((' \' + $str(\'0\') + \' '))) + 1 > 0) {
+      if ((String(' \' + $job_available_days[$ARGS[1]] + \' ').indexOf(String(' \' + $str(\'0\') + \' '))) + 1 > 0) {
         (s as any).result = 1;
       } else {
         (s as any).result = 0;
@@ -529,7 +529,7 @@ function enterGetShiftForDay(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_idx = ((s as any).temp_schedule_idx ?? 0);
   // TODO-QSP: :find_schedule_loop
   if (((s as any).temp_work_days ?? 0) !== '') {
-    if (((' \' + $temp_work_days + \' ').indexOf((' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
+    if ((String(' \' + $temp_work_days + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
       (s as any).result_arrival = ((s as any).job_arrival ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_idx ?? 0))];
       (s as any).result_start = ((s as any).job_start ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_idx ?? 0))];
       (s as any).result_duration = ((s as any).job_shift ?? 0)?.[((s as any).locArgs?.[1] ?? 0) + ', ' + String(((s as any).temp_idx ?? 0))];
@@ -590,7 +590,7 @@ function enterMatchesRecurringSchedule(s: GameState, scene: SceneBuilder): void 
   (s as any).temp_idx = ((s as any).temp_schedule_idx ?? 0);
   // TODO-QSP: :check_schedule_loop
   if (((s as any).temp_work_days ?? 0) !== '') {
-    if (((' \' + $temp_work_days + \' ').indexOf((' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
+    if ((String(' \' + $temp_work_days + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
       (s as any).result = 1;
       return;
     }
@@ -611,16 +611,16 @@ function enterGetShiftFromRecurrence(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loop_find_shift
   (s as any).temp_semi = qspUntranslated(s, "instr(ARGS[1], ';', temp_pos)", { location: "jobs" });
   if ((!((s as any).temp_semi ?? 0))) {
-    (s as any).temp_semi = ((((s as any).locArgs?.[1] ?? 0)).length) + 1;
+    (s as any).temp_semi = (String(((s as any).locArgs?.[1] ?? 0)).length) + 1;
   }
   (s as any).temp_pipe1 = qspUntranslated(s, "instr(temp_shift, '|')", { location: "jobs" });
-  (s as any).temp_pipe2 = ((((s as any).temp_shift ?? 0)).indexOf(('|'))) + 1;
-  (s as any).temp_pipe3 = ((((s as any).temp_shift ?? 0)).indexOf(('|'))) + 1;
+  (s as any).temp_pipe2 = (String(((s as any).temp_shift ?? 0)).indexOf(String('|'))) + 1;
+  (s as any).temp_pipe3 = (String(((s as any).temp_shift ?? 0)).indexOf(String('|'))) + 1;
   if (((s as any).temp_pipe1 ?? 0) > 0  &&  ((s as any).temp_pipe2 ?? 0) > 0  &&  ((s as any).temp_pipe3 ?? 0) > 0) {
-    (s as any).temp_arrival = parseFloat(((((s as any).temp_shift ?? 0)).slice((((s as any).temp_pipe1 ?? 0) + 1)-1, ((((s as any).temp_pipe1 ?? 0) + 1)-1)+(((s as any).temp_pipe2 ?? 0) - ((s as any).temp_pipe1 ?? 0) - 1))));
-    (s as any).temp_start = parseFloat(((((s as any).temp_shift ?? 0)).slice((((s as any).temp_pipe2 ?? 0) + 1)-1, ((((s as any).temp_pipe2 ?? 0) + 1)-1)+(((s as any).temp_pipe3 ?? 0) - ((s as any).temp_pipe2 ?? 0) - 1))));
-    (s as any).temp_duration = parseFloat(((((s as any).temp_shift ?? 0)).slice((((s as any).temp_pipe3 ?? 0) + 1)-1)));
-    if (((' \' + $temp_days + \' ').indexOf((' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
+    (s as any).temp_arrival = parseFloat((String(((s as any).temp_shift ?? 0)).slice((((s as any).temp_pipe1 ?? 0) + 1)-1, ((((s as any).temp_pipe1 ?? 0) + 1)-1)+(((s as any).temp_pipe2 ?? 0) - ((s as any).temp_pipe1 ?? 0) - 1))));
+    (s as any).temp_start = parseFloat((String(((s as any).temp_shift ?? 0)).slice((((s as any).temp_pipe2 ?? 0) + 1)-1, ((((s as any).temp_pipe2 ?? 0) + 1)-1)+(((s as any).temp_pipe3 ?? 0) - ((s as any).temp_pipe2 ?? 0) - 1))));
+    (s as any).temp_duration = parseFloat((String(((s as any).temp_shift ?? 0)).slice((((s as any).temp_pipe3 ?? 0) + 1)-1)));
+    if ((String(' \' + $temp_days + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
       (s as any).result_arrival = ((s as any).temp_arrival ?? 0);
       (s as any).result_start = ((s as any).temp_start ?? 0);
       (s as any).result_duration = ((s as any).temp_duration ?? 0);
@@ -628,7 +628,7 @@ function enterGetShiftFromRecurrence(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temp_pos = ((s as any).temp_semi ?? 0) + 1;
-  if (((s as any).temp_pos ?? 0) <= ((((s as any).locArgs?.[1] ?? 0)).length)) {
+  if (((s as any).temp_pos ?? 0) <= (String(((s as any).locArgs?.[1] ?? 0)).length)) {
     // TODO-QSP: jump 'loop_find_shift'
   }
   (s as any).result_arrival = 0;
@@ -1454,7 +1454,7 @@ function enterFormatDays(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $fd_names[4] = 'Thu' & $fd_names[5] = 'Fri' & $fd_names[6] = 'Sat' & $fd_names[7] = 'Sun'
   (s as any).fd_i = 1;
   // TODO-QSP: :fd_loop
-  if (((((s as any).locArgs?.[1] ?? 0)).indexOf((qspUntranslated(s, "str(fd_i)", { location: "jobs" })))) + 1 > 0) {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).indexOf(String(qspUntranslated(s, "str(fd_i)", { location: "jobs" })))) + 1 > 0) {
     if (((s as any).result ?? 0) !== '') {
       // TODO-QSP: $result += ', '
     }

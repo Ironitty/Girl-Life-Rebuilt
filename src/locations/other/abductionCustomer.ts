@@ -60,9 +60,9 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
   (s as any).raceRand = Math.floor(Math.random() * 3) + 0;
   if ((!((s as any).raceRand ?? 0))) {
     (s as any).dickChance = 30;
-    (s as any).charTypeRand = ((s as any).charTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - -3 + 1)) + (-3)));
-    (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (8 - -2 + 1)) + (-2)));
-    (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (6 - -1 + 1)) + (-1)));
+    (s as any).charTypeRand = ((s as any).charTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - (-3) + 1)) + ((-3))));
+    (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (8 - (-2) + 1)) + ((-2))));
+    (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (6 - (-1) + 1)) + ((-1))));
   } else {
     if (((s as any).raceRand ?? 0) === 1) {
       (s as any).dickChance = 40;
@@ -72,9 +72,9 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).raceRand ?? 0) === 2) {
         (s as any).dickChance = 20;
-        (s as any).charTypeRand = ((s as any).charTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - -2 + 1)) + (-2)));
-        (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - -6 + 1)) + (-6)));
-        (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (1 - -4 + 1)) + (-4)));
+        (s as any).charTypeRand = ((s as any).charTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2))));
+        (s as any).bodyTypeRand = ((s as any).bodyTypeRand ?? 0) + ((Math.floor(Math.random() * (2 - (-6) + 1)) + ((-6))));
+        (s as any).heightTypeRand = ((s as any).heightTypeRand ?? 0) + ((Math.floor(Math.random() * (1 - (-4) + 1)) + ((-4))));
       }
     }
   }

@@ -593,7 +593,7 @@ function enterBodyImgFromClass(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).temp_img_totals = qspFunc(s, 'body_structure', 'body_img_totals', qspUntranslated(s, "ARGS[1]", { location: "body_structure" }));
   if (Object.keys((s as any).ARGS ?? {}).length <= 2) {
-    (s as any).temp_img_chosen = (Math.floor(Math.random() * (temp_img_totals-1 - 0 + 1)) + (0));
+    (s as any).temp_img_chosen = (Math.floor(Math.random() * (((s as any).temp_img_totals ?? 0)-1 - 0 + 1)) + (0));
   } else {
     if (((s as any).locArgs?.[2] ?? 0) < 0) {
       (s as any).temp_img_chosen = 0;

@@ -21,7 +21,7 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
     scene.text('You see a familiar face working behind the counter, your former classmate Anushka.');
   }
   if (((s as any).locat ?? 0)?.['katja'] === 30) {
-    if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 1  ||  ((((s as any).start_type ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'sg') {
+    if (((s as any).katjaQW ?? 0)?.['know_katja_uni'] === 1  ||  (String(((s as any).start_type ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'sg') {
       // TODO-QSP: dynamic text: You see your'+iif( $university['enrolled_in'] = 'teaching_studies' and katjaQW['...
       scene.text('You see your\'+iif( $university[\'enrolled_in\'] = \'teaching_studies\' and katjaQW[\'know_katja_uni\'] = 1, \' \', \' former \')+\'classmate Katja sitting at a table with a pile of books, a cup of coffee and a plate of food.');
     } else {
@@ -33,7 +33,7 @@ function enterCoffeeHole(s: GameState, scene: SceneBuilder): void {
       { label: 'Approach her', goto: ['artem_events_uni', 'coffee_hole_katja_sit'] },
     ]);
   }
-  if (((s as any).locat ?? 0)?.['A23'] === 29  &&  (((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 1  ||  ((((s as any).start_type ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'sg')) {
+  if (((s as any).locat ?? 0)?.['A23'] === 29  &&  (((s as any).AlbinaQW ?? 0)?.['know_albina_uni'] === 1  ||  (String(((s as any).start_type ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'sg')) {
     // TODO-QSP: dynamic text: You see your'+iif( $university['enrolled_in'] = 'nursing', ' ', ' former ')+'cla...
     scene.text('You see your\'+iif( $university[\'enrolled_in\'] = \'nursing\', \' \', \' former \')+\'classmate Albina sitting at a table looking at her phone while drinking a cup of coffee.');
     if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2  ||  ((s as any).npc_rel ?? 0)?.['A23'] >= 70) {

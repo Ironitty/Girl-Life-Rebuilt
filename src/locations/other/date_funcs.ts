@@ -120,7 +120,7 @@ function enterLoverAdd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFirstTime(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';" + $ARGS[1] + ";'))) + 1 <= 0) {
+  if ((String(((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';" + $ARGS[1] + ";'))) + 1 <= 0) {
     if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['first_time'] = 1;
   }
   // TODO-QSP: end
@@ -131,7 +131,7 @@ function enterDateTracker(s: GameState, scene: SceneBuilder): void {
   if (((s as any).date_ev ?? 0)?.['tracker'] !== ((s as any).locArgs?.[1] ?? 0)) {
     if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['loc'] = ((s as any).locArgs?.[1] ?? 0);
     // TODO-QSP: stat[$ARGS[1]] += 1
-    if (((((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf((';" + $ARGS[1] + ";'))) + 1 <= 0) {
+    if ((String(((s as any).npc_date_locs ?? 0)?.[String((s as any).npcID ?? 0)]).indexOf(String(';" + $ARGS[1] + ";'))) + 1 <= 0) {
       // TODO-QSP: $npc_date_locs[$npcID] += $ARGS[1] + ";"
     }
   }

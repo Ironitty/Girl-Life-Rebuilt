@@ -12,28 +12,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'add_types') {
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('ears'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('ears'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'ears');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('nose'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nose'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'nose');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('brow'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('brow'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'brow');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('lip'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('lip'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'lip');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('tongue'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('tongue'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'tongue');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('navel'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('navel'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'navel');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('nipples'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('nipples'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'nipples');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('pussy'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('pussy'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'pussy');
     }
     return;

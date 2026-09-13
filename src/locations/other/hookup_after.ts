@@ -1611,7 +1611,7 @@ function enterGottaGo(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['fun'] = 'fun';
   }
   if (((s as any).hookup ?? 0)?.['continuation'] === 0) {
-    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['continuation'] = (Math.floor(Math.random() * (1 - -1 + 1)) + (-1));
+    if (!(s as any).hookup) (s as any).hookup = {}; (s as any).hookup['continuation'] = (Math.floor(Math.random() * (1 - (-1) + 1)) + ((-1)));
   }
   // TODO-QSP: end
   scene.actions([

@@ -15,7 +15,7 @@ function enterCleanarrays(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :CiklNpcCleanLoop
   (s as any).i_gs_cl = ((s as any).i_gs_cl ?? 0) - (1);
   if (((s as any).i_gs_cl ?? 0) >= 0) {
-    if (((((((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) !== 'C') {
+    if ((String((String(((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)]).slice((1)-1, ((1)-1)+(1)))).toUpperCase()) !== 'C') {
       // TODO-QSP: jump 'CiklNpcCleanLoop'
     }
     if (((s as any).npc_index ?? 0)?.[String((s as any).i_gs_cl ?? 0)] === ((s as any).npclastgenerated ?? 0)) {
@@ -60,8 +60,8 @@ function enterAge(s: GameState, scene: SceneBuilder): void {
 
 function enterIsNpcID(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (((((s as any).locArgs?.[1] ?? 0)).length) > 1) {
-    (s as any).result = ((('ABCDM').indexOf((((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0  &&  !isNaN(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '');
+  if ((String(((s as any).locArgs?.[1] ?? 0)).length) > 1) {
+    (s as any).result = ((String('ABCDM').indexOf(String((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0  &&  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '');
   }
   return;
   // TODO-QSP: end
@@ -91,7 +91,7 @@ function enterCopyNpcStat(s: GameState, scene: SceneBuilder): void {
   if (!isNaN(((s as any).locArgs?.[1] ?? 0)) && ((s as any).locArgs?.[1] ?? 0) !== '') {
     // TODO-QSP: $ARGS[1] = '[<<$ARGS[1]>>]'
   } else {
-    if (((s as any).locArgs?.[1] ?? 0) !== ''  &&  ((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== '[') {
+    if (((s as any).locArgs?.[1] ?? 0) !== ''  &&  (String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== '[') {
       // TODO-QSP: $ARGS[1] = "<<instr('abcdefghijklmnopqrstuvwxyz', $ARGS[1])>>"
       if (((s as any).locArgs?.[1] ?? 0) === "0") {
         if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '';
@@ -101,7 +101,7 @@ function enterCopyNpcStat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === '') {
     if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = '[' + qspUntranslated(s, "ARGS[1]>", { location: "npc" }) + ']';
   }
-  if ((('abcdefghijklmnopqrstuvwxyz').indexOf((((s as any).locArgs?.[2] ?? 0)))) + 1) {
+  if ((String('abcdefghijklmnopqrstuvwxyz').indexOf(String(((s as any).locArgs?.[2] ?? 0)))) + 1) {
     // TODO-QSP: $ARGS[2] = "'<<$ARGS[2]>>'"
   } else {
     // TODO-QSP: $ARGS[2] = '<<ARGS[2]>>'
@@ -124,7 +124,7 @@ function enterGetNpcCount(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['guys'] = 0;
   if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['girls'] = 0;
   if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['herms'] = 0;
-  if (((s as any).arrsize ?? 0)(!(((s as any).locArgs?.[1] ?? 0)))) {
+  if (Object.keys((s as any)[((s as any).locArgs?.[1] ?? 0)] ?? {}).length === 0) {
     // TODO-QSP: exit
   }
   if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['outer_i'] = 0;
@@ -149,7 +149,7 @@ function enterGetNpcCount(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loop_inner_npc_count'
   }
   // TODO-QSP: $ARGS[2] = $mid($ARGS[2], 2)
-  if (((((s as any).locArgs?.[2] ?? 0)).length) > 0) {
+  if ((String(((s as any).locArgs?.[2] ?? 0)).length) > 0) {
     // TODO-QSP: jump 'loop_outer_npc_count'
   }
   // TODO-QSP: end

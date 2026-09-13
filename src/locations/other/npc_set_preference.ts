@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterReset(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $npc_preferences[$ARGS[1]] = ''
   // TODO-QSP: end
-  if (!isNaN(((((s as any).locArgs?.[0] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[0] ?? 0)).slice((2)-1)) !== '') {
+  if (!isNaN((String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1)) !== '') {
     if (((s as any).locArgs?.[1] ?? 0) === '') {
       // TODO-QSP: exit
     }

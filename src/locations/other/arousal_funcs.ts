@@ -91,8 +91,8 @@ function enterGetHolePain(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).temp_arousalVars) (s as any).temp_arousalVars = {}; (s as any).temp_arousalVars['ltdif'] = (((s as any).temp_arousalVars ?? {})?.['length'] - ((s as any).temp_arousalVars ?? {})?.['hole_size']) * 1000 / 4;
     if (!(s as any).temp_arousalVars) (s as any).temp_arousalVars = {}; (s as any).temp_arousalVars['grdif'] = (((s as any).temp_arousalVars ?? {})?.['girth'] - ((s as any).temp_arousalVars ?? {})?.['hole_size']) * 1000 / 2;
     if ((Math.floor(Math.random() * 3) + 0) < ((s as any).pain_coeff ?? 0)) {
-      if (!(s as any).temp_arousalVars) (s as any).temp_arousalVars = {}; (s as any).temp_arousalVars['ltdif'] = ((s as any).temp_arousalVars['ltdif'] ?? 0) + ((Math.floor(Math.random() * (pain_coeff - pain_coeff / 2 + 1)) + (pain_coeff / 2)) * 1000);
-      if (!(s as any).temp_arousalVars) (s as any).temp_arousalVars = {}; (s as any).temp_arousalVars['grdif'] = ((s as any).temp_arousalVars['grdif'] ?? 0) + ((Math.floor(Math.random() * (pain_coeff - pain_coeff / 2 + 1)) + (pain_coeff / 2)) * 1000);
+      if (!(s as any).temp_arousalVars) (s as any).temp_arousalVars = {}; (s as any).temp_arousalVars['ltdif'] = ((s as any).temp_arousalVars['ltdif'] ?? 0) + ((Math.floor(Math.random() * (((s as any).pain_coeff ?? 0) - ((s as any).pain_coeff ?? 0) / 2 + 1)) + (((s as any).pain_coeff ?? 0) / 2)) * 1000);
+      if (!(s as any).temp_arousalVars) (s as any).temp_arousalVars = {}; (s as any).temp_arousalVars['grdif'] = ((s as any).temp_arousalVars['grdif'] ?? 0) + ((Math.floor(Math.random() * (((s as any).pain_coeff ?? 0) - ((s as any).pain_coeff ?? 0) / 2 + 1)) + (((s as any).pain_coeff ?? 0) / 2)) * 1000);
     }
     if (((s as any).temp_arousalVars ?? 0)?.['pain'] > 0) {
       if ((Math.floor(Math.random() * (((s as any).temp_arousalVars ?? 0)?.['hole_slip'] - ((s as any).temp_arousalVars ?? 0)?.['hole_slip'] / 2 + 1)) + (((s as any).temp_arousalVars ?? 0)?.['hole_slip'] / 2)) < ((s as any).temp_arousalVars ?? 0)?.['pain']) {
@@ -132,7 +132,7 @@ function enterInVag(s: GameState, scene: SceneBuilder): void {
     if (((s as any).anal_slip ?? 0) < Math.max(1, ((s as any).vaginal_slip ?? 0) / 2)) {
       (s as any).anal_slip = Math.max(1, ((s as any).vaginal_slip ?? 0) / (Math.floor(Math.random() * 2) + 2));
       if (((s as any).cumloc ?? 0)[0] > 0) {
-        (s as any).anal_slip = ((s as any).anal_slip ?? 0) + ((Math.floor(Math.random() * (cumvol[0] / 10 - cumvol[0] / 15 + 1)) + (cumvol[0] / 15)));
+        (s as any).anal_slip = ((s as any).anal_slip ?? 0) + ((Math.floor(Math.random() * (((s as any).cumvol ?? 0)[0] / 10 - ((s as any).cumvol ?? 0)[0] / 15 + 1)) + (((s as any).cumvol ?? 0)[0] / 15)));
       }
     }
     // TODO-QSP: gs 'arousal_funcs', 'get_hole_pain', pcs_vag, vaginal_slip, pain['vaginal'], dick_length11, arousalV...
@@ -183,7 +183,7 @@ function enterInAnal(s: GameState, scene: SceneBuilder): void {
   }
   if ((!((s as any).arousal_overcall ?? 0))) {
     if (((s as any).vaginal_slip ?? 0) < Math.max(1, ((s as any).anal_slip ?? 0) / 2)  &&  ((s as any).cumloc ?? 0)[3] > 0) {
-      (s as any).vaginal_slip = ((s as any).vaginal_slip ?? 0) + ((Math.floor(Math.random() * (cumvol[3] / 5 - cumvol[3] / 10 + 1)) + (cumvol[3] / 10)));
+      (s as any).vaginal_slip = ((s as any).vaginal_slip ?? 0) + ((Math.floor(Math.random() * (((s as any).cumvol ?? 0)[3] / 5 - ((s as any).cumvol ?? 0)[3] / 10 + 1)) + (((s as any).cumvol ?? 0)[3] / 10)));
     }
     // TODO-QSP: gs 'arousal_funcs', 'get_hole_pain', pcs_ass, anal_slip, pain['asshole'], dick_length11, arousalVars...
     if (!(s as any).stim) (s as any).stim = {}; (s as any).stim['act'] = 80 - ((s as any).arousalVars ?? {})?.['girth_diff'] + ((s as any).arousalVars ?? {})?.['length_diff'] + 8 * ((s as any).silavag11 ?? 0);
@@ -270,7 +270,7 @@ function enterSetVirginityStats(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).virgin_stats) (s as any).virgin_stats = {}; (s as any).virgin_stats['taker_ID'] = ((s as any).npcID10 ?? 0);
     if (!(s as any).virgin_stats) (s as any).virgin_stats = {}; (s as any).virgin_stats['virgin_taker'] = ((s as any).npcdesc10 ?? 0);
   }
-  if (((((s as any).locArgs?.[1] ?? 0)).indexOf(('fist'))) + 1) {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).indexOf(String('fist'))) + 1) {
     if (!(s as any).virgin_stats) (s as any).virgin_stats = {}; (s as any).virgin_stats['cock_desc'] = 'fist';
     if (!(s as any).virgin_stats) (s as any).virgin_stats = {}; (s as any).virgin_stats['cock_size'] = 25;
     if (!(s as any).virgin_stats) (s as any).virgin_stats = {}; (s as any).virgin_stats['cock_width'] = 15;

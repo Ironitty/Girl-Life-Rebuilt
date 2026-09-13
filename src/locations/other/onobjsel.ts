@@ -39,10 +39,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).selobj ?? 0) === '<center>Switch HTML</center>') {
     (s as any).usehtml = ((((s as any).usehtml ?? 0)) ? (0) : (1));
   }
-  if (((((s as any).selobj ?? 0)).indexOf((':'))) + 1 > 0) {
-    (s as any).tmpPos = ((((s as any).selobj ?? 0)).indexOf((':'))) + 1 - 1;
+  if ((String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1 > 0) {
+    (s as any).tmpPos = (String(((s as any).selobj ?? 0)).indexOf(String(':'))) + 1 - 1;
     if (((s as any).tmpVal ?? 0) !== '') {
-      if (((((s as any).tmpVar ?? 0)).indexOf(('$'))) + 1 === 1) {
+      if ((String(((s as any).tmpVar ?? 0)).indexOf(String('$'))) + 1 === 1) {
         // TODO-QSP: dyneval('<<$tmpVar>> = "<<$tmpVal>>"')
       } else {
         // TODO-QSP: dyneval('<<$tmpVar>> = <<VAL($tmpVal)>>')

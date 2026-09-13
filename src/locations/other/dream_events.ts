@@ -155,7 +155,7 @@ function enterEroticDreamSwitch(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  ((s as any).pcs_ass ?? 0) === 0  &&  (!(((s as any).stat ?? 0)?.['anal'] + ((s as any).stat ?? 0)?.['bj'] + ((s as any).stat ?? 0)?.['hj'] + ((s as any).stat ?? 0)?.['cuni']+ ((s as any).stat ?? 0)?.['female_sexual_partners'] + ((s as any).stat ?? 0)?.['male_sexual_partners'] + ((s as any).stat ?? 0)?.['herm_sexual_partners']))) {
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 1;
   } else {
-    (s as any).temp_rand = (Math.floor(Math.random() * (7 + succublvl - 1 + 1)) + (1));
+    (s as any).temp_rand = (Math.floor(Math.random() * (7 + ((s as any).succublvl ?? 0) - 1 + 1)) + (1));
   }
   if (((s as any).temp_rand ?? 0) <= 1) {
     qspCall(s, 'dream_events', 'd_dreams');

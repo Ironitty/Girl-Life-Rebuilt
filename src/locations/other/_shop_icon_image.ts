@@ -7,25 +7,25 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAll(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'allure') {
+  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'allure') {
   } else {
-    if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'bomba') {
+    if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'bomba') {
     } else {
-      if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'cats') {
+      if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'cats') {
       } else {
-        if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'coco') {
+        if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'coco') {
         } else {
-          if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(10))) === 'danilovich') {
+          if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(10))) === 'danilovich') {
           } else {
-            if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'dolls') {
+            if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'dolls') {
             } else {
-              if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'eroto'  ||  ((s as any).locArgs?.[0] ?? 0) === 'sexshop') {
+              if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'eroto'  ||  ((s as any).locArgs?.[0] ?? 0) === 'sexshop') {
               } else {
-                if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'fancy') {
+                if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'fancy') {
                 } else {
-                  if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(11))) === 'fashionista') {
+                  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(11))) === 'fashionista') {
                   } else {
-                    if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'flamingos') {
+                    if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'flamingos') {
                     } else {
                       if (((s as any).locArgs?.[0] ?? 0) === 'gm_school') {
                       } else {
@@ -35,25 +35,25 @@ function enterAll(s: GameState, scene: SceneBuilder): void {
                           } else {
                             if (((s as any).locArgs?.[0] ?? 0) === 'gm_server') {
                             } else {
-                              if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'gm') {
+                              if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(2))) === 'gm') {
                               } else {
-                                if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'lusso') {
+                                if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'lusso') {
                                 } else {
-                                  if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(11))) === 'materinstvo') {
+                                  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(11))) === 'materinstvo') {
                                   } else {
-                                    if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'market') {
+                                    if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'market') {
                                     } else {
-                                      if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'misc') {
+                                      if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'misc') {
                                       } else {
-                                        if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'moncheri') {
+                                        if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'moncheri') {
                                         } else {
-                                          if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'nerdvana') {
+                                          if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(8))) === 'nerdvana') {
                                           } else {
-                                            if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'salacious'  ||  ((s as any).locArgs?.[0] ?? 0) === 'exhibitshop') {
+                                            if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(9))) === 'salacious'  ||  ((s as any).locArgs?.[0] ?? 0) === 'exhibitshop') {
                                             } else {
                                               if (((s as any).locArgs?.[0] ?? 0) === 'scandalicious_swimwear') {
                                               } else {
-                                                if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(13))) === 'scandalicious') {
+                                                if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(13))) === 'scandalicious') {
                                                 }
                                               }
                                             }

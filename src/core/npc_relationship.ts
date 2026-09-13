@@ -4,7 +4,14 @@ function rand(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function ensureNpcObjects(s: GameState): void {
+  if (!s.npc_rel) s.npc_rel = {};
+  if (!s.npc_known) s.npc_known = {};
+  if (!s.npc_rel_daily) s.npc_rel_daily = {};
+}
+
 export function npcRelModify(s: GameState, npcId: string, value: string | number, dailyLimit?: number, eventKey?: string): void {
+  ensureNpcObjects(s);
   let val: number;
 
   if (typeof value === 'number') {
@@ -57,6 +64,7 @@ export function npcRelModify(s: GameState, npcId: string, value: string | number
 }
 
 export function npcRelModifyExact(s: GameState, npcId: string, amount: number): void {
+  ensureNpcObjects(s);
   let val = (s.npc_rel[npcId] || 0) + amount;
   if (val > 100) val = 100;
   if (val < 0) val = 0;
@@ -65,6 +73,7 @@ export function npcRelModifyExact(s: GameState, npcId: string, amount: number): 
 }
 
 export function npcRelSet(s: GameState, npcId: string, value: string | number): void {
+  ensureNpcObjects(s);
   let val: number;
   if (typeof value === 'number') {
     val = value;
@@ -85,6 +94,7 @@ export function npcRelSet(s: GameState, npcId: string, value: string | number): 
 }
 
 export function npcRelCheck(s: GameState, threshold: number, ...npcIds: string[]): number {
+  ensureNpcObjects(s);
   let count = 0;
   for (const id of npcIds) {
     if (!id) continue;
@@ -104,6 +114,9 @@ export function npcRelDefaultFamilyFriends(s: GameState): void {
 }
 
 export function npcRelSocialGroupSetting(s: GameState, args: number[], gender: number): void {
+  ensureNpcObjects(s);
+  if (!s.npc_gender) s.npc_gender = {};
+  if (!s.npc_grupTipe) s.npc_grupTipe = {};
   for (let r = 1; r <= s.aarraynumber; r++) {
     const id = `A${r}`;
     if (gender !== 0 && (s.npc_gender[id] || 0) !== gender - 1) continue;
@@ -115,6 +128,8 @@ export function npcRelSocialGroupSetting(s: GameState, args: number[], gender: n
 }
 
 export function npcRelDefaultFriendship(s: GameState): void {
+  ensureNpcObjects(s);
+  if (!s.npc_grupTipe) s.npc_grupTipe = {};
   for (let r = 1; r <= s.aarraynumber; r++) {
     const id = `A${r}`;
     const t = s.npc_grupTipe[id] || 0;
@@ -123,6 +138,8 @@ export function npcRelDefaultFriendship(s: GameState): void {
 }
 
 export function npcRelDefaultNotSchool(s: GameState): void {
+  ensureNpcObjects(s);
+  if (!s.npc_grupTipe) s.npc_grupTipe = {};
   for (let r = 1; r <= s.aarraynumber; r++) {
     const id = `A${r}`;
     if ((s.npc_grupTipe[id] || 0) === 0) npcRelSet(s, id, 30);
@@ -130,6 +147,7 @@ export function npcRelDefaultNotSchool(s: GameState): void {
 }
 
 export function npcRelDefault(s: GameState): void {
+  ensureNpcObjects(s);
   for (let r = 1; r <= s.aarraynumber; r++) {
     npcRelSet(s, `A${r}`, 30);
   }

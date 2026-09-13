@@ -46,7 +46,7 @@ function enterBackup(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStrip(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).clothingworntype ?? 0)).indexOf(('swimsuit'))) + 1 <= 0  &&  ((((s as any).clothingworntype ?? 0)).indexOf(('bikinis'))) + 1 <= 0) {
+  if ((String(((s as any).clothingworntype ?? 0)).indexOf(String('swimsuit'))) + 1 <= 0  &&  (String(((s as any).clothingworntype ?? 0)).indexOf(String('bikinis'))) + 1 <= 0) {
     if (((s as any).underwear ?? 0)?.['type'] === 2) {
       qspCall(s, 'underwear_bodysuits', 'strip');
     } else {

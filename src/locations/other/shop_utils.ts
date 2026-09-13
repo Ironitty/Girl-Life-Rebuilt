@@ -58,7 +58,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs $shop_display['view_file'], 'init', 'add_types', 'all'
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set_outfit_file') {
-    if (((((s as any).locArgs?.[2] ?? 0)).indexOf(('clothing'))) + 1) {
+    if ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('clothing'))) + 1) {
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['outfit_type'] = 'clothing';
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['func_file'] = 'clothing';
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['view_file'] = 'clothing_view';
@@ -66,7 +66,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_suffix'] = '';
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['do_sorted'] = 1;
     } else {
-      if (((((s as any).locArgs?.[2] ?? 0)).indexOf(('bra'))) + 1) {
+      if ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('bra'))) + 1) {
         if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['outfit_type'] = 'bra';
         if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['func_file'] = 'bras';
         if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['view_file'] = 'bra_view';
@@ -74,7 +74,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_suffix'] = '_bras';
         if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['do_sorted'] = 1;
       } else {
-        if (((((s as any).locArgs?.[2] ?? 0)).indexOf(('panty'))) + 1  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('panties'))) + 1) {
+        if ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('panty'))) + 1  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('panties'))) + 1) {
           if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['outfit_type'] = 'panty';
           if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['func_file'] = 'panties';
           if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['view_file'] = 'panty_view';
@@ -82,7 +82,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
           if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_suffix'] = '_panties';
           if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['do_sorted'] = 1;
         } else {
-          if (((((s as any).locArgs?.[2] ?? 0)).indexOf(('bodysuit'))) + 1) {
+          if ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('bodysuit'))) + 1) {
             if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['outfit_type'] = 'bodysuit';
             if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['func_file'] = 'underwear_bodysuits';
             if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['view_file'] = 'underwear_bodysuit_view';
@@ -90,7 +90,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
             if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_suffix'] = '_bodysuits';
             if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['do_sorted'] = 1;
           } else {
-            if (((((s as any).locArgs?.[2] ?? 0)).indexOf(('shoe'))) + 1) {
+            if ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('shoe'))) + 1) {
               if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['outfit_type'] = 'shoe';
               if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['func_file'] = 'shoes';
               if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['view_file'] = 'shoe_view';
@@ -98,7 +98,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
               if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_suffix'] = '_shoes';
               if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['do_sorted'] = 1;
             } else {
-              if (((((s as any).locArgs?.[2] ?? 0)).indexOf(('coat'))) + 1) {
+              if ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('coat'))) + 1) {
                 if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['outfit_type'] = 'coat';
                 if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['func_file'] = 'coats';
                 if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['view_file'] = 'coat_view';
@@ -106,7 +106,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
                 if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_suffix'] = '_coats';
                 if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['do_sorted'] = 1;
               } else {
-                if (((((s as any).locArgs?.[2] ?? 0)).indexOf(('purse'))) + 1) {
+                if ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('purse'))) + 1) {
                   if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['outfit_type'] = 'purse';
                   if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['func_file'] = 'purses';
                   if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['view_file'] = 'purse_view';
@@ -114,7 +114,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
                   if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_suffix'] = '_purses';
                   if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['do_sorted'] = 1;
                 } else {
-                  if (((((s as any).locArgs?.[2] ?? 0)).indexOf(('tattoo'))) + 1) {
+                  if ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('tattoo'))) + 1) {
                     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['outfit_type'] = 'tattoo';
                     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['func_file'] = 'tattoo_management';
                     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['view_file'] = 'tattoo_view';
@@ -122,7 +122,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
                     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_suffix'] = '_tattoos';
                     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['do_sorted'] = 0;
                   } else {
-                    if (((((s as any).locArgs?.[2] ?? 0)).indexOf(('piercing'))) + 1) {
+                    if ((String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('piercing'))) + 1) {
                       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['outfit_type'] = 'piercing';
                       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['func_file'] = 'piercing_management';
                       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['view_file'] = 'piercing_view';
@@ -240,7 +240,7 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
       if (((s as any).shop_display ?? 0)?.['number'] <= ((s as any).total ?? 0)) {
         if (((s as any).shop_display_exceptions ?? 0)[((s as any).shop_display ?? 0)?.['type'] + ((s as any).shop_display ?? 0)?.['type_suffix'] + '-' + ((s as any).shop_display ?? 0)?.['number']] === 0) {
           if ((0 as any)) {
-            if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['shop'] = ((((s as any).shop_display ?? 0)?.['type']).slice((1)-1, ((1)-1)+(((((s as any).shop_display ?? {})?.['type'] + '_').indexOf(('_'))) + 1 - 1)));
+            if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['shop'] = (String(((s as any).shop_display ?? 0)?.['type']).slice((1)-1, ((1)-1)+((String(((s as any).shop_display ?? {})?.['type'] + '_').indexOf(String('_'))) + 1 - 1)));
             if (((s as any).shop_display ?? 0)?.['shop'] !== '') {
               if ((Array.isArray((s as any).shop_display_sorted_titles) ? ((s as any).shop_display_sorted_titles as any[]).indexOf(((s as any).shop_display ?? 0)?.['shop']) : -1) < 0) {
                 // TODO-QSP: $shop_display_sorted_titles[] = $shop_display['shop']
@@ -265,11 +265,11 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :item_loop_sorted
     if (((s as any).shop_display ?? 0)?.['item_i'] < Object.keys((s as any).shop_display_items ?? {}).length) {
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['item_entry'] = qspUntranslated(s, "shop_display_items[shop_display['item_i']]", { location: "shop_utils" });
-      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['sep_index'] = ((((s as any).shop_display ?? 0)?.['item_entry']).indexOf(('-'))) + 1;
-      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type'] = ((((s as any).shop_display ?? 0)?.['item_entry']).slice((1)-1, ((1)-1)+(((s as any).shop_display ?? {})?.['sep_index'] - 1)));
-      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['number'] = parseFloat(((((s as any).shop_display ?? 0)?.['item_entry']).slice((((s as any).shop_display ?? {})?.['sep_index'] + 1)-1)));
+      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['sep_index'] = (String(((s as any).shop_display ?? 0)?.['item_entry']).indexOf(String('-'))) + 1;
+      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type'] = (String(((s as any).shop_display ?? 0)?.['item_entry']).slice((1)-1, ((1)-1)+(((s as any).shop_display ?? {})?.['sep_index'] - 1)));
+      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['number'] = parseFloat((String(((s as any).shop_display ?? 0)?.['item_entry']).slice((((s as any).shop_display ?? {})?.['sep_index'] + 1)-1)));
       if ((0 as any)) {
-        if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['shop'] = ((((s as any).shop_display ?? {})?.['type'] + '_').slice((1)-1, ((1)-1)+(((((s as any).shop_display ?? 0)?.['type']).indexOf(('_'))) + 1 - 1)));
+        if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['shop'] = (String(((s as any).shop_display ?? {})?.['type'] + '_').slice((1)-1, ((1)-1)+((String(((s as any).shop_display ?? 0)?.['type']).indexOf(String('_'))) + 1 - 1)));
         if ((Array.isArray((s as any).shop_display_sorted_titles) ? ((s as any).shop_display_sorted_titles as any[]).indexOf(((s as any).shop_display ?? 0)?.['shop']) : -1) < 0) {
           // TODO-QSP: $shop_display_sorted_titles[] = $shop_display['shop']
           // TODO-QSP: $shop_display_sorted['number_' + shop_display['unused_type_i'] + '_title'] = $shop_display['shop']
@@ -674,8 +674,8 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + (((s as any).Headerstring ?? 0)?.[((s as any).locArgs?.[2] ?? 0) + '_indent']);
       // TODO-QSP: :split_headerstring_loop_2_inner
       if (((s as any).temp_sh_hs_vars ?? 0)?.['j'] < ((s as any).temp_sh_hs_vars ?? 0)?.['temp_width']) {
-        if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['td_index'] = 5 + ((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string']).indexOf(('</td><td>'))) + 1;
-        if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['head'] = ((((s as any).temp_sh_hs_vars ?? 0)?.['cur_string']).slice((1)-1, ((1)-1)+(((s as any).temp_sh_hs_vars ?? {})?.['td_index'] - 1)));
+        if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['td_index'] = 5 + (String(((s as any).temp_sh_hs_vars ?? 0)?.['cur_string']).indexOf(String('</td><td>'))) + 1;
+        if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['head'] = (String(((s as any).temp_sh_hs_vars ?? 0)?.['cur_string']).slice((1)-1, ((1)-1)+(((s as any).temp_sh_hs_vars ?? {})?.['td_index'] - 1)));
         if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['tail'] = qspUntranslated(s, "mid(temp_sh_hs_vars['cur_string'], temp_sh_hs_vars['td_index'])", { location: "shop_utils" });
         if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + (((s as any).temp_sh_hs_vars ?? 0)?.['head']);
         if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['cur_string'] = ((s as any).temp_sh_hs_vars ?? 0)?.['tail'];

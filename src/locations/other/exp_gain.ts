@@ -25,7 +25,7 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'exp_notification', 'track_exp', 'inhib', ARGS[1]
   return;
   // TODO-QSP: end
-  if (((';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf((';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1 > 0) {
+  if ((String(';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf(String(';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1 > 0) {
     if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['statName'] = 'vball';
     if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
   } else {

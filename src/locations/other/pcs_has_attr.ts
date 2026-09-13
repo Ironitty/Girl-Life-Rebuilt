@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 0;
-  if (((((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === ' && ') {
+  if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === ' && ') {
     (s as any).pha_i = 1;
     (s as any).pha_maxi = 0;
     if (((s as any).pha_maxi ?? 0) === 1) {
@@ -35,7 +35,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :pha_AND_killvar
     return;
   } else {
-    if (((((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === ' || ') {
+    if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === ' || ') {
       (s as any).pha_i = 1;
       (s as any).pha_maxi = 0;
       if (((s as any).pha_maxi ?? 0) === 1) {
@@ -62,7 +62,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: :pha_OR_killvar
       return;
     } else {
-      if (((((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'NAND') {
+      if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'NAND') {
         (s as any).pha_i = 1;
         (s as any).pha_maxi = 0;
         if (((s as any).pha_maxi ?? 0) === 1) {
@@ -89,7 +89,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: :pha_NAND_killvar
         return;
       } else {
-        if (((((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'NOR') {
+        if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'NOR') {
           (s as any).pha_i = 1;
           (s as any).pha_maxi = 0;
           if (((s as any).pha_maxi ?? 0) === 1) {
@@ -116,7 +116,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: :pha_NOR_killvar
           return;
         } else {
-          if (((((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'XOR') {
+          if ((String(((s as any).locArgs?.[0] ?? 0)).toUpperCase()) === 'XOR') {
             (s as any).pha_i = 1;
             (s as any).pha_maxi = 0;
             (s as any).pha_target = 0;
@@ -429,11 +429,11 @@ function enterBodyTitsHuge(s: GameState, scene: SceneBuilder): void {
   }
   return;
   // TODO-QSP: end
-  if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(19))) === 'body_tits_at_least_') {
+  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(19))) === 'body_tits_at_least_') {
     // TODO-QSP: $ARGS[0] = $mid($ARGS[0], 20)
-    if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(18))) === 'body_tits_at_most_') {
+    if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(18))) === 'body_tits_at_most_') {
       // TODO-QSP: $ARGS[0] = $mid($ARGS[0], 19)
-      if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(10))) === 'body_tits_') {
+      if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(10))) === 'body_tits_') {
         // TODO-QSP: $ARGS[0] = $mid($ARGS[0], 11)
       }
     }

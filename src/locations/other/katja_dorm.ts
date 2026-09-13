@@ -1482,7 +1482,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((!(Math.floor(Math.random() * 3) + 0))) {
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['movie_temp'] = 2 + Math.max((Math.floor(Math.random() * (2 - -2 + 1)) + (-2)) + Math.min((((s as any).katjaQW ?? {})?.['slut'] + ((s as any).katjaQW ?? {})?.['horny']) / 50, 2), 0);
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['movie_temp'] = 2 + Math.max((Math.floor(Math.random() * (2 - (-2) + 1)) + ((-2))) + Math.min((((s as any).katjaQW ?? {})?.['slut'] + ((s as any).katjaQW ?? {})?.['horny']) / 50, 2), 0);
   } else {
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['movie_temp'] = Math.floor(Math.random() * 2) + 0;
   }
@@ -1602,7 +1602,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
             }
           }
         } else {
-          (s as any).t = (Math.floor(Math.random() * (6 - -2 + 1)) + (-2));
+          (s as any).t = (Math.floor(Math.random() * (6 - (-2) + 1)) + ((-2)));
           if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.max(((s as any).t ?? 0) * 5, 0));
           // TODO-QSP: gs 'arousal', 'erotic', -(max(t, 0) * 3)
           scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/movie_action.jpg');

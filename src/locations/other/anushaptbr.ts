@@ -336,7 +336,7 @@ function enterBrotherroom(s: GameState, scene: SceneBuilder): void {
 
 function enterRaceMaksimResult(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  qspCall(s, 'exp_gain', 'gaming', (Math.floor(Math.random() * (3 - 2 * ARGS[1] - 1 - ARGS[1] + 1)) + (1 - ARGS[1])));
+  qspCall(s, 'exp_gain', 'gaming', (Math.floor(Math.random() * (3 - 2 * ((s as any).ARGS ?? 0)[1] - 1 - ((s as any).ARGS ?? 0)[1] + 1)) + (1 - ((s as any).ARGS ?? 0)[1])));
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/anushapt/maksimplay.jpg');
   if (((s as any).pcs_gaming ?? 0) <= 40  ||  ((s as any).locArgs?.[1] ?? 0) > 0) {

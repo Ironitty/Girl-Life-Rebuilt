@@ -1129,7 +1129,7 @@ function enterShowerSuctionDildoApply(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bathtype ?? 0) === 'bathtub shower') {
     // TODO-QSP: dynamic '<<$loc>>_bath_shower_dildo = 1'
   } else {
-    if (((((s as any).bathtype ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'glass shower') {
+    if ((String(((s as any).bathtype ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'glass shower') {
       // TODO-QSP: dynamic '<<$loc>>_glass_shower_dildo = 1'
     }
   }
@@ -1143,7 +1143,7 @@ function enterShowerSuctionDildoRemove(s: GameState, scene: SceneBuilder): void 
   if (((s as any).bathtype ?? 0) === 'bathtub shower') {
     // TODO-QSP: dynamic '<<$loc>>_bath_shower_dildo = 0'
   } else {
-    if (((((s as any).bathtype ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'glass shower') {
+    if ((String(((s as any).bathtype ?? 0)).slice((1)-1, ((1)-1)+(12))) === 'glass shower') {
       // TODO-QSP: dynamic '<<$loc>>_glass_shower_dildo = 0'
     }
   }

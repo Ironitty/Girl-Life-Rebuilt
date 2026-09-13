@@ -693,7 +693,7 @@ function enterCityRaceDateHub(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'exercise', 'tier3', 30, 'jab', 'punch', 'kick', 'def');
     qspCall(s, 'kickboxing_funcs', 'init_fight_vars');
-    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + ((Math.floor(Math.random() * (5 - -2 + 1)) + (-2)) / 2);
+    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + ((Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))) / 2);
     if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['fight_type'] = 1;
     // TODO-QSP: gs 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', kickbox['opponent']
   }, goto: ['havana_kickboxing', 'match'] },

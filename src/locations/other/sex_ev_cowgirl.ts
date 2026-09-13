@@ -1214,7 +1214,7 @@ function enterCowgirl1_2(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'sex_ev_cowgirl', 'cowgirl1_boy_talk2');
             } else {
               if (((s as any).sex_ev ?? 0)?.['casual_talk'] > 0) {
-                if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
+                if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
                   qspCall(s, 'sex_ev_sex_talk_<<$npcID>>', 'talk_output');
                 } else {
                   qspCall(s, 'sex_ev_sex_talk_npc', 'talk_output');
@@ -1613,7 +1613,7 @@ function enterCowgirl2_2(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'sex_ev_cowgirl', 'cowgirl2_boy_talk2');
             } else {
               if (((s as any).sex_ev ?? 0)?.['casual_talk'] > 0) {
-                if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
+                if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
                   qspCall(s, 'sex_ev_sex_talk_<<$npcID>>', 'talk_output');
                 } else {
                   qspCall(s, 'sex_ev_sex_talk_npc', 'talk_output');

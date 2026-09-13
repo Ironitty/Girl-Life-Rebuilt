@@ -267,7 +267,7 @@ function enterExhibitionism(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'tits') {
     if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 1;
   } else {
-    if (((';panties;pantyrear;butt;butt_plug').indexOf((';\' + $ARGS[1] + \';'))) + 1) {
+    if ((String(';panties;pantyrear;butt;butt_plug').indexOf(String(';\' + $ARGS[1] + \';'))) + 1) {
       if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 2;
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'pussy'  ||  ((s as any).locArgs?.[1] ?? 0) === 'full') {

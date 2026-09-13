@@ -11,15 +11,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).npclastcalledn = ((((s as any).locArgs?.[0] ?? 0) !== ''  &&  !isNaN(((s as any).locArgs?.[0] ?? 0)) && ((s as any).locArgs?.[0] ?? 0) !== '') ? (qspUntranslated(s, "val(ARGS[0])", { location: "npcStat" })) : (qspUntranslated(s, "ARGS[0]", { location: "npcStat" })));
     if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['tempID'] = 'A' + ((s as any).npclastcalledn ?? 0);
   } else {
-    if (((((s as any).locArgs?.[0] ?? 0)).length) > 1  &&  !isNaN(((((s as any).locArgs?.[0] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[0] ?? 0)).slice((2)-1)) !== '') {
+    if ((String(((s as any).locArgs?.[0] ?? 0)).length) > 1  &&  !isNaN((String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[0] ?? 0)).slice((2)-1)) !== '') {
       if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['tempID'] = qspUntranslated(s, "ucase(ARGS[0])", { location: "npcStat" });
     } else {
       if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['tempID'] = 'D' + (Math.floor(Math.random() * 8) + 0);
     }
   }
   (s as any).npclastcalledn = qspUntranslated(s, "val(mid(npcStatVars['tempID'], 2))", { location: "npcStat" });
-  if ((('ABCDM').indexOf((((((s as any).npcStatVars ?? 0)?.['tempID']).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0) {
-    if (!isNaN($npc_usedname[$npclastcalled]) && $npc_usedname[$npclastcalled] !== ''  ||  ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastcalled ?? 0)] === '') {
+  if ((String('ABCDM').indexOf(String((String(((s as any).npcStatVars ?? 0)?.['tempID']).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0) {
+    if (!isNaN(((s as any).npc_usedname ?? 0)?.[String((s as any).npclastcalled ?? 0)]) && ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastcalled ?? 0)] !== ''  ||  ((s as any).npc_usedname ?? 0)?.[String((s as any).npclastcalled ?? 0)] === '') {
       // TODO-QSP: $npc_usedname[$npclastcalled] = $npc_firstname[$npclastcalled]
     }
     if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['gender'] = ((s as any).npc_gender ?? 0)?.[String((s as any).npclastcalled ?? 0)];
@@ -151,7 +151,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['spermvol'] = (-1);
     }
   }
-  if (((';none;normal;extra thin;ribbed;broken;sabotaged;sabotaged_other;').indexOf((';' + ((s as any).locArgs?.[2] ?? 0) + ';'))) + 1 > 0) {
+  if ((String(';none;normal;extra thin;ribbed;broken;sabotaged;sabotaged_other;').indexOf(String(';' + ((s as any).locArgs?.[2] ?? 0) + ';'))) + 1 > 0) {
     if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['condom'] = ((s as any).locArgs?.[2] ?? 0);
   } else {
     if (((s as any).preziktype ?? 0) === 0  &&  (((s as any).mc_inventory ?? 0)?.['equipped_condoms']+((s as any).mc_inventory ?? 0)?.['normal_condoms']) > 0) {
@@ -312,10 +312,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_statVars ?? 0)?.['i'] < ((s as any).temp_statVars ?? 0)?.['i_max']) {
       // TODO-QSP: jump 'pref_loop'
     }
-    if (((((s as any).npcStatVars ?? 0)?.['likes']).length) > 0) {
+    if ((String(((s as any).npcStatVars ?? 0)?.['likes']).length) > 0) {
       if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['likes'] = ((s as any).npcStatVars['likes'] ?? 0) + (';');
     }
-    if (((((s as any).npcStatVars ?? 0)?.['dislikes']).length) > 0) {
+    if ((String(((s as any).npcStatVars ?? 0)?.['dislikes']).length) > 0) {
       if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['dislikes'] = ((s as any).npcStatVars['dislikes'] ?? 0) + (';');
     }
   }

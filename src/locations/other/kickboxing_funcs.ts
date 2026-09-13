@@ -177,11 +177,11 @@ function enterSetInitiative(s: GameState, scene: SceneBuilder): void {
 function enterAttack(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'player') {
     if (((s as any).locArgs?.[2] ?? 0) === 'jab') {
-      if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['damage'] = (Math.floor(Math.random() * (pcs_stren / 8 - pcs_stren / 12 + 1)) + (pcs_stren / 12));
+      if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['damage'] = (Math.floor(Math.random() * (((s as any).pcs_stren ?? 0) / 8 - ((s as any).pcs_stren ?? 0) / 12 + 1)) + (((s as any).pcs_stren ?? 0) / 12));
       if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_jab ?? 0)) * 2;
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'punch') {
-        if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['damage'] = ((s as any).pcs_stren ?? 0) + (Math.floor(Math.random() * (pcs_stren / 5 - -pcs_stren / 5 + 1)) + (-pcs_stren / 5));
+        if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['damage'] = ((s as any).pcs_stren ?? 0) + (Math.floor(Math.random() * (((s as any).pcs_stren ?? 0) / 5 - -((s as any).pcs_stren ?? 0) / 5 + 1)) + (-((s as any).pcs_stren ?? 0) / 5));
         if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['hit_mod'] = (((s as any).pcs_agil ?? 0) + ((s as any).pcs_react ?? 0) + ((s as any).pcs_punch ?? 0));
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 'kick') {

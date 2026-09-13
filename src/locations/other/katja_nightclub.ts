@@ -1318,7 +1318,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) - (1);
   qspCall(s, 'exp_gain', 'danc', 1);
   (s as any).frost = 0;
-  qspCall(s, 'arousal', 'foreplay', (Math.floor(Math.random() * (0 - -5 + 1)) + (-5)));
+  qspCall(s, 'arousal', 'foreplay', (Math.floor(Math.random() * (0 - (-5) + 1)) + ((-5))));
   if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 0);
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_dancing_extra_guy1.jpg');
   scene.text('You dance through several songs, and he\'s clearly into you and and Katja. He dances quite close to you and, from time to time, his hand moves from your back to your ass.');
@@ -1709,7 +1709,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) - (1);
   qspCall(s, 'exp_gain', 'danc', 1);
   (s as any).frost = 0;
-  qspCall(s, 'arousal', 'foreplay', (Math.floor(Math.random() * (0 - -5 + 1)) + (-5)));
+  qspCall(s, 'arousal', 'foreplay', (Math.floor(Math.random() * (0 - (-5) + 1)) + ((-5))));
   if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 0);
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_dancing_extra_guy1.jpg');
   scene.text('You dance through several songs, and they\'re clearly into you and and Katja. One of them dances quite close to you and, from time to time, his hand moves from your back to your ass.');
@@ -1966,7 +1966,7 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
   (s as any).fat = ((s as any).fat ?? 0) - (1);
   qspCall(s, 'exp_gain', 'danc', 1);
   (s as any).frost = 0;
-  qspCall(s, 'arousal', 'foreplay', (Math.floor(Math.random() * (0 - -5 + 1)) + (-5)));
+  qspCall(s, 'arousal', 'foreplay', (Math.floor(Math.random() * (0 - (-5) + 1)) + ((-5))));
   if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.floor(Math.random() * 11) + 0);
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_dancing_extra_girl.jpg');
   scene.text('You dance through several songs and they start to dance closer and closer to you and Katja, form time to time one of the girls will grind her butt at you.');

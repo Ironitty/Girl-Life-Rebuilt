@@ -35,10 +35,10 @@ function enterHereCore(s: GameState, scene: SceneBuilder): void {
     (s as any).result = (((s as any).locArgs?.[3] ?? 0) === 'gad_forest'  ||  ((s as any).locArgs?.[3] ?? 0) === 'gad_meadow'  ||  ((s as any).locArgs?.[3] ?? 0) === 'gad_swamp');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'gp') {
-      (s as any).result = (((((s as any).locArgs?.[3] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp');
+      (s as any).result = ((String(((s as any).locArgs?.[3] ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'forest_road') {
-        (s as any).result = (((s as any).locArgs?.[3] ?? 0) === 'gad_road'  ||  ((s as any).locArgs?.[3] ?? 0) === 'mitkabuh_group'  ||  (((s as any).locArgs?.[3] ?? 0) === 'bus'  &&  (('gadukino;gadukino_tickets').indexOf((((s as any).locArgs?.[4] ?? 0)))) + 1));
+        (s as any).result = (((s as any).locArgs?.[3] ?? 0) === 'gad_road'  ||  ((s as any).locArgs?.[3] ?? 0) === 'mitkabuh_group'  ||  (((s as any).locArgs?.[3] ?? 0) === 'bus'  &&  (String('gadukino;gadukino_tickets').indexOf(String(((s as any).locArgs?.[4] ?? 0)))) + 1));
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'river') {
           (s as any).result = (((s as any).locArgs?.[3] ?? 0) === 'gad_river'  ||  ((s as any).locArgs?.[3] ?? 0) === 'gad_beach');
@@ -78,7 +78,7 @@ function enterGetLocatFromLoc(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).loc ?? 0) === 'gad_road') {
                   (s as any).result = 40;
                 } else {
-                  if (((s as any).loc ?? 0) === 'bus'  &&  (('gadukino;gadukino_tickets').indexOf((((s as any).loc_arg ?? 0)))) + 1 > 0) {
+                  if (((s as any).loc ?? 0) === 'bus'  &&  (String('gadukino;gadukino_tickets').indexOf(String(((s as any).loc_arg ?? 0)))) + 1 > 0) {
                     (s as any).result = 41;
                   } else {
                     if (((s as any).loc ?? 0) === 'mitkabuh'  ||  ((s as any).loc ?? 0) === 'mitkabuh_group') {
@@ -190,7 +190,7 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).MiraVars ?? 0)?.['guestday'] <= ((s as any).daystart ?? 0)) {
       if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guestday'] = ((s as any).daystart ?? 0) + 1;
     }
-    if (((((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp'  ||  ((s as any).loc ?? 0) === 'gad_field') {
+    if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'gad_gp'  ||  ((s as any).loc ?? 0) === 'gad_field') {
       if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc'] = ((s as any).loc ?? 0);
       if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg'] = ((s as any).loc_arg ?? 0);
       if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';

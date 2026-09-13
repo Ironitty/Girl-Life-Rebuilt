@@ -504,7 +504,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
           { label: 'Go to Matryona Mansion  [+$temptime[1]]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "temptime[2]", { location: "carF" }));
     if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) - (1);
-    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (temptime[2]/12 - 0 + 1)) + (0)));
+    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((s as any).temptime ?? 0)[2]/12 - 0 + 1)) + (0)));
     scene.text('You drive to your mansion.');
     qspCall(s, 'car_funcs', 'setloc', 'city_mansion_entrance', '', 'city');
     scene.actions([
@@ -534,7 +534,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
         { label: 'Go to city suburbs  [+$temptime[1]]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "temptime[3]", { location: "carF" }));
     if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) - (1);
-    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (temptime[3]/12 - 0 + 1)) + (0)));
+    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((s as any).temptime ?? 0)[3]/12 - 0 + 1)) + (0)));
     scene.text('You drive to St. Petersburg\'s suburbs.');
     qspCall(s, 'car_funcs', 'setloc', 'city_suburbs', 'start', 'city');
     scene.actions([
@@ -558,7 +558,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the construction site  [+$temptime[1]]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "temptime[4]", { location: "carF" }));
     if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) - (1);
-    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (temptime[4]/12 - 0 + 1)) + (0)));
+    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((s as any).temptime ?? 0)[4]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
     scene.text(`${((s as any).temptime ?? 0)} minutes later, you arrive at your destination.`);
     qspCall(s, 'car_funcs', 'setloc', 'obekt', '', 'other');
@@ -582,7 +582,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the Suburban Cooperative  [+$temptime[1]]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "temptime[5]", { location: "carF" }));
     if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) - (1);
-    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (temptime[5]/12 - 0 + 1)) + (0)));
+    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((s as any).temptime ?? 0)[5]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
     scene.text(`${((s as any).temptime ?? 0)} minutes later, you arrive at your destination.`);
     qspCall(s, 'car_funcs', 'setloc', 'dachi', '', 'other');
@@ -606,7 +606,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
       { label: 'Go to the village of Gadukino  [+$temptime[1]]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "temptime[6]", { location: "carF" }));
     if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) - (1);
-    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (temptime[6]/12 - 0 + 1)) + (0)));
+    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((s as any).temptime ?? 0)[6]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
     scene.text(`${((s as any).temptime ?? 0)} minutes later, you arrive at your destination.`);
     qspCall(s, 'car_funcs', 'setloc', 'gadukino', '', 'gad');
@@ -631,7 +631,7 @@ function enterOther(s: GameState, scene: SceneBuilder): void {
         { label: 'Go to the gas station on M11  [+$temptime[1]]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (qspUntranslated(s, "temptime[7]", { location: "carF" }));
     if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car['fuel'] ?? 0) - (1);
-    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (temptime[7]/12 - 0 + 1)) + (0)));
+    if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car['current_condition'] ?? 0) - ((Math.floor(Math.random() * (((s as any).temptime ?? 0)[7]/12 - 0 + 1)) + (0)));
     // TODO-QSP: dynamic text: <<temptime>> minutes later, you arrive at your destination.
     scene.text(`${((s as any).temptime ?? 0)} minutes later, you arrive at your destination.`);
     qspCall(s, 'car_funcs', 'setloc', 'gas_station_gp_117', 'outside', 'other');

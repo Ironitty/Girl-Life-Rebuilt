@@ -1464,15 +1464,15 @@ function enterDesc(s: GameState, scene: SceneBuilder): void {
     scene.text('She is \' + (year - nichTanyaBdY) + \' years old.');
   } else {
     if (((s as any).month ?? 0) === ((s as any).nichTanyaBdM ?? 0)  &&  ((s as any).day ?? 0) === ((s as any).nichTanyaBdD ?? 0)) {
-      if (parseFloat(((((s as any).year ?? 0) - ((s as any).nichTanyaBdY ?? 0)).slice((4)-1, ((4)-1)+(1)))) === 1) {
+      if (parseFloat((String(((s as any).year ?? 0) - ((s as any).nichTanyaBdY ?? 0)).slice((4)-1, ((4)-1)+(1)))) === 1) {
         // TODO-QSP: dynamic text: Today is her ' + (year - nichTanyaBdY) + 'st birthday.
         scene.text('Today is her \' + (year - nichTanyaBdY) + \'st birthday.');
       } else {
-        if (parseFloat(((((s as any).year ?? 0) - ((s as any).nichTanyaBdY ?? 0)).slice((4)-1, ((4)-1)+(1)))) === 2) {
+        if (parseFloat((String(((s as any).year ?? 0) - ((s as any).nichTanyaBdY ?? 0)).slice((4)-1, ((4)-1)+(1)))) === 2) {
           // TODO-QSP: dynamic text: Today is her ' + (year - nichTanyaBdY) + 'nd birthday.
           scene.text('Today is her \' + (year - nichTanyaBdY) + \'nd birthday.');
         } else {
-          if (parseFloat(((((s as any).year ?? 0) - ((s as any).nichTanyaBdY ?? 0)).slice((4)-1, ((4)-1)+(1)))) === 3) {
+          if (parseFloat((String(((s as any).year ?? 0) - ((s as any).nichTanyaBdY ?? 0)).slice((4)-1, ((4)-1)+(1)))) === 3) {
             // TODO-QSP: dynamic text: Today is her ' + (year - nichTanyaBdY) + 'rd birthday.
             scene.text('Today is her \' + (year - nichTanyaBdY) + \'rd birthday.');
           } else {

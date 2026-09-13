@@ -444,7 +444,7 @@ function enterComputerAd(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((((s as any).experimentQW ?? 0)?.['trial_active']).slice((1)-1, ((1)-1)+(4))) === 'pill') {
+  if ((String(((s as any).experimentQW ?? 0)?.['trial_active']).slice((1)-1, ((1)-1)+(4))) === 'pill') {
     qspCall(s, 'stat_sklattrib', '');
     qspCall(s, 'stat_sklattrib', '');
   }

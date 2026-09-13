@@ -1408,7 +1408,7 @@ function enterReceive3(s: GameState, scene: SceneBuilder): void {
 function enterServeStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['service'] = 1;
-  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (pcs_vball_serve - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_serve ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 3;
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
   (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
@@ -1470,7 +1470,7 @@ function enterServeStart(s: GameState, scene: SceneBuilder): void {
 
 function enterServe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
-  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (pcs_vball_serve - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_serve ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 3;
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
   (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
@@ -1539,7 +1539,7 @@ function enterSet(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Prepare to set', handler: (st: GameState) => {
     scene.img(`images/pc/activities/volleyball/set/${Math.floor(Math.random() * 3) + 1}.jpg`);
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['set'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['team_attack'] + (Math.floor(Math.random() * (pcs_vball_set - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['set'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['team_attack'] + (Math.floor(Math.random() * (((s as any).pcs_vball_set ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
     (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
@@ -1576,7 +1576,7 @@ function enterSpike(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go for a spike', handler: (st: GameState) => {
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (pcs_vball_spike - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
     (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
@@ -1623,7 +1623,7 @@ function enterSpike2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go for a spike', handler: (st: GameState) => {
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (pcs_vball_spike - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
     (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
@@ -1666,7 +1666,7 @@ function enterSpikeFake(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Fake a spike, provide distraction', handler: (st: GameState) => {
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['team_attack'] + (Math.floor(Math.random() * (pcs_vball_spike - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['team_attack'] + (Math.floor(Math.random() * (((s as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
     (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);

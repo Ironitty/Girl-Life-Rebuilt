@@ -117,8 +117,8 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).obekt ?? 0)?.['openstateDM1'] === 0) {
         // TODO-QSP: :markanotherrand
-        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['DMN'] = '' + ((String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4)))> + '';
-        if (((s as any).obekt ?? 0)?.['DMN'] === ((((s as any).obekt ?? 0)?.['DMN']).slice((2)-1)) + ((((s as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1)))) {
+        if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['DMN'] = '' + (String(String(10000 + (Math.floor(Math.random() * 10000) + 0))).slice((2)-1, ((2)-1)+(4)))> + '';
+        if (((s as any).obekt ?? 0)?.['DMN'] === (String(((s as any).obekt ?? 0)?.['DMN']).slice((2)-1)) + (String(((s as any).obekt ?? 0)?.['DMN']).slice((1)-1, ((1)-1)+(1)))) {
           // TODO-QSP: jump 'markanotherrand'
         }
         if (((s as any).obekt ?? 0)?.['DMN'] === '8809') {
@@ -160,10 +160,10 @@ function enterDungeon2(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['i'] = 1;
         if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numdmr'] = 0;
         // TODO-QSP: :markdnm
-        if (((s as any).strpos ?? 0)('69', ((((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1)))) > 0) {
+        if (((s as any).strpos ?? 0)('69', (String(((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1)))) > 0) {
           if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (1);
         } else {
-          if (((((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1))) === '8') {
+          if ((String(((s as any).obekt ?? 0)?.['DMN']).slice((((s as any).obekt ?? 0)?.['i'])-1, ((((s as any).obekt ?? 0)?.['i'])-1)+(1))) === '8') {
             if (!(s as any).obekt) (s as any).obekt = {}; (s as any).obekt['numdmr'] = ((s as any).obekt['numdmr'] ?? 0) + (2);
           }
         }

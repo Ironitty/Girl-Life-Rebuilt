@@ -15,7 +15,7 @@ function enterInitCheck(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if ((((s as any).locArgs?.[2] ?? 0) === 'inside'  ||  ((s as any).locArgs?.[2] ?? 0) === 'indoors')) {
-    if (((((s as any).loc ?? 0)).indexOf(('church'))) + 1 <= 0) {
+    if ((String(((s as any).loc ?? 0)).indexOf(String('church'))) + 1 <= 0) {
       // TODO-QSP: exit
     }
   } else {
@@ -86,15 +86,15 @@ function enterInitBlackmail(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['init_flashloc_arg'] = ((s as any).loc_arg ?? 0);
   if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['init_flashregion'] = ((s as any).region ?? 0);
   if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['total_material'] = 1;
-  if (((((s as any).loc ?? 0)).indexOf(('park'))) + 1 > 0) {
+  if ((String(((s as any).loc ?? 0)).indexOf(String('park'))) + 1 > 0) {
     if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['init_flashloc_desc'] = 'in a park';
     scene.text('<b>A flash of light</b> briefly brightens the surrounding trees and you see a shadow darting between the trees. The light of the camera flash prickling on your exposed skin.');
   } else {
-    if (((((s as any).loc ?? 0)).indexOf(('church'))) + 1 > 0) {
+    if ((String(((s as any).loc ?? 0)).indexOf(String('church'))) + 1 > 0) {
       if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['init_flashloc_desc'] = 'in a church';
       scene.text('<b>The flash of a camera</b> illuminates the inside of the church, but the source eludes you.');
     } else {
-      if (((((s as any).loc ?? 0)).indexOf(('fuelstation'))) + 1 > 0) {
+      if ((String(((s as any).loc ?? 0)).indexOf(String('fuelstation'))) + 1 > 0) {
         if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['init_flashloc_desc'] = 'while washing cars';
         scene.text('You briefly think a <b>car turned on its headlights</b> before you realize it was the flash of a camera, the source of which is already gone.');
       } else {
@@ -536,7 +536,7 @@ function enterChoosePackage(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temp_i2 = ((s as any).temp_i2 ?? 0) + (1);
-  if (((s as any).temp_i2 ?? 0) < 100  &&  ((((s as any).blackmailQW ?? 0)?.['packages_opened']).indexOf((';' + ((100 + ((s as any).temp_i ?? 0)).slice((2)-1)) + ';'))) + 1 >= 0) {
+  if (((s as any).temp_i2 ?? 0) < 100  &&  (String(((s as any).blackmailQW ?? 0)?.['packages_opened']).indexOf(String(';' + (String(100 + ((s as any).temp_i ?? 0)).slice((2)-1)) + ';'))) + 1 >= 0) {
     // TODO-QSP: jump 'package_loop'
   }
   if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['package'] = ((s as any).temp_i ?? 0);
@@ -548,8 +548,8 @@ function enterOpenPackage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['packages_opened'] === '') {
     if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['packages_opened'] = ';';
   }
-  if (((((s as any).blackmailQW ?? 0)?.['packages_opened']).indexOf((';\' + \'2\' + \';'))) + 1 <= 0) {
-    if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['packages_opened'] = ((s as any).blackmailQW['packages_opened'] ?? 0) + (((100 + ((s as any).blackmailQW ?? {})?.['inventory']).slice((2)-1)) + ';');
+  if ((String(((s as any).blackmailQW ?? 0)?.['packages_opened']).indexOf(String(';\' + \'2\' + \';'))) + 1 <= 0) {
+    if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['packages_opened'] = ((s as any).blackmailQW['packages_opened'] ?? 0) + ((String(100 + ((s as any).blackmailQW ?? {})?.['inventory']).slice((2)-1)) + ';');
   }
   // TODO-QSP: gs 'blackmailer', 'get_package_content', blackmailQW['inventory']
   if (((s as any).temp_package ?? 0)?.['type'] === 'clothing') {
@@ -820,7 +820,7 @@ function enterRegisterCosplayUsed(s: GameState, scene: SceneBuilder): void {
   if (((s as any).blackmailQW ?? 0)?.['cosplays_used'] === '') {
     if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['cosplays_used'] = ';';
   }
-  if (((((s as any).blackmailQW ?? 0)?.['cosplays_used']).indexOf((';' + ((s as any).temp_cu ?? 0) + ';'))) + 1 === 0) {
+  if ((String(((s as any).blackmailQW ?? 0)?.['cosplays_used']).indexOf(String(';' + ((s as any).temp_cu ?? 0) + ';'))) + 1 === 0) {
     if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['cosplays_used'] = ((s as any).blackmailQW['cosplays_used'] ?? 0) + ('' + qspUntranslated(s, "temp_cu>", { location: "blackmailer" }) + ';');
   }
   // TODO-QSP: end
@@ -829,13 +829,13 @@ function enterRegisterCosplayUsed(s: GameState, scene: SceneBuilder): void {
 
 function enterChooseRandomCosplayUsed(s: GameState, scene: SceneBuilder): void {
   (s as any).result = 7;
-  if (((((s as any).blackmailQW ?? 0)?.['cosplays_used']).length) < 4) {
+  if ((String(((s as any).blackmailQW ?? 0)?.['cosplays_used']).length) < 4) {
     return;
   }
   (s as any).temp_tries = 0;
   // TODO-QSP: :choose_random_cosplay_loop
   (s as any).temp_rand = Math.floor(Math.random() * 12) + 1;
-  if (((((s as any).blackmailQW ?? 0)?.['cosplays_used']).indexOf((';' + ((100 + ((s as any).temp_rand ?? 0)).slice((2)-1)) + ';'))) + 1 === 0) {
+  if ((String(((s as any).blackmailQW ?? 0)?.['cosplays_used']).indexOf(String(';' + (String(100 + ((s as any).temp_rand ?? 0)).slice((2)-1)) + ';'))) + 1 === 0) {
     (s as any).temp_tries = ((s as any).temp_tries ?? 0) + (1);
     if (((s as any).temp_tries ?? 0) < 1000) {
       // TODO-QSP: jump 'choose_random_cosplay_loop'
@@ -947,7 +947,7 @@ function enterPhotoDream1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temp_dream_text += ' ' + $blackmailQW['init_flashloc_desc']
   }
   // TODO-QSP: $temp_dream_text += ', your skin prickling from the light of unending camera flashes.'
-  if ((('panty;pantyrear;bra').indexOf((((s as any).blackmailQW ?? 0)?.['init_flashaction']))) + 1 > 0) {
+  if ((String('panty;pantyrear;bra').indexOf(String(((s as any).blackmailQW ?? 0)?.['init_flashaction']))) + 1 > 0) {
     qspCall(s, 'arousal', 'flashlite', (-5));
   } else {
     qspCall(s, 'arousal', 'flash', (-5));
@@ -1728,7 +1728,7 @@ function enterNerdvanaCosplayTalk1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.img(`images/characters/shared/headshots_main/big${0}.jpg`);
-  if (((((s as any).blackmailQW ?? 0)?.['packages_opened']).length) <= 7) {
+  if ((String(((s as any).blackmailQW ?? 0)?.['packages_opened']).length) <= 7) {
     if (((s as any).temp_knows_cosplay ?? 0) === 1) {
       scene.text('"Hey, I have a question. Could this cosplay have been bought here?" you ask.');
       // TODO-QSP: dynamic text: <<$Xec>> gives you quizzical look, but then examines the costume. "Yeah that loo...
@@ -2544,7 +2544,7 @@ function enterSmsRepeatSelfie1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[4] ?? 0) === 'clothed') {
     if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['next_payment'] = ((s as any).blackmailQW['next_payment'] ?? 0) + (500);
   } else {
-    if ((('bikini;underwear').indexOf((((s as any).locArgs?.[4] ?? 0)))) + 1 > 0) {
+    if ((String('bikini;underwear').indexOf(String(((s as any).locArgs?.[4] ?? 0)))) + 1 > 0) {
       // TODO-QSP: gs 'blackmailer', 'add_blackmail_selfie', $ARGS[2], $ARGS[3], $ARGS[4], ARGS[5], ARGS[6]
       if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 0) {
         if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['selfie_stage'] = 1;
@@ -2555,7 +2555,7 @@ function enterSmsRepeatSelfie1(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'blackmailer', 'make_payment', 250, 'picture');
       }
     } else {
-      if ((('bath;shower;titflash;assflash').indexOf((((s as any).locArgs?.[4] ?? 0)))) + 1 > 0) {
+      if ((String('bath;shower;titflash;assflash').indexOf(String(((s as any).locArgs?.[4] ?? 0)))) + 1 > 0) {
         // TODO-QSP: gs 'blackmailer', 'add_blackmail_selfie', $ARGS[2], $ARGS[3], $ARGS[4], ARGS[5], ARGS[6]
         if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 1) {
           if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['selfie_stage'] = 2;
@@ -2566,7 +2566,7 @@ function enterSmsRepeatSelfie1(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'blackmailer', 'make_payment', 500, 'picture');
         }
       } else {
-        if ((('nude;pussyflash').indexOf((((s as any).locArgs?.[4] ?? 0)))) + 1 > 0) {
+        if ((String('nude;pussyflash').indexOf(String(((s as any).locArgs?.[4] ?? 0)))) + 1 > 0) {
           // TODO-QSP: gs 'blackmailer', 'add_blackmail_selfie', $ARGS[2], $ARGS[3], $ARGS[4], ARGS[5], ARGS[6]
           if (((s as any).blackmailQW ?? 0)?.['selfie_stage'] === 2) {
             if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['selfie_stage'] = 3;

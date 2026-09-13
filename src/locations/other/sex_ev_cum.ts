@@ -3885,7 +3885,7 @@ function enterCumNotYet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCumCondom(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
+  if ((String(((s as any).sex_ev ?? 0)?.['position']).slice((1)-1, ((1)-1)+(4))) === 'anal') {
     scene.actions([{ label: 'Continue', goto: ['sex_ev_cum', 'anal_doggy_creampie'] }]);
   }
   qspCall(s, 'cum_call', '', '', ((s as any).npcID ?? 0), 1, 3);

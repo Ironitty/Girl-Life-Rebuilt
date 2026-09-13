@@ -7,7 +7,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  !isNaN(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '' === 0) {
+  if (((s as any).locArgs?.[1] ?? 0) === ''  ||  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '' === 0) {
     if (((s as any).locArgs?.[2] ?? 0) !== 1) {
       qspCall(s, 'npcgeneratec', '', 0, ((s as any).locArgs?.[1] ?? 0), Math.floor(Math.random() * 43) + 18, 0, 1);
       // TODO-QSP: $ARGS[1] = $npclastgenerated

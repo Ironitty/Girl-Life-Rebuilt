@@ -5,6 +5,7 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
+  scene.text('Transport Functions');
   scene.build();
 }
 
@@ -571,7 +572,7 @@ function enterSetBusWaitTime(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_gadukino'] = 0;
   if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_suburbs'] = 0;
   if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut'] = ((s as any).ARGS ?? 0)[3] * 60 + ((s as any).ARGS ?? 0)[4];
-  if (((';community;pavstation;pushkin;construction;gadukino;').indexOf((';\'+$ARGS[1]+\';'))) + 1) {
+  if ((String(';community;pavstation;pushkin;construction;gadukino;').indexOf(String(';\'+$ARGS[1]+\';'))) + 1) {
     if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
       if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_community'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', ((s as any).locArgs?.[1] ?? 0));
       if (((s as any).temp_transportVars ?? 0)?.['totminut_community'] > 13  &&  ((s as any).temp_transportVars ?? 0)?.['totminut_community'] < 313) {
@@ -589,7 +590,7 @@ function enterSetBusWaitTime(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((';gadukino;communal;graveyard;suburbs;').indexOf((';\'+$ARGS[1]+\';'))) + 1) {
+  if ((String(';gadukino;communal;graveyard;suburbs;').indexOf(String(';\'+$ARGS[1]+\';'))) + 1) {
     if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
       if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_suburbs'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', ((s as any).locArgs?.[1] ?? 0));
       if (((s as any).temp_transportVars ?? 0)?.['totminut_suburbs'] > 1425  ||  ((s as any).temp_transportVars ?? 0)?.['totminut_suburbs'] < 305) {
@@ -1509,6 +1510,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
 
 export const transport_functions: LocationDef = {
   name: 'transport_functions',
+  title: 'Transport Functions',
   region: 'other',
+  description: ['Transport Functions'],
   enter: enter,
 };

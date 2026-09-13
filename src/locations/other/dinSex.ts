@@ -111,20 +111,20 @@ function enterDiseasePicker(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tipvenerarand ?? 0) < 5) {
     if ((Math.floor(Math.random() * 100) + 1) > 85  &&  (!((s as any).KandidozOnce ?? 0))) {
       (s as any).KandidozOnce = 1;
-      (s as any).Kandidoz = (Math.floor(Math.random() * (-6 - -12 + 1)) + (-12));
+      (s as any).Kandidoz = (Math.floor(Math.random() * ((-6) - (-12) + 1)) + ((-12)));
     }
   } else {
     if (((s as any).tipvenerarand ?? 0) < 7) {
       if ((Math.floor(Math.random() * 100) + 1) > 95  &&  (!((s as any).TriperOnce ?? 0))) {
         (s as any).TriperOnce = 1;
-        (s as any).Triper = (Math.floor(Math.random() * (-6 - -11 + 1)) + (-11));
+        (s as any).Triper = (Math.floor(Math.random() * ((-6) - (-11) + 1)) + ((-11)));
         (s as any).Venera = ((s as any).Venera ?? 0) + (1);
       }
     } else {
       if (((s as any).tipvenerarand ?? 0) === 7) {
         if ((Math.floor(Math.random() * 100) + 1) > 95  &&  (!((s as any).SifacOnce ?? 0))) {
           (s as any).SifacOnce = 1;
-          (s as any).Sifilis = (Math.floor(Math.random() * (-5 - -9 + 1)) + (-9));
+          (s as any).Sifilis = (Math.floor(Math.random() * ((-5) - (-9) + 1)) + ((-9)));
           (s as any).Venera = ((s as any).Venera ?? 0) + (1);
         }
       } else {
@@ -132,7 +132,7 @@ function enterDiseasePicker(s: GameState, scene: SceneBuilder): void {
           if ((Math.floor(Math.random() * 100) + 1) > 90  &&  (!((s as any).GerpesOnce ?? 0))) {
             (s as any).GerpesOnce = 1;
             (s as any).Venera = ((s as any).Venera ?? 0) + (1);
-            (s as any).Gerpes = (Math.floor(Math.random() * (-6 - -10 + 1)) + (-10));
+            (s as any).Gerpes = (Math.floor(Math.random() * ((-6) - (-10) + 1)) + ((-10)));
             (s as any).GenHerpes = 1;
           }
         }
@@ -188,7 +188,7 @@ function enterDiseasePickerOral(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tipvenerarand ?? 0) >= 5  &&  ((s as any).tipvenerarand ?? 0) < 7) {
     if ((Math.floor(Math.random() * 100) + 1) > 95  &&  (!((s as any).TriperOnce ?? 0))) {
       (s as any).TriperOnce = 1;
-      (s as any).TriperOral = (Math.floor(Math.random() * (-9 - -15 + 1)) + (-15));
+      (s as any).TriperOral = (Math.floor(Math.random() * ((-9) - (-15) + 1)) + ((-15)));
       (s as any).Venera = ((s as any).Venera ?? 0) + (1);
       if ((Math.floor(Math.random() * 101) + 0) < 15) {
         (s as any).TriperOralSigns = 1;
@@ -199,7 +199,7 @@ function enterDiseasePickerOral(s: GameState, scene: SceneBuilder): void {
       if ((Math.floor(Math.random() * 2) + 0) === 1) {
         if ((Math.floor(Math.random() * 100) + 1) > 95  &&  (!((s as any).SifacOnce ?? 0))) {
           (s as any).SifacOnce = 1;
-          (s as any).Sifilis = (Math.floor(Math.random() * (-8 - -13 + 1)) + (-13));
+          (s as any).Sifilis = (Math.floor(Math.random() * ((-8) - (-13) + 1)) + ((-13)));
           (s as any).Venera = ((s as any).Venera ?? 0) + (1);
         }
       }
@@ -207,14 +207,14 @@ function enterDiseasePickerOral(s: GameState, scene: SceneBuilder): void {
       if (((s as any).tipvenerarand ?? 0) < 5) {
         if ((Math.floor(Math.random() * 100) + 1) > 85  &&  (!((s as any).KandidozOnce ?? 0))) {
           (s as any).KandidozOnce = 1;
-          (s as any).Kandidoz = (Math.floor(Math.random() * (-14 - -21 + 1)) + (-21));
+          (s as any).Kandidoz = (Math.floor(Math.random() * ((-14) - (-21) + 1)) + ((-21)));
         }
       } else {
         if (((s as any).tipvenerarand ?? 0) === 8) {
           if ((Math.floor(Math.random() * 100) + 1) > 90  &&  (!((s as any).GerpesOnce ?? 0))) {
             (s as any).GerpesOnce = 1;
             (s as any).Venera = ((s as any).Venera ?? 0) + (1);
-            (s as any).Gerpes = (Math.floor(Math.random() * (-11 - -16 + 1)) + (-16));
+            (s as any).Gerpes = (Math.floor(Math.random() * ((-11) - (-16) + 1)) + ((-16)));
             (s as any).OrHerpes = 1;
           }
         }
@@ -235,7 +235,7 @@ function enterWearCondom(s: GameState, scene: SceneBuilder): void {
       (s as any).noprotect = 1;
       (s as any).sexcontra = Math.floor(Math.random() * 2) + 4;
       // TODO-QSP: dynamic text: '<<ucase(mid($boydesc,1,1))>><<mid($boydesc,2,len($boydesc)-1)>> takes your '+ii...
-      scene.text(`'${qspUntranslated(s, "ucase(mid(boydesc,1,1))", { location: "dinSex" })}${((((s as any).boydesc ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).boydesc ?? 0)).length)-1)))} takes your '+iif(preziktype = 2, 'sabotaged condom and puts it on, not even noticing anything off.', 'condom and puts it on ${((s as any).xyr ?? 0)} cock. ')`);
+      scene.text(`'${qspUntranslated(s, "ucase(mid(boydesc,1,1))", { location: "dinSex" })}${(String(((s as any).boydesc ?? 0)).slice((2)-1, ((2)-1)+((String(((s as any).boydesc ?? 0)).length)-1)))} takes your '+iif(preziktype = 2, 'sabotaged condom and puts it on, not even noticing anything off.', 'condom and puts it on ${((s as any).xyr ?? 0)} cock. ')`);
     } else {
       (s as any).sexcontra = 3;
       // TODO-QSP: dynamic text: <<$boydesc>> takes your condom and puts it on <<$xyr>> cock. 
@@ -325,11 +325,11 @@ function enterBoyPutsCondom(s: GameState, scene: SceneBuilder): void {
         (s as any).noprotect = 1;
         (s as any).sexcontra = Math.floor(Math.random() * 2) + 4;
         // TODO-QSP: dynamic text: '<<ucase(mid($boydesc,1,1))>><<mid($boydesc,2,len($boydesc)-1)>> takes your '+ii...
-        scene.text(`'${qspUntranslated(s, "ucase(mid(boydesc,1,1))", { location: "dinSex" })}${((((s as any).boydesc ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).boydesc ?? 0)).length)-1)))} takes your '+iif(preziktype = 2, 'sabotaged ', ')+ 'condom and puts it on ${((s as any).xyr ?? 0)} ${((s as any).dick ?? 0)} centimeter dick. '`);
+        scene.text(`'${qspUntranslated(s, "ucase(mid(boydesc,1,1))", { location: "dinSex" })}${(String(((s as any).boydesc ?? 0)).slice((2)-1, ((2)-1)+((String(((s as any).boydesc ?? 0)).length)-1)))} takes your '+iif(preziktype = 2, 'sabotaged ', ')+ 'condom and puts it on ${((s as any).xyr ?? 0)} ${((s as any).dick ?? 0)} centimeter dick. '`);
       } else {
         (s as any).sexcontra = 3;
         // TODO-QSP: dynamic text: <<ucase(mid($boydesc,1,1))>><<mid($boydesc,2,len($boydesc)-1)>> takes your condo...
-        scene.text(`${qspUntranslated(s, "ucase(mid(boydesc,1,1))", { location: "dinSex" })}${((((s as any).boydesc ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).boydesc ?? 0)).length)-1)))} takes your condom and puts it on ${((s as any).xyr ?? 0)} ${((s as any).dick ?? 0)} centimeter dick. `);
+        scene.text(`${qspUntranslated(s, "ucase(mid(boydesc,1,1))", { location: "dinSex" })}${(String(((s as any).boydesc ?? 0)).slice((2)-1, ((2)-1)+((String(((s as any).boydesc ?? 0)).length)-1)))} takes your condom and puts it on ${((s as any).xyr ?? 0)} ${((s as any).dick ?? 0)} centimeter dick. `);
         (s as any).noprotect = 0;
       }
       if (((s as any).preziktype ?? 0) === 2) {
@@ -369,7 +369,7 @@ function enterBoyPutsHisCondom(s: GameState, scene: SceneBuilder): void {
   (s as any).protect = 1;
   (s as any).sexcontra = 3;
   // TODO-QSP: dynamic text: <<ucase(mid($bwa_boy,1,1))>><<mid($bwa_boy,2,len($bwa_boy)-1)>> takes his condom...
-  scene.text(`${qspUntranslated(s, "ucase(mid(bwa_boy,1,1))", { location: "dinSex" })}${((((s as any).bwa_boy ?? 0)).slice((2)-1, ((2)-1)+(((((s as any).bwa_boy ?? 0)).length)-1)))} takes his condom and puts it on ${((s as any).xyr ?? 0)} ${((s as any).penis_desc ?? 0)}. `);
+  scene.text(`${qspUntranslated(s, "ucase(mid(bwa_boy,1,1))", { location: "dinSex" })}${(String(((s as any).bwa_boy ?? 0)).slice((2)-1, ((2)-1)+((String(((s as any).bwa_boy ?? 0)).length)-1)))} takes his condom and puts it on ${((s as any).xyr ?? 0)} ${((s as any).penis_desc ?? 0)}. `);
   // TODO-QSP: end & !! --- boy_puts_his_condom ---
   scene.build();
 }

@@ -237,7 +237,7 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
     if (((s as any).help_toc_page ?? 0)?.[String((s as any).rt_ao_key ?? 0)] === ((s as any).help_page_key ?? 0)) {
       if (!(s as any).help_toc_open) (s as any).help_toc_open = {}; (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
     } else {
-      if (((' \' + $help_toc_children[$rt_ao_key] + \' ').indexOf((' \' + $help_page_key + \' '))) + 1 > 0) {
+      if ((String(' \' + $help_toc_children[$rt_ao_key] + \' ').indexOf(String(' \' + $help_page_key + \' '))) + 1 > 0) {
         if (!(s as any).help_toc_open) (s as any).help_toc_open = {}; (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
       } else {
         // TODO-QSP: :rt_ao_gloop
@@ -246,7 +246,7 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
           if (((s as any).rt_ao_gsp ?? 0) > 0) {
           }
           if (((s as any).help_toc_is_group ?? 0)?.[String((s as any).rt_ao_gk ?? 0)]) {
-            if (((' \' + $help_toc_children[$rt_ao_gk] + \' ').indexOf((' \' + $help_page_key + \' '))) + 1 > 0) {
+            if ((String(' \' + $help_toc_children[$rt_ao_gk] + \' ').indexOf(String(' \' + $help_page_key + \' '))) + 1 > 0) {
               if (!(s as any).help_toc_open) (s as any).help_toc_open = {}; (s as any).help_toc_open[String((s as any).rt_ao_key ?? 0)] = 1;
               if (!(s as any).help_toc_open) (s as any).help_toc_open = {}; (s as any).help_toc_open[String((s as any).rt_ao_gk ?? 0)] = 1;
             }

@@ -21,7 +21,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).CloTopCut = 4;
     }
   }
-  if (((((s as any).locArgs?.[0] ?? 0)).indexOf(('swimsuit'))) + 1 <= 0  &&  ((((s as any).locArgs?.[0] ?? 0)).indexOf(('bikinis'))) + 1 <= 0) {
+  if ((String(((s as any).locArgs?.[0] ?? 0)).indexOf(String('swimsuit'))) + 1 <= 0  &&  (String(((s as any).locArgs?.[0] ?? 0)).indexOf(String('bikinis'))) + 1 <= 0) {
     if (((s as any).CloCoverFront ?? 0) >= 4) {
       (s as any).CloInhibit = 50;
     } else {

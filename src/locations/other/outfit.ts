@@ -489,7 +489,7 @@ function enterCalcAccessoriesBonus(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((';bathroom;event_indoors;kitchen;private;private_shared;public_indoors;restroom;').indexOf((((s as any).location_type ?? 0)))) + 1 > 0) {
+    if ((String(';bathroom;event_indoors;kitchen;private;private_shared;public_indoors;restroom;').indexOf(String(((s as any).location_type ?? 0)))) + 1 > 0) {
       (s as any).coatQualityBonus = 0;
     }
   }
@@ -552,7 +552,7 @@ function enterIncreaseOutfitDirt(s: GameState, scene: SceneBuilder): void {
             if (((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).bodysuitworntype ?? 0) === 'none') {
               if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (qspUntranslated(s, "sparrvol[15]", { location: "outfit" }));
             }
-            if (((s as any).bodysuitworntype ?? 0) === 'none'  &&  ((((s as any).clothingworntype ?? 0)).indexOf(('bikinis'))) + 1 <= 0) {
+            if (((s as any).bodysuitworntype ?? 0) === 'none'  &&  (String(((s as any).clothingworntype ?? 0)).indexOf(String('bikinis'))) + 1 <= 0) {
               if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (((s as any).sparrvol ?? 0)[8] + ((s as any).sparrvol ?? 0)[14]);
             }
             if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['cum_penal'] = ((s as any).temp_outfitVars['cum_penal'] ?? 0) + (Math.max(0, 6 - Math.max(((s as any).PCloSkirt ?? 0), ((s as any).PCloPants ?? 0))) * ((s as any).sparrvol ?? 0)[9] / 6);
@@ -689,7 +689,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).temp_outfitVars ?? 0)?.['time_diff'] > 0) {
           if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
-          if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
+          if ((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
             // TODO-QSP: temp_outfitVars['strength_cost'] *= 2
           }
           if ((!((s as any).PShoBorrowed ?? 0))) {
@@ -718,7 +718,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
           if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
           if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
             if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['outer_layer_done'] = 1;
-            if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
+            if ((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
               if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = 3 * ((s as any).temp_outfitVars ?? {})?.['strength_cost'] / 2;
             }
           }
@@ -751,7 +751,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
               if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['outer_layer_done'] = 1;
               // TODO-QSP: temp_outfitVars['strength_cost'] *= 2
-              if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
+              if ((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
                 // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
               }
             }
@@ -785,7 +785,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
             if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
               // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
-              if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
+              if ((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
                 // TODO-QSP: temp_outfitVars['strength_cost'] *= 4
               }
             }
@@ -817,7 +817,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
             if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
               // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
-              if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
+              if ((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
                 // TODO-QSP: temp_outfitVars['strength_cost'] *= 4
               }
             }
@@ -846,7 +846,7 @@ function enterIncreaseOutfitWear(s: GameState, scene: SceneBuilder): void {
             if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['strength_cost'] = ((s as any).temp_outfitVars ?? 0)?.['time_diff'];
             if (((s as any).temp_outfitVars ?? 0)?.['outer_layer_done'] === 0) {
               // TODO-QSP: temp_outfitVars['strength_cost'] *= 3
-              if (((((s as any).location_type ?? 0)).indexOf(('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
+              if ((String(((s as any).location_type ?? 0)).indexOf(String('outdoors'))) + 1  &&  (!((s as any).SunWearther ?? 0))) {
                 // TODO-QSP: temp_outfitVars['strength_cost'] *= 4
               }
             }
@@ -887,19 +887,19 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).trait_vars ?? 0)?.['heel_preference'] >= 3) {
     if (((s as any).PShoHeels ?? 0) <= 1) {
       if (((s as any).pain ?? 0)?.['feet'] < 80) {
-        qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 2 - heelstime / 7 + 1)) + (heelstime / 7)), 'feet', 'ache');
+        qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).heelstime ?? 0) / 2 - ((s as any).heelstime ?? 0) / 7 + 1)) + (((s as any).heelstime ?? 0) / 7)), 'feet', 'ache');
       }
       (s as any).temp_dep_pain = 1;
     } else {
       if (((s as any).PShoHeels ?? 0) === 2) {
         if (((s as any).pain ?? 0)?.['feet'] < 60) {
-          qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 5 - heelstime / 15 + 1)) + (heelstime / 15)), 'feet', 'ache');
+          qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).heelstime ?? 0) / 5 - ((s as any).heelstime ?? 0) / 15 + 1)) + (((s as any).heelstime ?? 0) / 15)), 'feet', 'ache');
         }
         (s as any).temp_dep_pain = 1;
       } else {
         if (((s as any).PShoHeels ?? 0) === 3) {
           if (((s as any).pain ?? 0)?.['feet'] < 40) {
-            qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 10 - heelstime / 30 + 1)) + (heelstime / 30)), 'feet', 'ache');
+            qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).heelstime ?? 0) / 10 - ((s as any).heelstime ?? 0) / 30 + 1)) + (((s as any).heelstime ?? 0) / 30)), 'feet', 'ache');
           }
           (s as any).temp_dep_pain = 1;
         }
@@ -909,13 +909,13 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
     if (((s as any).trait_vars ?? 0)?.['heel_preference'] >= 2) {
       if (((s as any).PShoHeels ?? 0) <= 1) {
         if (((s as any).pain ?? 0)?.['feet'] < 60) {
-          qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 5 - heelstime / 15 + 1)) + (heelstime / 15)), 'feet', 'ache');
+          qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).heelstime ?? 0) / 5 - ((s as any).heelstime ?? 0) / 15 + 1)) + (((s as any).heelstime ?? 0) / 15)), 'feet', 'ache');
         }
         (s as any).temp_dep_pain = 1;
       } else {
         if (((s as any).PShoHeels ?? 0) === 2) {
           if (((s as any).pain ?? 0)?.['feet'] < 40) {
-            qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 10 - heelstime / 30 + 1)) + (heelstime / 30)), 'feet', 'ache');
+            qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).heelstime ?? 0) / 10 - ((s as any).heelstime ?? 0) / 30 + 1)) + (((s as any).heelstime ?? 0) / 30)), 'feet', 'ache');
           }
           (s as any).temp_dep_pain = 1;
         }
@@ -924,7 +924,7 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
       if (((s as any).trait_vars ?? 0)?.['heel_preference'] === 1) {
         if (((s as any).PShoHeels ?? 0) <= 1) {
           if (((s as any).pain ?? 0)?.['feet'] < 40) {
-            qspCall(s, 'pain', '', (Math.floor(Math.random() * (heelstime / 10 - heelstime / 30 + 1)) + (heelstime / 30)), 'feet', 'ache');
+            qspCall(s, 'pain', '', (Math.floor(Math.random() * (((s as any).heelstime ?? 0) / 10 - ((s as any).heelstime ?? 0) / 30 + 1)) + (((s as any).heelstime ?? 0) / 30)), 'feet', 'ache');
           }
           (s as any).temp_dep_pain = 1;
         }
@@ -972,12 +972,12 @@ function enterHeelStatSkillPain(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild'] + 10) {
-          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = (Math.floor(Math.random() * (0 - -3 + 1)) + (-3)) + Math.min(Math.max(6, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10))), 9);
+          if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = (Math.floor(Math.random() * (0 - (-3) + 1)) + ((-3))) + Math.min(Math.max(6, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 5 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 10))), 9);
         } else {
           if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild'] + 20) {
-            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = (Math.floor(Math.random() * (0 - -5 + 1)) + (-5)) + Math.min(Math.max(4, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20))), 6);
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = (Math.floor(Math.random() * (0 - (-5) + 1)) + ((-5))) + Math.min(Math.max(4, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 15 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20))), 6);
           } else {
-            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = (Math.floor(Math.random() * (0 - -7 + 1)) + (-7)) + Math.min(Math.max(3, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30))), 4);
+            if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['heels_time'] = (Math.floor(Math.random() * (0 - (-7) + 1)) + ((-7))) + Math.min(Math.max(3, (Math.floor(Math.random() * (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 20 - ((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30 + 1)) + (((s as any).temp_outfitVars ?? {})?.['heels_time'] / 30))), 4);
           }
         }
       }
@@ -1111,7 +1111,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list'] = ((s as any).temp_outfitVars['sd_list'] ?? 0) + (', ' + qspFunc(s, 'wrap', 'punk', 'punk'));
       }
       if (((s as any).temp_outfitVars ?? 0)?.['tt'] !== '') {
-        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_tooltip'] = ((((s as any).temp_outfitVars ?? 0)?.['tt']).slice((2)-1)) + ' ' + ((s as any).temp_outfitVars ?? {})?.['clothes_type'] + '.';
+        if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_tooltip'] = (String(((s as any).temp_outfitVars ?? 0)?.['tt']).slice((2)-1)) + ' ' + ((s as any).temp_outfitVars ?? {})?.['clothes_type'] + '.';
       } else {
         if (((s as any).PCloInhibit ?? 0) < 20) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_tooltip'] = 'Normal \' + $temp_outfitVars[\'clothes_type\'] + \'.';
@@ -1136,7 +1136,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).temp_outfitVars ?? 0)?.['sd_list'] !== '') {
         if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list'] = qspUntranslated(s, "mid(temp_outfitVars['sd_list'], 3)", { location: "outfit" });
-        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list_pre'] = ((((((s as any).temp_outfitVars ?? 0)?.['sd_list']).slice((1)-1, ((1)-1)+(1))) === 'e') ? ('an') : ('a'));
+        if (!(s as any).temp_outfitVars) (s as any).temp_outfitVars = {}; (s as any).temp_outfitVars['sd_list_pre'] = (((String(((s as any).temp_outfitVars ?? 0)?.['sd_list']).slice((1)-1, ((1)-1)+(1))) === 'e') ? ('an') : ('a'));
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes'] = 'You are wearing \' + $temp_outfitVars[\'sd_list_pre\'] + \' \' + $temp_outfitVars[\'sd_list\'] + \' \' + $temp_outfitVars[\'clothes_type\'] + \'.';
       }
     }

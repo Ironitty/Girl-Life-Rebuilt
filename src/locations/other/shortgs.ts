@@ -723,9 +723,9 @@ function enterHexStrToInt(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ARGS[1] = $ucase($ARGS[1])
   (s as any).shortgs_i = 1;
   // TODO-QSP: :hex_to_int_loop
-  (s as any).result = ((s as any).result ?? 0) * 16 + (('123456789ABCDEF').indexOf((((((s as any).locArgs?.[1] ?? 0)).slice((((s as any).shortgs_i ?? 0))-1, ((((s as any).shortgs_i ?? 0))-1)+(1)))))) + 1;
+  (s as any).result = ((s as any).result ?? 0) * 16 + (String('123456789ABCDEF').indexOf(String((String(((s as any).locArgs?.[1] ?? 0)).slice((((s as any).shortgs_i ?? 0))-1, ((((s as any).shortgs_i ?? 0))-1)+(1)))))) + 1;
   (s as any).shortgs_i = ((s as any).shortgs_i ?? 0) + (1);
-  if (((s as any).shortgs_i ?? 0) <= ((((s as any).locArgs?.[1] ?? 0)).length)) {
+  if (((s as any).shortgs_i ?? 0) <= (String(((s as any).locArgs?.[1] ?? 0)).length)) {
     // TODO-QSP: jump 'hex_to_int_loop'
   }
   return;

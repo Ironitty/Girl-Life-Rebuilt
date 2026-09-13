@@ -71,7 +71,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAdd(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'C') {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'C') {
     qspCall(s, 'npcpreservec', '', ((s as any).locArgs?.[1] ?? 0));
     qspCall(s, 'npcStat', '', ((s as any).npclastsaved ?? 0));
   } else {
@@ -94,7 +94,7 @@ function enterRemove(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'husband'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'wife'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'dating'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'boyfriend'  ||   ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'girlfriend'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'fuckbuddy'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 'sugar_daddy') {
     // TODO-QSP: $npc_rel_type[$ARGS[1]] = 'ex-' + $npc_rel_type[$ARGS[1]]
   }
-  if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  ((((s as any).locArgs?.[1] ?? 0)).length) > 1  &&  !isNaN(((((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && ((((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '') {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  (String(((s as any).locArgs?.[1] ?? 0)).length) > 1  &&  !isNaN((String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1))) && (String(((s as any).locArgs?.[1] ?? 0)).slice((2)-1)) !== '') {
     qspCall(s, 'telefon', 'ClearCallSchedule', ((s as any).locArgs?.[1] ?? 0));
     qspCall(s, 'telefon', 'ClearSMSSchedule', ((s as any).locArgs?.[1] ?? 0));
     (s as any).telefon_index = qspUntranslated(s, "arrpos('contact', ARGS[1])", { location: "lover" });
@@ -385,7 +385,7 @@ function enterClearAll(s: GameState, scene: SceneBuilder): void {
 
 function enterGenerateHomeLink(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npc_residence ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).loc ?? 0)) {
-    if (((';fuckbuddy;sugar_daddy;').indexOf((';' + ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] + ';'))) + 1 > 0) {
+    if ((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] + ';'))) + 1 > 0) {
       // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt 'sex_ev_start', 'initiate_pre', '<<$ARGS[1]>>', '...
       scene.text(`<a href="exec: minut += 2 & gt 'sex_ev_start', 'initiate_pre', '${((s as any).locArgs?.[1] ?? 0)}', 'npc_home' ">${((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]}'s</a>' + iif($npc_residence[$ARGS[1]] = 'uni_grounds', 'dorm', 'apartment') + ' is nearby.`);
     }
@@ -398,7 +398,7 @@ function enterGenerateHomeLink(s: GameState, scene: SceneBuilder): void {
 function enterGenerateHotelLink(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'lover', 'is_hotel', ((s as any).loc ?? 0))) {
     if (((s as any).booty_call_hotel ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).region ?? 0)  &&  ((s as any).booty_call_invite ?? 0)[((s as any).locArgs?.[1] ?? 0)] === ((s as any).daystart ?? 0)) {
-      if (((';fuckbuddy;sugar_daddy;').indexOf((';' + ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] + ';'))) + 1 > 0) {
+      if ((String(';fuckbuddy;sugar_daddy;').indexOf(String(';' + ((s as any).npc_rel_type ?? 0)[((s as any).locArgs?.[1] ?? 0)] + ';'))) + 1 > 0) {
         // TODO-QSP: dynamic text: <a href="exec: minut += 2 & gt 'sex_ev_start', 'initiate_pre', '<<$ARGS[1]>>', '...
         scene.text(`<a href="exec: minut += 2 & gt 'sex_ev_start', 'initiate_pre', '${((s as any).locArgs?.[1] ?? 0)}', 'hotel' ">${((s as any).npc_firstname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]}</a> booked a hotel room to meet you in.`);
       }

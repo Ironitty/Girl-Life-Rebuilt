@@ -330,10 +330,10 @@ function enterShowSms(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).telefonCon) (s as any).telefonCon = {}; (s as any).telefonCon['NPCName'] = ((s as any).npc_nickname ?? 0)?.[qspUntranslated(s, "contact[telefon['contactid']]", { location: "telefon" })];
     if (!(s as any).telefonCon) (s as any).telefonCon = {}; (s as any).telefonCon['Icon'] = qspUntranslated(s, "contactIcon[telefon['contactid']]", { location: "telefon" });
   }
-  if (((((s as any).telefonCon ?? 0)?.['Icon']).indexOf(('.'))) + 1 === 0) {
+  if ((String(((s as any).telefonCon ?? 0)?.['Icon']).indexOf(String('.'))) + 1 === 0) {
     if (!(s as any).telefonCon) (s as any).telefonCon = {}; (s as any).telefonCon['Icon'] = ((s as any).telefonCon['Icon'] ?? 0) + ('.png');
   }
-  if (((((s as any).telefonCon ?? 0)?.['Icon']).indexOf(('/'))) + 1 === 0) {
+  if ((String(((s as any).telefonCon ?? 0)?.['Icon']).indexOf(String('/'))) + 1 === 0) {
     if (!(s as any).telefonCon) (s as any).telefonCon = {}; (s as any).telefonCon['Icon'] = 'images/system/phone/icons/' + ((s as any).telefonCon ?? {})?.['Icon'];
   }
   if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['body'] = '';
@@ -372,10 +372,10 @@ function enterGetSmsRow(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactNickName'] = ((s as any).locArgs?.[3] ?? 0);
   if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['SMSTime'] = ((s as any).locArgs?.[4] ?? 0);
   if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['SMSStatus'] = qspUntranslated(s, "ARGS[5]", { location: "telefon" });
-  if (((((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(('.'))) + 1 === 0) {
+  if ((String(((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(String('.'))) + 1 === 0) {
     if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactIcon'] = ((s as any).telefon['ContactIcon'] ?? 0) + ('.png');
   }
-  if (((((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(('/'))) + 1 === 0) {
+  if ((String(((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(String('/'))) + 1 === 0) {
     if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactIcon'] = 'images/system/phone/icons/' + ((s as any).telefon ?? {})?.['ContactIcon'];
   }
   if (((s as any).telefon ?? 0)?.['SMSStatus'] === 0) {
@@ -428,10 +428,10 @@ function enterSendSms(s: GameState, scene: SceneBuilder): void {
 function enterGetContactsmsRow(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactIcon'] = qspUntranslated(s, "contactIcon[ARGS[1]]", { location: "telefon" });
   if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactNPCcode'] = qspUntranslated(s, "contact[ARGS[1]]", { location: "telefon" });
-  if (((((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(('.'))) + 1 === 0) {
+  if ((String(((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(String('.'))) + 1 === 0) {
     if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactIcon'] = ((s as any).telefon['ContactIcon'] ?? 0) + ('.png');
   }
-  if (((((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(('/'))) + 1 === 0) {
+  if ((String(((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(String('/'))) + 1 === 0) {
     if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactIcon'] = 'images/system/phone/icons/' + ((s as any).telefon ?? {})?.['ContactIcon'];
   }
   // TODO-QSP: $result +=    '<td><img width="75" src="<<$telefon[''ContactIcon'']>>"></td>'
@@ -906,10 +906,10 @@ function enterFormatContactString(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactNickName'] = ((s as any).locArgs?.[2] ?? 0);
   if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactCallCode'] = ((s as any).locArgs?.[3] ?? 0);
   if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactCallSchedule'] = ((s as any).locArgs?.[4] ?? 0);
-  if (((((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(('.'))) + 1 === 0) {
+  if ((String(((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(String('.'))) + 1 === 0) {
     if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactIcon'] = ((s as any).telefon['ContactIcon'] ?? 0) + ('.png');
   }
-  if (((((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(('/'))) + 1 === 0) {
+  if ((String(((s as any).telefon ?? 0)?.['ContactIcon']).indexOf(String('/'))) + 1 === 0) {
     if (!(s as any).telefon) (s as any).telefon = {}; (s as any).telefon['ContactIcon'] = 'images/system/phone/icons/' + ((s as any).telefon ?? {})?.['ContactIcon'];
   }
   if ((!(0 as any))) {

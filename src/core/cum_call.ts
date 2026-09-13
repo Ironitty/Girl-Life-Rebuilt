@@ -18,6 +18,8 @@ const LOCATION_MAP: Record<string, number> = {
 
 export function cumCall(s: GameState, params: CumCallParams): void {
   const { location, known = 0, contraception = '', potency = 0, volume = 0 } = params;
+  if (!s.npc_love) s.npc_love = {};
+  if (!s.stat) s.stat = {};
 
   s.sexpartkno = (s.npc_love['npcID'] || 0) > 0 ? 1 : 0;
   if (known === 1) s.sexpartkno = 1;

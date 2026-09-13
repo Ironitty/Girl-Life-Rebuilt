@@ -51,19 +51,19 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
   if (((s as any).menu_off ?? 0)  &&  ((s as any).sd_qm ?? 0)?.['action_arg'] !== '') {
     if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['action'] = 'msg $func(\'wrap\', \'v_neg\', \'You can\'t use the menu right now.\')';
   }
-  if (((s as any).sd_qm ?? 0)?.['icon_arg'] !== ''  &&  ((((s as any).sd_qm ?? 0)?.['icon_arg']).indexOf(('|'))) + 1 > 0) {
+  if (((s as any).sd_qm ?? 0)?.['icon_arg'] !== ''  &&  (String(((s as any).sd_qm ?? 0)?.['icon_arg']).indexOf(String('|'))) + 1 > 0) {
     if (((s as any).theme ?? 0)?.['is_dark'] === 0) {
-      if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['icon'] = ((((s as any).sd_qm ?? 0)?.['icon_arg']).slice((1)-1, ((1)-1)+(((((s as any).sd_qm ?? 0)?.['icon_arg']).indexOf(('|'))) + 1 - 1)));
+      if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['icon'] = (String(((s as any).sd_qm ?? 0)?.['icon_arg']).slice((1)-1, ((1)-1)+((String(((s as any).sd_qm ?? 0)?.['icon_arg']).indexOf(String('|'))) + 1 - 1)));
     } else {
-      if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['icon'] = ((((s as any).sd_qm ?? 0)?.['icon_arg']).slice((((((s as any).sd_qm ?? 0)?.['icon_arg']).indexOf(('|'))) + 1 + 1)-1));
+      if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['icon'] = (String(((s as any).sd_qm ?? 0)?.['icon_arg']).slice(((String(((s as any).sd_qm ?? 0)?.['icon_arg']).indexOf(String('|'))) + 1 + 1)-1));
     }
   } else {
     if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['icon'] = ((s as any).sd_qm ?? 0)?.['icon_arg'];
   }
   if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['bg_color'] = '';
-  if (((((s as any).sd_qm ?? 0)?.['icon']).indexOf((':'))) + 1 > 0) {
-    if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['bg_color'] = ((((s as any).sd_qm ?? 0)?.['icon']).slice((((((s as any).sd_qm ?? 0)?.['icon']).indexOf((':'))) + 1 + 1)-1));
-    if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['icon'] = ((((s as any).sd_qm ?? 0)?.['icon']).slice((1)-1, ((1)-1)+(((((s as any).sd_qm ?? 0)?.['icon']).indexOf((':'))) + 1 - 1)));
+  if ((String(((s as any).sd_qm ?? 0)?.['icon']).indexOf(String(':'))) + 1 > 0) {
+    if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['bg_color'] = (String(((s as any).sd_qm ?? 0)?.['icon']).slice(((String(((s as any).sd_qm ?? 0)?.['icon']).indexOf(String(':'))) + 1 + 1)-1));
+    if (!(s as any).sd_qm) (s as any).sd_qm = {}; (s as any).sd_qm['icon'] = (String(((s as any).sd_qm ?? 0)?.['icon']).slice((1)-1, ((1)-1)+((String(((s as any).sd_qm ?? 0)?.['icon']).indexOf(String(':'))) + 1 - 1)));
   }
   if (((s as any).sd_qm ?? 0)?.['gate'] === 'pos') {
     if (((s as any).stat_cfg ?? 0)?.['show_positive_icons'] === 0) {

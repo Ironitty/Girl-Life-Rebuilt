@@ -121,10 +121,10 @@ function enterWearVibeDecider(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFin(s: GameState, scene: SceneBuilder): void {
-  if ((('bedr;korr').indexOf((((s as any).loc ?? 0)))) + 1) {
+  if ((String('bedr;korr').indexOf(String(((s as any).loc ?? 0)))) + 1) {
     scene.actions([{ label: 'Continue', goto: ['bedr', ''] }]);
   }
-  if ((('bedr2x;korr2x').indexOf((((s as any).loc ?? 0)))) + 1) {
+  if ((String('bedr2x;korr2x').indexOf(String(((s as any).loc ?? 0)))) + 1) {
     scene.actions([{ label: 'Continue', goto: ['bedr2x', ''] }]);
   }
   if (((s as any).loc ?? 0) === 'uni_dorm') {

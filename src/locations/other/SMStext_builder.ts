@@ -63,7 +63,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSend(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_text_width = Math.max(10, 90 - 2 * ((((s as any).locArgs?.[1] ?? 0)).length));
+  (s as any).temp_text_width = Math.max(10, 90 - 2 * (String(((s as any).locArgs?.[1] ?? 0)).length));
   if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td width=' + qspUntranslated(s, "temp_text_width>", { location: "SMStext_builder" }) + '%></td><td collspan=2 bgcolor=pink style="padding-top:5pt; padding-bottom:5pt; padding-left:10pt; padding-right:3pt"><font color=black>');
   if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('</font></td></tr></table>');
@@ -91,7 +91,7 @@ function enterSendVideo(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterReceive(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_text_width = Math.max(10, 90 - 2 * ((((s as any).locArgs?.[1] ?? 0)).length));
+  (s as any).temp_text_width = Math.max(10, 90 - 2 * (String(((s as any).locArgs?.[1] ?? 0)).length));
   if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('<table width=80%><tr><td collspan=2 bgcolor="#D4CEF9" style="padding-top:5pt; padding-bottom:5pt; padding-left:10pt; padding-right:3pt"><font color=black>');
   if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + (((s as any).locArgs?.[1] ?? 0));
   if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['text'] = ((s as any).SMSBuilderVars['text'] ?? 0) + ('</font></td><td width=' + qspUntranslated(s, "temp_text_width>", { location: "SMStext_builder" }) + '%></td></tr></table>');

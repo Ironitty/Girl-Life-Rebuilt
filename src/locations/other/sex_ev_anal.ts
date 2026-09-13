@@ -1171,7 +1171,7 @@ function enterAnal1_2(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'sex_ev_anal', 'anal1.2_dirty_talk');
           } else {
             if (((s as any).sex_ev ?? 0)?.['casual_talk'] > 0) {
-              if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
+              if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
                 qspCall(s, 'sex_ev_sex_talk_<<$npcID>> ', 'talk_output');
               }
             } else {
@@ -1369,7 +1369,7 @@ function enterAnal2_2(s: GameState, scene: SceneBuilder): void {
                 scene.text(`All your dirty talk is just that: talk. For all the effort ${((s as any).npcdesc ?? 0)} is putting in, you can't say it feels very good. But you don't want ${((s as any).npcdesc ?? 0)} to feel bad about it either, so you play along, pretending otherwise.`);
               } else {
                 if (((s as any).sex_ev ?? 0)?.['casual_talk'] > 0) {
-                  if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
+                  if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
                     qspCall(s, 'sex_ev_sex_talk_<<$npcID>> ', 'talk_output');
                   }
                 }
@@ -1399,7 +1399,7 @@ function enterAnal2_2(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'sex_ev_anal', 'anal2.2_dirty_talk');
           } else {
             if (((s as any).sex_ev ?? 0)?.['casual_talk'] > 0) {
-              if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
+              if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'A') {
                 qspCall(s, 'sex_ev_sex_talk_<<$npcID>> ', 'talk_output');
               }
             } else {

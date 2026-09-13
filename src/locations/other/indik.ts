@@ -28,7 +28,7 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   return;
   // TODO-QSP: end
   return;
-  if (((';1;2;3;4;').indexOf((';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1) {
+  if ((String(';1;2;3;4;').indexOf(String(';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1) {
     if (((s as any).Enable_Android ?? 0) === 1) {
       return;
     }

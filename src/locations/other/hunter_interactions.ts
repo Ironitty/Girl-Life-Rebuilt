@@ -1223,7 +1223,7 @@ function enterShootingBet(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).tirkoef = ((s as any).pcs_agil ?? 0) + ((s as any).pcs_shoot ?? 0);
   (s as any).tirmin = ((s as any).tirkoef ?? 0) * 20 / 100;
-  (s as any).tirand = (Math.floor(Math.random() * (tirkoef + tirmin - tirkoef - tirmin + 1)) + (tirkoef - tirmin));
+  (s as any).tirand = (Math.floor(Math.random() * (((s as any).tirkoef ?? 0) + ((s as any).tirmin ?? 0) - ((s as any).tirkoef ?? 0) - ((s as any).tirmin ?? 0) + 1)) + (((s as any).tirkoef ?? 0) - ((s as any).tirmin ?? 0)));
   if (((s as any).locArgs?.[1] ?? 0) === 'win') {
     scene.text('"Hah!" you exclaim. "I win!", before looking back.');
     scene.text('Andrei is nowhere to be seen. That bastard ran away!');

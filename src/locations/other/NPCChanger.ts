@@ -90,19 +90,19 @@ function enterBack50(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNpcdisplay(s: GameState, scene: SceneBuilder): void {
-  if (!isNaN($npc_firstname['A' + ((s as any).n ?? 0)]) && $npc_firstname['A' + ((s as any).n ?? 0)] !== '') {
+  if (!isNaN(qspUntranslated(s, "npc_firstname[\u00000\u0000]", { location: "NPCChanger" })) && qspUntranslated(s, "npc_firstname[\u00000\u0000]", { location: "NPCChanger" }) !== '') {
     scene.text('');
   } else {
     // TODO-QSP: dynamic text: $npc_firstname['A<<n>>']
     scene.text(`$npc_firstname['A${((s as any).n ?? 0)}']`);
   }
-  if (((s as any).npc_firstname ?? 0)['A' + ((s as any).n ?? 0)] === ((s as any).npc_nickname ?? 0)['A' + ((s as any).n ?? 0)]  ||  !isNaN($npc_nickname['A' + ((s as any).n ?? 0)]) && $npc_nickname['A' + ((s as any).n ?? 0)] !== '') {
+  if (((s as any).npc_firstname ?? 0)['A' + ((s as any).n ?? 0)] === ((s as any).npc_nickname ?? 0)['A' + ((s as any).n ?? 0)]  ||  !isNaN(qspUntranslated(s, "npc_nickname[\u00002\u0000]", { location: "NPCChanger" })) && qspUntranslated(s, "npc_nickname[\u00002\u0000]", { location: "NPCChanger" }) !== '') {
     scene.text('');
   } else {
     // TODO-QSP: dynamic text:  "<<$npc_nickname['A<<n>>']>>"
     scene.text(` "${qspUntranslated(s, "npc_nickname['A<<n", { location: "NPCChanger" })}']>>"`);
   }
-  if (!isNaN($npc_lastname['a' + ((s as any).n ?? 0)]) && $npc_lastname['a' + ((s as any).n ?? 0)] !== '') {
+  if (!isNaN(qspUntranslated(s, "npc_lastname[\u00000\u0000]", { location: "NPCChanger" })) && qspUntranslated(s, "npc_lastname[\u00000\u0000]", { location: "NPCChanger" }) !== '') {
     scene.text('');
   } else {
     // TODO-QSP: dynamic text:  <<$npc_lastname['A<<n>>']>>

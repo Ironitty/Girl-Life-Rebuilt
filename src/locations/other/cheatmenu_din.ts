@@ -909,7 +909,7 @@ function enterSetLooks(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLooksInput(s: GameState, scene: SceneBuilder): void {
-  if (!isNaN($temp_input) && $temp_input !== '' !== 0) {
+  if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
     qspCall(s, 'shortgs', 'setStat', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "val(temp_input)", { location: "cheatmenu_din" }));
   } else {
     if (((s as any).temp_input ?? 0) !== '') {
@@ -1582,7 +1582,7 @@ function enterSetStat(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetStatInput(s: GameState, scene: SceneBuilder): void {
-  if (!isNaN($temp_input) && $temp_input !== '' !== 0) {
+  if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
     qspCall(s, 'shortgs', 'setStat', ((s as any).locArgs?.[1] ?? 0), qspUntranslated(s, "val(temp_input)", { location: "cheatmenu_din" }));
   } else {
     if (((s as any).temp_input ?? 0) !== '') {
@@ -1595,7 +1595,7 @@ function enterSetStatInput(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetStatInputInverted(s: GameState, scene: SceneBuilder): void {
-  if (!isNaN($temp_input) && $temp_input !== '' !== 0) {
+  if (!isNaN(((s as any).temp_input ?? 0)) && ((s as any).temp_input ?? 0) !== '' !== 0) {
     // TODO-QSP: gs 'shortgs', 'setStat', $ARGS[1], (100 - val($temp_input))
   } else {
     if (((s as any).temp_input ?? 0) !== '') {
@@ -2109,7 +2109,7 @@ function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_cmd_max_i = 0;
   // TODO-QSP: :loverrelationshiploop
   if (((s as any).temp_cmd_i ?? 0) < ((s as any).temp_cmd_max_i ?? 0)) {
-    if (((((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)]).slice((1)-1, ((1)-1)+(2))) === 'ex') {
+    if ((String(((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)]).slice((1)-1, ((1)-1)+(2))) === 'ex') {
       (s as any).temp_cmd_i = ((s as any).temp_cmd_i ?? 0) + (1);
       // TODO-QSP: jump 'loverrelationshiploop'
     }

@@ -2183,7 +2183,7 @@ function enterTalkLateForSchool2(s: GameState, scene: SceneBuilder): void {
         { label: 'You\'ve got time', handler: (st: GameState) => {
     // TODO-QSP: $sex_ev['bed_room']
     // TODO-QSP: dynamic text: It's only <b><<$mid(100 + hour, 2, 2)>>:<<$mid(100 + minut, 2, 2)>></b>. Plenty ...
-    scene.text(`It's only <b>${((100 + ((s as any).hour ?? 0)).slice((2)-1, ((2)-1)+(2)))}:${((100 + ((s as any).minut ?? 0)).slice((2)-1, ((2)-1)+(2)))}</b>. Plenty of time to get to school. No need to hurry.`);
+    scene.text(`It's only <b>${(String(100 + ((s as any).hour ?? 0)).slice((2)-1, ((2)-1)+(2)))}:${(String(100 + ((s as any).minut ?? 0)).slice((2)-1, ((2)-1)+(2)))}</b>. Plenty of time to get to school. No need to hurry.`);
     scene.text('You put your phone back down and relax, settling back onto the bed.');
     qspCall(s, 'sex_ev_pillow_talk', 'topic_route');
   } },

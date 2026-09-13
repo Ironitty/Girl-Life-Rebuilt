@@ -1395,11 +1395,11 @@ function enterMilkBank(s: GameState, scene: SceneBuilder): void {
     if (((s as any).lact_ev ?? 0)?.['poli_totalmilkdonation_count'] > 0) {
       scene.text('Total breast milk donation statistics');
       // TODO-QSP: dynamic text: Donated milk volume in liter: <<lact_ev['poli_totalmilkdonated']/1000>>.<<$mid(1...
-      scene.text(`Donated milk volume in liter: ${((s as any).lact_ev ?? {})?.['poli_totalmilkdonated']/1000}.${((1000 + (((s as any).lact_ev ?? {})?.['poli_totalmilkdonated'] % 1000)).slice((2)-1, ((2)-1)+(3)))}l`);
+      scene.text(`Donated milk volume in liter: ${((s as any).lact_ev ?? {})?.['poli_totalmilkdonated']/1000}.${(String(1000 + (((s as any).lact_ev ?? {})?.['poli_totalmilkdonated'] % 1000)).slice((2)-1, ((2)-1)+(3)))}l`);
       // TODO-QSP: dynamic text: Donation count: <<lact_ev['poli_totalmilkdonation_count']>>
       scene.text(`Donation count: ${((s as any).lact_ev ?? 0)?.['poli_totalmilkdonation_count']}`);
       // TODO-QSP: dynamic text: Average milk volume per donation in ml: <<lact_ev['poli_totalmilkdonated']/lact_...
-      scene.text(`Average milk volume per donation in ml: ${((s as any).lact_ev ?? {})?.['poli_totalmilkdonated']/((s as any).lact_ev ?? {})?.['poli_totalmilkdonation_count']}.${((100 + ((100 * ((s as any).lact_ev ?? {})?.['poli_totalmilkdonated'] / ((s as any).lact_ev ?? {})?.['poli_totalmilkdonation_count']) % 100)).slice((2)-1, ((2)-1)+(2)))}`);
+      scene.text(`Average milk volume per donation in ml: ${((s as any).lact_ev ?? {})?.['poli_totalmilkdonated']/((s as any).lact_ev ?? {})?.['poli_totalmilkdonation_count']}.${(String(100 + ((100 * ((s as any).lact_ev ?? {})?.['poli_totalmilkdonated'] / ((s as any).lact_ev ?? {})?.['poli_totalmilkdonation_count']) % 100)).slice((2)-1, ((2)-1)+(2)))}`);
       // TODO-QSP: dynamic text: Paid money: <<$func('money', 'string_profit', lact_ev['poli_totaldonatemoney'])>...
       scene.text(`Paid money: ${qspFunc(s, 'money', 'string_profit', ((s as any).lact_ev ?? 0)?.['poli_totaldonatemoney'])}`);
       scene.text('<br>----------------------------------------');

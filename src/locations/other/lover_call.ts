@@ -28,7 +28,7 @@ function enterScheduler(s: GameState, scene: SceneBuilder): void {
 function enterSetBaseSchedule(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).tempLCVars2) (s as any).tempLCVars2 = {}; (s as any).tempLCVars2['ID'] = ((s as any).locArgs?.[1] ?? 0);
   if (!(s as any).tempLCVars2) (s as any).tempLCVars2 = {}; (s as any).tempLCVars2['type'] = qspUntranslated(s, "ARGS[2]", { location: "lover_call" });
-  if (((((s as any).tempLCVars2 ?? 0)?.['ID']).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  ((((s as any).tempLCVars2 ?? 0)?.['ID']).length) > 1  &&  !isNaN(((((s as any).tempLCVars2 ?? 0)?.['ID']).slice((2)-1))) && ((((s as any).tempLCVars2 ?? 0)?.['ID']).slice((2)-1)) !== '') {
+  if ((String(((s as any).tempLCVars2 ?? 0)?.['ID']).slice((1)-1, ((1)-1)+(1))) === 'B'  &&  (String(((s as any).tempLCVars2 ?? 0)?.['ID']).length) > 1  &&  !isNaN((String(((s as any).tempLCVars2 ?? 0)?.['ID']).slice((2)-1))) && (String(((s as any).tempLCVars2 ?? 0)?.['ID']).slice((2)-1)) !== '') {
     if (((s as any).npc_rel_type ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] === 'dating'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] === 'boyfriend'  ||  ((s as any).npc_rel_type ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] === 'girlfriend') {
       // TODO-QSP: $tempLCVars2['OutCode'] = "gt 'lover_call', 'callingTheLover', '<<$tempLCVars2['ID']>>'"
       if (!(s as any).tempLCVars2) (s as any).tempLCVars2 = {}; (s as any).tempLCVars2['OutSched'] = "((s as any).npc_meetday ?? 0)[((s as any).tempLCVars2 ?? 0)?.['ID']] < ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 20";

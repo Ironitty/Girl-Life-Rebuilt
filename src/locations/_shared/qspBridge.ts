@@ -1,5 +1,5 @@
 import type { GameState } from '../../core/types';
-import { goto } from '../../core/location';
+import { goto, invoke } from '../../core/location';
 import { arousal } from '../../core/arousal';
 import { arousalStatsEnd, stretch, setVirginityStats, autoLube, checkEvents } from '../../core/arousal_funcs';
 import {
@@ -229,6 +229,17 @@ export function qspCall(s: GameState, module: string, func: string, ...args: unk
       warn(module, func, args);
       return;
     }
+    case 'transport_functions': {
+      const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+      const savedLocArgs = (s as any).locArgs;
+      s.loc = 'transport_functions';
+      s.locArg = func;
+      (s as any).locArgs = ['', ...args];
+      invoke(s, 'transport_functions', func);
+      s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+      (s as any).locArgs = savedLocArgs;
+      return;
+    }
     default:
       warn(module, func, args);
   }
@@ -274,6 +285,17 @@ export function qspFunc(s: GameState, module: string, func: string, ...args: unk
     }
     case 'wrap': {
       return str(args[0]);
+    }
+    case 'transport_functions': {
+      const savedLoc = s.loc, savedArg = s.locArg, savedArg2 = s.locArg2, savedArg3 = s.locArg3;
+      const savedLocArgs = (s as any).locArgs;
+      s.loc = 'transport_functions';
+      s.locArg = func;
+      (s as any).locArgs = ['', ...args];
+      invoke(s, 'transport_functions', func);
+      s.loc = savedLoc; s.locArg = savedArg; s.locArg2 = savedArg2; s.locArg3 = savedArg3;
+      (s as any).locArgs = savedLocArgs;
+      return (s as any).result ?? 0;
     }
     default:
       warn(module, func, args);

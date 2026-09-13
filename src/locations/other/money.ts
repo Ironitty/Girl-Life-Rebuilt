@@ -286,7 +286,7 @@ function enterFormatBalance(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).format_balance_temp ?? 0)?.['overflow'] > 0) {
     if (!(s as any).format_balance_temp) (s as any).format_balance_temp = {}; (s as any).format_balance_temp['base_str'] = qspFunc(s, 'money', '_format_price_string', ((s as any).format_balance_temp ?? 0)?.['base']);
-    if (!(s as any).format_balance_temp) (s as any).format_balance_temp = {}; (s as any).format_balance_temp['pad'] = 9 - ((qspUntranslated(s, "str(format_balance_temp['base'])", { location: "money" })).length);
+    if (!(s as any).format_balance_temp) (s as any).format_balance_temp = {}; (s as any).format_balance_temp['pad'] = 9 - (String(qspUntranslated(s, "str(format_balance_temp['base'])", { location: "money" })).length);
     if (!(s as any).format_balance_temp) (s as any).format_balance_temp = {}; (s as any).format_balance_temp['padding'] = '';
     // TODO-QSP: :format_balance_pad_loop
     if (((s as any).format_balance_temp ?? 0)?.['pad'] > 0) {
@@ -315,7 +315,7 @@ function enterFormatPriceString(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).shortgsVars) (s as any).shortgsVars = {}; (s as any).shortgsVars['len'] = qspUntranslated(s, "len(shortgsVars['num'])", { location: "money" });
   // TODO-QSP: :format_price_string_loop
   if (((s as any).shortgsVars ?? 0)?.['len'] > 3) {
-    if (!(s as any).shortgsVars) (s as any).shortgsVars = {}; (s as any).shortgsVars['num'] = ((((s as any).shortgsVars ?? 0)?.['num']).slice((1)-1, ((1)-1)+(((s as any).shortgsVars ?? {})?.['len']-3)));
+    if (!(s as any).shortgsVars) (s as any).shortgsVars = {}; (s as any).shortgsVars['num'] = (String(((s as any).shortgsVars ?? 0)?.['num']).slice((1)-1, ((1)-1)+(((s as any).shortgsVars ?? {})?.['len']-3)));
     if (!(s as any).shortgsVars) (s as any).shortgsVars = {}; (s as any).shortgsVars['len'] = ((s as any).shortgsVars['len'] ?? 0) - (3);
     // TODO-QSP: jump 'format_price_string_loop'
   } else {

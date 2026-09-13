@@ -11,27 +11,27 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' b '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' b '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' i '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' i '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' u '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' u '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' s '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' s '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' center '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' center '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' h1 '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' h1 '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' h2 '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' h2 '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' h3 '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' h3 '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' h4 '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' h4 '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' h5 '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' h5 '))) + 1 > 0) {
   }
-  if (((((s as any).temp_wmods ?? 0)).indexOf((' h6 '))) + 1 > 0) {
+  if ((String(((s as any).temp_wmods ?? 0)).indexOf(String(' h6 '))) + 1 > 0) {
   }
   scene.build();
 }

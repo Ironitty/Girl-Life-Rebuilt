@@ -569,7 +569,7 @@ function enterStepOutfitRestore(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_quick'] = 1;
   if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['skip_reason'] = '';
   // TODO-QSP: end
-  if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(21))) === 'step_outfit_wardrobe_') {
+  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(21))) === 'step_outfit_wardrobe_') {
     (s as any).temp_wslot = 0;
     if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_label'] = ((((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_wslot ?? 0)] !== '') ? (((s as any).def_clothing_name ?? 0)?.[String((s as any).temp_wslot ?? 0)]) : ('Outfit ' + qspUntranslated(s, "temp_wslot>", { location: "daily_routine" }) + ''));
     if (!(s as any).droutine) (s as any).droutine = {}; (s as any).droutine['current_category'] = 'Clothing';

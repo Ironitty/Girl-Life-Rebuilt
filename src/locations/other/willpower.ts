@@ -1122,12 +1122,12 @@ function enterPee(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSkill(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).locArgs?.[1] ?? 0)).slice((((((s as any).locArgs?.[1] ?? 0)).length)-3)-1)) === '_lvl') {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).slice(((String(((s as any).locArgs?.[1] ?? 0)).length)-3)-1)) === '_lvl') {
     // TODO-QSP: $ARGS[1] = $mid($ARGS[1], 1, len($ARGS[1])-4)
     qspCall(s, 'willpower', 'skill_base', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
     return;
   }
-  if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pcs_') {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pcs_') {
     if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = 0;
   }
   qspCall(s, 'willpower', 'calc', ((s as any).locArgs?.[4] ?? 0));
@@ -1143,13 +1143,13 @@ function enterSkill(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSkillBase(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pcs_') {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pcs_') {
     // TODO-QSP: $ARGS[1] = $mid($ARGS[1], 5)
     qspCall(s, 'willpower', 'skill', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0), ((s as any).locArgs?.[3] ?? 0), ((s as any).locArgs?.[4] ?? 0));
     return;
   }
-  if (((((s as any).locArgs?.[1] ?? 0)).slice((((((s as any).locArgs?.[1] ?? 0)).length)-3)-1)) === '_lvl') {
-    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = ((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(((((s as any).locArgs?.[1] ?? 0)).length)-4)));
+  if ((String(((s as any).locArgs?.[1] ?? 0)).slice(((String(((s as any).locArgs?.[1] ?? 0)).length)-3)-1)) === '_lvl') {
+    if (!(s as any).ARGS) (s as any).ARGS = {}; (s as any).ARGS[1] = (String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+((String(((s as any).locArgs?.[1] ?? 0)).length)-4)));
   }
   qspCall(s, 'willpower', 'calc', ((s as any).locArgs?.[4] ?? 0));
   if ((0 as any) >= 100) {

@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/reactions/forget.jpg');
   scene.text('');
   // TODO-QSP: dynamic text: You remember that you have an appointment with your therapist today at '+func('t...
-  scene.text(`You remember that you have an appointment with your therapist today at '+func('time', 'get_time_string', 18, 0)+'. It's already <b>${((100+((s as any).hour ?? 0)).slice((2)-1, ((2)-1)+(2)))}:${((100+((s as any).minut ?? 0)).slice((2)-1, ((2)-1)+(2)))}</b>. You should go now.`);
+  scene.text(`You remember that you have an appointment with your therapist today at '+func('time', 'get_time_string', 18, 0)+'. It's already <b>${(String(100+((s as any).hour ?? 0)).slice((2)-1, ((2)-1)+(2)))}:${(String(100+((s as any).minut ?? 0)).slice((2)-1, ((2)-1)+(2)))}</b>. You should go now.`);
   if (((s as any).region ?? 0) === 'pav') {
     if (((s as any).reminderFreebee ?? 0) < 4) {
       qspCall(s, 'willpower', 'misc', 'resist', 'easy');

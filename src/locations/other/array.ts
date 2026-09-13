@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterGetMeIndex(s: GameState, scene: SceneBuilder): void {
   (s as any).testas0 = 0;
-  if (((((s as any).test ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
+  if ((String(((s as any).test ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
     if (!(s as any).temp_arrayVars) (s as any).temp_arrayVars = {}; (s as any).temp_arrayVars['backup'] = 0;
     // TODO-QSP: dynamic "<<$test>> = 'SearchTag'"
     (s as any).testas1 = 0;
@@ -44,13 +44,13 @@ function enterRemoveElement(s: GameState, scene: SceneBuilder): void {
 
 function enterCoupledSort(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :coupled_sort_loop_start
-  if (((s as any).arrsize ?? 0)(((s as any).locArgs?.[1] ?? 0)) > 0) {
+  if (Object.keys((s as any)[((s as any).locArgs?.[1] ?? 0)] ?? {}).length > 0) {
     if (!(s as any).temp_arrayVars) (s as any).temp_arrayVars = {}; (s as any).temp_arrayVars['pos'] = 0;
     if (!(s as any).temp_arrayVars) (s as any).temp_arrayVars = {}; (s as any).temp_arrayVars['i'] = 1;
     // TODO-QSP: :coupled_sort_inner_start
     if (((s as any).ARGS ?? 0)[((s as any).temp_arrayVars ?? 0)?.['i']] !== '') {
-      if (((s as any).arrsize ?? 0)(((s as any).ARGS ?? 0)[((s as any).temp_arrayVars ?? 0)?.['i']]) > 0) {
-        if (((qspUntranslated(s, "ARGS[\u00000\u0000]", { location: "array" })).slice((1)-1, ((1)-1)+(1))) === '$') {
+      if (Object.keys((s as any)[qspUntranslated(s, "ARGS[temp_arrayVars['i']]", { location: "array" })] ?? {}).length > 0) {
+        if ((String(qspUntranslated(s, "ARGS[\u00000\u0000]", { location: "array" })).slice((1)-1, ((1)-1)+(1))) === '$') {
           // TODO-QSP: dynamic "$temp_array_coupled_sort<<temp_arrayVars['i']>>[] = <<$ARGS[temp_arrayVars['i']]>>[temp_arr...
         } else {
           // TODO-QSP: dynamic "temp_array_coupled_sort<<temp_arrayVars['i']>>[] = <<$ARGS[temp_arrayVars['i']]>>[temp_arra...

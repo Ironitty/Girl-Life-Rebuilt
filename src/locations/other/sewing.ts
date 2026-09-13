@@ -56,10 +56,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         (s as any).sew_trinket_success = Math.floor(Math.random() * 240) + 1;
         if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['sewing_fabric'] = ((s as any).mc_inventory['sewing_fabric'] ?? 0) - (1);
         if (((s as any).pcs_sewng ?? 0) >= 40) {
-          qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (pcs_intel/10 - pcs_intel/20 + 1)) + (pcs_intel/20)));
+          qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (((s as any).pcs_intel ?? 0)/10 - ((s as any).pcs_intel ?? 0)/20 + 1)) + (((s as any).pcs_intel ?? 0)/20)));
         }
         if (((s as any).pcs_sewng ?? 0) < 40) {
-          qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (pcs_intel/15 - pcs_intel/25 + 1)) + (pcs_intel/25)));
+          qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (((s as any).pcs_intel ?? 0)/15 - ((s as any).pcs_intel ?? 0)/25 + 1)) + (((s as any).pcs_intel ?? 0)/25)));
         }
         if (((s as any).sew_trinket_success ?? 0) > ((s as any).pcs_sewng ?? 0)*4) {
           scene.img('images/pc/activities/sewing/practice.jpg');
@@ -108,7 +108,7 @@ function enterTapestry(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     scene.img('images/pc/activities/sewing/practice.jpg');
-    qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (pcs_intel/5 - pcs_intel/10 + 1)) + (pcs_intel/10)));
+    qspCall(s, 'exp_gain', 'sewng', (Math.floor(Math.random() * (((s as any).pcs_intel ?? 0)/5 - ((s as any).pcs_intel ?? 0)/10 + 1)) + (((s as any).pcs_intel ?? 0)/10)));
     (s as any).gobramax = (((s as any).pcs_sewng ?? 0) - 70) * 6;
     (s as any).gobramin = (((s as any).pcs_sewng ?? 0) - 70) * 2;
     (s as any).newgobelen = ((s as any).newgobelen ?? 0) + (0);

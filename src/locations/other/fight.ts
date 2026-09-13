@@ -791,7 +791,7 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
 function enterAvailableTargets(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :AvailTargetLoop
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)(((s as any).locArgs?.[1] ?? 0)+'_health')) {
+  if (((s as any).i ?? 0) < Object.keys((s as any)[((s as any).locArgs?.[1] ?? 0)+'_health'] ?? {}).length) {
     if ((0 as any) > 0) {
       // TODO-QSP: fightAvailTarg[] = i
     }
@@ -951,7 +951,7 @@ function enterSpellListCheck(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   (s as any).ActionMade1 = 0;
   // TODO-QSP: :loop000002
-  if (((s as any).i ?? 0) < ((s as any).arrsize ?? 0)(((s as any).locArgs?.[1] ?? 0))  &&  ((s as any).ActionMade1 ?? 0)===0) {
+  if (((s as any).i ?? 0) < Object.keys((s as any)[((s as any).locArgs?.[1] ?? 0)] ?? {}).length  &&  ((s as any).ActionMade1 ?? 0)===0) {
     // TODO-QSP: ActionMade1 = func('fight', 'spellCheck', '<<$ARGS[1]>>[<<i>>]', $ARGS[2], ARGS[3], $ARGS[4], ARGS[5])
     (s as any).i = ((s as any).i ?? 0) + (1);
     // TODO-QSP: jump 'loop000002'

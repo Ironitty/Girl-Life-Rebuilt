@@ -144,7 +144,7 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
   } },
       { label: '<<$weekName[val(mid(nerd_game[\'lot\'], 1, 1))]>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((1)-1, ((1)-1)+(1))));
+    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat((String(((s as any).nerd_game ?? 0)?.['lot']).slice((1)-1, ((1)-1)+(1))));
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
     // TODO-QSP: dynamic text: "Sure, I can make it on <<$weekName[val(mid(nerd_game['lot'], 1, 1))]>>," you re...
@@ -155,7 +155,7 @@ function enterInvite(s: GameState, scene: SceneBuilder): void {
   } },
       { label: '<<$weekName[val(mid(nerd_game[\'lot\'], 2, 1))]>>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((2)-1, ((2)-1)+(1))));
+    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat((String(((s as any).nerd_game ?? 0)?.['lot']).slice((2)-1, ((2)-1)+(1))));
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big152.jpg');
     // TODO-QSP: dynamic text: "Sure, I can make it on <<$weekName[val(mid(nerd_game['lot'], 2, 1))]>>," you re...
@@ -1856,7 +1856,7 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'SMStext_builder', 'start');
     // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['a1']
     // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((1)-1, ((1)-1)+(1))));
+    if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat((String(((s as any).nerd_game ?? 0)?.['lot']).slice((1)-1, ((1)-1)+(1))));
     // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['a2']
     // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
     qspCall(s, 'SMStext_builder', 'end');
@@ -1865,7 +1865,7 @@ function enterSummerInviteSms(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'SMStext_builder', 'start');
       // TODO-QSP: gs 'SMStext_builder', 'send', $SMSTree['b1']
       // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
-      if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat(((((s as any).nerd_game ?? 0)?.['lot']).slice((2)-1, ((2)-1)+(1))));
+      if (!(s as any).nerd_game) (s as any).nerd_game = {}; (s as any).nerd_game['game_day'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + parseFloat((String(((s as any).nerd_game ?? 0)?.['lot']).slice((2)-1, ((2)-1)+(1))));
       // TODO-QSP: gs 'SMStext_builder', 'receive', $SMSTree['b2']
       // TODO-QSP: gs 'SMStext_builder', 'show_sms', ARGS[2]
       qspCall(s, 'SMStext_builder', 'end');

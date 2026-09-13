@@ -10,14 +10,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'npc', 'is_npcID', ((s as any).locArgs?.[0] ?? 0)) === 0) {
     // TODO-QSP: exit
   }
-  if (((((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== 'C') {
+  if ((String(((s as any).locArgs?.[0] ?? 0)).slice((1)-1, ((1)-1)+(1))) !== 'C') {
     // TODO-QSP: exit
   }
   if (((s as any).npc_perstype ?? 0)[((s as any).locArgs?.[0] ?? 0)] === '') {
     // TODO-QSP: exit
   }
   (s as any).npcgen_lastrun = 1;
-  if (((((s as any).locArgs?.[1] ?? 0)).toLowerCase()) === '%'  ||  ((((s as any).locArgs?.[1] ?? 0)).toLowerCase()) === 'mods'  ||  ((((s as any).locArgs?.[1] ?? 0)).toLowerCase()) === 'm') {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).toLowerCase()) === '%'  ||  (String(((s as any).locArgs?.[1] ?? 0)).toLowerCase()) === 'mods'  ||  (String(((s as any).locArgs?.[1] ?? 0)).toLowerCase()) === 'm') {
     qspCall(s, 'npcmodadd', '');
     (s as any).npclastsavedn = ((s as any).npclastmodaddedn ?? 0);
   } else {

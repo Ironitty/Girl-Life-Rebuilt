@@ -119,7 +119,7 @@ function enterRelSpouseKids(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loverjournalloop
   if (((s as any).jnl_i ?? 0) < ((s as any).jnl_max_i ?? 0)) {
     // TODO-QSP: gs 'npcStat', $lover[jnl_i], 'i'
-    if (((((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID9 ?? 0)]).slice((1)-1, ((1)-1)+(2))) === 'ex') {
+    if ((String(((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID9 ?? 0)]).slice((1)-1, ((1)-1)+(2))) === 'ex') {
       (s as any).jnl_i = ((s as any).jnl_i ?? 0) + (1);
       // TODO-QSP: jump 'loverjournalloop'
     }

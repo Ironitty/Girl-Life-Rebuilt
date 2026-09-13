@@ -40,7 +40,7 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).temper ?? 0) < 15) {
-    if (((((s as any).location_type ?? 0)).indexOf(('indoors'))) + 1 <= 0  &&  ((((s as any).loc ?? 0)).indexOf(('havana'))) + 1 <= 0  &&  ((s as any).loc ?? 0) !== 'pav_pool'  &&  ((((s as any).loc_arg ?? 0)).indexOf(('sauna'))) + 1 <= 0) {
+    if ((String(((s as any).location_type ?? 0)).indexOf(String('indoors'))) + 1 <= 0  &&  (String(((s as any).loc ?? 0)).indexOf(String('havana'))) + 1 <= 0  &&  ((s as any).loc ?? 0) !== 'pav_pool'  &&  (String(((s as any).loc_arg ?? 0)).indexOf(String('sauna'))) + 1 <= 0) {
       scene.text('<center>It\'s below 15C - far too cold to get changed into swimwear. You should wait until the weather warms up.</center>');
       return;
     }
@@ -112,10 +112,10 @@ function enterViewSwimList(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_changingroomVars ?? 0)?.['i'] <= Object.keys((s as any).nerdvana_bikinis ?? {}).length) {
     // TODO-QSP: jump 'loopnerdvana_bikinis'
   }
-  if (((((s as any).clothingworntype ?? 0)).indexOf(('swimsuit'))) + 1) {
+  if ((String(((s as any).clothingworntype ?? 0)).indexOf(String('swimsuit'))) + 1) {
     scene.text('<center>You are wearing a swimsuit.</center>');
   } else {
-    if (((((s as any).clothingworntype ?? 0)).indexOf(('bikini'))) + 1) {
+    if ((String(((s as any).clothingworntype ?? 0)).indexOf(String('bikini'))) + 1) {
       scene.text('<center>You are wearing a bikini.</center>');
     }
   }

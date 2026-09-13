@@ -2022,7 +2022,7 @@ function enterVirgContinueHarder(s: GameState, scene: SceneBuilder): void {
 
 function enterFuckCum(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sex_ev ?? 0)?.['boy_cum'] !== 2) {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_cum'] = (Math.floor(Math.random() * (1 - -1 + 1)) + (-1));
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['boy_cum'] = (Math.floor(Math.random() * (1 - (-1) + 1)) + ((-1)));
   }
   if (((s as any).sex_ev ?? 0)?.['boy_cum'] > 0) {
     qspCall(s, 'sex_ev_cum', 'fuck_cum_random');

@@ -522,7 +522,7 @@ function enterSexSet(s: GameState, scene: SceneBuilder): void {
             if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
           }
         }
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['simultanous_boys'] = ((s as any).katjaQW['simultanous_boys'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (ARGS[1] - ((s as any).katjaQW ?? {})?.['simultanous_boys'] - 0 + 1)) + (0))));
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['simultanous_boys'] = ((s as any).katjaQW['simultanous_boys'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (((s as any).ARGS ?? 0)[1] - ((s as any).katjaQW ?? {})?.['simultanous_boys'] - 0 + 1)) + (0))));
         if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min(((s as any).katjaQW ?? 0)?.['simultanous_boys'], qspUntranslated(s, "ARGS[1]", { location: "katja_procedural" }))*3);
       }
     }
@@ -577,7 +577,7 @@ function enterSexSet(s: GameState, scene: SceneBuilder): void {
             if (!(s as any).npc_throat) (s as any).npc_throat = {}; (s as any).npc_throat['A14'] = ((s as any).npc_throat['A14'] ?? 0) + (1);
           }
         }
-        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['simultanous_girls'] = ((s as any).katjaQW['simultanous_girls'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (ARGS[2] - ((s as any).katjaQW ?? {})?.['simultanous_girls'] - 0 + 1)) + (0))));
+        if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['simultanous_girls'] = ((s as any).katjaQW['simultanous_girls'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (((s as any).ARGS ?? 0)[2] - ((s as any).katjaQW ?? {})?.['simultanous_girls'] - 0 + 1)) + (0))));
         if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (Math.min(((s as any).katjaQW ?? 0)?.['simultanous_gitls'], qspUntranslated(s, "ARGS[2]", { location: "katja_procedural" }))*2);
       }
     }

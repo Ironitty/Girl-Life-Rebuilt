@@ -144,7 +144,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     } else {
-      if (((qspUntranslated(s, "policeQW_courtletter_subjects[0]", { location: "courtletter" })).slice((1)-1, ((1)-1)+(12))) === 'missed_court') {
+      if ((String(qspUntranslated(s, "policeQW_courtletter_subjects[0]", { location: "courtletter" })).slice((1)-1, ((1)-1)+(12))) === 'missed_court') {
         if (((s as any).week ?? 0) === 6) {
           // TODO-QSP: policeQW_courthearing_dates[] = daystart + 9
         } else {

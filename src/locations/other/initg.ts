@@ -10,11 +10,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :initg_loop
   // TODO-QSP: $inittext[] = $t
   // TODO-QSP: $t
-  if (((((s as any).initext ?? 0)).indexOf(('\\n'))) + 1 < 4) {
+  if ((String(((s as any).initext ?? 0)).indexOf(String('\\n'))) + 1 < 4) {
   }
-  if (((((s as any).initext ?? 0)).indexOf(('\\r'))) + 1 < 4) {
+  if ((String(((s as any).initext ?? 0)).indexOf(String('\\r'))) + 1 < 4) {
   }
-  if (((((s as any).initext ?? 0)).indexOf(('\\n'))) + 1 > 0) {
+  if ((String(((s as any).initext ?? 0)).indexOf(String('\\n'))) + 1 > 0) {
     // TODO-QSP: jump 'initg_loop'
   }
   // TODO-QSP: $inittext[] = $t

@@ -6,6 +6,7 @@ type Navigation =
 
 export type ActionDef = {
   label: string;
+  labelFn?: (s: GameState) => string;
   handler?: (s: GameState) => void;
   visible?: (s: GameState) => boolean;
   style?: 'normal' | 'positive' | 'negative' | 'warning';

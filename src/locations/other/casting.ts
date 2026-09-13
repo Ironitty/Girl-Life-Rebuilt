@@ -156,7 +156,7 @@ function enterBackShowerGirl(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Uninhibited girls wanted for the role of <b>Background Shower Girl.</b>');
   qspCall(s, 'casting', 'general_details');
   // TODO-QSP: end
@@ -175,7 +175,7 @@ function enterSpringBreakFlasher(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletits'] = 4;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Big boobed girl wanted for the role of <b>Spring Break Flasher.</b>');
   qspCall(s, 'casting', 'general_details');
   // TODO-QSP: end
@@ -193,7 +193,7 @@ function enterSpringBreakFlasher(s: GameState, scene: SceneBuilder): void {
 function enterCadaver(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   qspCall(s, 'casting', 'audition_schedule');
   scene.text('Young pretty girl wanted for the role of <b>Dead Girl 2</b>');
   qspCall(s, 'casting', 'details');
@@ -215,7 +215,7 @@ function enterDildoGirl(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['type'] = 'panties';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['panties'] = 'gm';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantynumber'] = 31;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Big boobed girl wanted for the role of <b>Dildo Girl.</b>');
   qspCall(s, 'casting', 'general_details');
   // TODO-QSP: end
@@ -234,7 +234,7 @@ function enterNakedLockerGirl(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Young pretty girl wanted for the role of <b>Naked Locker Girl.</b>');
   qspCall(s, 'casting', 'general_details');
   // TODO-QSP: end
@@ -258,7 +258,7 @@ function enterUndressingLockerGirl(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantynumber'] = 13;
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantytype'] = 'thong';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantydrawer'] = 'filled with thongs. She picks one out and';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Big boobed girls wanted for the role of <b>Undressing Locker Girl.</b>');
   qspCall(s, 'casting', 'general_details');
   // TODO-QSP: end
@@ -278,7 +278,7 @@ function enterModestCheerleader(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'face_check';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['type'] = 'normal';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'cheerleader';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Pretty girls wanted for the role of <b>Modest Cheerleader.</b>');
   qspCall(s, 'casting', 'general_details');
   // TODO-QSP: end
@@ -299,7 +299,7 @@ function enterUnderwearCheerleader(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['type'] = 'normal';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'underwear';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['underwear'] = 'cats';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15 * (Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Pretty girls wanted for the role of <b>Underwear Cheerleader.</b>');
   qspCall(s, 'casting', 'general_details');
   // TODO-QSP: end
@@ -321,7 +321,7 @@ function enterToplessCheerleader(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['panties'] = 'cats';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantytype'] = 'normal';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['pantydrawer'] = 'to pull out a random pair of panties';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Young pretty girl wanted for the role of <b>Topless Cheerleader 3.</b>');
   qspCall(s, 'casting', 'general_details');
   // TODO-QSP: end
@@ -340,7 +340,7 @@ function enterHotShowerGirl(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   scene.text('Young pretty girl wanted for the role of <b>Hot Shower Girl.</b>');
   qspCall(s, 'casting', 'general_details');
   // TODO-QSP: end
@@ -359,7 +359,7 @@ function enterWerewolfGirl(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 3;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['type'] = 'titty';
   if (!(s as any).costuming) (s as any).costuming = {}; (s as any).costuming['outfit'] = 'nude';
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletits'] = 4;
   scene.text('Big boobed girl wanted for the role of <b>Werewolf Victim.</b>');
   qspCall(s, 'casting', 'general_details');
@@ -379,7 +379,7 @@ function enterDinerWaitress(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 5;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = Math.floor(Math.random() * 5) + 1;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['requirement'] = 50;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['scenecount'] = 2;
   qspCall(s, 'casting', 'audition_schedule');
   scene.text('Casting season two of "The Line", a television police drama. Pretty girls wanted for the role of <b>Diner Waitress.</b>');
@@ -407,7 +407,7 @@ function enterHotBartender(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['roletype'] = 5;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = Math.floor(Math.random() * 5) + 1;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['requirement'] = 50;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['scenecount'] = 3;
   qspCall(s, 'casting', 'audition_schedule');
   scene.text('Casting for the role of <b>Vera:</b> Female, 18-25');
@@ -436,7 +436,7 @@ function enterSluttyClubGirl(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = Math.floor(Math.random() * 5) + 1;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['requirement'] = 60;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['unique'] = 1;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['scenecount'] = 1;
   qspCall(s, 'casting', 'audition_schedule');
   scene.text('Casting "Snare: The Seventh Seduction", a feature length horror film. Pretty girls wanted for the role of <b>Slutty Club Girl (Day Player):</b> Female, 18-30');
@@ -464,7 +464,7 @@ function enterYulyaGavrikov(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['number'] = 1;
   if (!(s as any).audition) (s as any).audition = {}; (s as any).audition['room'] = Math.floor(Math.random() * 5) + 1;
   if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['filmdays'] = 40;
-  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (roletype - 0 + 1)) + (0)));
+  if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['pay'] = (((s as any).audition ?? {})?.['roletype'] + 1) * 800 + (15*(Math.floor(Math.random() * (((s as any).roletype ?? 0) - 0 + 1)) + (0)));
   qspCall(s, 'casting', 'audition_schedule');
   scene.text('Casting "Unashamed,"for the lead female role of <b>Yulya Gavrikov (Lead):</b> Female, 18-25');
   scene.text('Synopsis: Unashamed is a comedic drama that follows the Gavrikov family as they struggle through their problems of self image, romance, sexual identity, work and life balance, and most of all what it means to stick together as a family and be able to love each other without shame.');

@@ -34,7 +34,7 @@ export default function ActionBar({ actions }: Props) {
             border: '1px solid var(--gl-border)',
           }}
         >
-          {action.label}
+          {action.labelFn ? action.labelFn(useGameStore.getState()) : action.label}
         </button>
       ))}
     </div>

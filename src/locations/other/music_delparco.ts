@@ -128,13 +128,13 @@ function enterEveningshow(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'mood', 'raise', 'tiny');
     } else {
       if (((s as any).ml_success ?? 0) < ((s as any).ml_correction_chance ?? 0) + 10) {
-        qspCall(s, 'fame', 'pav', 'music', (Math.floor(Math.random() * (0 - -2 + 1)) + (-2)));
+        qspCall(s, 'fame', 'pav', 'music', (Math.floor(Math.random() * (0 - (-2) + 1)) + ((-2))));
         qspCall(s, 'mood', 'lower', 'small');
         scene.text('You made quite a few mistakes and forgot the lyrics in places, and even though you tried your best to compensate by your performance and your looks, you could see that people have noticed them. ');
         scene.text('You will have to practice even more and rehearse your songs before your next gig.');
       } else {
         if (!(s as any).ml_delparco) (s as any).ml_delparco = {}; (s as any).ml_delparco['performance'] = ((s as any).ml_delparco['performance'] ?? 0) - (20);
-        qspCall(s, 'fame', 'pav', 'music', (Math.floor(Math.random() * (-5 - -10 + 1)) + (-10)));
+        qspCall(s, 'fame', 'pav', 'music', (Math.floor(Math.random() * ((-5) - (-10) + 1)) + ((-10))));
         qspCall(s, 'mood', 'lower', 'medium');
         scene.text('Today definitely wasn\'t your day. You bombed, there is no better word for it. While you lasted your 30 minutes, you could see on the audience that they didn\'t really enjoy it, even though they politely clapped at the end.');
         scene.text('You will have to do some serious practicing if you want to have another chance to perform.');

@@ -78,7 +78,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAssignIndex(s: GameState, scene: SceneBuilder): void {
-  if (((qspUntranslated(s, "cemptyarray[0]", { location: "npcgeneratec" })).slice((1)-1, ((1)-1)+(1))) === 'C') {
+  if ((String(qspUntranslated(s, "cemptyarray[0]", { location: "npcgeneratec" })).slice((1)-1, ((1)-1)+(1))) === 'C') {
   } else {
     // TODO-QSP: :npcgencsanityloop
     (s as any).ngc_scheck = 0;
@@ -960,14 +960,14 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: $npc_perstype[$ARGS[1]] += 'P'
   }
-  if (((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((3)-1, ((3)-1)+(1))) === 'T') {
-    if (((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(1))) === 'E') {
+  if ((String(((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((3)-1, ((3)-1)+(1))) === 'T') {
+    if ((String(((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(1))) === 'E') {
       if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['humor'] = Math.floor(Math.random() * 2) + 2;
     } else {
       if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['humor'] = 3;
     }
   } else {
-    if (((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(1))) === 'E') {
+    if ((String(((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(1))) === 'E') {
       if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['humor'] = Math.floor(Math.random() * 2) + 1;
     } else {
       if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['humor'] = 1;
@@ -1006,7 +1006,7 @@ function enterSetPersonality(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 6) + 0))) {
     // TODO-QSP: npc_mj[$ARGS[1]] = 1 + (rand(0, 3) / 3)
   }
-  if (((((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(1))) === 'E') {
+  if ((String(((s as any).npc_perstype ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]).slice((1)-1, ((1)-1)+(1))) === 'E') {
     // TODO-QSP: $npc_door_pref[$ARGS[1]] = 'outdoor'
   } else {
     // TODO-QSP: $npc_door_pref[$ARGS[1]] = 'indoor'
@@ -1942,7 +1942,7 @@ function enterSetApprnc(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rough ?? 0)[((s as any).locArgs?.[1] ?? 0)] === 1) {
       if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['apprnc'] = ((s as any).npcgeneratecVars['apprnc'] ?? 0) + (Math.floor(Math.random() * 21) + 10);
     } else {
-      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['apprnc'] = ((s as any).npcgeneratecVars['apprnc'] ?? 0) + ((Math.floor(Math.random() * (10 - -10 + 1)) + (-10)));
+      if (!(s as any).npcgeneratecVars) (s as any).npcgeneratecVars = {}; (s as any).npcgeneratecVars['apprnc'] = ((s as any).npcgeneratecVars['apprnc'] ?? 0) + ((Math.floor(Math.random() * (10 - (-10) + 1)) + ((-10))));
     }
   }
   // TODO-QSP: npc_apprnc[$ARGS[1]] = npcgeneratecVars['apprnc']

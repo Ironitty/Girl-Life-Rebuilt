@@ -993,7 +993,7 @@ function enterPushupsInner(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).temp_energy_bonus = 200 - ((s as any).pcs_energy ?? 0);
   }
-  (s as any).pushnum = 10 * (((s as any).pcs_stren ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_sleep ?? 0) + ((s as any).temp_energy_bonus ?? 0)) / 33 + (Math.floor(Math.random() * (10 - -10 + 1)) + (-10));
+  (s as any).pushnum = 10 * (((s as any).pcs_stren ?? 0) + ((s as any).pcs_vital ?? 0) + ((s as any).pcs_sleep ?? 0) + ((s as any).temp_energy_bonus ?? 0)) / 33 + (Math.floor(Math.random() * (10 - (-10) + 1)) + ((-10)));
   (s as any).pushnum = 0;
   // TODO-QSP: dynamic text: <br>You managed to do <<pushnum>> push-ups. Your previous record is <<pushrecord...
   scene.text(`<br>You managed to do ${((s as any).pushnum ?? 0)} push-ups. Your previous record is ${((s as any).pushrecord ?? 0)}.`);

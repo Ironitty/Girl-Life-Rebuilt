@@ -3,6 +3,7 @@ import { SceneBuilder } from './scene';
 import { getRoutine } from './routines';
 
 const locationRegistry: Record<string, LocationDef> = {};
+let _currentScene: SceneBuilder | null = null;
 
 export function defineLocation<T extends LocationDef>(loc: T): T {
   return loc;
@@ -73,6 +74,7 @@ export function goto(s: GameState, loc: string, arg: string, arg2?: string, arg3
   const def = getLocation(loc);
   if (def) {
     const scene = new SceneBuilder();
+    _currentScene = scene;
     if (def.background) scene.background(def.background);
     if (def.enter) {
       def.enter(s, scene);
@@ -83,6 +85,7 @@ export function goto(s: GameState, loc: string, arg: string, arg2?: string, arg3
       scene.text('');
       if (def.actions) scene.actions(def.actions);
     }
+    _currentScene = null;
     s.scene = scene.build();
   }
 }
@@ -111,10 +114,16 @@ export function invoke(s: GameState, name: string, arg: string): void {
 
   const def = getLocation(name);
   if (def?.enter) {
-    def.enter(s, new SceneBuilder());
+    const target = _currentScene ?? new SceneBuilder();
+    def.enter(s, target);
+    if (s.navigationVersion !== version) return;
+    if (!_currentScene && target.curActs.length > 0) {
+      s.scene = { ...savedScene, curActs: [...(savedScene.curActs ?? []), ...target.curActs] };
+    } else {
+      s.scene = savedScene;
+    }
+  } else {
+    if (s.navigationVersion !== version) return;
+    s.scene = savedScene;
   }
-
-  if (s.navigationVersion !== version) return;
-
-  s.scene = savedScene;
 }

@@ -2307,7 +2307,7 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: $func('npc_reactions', 'general', 'A24')
       } else {
         if (((s as any).grupTipe ?? 0) === 3) {
-          qspCall(s, 'npc_relationship', 'modify', 'A24', (Math.floor(Math.random() * (-1 - 0 + 1)) + (0)));
+          qspCall(s, 'npc_relationship', 'modify', 'A24', (Math.floor(Math.random() * ((-1) - 0 + 1)) + (0)));
           if (((s as any).npc_rel ?? 0)?.['A24'] >= 80) {
             scene.text('Seeing Pauline sitting on the steps, you approach her, "Hi Pauline! What are you up to?"');
             // TODO-QSP: dynamic text: She looks back at you. "What do you want, <<$pcs_nickname>>?"
@@ -2360,7 +2360,7 @@ function enterPauline(s: GameState, scene: SceneBuilder): void {
             }
             // TODO-QSP: $func('npc_reactions', 'general', 'A24')
           } else {
-            qspCall(s, 'npc_relationship', 'modify', 'A24', (Math.floor(Math.random() * (-1 - 0 + 1)) + (0)));
+            qspCall(s, 'npc_relationship', 'modify', 'A24', (Math.floor(Math.random() * ((-1) - 0 + 1)) + (0)));
             if (((s as any).npc_rel ?? 0)?.['A24'] >= 80) {
               scene.text('Seeing Pauline sitting on the steps, you approach her, "Hi Pauline! What are you up to?"');
               // TODO-QSP: dynamic text: She looks back at you and asks "You lost, <<$pcs_nickname>>? Shouldn't you be wi...

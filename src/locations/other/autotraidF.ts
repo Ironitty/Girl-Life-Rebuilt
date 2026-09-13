@@ -235,8 +235,8 @@ function enterInspectWreck(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>2107 (Broken engine)</b></center>');
   scene.img('images/pc/items/accessories/car/car1.jpg');
   if (((s as any).used_car ?? 0)?.['wrek_condition'] === 0  &&  ((s as any).used_car ?? 0)?.['wrek_price'] === 0) {
-    if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['wrek_condition'] = (Math.floor(Math.random() * (CarCondition - CarCondition / 20 + 1)) + (CarCondition / 20));
-    if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['wrek_price'] = (Math.floor(Math.random() * (CarPrice / 200 - CarPrice / 1000 + 1)) + (CarPrice / 1000)) * 100;
+    if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['wrek_condition'] = (Math.floor(Math.random() * (((s as any).CarCondition ?? 0) - ((s as any).CarCondition ?? 0) / 20 + 1)) + (((s as any).CarCondition ?? 0) / 20));
+    if (!(s as any).used_car) (s as any).used_car = {}; (s as any).used_car['wrek_price'] = (Math.floor(Math.random() * (((s as any).CarPrice ?? 0) / 200 - ((s as any).CarPrice ?? 0) / 1000 + 1)) + (((s as any).CarPrice ?? 0) / 1000)) * 100;
   }
   // TODO-QSP: dynamic text: The car is basically a wreck. It doesn't even start. When you ask the salesman h...
   scene.text('The car is basically a wreck. It doesn\'t even start. When you ask the salesman how much it costs, he tells you "\' + $func(\'money\', \'string_price\', used_car[\'wrek_price\']) + \'" without hesitation.');

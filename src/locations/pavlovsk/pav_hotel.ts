@@ -150,7 +150,7 @@ function enterResepEvent1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Wait until they\'re finished', handler: (st: GameState) => {
     (s as any).hotresepQW_day = ((s as any).daystart ?? 0);
-    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * (60 - minut - 1 + 1)) + (1)));
+    (s as any).minut = ((s as any).minut ?? 0) + ((Math.floor(Math.random() * (60 - ((s as any).minut ?? 0) - 1 + 1)) + (1)));
   }, goto: ['pav_hotel', ''] },
     ]);
   } else {

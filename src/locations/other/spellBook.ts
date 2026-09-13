@@ -64,7 +64,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: </tr>"
           (s as any).n = 0;
           // TODO-QSP: :RowCodeLoop98
-          if (((s as any).n ?? 0) < ((s as any).arrsize ?? 0)(((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)])) {
+          if (((s as any).n ?? 0) < Object.keys((s as any)['' + qspUntranslated(s, "spellOptDesc[ThisSpellName]>", { location: "spellBook" }) + ''] ?? {}).length) {
             if (!(s as any).spellBookVar) (s as any).spellBookVar = {}; (s as any).spellBookVar['tmpVal'] = 0;
             if (!(s as any).spellBookVar) (s as any).spellBookVar = {}; (s as any).spellBookVar['tmpName'] = 0;
             // TODO-QSP: $tmpHTMLCode += "
@@ -157,7 +157,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: </tr>"
             (s as any).n = 0;
             // TODO-QSP: :RowCodeLoop99
-            if (((s as any).n ?? 0) < ((s as any).arrsize ?? 0)(((s as any).spellOptDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)])) {
+            if (((s as any).n ?? 0) < Object.keys((s as any)['' + qspUntranslated(s, "spellOptDesc[ThisSpellName]>", { location: "spellBook" }) + ''] ?? {}).length) {
               if (!(s as any).spellBookVar) (s as any).spellBookVar = {}; (s as any).spellBookVar['tmpVal'] = 0;
               if (!(s as any).spellBookVar) (s as any).spellBookVar = {}; (s as any).spellBookVar['tmpName'] = 0;
               // TODO-QSP: $tmpHTMLCode += "

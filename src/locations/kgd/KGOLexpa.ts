@@ -19,15 +19,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGOLatk(s: GameState, scene: SceneBuilder): void {
-  (s as any).KGOLzasV = (Math.floor(Math.random() * (KGOLspeedV - KGOLspeedV / 4 + 1)) + (KGOLspeedV / 4));
-  (s as any).KGOLataka = (Math.floor(Math.random() * (KGOLspeed * 2 - KGOLspeed / 2 + 1)) + (KGOLspeed / 2));
+  (s as any).KGOLzasV = (Math.floor(Math.random() * (((s as any).KGOLspeedV ?? 0) - ((s as any).KGOLspeedV ?? 0) / 4 + 1)) + (((s as any).KGOLspeedV ?? 0) / 4));
+  (s as any).KGOLataka = (Math.floor(Math.random() * (((s as any).KGOLspeed ?? 0) * 2 - ((s as any).KGOLspeed ?? 0) / 2 + 1)) + (((s as any).KGOLspeed ?? 0) / 2));
   if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzasV ?? 0)) {
     if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzasV ?? 0) * 2) {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (KGOLpower - KGOLpower / 2 + 1)) + (KGOLpower / 2));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).KGOLpower ?? 0) - ((s as any).KGOLpower ?? 0) / 2 + 1)) + (((s as any).KGOLpower ?? 0) / 2));
       (s as any).KGHPV = ((s as any).KGHPV ?? 0) - (((s as any).KGHPnpow ?? 0));
       scene.text(`You deal ${((s as any).KGHPnpow ?? 0)} damage`);
     } else {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (KGOLpower / 4 - KGOLpower / 10 + 1)) + (KGOLpower / 10));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).KGOLpower ?? 0) / 4 - ((s as any).KGOLpower ?? 0) / 10 + 1)) + (((s as any).KGOLpower ?? 0) / 10));
       (s as any).KGHPntpow = ((s as any).KGHPnpow ?? 0) - ((s as any).KGOLbronaV ?? 0);
       if (((s as any).KGHPntpow ?? 0) <= 0) {
         (s as any).KGHPntpow = 1;
@@ -43,16 +43,16 @@ function enterKGOLatk(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGOLatkPoison(s: GameState, scene: SceneBuilder): void {
-  (s as any).KGOLzasV = (Math.floor(Math.random() * (KGOLspeedV - KGOLspeedV / 4 + 1)) + (KGOLspeedV / 4));
-  (s as any).KGOLataka = (Math.floor(Math.random() * (KGOLspeed * 2 - KGOLspeed / 2 + 1)) + (KGOLspeed / 2));
+  (s as any).KGOLzasV = (Math.floor(Math.random() * (((s as any).KGOLspeedV ?? 0) - ((s as any).KGOLspeedV ?? 0) / 4 + 1)) + (((s as any).KGOLspeedV ?? 0) / 4));
+  (s as any).KGOLataka = (Math.floor(Math.random() * (((s as any).KGOLspeed ?? 0) * 2 - ((s as any).KGOLspeed ?? 0) / 2 + 1)) + (((s as any).KGOLspeed ?? 0) / 2));
   if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzasV ?? 0)) {
     (s as any).poison = ((s as any).poison ?? 0) + (((s as any).KGOLspell4 ?? 0) + 1);
     if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzasV ?? 0) * 2) {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (KGOLpower - KGOLpower / 2 + 1)) + (KGOLpower / 2));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).KGOLpower ?? 0) - ((s as any).KGOLpower ?? 0) / 2 + 1)) + (((s as any).KGOLpower ?? 0) / 2));
       (s as any).KGHPV = ((s as any).KGHPV ?? 0) - (((s as any).KGHPnpow ?? 0));
       scene.text(`You deal ${((s as any).KGHPnpow ?? 0)} damage`);
     } else {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (KGOLpower / 4 - KGOLpower/10 + 1)) + (KGOLpower/10));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).KGOLpower ?? 0) / 4 - ((s as any).KGOLpower ?? 0)/10 + 1)) + (((s as any).KGOLpower ?? 0)/10));
       (s as any).KGHPntpow = ((s as any).KGHPnpow ?? 0) - ((s as any).KGOLbronaV ?? 0);
     }
     if (((s as any).KGHPntpow ?? 0) <= 0) {
@@ -75,15 +75,15 @@ function enterKGOLatkFB(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKGOLatkV(s: GameState, scene: SceneBuilder): void {
-  (s as any).KGOLzas = (Math.floor(Math.random() * (KGOLspeed - KGOLspeed/4 + 1)) + (KGOLspeed/4));
-  (s as any).KGOLatakaV = (Math.floor(Math.random() * (KGOLspeedV * 2 - KGOLspeedV/2 + 1)) + (KGOLspeedV/2));
+  (s as any).KGOLzas = (Math.floor(Math.random() * (((s as any).KGOLspeed ?? 0) - ((s as any).KGOLspeed ?? 0)/4 + 1)) + (((s as any).KGOLspeed ?? 0)/4));
+  (s as any).KGOLatakaV = (Math.floor(Math.random() * (((s as any).KGOLspeedV ?? 0) * 2 - ((s as any).KGOLspeedV ?? 0)/2 + 1)) + (((s as any).KGOLspeedV ?? 0)/2));
   if (((s as any).KGOLatakaV ?? 0) >= ((s as any).KGOLzas ?? 0)) {
     if (((s as any).KGOLatakaV ?? 0) >= ((s as any).KGOLzas ?? 0) * 2) {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (KGOLpowerV - KGOLpowerV / 2 + 1)) + (KGOLpowerV / 2));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).KGOLpowerV ?? 0) - ((s as any).KGOLpowerV ?? 0) / 2 + 1)) + (((s as any).KGOLpowerV ?? 0) / 2));
       (s as any).KGHP = ((s as any).KGHP ?? 0) - (((s as any).KGHPnpow ?? 0));
       scene.text(`You receive ${((s as any).KGHPnpow ?? 0)} damage`);
     } else {
-      (s as any).KGHPnpow = (Math.floor(Math.random() * (KGOLpowerV / 4 - KGOLpowerV/10 + 1)) + (KGOLpowerV/10));
+      (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).KGOLpowerV ?? 0) / 4 - ((s as any).KGOLpowerV ?? 0)/10 + 1)) + (((s as any).KGOLpowerV ?? 0)/10));
       (s as any).KGHPntpow = ((s as any).KGHPnpow ?? 0) - ((s as any).KGOLbrona ?? 0);
       if (((s as any).KGHPntpow ?? 0) <= 0) {
         (s as any).KGHPntpow = 1;

@@ -611,7 +611,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_death_cause_hydra = 0;
   if (((s as any).pcs_hydra ?? 0) <= 0) {
     (s as any).temp_death_cause_hydra = 1;
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) - ((Math.floor(Math.random() * (1 - pcs_hydra - 0 + 1)) + (0)));
+    (s as any).pcs_health = ((s as any).pcs_health ?? 0) - ((Math.floor(Math.random() * (1 - ((s as any).pcs_hydra ?? 0) - 0 + 1)) + (0)));
     (s as any).pcs_hydra = 1;
   }
   (s as any).hydra_check = ((s as any).pcs_hydra ?? 0);

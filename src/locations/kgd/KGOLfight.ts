@@ -138,8 +138,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: 'Disengage', goto: ['KGOLgame', ''] },
     ]);
   }
-  (s as any).KGOLiniV = (Math.floor(Math.random() * (KGOLspeedV * 2 - KGOLspeedV / 2 + 1)) + (KGOLspeedV / 2));
-  (s as any).KGOLini = (Math.floor(Math.random() * (KGOLspeed * 2 - KGOLspeed / 2 + 1)) + (KGOLspeed / 2));
+  (s as any).KGOLiniV = (Math.floor(Math.random() * (((s as any).KGOLspeedV ?? 0) * 2 - ((s as any).KGOLspeedV ?? 0) / 2 + 1)) + (((s as any).KGOLspeedV ?? 0) / 2));
+  (s as any).KGOLini = (Math.floor(Math.random() * (((s as any).KGOLspeed ?? 0) * 2 - ((s as any).KGOLspeed ?? 0) / 2 + 1)) + (((s as any).KGOLspeed ?? 0) / 2));
   if (((s as any).KGOLini ?? 0) === ((s as any).KGOLiniV ?? 0)) {
     (s as any).hodrand = Math.floor(Math.random() * 2) + 0;
     if ((!((s as any).hodrand ?? 0))) {
@@ -290,7 +290,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Fireball (<<KGOLspell7 * 10>> mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell7 ?? 0));
-    (s as any).KGOLpower = (Math.floor(Math.random() * (KGOLspell7 * 200 - KGOLspell7 * 100 + 1)) + (KGOLspell7 * 100));
+    (s as any).KGOLpower = (Math.floor(Math.random() * (((s as any).KGOLspell7 ?? 0) * 200 - ((s as any).KGOLspell7 ?? 0) * 100 + 1)) + (((s as any).KGOLspell7 ?? 0) * 100));
     qspCall(s, 'KGOLexpa', 'KGOLatkFB');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -304,7 +304,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             scene.actions([
               { label: 'Kinetic Pulse (<<KGOLspell5 * 10>> mana)', handler: (st: GameState) => {
     (s as any).KGMana = ((s as any).KGMana ?? 0) - (((s as any).KGOLspell5 ?? 0));
-    (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) + ((Math.floor(Math.random() * (KGOLspell5 * 50 - KGOLspell5 * 10 + 1)) + (KGOLspell5 * 10)));
+    (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) + ((Math.floor(Math.random() * (((s as any).KGOLspell5 ?? 0) * 50 - ((s as any).KGOLspell5 ?? 0) * 10 + 1)) + (((s as any).KGOLspell5 ?? 0) * 10)));
     // TODO-QSP: dynamic text: A wave of energy bursts from within you, throwing the enemy back. The distance b...
     scene.text(`A wave of energy bursts from within you, throwing the enemy back. The distance between you is now ${((s as any).KGOLdist ?? 0)} meter(s).`);
     scene.actions([
@@ -391,7 +391,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).KGOLdist ?? 0) > 0) {
       scene.actions([
         { label: 'Run towards the enemy', handler: (st: GameState) => {
-    (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) - ((Math.floor(Math.random() * (KGOLspeed/10 - KGOLspeed/20 + 1)) + (KGOLspeed/20)));
+    (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) - ((Math.floor(Math.random() * (((s as any).KGOLspeed ?? 0)/10 - ((s as any).KGOLspeed ?? 0)/20 + 1)) + (((s as any).KGOLspeed ?? 0)/20)));
     dynamicGoto(st, 'curloc');
   } },
       ]);
@@ -416,7 +416,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     scene.actions([
       { label: 'Flee from the enemy', handler: (st: GameState) => {
-    (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) + ((Math.floor(Math.random() * (KGOLspeed/10 - KGOLspeed/20 + 1)) + (KGOLspeed/20)));
+    (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) + ((Math.floor(Math.random() * (((s as any).KGOLspeed ?? 0)/10 - ((s as any).KGOLspeed ?? 0)/20 + 1)) + (((s as any).KGOLspeed ?? 0)/20)));
     dynamicGoto(st, 'curloc');
   } },
     ]);
@@ -427,7 +427,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text(`${((s as any).KGname ?? 0)} attacks you.`);
       qspCall(s, 'KGOLexpa', 'KGOLatkV');
     } else {
-      (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) - ((Math.floor(Math.random() * (KGOLspeedV/10 - KGOLspeedV/20 + 1)) + (KGOLspeedV/20)));
+      (s as any).KGOLdist = ((s as any).KGOLdist ?? 0) - ((Math.floor(Math.random() * (((s as any).KGOLspeedV ?? 0)/10 - ((s as any).KGOLspeedV ?? 0)/20 + 1)) + (((s as any).KGOLspeedV ?? 0)/20)));
       // TODO-QSP: dynamic text: <<$KGname>> moves towards you.
       scene.text(`${((s as any).KGname ?? 0)} moves towards you.`);
     }

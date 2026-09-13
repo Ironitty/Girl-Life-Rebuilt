@@ -111,7 +111,7 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
       return;
     }
   }
-  if (((s as any).event_vars ?? 0)?.['daystart'] === ((s as any).locArgs?.[2] ?? 0)  &&  parseFloat(((((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(1)))) === 0) {
+  if (((s as any).event_vars ?? 0)?.['daystart'] === ((s as any).locArgs?.[2] ?? 0)  &&  parseFloat((String(((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(1)))) === 0) {
     (s as any).result = 1;
     return;
   }
@@ -127,7 +127,7 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
         (s as any).result = 1;
       }
     } else {
-      if (((((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(7))) === 'yearly-') {
+      if ((String(((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(7))) === 'yearly-') {
         // TODO-QSP: gs 'time', 'to_date', ARGS[2]
         (s as any).temp_check_month = ((s as any).dateVars ?? 0)?.['month'];
         (s as any).temp_check_day = ((s as any).dateVars ?? 0)?.['day'];
@@ -144,10 +144,10 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        if (((((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(8))) === 'monthly-') {
+        if ((String(((s as any).event_vars ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(8))) === 'monthly-') {
           // TODO-QSP: gs 'time', 'to_date', ARGS[2]
-          if (((s as any).dateVars ?? 0)?.['week'] === parseFloat(((((s as any).event_vars ?? 0)?.['recur']).slice((11)-1, ((11)-1)+(1))))) {
-            if ((((s as any).dateVars ?? 0)?.['day'] - 1) / 7 + 1 === parseFloat(((((s as any).event_vars ?? 0)?.['recur']).slice((9)-1, ((9)-1)+(1))))) {
+          if (((s as any).dateVars ?? 0)?.['week'] === parseFloat((String(((s as any).event_vars ?? 0)?.['recur']).slice((11)-1, ((11)-1)+(1))))) {
+            if ((((s as any).dateVars ?? 0)?.['day'] - 1) / 7 + 1 === parseFloat((String(((s as any).event_vars ?? 0)?.['recur']).slice((9)-1, ((9)-1)+(1))))) {
               (s as any).result = 1;
             }
           }
@@ -179,7 +179,7 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
                   (s as any).result = 1;
                 } else {
                   (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', qspUntranslated(s, "ARGS[2]", { location: "calendar_events" }));
-                  if (((' \' + \'0\' + \' ').indexOf((' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
+                  if ((String(' \' + \'0\' + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
                     (s as any).result = 1;
                   }
                 }
@@ -197,14 +197,14 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
 
 function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === -1) {
-    if (parseFloat(((((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(1)))) > 0) {
+    if (parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(1)))) > 0) {
       (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).new_ev ?? 0)?.['daystart']);
-      if (((' \' + \'0\' + \' ').indexOf((' \' + $str(temp_weekday) + \' '))) + 1 === 0) {
+      if ((String(' \' + \'0\' + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 === 0) {
         (s as any).temp_check_day = ((s as any).new_ev ?? {})?.['daystart'] + 1;
         (s as any).temp_days_scanned = 0;
         // TODO-QSP: :find_first_match
         (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).temp_check_day ?? 0));
-        if (((' \' + \'0\' + \' ').indexOf((' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
+        if ((String(' \' + \'0\' + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
           (s as any).result = ((s as any).temp_check_day ?? 0);
           return;
         }
@@ -232,7 +232,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).new_ev ?? 0)?.['recur'] === 'biweekly') {
         (s as any).candidate = ((s as any).ARGS ?? 0)[1] + 14;
       } else {
-        if (((((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(8))) === 'monthly-') {
+        if ((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(8))) === 'monthly-') {
           (s as any).temp_N = qspUntranslated(s, "val(mid(new_ev['recur'], 9, 1))", { location: "calendar_events" });
           (s as any).temp_W = qspUntranslated(s, "val(mid(new_ev['recur'], 11, 1))", { location: "calendar_events" });
           // TODO-QSP: gs 'time', 'to_date', ARGS[1]
@@ -270,7 +270,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_month ?? 0), ((s as any).temp_day ?? 0));
               (s as any).candidate = ((s as any).dateVars ?? 0)?.['daystart'];
             } else {
-              if (((((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(7))) === 'yearly-') {
+              if ((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(7))) === 'yearly-') {
                 // TODO-QSP: gs 'time', 'to_date', ARGS[1]
                 (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
                 (s as any).temp_start_mmdd = qspUntranslated(s, "val(mid(new_ev['recur'], 8, 4))", { location: "calendar_events" });
@@ -314,7 +314,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
                 (s as any).temp_days_checked = 0;
                 // TODO-QSP: :loop_weekdays
                 (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).temp_check ?? 0));
-                if (((' \' + \'0\' + \' ').indexOf((' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
+                if ((String(' \' + \'0\' + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 > 0) {
                   (s as any).candidate = ((s as any).temp_check ?? 0);
                   (s as any).temp_found = 1;
                   // TODO-QSP: jump 'done_weekdays'
@@ -466,7 +466,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_i = 0;
   // TODO-QSP: :loop_existing_events
   if (((s as any).temp_event_id ?? 0) !== ''  &&  ((s as any).temp_event_id ?? 0) !== ((s as any).new_ev ?? 0)?.['id']) {
-    if (((s as any).new_ev ?? 0)?.['exclude_prefix'] === ''  ||  ((((s as any).temp_event_id ?? 0)).indexOf((((s as any).new_ev ?? 0)?.['exclude_prefix']))) + 1 !== 1) {
+    if (((s as any).new_ev ?? 0)?.['exclude_prefix'] === ''  ||  (String(((s as any).temp_event_id ?? 0)).indexOf(String(((s as any).new_ev ?? 0)?.['exclude_prefix']))) + 1 !== 1) {
       qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_event_id ?? 0));
       if (qspFunc(s, 'calendar_events', 'event_occurs_in_day', ((s as any).temp_event_id ?? 0), ((s as any).new_day ?? 0)) === 1) {
         if (((s as any).event_vars ?? 0)?.['all_day'] === 1) {

@@ -76,31 +76,31 @@ function enterShowlocation(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterListretrieve(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(('c'))) + 1  > 0) {
+  if ((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('c'))) + 1  > 0) {
     // TODO-QSP: gs 'SMS_selfies', 'retrieve_clothed_selfies',    ARGS[1], $ARGS[2]
   }
-  if (((((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(('sw'))) + 1  > 0) {
+  if ((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('sw'))) + 1  > 0) {
     // TODO-QSP: gs 'SMS_selfies', 'retrieve_swim_selfies',      ARGS[1], $ARGS[2]
   }
-  if (((((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(('u'))) + 1  > 0) {
+  if ((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('u'))) + 1  > 0) {
     // TODO-QSP: gs 'SMS_selfies', 'retrieve_underwear_selfies',    ARGS[1], $ARGS[2]
   }
-  if (((((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(('n'))) + 1  > 0) {
+  if ((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('n'))) + 1  > 0) {
     // TODO-QSP: gs 'SMS_selfies', 'retrieve_nude_selfies',      ARGS[1], $ARGS[2]
   }
-  if (((((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(('b'))) + 1  > 0) {
+  if ((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('b'))) + 1  > 0) {
     // TODO-QSP: gs 'SMS_selfies', 'retrieve_bath_selfies',      ARGS[1], $ARGS[2]
   }
-  if (((((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(('sh'))) + 1  > 0) {
+  if ((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('sh'))) + 1  > 0) {
     // TODO-QSP: gs 'SMS_selfies', 'retrieve_shower_selfies',    ARGS[1], $ARGS[2]
   }
-  if (((((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(('ft'))) + 1  > 0) {
+  if ((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('ft'))) + 1  > 0) {
     // TODO-QSP: gs 'SMS_selfies', 'retrieve_titflash_selfies',    ARGS[1], $ARGS[2]
   }
-  if (((((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(('fa'))) + 1  > 0) {
+  if ((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('fa'))) + 1  > 0) {
     // TODO-QSP: gs 'SMS_selfies', 'retrieve_assflash_selfies',    ARGS[1], $ARGS[2]
   }
-  if (((((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(('fp'))) + 1  > 0) {
+  if ((String(((s as any).SMSSelfieVars ?? 0)?.['control']).indexOf(String('fp'))) + 1  > 0) {
     // TODO-QSP: gs 'SMS_selfies', 'retrieve_pussyflash_selfies',  ARGS[1], $ARGS[2]
   }
   // TODO-QSP: end

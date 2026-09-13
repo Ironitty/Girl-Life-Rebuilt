@@ -564,7 +564,7 @@ function enterCaffeineHourlyEvents(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
   }
   if (((s as any).drugVars ?? 0)?.['caffeine_dose'] > 0) {
-    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (Math.max(0, Math.min((Math.floor(Math.random() * (((s as any).drugVars ?? {})?.['caffeine_dose'] - -1 + 1)) + (-1)), 1)));
+    (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) + (Math.max(0, Math.min((Math.floor(Math.random() * (((s as any).drugVars ?? {})?.['caffeine_dose'] - (-1) + 1)) + ((-1))), 1)));
   }
   if (((s as any).drugVars ?? 0)?.['caffeine_addict'] > 0) {
     (s as any).pcs_sleep = ((s as any).pcs_sleep ?? 0) - (Math.floor(Math.random() * 2) + 0);

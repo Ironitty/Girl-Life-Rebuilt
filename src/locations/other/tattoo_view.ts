@@ -12,58 +12,58 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'add_types') {
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('ankle'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('ankle'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'ankle');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('arm'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('arm'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'arm');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('ass'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('ass'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'ass');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('back'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('back'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'back');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('belly'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('belly'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'belly');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('breast'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('breast'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'breast');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('chest'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('chest'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'chest');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('face'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('face'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'face');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('hand'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('hand'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'hand');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('leg'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('leg'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'leg');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('lip'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('lip'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'lip');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('neck'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('neck'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'neck');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('pussy'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('pussy'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'pussy');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('shoulder'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('shoulder'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'shoulder');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('side'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('side'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'side');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('tramp'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('tramp'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'tramp');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('under'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('under'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'under');
     }
-    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  ((((s as any).locArgs?.[2] ?? 0)).indexOf(('wrist'))) + 1) {
+    if (((s as any).locArgs?.[2] ?? 0) === 'all'  ||  (String(((s as any).locArgs?.[2] ?? 0)).indexOf(String('wrist'))) + 1) {
       qspCall(s, 'shop_utils', 'init', 'add_type', 'wrist');
     }
     return;

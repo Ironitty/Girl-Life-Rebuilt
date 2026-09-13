@@ -19,97 +19,97 @@ function enterCheckIfOnlyLocal(s: GameState, scene: SceneBuilder): void {
 function enterDeg(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :famedegloop
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_sex']        > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_sex'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_sex'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_sex'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_sex'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_prostitute']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_prostitute'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_prostitute'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_prostitute'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_prostitute'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_flash']      > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_flash'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_flash'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_flash'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_flash'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_acting_core']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_acting_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_acting_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_acting_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_acting_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_dance_core']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_dance_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_dance_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_dance_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_dance_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_painting_core']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_painting_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_painting_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_painting_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_painting_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_music_core']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_music_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_music_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_music_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_music_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_ballet_core']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_ballet_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_ballet_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_ballet_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_ballet_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_modelling_core']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_modelling_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_modelling_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_modelling_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_modelling_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_porn_core']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_porn_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_porn_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_porn_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_porn_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_stripping_core']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_stripping_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_stripping_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_stripping_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_stripping_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_kickboxing_core']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_kickboxing_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_kickboxing_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_kickboxing_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_kickboxing_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_running_core']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_running_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_running_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_running_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_running_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_volleyball_core']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_volleyball_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_volleyball_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_volleyball_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_volleyball_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_chess_core']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_chess_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_chess_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_chess_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_chess_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_teaching_core']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_teaching_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_teaching_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_teaching_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_teaching_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_media_core']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_media_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_media_core'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_media_core'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_media_core'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_acting_local']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_acting_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_acting_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_acting_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_acting_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_dance_local']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_dance_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_dance_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_dance_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_dance_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_painting_local']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_painting_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_painting_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_painting_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_painting_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_music_local']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_music_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_music_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_music_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_music_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_ballet_local']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_ballet_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_ballet_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_ballet_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_ballet_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_modelling_local']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_modelling_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_modelling_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_modelling_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_modelling_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_porn_local']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_porn_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_porn_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_porn_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_porn_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_stripping_local']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_stripping_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_stripping_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_stripping_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_stripping_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_kickboxing_local']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_kickboxing_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_kickboxing_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_kickboxing_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_kickboxing_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_running_local']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_running_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_running_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_running_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_running_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_volleyball_local']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_volleyball_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_volleyball_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_volleyball_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_volleyball_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_chess_local']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_chess_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_chess_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_chess_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_chess_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_teaching_local']  > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_teaching_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_teaching_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_teaching_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_teaching_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fame ?? 0)[((s as any).fameregion ?? 0) + '_media_local']    > 2) {
-    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_media_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_media_local'] ?? 0) - ((Math.floor(Math.random() * (3 - -1 + 1)) + (-1)));
+    if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$fameregion || '') + '_media_local'] = ((s as any).fame['' + String((s as any).$fameregion || '') + '_media_local'] ?? 0) - ((Math.floor(Math.random() * (3 - (-1) + 1)) + ((-1))));
   }
   if (((s as any).fameregion ?? 0) === 'pav') {
     // TODO-QSP: jump 'famedegloop'

@@ -17,7 +17,7 @@ function enterPickFromArray(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['i'] = qspUntranslated(s, "rand(temp_randomVars['start'], temp_randomVars['end'])", { location: "random" });
-  if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
   } else {
     (s as any).result = 0;
   }
@@ -29,14 +29,14 @@ function enterPickFromArray(s: GameState, scene: SceneBuilder): void {
 function enterPickFromDelimitedString(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['string'] = ((s as any).locArgs?.[1] ?? 0);
   if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['delimiter'] = ((((s as any).locArgs?.[2] ?? 0) === '') ? ('|') : (((s as any).locArgs?.[2] ?? 0)));
-  if (((((s as any).temp_randomVars ?? 0)?.['string']).indexOf((((s as any).temp_randomVars ?? 0)?.['delimiter']))) + 1 <= 0) {
+  if ((String(((s as any).temp_randomVars ?? 0)?.['string']).indexOf(String(((s as any).temp_randomVars ?? 0)?.['delimiter']))) + 1 <= 0) {
     return;
   }
   // TODO-QSP: :pick_from_delimited_string_loop
   if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['i'] = qspUntranslated(s, "instr(temp_randomVars['string'], temp_randomVars['delimiter'])", { location: "random" });
   if (((s as any).temp_randomVars ?? 0)?.['i'] > 0) {
     // TODO-QSP: $temp_pick_from_delimited_string_array[] = $mid($temp_randomVars['string'], 1, temp_randomVars['i'] ...
-    if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['string'] = ((((s as any).temp_randomVars ?? 0)?.['string']).slice((((s as any).temp_randomVars ?? {})?.['i'] + 1)-1));
+    if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['string'] = (String(((s as any).temp_randomVars ?? 0)?.['string']).slice((((s as any).temp_randomVars ?? {})?.['i'] + 1)-1));
     // TODO-QSP: jump 'pick_from_delimited_string_loop'
   }
   if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['result'] = qspFunc(s, 'random', 'pick_from_array', '$temp_pick_from_delimited_string_array');
@@ -117,8 +117,8 @@ function enterStringHash(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_sh_hash = 0;
   (s as any).temp_sh_i = 1;
   // TODO-QSP: :string_hash_loop
-  if (((s as any).temp_sh_i ?? 0) <= ((((s as any).locArgs?.[1] ?? 0)).length)) {
-    (s as any).temp_sh_hash = (((s as any).temp_sh_hash ?? 0) * 131 + ((((s as any).temp_sh_alphabet ?? 0)).indexOf((((((s as any).locArgs?.[1] ?? 0)).slice((((s as any).temp_sh_i ?? 0))-1, ((((s as any).temp_sh_i ?? 0))-1)+(1)))))) + 1) % 1000003;
+  if (((s as any).temp_sh_i ?? 0) <= (String(((s as any).locArgs?.[1] ?? 0)).length)) {
+    (s as any).temp_sh_hash = (((s as any).temp_sh_hash ?? 0) * 131 + (String(((s as any).temp_sh_alphabet ?? 0)).indexOf(String((String(((s as any).locArgs?.[1] ?? 0)).slice((((s as any).temp_sh_i ?? 0))-1, ((((s as any).temp_sh_i ?? 0))-1)+(1)))))) + 1) % 1000003;
     (s as any).temp_sh_i = ((s as any).temp_sh_i ?? 0) + (1);
     // TODO-QSP: jump 'string_hash_loop'
   }

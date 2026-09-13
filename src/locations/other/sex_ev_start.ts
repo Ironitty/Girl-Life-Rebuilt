@@ -51,10 +51,10 @@ function enterInitiatePre(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    if (((';dating;fuckbuddy;sugar_daddy;daddy;boyfriend;husband;').indexOf((';' + ((s as any).npcRelat ?? 0) + ';'))) + 1 > 0) {
+    if ((String(';dating;fuckbuddy;sugar_daddy;daddy;boyfriend;husband;').indexOf(String(';' + ((s as any).npcRelat ?? 0) + ';'))) + 1 > 0) {
       // TODO-QSP: xgt 'sex_ev_start', 'lover_initiate', $sex_ev['loc']
     } else {
-      if (((((s as any).npcRelat ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'ex-') {
+      if ((String(((s as any).npcRelat ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'ex-') {
         // TODO-QSP: xgt 'sex_ev_start', 'lover_initiate', $sex_ev['loc']
       } else {
         qspCall(s, 'sex_ev_start', 'hookup_initiate');
@@ -208,7 +208,7 @@ function enterLoverInitiate(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npcRelat ?? 0) === 'daddy') {
           if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['type'] = 'booty_call';
         } else {
-          if (((((s as any).npcRelat ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'ex-') {
+          if ((String(((s as any).npcRelat ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'ex-') {
             if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['type'] = 'booty_call';
           }
         }
@@ -301,7 +301,7 @@ function enterHookupInitiate(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
     }
   } else {
-    if (((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'C') {
+    if ((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1))) === 'C') {
       qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
       qspCall(s, 'npcStat', '', ((s as any).npclastsaved ?? 0));
     }

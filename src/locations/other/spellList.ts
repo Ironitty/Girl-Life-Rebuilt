@@ -500,9 +500,9 @@ function enterActLearn(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (1000);
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     if ((((s as any).pcs_splcstng ?? 0)/((s as any).spellDifficulty ?? 0)) > 0) {
-      if (!(s as any).spellLearn) (s as any).spellLearn = {}; (s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] = ((s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] ?? 0) + ((Math.floor(Math.random() * (100/spellDifficulty - 1 + 1)) + (1)) * (((s as any).pcs_splcstng ?? 0)/((s as any).spellDifficulty ?? 0)));
+      if (!(s as any).spellLearn) (s as any).spellLearn = {}; (s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] = ((s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] ?? 0) + ((Math.floor(Math.random() * (100/((s as any).spellDifficulty ?? 0) - 1 + 1)) + (1)) * (((s as any).pcs_splcstng ?? 0)/((s as any).spellDifficulty ?? 0)));
     } else {
-      if (!(s as any).spellLearn) (s as any).spellLearn = {}; (s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] = ((s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] ?? 0) + ((Math.floor(Math.random() * (100/spellDifficulty - 1 + 1)) + (1)));
+      if (!(s as any).spellLearn) (s as any).spellLearn = {}; (s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] = ((s as any).spellLearn[String((s as any).ThisSpellName ?? 0)] ?? 0) + ((Math.floor(Math.random() * (100/((s as any).spellDifficulty ?? 0) - 1 + 1)) + (1)));
     }
     if (((s as any).spellLearn ?? 0)?.[String((s as any).ThisSpellName ?? 0)] < 100) {
       scene.text('You diligently study the spell for an hour, but cannot grasp it.');

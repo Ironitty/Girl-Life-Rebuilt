@@ -290,7 +290,7 @@ function enterDoPunish(s: GameState, scene: SceneBuilder): void {
 
 function enterDoPaperwork(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) + ((Math.floor(Math.random() * (20 * mult - 5 * mult + 1)) + (5 * mult)));
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) + ((Math.floor(Math.random() * (20 * ((s as any).mult ?? 0) - 5 * ((s as any).mult ?? 0) + 1)) + (5 * ((s as any).mult ?? 0))));
   (s as any).leoStress = ((s as any).leoStress ?? 0) + (0);
   (s as any).leoCoffee = ((s as any).leoCoffee ?? 0) + (0);
   (s as any).leoComfort = ((s as any).leoComfort ?? 0) + (0);
@@ -310,7 +310,7 @@ function enterDoPaperwork(s: GameState, scene: SceneBuilder): void {
 
 function enterDoLazy(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  (s as any).leoHorny = ((s as any).leoHorny ?? 0) + ((Math.floor(Math.random() * (20 * mult - 5 * mult + 1)) + (5 * mult)));
+  (s as any).leoHorny = ((s as any).leoHorny ?? 0) + ((Math.floor(Math.random() * (20 * ((s as any).mult ?? 0) - 5 * ((s as any).mult ?? 0) + 1)) + (5 * ((s as any).mult ?? 0))));
   (s as any).leoStress = ((s as any).leoStress ?? 0) + (0);
   (s as any).leoCoffee = ((s as any).leoCoffee ?? 0) + (0);
   (s as any).leoComfort = ((s as any).leoComfort ?? 0) + (0);

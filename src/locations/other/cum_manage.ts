@@ -33,7 +33,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['cum_count'] = ((s as any).stat['cum_count'] ?? 0) + (1);
   (s as any).condom_break = 0;
-  if (((((s as any).npcID ?? 0)).length) > 1  &&  (('ABM').indexOf((((((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0  &&  !isNaN(((((s as any).npcID ?? 0)).slice((2)-1))) && ((((s as any).npcID ?? 0)).slice((2)-1)) !== '') {
+  if ((String(((s as any).npcID ?? 0)).length) > 1  &&  (String('ABM').indexOf(String((String(((s as any).npcID ?? 0)).slice((1)-1, ((1)-1)+(1)))))) + 1 > 0  &&  !isNaN((String(((s as any).npcID ?? 0)).slice((2)-1))) && (String(((s as any).npcID ?? 0)).slice((2)-1)) !== '') {
     (s as any).cumnostd = 1;
   }
   (s as any).cumnostd = 0;
@@ -1334,13 +1334,13 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if ((!((s as any).succubusflag ?? 0))) {
-    (s as any).cumamount = (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max(Math.floor(Math.random() * 2) + 0, (Math.floor(Math.random() * (sparrvol[ARGS[1]]/30 - sparrvol[ARGS[1]]/60 + 1)) + (sparrvol[ARGS[1]]/60)) + (Math.floor(Math.random() * (0, inSleep*(Math.floor(Math.random() * 3) + 1) + 1))) + ((s as any).isprok ?? 0)*(Math.floor(Math.random() * 6) + 5) + (Math.floor(Math.random() * ((Math.floor(Math.random() * (sparrvol[ARGS[1]]/30 - sparrvol[ARGS[1]]/60 + 1)) + (sparrvol[ARGS[1]]/60)) - 0 + 1)) + (0)) + (Math.floor(Math.random() * ((Math.floor(Math.random() * 3) + 1) - 0 + 1)) + (0)));
+    (s as any).cumamount = (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max(Math.floor(Math.random() * 2) + 0, (Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/30 - ((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/60 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/60)) + (Math.floor(Math.random() * (0, ((s as any).inSleep ?? 0)*(Math.floor(Math.random() * 3) + 1) + 1))) + ((s as any).isprok ?? 0)*(Math.floor(Math.random() * 6) + 5) + (Math.floor(Math.random() * ((Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/30 - ((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/60 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/60)) - 0 + 1)) + (0)) + (Math.floor(Math.random() * ((Math.floor(Math.random() * 3) + 1) - 0 + 1)) + (0)));
     // TODO-QSP: sparrvol[ARGS[1]] -= cumamount
   }
   if (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
     (s as any).cumsumvag = ((s as any).cumsumvag ?? 0) + (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }));
     if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 0) === 1  ||  ((s as any).locArgs?.[2] ?? 0) / (Math.floor(Math.random() * 2) + 2) > ((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)]) {
-      (s as any).cumamount = Math.min(((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]*3/2, (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max(Math.floor(Math.random() * 3) + 1, (Math.floor(Math.random() * (vgape*40 - sparrvol[ARGS[1]] / Math.max(1, ((s as any).pcs_vag ?? 0)) + 1)) + (sparrvol[ARGS[1]] / Math.max(1, ((s as any).pcs_vag ?? 0)))) - ((s as any).inSleep ?? 0)*(Math.floor(Math.random() * 4) + 2) + Math.max(1, ((s as any).pcs_vag ?? 0))) + ((s as any).cumforced ?? 0) / (Math.floor(Math.random() * 6) + 5));
+      (s as any).cumamount = Math.min(((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]*3/2, (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max(Math.floor(Math.random() * 3) + 1, (Math.floor(Math.random() * (((s as any).vgape ?? 0)*40 - ((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]] / Math.max(1, ((s as any).pcs_vag ?? 0)) + 1)) + (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]] / Math.max(1, ((s as any).pcs_vag ?? 0)))) - ((s as any).inSleep ?? 0)*(Math.floor(Math.random() * 4) + 2) + Math.max(1, ((s as any).pcs_vag ?? 0))) + ((s as any).cumforced ?? 0) / (Math.floor(Math.random() * 6) + 5));
       // TODO-QSP: sparrvol[ARGS[1]] -= cumamount & cumsumvag -= cumamount
       if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[0] = ((s as any).cumvol[0] ?? 0) - (((s as any).cumamount ?? 0));
       (s as any).sexvolume = Math.max(((s as any).cumamount ?? 0)/10, ((s as any).cumamount ?? 0)/2 - (((!((s as any).locArgs?.[2] ?? 0))) ? (((s as any).isprokp ?? 0) * (Math.floor(Math.random() * 11) + 10)) : (0)));
@@ -1407,7 +1407,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if ((!((s as any).succubusflag ?? 0))) {
-    (s as any).cumamount = (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max(Math.floor(Math.random() * 3) + 0, (Math.floor(Math.random() * (sparrvol[ARGS[1]]/20 - sparrvol[ARGS[1]]/40 + 1)) + (sparrvol[ARGS[1]]/40)) + (Math.floor(Math.random() * (0, inSleep*(Math.floor(Math.random() * 4) + 3) + 1))) + (Math.floor(Math.random() * ((Math.floor(Math.random() * (sparrvol[ARGS[1]]/20 - sparrvol[ARGS[1]]/40 + 1)) + (sparrvol[ARGS[1]]/40)) - 0 + 1)) + (0)));
+    (s as any).cumamount = (((s as any).totminut ?? 0)-((s as any).cumdectime ?? 0))/15 * Math.max(Math.floor(Math.random() * 3) + 0, (Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/20 - ((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/40 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/40)) + (Math.floor(Math.random() * (0, ((s as any).inSleep ?? 0)*(Math.floor(Math.random() * 4) + 3) + 1))) + (Math.floor(Math.random() * ((Math.floor(Math.random() * (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/20 - ((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/40 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/40)) - 0 + 1)) + (0)));
     // TODO-QSP: sparrvol[ARGS[1]] -= cumamount
   }
   if (((s as any).sparrvol ?? 0)[((s as any).locArgs?.[1] ?? 0)] > 0) {
@@ -1495,7 +1495,7 @@ function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).PCloPanties ?? 0) === 1) {
-    (s as any).sexvolume = (Math.floor(Math.random() * (sparrvol[ARGS[1]] - sparrvol[ARGS[1]]/2 + 1)) + (sparrvol[ARGS[1]]/2)) - ((s as any).isprokp ?? 0) * (Math.floor(Math.random() * 16) + 15);
+    (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/2)) - ((s as any).isprokp ?? 0) * (Math.floor(Math.random() * 16) + 15);
     if (((s as any).sexvolume ?? 0) > 0) {
       // TODO-QSP: sparrvol[ARGS[1]] -= sexvolume
       (s as any).spafinloc = 2;
@@ -1508,7 +1508,7 @@ function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).PCloPants ?? 0) > 0) {
-      (s as any).sexvolume = (Math.floor(Math.random() * (sparrvol[ARGS[1]] - sparrvol[ARGS[1]] / 2 + 1)) + (sparrvol[ARGS[1]] / 2));
+      (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]] / 2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]] / 2));
       if (((s as any).sexvolume ?? 0) > 0) {
         (s as any).spafinloc = 6;
         (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
@@ -1536,7 +1536,7 @@ function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).pantyworntype ?? 0) !== 'none'  ||  ((s as any).PCloPanties ?? 0) === 1) {
-    (s as any).sexvolume = (Math.floor(Math.random() * (sparrvol[ARGS[1]] - sparrvol[ARGS[1]]/2 + 1)) + (sparrvol[ARGS[1]]/2));
+    (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]]/2));
     if (((s as any).sexvolume ?? 0) > 0) {
       // TODO-QSP: sparrvol[ARGS[1]] -= sexvolume
       (s as any).spafinloc = 5;
@@ -1549,7 +1549,7 @@ function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).PCloPants ?? 0) > 0) {
-      (s as any).sexvolume = (Math.floor(Math.random() * (sparrvol[ARGS[1]] - sparrvol[ARGS[1]] / 2 + 1)) + (sparrvol[ARGS[1]] / 2));
+      (s as any).sexvolume = (Math.floor(Math.random() * (qspUntranslated(s, "sparrvol[ARGS[1]]", { location: "cum_manage" }) - ((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]] / 2 + 1)) + (((s as any).sparrvol ?? 0)[((s as any).ARGS ?? 0)[1]] / 2));
       if (((s as any).sexvolume ?? 0) > 0) {
         (s as any).spafinloc = 6;
         (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));

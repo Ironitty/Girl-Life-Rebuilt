@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 3)  &&  (Math.floor(Math.random() * 51) + 0) === 0  &&  ((s as any).houserab ?? 0) === 1  &&  ((s as any).houserabday ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).pcs_sleep ?? 0) < 50  &&  ((s as any).loc ?? 0) === 'nichBedroomServant') {
       // TODO-QSP: $sleep_events[] = 'gs ''bed_events'', ''rab'' '
     }
-    if ((((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 3)  &&  (Math.floor(Math.random() * 201) + 0) === 0  &&  (('bedr;bedr2x;korr;korr2x').indexOf((((s as any).loc ?? 0)))) + 1 > 0  &&  ((s as any).husID ?? 0) === ''  &&  ((s as any).wifID ?? 0) === '') {
+    if ((((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 3)  &&  (Math.floor(Math.random() * 201) + 0) === 0  &&  (String('bedr;bedr2x;korr;korr2x').indexOf(String(((s as any).loc ?? 0)))) + 1 > 0  &&  ((s as any).husID ?? 0) === ''  &&  ((s as any).wifID ?? 0) === '') {
       // TODO-QSP: $sleep_events[] = 'gs ''bed_events'', ''vor'' '
     }
     scene.actions([{ label: 'Continue', goto: ['bed_events', 'mod_sleepevents'] }]);
@@ -320,7 +320,7 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'mood', 'raise', 'small');
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
-  if (((s as any).husID ?? 0) === ''  ||  (('bedr;bedr2x;korr;korr2x').indexOf((((s as any).loc ?? 0)))) + 1 <= 0  ||  ((s as any).spouseVars ?? 0)?.['drink'] === 10) {
+  if (((s as any).husID ?? 0) === ''  ||  (String('bedr;bedr2x;korr;korr2x').indexOf(String(((s as any).loc ?? 0)))) + 1 <= 0  ||  ((s as any).spouseVars ?? 0)?.['drink'] === 10) {
     qspCall(s, 'bed_events', 'exit');
     scene.actions([{ label: 'Continue', goto: ['selfplay', 'start'] }]);
   } else {

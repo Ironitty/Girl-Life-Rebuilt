@@ -9,16 +9,16 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetloc(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pav_') {
+  if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(4))) === 'pav_') {
     // TODO-QSP: $region[1] = 'pav'
   } else {
-    if (((((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'city_') {
+    if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(5))) === 'city_') {
       // TODO-QSP: $region[1] = 'city'
     } else {
-      if (((((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'gad') {
+      if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(3))) === 'gad') {
         // TODO-QSP: $region[1] = 'gad'
       } else {
-        if (((((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(7))) === 'pushkin') {
+        if ((String(((s as any).loc ?? 0)).slice((1)-1, ((1)-1)+(7))) === 'pushkin') {
           // TODO-QSP: $region[1] = 'pushkin'
         }
       }
@@ -51,9 +51,9 @@ function enterCorridor(s: GameState, scene: SceneBuilder): void {
     (s as any).frost = 0;
   }
   qspCall(s, 'themes', 'indoors');
-  if (((((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(7))) === 'private') {
+  if ((String(((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(7))) === 'private') {
   } else {
-    if (((((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'public') {
+    if ((String(((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'public') {
     }
   }
   // TODO-QSP: end
@@ -67,7 +67,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     scene.text('There is a shower, toilet, sink, and a <a href="exec:gt \'mirror\',\'start\'">mirror</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair.');
     qspCall(s, 'din_van', 'private');
   } else {
-    if (((((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'public'  ||  ((s as any).location_type ?? 0) === 'private_shared') {
+    if ((String(((s as any).location_type ?? 0)).slice((1)-1, ((1)-1)+(6))) === 'public'  ||  ((s as any).location_type ?? 0) === 'private_shared') {
       // TODO-QSP: dynamic text: There is a shower and <a href="exec:gt 'mirror','start'">mirrors</a> where you c...
       scene.text('There is a shower and <a href="exec:gt \'mirror\',\'start\'">mirrors</a> where you can \' + iif(pcs_hairbsh = 0, \'<a href="exec:gt \'mirror\',\'brush\'">brush</a>\', \'brush\') + \' your hair.');
       scene.actions([

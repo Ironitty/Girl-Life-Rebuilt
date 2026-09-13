@@ -104,8 +104,8 @@ function enterSetWeather_TempFall(s: GameState, scene: SceneBuilder): void {
 function enterWeather(s: GameState, scene: SceneBuilder): void {
   if (((s as any).weatherDay ?? 0) !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'outdoors', 'set_weather_TempFall', ((s as any).month ?? 0));
-    (s as any).weatherTemper = ((s as any).weatherMeanTemp ?? 0) + ((Math.floor(Math.random() * (weatherTempDelta - -weatherTempDelta + 1)) + (-weatherTempDelta)) + (Math.floor(Math.random() * (weatherTempDelta - -weatherTempDelta + 1)) + (-weatherTempDelta))) / 2;
-    (s as any).weatherFall = ((s as any).weatherFallM ?? 0) + (Math.floor(Math.random() * (weatherFallDelta - -weatherFallDelta + 1)) + (-weatherFallDelta));
+    (s as any).weatherTemper = ((s as any).weatherMeanTemp ?? 0) + ((Math.floor(Math.random() * (((s as any).weatherTempDelta ?? 0) - -((s as any).weatherTempDelta ?? 0) + 1)) + (-((s as any).weatherTempDelta ?? 0))) + (Math.floor(Math.random() * (((s as any).weatherTempDelta ?? 0) - -((s as any).weatherTempDelta ?? 0) + 1)) + (-((s as any).weatherTempDelta ?? 0)))) / 2;
+    (s as any).weatherFall = ((s as any).weatherFallM ?? 0) + (Math.floor(Math.random() * (((s as any).weatherFallDelta ?? 0) - -((s as any).weatherFallDelta ?? 0) + 1)) + (-((s as any).weatherFallDelta ?? 0)));
   }
   (s as any).weatherDay = ((s as any).daystart ?? 0);
   if (((s as any).totminut ?? 0) < ((s as any).sunWeather ?? 0)[1]-240) {

@@ -16,7 +16,7 @@ function enterHair(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? 0)} says that you have beautiful hair.`);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
       if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'hair_color_black') {
         // TODO-QSP: dynamic text: <<$npcdesc>> says that you are very beautiful, although he likes black-haired wo...
         scene.text(`${((s as any).npcdesc ?? 0)} says that you are very beautiful, although he likes black-haired women.`);
@@ -50,7 +50,7 @@ function enterFigure(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? 0)} tells you that you have a perfect figure.`);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
       if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'body_bmi_starving'  ||  ((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'body_bmi_underweight') {
         // TODO-QSP: dynamic text: <<$npcdesc>> says that you love him despite the fact that he always met with ski...
         scene.text(`${((s as any).npcdesc ?? 0)} says that you love him despite the fact that he always met with skinny.`);
@@ -84,7 +84,7 @@ function enterTits(s: GameState, scene: SceneBuilder): void {
     scene.text(`${((s as any).npcdesc ?? 0)} tells you that you have perfect breasts.`);
   } else {
     if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] !== '') {
-      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - -1 + 1)) + (-1)));
+      qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (Math.floor(Math.random() * (0 - (-1) + 1)) + ((-1))));
       if (((s as any).ngpPrefResult ?? 0)?.['NotPos'] === 'body_tits_small') {
         // TODO-QSP: dynamic text: <<$npcdesc>> says that you love him despite the fact that he prefers small breas...
         scene.text(`${((s as any).npcdesc ?? 0)} says that you love him despite the fact that he prefers small breasts.`);

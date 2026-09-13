@@ -190,10 +190,11 @@ function generateSceneBody(
            break;
          }
           if (lhs === "setloc['StageImage']" && node.op === '=') {
-           out.push(`scene.img(${val});`);
-           stateWrites.push(varName);
-           break;
-         }
+            const imgVal = val.startsWith("'") && !val.startsWith("'images/") ? `'images/' + ${val}` : val;
+            out.push(`scene.img(${imgVal});`);
+            stateWrites.push(varName);
+            break;
+          }
           if (lhs === "setloc['imagepath']" && node.op === '=') {
             out.push(`if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['imagepath'] = 'images/' + ${val};`);
             stateWrites.push(varName);
@@ -510,6 +511,32 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
   c = c.replace(/\bnot\b/gi, '!');
   c = c.replace(/\bno\s*\(/gi, '!(');
   c = c.replace(/\bno\b/gi, '!');
+  // arrsize() in conditions - must run BEFORE <<expr>> string translation
+  c = c.replace(/\b(?:\$?)arrsize\s*\(\s*['"]?\$?(\w+)['"]?\s*\)/g, (_, arrName) => {
+    const ph = `\u0000${phs.length}\u0000`;
+    phs.push([ph, `Object.keys((${stateVar} as any).${arrName} ?? {}).length`]);
+    stateReads.push(arrName);
+    return ph;
+  });
+  c = replaceBalanced(c, 'arrsize', (arg) => {
+    const ph = `\u0000${phs.length}\u0000`;
+    const trimmed = arg.trim();
+    if (/^['"]?\$?(\w+)['"]?$/.test(trimmed)) {
+      const m = trimmed.match(/^['"]?\$?(\w+)['"]?$/)![1];
+      phs.push([ph, `Object.keys((${stateVar} as any).${m} ?? {}).length`]);
+      stateReads.push(m);
+    } else {
+      const translated = translateValue(trimmed, stateReads, todos, stateVar);
+      phs.push([ph, `Object.keys((${stateVar} as any)[${translated}] ?? {}).length`]);
+    }
+    return ph;
+  });
+  c = c.replace(/\b(?:\$?)arrsize\s+['"]\$?(\w+)['"]/g, (_, arrName) => {
+    const ph = `\u0000${phs.length}\u0000`;
+    phs.push([ph, `Object.keys((${stateVar} as any).${arrName} ?? {}).length`]);
+    stateReads.push(arrName);
+    return ph;
+  });
   // Handle <<expr>> inside single-quoted strings (QSP dynamic strings)
   // Must run BEFORE unescapeDoubled so '' escaped quotes are still visible
   // Must run before array-access regex so inner expressions are still in original form
@@ -651,20 +678,7 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
     }
     c = out;
   }
-  // arrsize() in conditions - QSP array size function (parenthesized)
-  c = c.replace(/\b(?:\$?)arrsize\s*\(\s*['"]?\$?(\w+)['"]?\s*\)/g, (_, arrName) => {
-    const ph = `\u0000${phs.length}\u0000`;
-    phs.push([ph, `Object.keys((${stateVar} as any).${arrName} ?? {}).length`]);
-    stateReads.push(arrName);
-    return ph;
-  });
-  // arrsize 'arr' in conditions - QSP array size function (space-separated)
-  c = c.replace(/\b(?:\$?)arrsize\s+['"]\$?(\w+)['"]/g, (_, arrName) => {
-    const ph = `\u0000${phs.length}\u0000`;
-    phs.push([ph, `Object.keys((${stateVar} as any).${arrName} ?? {}).length`]);
-    stateReads.push(arrName);
-    return ph;
-  });
+
   // arrpos('$arr', val) in conditions - QSP array position function
   c = c.replace(/\b(?:\$?)arrpos\s*\(\s*['"]?\$?(\w+)['"]?\s*,\s*([^)]+)\)/g, (_, arrName, val) => {
     const ph = `\u0000${phs.length}\u0000`;
@@ -685,7 +699,8 @@ function translateCondition(cond: string, stateReads: string[], todos: string[],
   });
   c = c.replace(/\bisnum\s*\(([^)]+)\)/g, (_, arg) => {
     const ph = `\u0000${phs.length}\u0000`;
-    phs.push([ph, `!isNaN(${arg}) && ${arg} !== ''`]);
+    const argTranslated = translateValue(arg.trim(), stateReads, todos, stateVar);
+    phs.push([ph, `!isNaN(${argTranslated}) && ${argTranslated} !== ''`]);
     return ph;
   });
   c = c.replace(/\$locat\['([^']+)'\]/g, (_, key) => {
@@ -1033,9 +1048,22 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     return `(${translateCondition(ifExpr[1].trim(), stateReads, todos, stateVar)})`;
   }
   // QSP paren-wrapped condition: (a > 0), (a = b), (a > 0 or b > 0), etc.
+  // Skip if the outer parens wrap an arithmetic expression (contains +, -, *, / at depth 1)
   const parenCond = v.match(/^\((.+)\)$/);
   if (parenCond && /(<>)|(!=)|(>=)|(<=)|\s[<>]\s|\s=\s/.test(parenCond[1])) {
-    return `(${translateCondition(parenCond[1].trim(), stateReads, todos, stateVar)})`;
+    let hasArithAtDepth1 = false;
+    let d = 0, inS = false;
+    for (let ci = 0; ci < parenCond[1].length; ci++) {
+      const ch = parenCond[1][ci];
+      if (inS) { if (ch === "'") inS = false; continue; }
+      if (ch === "'") { inS = true; continue; }
+      if (ch === '(') d++;
+      else if (ch === ')') d--;
+      else if (d === 1 && /[+\-*/]/.test(ch)) { hasArithAtDepth1 = true; break; }
+    }
+    if (!hasArithAtDepth1) {
+      return `(${translateCondition(parenCond[1].trim(), stateReads, todos, stateVar)})`;
+    }
   }
   // QSP arrsize() function
   if (/^arrsize\(/.test(v)) {
@@ -1290,7 +1318,9 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
           const bi = parseInt(bStr);
           phs.push([ph, `(Math.floor(Math.random() * ${bi - ai + 1}) + ${ai})`]);
         } else {
-          phs.push([ph, `(Math.floor(Math.random() * (${bStr} - ${aStr} + 1)) + (${aStr}))`]);
+          const aT = translateValue(aStr, stateReads, todos, stateVar);
+          const bT = translateValue(bStr, stateReads, todos, stateVar);
+          phs.push([ph, `(Math.floor(Math.random() * (${bT} - ${aT} + 1)) + (${aT}))`]);
         }
         return ph;
       });
@@ -1301,7 +1331,8 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
         if (/^\d+$/.test(aStr)) {
           phs.push([ph, `(Math.floor(Math.random() * ${parseInt(aStr) + 1}))`]);
         } else {
-          phs.push([ph, `(Math.floor(Math.random() * (${aStr} + 1)))`]);
+          const aT = translateValue(aStr, stateReads, todos, stateVar);
+          phs.push([ph, `(Math.floor(Math.random() * (${aT} + 1)))`]);
         }
         return ph;
       });
@@ -1556,17 +1587,17 @@ function splitTopLevel(s: string): string[] {
 
 // QSP built-in functions -> JS (args are already-translated expressions)
 const BUILTIN_FUNCS: Record<string, (a: string[]) => string> = {
-  mid: (a) => a.length === 3 ? `((${a[0]}).slice((${a[1]})-1, ((${a[1]})-1)+(${a[2]})))` : `((${a[0]}).slice((${a[1]})-1))`,
-  instr: (a) => `((${a[0]}).indexOf((${a[1]}))) + 1`,
-  left: (a) => `((${a[0]}).slice(0, ${a[1]}))`,
-  right: (a) => `((${a[0]}).slice((${a[0]}).length - ${a[1]}))`,
-  len: (a) => `((${a[0]}).length)`,
+  mid: (a) => a.length === 3 ? `(String(${a[0]}).slice((${a[1]})-1, ((${a[1]})-1)+(${a[2]})))` : `(String(${a[0]}).slice((${a[1]})-1))`,
+  instr: (a) => `(String(${a[0]}).indexOf(String(${a[1]}))) + 1`,
+  left: (a) => `(String(${a[0]}).slice(0, ${a[1]}))`,
+  right: (a) => `(String(${a[0]}).slice(String(${a[0]}).length - ${a[1]}))`,
+  len: (a) => `(String(${a[0]}).length)`,
   val: (a) => `parseFloat(${a[0]})`,
   str: (a) => `String(${a[0]})`,
-  ucase: (a) => `((${a[0]}).toUpperCase())`,
-  lcase: (a) => `((${a[0]}).toLowerCase())`,
-  trim: (a) => `((${a[0]}).trim())`,
-  replace: (a) => `((${a[0]}).split(${a[1]}).join(${a[2]}))`,
+  ucase: (a) => `(String(${a[0]}).toUpperCase())`,
+  lcase: (a) => `(String(${a[0]}).toLowerCase())`,
+  trim: (a) => `(String(${a[0]}).trim())`,
+  replace: (a) => `(String(${a[0]}).split(${a[1]}).join(${a[2]}))`,
   max: (a) => `Math.max(${a.join(', ')})`,
   min: (a) => `Math.min(${a.join(', ')})`,
 };

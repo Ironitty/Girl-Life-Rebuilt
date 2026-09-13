@@ -381,13 +381,13 @@ function enterTooDrunkLowChance(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTooDrunkMediumChance(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pav_disco', 'too_drunk_base', (Math.floor(Math.random() * (7 - -1 + 1)) + (-1)));
+  qspCall(s, 'pav_disco', 'too_drunk_base', (Math.floor(Math.random() * (7 - (-1) + 1)) + ((-1))));
   // TODO-QSP: end
   scene.build();
 }
 
 function enterTooDrunkHighChance(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pav_disco', 'too_drunk_base', (Math.floor(Math.random() * (5 - -2 + 1)) + (-2)));
+  qspCall(s, 'pav_disco', 'too_drunk_base', (Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))));
   // TODO-QSP: end
   scene.build();
 }
@@ -1016,18 +1016,18 @@ function enterSlutInvite(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     if (((s as any).gdk_nice_guy ?? 0) === 1) {
       if (((s as any).fame ?? 0)?.['pav_sex'] > 10) {
-        qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * (-4 - -2 + 1)) + (-2)));
+        qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * ((-4) - (-2) + 1)) + ((-2))));
       }
       if (((s as any).fame ?? 0)?.['pav_prostitute'] > 10) {
-        qspCall(s, 'fame', 'pav', 'prostitute', (Math.floor(Math.random() * (-4 - -2 + 1)) + (-2)));
+        qspCall(s, 'fame', 'pav', 'prostitute', (Math.floor(Math.random() * ((-4) - (-2) + 1)) + ((-2))));
       }
     } else {
       if ((!((s as any).gdk_nice_guy ?? 0))) {
         if (((s as any).fame ?? 0)?.['pav_sex'] > 10) {
-          qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * (-2 - 0 + 1)) + (0)));
+          qspCall(s, 'fame', 'pav', 'sex', (Math.floor(Math.random() * ((-2) - 0 + 1)) + (0)));
         }
         if (((s as any).fame ?? 0)?.['pav_prostitute'] > 10) {
-          qspCall(s, 'fame', 'pav', 'prostitute', (Math.floor(Math.random() * (-2 - 0 + 1)) + (0)));
+          qspCall(s, 'fame', 'pav', 'prostitute', (Math.floor(Math.random() * ((-2) - 0 + 1)) + (0)));
         }
       }
     }

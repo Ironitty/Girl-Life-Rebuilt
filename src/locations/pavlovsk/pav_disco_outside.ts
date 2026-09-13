@@ -178,7 +178,7 @@ function enterChatMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'You go to the disco a lot?', handler: (st: GameState) => {
     qspCall(s, 'pav_disco_outside', 'outside_img');
     scene.text('"So, do you come out here a lot? To the disco I mean."');
-    if ((('I').indexOf((((s as any).npc_perstype ?? 0)?.[String((s as any).npcID ?? 0)]))) + 1 > 0) {
+    if ((String('I').indexOf(String(((s as any).npc_perstype ?? 0)?.[String((s as any).npcID ?? 0)]))) + 1 > 0) {
       if (((s as any).npc_rel_goal ?? 0)?.[String((s as any).npcID ?? 0)] === 'sex') {
         if (((s as any).npc_misogynist ?? 0)?.[String((s as any).npcID ?? 0)] > 0) {
           scene.text('"More often than I\'d like to," he says with a wry smile. "But it\'s the best way to find sluts to fuck."');

@@ -493,7 +493,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
 
 function enterGetPropertyAttribute(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).name ?? 0));
-  if (((((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
+  if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
   } else {
     (s as any).result = ((s as any).property ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
   }

@@ -86,7 +86,7 @@ function enterBoyTalk(s: GameState, scene: SceneBuilder): void {
       if (((s as any).npc_know_pubeshape ?? 0)?.[String((s as any).npcID ?? 0)] !== ((s as any).pube_style ?? 0)?.['shape']) {
         // TODO-QSP: $sex_ev_boy_topics[] = "xgt 'sex_ev_body_talk', 'boy_pube_talk_start'"
       } else {
-        if (((s as any).npc_know_pubeshape ?? 0)?.[String((s as any).npcID ?? 0)] !== ''  &&  ((s as any).pube_style ?? 0)?.['shape'] === 'bush'  &&  ((((s as any).npc_likes ?? 0)).indexOf((';pubes;'))) + 1) {
+        if (((s as any).npc_know_pubeshape ?? 0)?.[String((s as any).npcID ?? 0)] !== ''  &&  ((s as any).pube_style ?? 0)?.['shape'] === 'bush'  &&  (String(((s as any).npc_likes ?? 0)).indexOf(String(';pubes;'))) + 1) {
           // TODO-QSP: $sex_ev_boy_topics[] = "xgt 'sex_ev_boy_pillow_talk', 'pubes_soft_talk'"
         }
       }

@@ -227,7 +227,7 @@ function enterCamming(s: GameState, scene: SceneBuilder): void {
 
 function enterUpdateCamBonus(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_camVars) (s as any).temp_camVars = {}; (s as any).temp_camVars['Bonus_base'] = 4 * ((s as any).pcs_mood ?? 0) + 2 * ((s as any).pcs_apprnc ?? 0) + 2 * ((s as any).pcs_perform ?? 0) + ((s as any).pcs_compskl ?? 0);
-  if (((((s as any).camGirl ?? 0)?.['type']).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
+  if ((String(((s as any).camGirl ?? 0)?.['type']).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
     // TODO-QSP: gs 'LOCA', 'camGirl', 'UpdateCamBonus', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   } else {
     // TODO-QSP: gs 'komp_cam_functions', $camGirl['type'] + '_UpdateCamBonus', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
@@ -282,7 +282,7 @@ function enterMFC_UpdateCamBonus(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUpdateStats(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).camGirl ?? 0)?.['type']).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
+  if ((String(((s as any).camGirl ?? 0)?.['type']).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
     // TODO-QSP: gs 'LOCA', 'camGirl', 'UpdateStats', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   } else {
     // TODO-QSP: gs 'komp_cam_functions', $camGirl['type'] + '_UpdateStats', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
@@ -323,7 +323,7 @@ function enterViews(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).cam_viewsVars) (s as any).cam_viewsVars = {}; (s as any).cam_viewsVars['Lt'] = ((s as any).camGirl ?? 0)?.[((s as any).camGirl ?? {})?.['type'] + '_Lurkers'];
   if (!(s as any).cam_viewsVars) (s as any).cam_viewsVars = {}; (s as any).cam_viewsVars['At'] = ((s as any).camGirl ?? 0)?.[((s as any).camGirl ?? {})?.['type'] + '_Actives'];
   if (!(s as any).cam_viewsVars) (s as any).cam_viewsVars = {}; (s as any).cam_viewsVars['Pt'] = ((s as any).camGirl ?? 0)?.[((s as any).camGirl ?? {})?.['type'] + '_Passives'];
-  if (((((s as any).camGirl ?? 0)?.['type']).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
+  if ((String(((s as any).camGirl ?? 0)?.['type']).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
     // TODO-QSP: gs 'LOCA', 'camGirl', 'views', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   } else {
     // TODO-QSP: gs 'komp_cam_functions', $camGirl['type'] + '_views', $ARGS[2], $ARGS[3], $ARGS[4]
@@ -464,7 +464,7 @@ function enterViewsCore(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDonate(s: GameState, scene: SceneBuilder): void {
-  if (((((s as any).camGirl ?? 0)?.['type']).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
+  if ((String(((s as any).camGirl ?? 0)?.['type']).slice((1)-1, ((1)-1)+(4))) === 'mod_') {
     // TODO-QSP: gs 'LOCA', 'camGirl', 'views', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]
   } else {
     // TODO-QSP: gs 'komp_cam_functions', $camGirl['type'] + '_donate', ARGS[1], $ARGS[2], $ARGS[3], $ARGS[4]

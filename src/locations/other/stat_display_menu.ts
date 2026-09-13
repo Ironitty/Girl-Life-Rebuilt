@@ -37,8 +37,8 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rco ?? 0)?.['i'] < ((s as any).rco ?? 0)?.['size']) {
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['i']], '|')", { location: "stat_display_menu" });
     if (((s as any).rco ?? 0)?.['pipe'] > 0) {
-      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = ((qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)));
-      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = ((qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? {})?.['pipe'] + 1)-1));
+      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = (String(qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)));
+      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = (String(qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? {})?.['pipe'] + 1)-1));
     } else {
       if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" });
       if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" });
@@ -62,8 +62,8 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
   }
   if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx']], '|')", { location: "stat_display_menu" });
   if (((s as any).rco ?? 0)?.['pipe'] > 0) {
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = ((qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)));
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = ((qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? {})?.['pipe'] + 1)-1));
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = (String(qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)));
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = (String(qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? {})?.['pipe'] + 1)-1));
   } else {
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" });
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" });
@@ -79,9 +79,9 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['idx_prev'] = (((s as any).rco ?? {})?.['idx'] - 1 + ((s as any).rco ?? {})?.['size']) % ((s as any).rco ?? {})?.['size'];
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['idx_next'] = (((s as any).rco ?? {})?.['idx'] + 1) % ((s as any).rco ?? {})?.['size'];
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx_prev']], '|')", { location: "stat_display_menu" });
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['prev_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })));
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['prev_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? ((String(qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })));
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx_next']], '|')", { location: "stat_display_menu" });
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['next_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? (((qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })));
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['next_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? ((String(qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })));
     if (((s as any).rco ?? 0)?.['action_left'] === '') {
       if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['action_left'] = ((parseFloat(((s as any).rco ?? 0)?.['prev_val']) !== 0  ||  ((s as any).rco ?? 0)?.['prev_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? {})?.['prev_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + ((s as any).rco ?? {})?.['prev_val'] + '\''));
     }
@@ -609,7 +609,7 @@ function enterReorderFlat(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</tr></table></td></tr>');
   // TODO-QSP: :_rfl_next
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['i'] = ((s as any).ro['i'] ?? 0) + (1);
-  if (((s as any).ro ?? 0)?.['i'] < ((s as any).arrsize ?? 0)('$' + ((s as any).locArgs?.[1] ?? 0))) {
+  if (((s as any).ro ?? 0)?.['i'] < Object.keys((s as any)['$' + ((s as any).locArgs?.[1] ?? 0)] ?? {}).length) {
     // TODO-QSP: jump '_rfl_loop'
   }
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('</table></center></td></tr>');

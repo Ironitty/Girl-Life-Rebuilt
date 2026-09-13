@@ -249,7 +249,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  (s as any).study_mod = Math.max(0, ((Math.floor(Math.random() * (pcs_intel + study_mod - 30 + study_mod + 1)) + (30 + study_mod)) + 10)/33);
+  (s as any).study_mod = Math.max(0, ((Math.floor(Math.random() * (((s as any).pcs_intel ?? 0) + ((s as any).study_mod ?? 0) - 30 + ((s as any).study_mod ?? 0) + 1)) + (30 + ((s as any).study_mod ?? 0))) + 10)/33);
   if (((s as any).no_study ?? 0) === 1) {
     scene.text('You try to study for half an hour, but get nothing done.');
   } else {

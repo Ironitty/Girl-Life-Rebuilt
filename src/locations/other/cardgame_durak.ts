@@ -79,7 +79,7 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
   scene.text('<center><b>You\'re playing strip poker with the guys. The game will continue until one of you is completely naked.</b></center>');
-  scene.img(`images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/${((s as any).cgd_cs ?? 0)}-${6-(3+((((s as any).cgd_clothes ?? 0)).length))/7}.jpg`);
+  scene.img(`images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/${((s as any).cgd_cs ?? 0)}-${6-(3+(String(((s as any).cgd_clothes ?? 0)).length))/7}.jpg`);
   // TODO-QSP: dynamic text: <br><<$cgdp_pc_state>><br><<$cgdp_A11_state>><br><<$cgdp_A10_state>><br><<$cgdp_...
   scene.text(`<br>${((s as any).cgdp_pc_state ?? 0)}<br>${((s as any).cgdp_A11_state ?? 0)}<br>${((s as any).cgdp_A10_state ?? 0)}<br>${((s as any).cgdp_A9_state ?? 0)}<br>`);
   if (((s as any).cgd_clothes ?? 0) === '') {
@@ -106,10 +106,10 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
         (s as any).card_game_durak_win = ((s as any).card_game_durak_win ?? 0) + (1);
         (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
         qspCall(s, 'mood', 'raise', 'tiny');
-        if (((((s as any).cgd_clothes ?? 0)?.[String((s as any).cgd_name_npc ?? 0)]).indexOf(('socks'))) + 1 > 0) {
+        if ((String(((s as any).cgd_clothes ?? 0)?.[String((s as any).cgd_name_npc ?? 0)]).indexOf(String('socks'))) + 1 > 0) {
           // TODO-QSP: $cgd_clothes[$cgd_name_npc] = $replace($cgd_clothes[$cgd_name_npc], ' socks,', '')
         } else {
-          if (((((s as any).cgd_clothes ?? 0)?.[String((s as any).cgd_name_npc ?? 0)]).indexOf((','))) + 1 > 0) {
+          if ((String(((s as any).cgd_clothes ?? 0)?.[String((s as any).cgd_name_npc ?? 0)]).indexOf(String(','))) + 1 > 0) {
             // TODO-QSP: $cgd_clothes[$cgd_name_npc] = $replace($cgd_clothes[$cgd_name_npc], '<<$clo_str>>,', '')
           } else {
             // TODO-QSP: $cgd_clothes[$cgd_name_npc] = ''
@@ -151,9 +151,9 @@ function enterCardGameDurakPlay(s: GameState, scene: SceneBuilder): void {
           scene.text('That was close, but you get to keep your clothes on for now!');
         } else {
           (s as any).card_game_durak_loss = ((s as any).card_game_durak_loss ?? 0) + (1);
-          if (((((s as any).cgd_clothes ?? 0)).indexOf(('socks'))) + 1 > 0) {
+          if ((String(((s as any).cgd_clothes ?? 0)).indexOf(String('socks'))) + 1 > 0) {
           } else {
-            if (((((s as any).cgd_clothes ?? 0)).indexOf((','))) + 1 > 0) {
+            if ((String(((s as any).cgd_clothes ?? 0)).indexOf(String(','))) + 1 > 0) {
             }
           }
           scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/card/card1.jpg');
@@ -904,7 +904,7 @@ function enterCardGameWonFuckMyAss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'medium');
     qspCall(s, 'cum_manage', '');
     qspCall(s, 'arousal', 'end');
-    scene.img(`images/pc/body/cum/${((((s as any).temp2 ?? 0)).slice((4)-1, ((4)-1)+(parseFloat(((((s as any).temp1 ?? 0)).slice((3)-1, ((3)-1)+(2))))-3)))}.jpg`);
+    scene.img(`images/pc/body/cum/${(String(((s as any).temp2 ?? 0)).slice((4)-1, ((4)-1)+(parseFloat((String(((s as any).temp1 ?? 0)).slice((3)-1, ((3)-1)+(2))))-3)))}.jpg`);
     scene.text('After a while he can\'t hold back any longer, and you feel the hot jets of his sperm land on your body.');
     scene.text('You drag your finger through some of it and bring it to your tongue, to have a taste. It doesn\'t taste particularly good, but it\'s not bad either.');
     // TODO-QSP: dynamic text: "Mmmm… delicious, babe!" you muse, more to make him feel good than anything. You...

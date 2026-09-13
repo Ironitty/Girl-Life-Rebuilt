@@ -4,7 +4,14 @@ function rand(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function ensureDrugObjects(s: GameState): void {
+  if (!s.drugVars) s.drugVars = {};
+  if (!s.cheatVars) s.cheatVars = {};
+  if (!s.trait_vars) s.trait_vars = {};
+}
+
 export function drugsAlcohol(s: GameState, type: string, count = 1): void {
+  ensureDrugObjects(s);
   if (s.cheatVars['drugs_immune'] === 0) {
     s.drugVars['alcohol_used'] = (s.drugVars['alcohol_used'] || 0) + 1;
     if (s.drugVars['alcohol_used'] > 15 && s.drugVars['alcohol_exp'] === 0) s.drugVars['alcohol_exp'] = 1;
@@ -44,6 +51,7 @@ export function drugsAlcohol(s: GameState, type: string, count = 1): void {
 }
 
 export function drugsCaffeine(s: GameState, strength = 4, count = 1): void {
+  ensureDrugObjects(s);
   if (s.drugVars['caffeine_dose'] > 0) return;
   if (strength <= 0) strength = 4;
   if (count <= 0) count = 1;
@@ -62,6 +70,9 @@ export function drugsCaffeine(s: GameState, strength = 4, count = 1): void {
 }
 
 export function drugsSmoke(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
+  if (!s.stat) s.stat = {};
   if (!gift) {
     s.mc_inventory['cigarettes'] = (s.mc_inventory['cigarettes'] || 0) - 1;
     if (s.mc_inventory['cigarettes'] <= 0) s.mc_inventory['cigarettes'] = 0;
@@ -80,6 +91,8 @@ export function drugsSmoke(s: GameState, gift?: string): void {
 }
 
 export function drugsWeed(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if (!gift) {
     s.mc_inventory['joints'] = (s.mc_inventory['joints'] || 0) - 1;
     if (s.mc_inventory['joints'] <= 0) s.mc_inventory['joints'] = 0;
@@ -98,6 +111,8 @@ export function drugsWeed(s: GameState, gift?: string): void {
 }
 
 export function drugsAmphetamine(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if ((s.drugVars['amphetamine_intake'] || 0) >= 2) return;
   if (!gift) {
     s.mc_inventory['amphetamine'] = (s.mc_inventory['amphetamine'] || 0) - 1;
@@ -112,6 +127,8 @@ export function drugsAmphetamine(s: GameState, gift?: string): void {
 }
 
 export function drugsCocaine(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if (!gift) {
     s.mc_inventory['cocaine'] = (s.mc_inventory['cocaine'] || 0) - 1;
     if (s.mc_inventory['cocaine'] <= 0) s.mc_inventory['cocaine'] = 0;
@@ -134,6 +151,7 @@ export function drugsCocaine(s: GameState, gift?: string): void {
 }
 
 export function drugsHeroin(s: GameState): void {
+  ensureDrugObjects(s);
   if (s.cheatVars['drugs_immune'] === 0) {
     s.drugVars['heroin_used'] = (s.drugVars['heroin_used'] || 0) + 1;
     if (s.drugVars['heroin_used'] > 1 && s.drugVars['heroin_exp'] === 0) s.drugVars['heroin_exp'] = 1;
@@ -144,6 +162,8 @@ export function drugsHeroin(s: GameState): void {
 }
 
 export function drugsPainkiller(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if (!gift) {
     s.mc_inventory['painkillers'] = (s.mc_inventory['painkillers'] || 0) - 1;
     if (s.mc_inventory['painkillers'] <= 0) s.mc_inventory['painkillers'] = 0;
@@ -159,6 +179,8 @@ export function drugsPainkiller(s: GameState, gift?: string): void {
 }
 
 export function drugsAphrodisiac(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if (s.drugVars['aphrodisiac_overdose'] === 1) return;
   if (!gift) {
     s.mc_inventory['aphrodisiac'] = (s.mc_inventory['aphrodisiac'] || 0) - 1;
@@ -183,6 +205,8 @@ export function drugsAphrodisiac(s: GameState, gift?: string): void {
 }
 
 export function drugsMentats(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if (!gift) {
     s.mc_inventory['mentats'] = (s.mc_inventory['mentats'] || 0) - 1;
     if (s.mc_inventory['mentats'] <= 0) s.mc_inventory['mentats'] = 0;
@@ -194,6 +218,8 @@ export function drugsMentats(s: GameState, gift?: string): void {
 }
 
 export function drugsSteroids(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if ((s.drugVars['steroids_dose'] || 0) >= 3) return;
   if (!gift) {
     s.mc_inventory['steroids'] = (s.mc_inventory['steroids'] || 0) - 1;
@@ -206,6 +232,8 @@ export function drugsSteroids(s: GameState, gift?: string): void {
 }
 
 export function drugsBreastCream(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if ((s.drugVars['breastcream_dose'] || 0) >= 1) return;
   if (!gift) {
     s.mc_inventory['breastcream'] = (s.mc_inventory['breastcream'] || 0) - 1;
@@ -218,6 +246,8 @@ export function drugsBreastCream(s: GameState, gift?: string): void {
 }
 
 export function drugsHairCream(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if ((s.drugVars['hair_extensioncream_dose'] || 0) >= 1) return;
   if (!gift) {
     s.mc_inventory['hair_extensioncream'] = (s.mc_inventory['hair_extensioncream'] || 0) - 1;
@@ -230,6 +260,8 @@ export function drugsHairCream(s: GameState, gift?: string): void {
 }
 
 export function drugsButtInjection(s: GameState, gift?: string): void {
+  ensureDrugObjects(s);
+  if (!s.mc_inventory) s.mc_inventory = {};
   if ((s.drugVars['butt_injection_dose'] || 0) >= 1) return;
   if (!gift) {
     s.mc_inventory['butt_injection'] = (s.mc_inventory['butt_injection'] || 0) - 1;
@@ -242,6 +274,7 @@ export function drugsButtInjection(s: GameState, gift?: string): void {
 }
 
 export function drugsCikl(s: GameState): void {
+  ensureDrugObjects(s);
   drugsCaffeineCikl(s);
   drugsMentatsCikl(s);
   drugsSteroidsCikl(s);
@@ -254,6 +287,7 @@ export function drugsCikl(s: GameState): void {
 }
 
 export function drugsHourlyEvents(s: GameState): void {
+  ensureDrugObjects(s);
   drugsCigaretteHourly(s);
   drugsWeedHourly(s);
   drugsHeroinHourly(s);
@@ -266,6 +300,7 @@ export function drugsHourlyEvents(s: GameState): void {
 }
 
 export function drugsStat(s: GameState): void {
+  ensureDrugObjects(s);
   drugsHeroinStat(s);
   drugsCocaineStat(s);
   drugsAmphetamineStat(s);
@@ -274,6 +309,7 @@ export function drugsStat(s: GameState): void {
 }
 
 export function drugsPainRelief(s: GameState): number {
+  ensureDrugObjects(s);
   let relief = 0;
   if (s.alko <= 3) {}
   else if (s.alko <= 6) relief += 15;
