@@ -278,6 +278,12 @@ function generateSceneBody(
           out.push(`s.scene = { ...s.scene, mainText: String((s as any).${bareFlag[1]} || ''), curActs: [] };`);
           stateReads.push(bareFlag[1]);
         }
+        const varAssign = node.raw.match(/^\$(\w+)\s*=\s*(.+)$/);
+        if (varAssign) {
+          const varName = varAssign[1];
+          const value = translateValue(varAssign[2].trim(), stateReads, todos);
+          out.push(`(s as any).${varName} = ${value};`);
+        }
         break;
       }
       case 'exit': {
@@ -928,6 +934,38 @@ function translateValue(val: string, stateReads: string[], todos: string[], stat
     v = unescapeDoubled(v);
     v = v.replace(/''([^']+?)''/g, "'$1'");
     v = v.replace(/""<<(.+?)>>""/g, '<<$1>>');
+  }
+  // String concatenation: 'lit' + $var + 'lit' — split on + outside quotes, translate each part.
+  // Only apply when no other arithmetic operators (-, *, /, %) are present, to avoid breaking mixed expressions.
+  const hasOtherArith = /[-*/%]/.test(v.replace(/'/g, '').replace(/"/g, ''));
+  if (hasArith && v.includes('+') && !hasOtherArith) {
+    const parts: string[] = [];
+    let cur = '', inStr = false, strCh = '', depth = 0;
+    for (let ci = 0; ci < v.length; ci++) {
+      const ch = v[ci];
+      if (inStr) {
+        cur += ch;
+        if (ch === strCh) {
+          if (v[ci + 1] === strCh) { cur += v[ci + 1]; ci++; }
+          else inStr = false;
+        }
+      } else {
+        if (ch === "'" || ch === '"') { inStr = true; strCh = ch; cur += ch; }
+        else if (ch === '(' || ch === '[') { depth++; cur += ch; }
+        else if (ch === ')' || ch === ']') { depth--; cur += ch; }
+        else if (ch === '+' && depth === 0) { parts.push(cur.trim()); cur = ''; }
+        else cur += ch;
+      }
+    }
+    if (cur.trim()) parts.push(cur.trim());
+    const hasStringPart = parts.some(p => {
+      const t = p.trim();
+      return (t.startsWith("'") && t.endsWith("'") && t.length >= 2) || (t.startsWith('"') && t.endsWith('"') && t.length >= 2);
+    });
+    if (parts.length >= 2 && hasStringPart) {
+      const translated = parts.map(p => translateValue(p, stateReads, todos, stateVar, textContext));
+      return translated.join(' + ');
+    }
   }
   if (/^\d+$/.test(v)) return v.replace(/^0+(?=\d)/, '');
   if (/^-?\d+$/.test(v)) return v.startsWith('-') ? `(${v.replace(/^0+(?=\d)/, '')})` : v;

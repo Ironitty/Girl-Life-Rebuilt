@@ -220,17 +220,55 @@ interface ParseResult {
 
     // Scene: if/elseif $ARGS[0] = 'x': (only at top level, not indented)
     const rawLine = lines[i];
-    const sceneMatch = trimmed.match(/^(?:if|elseif)\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/i);
+    const sceneMatch = trimmed.match(/^(if|elseif)\s+\$ARGS\[0\]\s*=\s*'([^']*)'\s*:\s*$/i);
     if (sceneMatch && !rawLine.startsWith('\t') && !rawLine.startsWith(' ')) {
-      if (!stopAtEnd) {
-        return { nodes, endIdx: i };
+      // If this is the first branch (if, not elseif), check whether the next
+      // non-indented line is a non-scene elseif. If so, the whole chain is a
+      // regular if/else, not a scene chain (e.g. map_view, arousal, _shop_icon_image).
+      if (sceneMatch[1] === 'if') {
+        let j = i + 1;
+        while (j < lines.length) {
+          const nt = lines[j].trim();
+          if (nt && !lines[j].startsWith('\t') && !lines[j].startsWith(' ')) break;
+          j++;
+        }
+        if (j < lines.length) {
+          const nxt = lines[j].trim();
+          if (/^elseif\s+/i.test(nxt) && !/^\s*elseif\s+\$ARGS\[0\]\s*=\s*'[^']*'\s*:/i.test(nxt)) {
+            // Non-scene elseif follows — fall through to regular if/else handling
+          } else {
+            if (!stopAtEnd) {
+              return { nodes, endIdx: i };
+            }
+            const arg = sceneMatch[2];
+            const inner = parseBlock(lines, i + 1, unsupported, false);
+            const scene: QspScene = { kind: 'scene', arg, body: inner.nodes };
+            nodes.push(scene);
+            i = inner.endIdx;
+            continue;
+          }
+        } else {
+          if (!stopAtEnd) {
+            return { nodes, endIdx: i };
+          }
+          const arg = sceneMatch[2];
+          const inner = parseBlock(lines, i + 1, unsupported, false);
+          const scene: QspScene = { kind: 'scene', arg, body: inner.nodes };
+          nodes.push(scene);
+          i = inner.endIdx;
+          continue;
+        }
+      } else {
+        if (!stopAtEnd) {
+          return { nodes, endIdx: i };
+        }
+        const arg = sceneMatch[2];
+        const inner = parseBlock(lines, i + 1, unsupported, false);
+        const scene: QspScene = { kind: 'scene', arg, body: inner.nodes };
+        nodes.push(scene);
+        i = inner.endIdx;
+        continue;
       }
-      const arg = sceneMatch[1];
-      const inner = parseBlock(lines, i + 1, unsupported, false);
-      const scene: QspScene = { kind: 'scene', arg, body: inner.nodes };
-      nodes.push(scene);
-      i = inner.endIdx;
-      continue;
     }
 
     // Scene (one-liner): if $ARGS[0] = 'x': statement (only at top level, not indented)
@@ -883,7 +921,40 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
   // Dollar assignment
   const dollarMatch = trimmed.match(/^\$(\w+)\s*=\s*(.+)$/);
   if (dollarMatch) {
-    nodes.push({ kind: 'setup', raw: trimmed });
+    let raw = trimmed;
+    // Multi-line string: if the value has an unclosed quote, consume subsequent lines until closed
+    const valPart = dollarMatch[2];
+    if (valPart.includes("'") || valPart.includes('"')) {
+      const q = valPart.startsWith("'") ? "'" : valPart.startsWith('"') ? '"' : (valPart.match(/['"]/)?.[0] ?? '');
+      if (q) {
+        let quoteCount = 0;
+        for (let qi = 0; qi < valPart.length; qi++) {
+          if (valPart[qi] === q) {
+            if (valPart[qi + 1] === q) { qi++; continue; }
+            quoteCount++;
+          }
+        }
+        if (quoteCount % 2 === 1) {
+          let next = idx + 1;
+          while (next < lines.length) {
+            const cont = lines[next].trim();
+            raw += '\n' + cont;
+            const fullVal = raw.slice(trimmed.indexOf('=') + 1).trim();
+            let qc = 0;
+            for (let qi = 0; qi < fullVal.length; qi++) {
+              if (fullVal[qi] === q) {
+                if (fullVal[qi + 1] === q) { qi++; continue; }
+                qc++;
+              }
+            }
+            if (qc % 2 === 0) break;
+            next++;
+          }
+          idx = next - 1;
+        }
+      }
+    }
+    nodes.push({ kind: 'setup', raw });
     return { nodes, nextIdx: idx + 1 };
   }
 
