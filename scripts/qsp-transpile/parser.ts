@@ -292,7 +292,8 @@ interface ParseResult {
       const label = unescapeQsp(actDynMatch[1]);
       const dynPart = actDynMatch[2].trim();
       const rest = actDynMatch[3].trim();
-      const isCostLabel = /^\$?func\(\s*'willpower'\s*,\s*'get_willcost_string'\s*\)$/.test(dynPart);
+      const isCostLabel = /^\$?func\(\s*'willpower'\s*,\s*'get_willcost_string'\s*\)$/.test(dynPart) ||
+        /^\$?func\(\s*'money'\s*,\s*'get_cost_string'\s*,/.test(dynPart);
       const act: QspAct = { kind: 'act', label: isCostLabel ? label : `${label} [+${truncate(dynPart, 40)}]`, body: [] };
 
       if (rest) {
@@ -726,7 +727,9 @@ function parseSingleLine(trimmed: string, lines: string[], idx: number, unsuppor
     const label = unescapeQsp(actDynMatch[1]);
     const dynPart = actDynMatch[2].trim();
     const rest = actDynMatch[3].trim();
-    const act: QspAct = { kind: 'act', label: `${label} [+${truncate(dynPart, 40)}]`, body: [] };
+    const isCostLabel = /^\$?func\(\s*'willpower'\s*,\s*'get_willcost_string'\s*\)$/.test(dynPart) ||
+      /^\$?func\(\s*'money'\s*,\s*'get_cost_string'\s*,/.test(dynPart);
+    const act: QspAct = { kind: 'act', label: isCostLabel ? label : `${label} [+${truncate(dynPart, 40)}]`, body: [] };
     if (rest) {
       const gt4Match = rest.match(/^gt\s+'([^']+)'\s*,\s*'([^']*)'\s*,\s*(\$\w+|\w+)\s*,\s*'([^']*)'\s*$/);
       if (gt4Match) {

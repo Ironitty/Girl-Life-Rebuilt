@@ -126,7 +126,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked in the str...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked in the street.`);
+    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the street.`);
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 22) {
     scene.text('<br>At the end of the street is a small <a href="exec:$loc = \'pav_residential\' & gt \'kiosk\', \'start\'">kiosk</a> selling a variety of items such as cigarettes, magazines, snacks, drinks and even themes for your phone.');
@@ -135,7 +135,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
   }
   // TODO-QSP: dynamic text: <br>In the center of Pavlovsk is the town square, which features the <a href="ex...
-  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="exec: minut += 2 & gt 'pav_commcenter'">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname ?? 0)} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="exec: minut += 4 & gt 'pav_pool','building'">swimming pool</a>.`);
+  scene.text(`<br>In the center of Pavlovsk is the town square, which features the <a href="exec: minut += 2 & gt 'pav_commcenter'">community center</a>, a popular hotspot for local teenagers to hang out after a long day at ${((s as any).schoolname || '')} Also nearby is the drab grey building of Pavlovsk's dilapidated public <a href="exec: minut += 4 & gt 'pav_pool','building'">swimming pool</a>.`);
   // TODO-QSP: dynamic text: Connected to the town center is the old palace grounds, which have been turned i...
   scene.text('Connected to the town center is the old palace grounds, which have been turned into a large <a href="exec:minut += 5 & gt \'pav_park\', \'start\'">public park</a>.');
   // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt 'pav_lake'">lake</a> is also nearby, which me...
@@ -200,7 +200,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
-      scene.text(`<table BORDER=1>${((s as any).show_table ?? 0)}</tr></table>`);
+      scene.text(`<table BORDER=1>${((s as any).show_table || '')}</tr></table>`);
     }
   }
   if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 9) {
@@ -222,7 +222,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   if ((((s as any).hour ?? 0) > 20  ||  ((s as any).hour ?? 0) < 4)  &&  ((s as any).succubusQW ?? 0) === 14  &&  ((s as any).suchuntday ?? 0) !== ((s as any).daystart ?? 0)) {
-    qspCall(s, 'pav_residential', 'set_succubus_hunt_act');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSuccubusHuntAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'lover', 'lover_events');
   qspCall(s, 'prostitution_functions', 'check_solicitation_event');

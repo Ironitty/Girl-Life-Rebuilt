@@ -759,13 +759,13 @@ function enterOldMan(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/oldman_camera_no.jpg');
@@ -795,13 +795,13 @@ function enterOldMan(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/event/walk/day/deep/oldman_camera_no.jpg');
@@ -855,18 +855,18 @@ function enterGopgirls(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).grupTipe ?? 0) === 4) {
         // TODO-QSP: dynamic text: They make some room on the bench. "Sure. Come join us, <<$pcs_nickname>>," Anush...
-        scene.text(`They make some room on the bench. "Sure. Come join us, ${((s as any).pcs_nickname ?? 0)}," Anushka says.`);
+        scene.text(`They make some room on the bench. "Sure. Come join us, ${((s as any).pcs_nickname || '')}," Anushka says.`);
         scene.text('As soon as you sit down, Lera hands you a beer.');
         qspCall(s, 'willpower', 'drink', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse beer', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse beer', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -950,13 +950,13 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'drink', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse beer', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse beer', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (5);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -980,13 +980,13 @@ function enterGopboys(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'drink', 'self', 'medium');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Stay and hang out [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Stay and hang out', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Stay and hang out [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Stay and hang out', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.text('You steel your nerves before you reply. "Yeah, I <i>am</i> sure I should be here. Why? You want me to leave?"');
     scene.text('Vasily smiles at you and scoots over, giving you a spot to sit between him and Dan. "It\'s cool. So what you up to?" he asks in a teasing tone as you take a seat.');
@@ -1097,13 +1097,13 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'drink', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse beer', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse beer [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse beer', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) - (2);
     (s as any).minut = ((s as any).minut ?? 0) + 5;

@@ -223,19 +223,19 @@ function enterSetScheduleBase(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=    '</tr>'
   // TODO-QSP: $temp_table +=  '</table>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table ?? 0)}`);
+  scene.text(`${((s as any).temp_table || '')}`);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterSetSchedule(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stripclub_schedule', 'set_schedule_base', 0);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterSetScheduleBase(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterNextWeekSetSchedule(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stripclub_schedule', 'set_schedule_base', 1);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetScheduleBase(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

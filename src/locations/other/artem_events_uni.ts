@@ -401,11 +401,11 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['boy_block'] = 1;
       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A14'] >= 40) {
         // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, so good to see you," she says.
-        scene.text(`"Hi ${((s as any).pcs_nickname ?? 0)}, so good to see you," she says.`);
+        scene.text(`"Hi ${((s as any).pcs_nickname || '')}, so good to see you," she says.`);
         // TODO-QSP: dynamic text: As you walk over to her table,'+iif(katjaQW['QWstage'] > 2 or npc_rel['A14'] >= ...
         scene.text('As you walk over to her table,\'+iif(katjaQW[\'QWstage\'] > 2 or npc_rel[\'A14\'] >= 80, \' she gets up and gives you a hug.\', \'she smiles at Artem.\')+\' "Good to see you too, Artem."');
         // TODO-QSP: dynamic text: "Are you also studying at the university, <<$pcs_nickname>>?" she asks.
-        scene.text(`"Are you also studying at the university, ${((s as any).pcs_nickname ?? 0)}?" she asks.`);
+        scene.text(`"Are you also studying at the university, ${((s as any).pcs_nickname || '')}?" she asks.`);
         if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
           if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
             if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
@@ -422,18 +422,18 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
         }
         scene.text('She looks at you. "So are the two of you together now?" she asks.');
         // TODO-QSP: dynamic text: "Yes, we are. <<$pcs_nickname>> is my girlfriend," Artem answers proudly before ...
-        scene.text(`"Yes, we are. ${((s as any).pcs_nickname ?? 0)} is my girlfriend," Artem answers proudly before you have time to say anything.`);
+        scene.text(`"Yes, we are. ${((s as any).pcs_nickname || '')} is my girlfriend," Artem answers proudly before you have time to say anything.`);
         scene.text('"I\'m so happy for you! Congratulations!" she says, seemingly excited about the news. "Why don\'t you sit down and have a coffee with me?"');
       } else {
         if (((s as any).npc_rel ?? 0)?.['A14'] < 20) {
           scene.text('"Hi Artem! Why are you with this one? Don\'t tell that you\'re actually together?" she asks in a cold voice as you approach.');
           // TODO-QSP: dynamic text: "I know you don't like her, but I do. <<$pcs_nickname>> is my girlfriend," Artem...
-          scene.text(`"I know you don't like her, but I do. ${((s as any).pcs_nickname ?? 0)} is my girlfriend," Artem answers before you have time to say anything.`);
+          scene.text(`"I know you don't like her, but I do. ${((s as any).pcs_nickname || '')} is my girlfriend," Artem answers before you have time to say anything.`);
           scene.text('"You\'re a good guy, Artem. You could do so much better than this one. See you later."');
           scene.text('She gets up and walks away, clearly not wanting to have anything to do with you.');
         } else {
           // TODO-QSP: dynamic text: "Hi Artem, hi <<$pcs_nickname>>! How have you been? Still getting used to our sh...
-          scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname ?? 0)}! How have you been? Still getting used to our shared floor, Artem? And how about you, ${((s as any).pcs_nickname ?? 0)}? Are you also studying at the university?" she asks as you walk over to her table.`);
+          scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname || '')}! How have you been? Still getting used to our shared floor, Artem? And how about you, ${((s as any).pcs_nickname || '')}? Are you also studying at the university?" she asks as you walk over to her table.`);
           if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
             if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
               if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
@@ -450,18 +450,18 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
           }
           scene.text('Katja looks at you. "So are the two of you together now?" she asks.');
           // TODO-QSP: dynamic text: "Yes we are. <<$pcs_nickname>> is my girlfriend," Artem answers proudly before y...
-          scene.text(`"Yes we are. ${((s as any).pcs_nickname ?? 0)} is my girlfriend," Artem answers proudly before you have time to say anything.`);
+          scene.text(`"Yes we are. ${((s as any).pcs_nickname || '')} is my girlfriend," Artem answers proudly before you have time to say anything.`);
           scene.text('"I\'m so happy for you! Congratulations!" she says, seemingly excited about the news. "Why don\'t you sit down and have a coffee with me?"');
         }
       }
     } else {
       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A14'] >= 40) {
         // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, so good to see you," she says.
-        scene.text(`"Hi ${((s as any).pcs_nickname ?? 0)}, so good to see you," she says.`);
+        scene.text(`"Hi ${((s as any).pcs_nickname || '')}, so good to see you," she says.`);
         // TODO-QSP: dynamic text: As you walk over to her table,'+iif(katjaQW['QWstage'] > 2 or npc_rel['A14'] >= ...
         scene.text('As you walk over to her table,\'+iif(katjaQW[\'QWstage\'] > 2 or npc_rel[\'A14\'] >= 80, \' she gets up and gives you a hug.\', \'she smiles at Artem.\')+\' "Good to see you too Artem, though it\'s not that long since we\'re living at the floor now," she says.');
         // TODO-QSP: dynamic text: "Are you also studying at the university, <<$pcs_nickname>>?" she asks.
-        scene.text(`"Are you also studying at the university, ${((s as any).pcs_nickname ?? 0)}?" she asks.`);
+        scene.text(`"Are you also studying at the university, ${((s as any).pcs_nickname || '')}?" she asks.`);
         if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
           if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
             if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
@@ -485,7 +485,7 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
           scene.text('She gets up and walks away, clearly not wanting to have anything to do with you.');
         } else {
           // TODO-QSP: dynamic text: "Hi Artem, hi <<$pcs_nickname>>! How have you been? Still getting used to our sh...
-          scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname ?? 0)}! How have you been? Still getting used to our shared floor, Artem? And how about you ${((s as any).pcs_nickname ?? 0)}? Are you also studying at the university?" she asks as you walk over to her table.`);
+          scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname || '')}! How have you been? Still getting used to our shared floor, Artem? And how about you ${((s as any).pcs_nickname || '')}? Are you also studying at the university?" she asks as you walk over to her table.`);
           if (((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
             if (((s as any).katjaQW ?? 0)?.['know_going_to_teaching_degree'] === 0) {
               if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['know_going_to_teaching_degree'] = 1;
@@ -513,33 +513,33 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['boy_block'] = 1;
       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A14'] >= 40) {
         // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, nice to see you here," she says.
-        scene.text(`"Hi ${((s as any).pcs_nickname ?? 0)}, nice to see you here," she says.`);
+        scene.text(`"Hi ${((s as any).pcs_nickname || '')}, nice to see you here," she says.`);
         // TODO-QSP: dynamic text: As you walk over to her table,'+iif(katjaQW['QWstage'] > 2 or npc_rel['A14'] >= ...
         scene.text('As you walk over to her table,\'+iif(katjaQW[\'QWstage\'] > 2 or npc_rel[\'A14\'] >= 80, \' she gets up and gives you a hug.\', \'she smiles at Artem.\')+\' "Glad to see you outside the dorm too, Artem."');
         scene.text('She looks at you. "So are the two of you together now?" she asks.');
         // TODO-QSP: dynamic text: "Yes, we are. <<$pcs_nickname>> is my girlfriend," Artem answers proudly before ...
-        scene.text(`"Yes, we are. ${((s as any).pcs_nickname ?? 0)} is my girlfriend," Artem answers proudly before you have time to say anything.`);
+        scene.text(`"Yes, we are. ${((s as any).pcs_nickname || '')} is my girlfriend," Artem answers proudly before you have time to say anything.`);
         scene.text('"I\'m so happy for you! Congratulations!" she says, seemingly excited about the news. "Why don\'t you sit down and have a coffee with me?"');
       } else {
         if (((s as any).npc_rel ?? 0)?.['A14'] < 20) {
           scene.text('"Hi Artem! Why are you with this one? Don\'t tell that you\'re actually together?" she asks in a cold voice as you approach.');
           // TODO-QSP: dynamic text: "I know you don't like her, but I do. <<$pcs_nickname>> is my girlfriend," Artem...
-          scene.text(`"I know you don't like her, but I do. ${((s as any).pcs_nickname ?? 0)} is my girlfriend," Artem answers proudly before you have time to say anything.`);
+          scene.text(`"I know you don't like her, but I do. ${((s as any).pcs_nickname || '')} is my girlfriend," Artem answers proudly before you have time to say anything.`);
           scene.text('"You\'re a good guy, Artem. You could do so much better than this one. See you later."');
           scene.text('She gets up and walks away, clearly not wanting to have anything to do with you.');
         } else {
           // TODO-QSP: dynamic text: "Hi Artem, hi <<$pcs_nickname>>! Nice to see you here," she says as you walk ove...
-          scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname ?? 0)}! Nice to see you here," she says as you walk over to her table.`);
+          scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname || '')}! Nice to see you here," she says as you walk over to her table.`);
           scene.text('She looks at you. "So are the two of you together now?" she asks.');
           // TODO-QSP: dynamic text: "Yes, we are. <<$pcs_nickname>> is my girlfriend," Artem answers proudly before ...
-          scene.text(`"Yes, we are. ${((s as any).pcs_nickname ?? 0)} is my girlfriend," Artem answers proudly before you have time to say anything.`);
+          scene.text(`"Yes, we are. ${((s as any).pcs_nickname || '')} is my girlfriend," Artem answers proudly before you have time to say anything.`);
           scene.text('"I\'m so happy for you! Congratulations!" she says, seemingly excited about the news. "Why don\'t you sit down and have a coffee with me?"');
         }
       }
     } else {
       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A14'] >= 40) {
         // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, nice to see you here," she says.
-        scene.text(`"Hi ${((s as any).pcs_nickname ?? 0)}, nice to see you here," she says.`);
+        scene.text(`"Hi ${((s as any).pcs_nickname || '')}, nice to see you here," she says.`);
         // TODO-QSP: dynamic text: As you walk over to her table,'+iif(katjaQW['QWstage'] > 2 or npc_rel['A14'] >= ...
         scene.text('As you walk over to her table,\'+iif(katjaQW[\'QWstage\'] > 2 or npc_rel[\'A14\'] >= 80, \' she gets up and gives you a hug.\', \'she smiles at Artem.\')+\' "Glad to see you outside the dorm, Artem."');
         scene.text('"Why don\'t you sit down and have a coffee with me?" she asks.');
@@ -551,7 +551,7 @@ function enterCoffeeHoleKatjaSit(s: GameState, scene: SceneBuilder): void {
           scene.text('She gets up and walks away, clearly not wanting to have anything to do with you.');
         } else {
           // TODO-QSP: dynamic text: "Hi Artem, hi <<$pcs_nickname>>! Nice to see you here," she says as you walk ove...
-          scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname ?? 0)}! Nice to see you here," she says as you walk over to her table.`);
+          scene.text(`"Hi Artem, hi ${((s as any).pcs_nickname || '')}! Nice to see you here," she says as you walk over to her table.`);
           scene.text('"Why don\'t you sit down and have a coffee with me?" she asks.');
         }
       }
@@ -602,7 +602,7 @@ function enterCoffeeHoleKatjaDrink(s: GameState, scene: SceneBuilder): void {
         scene.text('Artem just looks at you, not sure how to respond to Katja\'s advances.');
       } else {
         // TODO-QSP: dynamic text: "Yes, we've had some very fun times together. I'm definitely up for a repeat if ...
-        scene.text(`"Yes, we've had some very fun times together. I'm definitely up for a repeat if ${((s as any).pcs_nickname ?? 0)} is," Artem confidently answers.`);
+        scene.text(`"Yes, we've had some very fun times together. I'm definitely up for a repeat if ${((s as any).pcs_nickname || '')} is," Artem confidently answers.`);
       }
       scene.actions([
         { label: 'Another time', handler: (st: GameState) => {
@@ -624,7 +624,7 @@ function enterCoffeeHoleKatjaDrink(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_rand ?? 0) === 1) {
         if (((s as any).npc_rel ?? 0)?.['A14'] > (Math.floor(Math.random() * 71) + 30)  &&  ((s as any).university ?? 0)?.['enrolled_in'] === 'teaching_studies') {
           // TODO-QSP: dynamic text: "So did you like our classes this week, <<$pcs_nickname>>?" Katja asks. "I think...
-          scene.text(`"So did you like our classes this week, ${((s as any).pcs_nickname ?? 0)}?" Katja asks. "I think that the Wednesday morning one was particularly interesting," she continues and the two of you spend the time discussing your classes and studies.`);
+          scene.text(`"So did you like our classes this week, ${((s as any).pcs_nickname || '')}?" Katja asks. "I think that the Wednesday morning one was particularly interesting," she continues and the two of you spend the time discussing your classes and studies.`);
           scene.text('Artem is so bored that he takes out his phone and starts browsing on it.');
         } else {
           scene.text('"Did you notice that the kitchen on our floor was a complete mess yesterday, Artem?" Katja asks. Before he even has time to answer, she continues. "I\'m sure it wasn\'t you, but do you know who it was?"');
@@ -704,7 +704,7 @@ function enterCoffeeHoleKatjaDrink(s: GameState, scene: SceneBuilder): void {
               if (((s as any).temp_rand ?? 0) === 5) {
                 if (((s as any).npc_rel ?? 0)?.['A14'] > (Math.floor(Math.random() * 71) + 30)  &&  (((s as any).katjaQW ?? 0)?.['QWstage'] > 1  ||  ((s as any).mey_vika ?? 0)?.['mey_vika_qw'] === 30)  &&  qspFunc(s, 'homes_properties', 'is_current_home', 'meynold_household') === 0) {
                   // TODO-QSP: dynamic text: "Mom says that she's so lonely now that she lives all by herself. I do visit her...
-                  scene.text(`"Mom says that she's so lonely now that she lives all by herself. I do visit her every weekend, and I've told her that we could meet up in the city for coffee or dinner since she works in the city center, but she goes on about how that's not the same. You should visit her the next time you're in Pav, ${((s as any).pcs_nickname ?? 0)}," Katja says.`);
+                  scene.text(`"Mom says that she's so lonely now that she lives all by herself. I do visit her every weekend, and I've told her that we could meet up in the city for coffee or dinner since she works in the city center, but she goes on about how that's not the same. You should visit her the next time you're in Pav, ${((s as any).pcs_nickname || '')}," Katja says.`);
                   scene.text('You spend the rest of your hangout talking about how Tamara is doing now that she lives alone, Artem paying little attention to the discussion.');
                 } else {
                   if (((s as any).sofiaQW ?? 0)?.['QWstage'] < 5) {
@@ -730,14 +730,14 @@ function enterCoffeeHoleKatjaDrink(s: GameState, scene: SceneBuilder): void {
     scene.text('Artem checks his phone. "Sorry girls, but I really need to be getting back. Maybe we can do this again sometime?"');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] >= 2) {
       // TODO-QSP: dynamic text: "Fun as always. You're always welcome to join me here. You know where to find me...
-      scene.text(`"Fun as always. You're always welcome to join me here. You know where to find me, ${((s as any).pcs_nickname ?? 0)}. See you at the dorm, Artem," Katja replies.`);
+      scene.text(`"Fun as always. You're always welcome to join me here. You know where to find me, ${((s as any).pcs_nickname || '')}. See you at the dorm, Artem," Katja replies.`);
     } else {
       if (((s as any).katjaQW ?? 0)?.['QWstage'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A14'] >= 40) {
         // TODO-QSP: dynamic text: "Sure, it was fun. I often spend my free time here, so you know where to find me...
-        scene.text(`"Sure, it was fun. I often spend my free time here, so you know where to find me. '+iif($university['enrolled_in'] = 'teaching_studies', 'See you in class', 'See you around')+' ${((s as any).pcs_nickname ?? 0)}. See you at the dorm, Artem," Katja replies.`);
+        scene.text(`"Sure, it was fun. I often spend my free time here, so you know where to find me. '+iif($university['enrolled_in'] = 'teaching_studies', 'See you in class', 'See you around')+' ${((s as any).pcs_nickname || '')}. See you at the dorm, Artem," Katja replies.`);
       } else {
         // TODO-QSP: dynamic text: "Sure, it was fun. I often spend my free time here so you know where to find me,...
-        scene.text(`"Sure, it was fun. I often spend my free time here so you know where to find me, else see you at the dorm Artem. I'll '+iif($university['enrolled_in'] = 'teaching_studies', 'see you in class,', 'see you around,')+' ${((s as any).pcs_nickname ?? 0)}," Katja replies.`);
+        scene.text(`"Sure, it was fun. I often spend my free time here so you know where to find me, else see you at the dorm Artem. I'll '+iif($university['enrolled_in'] = 'teaching_studies', 'see you in class,', 'see you around,')+' ${((s as any).pcs_nickname || '')}," Katja replies.`);
       }
     }
     scene.text('The two of you say your goodbyes to Katja and leave the coffee shop, holding hands as you walk back to the dorms.');
@@ -758,13 +758,13 @@ function enterCoffeeHoleAlbinaSit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big23.jpg');
   // TODO-QSP: dynamic text: As you walk over to her table, she gets up and gives you a hug. "<<$pcs_nickname...
-  scene.text(`As you walk over to her table, she gets up and gives you a hug. "${((s as any).pcs_nickname ?? 0)}!"`);
+  scene.text(`As you walk over to her table, she gets up and gives you a hug. "${((s as any).pcs_nickname || '')}!"`);
   scene.text('You return her hug. "Hey, Albina."');
   if (((s as any).artemQW ?? 0)?.['albina_threesome'] === -2) {
     scene.text('"Oh. Uhh… Hi Artem…" she mumbles.');
     scene.text('"Hey…" he awkwardly replies. "If I\'m making you uncomfortable, then I can just go…"');
     // TODO-QSP: dynamic text: "No, no!" she says. "You're on a date with <<$pcs_nickname>> and I was just abou...
-    scene.text(`"No, no!" she says. "You're on a date with ${((s as any).pcs_nickname ?? 0)} and I was just about to leave anyway. I'll see you later, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`"No, no!" she says. "You're on a date with ${((s as any).pcs_nickname || '')} and I was just about to leave anyway. I'll see you later, ${((s as any).pcs_nickname || '')}."`);
     scene.text('You nod and she gives you another hug before leaving. Artem just stands in silence.');
     scene.actions([
       { label: 'Find a table', goto: ['artem_events_uni', 'coffee_hole_sit'] },
@@ -774,31 +774,31 @@ function enterCoffeeHoleAlbinaSit(s: GameState, scene: SceneBuilder): void {
       scene.text('She gives Artem a flirty smile. "Hey there, stud. You here to be a big bad dom to me again?"');
       scene.text('Artem grins smugly. "Loving that nerd cock now, are we slut? I\'ll gladly show you your place again. Hint: it\'s on your knees."');
       // TODO-QSP: dynamic text: She bites her lip. "<<$pcs_nickname>> wasn't lying. You really do have a naughty...
-      scene.text(`She bites her lip. "${((s as any).pcs_nickname ?? 0)} wasn't lying. You really do have a naughty streak now, don't you?"`);
+      scene.text(`She bites her lip. "${((s as any).pcs_nickname || '')} wasn't lying. You really do have a naughty streak now, don't you?"`);
     } else {
       if (((s as any).artemQW ?? 0)?.['alb3some_again'] === 3) {
         scene.text('She gives Artem a flirty smile. "Hey Artem. Who knew that the little shy nerd would turn into such a fuck boy? No offence, but you were one of the last people I thought I\'d have in my bed, especially more than once."');
         // TODO-QSP: dynamic text: "None taken. I give <<$pcs_nickname>> all the credit," he happily replies. "It w...
-        scene.text(`"None taken. I give ${((s as any).pcs_nickname ?? 0)} all the credit," he happily replies. "It was her who helped me find my confidence."`);
+        scene.text(`"None taken. I give ${((s as any).pcs_nickname || '')} all the credit," he happily replies. "It was her who helped me find my confidence."`);
         scene.text('She grins. "So she\'s rubbing off on you in more ways than one?"');
       } else {
         if (((s as any).artemQW ?? 0)?.['albina_threesome'] === 1) {
           scene.text('She smiles at Artem. "Hey there, lover boy. Are you just here to say hello or were you looking for… something else?"');
           // TODO-QSP: dynamic text: "I'm down for some more fun if <<$pcs_nickname>> is," he replies.
-          scene.text(`"I'm down for some more fun if ${((s as any).pcs_nickname ?? 0)} is," he replies.`);
+          scene.text(`"I'm down for some more fun if ${((s as any).pcs_nickname || '')} is," he replies.`);
           scene.text('"We\'ll see," you reply and he smiles.');
         } else {
           scene.text('She smiles at Artem. "Hey there, nerd."');
           if (((s as any).artemQW ?? 0)?.['confidence'] >= 15) {
             scene.text('"Hey there yourself, hottie," he smiles back.');
             // TODO-QSP: dynamic text: Albina grins. "The shy little geek has found his voice, huh? Does <<$pcs_nicknam...
-            scene.text(`Albina grins. "The shy little geek has found his voice, huh? Does ${((s as any).pcs_nickname ?? 0)} know you're flirting with all the girls now?"`);
+            scene.text(`Albina grins. "The shy little geek has found his voice, huh? Does ${((s as any).pcs_nickname || '')} know you're flirting with all the girls now?"`);
             scene.text('He chuckles. "She knows I only have eyes for her."');
             scene.text('"Good answer," she replies. "I wouldn\'t want to hear about you hurting my friend."');
           } else {
             scene.text('"Oh. Uh… Hi?" he replies while blushing.');
             // TODO-QSP: dynamic text: Albina grins. "Still the shy little geek you were in school, huh? I would have t...
-            scene.text(`Albina grins. "Still the shy little geek you were in school, huh? I would have thought that having a girlfriend like ${((s as any).pcs_nickname ?? 0)} would have boosted your confidence a little."`);
+            scene.text(`Albina grins. "Still the shy little geek you were in school, huh? I would have thought that having a girlfriend like ${((s as any).pcs_nickname || '')} would have boosted your confidence a little."`);
             scene.text('Artem just looks at the floor, not sure how to answer.');
           }
         }
@@ -883,13 +883,13 @@ function enterCoffeeHoleAlbinaDrink(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_rand ?? 0) === 4) {
             if (((s as any).AlbinaQW ?? 0)?.['first_dorm_visit'] === 0) {
               // TODO-QSP: dynamic text: "Did I tell you how I have no roommate, <<$pcs_nickname>>?" she asks.
-              scene.text(`"Did I tell you how I have no roommate, ${((s as any).pcs_nickname ?? 0)}?" she asks.`);
+              scene.text(`"Did I tell you how I have no roommate, ${((s as any).pcs_nickname || '')}?" she asks.`);
               scene.text('"Really?" you reply. "That sounds like a dream."');
               scene.text('She smiles. "It is. I have all this extra space and can do whatever I want without someone moaning at me."');
               scene.text('Artem pays little attention to the discussion, other than to mention how cool it would be if he could live by himself.');
             } else {
               // TODO-QSP: dynamic text: "You should come by and visit me in my dorm room again, <<$pcs_nickname>>," she ...
-              scene.text(`"You should come by and visit me in my dorm room again, ${((s as any).pcs_nickname ?? 0)}," she says. "Maybe bring lover boy here along with you. I'd love to kick his ass at video games."`);
+              scene.text(`"You should come by and visit me in my dorm room again, ${((s as any).pcs_nickname || '')}," she says. "Maybe bring lover boy here along with you. I'd love to kick his ass at video games."`);
               if (((s as any).artemQW ?? 0)?.['confidence'] >= 15) {
                 scene.text('"I accept the challenge," Artem replies. "Just remember that I\'m a nerd. Being good at video games is kind of our thing."');
                 scene.text('"Just because I\'m super hot doesn\'t mean I won\'t wipe the floor with you in ten seconds flat."');
@@ -923,7 +923,7 @@ function enterCoffeeHoleAlbinaDrink(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/albina/uni/artem_albina_coffee_hole.jpg');
     scene.text('Artem checks his phone. "Sorry girls, but I really need to be getting back. Maybe we can do this again sometime?"');
     // TODO-QSP: dynamic text: "Sure. I'll '+iif($university['enrolled_in'] = 'nursing', 'see you in class,', '...
-    scene.text(`"Sure. I'll '+iif($university['enrolled_in'] = 'nursing', 'see you in class,', 'see you around,')+' ${((s as any).pcs_nickname ?? 0)}," Albina replies.`);
+    scene.text(`"Sure. I'll '+iif($university['enrolled_in'] = 'nursing', 'see you in class,', 'see you around,')+' ${((s as any).pcs_nickname || '')}," Albina replies.`);
     scene.text('The two of you say your goodbyes to her and leave the coffee shop, holding hands as you walk back to the dorms.');
     scene.text('Once back at his room, you talk for a few minutes more before you agree it\'s time for you to go so he can get some other things done today.');
     scene.actions([

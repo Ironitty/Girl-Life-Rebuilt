@@ -67,7 +67,7 @@ function enterYlounge(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).newgobelen ?? 0) >= 1) {
             // TODO-QSP: dynamic text: Your tapestry is <<newgobelen/10>> percent finished.
-            scene.text(`Your tapestry is ${((s as any).newgobelen ?? 0)/10} percent finished.`);
+            scene.text(`Your tapestry is ${((s as any).newgobelen ?? '')/10} percent finished.`);
             scene.actions([
               { label: 'Work on the tapestry', goto: ['sewing', 'tapestry'] },
             ]);
@@ -76,7 +76,7 @@ function enterYlounge(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0) {
         // TODO-QSP: dynamic text: You have <<mc_inventory['tapestry']>> completed tapestries.
-        scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['tapestry']} completed tapestries.`);
+        scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['tapestry'] ?? ''} completed tapestries.`);
       }
     }
   }

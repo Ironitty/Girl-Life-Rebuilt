@@ -71,13 +71,13 @@ function enterSan0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'bj', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Drive him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Drive him away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Drive him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Drive him away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -103,13 +103,13 @@ function enterSan1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'bj', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Drive him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Drive him away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Drive him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Drive him away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -132,13 +132,13 @@ function enterPro0(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'gangbang', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'gangbang', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -173,13 +173,13 @@ function enterPro1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'rape', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Run away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Run away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'rape', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');

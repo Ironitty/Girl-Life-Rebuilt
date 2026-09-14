@@ -19,13 +19,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No, leave me alone you freaky snake [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No, leave me alone you freaky snake', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No, leave me alone you freaky snake [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No, leave me alone you freaky snake', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).serpent_path = 0;
@@ -35,13 +35,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'skill', 'magik', 'self', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Maybe, but first tell me more about what you can teach me [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Maybe, but first tell me more about what you can teach me', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Maybe, but first tell me more about what you can teach me [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Maybe, but first tell me more about what you can teach me', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'skill', 'magik', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).serpent_path = 1;

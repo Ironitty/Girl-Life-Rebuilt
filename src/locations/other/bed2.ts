@@ -35,9 +35,9 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/home/bedroom/son.jpg');
   }
   // TODO-QSP: $func('alarmclock', 'base_alarmclock_text')
-  qspCall(s, 'bed2', 'wear_panties_decider');
-  qspCall(s, 'bed2', 'wear_buttplug_decider');
-  qspCall(s, 'bed2', 'wear_vibe_decider');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearPantiesDecider(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearButtplugDecider(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearVibeDecider(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).pcs_sleep ?? 0) <= 80) {
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       scene.actions([

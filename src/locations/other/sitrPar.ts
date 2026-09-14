@@ -62,7 +62,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You sit at the festive table laid in front of the TV and celebrate the New Year with your family, the TV providing some background noise. At the table, people strike up a conversation and common problems are forgotten as everyone has fun talking to each other.');
     // TODO-QSP: dynamic text: At midnight, everyone wishes one another a happy New Year and enjoys the champag...
-    scene.text(`At midnight, everyone wishes one another a happy New Year and enjoys the champagne and fireworks outside as your ${((s as any).npc_nickname ?? 0)?.['A29']} gives you an envelope with a greeting card and ${qspFunc(s, 'money', 'string_profit', 5000)}.`);
+    scene.text(`At midnight, everyone wishes one another a happy New Year and enjoys the champagne and fireworks outside as your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} gives you an envelope with a greeting card and ${qspFunc(s, 'money', 'string_profit', 5000)}.`);
     scene.text('You continue to watch TV and enjoy the champagne and company of your family, but everyone eventually grows tired and they go to bed, one by one.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -105,7 +105,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).locat ?? 0)?.['Mother'] === 19  &&  ((s as any).locat ?? 0)?.['Stepdad'] === 10) {
           // TODO-QSP: dynamic text: As you walk into the living room, you see your <<$npc_nickname['A29']>> and Vlad...
-          scene.text(`As you walk into the living room, you see your ${((s as any).npc_nickname ?? 0)?.['A29']} and Vladimir sitting on the couch watching TV.`);
+          scene.text(`As you walk into the living room, you see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and Vladimir sitting on the couch watching TV.`);
           if (((s as any).clothingworntype ?? 0) === 'nude') {
             scene.actions([{ label: 'Continue', goto: ['sitrPar', 'naked_mom_present'] }]);
           }
@@ -116,10 +116,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/home/familytv.jpg');
     if ((((s as any).motherKnowWhore ?? 0) > 0  ||  ((s as any).motherKnowSpravka ?? 0) > 0)  &&  (((s as any).npc_rel ?? 0)?.['A29'] <= 20  ||  ((s as any).npc_QW ?? 0)?.['A29'] === 1)) {
       // TODO-QSP: dynamic text: You move over to join them, your <<$npc_nickname['A29']>> offering you only a si...
-      scene.text(`You move over to join them, your ${((s as any).npc_nickname ?? 0)?.['A29']} offering you only a silent, frosty glare as you take a seat on the couch. Vlad barely even glances at you before he goes back to watching TV.`);
+      scene.text(`You move over to join them, your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} offering you only a silent, frosty glare as you take a seat on the couch. Vlad barely even glances at you before he goes back to watching TV.`);
     } else {
       // TODO-QSP: dynamic text: You move over to join them, and your <<$npc_nickname['A29']>> scoots away from V...
-      scene.text(`You move over to join them, and your ${((s as any).npc_nickname ?? 0)?.['A29']} scoots away from Vladimir and pats the spot between her and him. You take a seat between them, Vlad barely even glancing at you before he goes back to watching TV.`);
+      scene.text(`You move over to join them, and your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} scoots away from Vladimir and pats the spot between her and him. You take a seat between them, Vlad barely even glancing at you before he goes back to watching TV.`);
       scene.text('Your mother pats you on the shoulder before returning her attention to the TV, apparently happy the family is spending time together.');
     }
     if ((((s as any).hour ?? 0) === 21  &&  ((s as any).minut ?? 0) >= 45)  ||  ((s as any).hour ?? 0) >= 22) {
@@ -141,7 +141,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).locat ?? 0)?.['Mother'] === 19) {
             // TODO-QSP: dynamic text: As you walk into the living room, you see your <a href="exec:gt'mother'"><<$npc_...
-            scene.text(`As you walk into the living room, you see your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29']}</a> sitting on the couch watching TV.`);
+            scene.text(`As you walk into the living room, you see your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a> sitting on the couch watching TV.`);
             if (((s as any).clothingworntype ?? 0) === 'nude') {
               scene.actions([{ label: 'Continue', goto: ['sitrPar', 'naked_mom_present'] }]);
             }
@@ -190,7 +190,7 @@ function enterMomFloorSweeping(s: GameState, scene: SceneBuilder): void {
   if (((s as any).kanikuli ?? 0) === 0  &&  ((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0  &&  ((s as any).week ?? 0) < 6) {
     if (((s as any).PSchool ?? 0) === 1) {
       // TODO-QSP: dynamic text: You see your <<$npc_nickname['A29']>> sweeping the floor.
-      scene.text(`You see your ${((s as any).npc_nickname ?? 0)?.['A29']} sweeping the floor.`);
+      scene.text(`You see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} sweeping the floor.`);
       scene.text('She looks up and gives you a disappointed look. "What are you still doing here? Go to school, now!"');
       scene.text('She practically pushes you out of the apartment and closes the door.');
       scene.actions([
@@ -204,7 +204,7 @@ function enterMomFloorSweeping(s: GameState, scene: SceneBuilder): void {
       } else {
         qspCall(s, 'wardrobe', 'school_outfit');
         // TODO-QSP: dynamic text: You see your <<$npc_nickname['A29']>> sweeping the floor.
-        scene.text(`You see your ${((s as any).npc_nickname ?? 0)?.['A29']} sweeping the floor.`);
+        scene.text(`You see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} sweeping the floor.`);
         scene.text('She looks up and gives you a disappointed look. "What are you still doing here and why are you not wearing your uniform? Get changed and go to school, now!"');
         scene.text('She follows you back to your room and watches as you change into your uniform. After that, she practically pushes you out of the apartment and closes the door.');
         (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -218,7 +218,7 @@ function enterMomFloorSweeping(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     // TODO-QSP: dynamic text: You see your <<$npc_nickname['A29']>> sweeping the floor. She's so intent on her...
-    scene.text(`You see your ${((s as any).npc_nickname ?? 0)?.['A29']} sweeping the floor. She's so intent on her cleaning that she doesn't even notice you.`);
+    scene.text(`You see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} sweeping the floor. She's so intent on her cleaning that she doesn't even notice you.`);
     scene.actions([
       { label: 'Leave the room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
@@ -232,7 +232,7 @@ function enterMomFloorSweeping(s: GameState, scene: SceneBuilder): void {
 function enterNakedMomPresent(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/body/nude1.jpg');
   // TODO-QSP: dynamic text: Not wearing any clothing, you're frightened to see your <<$npc_nickname['A29']>>...
-  scene.text(`Not wearing any clothing, you're frightened to see your ${((s as any).npc_nickname ?? 0)?.['A29']} in the living room and leave as quickly as possible.`);
+  scene.text(`Not wearing any clothing, you're frightened to see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} in the living room and leave as quickly as possible.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the room', handler: (st: GameState) => {
@@ -301,7 +301,7 @@ function enterTVfam(s: GameState, scene: SceneBuilder): void {
         scene.text('You continue to watch TV with the family, although your mother continues to ignore your presence and instead spends more time telling Kolka and Vlad to stop fooling around.');
       } else {
         // TODO-QSP: dynamic text: You continue to watch TV with the family. Your <<$npc_nickname['A29']>> seems ha...
-        scene.text(`You continue to watch TV with the family. Your ${((s as any).npc_nickname ?? 0)?.['A29']} seems happy that the family are spending time together, even when she has to stop Kolka and Vlad from fooling around.`);
+        scene.text(`You continue to watch TV with the family. Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} seems happy that the family are spending time together, even when she has to stop Kolka and Vlad from fooling around.`);
       }
     }
   }

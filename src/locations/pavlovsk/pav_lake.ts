@@ -23,7 +23,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('<center>A small lake, located not far from Pavlovsk. You\'re not sure whether Pavlovsk was built near the lake on purpose or not. The lake froze over when winter arrived and it\'s currently being used as a skating rink.</center>');
     if (((s as any).pcs_icesktng ?? 0) > 0) {
       // TODO-QSP: dynamic text: Your ice skating skill is <<pcs_icesktng>>.
-      scene.text(`Your ice skating skill is ${((s as any).pcs_icesktng ?? 0)}.`);
+      scene.text(`Your ice skating skill is ${((s as any).pcs_icesktng || '')}.`);
     }
   } else {
     if (((s as any).season ?? 0) === 'spring') {
@@ -90,20 +90,20 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).clothingworntype ?? 0) === 'nude') {
       if ((!((s as any).sauna_stripped ?? 0))) {
-        qspCall(s, 'pav_lake', 'lost_clothing');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLostClothing(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).pcs_inhib ?? 0) > 30  ||  (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1  &&  ((s as any).pcs_horny ?? 0) >= 60)) {
         qspCall(s, 'willpower', 'exhib', 'self', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Strip naked [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Strip naked', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Strip naked [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Strip naked', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).sauna_stripped = 0;
@@ -316,10 +316,10 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
         scene.text('You\'re seriously panicking now. "I can\'t find my clothes! I left them right here and now they\'re gone! I don\'t know what to do!" you blurt out and he tries to calm you down.');
         scene.text('"Don\'t worry girl, you\'re going to be fine. Come on, I happen to have some sportswear in my car."');
         // TODO-QSP: dynamic text: You profusely thank him as he guides you to his car and are relieved to see that...
-        scene.text('You profusely thank him as he guides you to his car and are relieved to see that he wasn\'t lying. He pulls out a set of brand new sportswear that looks look like they would fit you. He doesn\'t hand them over though. "Of course, I can\'t just give these away for free… They\'re brand new! They cost me \' + $func(\'money\', \'string_price\', 3000) + \', so if you can give me that they\'re all yours."');
+        scene.text('You profusely thank him as he guides you to his car and are relieved to see that he wasn\'t lying. He pulls out a set of brand new sportswear that looks look like they would fit you. He doesn\'t hand them over though. "Of course, I can\'t just give these away for free… They\'re brand new! They cost me 3000₽, so if you can give me that they\'re all yours."');
         if (qspFunc(s, 'money', 'can_afford', 3000, 'cash')) {
           scene.actions([
-            { label: 'Pay  [+$func(\'money\', \'string_price\', 3000)]', handler: (st: GameState) => {
+            { label: 'Pay  [3000₽]', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 3000, 'cash');
     qspCall(s, 'clothing', 'add_item', 'danilovich_outfits', 1);
     qspCall(s, 'clothing', 'wear', 'danilovich_outfits', 1);
@@ -341,13 +341,13 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'prostitution', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse and run home naked [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and run home naked', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and run home naked [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and run home naked', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['home_events', 'go_home_naked_pre'] },
       ]);
@@ -361,22 +361,22 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'prostitution', 'self');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Suggest alternative payment [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Suggest alternative payment', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Suggest alternative payment [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Suggest alternative payment', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/lake/event/nakedcar.jpg');
     // TODO-QSP: dynamic text: This is not how you planned for your day to go! Too afraid to look him in the ey...
-    scene.text('This is not how you planned for your day to go! Too afraid to look him in the eye, you feebly make a suggestion. "Is there… is there some other way I can pay you? \'+$func(\'money\', \'string_price\', 3000)+\' is a lot of money…"');
+    scene.text('This is not how you planned for your day to go! Too afraid to look him in the eye, you feebly make a suggestion. "Is there… is there some other way I can pay you? 3000₽ is a lot of money…"');
     scene.text('He\'s been gawking at your naked body the whole time you\'ve been talking, and your suggestion seems to be exactly what he wanted to hear as he starts grinning. "I can think of one way…"');
     scene.text('The growing bulge in his pants does an excellent job of telling exactly what he\'s thinking.');
     scene.actions([
       { label: 'Agree to have sex', goto: ['pav_lake', 'car_sex'] },
-      { label: 'Just pay [+$func(\'money\', \'get_cost_string\', 3000, ...]', handler: (st: GameState) => {
+      { label: 'Just pay', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -385,7 +385,7 @@ function enterLostClothing(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'clothing', 'wear', 'danilovich_outfits', 1);
       scene.img('images/locations/pavlovsk/lake/event/nakedcar.jpg');
       // TODO-QSP: dynamic text: You don't want to have sex with him, but you also don't want to go home naked. N...
-      scene.text('You don\'t want to have sex with him, but you also don\'t want to go home naked. Not seeing any other option, you decide to pay him the \' + $func(\'money\', \'string_price\', 3000) + \'. You quickly put on the clothes as he hands them over. You feel relieved that you won\'t have to go home naked and hope that your clothes turn up later.');
+      scene.text('You don\'t want to have sex with him, but you also don\'t want to go home naked. Not seeing any other option, you decide to pay him the 3000₽. You quickly put on the clothes as he hands them over. You feel relieved that you won\'t have to go home naked and hope that your clothes turn up later.');
       scene.actions([
         { label: 'Continue', goto: ['pav_lake', ''] },
       ]);
@@ -443,7 +443,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npcStat', '', ((s as any).lbz_npc ?? 0));
         scene.text('A rather cute looking guy sits down next to you as you sunbathe.');
         // TODO-QSP: dynamic text: "Hey there beautiful, I'm <<$boydesc>>. What's your name?" he asks in an attempt...
-        scene.text(`"Hey there beautiful, I'm ${((s as any).boydesc ?? 0)}. What's your name?" he asks in an attempt to chat you up.`);
+        scene.text(`"Hey there beautiful, I'm ${((s as any).boydesc || '')}. What's your name?" he asks in an attempt to chat you up.`);
         qspCall(s, 'LakeBoyZ', 'gL_boy_z');
         scene.actions([
           { label: 'Move away from him', goto: ['pav_lake', ''] },
@@ -452,7 +452,7 @@ function enterSunbathe(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_QW ?? 0)?.['A113'] >= 1) {
           scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
           // TODO-QSP: dynamic text: While you're sunbathing, you see Vadim Bely and his brother sitting not far from...
-          scene.text(`While you're sunbathing, you see Vadim Bely and his brother sitting not far from you. The brother points at you, and seconds later Vadim walks over and sits down next to you. He idly scratches his tattoo covered belly as he speaks to you. "Hello ${((s as any).pcs_nickname ?? 0)}, want to go for a ride with me?"`);
+          scene.text(`While you're sunbathing, you see Vadim Bely and his brother sitting not far from you. The brother points at you, and seconds later Vadim walks over and sits down next to you. He idly scratches his tattoo covered belly as he speaks to you. "Hello ${((s as any).pcs_nickname || '')}, want to go for a ride with me?"`);
           scene.text('The greedy look in his eyes tells you that when he says \'ride\', he doesn\'t just mean in his car.');
           return;
           scene.actions([
@@ -553,7 +553,7 @@ function enterSwimming(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'mood', 'raise', 'tiny');
     }
     // TODO-QSP: dynamic text: After a few minutes, you feel the piercing gaze of several nearby women on you. ...
-    scene.text(`After a few minutes, you feel the piercing gaze of several nearby women on you. They're making an effort of whispering to one another, yet loud enough so you can hear them. "Look at that ${((s as any).pcs_lastname ?? 0)} slut! She has no decency whatsoever, shamelessly flaunting her naked body like that!" The men at the lake are much more appreciative, and openly stare at your attractive body. You can see bulges forming in the shorts of some of them.`);
+    scene.text(`After a few minutes, you feel the piercing gaze of several nearby women on you. They're making an effort of whispering to one another, yet loud enough so you can hear them. "Look at that ${((s as any).pcs_lastname || '')} slut! She has no decency whatsoever, shamelessly flaunting her naked body like that!" The men at the lake are much more appreciative, and openly stare at your attractive body. You can see bulges forming in the shorts of some of them.`);
   }
   if (((s as any).deodorant_on ?? 0) === 1) {
     qspCall(s, 'sweat', 'remove_deo');

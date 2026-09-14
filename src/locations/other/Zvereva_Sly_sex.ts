@@ -211,7 +211,7 @@ function enterHj_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Blowjob', goto: ['Zvereva_Sly_sex', 'bj_1'] },
     ]);
   } else {
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyRandomSexActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -244,7 +244,7 @@ function enterBj_1(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } else {
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyRandomSexActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -256,7 +256,7 @@ function enterVagCow_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
   scene.img('images/shared/sex/vag/cowgirl/hard\'+rand(1, 4)+\'.mp4');
-  qspCall(s, 'Zvereva_Sly_sex', 'sly_vibe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyVibe(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: Sitting on his bed, he pulls you onto his lap, lines you up and shoves his cock ...
   scene.text('Sitting on his bed, he pulls you onto his lap, lines you up and shoves his cock in hard, without any attempt to be gentle. \'+iif(func(\'pcs_has_attr\', \'sex_virgin\'), \'You feel your hymen rip, you\'re no longer a virgin. \', \')+\'"Start shaking those hips," he says, laying back with his arms behind his head.');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
@@ -264,7 +264,7 @@ function enterVagCow_1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You happily start bouncing up and down on his cock. You let out a few loud moans, partly because it feels good, but mostly to make him happy. Eventually he takes over, grabbing your hips and thrusting in and out as he pulls you forward and pushes you back.');
   }
-  qspCall(s, 'Zvereva_Sly_sex', 'Christina_peek');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('Feeling a bit like a fuck toy, you try to ignore the sloshing sounds coming from your pussy, telling yourself over and over how this isn\'t exciting you.');
   } else {
@@ -277,7 +277,7 @@ function enterVagCow_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['Zvereva_Sly_sex', 'vag_doggy_1'] },
     ]);
   } else {
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyRandomSexActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -289,7 +289,7 @@ function enterVagDoggy_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
   scene.img('images/shared/sex/vag/doggy/kotovsex\'+rand(10, 13)+\'.mp4');
-  qspCall(s, 'Zvereva_Sly_sex', 'sly_vibe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyVibe(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: He flips you onto your hands and knees and just slams his cock inside without wa...
   scene.text('He flips you onto your hands and knees and just slams his cock inside without warning. \'+iif(func(\'pcs_has_attr\', \'sex_virgin\'), \'You feel your hymen rip, you\'re no longer a virgin. \', \')+\'He presses your face into the bed and, finding his rhythm, pounds away.');
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
@@ -297,7 +297,7 @@ function enterVagDoggy_1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You reach behind with both hands and spread yourself wide, to give him easier access. Even with your face smashed into the blankets, you can hear the wet sounds your pussy makes as he plunges in and out of you.');
   }
-  qspCall(s, 'Zvereva_Sly_sex', 'Christina_peek');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('He spanks your ass several times while fucking you, leaving red handmarks all over your asscheeks. The rough treatment has you leaking like crazy, running down your thighs and onto the bed below.');
   qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'foreplay', (-5));
@@ -308,7 +308,7 @@ function enterVagDoggy_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['Zvereva_Sly_sex', 'vag_stomach_1'] },
     ]);
   } else {
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyRandomSexActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -320,7 +320,7 @@ function enterVagStomach_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_call', 'precum', 'A248', 1);
   scene.img('images/shared/sex/vag/facedown/kotovsex\'+rand(40, 45)+\'.mp4');
-  qspCall(s, 'Zvereva_Sly_sex', 'sly_vibe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyVibe(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((Math.floor(Math.random() * 2) + 1) === 1) {
     // TODO-QSP: dynamic text: Sly pushes you to your stomach and pushes his way inside. '+iif(func('pcs_has_at...
     scene.text('Sly pushes you to your stomach and pushes his way inside. \'+iif(func(\'pcs_has_attr\', \'sex_virgin\'), \'You feel your hymen rip, you\'re no longer a virgin. \', \')+\'He starts fucking you hard, giving you no chance to adjust to the speed of his thrusts.');
@@ -335,7 +335,7 @@ function enterVagStomach_1(s: GameState, scene: SceneBuilder): void {
       scene.text('Without any hesitation, his cock plunges inside of you. \'+iif(func(\'pcs_has_attr\', \'sex_virgin\'), \'You feel your hymen rip, you\'re no longer a virgin. \', \')+\'You let out a little screech, to let him know that he\'s hurting you, but he\'s not easing up as he continues to furiously thrust without any consideration.');
     }
   }
-  qspCall(s, 'Zvereva_Sly_sex', 'Christina_peek');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('He smacks your ass a bit, then pulls on your hair as he pumps his cock in and out of you. Every time he does, you squeal out and tighten down on his dick. He seems to enjoy the feeling, as he does it on and off for several minutes.');
   qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
   qspCall(s, 'pain', '', 2, 'hair', 'pull');
@@ -347,7 +347,7 @@ function enterVagStomach_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['Zvereva_Sly_sex', 'anal_doggy_1'] },
     ]);
   } else {
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyRandomSexActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -355,7 +355,7 @@ function enterVagStomach_1(s: GameState, scene: SceneBuilder): void {
 
 function enterAnalDoggy_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/doggy/kotovsexanal11.mp4');
-  qspCall(s, 'Zvereva_Sly_sex', 'sly_plug');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyPlug(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('Sly forces you on your hands and knees as he gets in position behind you, pushing his cock inside your ass. Within seconds he\'s pounding you, disregarding your shrieks and even slapping your buttcheeks as your ass is getting stretched out.');
   } else {
@@ -365,7 +365,7 @@ function enterAnalDoggy_1(s: GameState, scene: SceneBuilder): void {
       scene.text('You present yourself wide for him, awaiting his cock and to give him easier access. To your surprise, instead of Sly fucking your wet pussy, he instead shoves his cock inside your anus and starts plunging in and out of you while giving your asscheeks a few slaps.');
     }
   }
-  qspCall(s, 'Zvereva_Sly_sex', 'Christina_peek');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You try to spread your cheeks wider, so it will hurt less, but he\'s pounding you too hard and fast for it to make much difference.');
   qspCall(s, 'pain', '', 2, 'asscheeks', 'spank');
   qspCall(s, 'arousal', 'foreplay', (-5));
@@ -376,7 +376,7 @@ function enterAnalDoggy_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['Zvereva_Sly_sex', 'anal_stomach_1'] },
     ]);
   } else {
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyRandomSexActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -384,10 +384,10 @@ function enterAnalDoggy_1(s: GameState, scene: SceneBuilder): void {
 
 function enterAnalStomach_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/facedown/kotovsexanal20.mp4');
-  qspCall(s, 'Zvereva_Sly_sex', 'sly_plug');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyPlug(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('"I\'m going to enjoy this," he grunts as he forces himself on top of you. He scoots forward, holding your head down with one hand while pushing his cock inside of you with his other. Without giving you a chance to adjust, he picks up his pace and before you know it he\'s plowing you.');
   scene.text('Your shrieks are muffled by the blankets on the bed, which your face is smushed into. He seems to enjoy the noise, because he reaches around, underneath you, and starts pinching your nipples. It hurts, and your screams grow even louder.');
-  qspCall(s, 'Zvereva_Sly_sex', 'Christina_peek');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('You cry for it to stop, but he doesn\'t pay you any attention, using you for as a human fleshlight for quite some time.');
   } else {
@@ -402,7 +402,7 @@ function enterAnalStomach_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['Zvereva_Sly_sex', 'anal_piledriver_1'] },
     ]);
   } else {
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyRandomSexActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -410,13 +410,13 @@ function enterAnalStomach_1(s: GameState, scene: SceneBuilder): void {
 
 function enterAnalPiledriver_1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/piledriver/kotovsexanal36.mp4');
-  qspCall(s, 'Zvereva_Sly_sex', 'sly_plug');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyPlug(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('He pushes you onto your back, grabs your ankles, and pushes them behind your ears. Without hesitation, he plunges in full hilt. "S-Stop! It hurts," you cry out, but he pays no heed. Each time he slams down, he grunts, but draws a shriek out of you.');
   } else {
     scene.text('He pushes you onto your back, grabs your ankles, and pushes them behind your ears. Without hesitation, he plunges in full hilt. "Yes! More," you cry out. Each time he slams down, he grunts, but draws a shriek out of you.');
   }
-  qspCall(s, 'Zvereva_Sly_sex', 'Christina_peek');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterChristinaPeek(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).christinaQW ?? 0)?.['fight'] === -1) {
     scene.text('The sex is hard and fast. You hate it, but your body seems to respond to the pain by turning it into pleasure. Due to the awkward position your body is in, your own juices keeps splashing in your face until you\'re soaked.');
   } else {
@@ -429,7 +429,7 @@ function enterAnalPiledriver_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['Zvereva_Sly_sex', 'cum_decide'] },
     ]);
   } else {
-    qspCall(s, 'Zvereva_Sly_sex', 'Sly_random_sex_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSlyRandomSexActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -441,7 +441,7 @@ function enterAnalDoggyCum_1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Now clean up and get the fuck out of my room." He starts getting dressed, so you gather your own clothes and leave.');
   qspCall(s, 'cum_call', 'anus', 'A248', 1);
   qspCall(s, 'stat', '');
-  qspCall(s, 'Zvereva_Sly_sex', 'sex_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -452,7 +452,7 @@ function enterVagDoggyCum_1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Now clean up and get the fuck out of my room." He starts getting dressed, so you gather your own clothes and leave.');
   qspCall(s, 'cum_call', '', '', 'A248', 1);
   qspCall(s, 'stat', '');
-  qspCall(s, 'Zvereva_Sly_sex', 'sex_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -471,7 +471,7 @@ function enterSwallowCum_1(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'cum_call', 'mouth_swallow', 'A248', 1);
   qspCall(s, 'stat', '');
-  qspCall(s, 'Zvereva_Sly_sex', 'sex_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

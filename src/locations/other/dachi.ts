@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/suburban/dachi.jpg');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: In the parking is <a href="exec: gs 'carF', 'start'">your <<$car['name']>></a>.
-    scene.text(`In the parking is <a href="exec: gs 'carF', 'start'">your ${((s as any).car ?? 0)?.['name']}</a>.`);
+    scene.text(`In the parking is <a href="exec: gs 'carF', 'start'">your ${((s as any).car ?? 0)?.['name'] ?? ''}</a>.`);
   }
   scene.text('At the alley entrance dug into the ground is a <a href="exec:gt \'ETO_village\', \'info_column\'">column with ads</a>.');
   scene.text('At the end of the alley there is <a href="exec:gt \'ETO_village\', \'spring_water\'">a spring with spring water</a>.');
@@ -25,7 +25,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: :lover_pickup_loop
       if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
         // TODO-QSP: dynamic text: <b>Near the entrance you expect <a href="exec: gt 'lover_meet', 'start', '<<$tem...
-        scene.text(`<b>Near the entrance you expect <a href="exec: gt 'lover_meet', 'start', '${((s as any).temp_npcid ?? 0)}'">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)]}</a></b>`);
+        scene.text(`<b>Near the entrance you expect <a href="exec: gt 'lover_meet', 'start', '${((s as any).temp_npcid || '')}'">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? ''}</a></b>`);
       }
       (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
       if (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0)) {
@@ -46,7 +46,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: :lover_pickup_loop2
       if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
         // TODO-QSP: dynamic text: <b><a href="exec: gt 'lover_meet', 'start', '<<$temp_npcid>>'"><<$npc_usedname[$...
-        scene.text(`<b><a href="exec: gt 'lover_meet', 'start', '${((s as any).temp_npcid ?? 0)}'">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)]}</a> is waiting at the entrance to your yard.</b>`);
+        scene.text(`<b><a href="exec: gt 'lover_meet', 'start', '${((s as any).temp_npcid || '')}'">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? ''}</a> is waiting at the entrance to your yard.</b>`);
       }
       (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
       if (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0)) {

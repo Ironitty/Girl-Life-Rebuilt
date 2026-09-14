@@ -115,13 +115,13 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
 
 function enterWardrobe(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'start') {
-    qspCall(s, 'therapist_home', 'leave', 'wardrobe', 'start');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wardrobe', 'start']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
-    qspCall(s, 'therapist_home', 'leave', 'HotelRoom', 'therapist');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'HotelRoom', 'therapist']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).hotelWiFi = 0;
-  qspCall(s, 'therapist_home', 'leave', 'pav_hotel');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_hotel']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -332,7 +332,7 @@ function enterFirstMorning(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave the Hotel', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'wakeup_events', 'exit');
-    qspCall(s, 'therapist_home', 'leave', 'pav_market');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

@@ -198,7 +198,7 @@ function enterDanceApproach(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_talking_on__dance_floor.jpg');
         scene.text('You approach her from behind. "Hey Katja!" you shout so she can hear you over the music.');
         // TODO-QSP: dynamic text: She turns around. "Oh hi, <<$pcs_nickname>>!" she shouts back when she sees you....
-        scene.text(`She turns around. "Oh hi, ${((s as any).pcs_nickname ?? 0)}!" she shouts back when she sees you. "You decided to come clubbing tonight as well? It's a great place to let loose. Why don't we dance?"`);
+        scene.text(`She turns around. "Oh hi, ${((s as any).pcs_nickname || '')}!" she shouts back when she sees you. "You decided to come clubbing tonight as well? It's a great place to let loose. Why don't we dance?"`);
         scene.actions([
           { label: 'Dance with Katja', goto: ['katja_nightclub', 'dance'] },
         ]);
@@ -242,7 +242,7 @@ function enterBarApproach(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_bar1.jpg');
       scene.text('You approach the bar where she\'s getting a drink handed to her by the bartender. "Hi, Katja!" you say loudly so she can hear you over the music.');
       // TODO-QSP: dynamic text: She turns to you with a huge smile on her face. "It's great to see you here! We'...
-      scene.text(`She turns to you with a huge smile on her face. "It's great to see you here! We're going to have so much fun! Get a drink and join me, ${((s as any).pcs_nickname ?? 0)}!"`);
+      scene.text(`She turns to you with a huge smile on her face. "It's great to see you here! We're going to have so much fun! Get a drink and join me, ${((s as any).pcs_nickname || '')}!"`);
       scene.actions([
         { label: 'Order a drink', goto: ['katja_nightclub', 'drink'] },
       ]);
@@ -255,7 +255,7 @@ function enterBarApproach(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_bar1.jpg');
         scene.text('You approach the bar where she\'s getting a drink handed to her by the bartender. "Hi, Katja!" you say loudly so she can hear you over the music.');
         // TODO-QSP: dynamic text: She turns to you and shouts back. "Oh hi, <<$pcs_nickname>>! You decided to come...
-        scene.text(`She turns to you and shouts back. "Oh hi, ${((s as any).pcs_nickname ?? 0)}! You decided to come clubbing tonight as well? It's a great place to let loose. Have a drink with me!"`);
+        scene.text(`She turns to you and shouts back. "Oh hi, ${((s as any).pcs_nickname || '')}! You decided to come clubbing tonight as well? It's a great place to let loose. Have a drink with me!"`);
         scene.actions([
           { label: 'Order a drink', goto: ['katja_nightclub', 'drink'] },
         ]);
@@ -266,7 +266,7 @@ function enterBarApproach(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_bar1.jpg');
       scene.text('You approach the bar where she\'s getting a drink handed to her by the bartender. "Hi, Katja!" you say loudly so she can hear you over the music.');
       // TODO-QSP: dynamic text: She turns to you with a huge smile on her face. "You need a drink too, <<$pcs_ni...
-      scene.text(`She turns to you with a huge smile on her face. "You need a drink too, ${((s as any).pcs_nickname ?? 0)}? Great minds think alike."`);
+      scene.text(`She turns to you with a huge smile on her face. "You need a drink too, ${((s as any).pcs_nickname || '')}? Great minds think alike."`);
       scene.actions([
         { label: 'Order a drink', goto: ['katja_nightclub', 'drink'] },
       ]);
@@ -279,7 +279,7 @@ function enterBarApproach(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_bar1.jpg');
         scene.text('You approach the bar where she\'s getting a drink handed to her by the bartender. "Hi, Katja!" you say loudly so she can hear you over the music.');
         // TODO-QSP: dynamic text: She turns to you. "Oh hi, <<$pcs_nickname>>! You thirsty too? Have a drink with ...
-        scene.text(`She turns to you. "Oh hi, ${((s as any).pcs_nickname ?? 0)}! You thirsty too? Have a drink with me."`);
+        scene.text(`She turns to you. "Oh hi, ${((s as any).pcs_nickname || '')}! You thirsty too? Have a drink with me."`);
         scene.actions([
           { label: 'Order a drink', goto: ['katja_nightclub', 'drink'] },
         ]);
@@ -544,7 +544,7 @@ function enterDance(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'katja_nightclub', 'dance_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -554,7 +554,7 @@ function enterDanceEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Katja'] !== 53) {
     if (((s as any).katjaQW ?? 0)?.['disco_arrival'] + 600 < ((s as any).totminut ?? 0)) {
       // TODO-QSP: dynamic text: "It's getting late, <<$pcs_nickname>>. Let's go home," Katja says as the song en...
-      scene.text(`"It's getting late, ${((s as any).pcs_nickname ?? 0)}. Let's go home," Katja says as the song ends. It looks like there's no way to convince her to stay.`);
+      scene.text(`"It's getting late, ${((s as any).pcs_nickname || '')}. Let's go home," Katja says as the song ends. It looks like there's no way to convince her to stay.`);
       scene.actions([
         { label: 'Go home with Katja', handler: (st: GameState) => {
     // TODO-QSP: katjaQW['on_date'] = 1
@@ -563,7 +563,7 @@ function enterDanceEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "It's getting late, <<$pcs_nickname>>. I'm heading home," Katja says as she fini...
-      scene.text(`"It's getting late, ${((s as any).pcs_nickname ?? 0)}. I'm heading home," Katja says as she finishes her drink. It looks like there's no way to convince her to stay.`);
+      scene.text(`"It's getting late, ${((s as any).pcs_nickname || '')}. I'm heading home," Katja says as she finishes her drink. It looks like there's no way to convince her to stay.`);
       if ((((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2)  ||  ((s as any).home ?? 0)?.['current'] === 'university_dorm') {
         scene.actions([
           { label: 'Suggest you go home together', handler: (st: GameState) => {
@@ -604,16 +604,16 @@ function enterDanceEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('"No. I really want a drink right now!" she insists, looking quite determined.');
-      qspCall(s, 'katja_nightclub', 'set_willpower', 'drink', 'force');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drink', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Convince her to keep dancing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Convince her to keep dancing', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Convince her to keep dancing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Convince her to keep dancing', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -657,16 +657,16 @@ function enterDanceEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.text('"I really want to dance to this number, though! Come on, stay with me! Please?" she pleads.');
-      qspCall(s, 'katja_nightclub', 'set_willpower', 'drink', 'force');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drink', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Convince her to go to the bar [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Convince her to go to the bar', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Convince her to go to the bar [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Convince her to go to the bar', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -756,7 +756,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['disco_drink_bought'] = 0;
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).temp_rand ?? 0) <= ((s as any).pcs_hotcat ?? 0) / 2) {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_dringking_man_approach.jpg');
@@ -778,12 +778,12 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     scene.text('"What was that about?" you ask.');
     // TODO-QSP: dynamic text: "I thought we were having a drink together, just the two of us?" she asks. "If y...
     scene.text('"I thought we were having a drink together, just the two of us?" she asks. "If you want to chase boys then go ahead, but \' + iif(katjaQW[\'boy_block\'] = 1, \'I thought you didn\'t have any interest in them?\', \'I\'m not interested,\') + \'"');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Just finish your drinks in peace', handler: (st: GameState) => {
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (Math.floor(Math.random() * 2) + 1);
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_bar1.jpg');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -795,7 +795,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You pull out your phone. "Oh shit, lost track of time! Sorry, but my friend and I need to meet somebody on the dance floor right now!" you say and drag Katja away from the bar without giving him time to protest.');
     scene.text('"Thanks. I really didn\'t want to have a guy hitting on us right now," she says as you make your way to the dance floor.');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Ignore Katja\'s discomfort', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
@@ -807,7 +807,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
       scene.text('"Why did you invite <i>him</i>?" she asks in a harsh tone.');
       scene.text('"It\'s fine. It never hurts to talk to a good looking guy," you answer.');
       scene.text('"Well, I didn\'t want to talk to him! Next time, I\'ll just leave you alone," she says, still a little upset with you.');
-      qspCall(s, 'katja_nightclub', 'bar_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if ((!(Math.floor(Math.random() * 3) + 0))) {
         scene.text('He\'s clearly flirting with the two of you, which Katja tries to ignore. After your glasses are empty, he asks if you want to join him on the dance floor.');
@@ -825,7 +825,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
       { label: 'Stay with Katja', handler: (st: GameState) => {
     scene.text('"Sorry, but my friend just reminded me that we need to be somewhere else. I hope you understand," you tell him. He looks disappointed, but leaves the two of you alone.');
     scene.text('"Thanks. I really didn\'t want to have a guy hitting on us right now," she says.');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -833,7 +833,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sorry, but my friend and I are going to stay at the bar," you tell him, making it clear that you\'re not interested.');
     scene.text('"Too bad, you\'ll be missing a great time," he says as he leaves, almost like you\'ve insulted him.');
     scene.text('Once he\'s gone, Katja turns to you. "Thanks. I didn\'t want to spend any more time with him."');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -845,19 +845,19 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.text('"Sorry, but I didn\'t want to spend any more time with him," she says.');
         }
-        qspCall(s, 'katja_nightclub', 'bar_end');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   } },
         ]);
       }
     } else {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (100 - ((s as any).katjaQW ?? {})?.['slut'] - 50 + 1)) + (((s as any).katjaQW ?? {})?.['slut'] - 50)) / 50));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (100 - (((s as any).katjaQW ?? {})?.['slut'] ?? 0) - 50 + 1)) + ((((s as any).katjaQW ?? {})?.['slut'] ?? 0) - 50)) / 50));
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_dringking_man_approach.jpg');
       scene.text('You tell him that he\'s welcome to join and Katja nods in agreement. You spend the time chatting with him while your glasses empty.');
       if ((Math.floor(Math.random() * 4) + 5) > ((s as any).pcs_hotcat ?? 0)) {
         scene.text('He then thanks you for a nice time, but says he has to run, and leaves you and Katja alone at the bar.');
-        qspCall(s, 'katja_nightclub', 'bar_end');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if ((!(Math.floor(Math.random() * 3) + 0))) {
           scene.text('He\'s clearly flirting with the two of you and asks if you want to join him on the dance floor.');
@@ -872,7 +872,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sorry, but my friend and I are going to stay at the bar," you tell him, making it clear that you\'re not interested.');
     scene.text('"Too bad, you\'ll be missing a great time," he says as he leaves, almost like you had insulted him.');
     // TODO-QSP: 'Once he''s gone, Katja turns to you. ' + iif((katjaQW['QWstage'] >= 6 or katjaQW['liberated'] = 1) ...
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           ]);
         } else {
@@ -885,7 +885,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.text('"I\'m sorry, but I\'m not really comfortable with us being alone with strange guys," she says.');
             }
-            qspCall(s, 'katja_nightclub', 'bar_end');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             scene.actions([
               { label: 'Join him', handler: (st: GameState) => {
@@ -918,7 +918,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
         { label: 'Stay with Katja', handler: (st: GameState) => {
     scene.text('"Sorry, but my friend just reminded me that we need to be somewhere else. I hope you understand," you tell him. He looks disappointed, but leaves the two of you alone.');
     scene.text('"Thanks. I really didn\'t want to have a guy hitting on us right now," she says.');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -940,16 +940,16 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You lean into Katja and whisper in her ear. "I don\'t want to go with him. He gives me the wrong vibes."');
     scene.text('"I don\'t get bad vibes from him. I think he\'s actually quite hot and that we should go with him," she answers.');
-    qspCall(s, 'katja_nightclub', 'set_willpower', '', 'force');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince her to stay at the bar [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her to stay at the bar', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince her to stay at the bar [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her to stay at the bar', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -959,7 +959,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She turns to him. "Sorry, but my friend ' + iif(func('katja_procedural', 'willin...
     scene.text('She turns to him. "Sorry, but my friend \' + iif(func(\'katja_procedural\', \'willing_to_be_naughty\') + katjaQW[\'horny\'] > 175, \'is boring\', \'doesn\'t feel like it\') + \', so I\'ll stay with her. Maybe another time?"');
     scene.text('He shrugs before leaving, looking very disappointed.');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -991,7 +991,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
       scene.text('"Thanks, but no. I think we\'ll go dancing," you tell him.');
       scene.text('"We had a good time. Maybe we can join you some other time?" Katja asks.');
       scene.text('He just shrugs before leaving, looking a little disappointed.');
-      qspCall(s, 'katja_nightclub', 'bar_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
             ]);
@@ -1011,16 +1011,16 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     scene.text('You lean in and whisper in Katja\'s ear. "We\'re having fun by ourselves. We don\'t need some guy. Besides, he gives me the wrong vibes…"');
     // TODO-QSP: dynamic text: She looks at him again, then at you. "Okay, you win," she whispers before she tu...
     scene.text('She looks at him again, then at you. "Okay, you win," she whispers before she turns back to him. "Sorry, but my friend \' + iif(func(\'katja_procedural\', \'willing_to_be_naughty\') + katjaQW[\'horny\'] > 175, \'is boring\', \'prefers for us to be alone right now\') + \', so we have to decline. Maybe another time?"');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         { label: 'Let him join', handler: (st: GameState) => {
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (Math.floor(Math.random() * 2) + 1);
-    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (100 - ((s as any).katjaQW ?? {})?.['slut'] - 50 + 1)) + (((s as any).katjaQW ?? {})?.['slut'] - 50)) / 50));
+    if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (Math.max(0, (Math.floor(Math.random() * (100 - (((s as any).katjaQW ?? {})?.['slut'] ?? 0) - 50 + 1)) + ((((s as any).katjaQW ?? {})?.['slut'] ?? 0) - 50)) / 50));
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_dringking_man_approach.jpg');
     scene.text('You tell him that he\'s welcome to join and Katja nods in agreement. You spend the time chatting with him while your glasses empty.');
     if ((Math.floor(Math.random() * 4) + 5) < ((s as any).pcs_hotcat ?? 0)) {
       scene.text('He then thanks you for a nice time, but says he has to run and leaves you and Katja alone at the bar.');
-      qspCall(s, 'katja_nightclub', 'bar_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if ((!(Math.floor(Math.random() * 3) + 0))) {
         scene.text('He\'s clearly flirting with the two of you and asks if you want to join him on the dance floor.');
@@ -1035,7 +1035,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sorry, but my friend and I are going to stay at the bar," you tell him, making it clear that you\'re not interested.');
     scene.text('"Too bad, you\'ll be missing a great time," he says as he leaves, almost like you\'ve insulted him.');
     // TODO-QSP: 'Once he''s gone, Katja turns to you. ' + iif((katjaQW['QWstage'] >= 6 or katjaQW['liberated'] = 1) ...
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -1071,7 +1071,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
         { label: 'Stay with Katja', handler: (st: GameState) => {
     scene.text('"Sorry, but my friend just reminded me that we need to be somewhere else. I hope you understand," you tell him. He looks disappointed, but leaves the two of you alone.');
     scene.text('"Thanks. I really didn\'t want to have a guy hitting on us right now," she says.');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1093,16 +1093,16 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You lean into Katja and whisper in her ear. "Come on. I don\'t want to go with him. He gives me the wrong vibes."');
     scene.text('"I don\'t get bad vibes from him. I think he\'s actually quite hot and that we should go with him," Katja answers.');
-    qspCall(s, 'katja_nightclub', 'set_willpower', '', 'force');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince her to stay at the bar [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her to stay at the bar', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince her to stay at the bar [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her to stay at the bar', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -1112,7 +1112,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She turns to him. "I'm sorry, but my friend ' + iif(func('katja_procedural', 'wi...
     scene.text('She turns to him. "I\'m sorry, but my friend \' + iif(func(\'katja_procedural\', \'willing_to_be_naughty\') + katjaQW[\'horny\'] > 175, \'is boring\', \'doesn\'t feel like it\') + \', so I\'ll stay with her. Maybe another time?"');
     scene.text('He just shrugs before leaving, looking very disappointed.');
-    qspCall(s, 'katja_nightclub', 'bar_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1144,7 +1144,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
       scene.text('"Thanks, but no. I think we\'ll go dancing," you tell him.');
       scene.text('"We had fun, though. Maybe some other time?" Katja asks.');
       scene.text('He just shrugs before leaving, looking a little disappointed.');
-      qspCall(s, 'katja_nightclub', 'bar_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
         ]);
@@ -1156,7 +1156,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_drinnking_bar.jpg');
       scene.text('You say a polite \'no\', which he accepts and leaves you in peace.');
       scene.text('"Thanks," Katja says. "I didn\'t want to talk to some random guy right now."');
-      qspCall(s, 'katja_nightclub', 'bar_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
       ]);
@@ -1164,7 +1164,7 @@ function enterBarAfterDrink(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/disco_drinnking_bar.jpg');
       // TODO-QSP: dynamic text: You spend some time hanging at the bar talking as ' + iif(katjaQW['disco_drink_b...
       scene.text('You spend some time hanging at the bar talking as \' + iif(katjaQW[\'disco_drink_bought\'] = 1, \'you and Katja\', \'Katja\') + \' enjoy\' + iif(katjaQW[\'disco_drink_bought\'] = 1, \' your drinks.\', \'s her drink.\') + \'');
-      qspCall(s, 'katja_nightclub', 'bar_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBarEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: end
@@ -1176,7 +1176,7 @@ function enterBarEnd(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['Katja'] !== 53) {
     if (((s as any).katjaQW ?? 0)?.['disco_arrival'] + 600 < ((s as any).totminut ?? 0)) {
       // TODO-QSP: dynamic text: "It's getting late, <<$pcs_nickname>>. Let's go home," Katja says after finishin...
-      scene.text(`"It's getting late, ${((s as any).pcs_nickname ?? 0)}. Let's go home," Katja says after finishing her drink. It looks like there's no way to convince her to stay.`);
+      scene.text(`"It's getting late, ${((s as any).pcs_nickname || '')}. Let's go home," Katja says after finishing her drink. It looks like there's no way to convince her to stay.`);
       scene.actions([
         { label: 'Go home with Katja', handler: (st: GameState) => {
     // TODO-QSP: katjaQW['on_date'] = 1
@@ -1185,7 +1185,7 @@ function enterBarEnd(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "It's getting late, <<$pcs_nickname>>. I'm heading home," Katja says after finis...
-      scene.text(`"It's getting late, ${((s as any).pcs_nickname ?? 0)}. I'm heading home," Katja says after finishing her drink. It looks like there's no way to convince her to stay.`);
+      scene.text(`"It's getting late, ${((s as any).pcs_nickname || '')}. I'm heading home," Katja says after finishing her drink. It looks like there's no way to convince her to stay.`);
       if ((((s as any).npc_had_sex ?? 0)?.['A14']  &&  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] < 2)  ||  ((s as any).home ?? 0)?.['current'] === 'university_dorm') {
         scene.actions([
           { label: 'Suggest you go home together', handler: (st: GameState) => {
@@ -1236,13 +1236,13 @@ function enterBarEnd(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Convince her to have another drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Convince her to have another drink', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Convince her to have another drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Convince her to have another drink', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -1283,7 +1283,7 @@ function enterDanceGuy1(s: GameState, scene: SceneBuilder): void {
     { label: 'Let him join you', goto: ['katja_nightclub', 'dance_guy2'] },
     { label: 'Don\'t let him join', handler: (st: GameState) => {
     scene.text('You make sure to let him know that you don\'t want him to join you before you and Katja continue dancing alone, having a lot of fun.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1303,7 +1303,7 @@ function enterDanceGuy2(s: GameState, scene: SceneBuilder): void {
     scene.text('You dance through several songs, and while he\'s a \' + iif(rand(0, 1) = 0, \'good\', \'terrible\') + \' dancer, he never tries to get too close to either you or Katja. In fact, whenever you try to get closer to him, he always distances himself.');
     scene.text('After some time, he thanks you for the dance and excuses himself.');
     scene.text('"Well, seems he wasn\'t that into us," Katja says with a smile.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.actions([{ label: 'Continue', goto: ['katja_nightclub', 'dance_guy3'] }]);
   }
@@ -1326,7 +1326,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.text('After some time, he thanks you for the dance and excuses himself.');
     scene.text('"Seems he wasn\'t that into us after all," Katja says with a smile.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     qspCall(s, 'stat', '');
     if ((!(Math.floor(Math.random() * 3) + 0))) {
@@ -1336,7 +1336,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
         { label: 'Find something else to do', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
     scene.text('"Thanks, but no thanks. We need to get going," you say and look at Katja, who seems to be fine with the idea. He\'s clearly not satisfied with your reply, but he doesn\'t try to keep you.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1350,7 +1350,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.text('"I\'m sorry, but I\'m not really comfortable with us being alone with strange guys," she tells you.');
           }
-          qspCall(s, 'katja_nightclub', 'dance_end');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           scene.actions([
             { label: 'Join him', handler: (st: GameState) => {
@@ -1383,7 +1383,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
         { label: 'Stay with Katja', handler: (st: GameState) => {
     scene.text('"Sorry, but my friend just reminded me that we need to be somewhere else. I hope you understand," you tell him. He looks disappointed, but leaves the two of you alone.');
     scene.text('"Thanks. I really didn\'t want to have a guy hitting on us right now," she says.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1421,16 +1421,16 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You lean into Katja and whisper in her ear. "I don\'t want to go with him. He gives me the wrong vibes."');
     scene.text('"I don\'t get bad vibes from him. He\'s actually quite hot and I think that we should go with him," she answers.');
-    qspCall(s, 'katja_nightclub', 'set_willpower', '', 'force');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince her to stay on the dance floor [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her to stay on the dance floor', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince her to stay on the dance floor [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her to stay on the dance floor', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -1440,7 +1440,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She then turns to him. "Sorry, but my friend ' + iif(func('katja_procedural', 'w...
     scene.text('She then turns to him. "Sorry, but my friend \' + iif(func(\'katja_procedural\', \'willing_to_be_naughty\') + katjaQW[\'horny\'] > 175, \'is boring\', \'doesn\'t feel like it\') + \', so I\'ll stay with her. Maybe another time?"');
     scene.text('He shrugs before leaving, looking very disappointed.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1468,7 +1468,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
       scene.text('"Thanks, but no thanks. I think we\'ll stick to dancing," you tell him.');
       scene.text('"We had fun, though. Maybe some other time?" Katja asks.');
       scene.text('He leaves you, looking a disappointed.');
-      qspCall(s, 'katja_nightclub', 'dance_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
           ]);
@@ -1484,16 +1484,16 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Come on, Katja. It's going to be fun. He's quite good-looking and ' + iif(katja...
     scene.text('"Come on, Katja. It\'s going to be fun. He\'s quite good-looking and \' + iif(katjaQW[\'QWstage\'] = 5, \'we talked about you trying to have sex with a guy,\', \'I know you do like have a cock inside you,\') + \'" you whisper in her ear.');
     scene.text('Her face turns red. "I don\'t know… I\'m not sure he\'s right for us."');
-    qspCall(s, 'katja_nightclub', 'set_willpower', 'sex', 'force');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sex', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Push her a little more [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push her a little more', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Push her a little more [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push her a little more', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -1534,7 +1534,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (Math.floor(Math.random() * 2) + 2);
     qspCall(s, 'arousal', 'end');
     scene.text('You resign yourself and accept Katja\'s decision. "Sorry, but my friend doesn\'t feel like it, so we\'re staying here to dance," you tell him, and he says goodbye and walks away, looking quite sad.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1544,7 +1544,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
             { label: 'Agree and say goodbye to him', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
     scene.text('You agree with Katja and say goodbye to the guy.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           ]);
         } else {
@@ -1569,16 +1569,16 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You lean into Katja and whisper in her ear. "I don\'t want to go home with him. Who knows what will happen?"');
     scene.text('"He\'s actually quite hot and I get a good feeling from him. I\'m sure nothing we don\'t want to happen will happen. Besides, there\'s two of us and only one of him, we have nothing to be afraid of," she answers.');
-    qspCall(s, 'katja_nightclub', 'set_willpower', '', 'force');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince her not to go home with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her not to go home with him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince her not to go home with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her not to go home with him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -1588,7 +1588,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She then turns to him. "Sorry, but my friend ' + iif(func('katja_procedural', 'w...
     scene.text('She then turns to him. "Sorry, but my friend \' + iif(func(\'katja_procedural\', \'willing_to_be_naughty\') + katjaQW[\'horny\'] > 175, \'is boring\', \'doesn\'t feel like it\') + \', so I\'ll stay with her. Maybe another time?"');
     scene.text('He shrugs before leaving, looking very disappointed.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1654,7 +1654,7 @@ function enterDanceGuy3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.text('"Thanks, but no thanks," you say. "We prefer to stay here and dance."');
     scene.text('He clearly looks disappointed, but says goodbye before leaving you and Katja alone on the dance floor.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
             ]);
           }
@@ -1674,7 +1674,7 @@ function enterDanceTwoGuys1(s: GameState, scene: SceneBuilder): void {
     { label: 'Let them join you', goto: ['katja_nightclub', 'dance_two_guys2'] },
     { label: 'Don\'t let them join', handler: (st: GameState) => {
     scene.text('You make sure to let them know that you don\'t want them to join you before you and Katja continue dancing alone, having a lot of fun.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1694,7 +1694,7 @@ function enterDanceTwoGuys2(s: GameState, scene: SceneBuilder): void {
     scene.text('You dance through several songs, and while they\'re \' + iif(rand(0, 1) = 0, \'good\', \'terrible\') + \' dancers, they never try to get too close to either you or Katja. In fact, whenever you try to get closer to one of them, he always distances himself.');
     scene.text('After some time, they thank you for the dance and excuse themselves.');
     scene.text('"Seems they weren\'t that into us," Katja says with a smile.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.actions([{ label: 'Continue', goto: ['katja_nightclub', 'dance_two_guys3'] }]);
   }
@@ -1718,7 +1718,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: After some time, he thanks you for the dance and excuses himself. He then go to ...
     scene.text('After some time, he thanks you for the dance and excuses himself. He then go to his friend, who\'s dancing with Katja, and says something you can\'t hear.\' + iif(rand(0, 2) = 0, \' His friend just nods and\', \' He seems not to agree with his friend, but after some back and forth he relents and\') + \' thanks Katja for the dance before they leave.');
     scene.text('"Seems they weren\'t that into us after all," Katja says with a smile.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     qspCall(s, 'stat', '');
     if ((!(Math.floor(Math.random() * 4) + 0))) {
@@ -1729,7 +1729,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
         { label: 'Find something else to do', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
     scene.text('"Thanks, but no thanks. We need to get going," you say and look at Katja, who seems to be fine with the idea. They\'re clearly not satisfied with your reply, but they don\'t try to keep you.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1749,16 +1749,16 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Come on, it\'ll be fun! They look hot and \' + iif(katjaQW[\'simultanous_boys\'] < 2, \' if you\'ve never been with two guys, then you should defiantly try it.\', \'I know you like to have several cocks to play with.\') + \'" you whisper in her ear.');
     // TODO-QSP: dynamic text: Her face turns red. "I don't know. I'm not sure ' + iif(katjaQW['simultanous_boy...
     scene.text('Her face turns red. "I don\'t know. I\'m not sure \' + iif(katjaQW[\'simultanous_boys\'] < 2, \'it\'s the right time to try a foursome\', \'they\'re right for us\') + \'…"');
-    qspCall(s, 'katja_nightclub', 'set_willpower', 'group', 'force');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'group', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Push her a little more [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push her a little more', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Push her a little more [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push her a little more', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -1785,7 +1785,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (Math.floor(Math.random() * 2) + 2);
     qspCall(s, 'arousal', 'end');
     scene.text('You resign yourself and accept Katja\'s decision. "Sorry, but my friend doesn\'t feel like it, so we\'re staying here to dance," you tell them and they say goodbye before walking away, looking quite sad.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1795,7 +1795,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
           { label: 'Agree and say goodbye to them', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
     scene.text('You agree with Katja and say goodbye to the men.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -1820,16 +1820,16 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big14.jpg');
     scene.text('You lean into Katja and whisper in her ear. "I don\'t want to go home with them. Who knows what will happen?"');
     scene.text('"They\'re actually quite hot and I get a good feeling from them. I\'m sure nothing we don\'t want to happen will happen. I\'ll protect you if they try to do something we don\'t want," she answers while trying to look tough.');
-    qspCall(s, 'katja_nightclub', 'set_willpower', '', 'force');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince her not to go home with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her not to go home with him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince her not to go home with them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her not to go home with them', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -1839,7 +1839,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She then turns to them. "Sorry, but my friend ' + iif(func('katja_procedural', '...
     scene.text('She then turns to them. "Sorry, but my friend \' + iif(func(\'katja_procedural\', \'willing_to_be_naughty\') + katjaQW[\'horny\'] > 175, \'is boring\', \'doesn\'t feel like it\') + \', so I\'ll stay with her. Maybe another time?"');
     scene.text('They both leave, looking very disappointed.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1851,7 +1851,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: Katja looks at you a little panicked. "But I've never been with two guys before!...
       scene.text('Katja looks at you a little panicked. "But I\'ve never been with two guys before! Come with me, please!" she pleads, but seeing that you won\'t relent, she turns to the guys. "Sorry, but my friend \' + iif(func(\'katja_procedural\', \'willing_to_be_naughty\') + katjaQW[\'horny\'] > 175, \'is boring\', \'doesn\'t feel like it\') + \', so I\'ll stay with her. Maybe another time?"');
       scene.text('They both leave, looking very disappointed.');
-      qspCall(s, 'katja_nightclub', 'dance_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['alone_with_other_day'] = ((s as any).daystart ?? 0);
       if (((s as any).hour ?? 0) > 10) {
@@ -1912,7 +1912,7 @@ function enterDanceTwoGuys3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.text('"Thanks, but no thanks," you say. "We\'d prefer to stay here and dance."');
     scene.text('They clearly look disappointed, but say goodbye before leaving you and Katja alone on the dance floor.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -1931,7 +1931,7 @@ function enterDanceTwoGirls1(s: GameState, scene: SceneBuilder): void {
     { label: 'Let them join you', goto: ['katja_nightclub', 'dance_two_girls2'] },
     { label: 'Don\'t let them join', handler: (st: GameState) => {
     scene.text('You make sure to let them know that you don\'t want them to join you before you and Katja continue dancing alone, having a lot of fun.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1951,7 +1951,7 @@ function enterDanceTwoGirls2(s: GameState, scene: SceneBuilder): void {
     scene.text('You dance through several songs, and while they\'re \' + iif(rand(0, 1) = 0, \'fantastic\', \'okay\') + \' dancers, they don\'t try anything else than dancing.');
     scene.text('After some time, they thank you for the dance and excuse themselves.');
     scene.text('"That was fun," Katja says with a smile.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.actions([{ label: 'Continue', goto: ['katja_nightclub', 'dance_two_girls3'] }]);
   }
@@ -1975,7 +1975,7 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: After some time, they thank you for the dance and excuse themselves, but thank y...
     scene.text('After some time, they thank you for the dance and excuse themselves, but thank you for the dance and tell you, \' + iif(pcs_danc < rand(50, 75), \'That you are a great dancer and it was a pleasure\', \'that it was fun\') + \' dancing with you before they leave.');
     scene.text('"That was fun," Katja says with a smile.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     qspCall(s, 'stat', '');
     if ((!(Math.floor(Math.random() * 4) + 0))) {
@@ -1986,7 +1986,7 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
         { label: 'Find something else to do', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
     scene.text('"Thanks, but no thanks. We need to get going," you say and look at Katja, who seems to be fine with the idea. The girls look a little disappointed with your reply, but they don\'t try to keep you.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -2005,16 +2005,16 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: "Come on, it'll be fun! I was fun dancing with them so I'm sure it will be fun g...
     scene.text('"Come on, it\'ll be fun! I was fun dancing with them so I\'m sure it will be fun getting to know them a little better. \' + iif(katjaQW[\'simultanous_boys\'] < 2, \'Also you should try more than one girl at some point so know might be a good time if that is what they want.\', \' It might just be completely innocent drinking.\') + \'" you whisper in her ear.');
     scene.text('Her she still seems a little skeptical. "I don\'t know, I\'m not really thisty and just wanna keep dancing." She replies');
-    qspCall(s, 'katja_nightclub', 'set_willpower', 'group', 'force');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'group', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Push her a little more [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push her a little more', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Push her a little more [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push her a little more', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -2034,7 +2034,7 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) + (Math.floor(Math.random() * 2) + 2);
     qspCall(s, 'arousal', 'end');
     scene.text('You resign yourself and accept Katja\'s decision. "Sorry, but my friend is not thirsty, so we\'re staying here to dance," you tell them and they say goodbye before walking away.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -2044,7 +2044,7 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
           { label: 'Agree and say goodbye to them', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
     scene.text('You agree with Katja and say goodbye to the girls.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
@@ -2063,16 +2063,16 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
     scene.text('You lean into Katja and whisper in her ear. "I\'m not thirsty. Let\'s stay here dancing"');
     // TODO-QSP: dynamic text: "I'm actually thirsty, and I would like to to know these girls a little better. ...
     scene.text('"I\'m actually thirsty, and I would like to to know these girls a little better. \' + iif(npc_had_sex[\'A14\'] and katjaQW[\'simultanous_girls\'] > 1, \'They are actually quite hot don\'t you think?\', \'I think it will be fun.\') + \'" she whispers back.');
-    qspCall(s, 'katja_nightclub', 'set_willpower', 'sex', 'force');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sex', 'force']; enterSetWillpower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince her not to go drinking with them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her not to go drinking with them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince her not to go drinking with them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her not to go drinking with them', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (Math.floor(Math.random() * 2) + 1);
@@ -2082,7 +2082,7 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She then turns to them. "Sorry, but my friend ' + iif(func('katja_procedural', '...
     scene.text('She then turns to them. "Sorry, but my friend \' + iif(func(\'katja_procedural\', \'willing_to_be_naughty\') + katjaQW[\'horny\'] > 175, \'is boring\', \'isn\'t thirsty\') + \', so I\'ll stay with her. Maybe another time?"');
     scene.text('The two girls then leave heading for one of the private rooms.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -2128,7 +2128,7 @@ function enterDanceTwoGirls3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.text('"Thanks, but no thanks," you say. "We aren\'t thirsty and prefer to stay here and dance."');
     scene.text('The girls then say goodbye before walking towards the private rooms leaving you and Katja alone on the dance floor.');
-    qspCall(s, 'katja_nightclub', 'dance_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDanceEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }

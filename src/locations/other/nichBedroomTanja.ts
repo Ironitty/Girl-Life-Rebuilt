@@ -27,12 +27,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('The view is obscured by something. You can\'t see anything.');
     } else {
       if (((s as any).nichTanyaSpyCounter ?? 0) < 2) {
-        scene.img(`${((s as any).nichTempPic ?? 0)}`);
+        scene.img(`${((s as any).nichTempPic || '')}`);
         scene.text('You can see Tanya having sex with a man. You can\'t see his face. From your location you can\'t figure out who he is. Afraid of getting caught spying through the keyhole you turn away.');
         qspCall(s, 'arousal', 'voyeur_sex', (-5));
       } else {
         (s as any).nichNTRelation = 1;
-        scene.img(`${((s as any).nichTempPic ?? 0)}`);
+        scene.img(`${((s as any).nichTempPic || '')}`);
         scene.text('You can see Tanya having sex with a man. You can\'t see his face but from the clothes lying around, the body stature and the muffled sounds there is no doubt that Tanya is fucking her stepfather.');
         qspCall(s, 'arousal', 'voyeur_sex', (-5), 'incest');
       }
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       return;
       scene.actions([
         { label: 'Spy', handler: (st: GameState) => {
-    scene.img(`${((s as any).nichTempPic ?? 0)}`);
+    scene.img(`${((s as any).nichTempPic || '')}`);
     scene.text('"Through the keyhole you can see Tanya and her boyfriend. They are obviously in the act of doing it."');
     scene.actions([
       { label: 'Walk away', goto: ['nichApartment', 'return'] },

@@ -27,7 +27,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: In the parking lot is <a href="exec:gs 'carF', 'start'">your <<$car['name']>></a...
-    scene.text(`In the parking lot is <a href="exec:gs 'carF', 'start'">your ${((s as any).car ?? 0)?.['name']}</a>.`);
+    scene.text(`In the parking lot is <a href="exec:gs 'carF', 'start'">your ${((s as any).car ?? 0)?.['name'] ?? ''}</a>.`);
   }
   // TODO-QSP: dynamic text: There is a path leading off in to the distance, in the direction of the <a href=...
   scene.text('There is a path leading off in to the distance, in the direction of the <a href="exec:minut += 60 & gt \'city_lake\', \'start\'">lake</a>.');

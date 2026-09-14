@@ -14,7 +14,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/redlight/studio_porn/studia_0.jpg');
   if (((s as any).hour ?? 0) < 9  ||  ((s as any).hour ?? 0) > 22) {
     // TODO-QSP: dynamic text: The porn studio is currently closed. It is open between '+func('time', 'get_time...
-    scene.text('The porn studio is currently closed. It is open between \'+func(\'time\', \'get_time_string\', 9, 0)+\' and \'+func(\'time\', \'get_time_string\', 22, 0)+\'.');
+    scene.text('The porn studio is currently closed. It is open between 9:00 and 22:00.');
     return;
   }
   scene.text('You enter the studio and are greeted by a busy scene of actors, actresses and other studio employees going about their business or chatting to each other. It looks like the manager is in his office.');
@@ -158,7 +158,7 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: "You've made <<film>> films."
-    scene.text(`"You've made ${((s as any).film ?? 0)} films."`);
+    scene.text(`"You've made ${((s as any).film || '')} films."`);
     if (((s as any).porn_fame ?? 0) < 10) {
       scene.text('"Nobody knows your name. You\'re one of hundreds of amateur actresses whose fims are sold really cheap."');
     } else {
@@ -219,17 +219,17 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['type1'] = qspUntranslated(s, "ftypecount_text[temp['pos1']]", { location: "pornstudio" });
       if (10 * ((s as any).temp ?? 0)?.['max1'] < 9 * ((s as any).temp ?? 0)?.['max0']) {
         // TODO-QSP: dynamic text: You're known for your <<$temp['type0']>> scenes.
-        scene.text(`You're known for your ${((s as any).temp ?? 0)?.['type0']} scenes.`);
+        scene.text(`You're known for your ${((s as any).temp ?? 0)?.['type0'] ?? ''} scenes.`);
       } else {
         if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['max2'] = qspUntranslated(s, "max('ftypecount')", { location: "pornstudio" });
         if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['pos2'] = qspUntranslated(s, "arrpos('ftypecount', temp['max2'])", { location: "pornstudio" });
         if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['type2'] = qspUntranslated(s, "ftypecount_text[temp['pos2']]", { location: "pornstudio" });
         if (10 * ((s as any).temp ?? 0)?.['max2'] < 9 * ((s as any).temp ?? 0)?.['max0']) {
           // TODO-QSP: dynamic text: You're known for your <<$temp['type0']>> and <<$temp['type1']>> scenes.
-          scene.text(`You're known for your ${((s as any).temp ?? 0)?.['type0']} and ${((s as any).temp ?? 0)?.['type1']} scenes.`);
+          scene.text(`You're known for your ${((s as any).temp ?? 0)?.['type0'] ?? ''} and ${((s as any).temp ?? 0)?.['type1'] ?? ''} scenes.`);
         } else {
           // TODO-QSP: dynamic text: You're known for your <<$temp['type0']>>, <<$temp['type1']>> and <<$temp['type2'...
-          scene.text(`You're known for your ${((s as any).temp ?? 0)?.['type0']}, ${((s as any).temp ?? 0)?.['type1']} and ${((s as any).temp ?? 0)?.['type2']} scenes.`);
+          scene.text(`You're known for your ${((s as any).temp ?? 0)?.['type0'] ?? ''}, ${((s as any).temp ?? 0)?.['type1'] ?? ''} and ${((s as any).temp ?? 0)?.['type2'] ?? ''} scenes.`);
         }
       }
     }
@@ -241,10 +241,10 @@ function enterPa(s: GameState, scene: SceneBuilder): void {
     (s as any).films_stop_payment = ((s as any).film ?? 0) * 40000;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: "Seeing as you're not well known, it's unlikely anyone would notice. However, to...
-    scene.text('"Seeing as you\'re not well known, it\'s unlikely anyone would notice. However, to remove them you\'d have to cover the loss of the studio\'s profits- \' + $func(\'money\', \'string_price\', 40000) + \' per film. That\'s a total of \' + $func(\'money\', \'string_price\', films_stop_payment) + \'."');
+    scene.text('"Seeing as you\'re not well known, it\'s unlikely anyone would notice. However, to remove them you\'d have to cover the loss of the studio\'s profits- 40000₽ per film. That\'s a total of \' + $func(\'money\', \'string_price\', films_stop_payment) + \'."');
     scene.text('"Also, it would piss off your co-stars and director, and likely end your porn career. You should also know that there\'s no guarantee there\'s no other copies out there, so think carefully."');
     scene.actions([
-      { label: 'Remove them [+$func(\'money\', \'get_cost_string\', films_...]', handler: (st: GameState) => {
+      { label: 'Remove them', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).films_stop_payment ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -429,13 +429,13 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'misc', 'self');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'I quit! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'I quit!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'I quit! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'I quit!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.text('"Fuck this shit, I quit!" you yell before storming out of his office.');
     (s as any).pfilmNO = 1;
@@ -467,7 +467,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
                   scene.text('"You\'re just in time for your inspection. Off you go now," he says with a smile.');
                 } else {
                   // TODO-QSP: dynamic text: "You're almost late, <<pfname>>! I suggest you be more careful in the future," h...
-                  scene.text(`"You're almost late, ${((s as any).pfname ?? 0)}! I suggest you be more careful in the future," he says with a stern look. "Now move along and get yourself checked up."`);
+                  scene.text(`"You're almost late, ${((s as any).pfname || '')}! I suggest you be more careful in the future," he says with a stern look. "Now move along and get yourself checked up."`);
                 }
               }
               (s as any).minut = ((s as any).minut ?? 0) + (60 - ((s as any).minut ?? 0));
@@ -501,18 +501,18 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'willpower', 'exhib', 'self');
                 if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                   scene.actions([
-                    { label: 'Agree [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                    { label: 'Agree', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                   ]);
                 } else {
                   scene.actions([
-                    { label: 'Agree [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                    { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     // TODO-QSP: gs 'jobs', 'book_slot', 'city_pornstudio_actress', daystart + 1, 0, '1'
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: "Cool. We shoot tomorrow, so be here between '+$func('time', 'get_time_string', ...
-    scene.text('"Cool. We shoot tomorrow, so be here between \'+$func(\'time\', \'get_time_string\', 9, 0)+\' and \'+$func(\'time\', \'get_time_string\', 10, 0)+\'. Please don\'t be late."');
+    scene.text('"Cool. We shoot tomorrow, so be here between 9:00 and 10:00. Please don\'t be late."');
     scene.actions([
       { label: 'Leave', goto: ['pornstudio', ''] },
     ]);
@@ -525,7 +525,7 @@ function enterManager(s: GameState, scene: SceneBuilder): void {
                 ]);
               } else {
                 if (((s as any).film ?? 0) > 0) {
-                  qspCall(s, 'pornstudio', 'options');
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
                   scene.text('Dimitri looks up from his paperwork and greets you. "Hello. Can I help you with something?"');
                 }
@@ -669,13 +669,13 @@ function enterYes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'exhib', 'self');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Undress [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Undress', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Undress [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Undress', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -1008,7 +1008,7 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pfcash ?? 0) > 0) {
       }
       // TODO-QSP: dynamic text: <<$tmp>> you think to yourself as you smirk in satisfaction.
-      scene.text(`${((s as any).tmp ?? 0)} you think to yourself as you smirk in satisfaction.`);
+      scene.text(`${((s as any).tmp || '')} you think to yourself as you smirk in satisfaction.`);
     } else {
       if (((s as any).knowpreg ?? 0) === 0  &&  ((s as any).thinkpreg ?? 0) === 0  &&  ((s as any).pillcon2 ?? 0) < 1000) {
         if (!(s as any).pornDanger) (s as any).pornDanger = {}; (s as any).pornDanger[String((s as any).film ?? 0)] = 1;
@@ -1016,7 +1016,7 @@ function enterPostvideo(s: GameState, scene: SceneBuilder): void {
           if (((s as any).pfcash ?? 0) > 0) {
           }
           // TODO-QSP: dynamic text: With a growing sense of horror, you realize that you aren't on the shot and have...
-          scene.text(`With a growing sense of horror, you realize that you aren't on the shot and have no idea when you last took a birth control pill. ${((s as any).tmp ?? 0)}`);
+          scene.text(`With a growing sense of horror, you realize that you aren't on the shot and have no idea when you last took a birth control pill. ${((s as any).tmp || '')}`);
         } else {
           // TODO-QSP: !{If she has birth control and deliberately isn''t using it, obviously she wants to get pregnant or ...
           if (((s as any).pfcash ?? 0) > 0) {

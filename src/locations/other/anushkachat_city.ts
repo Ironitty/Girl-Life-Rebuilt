@@ -273,13 +273,13 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Kiss her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Kiss her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     if (((s as any).anushkaQW ?? 0)?.['kiss'] <= 0) {
@@ -428,13 +428,13 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.text('<center><b>Anushka\'s Room</b></center>');
@@ -728,7 +728,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Niko', handler: (st: GameState) => {
     scene.text('"Niko," you tell her.');
     // TODO-QSP: dynamic text: She looks at you, concerned. "<<$pcs_nickname>>, he's bad news and I don't mean ...
-    scene.text(`She looks at you, concerned. "${((s as any).pcs_nickname ?? 0)}, he's bad news and I don't mean in the 'fun bad boy' sort of way. I mean he isn't what he seems." Noticing your facial expression from bad mouthing your boyfriend, she holds up her hand. "Hey, it's your life so do what you want. Just… just be careful with him."`);
+    scene.text(`She looks at you, concerned. "${((s as any).pcs_nickname || '')}, he's bad news and I don't mean in the 'fun bad boy' sort of way. I mean he isn't what he seems." Noticing your facial expression from bad mouthing your boyfriend, she holds up her hand. "Hey, it's your life so do what you want. Just… just be careful with him."`);
     scene.actions([
       { label: 'Stop talking', goto: ['anush_bedroom_city', 'anushroom'] },
       { label: 'Keep talking', goto: ['anushkachat_city', 'chat'] },
@@ -755,7 +755,7 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
         scene.text('She arches a slender brow. "Fedor? Really? Come on now, if you were going to date a jock why not go for one of the better athletes like Lazar or Ivan? I mean <b>Fedor</b>? He\'s like an Ivan-lite," she says with a giggle.');
         scene.text('You\'re mad at her for talking smack about your boyfriend, but she can\'t keep a straight face and you realize that she\'s just yanking your chain. "Yeah, I like him. He\'s sweet."');
         // TODO-QSP: dynamic text: She snorts. "Yeah sure he is… Uh-huh. Be honest <<$pcs_nickname>>, it's because ...
-        scene.text(`She snorts. "Yeah sure he is… Uh-huh. Be honest ${((s as any).pcs_nickname ?? 0)}, it's because he has a really big dick, isn't it?" she asks with a grin while pretending to hold a really big imaginary dick between her legs.`);
+        scene.text(`She snorts. "Yeah sure he is… Uh-huh. Be honest ${((s as any).pcs_nickname || '')}, it's because he has a really big dick, isn't it?" she asks with a grin while pretending to hold a really big imaginary dick between her legs.`);
         scene.text('You roll your eyes. "I just like him, okay?" As you think about it, you bite your lip and add "Well, maybe it is pretty big…"');
         scene.text('She laughs. "I knew it! Hmm, you think he\'d be up for a threesome?" she asks as she winks and makes a kissy face at you.');
         scene.actions([
@@ -802,10 +802,10 @@ function enterBoyfriendChat(s: GameState, scene: SceneBuilder): void {
         scene.text('She arches a slender brow. "Fedor? Really? Come on now, if you were going to date a jock why not go for one of the better athletes like Lazar or Ivan? I mean, <b>Fedor</b>? He\'s like an Ivan-lite," she says with a giggle.');
         scene.text('You\'re mad at her for talking smack about your boyfriend, but she can\'t keep a straight face and you realize she\'s just yanking your chain. "Yeah, I like him. He\'s sweet."');
         // TODO-QSP: dynamic text: She snorts. "Yeah sure he is… Uh-huh. Be honest <<$pcs_nickname>>, it's because ...
-        scene.text(`She snorts. "Yeah sure he is… Uh-huh. Be honest ${((s as any).pcs_nickname ?? 0)}, it's because he has a really big dick, isn't it?" she says with a grin while pretending to hold a really big imaginary dick between her legs.`);
+        scene.text(`She snorts. "Yeah sure he is… Uh-huh. Be honest ${((s as any).pcs_nickname || '')}, it's because he has a really big dick, isn't it?" she says with a grin while pretending to hold a really big imaginary dick between her legs.`);
         scene.text('You roll your eyes. "I just like him, okay?" Thinking about it, you bite your lip and add "Well, maybe it is pretty big…"');
         // TODO-QSP: dynamic text: She laughs. "I knew it!" She grabs her pillow and starts pretending to hump it d...
-        scene.text(`She laughs. "I knew it!" She grabs her pillow and starts pretending to hump it doggystyle while talking in a gruff voice trying to sound like Fedor. "Yeah, take my big dick ${((s as any).pcs_nickname ?? 0)}! Take it!" She switches to a girly voice and tries to sound like you. "Yes… yes… Fedor fuck me with your big dick… YES!" She bursts out laughing and you can't help but to join in.`);
+        scene.text(`She laughs. "I knew it!" She grabs her pillow and starts pretending to hump it doggystyle while talking in a gruff voice trying to sound like Fedor. "Yeah, take my big dick ${((s as any).pcs_nickname || '')}! Take it!" She switches to a girly voice and tries to sound like you. "Yes… yes… Fedor fuck me with your big dick… YES!" She bursts out laughing and you can't help but to join in.`);
         scene.actions([
           { label: 'Stop talking', goto: ['anush_bedroom_city', 'anushroom'] },
           { label: 'Keep talking', goto: ['anushkachat_city', 'chat'] },
@@ -904,7 +904,7 @@ function enterTellAboutGenericBoyfriend(s: GameState, scene: SceneBuilder): void
   scene.text('"I have a boyfriend you know," you tell her.');
   scene.text('She grins at you. "Right. Who are you dating again?"');
   // TODO-QSP: dynamic text: "<<$ARGS[1]>>," you tell her.
-  scene.text(`"${((s as any).locArgs?.[1] ?? 0)}," you tell her.`);
+  scene.text(`"${((s as any).locArgs?.[1] ?? '')}," you tell her.`);
   scene.text('"Who?" she asks as she cocks her head slightly.');
   scene.text('You shake your head slightly. "You\'ve never met him. I just met him."');
   scene.text('She smiles. "Just some guy you met, huh?"');
@@ -922,7 +922,7 @@ function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Anushka\'s Room</b></center>');
   scene.img('images/characters/pavlovsk/school/girl/anushka/bedroom/bedroomtalk.jpg');
   // TODO-QSP: dynamic text: You sigh in a way only those in love can sigh. "Hopefully <<$ARGS[1]>> and I can...
-  scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((s as any).locArgs?.[1] ?? 0)} and I can get married soon."`);
+  scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((s as any).locArgs?.[1] ?? '')} and I can get married soon."`);
   scene.text('She gives you a somewhat skeptical look before shrugging. "Well, best of luck with that."');
   scene.text('You\'re not sure what more to say on the topic.');
   // TODO-QSP: end

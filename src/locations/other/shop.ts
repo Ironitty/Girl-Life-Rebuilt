@@ -90,13 +90,13 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 1;
   }, goto: ['shop', 'main'] },
@@ -299,9 +299,9 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/rex/dog_food.jpg');
     // TODO-QSP: dynamic text: The store sells dog food for ' + $func('money', 'string_price', 600) + '. Inside...
-    scene.text(`The store sells dog food for ' + $func('money', 'string_price', 600) + '. Inside each pack is enough food for 20 meals. You have ${((s as any).objects ?? 0)?.['dog_food']}.`);
+    scene.text(`The store sells dog food for 600₽. Inside each pack is enough food for 20 meals. You have ${((s as any).objects ?? 0)?.['dog_food'] ?? ''}.`);
     scene.actions([
-      { label: 'Buy enough for 20 meals [+$func(\'money\', \'get_cost_string\', 600)]', handler: (st: GameState) => {
+      { label: 'Buy enough for 20 meals', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 600) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -310,7 +310,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['shop', 'dog_items'] }]);
     }
   } },
-      { label: 'Buy enough for 40 meals [+$func(\'money\', \'get_cost_string\', 1200)]', handler: (st: GameState) => {
+      { label: 'Buy enough for 40 meals', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1200) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -319,7 +319,7 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['shop', 'dog_items'] }]);
     }
   } },
-      { label: 'Buy enough for 80 meals [+$func(\'money\', \'get_cost_string\', 2400)]', handler: (st: GameState) => {
+      { label: 'Buy enough for 80 meals', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 2400) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -339,10 +339,10 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/rex/balls.jpg');
     // TODO-QSP: dynamic text: The store sells rubber balls for ' + $func('money', 'string_price', 900) + ' tha...
-    scene.text('The store sells rubber balls for \' + $func(\'money\', \'string_price\', 900) + \' that you can use to play fetch with your dog.');
+    scene.text('The store sells rubber balls for 900₽ that you can use to play fetch with your dog.');
     scene.actions([
       { label: 'Go back', goto: ['shop', 'dog_items'] },
-      { label: 'Buy them [+$func(\'money\', \'get_cost_string\', 900)]', handler: (st: GameState) => {
+      { label: 'Buy them', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 900) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -365,10 +365,10 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/rex/treat_\'+rand(0, 2)+\'.jpg');
     // TODO-QSP: dynamic text: The store sells dog treats for ' + $func('money', 'string_price', 300) + '. Insi...
-    scene.text(`The store sells dog treats for ' + $func('money', 'string_price', 300) + '. Inside each pack are 20 treats. You have ${((s as any).objects ?? 0)?.['treats']}.`);
+    scene.text(`The store sells dog treats for 300₽. Inside each pack are 20 treats. You have ${((s as any).objects ?? 0)?.['treats'] ?? ''}.`);
     scene.actions([
       { label: 'Go back', goto: ['shop', 'dog_items'] },
-      { label: 'Buy a pack [+$func(\'money\', \'get_cost_string\', 300)]', handler: (st: GameState) => {
+      { label: 'Buy a pack', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -384,10 +384,10 @@ function enterDogItems(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/rex/chew.jpg');
     // TODO-QSP: dynamic text: The store sells a chew toy for ' + $func('money', 'string_price', 800) + '.
-    scene.text('The store sells a chew toy for \' + $func(\'money\', \'string_price\', 800) + \'.');
+    scene.text('The store sells a chew toy for 800₽.');
     scene.actions([
       { label: 'Go back', goto: ['shop', 'dog_items'] },
-      { label: 'Buy one [+$func(\'money\', \'get_cost_string\', 800)]', handler: (st: GameState) => {
+      { label: 'Buy one', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 800) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -449,7 +449,7 @@ function enterHardware(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/store/shop3.jpg');
   if (((s as any).pod_whore_countQW ?? 0) > 15  &&  (!((s as any).paint_blue ?? 0))) {
     scene.actions([
-      { label: 'Buy paint to cover graffiti [+$func(\'money\', \'get_cost_string\', 200)]', handler: (st: GameState) => {
+      { label: 'Buy paint to cover graffiti', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 200) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -485,13 +485,13 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   // TODO-QSP: dynamic text: Women's panties and bras ' + $func('money', 'string_price', 300) + ' each
-  scene.text('Women\'s panties and bras \' + $func(\'money\', \'string_price\', 300) + \' each');
+  scene.text('Women\'s panties and bras 300₽ each');
   qspCall(s, 'stat', '');
   if (((s as any).mc_inventory ?? 0)?.['ice_skates'] !== 1) {
     // TODO-QSP: dynamic text: A pair of ice-skates are available for ' + $func('money', 'string_price', 3000) ...
-    scene.text('A pair of ice-skates are available for \' + $func(\'money\', \'string_price\', 3000) + \'.');
+    scene.text('A pair of ice-skates are available for 3000₽.');
     scene.actions([
-      { label: 'Buy ice skates [+$func(\'money\', \'get_cost_string\', 3000)]', handler: (st: GameState) => {
+      { label: 'Buy ice skates', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -508,9 +508,9 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['ski'] !== 1) {
     // TODO-QSP: dynamic text: A pair of skis and poles are available for ' + $func('money', 'string_price', 40...
-    scene.text('A pair of skis and poles are available for \' + $func(\'money\', \'string_price\', 4000) + \'.');
+    scene.text('A pair of skis and poles are available for 4000₽.');
     scene.actions([
-      { label: 'Buy skis [+$func(\'money\', \'get_cost_string\', 4000)]', handler: (st: GameState) => {
+      { label: 'Buy skis', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 4000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -606,13 +606,13 @@ function enterIcecream(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/store/icecreamcounter.jpg');
   // TODO-QSP: dynamic text: Ice cream is available for ' + $func('money', 'string_price', 50) + '.
-  scene.text('Ice cream is available for \' + $func(\'money\', \'string_price\', 50) + \'.');
+  scene.text('Ice cream is available for 50₽.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away from the counter', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['shop', 'main'] },
-    { label: 'Buy ice cream [+$func(\'money\', \'get_cost_string\', 50)]', handler: (st: GameState) => {
+    { label: 'Buy ice cream', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -669,7 +669,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title ?? 0)}${((s as any).tables ?? 0)}${((s as any).line ?? 0)}${((s as any).tablec ?? 0)}`);
+  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
   qspCall(s, 'homes_properties', 'get_internet_enabled_properties', 'home', 'hasaccess');
   (s as any).count = 0;
   if (((s as any).count ?? 0) > 0) {
@@ -705,7 +705,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'count'
     if (((s as any).title ?? 0) !== '') {
       // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-      scene.text(`${((s as any).title ?? 0)}${((s as any).tables ?? 0)}${((s as any).line ?? 0)}${((s as any).tablec ?? 0)}`);
+      scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
     }
     // TODO-QSP: killvar 'line'
     // TODO-QSP: killvar 'title'
@@ -714,7 +714,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
   if (((s as any).subscription ?? 0)?.['mobile'] === 1) {
   } else {
     if (((s as any).subscription ?? 0)?.['metered_mobile'] > 0) {
-      (s as any).discount = ((s as any).subscription ?? {})?.['metered_mobile'] / 12;
+      (s as any).discount = (((s as any).subscription ?? {})?.['metered_mobile'] ?? 0) / 12;
       (s as any).discount_left = Math.max(((s as any).price ?? 0) - ((s as any).discount ?? 0), 0);
     }
     // TODO-QSP: $line += '<tr><td style="padding-left: 10px; padding-right: 10px; align: left; ">Monthly mobile inte...
@@ -729,7 +729,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title ?? 0)}${((s as any).tables ?? 0)}${((s as any).line ?? 0)}${((s as any).tablec ?? 0)}`);
+  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
   if (((s as any).subscription ?? 0)?.['mobile'] === 1) {
     // TODO-QSP: $line += '<tr><td align="left"><b>300 minutes</b> (5 hours) of mobile internet for ' + $func('money'...
     // TODO-QSP: $line += '<tr><td align="left"><b>600 minutes</b> (10 hours) of mobile internet for ' + $func('money...
@@ -761,15 +761,15 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title ?? 0)}${((s as any).tables ?? 0)}${((s as any).line ?? 0)}${((s as any).tablec ?? 0)}`);
+  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
   // TODO-QSP: dynamic text: <center>You have <b><<subscription['metered_mobile']>></b> minutes for mobile in...
-  scene.text(`<center>You have <b>${((s as any).subscription ?? 0)?.['metered_mobile']}</b> minutes for mobile internet use</center>`);
+  scene.text(`<center>You have <b>${((s as any).subscription ?? 0)?.['metered_mobile'] ?? ''}</b> minutes for mobile internet use</center>`);
   (s as any).price = 800;
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 1) {
     // TODO-QSP: $line += '<tr><td align="center">You have an active mobile subscription that will renew next month o...
   } else {
     if (((s as any).subscription ?? 0)?.['metered_calls'] > 0) {
-      (s as any).discount = ((s as any).subscription ?? {})?.['metered_calls'] / 2;
+      (s as any).discount = (((s as any).subscription ?? {})?.['metered_calls'] ?? 0) / 2;
       (s as any).discount_left = Math.max(((s as any).price ?? 0) - ((s as any).discount ?? 0), 0);
       // TODO-QSP: $line += '<tr><td align="center">You have ' + $func('money', 'string_price', subscription['metered_c...
     }
@@ -785,7 +785,7 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title ?? 0)}${((s as any).tables ?? 0)}${((s as any).line ?? 0)}${((s as any).tablec ?? 0)}`);
+  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 1) {
     // TODO-QSP: $line += '<tr><td>You have an active mobile subscription with unlimited minutes and texts, you can''...
   } else {
@@ -815,9 +815,9 @@ function enterMegafon(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$title>><<$tables>><<$line>><<$tablec>>
-  scene.text(`${((s as any).title ?? 0)}${((s as any).tables ?? 0)}${((s as any).line ?? 0)}${((s as any).tablec ?? 0)}`);
+  scene.text(`${((s as any).title || '')}${((s as any).tables || '')}${((s as any).line || '')}${((s as any).tablec || '')}`);
   // TODO-QSP: dynamic text: <center>You have <b><<subscription['metered_calls']>> minutes</b> for mobile cal...
-  scene.text(`<center>You have <b>${((s as any).subscription ?? 0)?.['metered_calls']} minutes</b> for mobile calls and <b>${((s as any).subscription ?? 0)?.['metered_calls-sms_limit']} text messages</b></center>`);
+  scene.text(`<center>You have <b>${((s as any).subscription ?? 0)?.['metered_calls'] ?? ''} minutes</b> for mobile calls and <b>${((s as any).subscription ?? 0)?.['metered_calls-sms_limit'] ?? ''} text messages</b></center>`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to the supermarket', handler: (st: GameState) => {
@@ -833,7 +833,7 @@ function enterAnya(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/anya/anyabusywork.jpg');
   qspCall(s, 'sister_chat', 'checks');
   // TODO-QSP: dynamic text: "Don't disturb me at work, <<$pcs_nickname>>! Can't you see that I have customer...
-  scene.text(`"Don't disturb me at work, ${((s as any).pcs_nickname ?? 0)}! Can't you see that I have customers?"`);
+  scene.text(`"Don't disturb me at work, ${((s as any).pcs_nickname || '')}! Can't you see that I have customers?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', handler: (st: GameState) => {

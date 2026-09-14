@@ -17,15 +17,15 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/characters/shared/headshots_main/big64.jpg');
   // TODO-QSP: dynamic text: Mira's father is <<boyage>> years old. After his wife died, he started to drink ...
-  scene.text(`Mira's father is ${((s as any).boyage ?? 0)} years old. After his wife died, he started to drink heavily. As a result, he looks much older than he actually is. However, he is still in good shape for a man his age.`);
+  scene.text(`Mira's father is ${((s as any).boyage || '')} years old. After his wife died, he started to drink heavily. As a result, he looks much older than he actually is. However, he is still in good shape for a man his age.`);
   if (((s as any).daystart ?? 0) < ((s as any).MiraVars ?? 0)?.['emb_day']  &&  ((s as any).mirafathertalk ?? 0) === 0  &&  ((s as any).MiraVars ?? 0)?.['event_day'] !== ((s as any).daystart ?? 0)) {
     scene.img('images/characters/shared/headshots_main/big64.jpg');
     scene.text('You are passing Mira\'s house when you see Mira\'s father headed in your direction.');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>, wait. I need to speak with you," he says, coming closer.
-    scene.text(`"${((s as any).pcs_firstname ?? 0)}, wait. I need to speak with you," he says, coming closer.`);
+    scene.text(`"${((s as any).pcs_firstname || '')}, wait. I need to speak with you," he says, coming closer.`);
     scene.text('You stop and look at him frightfully. "Did Mira tell him what I made her do?" you think as panicked thoughts race through your head.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, do you know what happened to Mira?" Afanasiy asks, looking y...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, do you know what happened to Mira?" Afanasiy asks, looking you in the eye.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, do you know what happened to Mira?" Afanasiy asks, looking you in the eye.`);
     scene.text('"N-no, what happened to her?" you ask in a confused voice, expecting him to start shouting any second.');
     scene.text('"I don\'t know. She is just sitting at home all the time. She doesn\'t leave the yard, I\'m concerned." Mira\'s father answers.');
     scene.text('"Oh, ah… I don\'t know," you say, trying to make it sound believable and make your eyes look innocent. "Maybe she was hurt by some local boy or had a fight with someone…"');

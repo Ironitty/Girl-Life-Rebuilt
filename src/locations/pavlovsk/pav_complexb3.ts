@@ -213,7 +213,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLift(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'pav_complexb3', 'lift_events');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLiftEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/stairs/elevator.jpg');

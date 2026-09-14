@@ -25,15 +25,15 @@ function enterFirstModelTalk1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).age ?? 0) < 18) {
       scene.text('"It\'s not…" you say hesitantly. "Strictly speaking… Legal…"');
       scene.text('Her eyes narrow. "Why? What kind of modelling are you doing?" she asks suspiciously.');
-      qspCall(s, 'albina_chat2', 'first_model_talk_shy1');
-      qspCall(s, 'albina_chat2', 'first_model_talk2');
-      qspCall(s, 'albina_chat2', 'first_model_talk_proud2');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy1(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk2(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkProud2(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([
         { label: 'I didn\'t want people to know', handler: (st: GameState) => {
     scene.text('"I just didn\'t want to spread it around," you mumble. "Word gets around town fast, you know? Could you imagine what my mother would say if she found out?"');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," she says, looking at you seriously. "I've kept secrets a lo...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}," she says, looking at you seriously. "I've kept secrets a lot worse than this over the years. I would've kept this one. Don't you trust me?"`);
+    scene.text(`"${((s as any).pcs_nickname || '')}," she says, looking at you seriously. "I've kept secrets a lot worse than this over the years. I would've kept this one. Don't you trust me?"`);
     scene.text('She looks away from you, seeming genuinely offended that you didn\'t tell her until now.');
     qspCall(s, 'albina_chat', 'small_talk');
   } },
@@ -56,61 +56,61 @@ function enterFirstModelTalkProud2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Why didn\'t you tell me sooner?!" she squeals gleefully.');
       // TODO-QSP: dynamic text: "It's an 18+ agency," you explain. "And since I'm underage, I have to keep it on...
       scene.text('"It\'s an 18+ agency," you explain. "And since I\'m underage, I have to keep it on the down low. I needed a fake passport just to get registered there. They do all kinds of other stuff there. Fashion, lingerie, nudes, you name it."');
-      qspCall(s, 'albina_chat2', 'first_model_talk3');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).model ?? 0)?.['type'] === 'fashion') {
         scene.text('"Fashion modelling!" you whisper excitedly. "Fancy dresses, designer clothing, all the stuff you see in magazines but never actually see people wearing in real life. <i>I</i> get to wear that!"');
         scene.text('"That\'s so cool!" she shouts, punching you in the arm again. "Why are you hiding it?"');
         // TODO-QSP: dynamic text: "It's an 18+ agency," you explain. "I have a fake passport just to work there. T...
         scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do all kinds of other stuff there. Fashion, lingerie, nudes, you name it."');
-        qspCall(s, 'albina_chat2', 'first_model_talk3');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).model ?? 0)?.['type'] === 'lingerie') {
           scene.text('"I\'m a freaking lingerie model!" you whisper excitedly. "High end bras and panties, brand names like Victoria\'s Secret and Mon Cheri!"');
           scene.text('"That\'s so cool!" she shouts, punching you in the arm again. "You\'re a goddamn supermodel! Why are you hiding it?"');
           // TODO-QSP: dynamic text: "It's an 18+ agency," you explain. "I have a fake passport just to work there. T...
           scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do other stuff there too. Erotic nudes and all that."');
-          qspCall(s, 'albina_chat2', 'first_model_talk3');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).model ?? 0)?.['type'] === 'glamour') {
             if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
               scene.text('"I do glamour modelling!" you whisper excitedly. "Sexy shoots with tight or thin clothing, a lot of cleavage and a lot of leg. I\'ve even gone topless!"');
-              qspCall(s, 'albina_chat2', 'first_model_talk4');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               scene.text('"I do glamour modelling!" you whisper excitedly. "Sexy shoots with tight or thin clothing, a lot of cleavage and a lot of leg. Sometimes my ass too, but never my tits or pussy. They do that kind of modelling there too though."');
-              qspCall(s, 'albina_chat2', 'first_model_talk3');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((s as any).model ?? 0)?.['type'] === 'fitness') {
               if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
                 scene.text('"I model a lot of sports clothing," you say proudly. "But I do other stuff too. I\'ve even shown off my tits!"');
-                qspCall(s, 'albina_chat2', 'first_model_talk4');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('"I model a lot of sports clothing," you say proudly. "Sports bras and tight yoga pants and stuff like that. Pretty cool, huh? They do all kinds of modelling there. Even nude modelling."');
-                qspCall(s, 'albina_chat2', 'first_model_talk3');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             } else {
               if (((s as any).model ?? 0)?.['type'] === 'artistic nude') {
                 scene.text('"Nude modelling!" you squeal in a hushed but excited tone.');
-                qspCall(s, 'albina_chat2', 'first_model_talk4');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).model ?? 0)?.['type'] === 'erotic') {
                   scene.text('"Erotic nude modelling!" you squeal in a hushed but excited tone.');
-                  qspCall(s, 'albina_chat2', 'first_model_talk4');
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
                   if (((s as any).modelfoto ?? 0)?.['nude'] > 0) {
                     scene.text('"All kinds of modelling," you say excitedly. "I\'ve even done nudes!"');
-                    qspCall(s, 'albina_chat2', 'first_model_talk4');
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
                   } else {
                     if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
                       scene.text('"All kinds of modelling," you say excitedly. "I\'ve even gone topless!"');
-                      qspCall(s, 'albina_chat2', 'first_model_talk4');
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
                     } else {
                       scene.text('"All kinds of modelling," you say excitedly. "High end fashion. Lacy lingerie. Tight clothing, thin material. You name it."');
                       scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! "Why are you hiding it?"');
                       // TODO-QSP: dynamic text: "It's an 18+ agency," you explain. "I have a fake passport just to work there. T...
                       scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do other stuff there too. Erotic nudes and all that."');
-                      qspCall(s, 'albina_chat2', 'first_model_talk3');
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
                     }
                   }
                 }
@@ -135,61 +135,61 @@ function enterFirstModelTalk2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Why all the secrecy then?" she asks curiously.');
       // TODO-QSP: dynamic text: "It's an 18+ agency," you explain. "I have a fake passport just to work there. T...
       scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do all kinds of other stuff there. Fashion, lingerie, nudes, you name it."');
-      qspCall(s, 'albina_chat2', 'first_model_talk3');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).model ?? 0)?.['type'] === 'fashion') {
         scene.text('"Fashion modelling mostly," you say, shrugging nonchalantly. "Fancy dresses, designer clothing, all the stuff you see in magazines but never actually see people wearing in real life."');
         scene.text('"That\'s so cool!" she shouts, punching you in the arm again. "Why are you hiding it?"');
         // TODO-QSP: dynamic text: "It's an 18+ agency," you explain. "I have a fake passport just to work there. T...
         scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do all kinds of other stuff there. Fashion, lingerie, nudes, you name it."');
-        qspCall(s, 'albina_chat2', 'first_model_talk3');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).model ?? 0)?.['type'] === 'lingerie') {
           scene.text('"I\'m a lingerie model," you say, shrugging casually. "High end bras and panties. Sexy stuff, usually made with lace. The kind Katja might buy."');
           scene.text('"That\'s so cool!" she shouts, punching you in the arm again. "You\'re a goddamn supermodel! "Why are you hiding it?"');
           // TODO-QSP: dynamic text: "It's an 18+ agency," you explain. "I have a fake passport just to work there. T...
           scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do other stuff there too. Erotic nudes and all that."');
-          qspCall(s, 'albina_chat2', 'first_model_talk3');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).model ?? 0)?.['type'] === 'glamour') {
             if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
               scene.text('"Mostly glamour stuff," you say. "But you can see my tits in some of them. Not exactly something I want to spread around school."');
-              qspCall(s, 'albina_chat2', 'first_model_talk4');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               scene.text('"It\'s pretty risqué stuff," you say while shrugging. "Thin material. Form fitting. A lot of exposure. Not the kind of stuff I want floating around school. They do other stuff there too. Erotic nudes and all that."');
-              qspCall(s, 'albina_chat2', 'first_model_talk3');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((s as any).model ?? 0)?.['type'] === 'fitness') {
               if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
                 scene.text('"Mostly sports related stuff," you say. "But you can see my tits in some of them. Not exactly something I want to spread around school."');
-                qspCall(s, 'albina_chat2', 'first_model_talk4');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('"Mostly sports related stuff," you say while shrugging. "But it\'s pretty risqué. Sports bras and tight yoga pants and stuff like that. Not the kind of stuff I want floating around school. The kind I could imagine most of our classmates jacking off to. They do other stuff there too. Erotic nudes and all that."');
-                qspCall(s, 'albina_chat2', 'first_model_talk3');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             } else {
               if (((s as any).model ?? 0)?.['type'] === 'artistic nude') {
                 scene.text('"Mostly nude modelling," you shrug casually. "You can imagine why I want to keep that on the down low."');
-                qspCall(s, 'albina_chat2', 'first_model_talk4');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).model ?? 0)?.['type'] === 'erotic') {
                   scene.text('"Erotic nudes mostly," you admit, shrugging casually. "<i>Really</i> sexual. You can practically see right up my pussy in some of them. Not exactly the kind of stuff I want getting spread around school."');
-                  qspCall(s, 'albina_chat2', 'first_model_talk4');
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
                   if (((s as any).modelfoto ?? 0)?.['nude'] > 0) {
                     scene.text('"It\'s kind of risqué," you say, shrugging casually. "I\'ve done a few nudes."');
-                    qspCall(s, 'albina_chat2', 'first_model_talk4');
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
                   } else {
                     if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
                       scene.text('"It\'s kind of risqué," you say, shrugging casually. "You can see my tits in some of the stuff I\'ve done. Not exactly the kind of stuff I want getting spread around school"');
-                      qspCall(s, 'albina_chat2', 'first_model_talk4');
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
                     } else {
                       scene.text('"All kinds of stuff," you say, shrugging casually. "High end fashion. Lacy lingerie. Tight clothing, thin material. You name it."');
                       scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! "Why are you hiding it?"');
                       // TODO-QSP: dynamic text: "It's an 18+ agency," you explain. "I have a fake passport just to work there. T...
                       scene.text('"It\'s an 18+ agency," you explain. "I have a fake passport just to work there. They do other stuff there too. Erotic nudes and all that."');
-                      qspCall(s, 'albina_chat2', 'first_model_talk3');
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
                     }
                   }
                 }
@@ -297,7 +297,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
     scene.text('"You\'re not gonna find anything just Yandexing my name," you tell her, dramatically rolling your eyes. "Do you really think I\'m stupid enough to use my real name for nude modelling?"');
     scene.text('She stops and turns to look at you with a frown. You give her a stare and she stares back.');
     scene.text('"Damn it!" she pouts. "Tell me what to search!"');
-    qspCall(s, 'albina_chat2', 'first_model_talk_tell');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkTell(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Let her search', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
@@ -305,7 +305,7 @@ function enterFirstModelTalk4(s: GameState, scene: SceneBuilder): void {
     scene.text('"Why can\'t I find you?!" she grumbles in frustration.');
     scene.text('"I don\'t use my <i>actual</i> name when modelling," you say. "Do you think I\'m crazy?"');
     scene.text('"Come ooooonnn!" she moans. "Tell me what to search!"');
-    qspCall(s, 'albina_chat2', 'first_model_talk_tell');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkTell(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -334,7 +334,7 @@ function enterFirstModelTalkTell(s: GameState, scene: SceneBuilder): void {
     { label: 'Tell her', handler: (st: GameState) => {
     scene.text('You spend a few seconds considering tantalizing her with the knowledge, but you eventually relent.');
     // TODO-QSP: dynamic text: "Okay, okay," you snicker. "I go by <<$model['firstname']>> <<$model['lastname']...
-    scene.text(`"Okay, okay," you snicker. "I go by ${((s as any).model ?? 0)?.['firstname']} ${((s as any).model ?? 0)?.['lastname']}."`);
+    scene.text(`"Okay, okay," you snicker. "I go by ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${((s as any).model ?? 0)?.['lastname'] ?? ''}."`);
     scene.text('Her eyes light up and she immediately starts clicking away on the keyboard. Moments later, she\'s clicking a link that you know leads to your nude debut.');
     scene.actions([
       { label: 'Look at the photos', handler: (st: GameState) => {
@@ -357,7 +357,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_pubes ?? 0) > 10  &&  ((s as any).AlbinaQW ?? 0)?.['model_shave'] === 0) {
       scene.text('"Hey!" she says, zooming in on your pussy. "I thought you didn\'t shave?"');
     }
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Embarrassed pride', handler: (st: GameState) => {
     scene.text('"I know, right?" you grin. A warm blush spreads through your cheeks despite your pride in your work, unable to help but be a little embarrassed as Albina expands the images to full screen and takes advantage of the high definition to zoom <i>very</i> far in.');
@@ -367,7 +367,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I can\'t believe you were hiding these from me!" she exclaims. "These photos are incredible!"');
     }
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Stay casual', handler: (st: GameState) => {
     scene.text('"Not bad, are they?" you smirk, amused by the look of excitement on Albina\'s face as she rapidly clicks through the photos, often expanding them to full screen to take advantage of the high definition and zoom <i>very</i> far in.');
@@ -377,7 +377,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I can\'t believe you were hiding these from me!" she exclaims. "These photos are incredible!"');
     }
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'You\'re just saying that', handler: (st: GameState) => {
     scene.text('"You\'re just saying that," you remark skeptically, even as she furiously clicks through them, expanding them to full screen and even zooming in at times, especially on your "womanly features."');
@@ -387,7 +387,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Fuck no!" she exclaims. "Why would I lie? Just looking at these makes me want to eat you out right now!"');
     }
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Professional pride', handler: (st: GameState) => {
     scene.text('"It turned out well, didn\'t it?" you smile as she furiously clicks through them, expanding them to full screen and going out of her way to zoom in on your tits and pussy. "It was a big step for me."');
@@ -397,7 +397,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I can\'t believe you were hiding these from me!" she exclaims. "These photos are incredible!"');
     }
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Self centered pride', handler: (st: GameState) => {
     scene.text('"Fuck yeah I do," you grin, even ogling yourself a little as she furiously clicks through them, expanding them to full screen and even zooming in at times, especially on your "womanly features."');
@@ -407,7 +407,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Modest, aren\'t we?" she snickers. "I can\'t believe you were hiding this from me! These photos are incredible!"');
     }
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -415,7 +415,7 @@ function enterFirstModelTalkNude1(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstModelTalkNude2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_pubes ?? 0) > 10  &&  ((s as any).AlbinaQW ?? 0)?.['model_shave'] === 0) {
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude_pubes_shaved');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNudePubesShaved(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -425,7 +425,7 @@ function enterFirstModelTalkNude2(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s it look like I\'m doing?" she replies with a salty smirk. "Saving these so I can schlick off to them later!"');
     scene.text('"You are not!" you gape, horrified.');
     scene.text('"Ab-so-fucking-lutely," she grins in response. "But seriously. What made you go nude?"');
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNude3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -440,7 +440,7 @@ function enterFirstModelTalkNude3(s: GameState, scene: SceneBuilder): void {
     scene.text('"I didn\'t want to," you say. "I was… I had been working there for a while so they asked. I said no, but then they kept asking. Eventually they just… Talked me into it."');
     scene.text('You trail off and Albina\'s grin melts away, her expression becoming somber.');
     // TODO-QSP: dynamic text: "Oh. That's… I'm sorry <<$pcs_nickname>>…" She looks away. "I didn't… I didn't r...
-    scene.text(`"Oh. That's… I'm sorry ${((s as any).pcs_nickname ?? 0)}…" She looks away. "I didn't… I didn't realize it was like that…"`);
+    scene.text(`"Oh. That's… I'm sorry ${((s as any).pcs_nickname || '')}…" She looks away. "I didn't… I didn't realize it was like that…"`);
     scene.text('You sit in silence for a few moments before Albina turns back towards you tentatively.');
     scene.text('"Do you regret it?"');
     scene.actions([
@@ -513,7 +513,7 @@ function enterFirstModelTalkNude3(s: GameState, scene: SceneBuilder): void {
     scene.text('"I really needed the money," you say, uncomfortably. "I owed some people money and I was desperate. They pay double for your nude debut so I just thought…"');
     scene.text('You trail off and Albina\'s grin melts away, her expression becoming somber.');
     // TODO-QSP: dynamic text: "Oh. That's… I'm sorry <<$pcs_nickname>>." She shuts the laptop and pushes it aw...
-    scene.text(`"Oh. That's… I'm sorry ${((s as any).pcs_nickname ?? 0)}." She shuts the laptop and pushes it away. "I shouldn't have teased you. I didn't… I didn't realize it was like that…"`);
+    scene.text(`"Oh. That's… I'm sorry ${((s as any).pcs_nickname || '')}." She shuts the laptop and pushes it away. "I shouldn't have teased you. I didn't… I didn't realize it was like that…"`);
     scene.text('"It\'s okay," you assure her. "I\'m over it now. It\'s in the past."');
     qspCall(s, 'albina_chat', 'small_talk');
   } },
@@ -532,10 +532,10 @@ function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): 
     if (((s as any).AlbinaQW ?? 0)?.['shave_story'] === 1) {
       scene.text('"I told you about why I started shaving, didn\'t I?" she asks in a flat tone, referring to what she told you while you were both drunk after the pool. "What you said reminds me of that."');
       // TODO-QSP: dynamic text: She shuts the screen of the laptop and pushes it away. "I'm sorry <<$pcs_nicknam...
-      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((s as any).pcs_nickname ?? 0)}," she says tenderly. "Maybe we should talk about something else?"`);
+      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((s as any).pcs_nickname || '')}," she says tenderly. "Maybe we should talk about something else?"`);
     } else {
       // TODO-QSP: dynamic text: "That's really shitty, <<$pcs_nickname>>," she says before abruptly shutting the...
-      scene.text(`"That's really shitty, ${((s as any).pcs_nickname ?? 0)}," she says before abruptly shutting the screen of the laptop. "Let's talk about something else."`);
+      scene.text(`"That's really shitty, ${((s as any).pcs_nickname || '')}," she says before abruptly shutting the screen of the laptop. "Let's talk about something else."`);
     }
     qspCall(s, 'albina_chat', 'small_talk');
   } },
@@ -546,10 +546,10 @@ function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): 
     if (((s as any).AlbinaQW ?? 0)?.['shave_story'] === 1) {
       scene.text('"I told you about why I started shaving, didn\'t I?" she asks in a flat tone, referring to what she told you while you were both drunk after the pool. "What you said reminds me of that."');
       // TODO-QSP: dynamic text: She shuts the screen of the laptop and pushes it away. "I'm sorry <<$pcs_nicknam...
-      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((s as any).pcs_nickname ?? 0)}," she says tenderly. "Maybe we should talk about something else?"`);
+      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((s as any).pcs_nickname || '')}," she says tenderly. "Maybe we should talk about something else?"`);
     } else {
       // TODO-QSP: dynamic text: "That's really shitty, <<$pcs_nickname>>," she says before abruptly shutting the...
-      scene.text(`"That's really shitty, ${((s as any).pcs_nickname ?? 0)}," she says before abruptly shutting the screen of the laptop. "Let's talk about something else."`);
+      scene.text(`"That's really shitty, ${((s as any).pcs_nickname || '')}," she says before abruptly shutting the screen of the laptop. "Let's talk about something else."`);
     }
     qspCall(s, 'albina_chat', 'small_talk');
   } },
@@ -560,12 +560,12 @@ function enterFirstModelTalkNudePubesShaved(s: GameState, scene: SceneBuilder): 
     { label: 'It\'s a requirement', handler: (st: GameState) => {
     scene.text('"It\'s a requirement," you explain. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set."');
     scene.text('"Great fucking policy," she grins, practically drooling as she zooms in on your pussy in any photo where it\'s visible.');
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I wanted to', handler: (st: GameState) => {
     scene.text('"I wanted to," you shrug. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set, so it\'s not like I really had a choice. I guess I just thought that if I was gonna do it, then shaved was sexier."');
     scene.text('"Great choice," she grins, practically drooling as she zooms in on your pussy in any photo where it\'s visible.');
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNude2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -581,67 +581,67 @@ function enterFirstModelTalkShy1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Why all the secrecy then?" she asks, not letting up.');
       // TODO-QSP: dynamic text: "It's an… 18+ agency…" you say. "I have a fake passport just to work there. They...
       scene.text('"It\'s an… 18+ agency…" you say. "I have a fake passport just to work there. They do… <i>other</i> stuff there too…"');
-      qspCall(s, 'albina_chat2', 'first_model_talk_shy2');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).model ?? 0)?.['type'] === 'fashion') {
         scene.text('"Fashion modelling mostly," you say, shrugging uncomfortably. "Fancy dresses, designer clothing, all the stuff you see in magazines but never actually see people wearing in real life."');
         scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "Why are you so embarrassed about it?"');
         // TODO-QSP: dynamic text: "It's an 18+ agency," you say. "I have to use a fake passport just to work there...
         scene.text('"It\'s an 18+ agency," you say. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-        qspCall(s, 'albina_chat2', 'first_model_talk_shy2');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).model ?? 0)?.['type'] === 'lingerie') {
           scene.text('"I\'m a… lingerie model?" you say, shrugging uncomfortably. "High end bras and panties. Sexy things, usually stuff with lace."');
           scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! Why are you so embarrassed about it?"');
           // TODO-QSP: dynamic text: "It's an 18+ agency," you say, rubbing your arm. "I have to use a fake passport ...
           scene.text('"It\'s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-          qspCall(s, 'albina_chat2', 'first_model_talk_shy2');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).model ?? 0)?.['type'] === 'glamour') {
             if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
               scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "You can… see my breasts in some of them…"');
-              qspCall(s, 'albina_chat2', 'first_model_talk_shy4');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "High end bras and panties. Sexy things, usually stuff with lace."');
               scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! Why are you so embarrassed about it?"');
               // TODO-QSP: dynamic text: "It's an 18+ agency," you say, rubbing your arm. "I have to use a fake passport ...
               scene.text('"It\'s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-              qspCall(s, 'albina_chat2', 'first_model_talk_shy2');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((s as any).model ?? 0)?.['type'] === 'fitness') {
               if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
                 scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "You can… see my breasts in some of them…"');
-                qspCall(s, 'albina_chat2', 'first_model_talk_shy4');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "I do a lot of fitness related shoots. Sports bras and tight yoga pants and stuff like that."');
                 scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! Why are you so embarrassed about it?"');
                 // TODO-QSP: dynamic text: "It's an 18+ agency," you say, rubbing your arm. "I have to use a fake passport ...
                 scene.text('"It\'s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-                qspCall(s, 'albina_chat2', 'first_model_talk_shy2');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             } else {
               if (((s as any).model ?? 0)?.['type'] === 'artistic nude') {
                 scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "Most of the modelling I do is… nude…?"');
-                qspCall(s, 'albina_chat2', 'first_model_talk_shy4');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).model ?? 0)?.['type'] === 'erotic') {
                   scene.text('"It\'s kind of… <i>erotic</i>," you admit uncomfortably. "You can practically see right up my pussy in some of them…"');
-                  qspCall(s, 'albina_chat2', 'first_model_talk_shy4');
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
                   if (((s as any).modelfoto ?? 0)?.['nude'] > 0) {
                     scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "I\'m… I\'m not wearing any clothes in some of them…"');
-                    qspCall(s, 'albina_chat2', 'first_model_talk_shy4');
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (s as any).locArgs = __savedLocArgs; }
                   } else {
                     if (((s as any).modelfoto ?? 0)?.['topless'] > 0) {
                       scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "You can… see my breasts in some of them…"');
-                      qspCall(s, 'albina_chat2', 'first_model_talk_shy4');
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy4(s, scene); (s as any).locArgs = __savedLocArgs; }
                     } else {
                       scene.text('"It\'s kind of… risqué," you say, shrugging uncomfortably. "High end bras and panties. Sexy things, usually stuff with lace."');
                       scene.text('"That\'s so cool!" she exclaims, punching you in the arm again. "You\'re a goddamn supermodel! Why are you so embarrassed about it?"');
                       // TODO-QSP: dynamic text: "It's an 18+ agency," you say, rubbing your arm. "I have to use a fake passport ...
                       scene.text('"It\'s an 18+ agency," you say, rubbing your arm. "I have to use a fake passport just to work there. And they do… <i>other</i> stuff there too…"');
-                      qspCall(s, 'albina_chat2', 'first_model_talk_shy2');
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
                     }
                   }
                 }
@@ -664,9 +664,9 @@ function enterFirstModelTalkShy2(s: GameState, scene: SceneBuilder): void {
       { label: 'No (lie)', handler: (st: GameState) => {
     scene.text('"No!" you say quickly. "No way! I\'m not that desperate!"');
     // TODO-QSP: dynamic text: "Hmmm…" She looks at you suspiciously. "I don't believe you. Why don't we fire u...
-    scene.text(`"Hmmm…" She looks at you suspiciously. "I don't believe you. Why don't we fire up my laptop and do a little search for your name online? '${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)} naked'"`);
+    scene.text(`"Hmmm…" She looks at you suspiciously. "I don't believe you. Why don't we fire up my laptop and do a little search for your name online? '${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} naked'"`);
     // TODO-QSP: dynamic text: She reaches for her laptop and you slap her hand down to the bed. She turns slow...
-    scene.text(`She reaches for her laptop and you slap her hand down to the bed. She turns slowly, giving you a smug smirk. "Want to confess something ${((s as any).pcs_nickname ?? 0)}?"`);
+    scene.text(`She reaches for her laptop and you slap her hand down to the bed. She turns slowly, giving you a smug smirk. "Want to confess something ${((s as any).pcs_nickname || '')}?"`);
     scene.text('"No," you insist, putting your nose up at her. "I just don\'t want you to see any other pictures of me. It\'s embarrassing."');
     scene.text('"Oh, I am <i>so</i> going to schlick off to naked pictures of you later!" she grins.');
     scene.text('"You are not!" you gasp, mouth open wide.');
@@ -676,7 +676,7 @@ function enterFirstModelTalkShy2(s: GameState, scene: SceneBuilder): void {
       { label: 'Yes', handler: (st: GameState) => {
     scene.text('"Y-yes… I\'ve done a few…" you admit.');
     scene.text('Her eyes gleam and her lips crack into a wide grin. "Seriously? I can\'t believe it! What made you go nude?"');
-    qspCall(s, 'albina_chat2', 'first_model_talk_shy3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -704,7 +704,7 @@ function enterFirstModelTalkShy3(s: GameState, scene: SceneBuilder): void {
       { label: 'I was pressured into it', handler: (st: GameState) => {
     scene.text('"I didn\'t want to," you say. "I was… I had been working there for a while so they asked. I said no, but then they kept asking. Eventually they just… Talked me into it."');
     // TODO-QSP: dynamic text: You trail off and Albina's grin melts away, her expression becoming somber. "Oh....
-    scene.text(`You trail off and Albina's grin melts away, her expression becoming somber. "Oh. That's… I'm sorry ${((s as any).pcs_nickname ?? 0)}…" She looks away. "I didn't… I didn't realize it was like that…"`);
+    scene.text(`You trail off and Albina's grin melts away, her expression becoming somber. "Oh. That's… I'm sorry ${((s as any).pcs_nickname || '')}…" She looks away. "I didn't… I didn't realize it was like that…"`);
     scene.text('You sit in silence for a few seconds before Albina turns back towards you tentatively.');
     scene.text('"Do you regret it?"');
     scene.actions([
@@ -756,7 +756,7 @@ function enterFirstModelTalkShy3(s: GameState, scene: SceneBuilder): void {
     { label: 'I really needed the money (to pay off)', handler: (st: GameState) => {
     scene.text('"I really needed the money," you say, uncomfortably. "I owed some people money and I was desperate. They pay double for your nude debut so I just thought…"');
     // TODO-QSP: dynamic text: You trail off and Albina's grin melts away, her expression becoming somber. "Oh....
-    scene.text(`You trail off and Albina's grin melts away, her expression becoming somber. "Oh. That's… I'm sorry ${((s as any).pcs_nickname ?? 0)}." She shuts the laptop and pushes it away. "I shouldn't have teased you. I didn't… I didn't realize it was like that…"`);
+    scene.text(`You trail off and Albina's grin melts away, her expression becoming somber. "Oh. That's… I'm sorry ${((s as any).pcs_nickname || '')}." She shuts the laptop and pushes it away. "I shouldn't have teased you. I didn't… I didn't realize it was like that…"`);
     qspCall(s, 'albina_chat', 'small_talk');
   } },
   ]);
@@ -852,7 +852,7 @@ function enterFirstModelTalkShy4(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell her', handler: (st: GameState) => {
     scene.text('After a moment of hesitation, you relent.');
     // TODO-QSP: dynamic text: "I can't believe I'm about to do this…" you sigh. "I go by <<$model['firstname']...
-    scene.text(`"I can't believe I'm about to do this…" you sigh. "I go by ${((s as any).model ?? 0)?.['firstname']} ${((s as any).model ?? 0)?.['lastname']}."`);
+    scene.text(`"I can't believe I'm about to do this…" you sigh. "I go by ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${((s as any).model ?? 0)?.['lastname'] ?? ''}."`);
     scene.text('Her eyes light up and she immediately starts clicking away on the keyboard. Moments later, she\'s clicking a link that you know leads to your nude debut.');
     scene.actions([
       { label: 'Look at the photos', handler: (st: GameState) => {
@@ -894,7 +894,7 @@ function enterFirstModelTalkNudeShy1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_pubes ?? 0) > 10  &&  ((s as any).AlbinaQW ?? 0)?.['model_shave'] === 0) {
       scene.text('"Hey!" she says, zooming in on your pussy lips. "I thought you didn\'t shave?"');
     }
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude_shy2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Embarrassed pride', handler: (st: GameState) => {
     scene.text('"You really think so?" you ask. You blush furiously as she furiously clicks through them, expanding them to full screen and even zooming in at times, especially on your "womanly features," but deep inside your chest you also feel a certain warmth. Something that feels good to be recognized.');
@@ -904,7 +904,7 @@ function enterFirstModelTalkNudeShy1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Fuck yes!" she exclaims. "These photos are incredible! I can\'t believe you were hiding them from me!"');
     }
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude_shy2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'You\'re just saying that', handler: (st: GameState) => {
     scene.text('"You\'re just saying that," you remark skeptically, even as she furiously clicks through them, expanding them to full screen and even zooming in at times, especially on your "womanly features."');
@@ -914,7 +914,7 @@ function enterFirstModelTalkNudeShy1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Fuck no!" she exclaims. "Why would I lie? These photos are incredible! I can\'t believe you were hiding them from me!"');
     }
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude_shy2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -922,7 +922,7 @@ function enterFirstModelTalkNudeShy1(s: GameState, scene: SceneBuilder): void {
 
 function enterFirstModelTalkNudeShy2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_pubes ?? 0) > 10  &&  ((s as any).AlbinaQW ?? 0)?.['model_shave'] === 0) {
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude_shy_pubes_shaved');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNudeShyPubesShaved(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -932,7 +932,7 @@ function enterFirstModelTalkNudeShy2(s: GameState, scene: SceneBuilder): void {
     scene.text('"What\'s it look like I\'m doing?" she replies with a salty smirk. "Saving these so I can schlick off to them later!"');
     scene.text('"You are not!" You gape, horrified.');
     scene.text('"Ab-so-fucking-lutely," she grins in response. "But seriously. What made you go nude?"');
-    qspCall(s, 'albina_chat2', 'first_model_talk_shy3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkShy3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -951,10 +951,10 @@ function enterFirstModelTalkNudeShyPubesShaved(s: GameState, scene: SceneBuilder
     if (((s as any).AlbinaQW ?? 0)?.['shave_story'] === 1) {
       scene.text('"I told you about why I started shaving, didn\'t I?" she asks referring to that story she told you while you were both drunk after the pool. "What you said reminds me of that."');
       // TODO-QSP: dynamic text: She shuts the screen of the laptop and pushes it away. "I'm sorry <<$pcs_nicknam...
-      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((s as any).pcs_nickname ?? 0)}," she says tenderly. "Maybe we should talk about something else?"`);
+      scene.text(`She shuts the screen of the laptop and pushes it away. "I'm sorry ${((s as any).pcs_nickname || '')}," she says tenderly. "Maybe we should talk about something else?"`);
     } else {
       // TODO-QSP: dynamic text: "That's really shitty, <<$pcs_nickname>>," she says before abruptly shutting the...
-      scene.text(`"That's really shitty, ${((s as any).pcs_nickname ?? 0)}," she says before abruptly shutting the screen of the laptop. "Should we talk about something else?"`);
+      scene.text(`"That's really shitty, ${((s as any).pcs_nickname || '')}," she says before abruptly shutting the screen of the laptop. "Should we talk about something else?"`);
     }
     scene.text('You nod gratefully.');
     qspCall(s, 'albina_chat', 'small_talk');
@@ -966,12 +966,12 @@ function enterFirstModelTalkNudeShyPubesShaved(s: GameState, scene: SceneBuilder
     { label: 'It\'s a requirement', handler: (st: GameState) => {
     scene.text('"It\'s a requirement," you explain. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set."');
     scene.text('"Great fucking policy," she grins, practically drooling as she zooms in on your pussy in any photo where it\'s visible.');
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude_shy2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I wanted to', handler: (st: GameState) => {
     scene.text('"I wanted to," you mumble shyly. "This was my nude debut and the studio\'s policy is that models have to go cleanshaven for their first nude set, so it\'s not like I really had a choice. I guess I just thought that if I was gonna do it, then shaved was sexier."');
     scene.text('"Great choice," she grins, practically drooling as she zooms in on your pussy in any photo where it\'s visible.');
-    qspCall(s, 'albina_chat2', 'first_model_talk_nude_shy2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstModelTalkNudeShy2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1003,12 +1003,12 @@ function enterRecurrentPornTalk1(s: GameState, scene: SceneBuilder): void {
     { label: 'Answer uncomfortably', handler: (st: GameState) => {
     scene.text('"It\'s, uhh, fine…" you reply awkwardly, unable to meet Albina\'s gaze. Not that she\'s doing a good job of maintaining eye contact herself.');
     scene.text('"What have you, uhm, filmed lately…?" she asks.');
-    qspCall(s, 'albina_chat2', 'recurrent_porn_talk_uncomfortable');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRecurrentPornTalkUncomfortable(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Answer casually', handler: (st: GameState) => {
     scene.text('"It\'s going fine," you shrug casually. Albina nods, but it\'s obvious that she can\'t even look at you while talking about this subject.');
     scene.text('"What have you, uhm, filmed lately…?" she asks.');
-    qspCall(s, 'albina_chat2', 'recurrent_porn_talk_casual');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRecurrentPornTalkCasual(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: '"We don\'t have to talk about this"', handler: (st: GameState) => {
     if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['no_porn_talk'] = 1;
@@ -1091,8 +1091,8 @@ function enterRecurrentPornTalkCasual(s: GameState, scene: SceneBuilder): void {
 function enterRecurrentPornTalk2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/albina/albinatalk.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>…" Albina says slowly. "I need to ask you… Do you really think...
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}…" Albina says slowly. "I need to ask you… Do you really think shooting porn is worth the money?"`);
-  qspCall(s, 'albina_chat2', 'recurrent_porn_talk2_menu');
+  scene.text(`"${((s as any).pcs_nickname || '')}…" Albina says slowly. "I need to ask you… Do you really think shooting porn is worth the money?"`);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRecurrentPornTalk2Menu(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -1105,13 +1105,13 @@ function enterRecurrentPornTalk2Menu(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t know," you mumble in shame. "Every time I finish a shoot I want to throw up. Every time a guy cums on my face, I feel filthy and no amount of washing up makes me feel clean. When the producers tell me my videos are going live, I\'m terrified that someone I know will see it. It\'s tearing me apart from the inside out…"');
     scene.text('"Then quit," she bluntly replies.');
     scene.text('Turning back to face Albina, you see she\'s practically begging you with just those two words.');
-    qspCall(s, 'albina_chat2', 'recurrent_porn_talk2_need_money');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRecurrentPornTalk2NeedMoney(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Conflicted', handler: (st: GameState) => {
     scene.text('"It\'s not a perfect job," you admit uncomfortably. "But it\'s not that bad either. All things considered, it\'s worth what it pays. I <i>need</i> the money right now."');
     scene.text('"But you could do something else for money too," she replies, practically pleading with you. "It doesn\'t have to be something that exposes your most intimate things all over the internet forever."');
     scene.text('"And what would I do?" you ask. "Be a secretary? Or a nurse? Or a reporter? That\'s all future. I need a uni degree for that. Or should I break my back working shit jobs like cleaning toilets and sweeping hallways, or changing cum-stained sheets in a hotel bedroom? I\'m not doing that. Those are worse than getting paid to fuck on camera."');
-    qspCall(s, 'albina_chat2', 'recurrent_porn_talk2_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRecurrentPornTalk2End(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1123,11 +1123,11 @@ function enterRecurrentPornTalk2NeedMoney(s: GameState, scene: SceneBuilder): vo
     { label: '"I need the money"', handler: (st: GameState) => {
     scene.text('"I <i>need</i> the money, Albina," you reply uncomfortably. "I don\'t have a choice."');
     // TODO-QSP: dynamic text: "Yes you do," she says softly. "There are other things you can do for money, <<$...
-    scene.text(`"Yes you do," she says softly. "There are other things you can do for money, ${((s as any).pcs_nickname ?? 0)}…"`);
+    scene.text(`"Yes you do," she says softly. "There are other things you can do for money, ${((s as any).pcs_nickname || '')}…"`);
     scene.text('"Not without a diploma," you say with a shake of your head. "Or a degree. Or a certification. Or working for 40 hours a week for shit pay. I don\'t have that time or experience. For porn, all I have to do is look pretty as I get fucked on camera. This is the best job I can get with what I have."');
     scene.text('Albina\'s eyes mist up with tears and she looks away, rubbing her eyes with the palm of her hand.');
     scene.text('You let the conversation die off and change subjects.');
-    qspCall(s, 'albina_chat2', 'recurrent_porn_talk2_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRecurrentPornTalk2End(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

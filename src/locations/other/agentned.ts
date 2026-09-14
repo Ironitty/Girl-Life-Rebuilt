@@ -85,10 +85,10 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :listing_properties_for_sale_loop
     if (((s as any).property_is_rented ?? 0)?.[String((s as any).agentned_i ?? 0)] === 0) {
       // TODO-QSP: dynamic text: A(n) <<$property_display[agentned_i]>> is available for sale for <<func('money',...
-      scene.text(`A(n) ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)]} is available for sale for ${qspFunc(s, 'money', 'string_price', ((s as any).property_sales_price ?? 0)?.[String((s as any).agentned_i ?? 0)])}.`);
+      scene.text(`A(n) ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? ''} is available for sale for ${qspFunc(s, 'money', 'string_price', ((s as any).property_sales_price ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? '')}.`);
     } else {
       // TODO-QSP: dynamic text: You could buy the <<$property_display[agentned_i]>> you're currently renting, fo...
-      scene.text(`You could buy the ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)]} you're currently renting, for ${qspFunc(s, 'money', 'string_price', ((s as any).property_sales_price ?? 0)?.[String((s as any).agentned_i ?? 0)])}.`);
+      scene.text(`You could buy the ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? ''} you're currently renting, for ${qspFunc(s, 'money', 'string_price', ((s as any).property_sales_price ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? '')}.`);
     }
     if (((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_apartment'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'village_cottage'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_house'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'matryona_mansion') {
       // TODO-QSP: dynamic "
@@ -129,7 +129,7 @@ function enterBuyProperty(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Real Estate Agency</b></center>');
   scene.img('images/locations/city/citycenter/realestate/agenstvo_paperwork.jpg');
   // TODO-QSP: dynamic text: You spend half an hour filling in the paperwork to buy the <<$property_display>>...
-  scene.text(`You spend half an hour filling in the paperwork to buy the ${((s as any).property_display ?? 0)}. ${qspFunc(s, 'money', 'string_price', ((s as any).property_sales_price ?? 0))} has been removed from your bank account.`);
+  scene.text(`You spend half an hour filling in the paperwork to buy the ${((s as any).property_display || '')}. ${qspFunc(s, 'money', 'string_price', ((s as any).property_sales_price || ''))} has been removed from your bank account.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['agentned', 'buy'] },
@@ -156,7 +156,7 @@ function enterSell(s: GameState, scene: SceneBuilder): void {
         (s as any).offer = ((s as any).property_sales_price ?? 0) + ((s as any).property_renovation_value ?? 0) + (((s as any).property_sales_price ?? 0) * (Math.floor(Math.random() * (10 - (-10) + 1)) + ((-10)))) / 100 + (((s as any).property_renovation_value ?? 0) * (Math.floor(Math.random() * 11) + 0)) / 100;
         if (((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_apartment'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'village_cottage'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'city_house'  ||  ((s as any).property_code ?? 0)?.[String((s as any).agentned_i ?? 0)] === 'matryona_mansion') {
           // TODO-QSP: dynamic text: We have found a buyer for your <<$property_display[agentned_i]>>. They will offe...
-          scene.text(`We have found a buyer for your ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)]}. They will offer ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? 0))}, minus 5% for fees and taxes to the value of ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? 0) * 5 / 100)}, bringing the total to ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? 0) * 95 / 100)}`);
+          scene.text(`We have found a buyer for your ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? ''}. They will offer ${qspFunc(s, 'money', 'string_profit', ((s as any).offer || ''))}, minus 5% for fees and taxes to the value of ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? '') * 5 / 100)}, bringing the total to ${qspFunc(s, 'money', 'string_profit', ((s as any).offer ?? '') * 95 / 100)}`);
           // TODO-QSP: dynamic "
           // TODO-QSP: act ""Sell the <<$property_display[agentned_i]>> for <<$func('money', 'string_profit', offer * 95 / ...
           // TODO-QSP: gt 'agentned', 'finalise_sale', '<<$property_code[agentned_i]>>', <<agentned_i>>, <<offer>>
@@ -190,7 +190,7 @@ function enterFinaliseSale(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Real Estate Agency</b></center>');
   scene.img('images/locations/city/citycenter/realestate/agenstvo_paperwork.jpg');
   // TODO-QSP: dynamic text: You spend thirty minutes filling out the paperwork for the sale of your <<$prope...
-  scene.text(`You spend thirty minutes filling out the paperwork for the sale of your ${qspUntranslated(s, "property_display[ARGS[2]]", { location: "agentned" })}. ${qspFunc(s, 'money', 'string_profit', ((s as any).ARGS ?? 0)[3] * 95 / 100)} has been paid into your bank account.`);
+  scene.text(`You spend thirty minutes filling out the paperwork for the sale of your ${qspUntranslated(s, "property_display[ARGS[2]]", { location: "agentned" })}. ${qspFunc(s, 'money', 'string_profit', ((s as any).ARGS ?? '')[3] * 95 / 100)} has been paid into your bank account.`);
   // TODO-QSP: gs 'homes_properties', 'sell_property', $ARGS[1], ARGS[3]
   // TODO-QSP: gs 'money', 'earn', ARGS[3] * 95 / 100, 'bank'
   // TODO-QSP: end
@@ -215,7 +215,7 @@ function enterRent(s: GameState, scene: SceneBuilder): void {
     scene.text('<h4>Properties currently available for rent</h4>');
     // TODO-QSP: :listing_properties_for_rent_loop
     // TODO-QSP: dynamic text: We have a(n) <<$property_display[agentned_i]>> available for a monthly rent of <...
-    scene.text(`We have a(n) ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)]} available for a monthly rent of ${qspFunc(s, 'money', 'string_price', ((s as any).property_rent ?? 0)?.[String((s as any).agentned_i ?? 0)])}.`);
+    scene.text(`We have a(n) ${((s as any).property_display ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? ''} available for a monthly rent of ${qspFunc(s, 'money', 'string_price', ((s as any).property_rent ?? 0)?.[String((s as any).agentned_i ?? 0)] ?? '')}.`);
     // TODO-QSP: dynamic "
     // TODO-QSP: act ""View the <<$property_display[agentned_i]>> details"":
     // TODO-QSP: gt 'agentned', 'view_property_details', '<<$property_code[agentned_i]>>', <<property_rent[agentned_i...
@@ -238,7 +238,7 @@ function enterViewPropertyDetails(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Real Estate Agency</b></center>');
   scene.img('images/locations/city/citycenter/realestate/agenstvo.jpg');
   // TODO-QSP: dynamic text: <<$func('agentned', 'get_rent_detail_dialogue', $ARGS[1])>> The receptionist say...
-  scene.text(`${qspFunc(s, 'agentned', 'get_rent_detail_dialogue', ((s as any).locArgs?.[1] ?? 0))} The receptionist says as he starts pulling out the paperwork, "Rent is ${qspFunc(s, 'money', 'string_price', qspUntranslated(s, "ARGS[2]", { location: "agentned" }), 1)} and leases have to be renewed every 30 days. Payment will be automatically deducted from your account or you can come into the office to pay. Last, but not least, you must make pay the first month when you sign for the lease."`);
+  scene.text(`${qspFunc(s, 'agentned', 'get_rent_detail_dialogue', ((s as any).locArgs?.[1] ?? ''))} The receptionist says as he starts pulling out the paperwork, "Rent is ${qspFunc(s, 'money', 'string_price', qspUntranslated(s, "ARGS[2]", { location: "agentned" }), 1)} and leases have to be renewed every 30 days. Payment will be automatically deducted from your account or you can come into the office to pay. Last, but not least, you must make pay the first month when you sign for the lease."`);
   scene.text('<br>He pulls out a pen and slides the paperwork onto the counter. "Interested? You can move in right away," he says calmly.');
   if (qspFunc(s, 'money', 'can_afford', qspUntranslated(s, "ARGS[2]", { location: "agentned" })) === 0) {
     scene.text('You do not have enough money with you or in your bank account to pay the rent.');
@@ -272,7 +272,7 @@ function enterGetRentDetailDialogue(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'city_apartment') {
     } else {
-      qspCall(s, 'agentned', 'get_rent_detail_dialogue_hook', ((s as any).locArgs?.[1] ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetRentDetailDialogueHook(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: end

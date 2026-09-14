@@ -20,7 +20,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The same cute brunette as always is manning the reception desk. You wonder if she ever takes a break.');
   } else {
     // TODO-QSP: dynamic text: <<$receptionName>> is manning the reception desk yet again. You wonder if she ev...
-    scene.text(`${((s as any).receptionName ?? 0)} is manning the reception desk yet again. You wonder if she ever takes a break.`);
+    scene.text(`${((s as any).receptionName || '')} is manning the reception desk yet again. You wonder if she ever takes a break.`);
   }
   if (((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] === 1) {
     scene.actions([
@@ -30,7 +30,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/hotel/resep.girl0,\'+rand(0, 10)+\'.jpg');
     scene.text('You approach the reception desk. "Excuse me… I hear you\'re often looking for maids? I would like to come work as a maid here."');
     // TODO-QSP: dynamic text: She nods understandingly and takes a quick look at your figure. "We do often nee...
-    scene.text('She nods understandingly and takes a quick look at your figure. "We do often need maids, that\'s true. I\'d hire you in an instant, but unfortunately it\'s not up to me. You should go see Herman Leonidovich, the hotel manager. He\'s usually in his office between \'+func(\'time\', \'get_time_string\', 12, 0)+\' and \'+func(\'time\', \'get_time_string\', 14, 0)+\'. I bet he\'ll hire you! Good luck when you go see him!"');
+    scene.text('She nods understandingly and takes a quick look at your figure. "We do often need maids, that\'s true. I\'d hire you in an instant, but unfortunately it\'s not up to me. You should go see Herman Leonidovich, the hotel manager. He\'s usually in his office between 12:00 and 14:00. I bet he\'ll hire you! Good luck when you go see him!"');
     scene.actions([
       { label: 'Step away from the reception desk', goto: ['pav_hotel', 'skip_resepevent'] },
     ]);
@@ -42,12 +42,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Collect your money', handler: (st: GameState) => {
     (s as any).hotel_wage = qspFunc(s, 'jobs', 'paycheck', 'pav_hotel_maid');
     // TODO-QSP: dynamic text: She quickly checks the computer and gives you <<$func('money', 'string_profit', ...
-    scene.text(`She quickly checks the computer and gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).hotel_wage ?? 0))} for all the shifts you've worked in the hotel, plus whatever tips you may have gotten.`);
+    scene.text(`She quickly checks the computer and gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).hotel_wage || ''))} for all the shifts you've worked in the hotel, plus whatever tips you may have gotten.`);
     scene.text('You thank her and put the money in your purse before leaving the office.');
     if (((s as any).nichHotelReferral ?? 0) === 0  &&  ((s as any).pcs_cleaning ?? 0) >= 40  &&  (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 1  ||  ((s as any).gschoolVars ?? 0)?.['block'] === 1)) {
       scene.text('"You\'re doing a good job. Did you ever think about working as a maid full-time? I know of a person who\'s living in the city and is looking for a live-in maid. The job also pays well."');
       // TODO-QSP: dynamic text: She hesitates for a second. "I could write you a referral. He wouldn't invite yo...
-      scene.text('She hesitates for a second. "I could write you a referral. He wouldn\'t invite you for a job interview without one, but the boss wouldn\'t like me referring his maids to another employer. That\'s why I require you to pay me \' + $func(\'money\', \'string_price\', 5000) + \' for my troubles. Just look at it as a small fee. Just tell me if you want the job and have the money."');
+      scene.text('She hesitates for a second. "I could write you a referral. He wouldn\'t invite you for a job interview without one, but the boss wouldn\'t like me referring his maids to another employer. That\'s why I require you to pay me 5000₽ for my troubles. Just look at it as a small fee. Just tell me if you want the job and have the money."');
       (s as any).nichHotelReferral = 1;
       scene.actions([
         { label: 'Thank her for the offer', goto: ['pav_hotel', 'skip_resepevent'] },
@@ -71,7 +71,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).pavlevent ?? 0) === 1) {
       // TODO-QSP: dynamic text: You're too scared of <<$npc_nickname['A217']>> at the moment to meet him in a pr...
-      scene.text(`You're too scared of ${((s as any).npc_nickname ?? 0)?.['A217']} at the moment to meet him in a private place.`);
+      scene.text(`You're too scared of ${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} at the moment to meet him in a private place.`);
       return;
       scene.actions([
         { label: 'Step away', goto: ['pav_hotel', 'skip_resepevent'] },
@@ -80,14 +80,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_makeup ?? 0) <= 1  ||  ((s as any).pcs_hairbsh ?? 0) < 1  ||  ((s as any).pcs_sweat ?? 0) > 26) {
         scene.img('images/locations/pavlovsk/hotel/resep.girl0,\'+rand(0, 10)+\'.jpg');
         // TODO-QSP: dynamic text: "<<$npc_nickname['A217']>> expects you to be clean and made-up with your hair lo...
-        scene.text(`"${((s as any).npc_nickname ?? 0)?.['A217']} expects you to be clean and made-up with your hair looking nice. I can't let you go up looking like this," she says.`);
+        scene.text(`"${((s as any).npc_nickname ?? 0)?.['A217'] ?? ''} expects you to be clean and made-up with your hair looking nice. I can't let you go up looking like this," she says.`);
         return;
         scene.actions([
           { label: 'Step away', goto: ['pav_hotel', 'skip_resepevent'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: You approach <<$receptionName>> and ask for 'The Peacock'.
-        scene.text(`You approach ${((s as any).receptionName ?? 0)} and ask for 'The Peacock'.`);
+        scene.text(`You approach ${((s as any).receptionName || '')} and ask for 'The Peacock'.`);
         scene.actions([{ label: 'Continue', goto: ['pavlin', 'pavgenpros'] }]);
       }
     }
@@ -102,7 +102,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You approach the reception desk and smile. "About that job you told me about… I\'d like to get your referral."');
     scene.text('"Great!" she replies. "Do you have my fee?"');
     scene.actions([
-      { label: 'Yes [+$func(\'money\', \'get_cost_string\', 5000, ...]', handler: (st: GameState) => {
+      { label: 'Yes', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -138,7 +138,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('The girl behind the desk smiles at you. "Hello miss! Would you like to rent a room?"');
     } else {
       // TODO-QSP: dynamic text: <<$receptionName>> smiles at you. "Hello <<$pcs_nickname>>! Would you like to re...
-      scene.text(`${((s as any).receptionName ?? 0)} smiles at you. "Hello ${((s as any).pcs_nickname ?? 0)}! Would you like to rent a room?"`);
+      scene.text(`${((s as any).receptionName || '')} smiles at you. "Hello ${((s as any).pcs_nickname || '')}! Would you like to rent a room?"`);
     }
     if (((s as any).HotelRoom ?? 0)?.['pav'] > 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {
       scene.img('images/locations/pavlovsk/hotel/resep.girl0,\'+rand(0, 10)+\'.jpg');
@@ -163,10 +163,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Normal room', handler: (st: GameState) => {
     if (!(s as any).hotelRoomDays) (s as any).hotelRoomDays = {}; (s as any).hotelRoomDays['pav'] = 0;
     if (((s as any).hotelRoomDays ?? 0)?.['pav'] > 0) {
-      (s as any).totalCost = ((s as any).hotelRoomDays ?? {})?.['pav'] * 500;
+      (s as any).totalCost = (((s as any).hotelRoomDays ?? {})?.['pav'] ?? 0) * 500;
       // TODO-QSP: dynamic text: "A normal room for <<hotelRoomDays['pav']>> days would be <<$func('money', 'stri...
-      scene.text(`"A normal room for ${((s as any).hotelRoomDays ?? 0)?.['pav']} days would be ${qspFunc(s, 'money', 'string_price', ((s as any).totalCost ?? 0))} in total," she says.`);
-      qspCall(s, 'pav_hotelReception', 'pay_the_room', 1);
+      scene.text(`"A normal room for ${((s as any).hotelRoomDays ?? 0)?.['pav'] ?? ''} days would be ${qspFunc(s, 'money', 'string_price', ((s as any).totalCost || ''))} in total," she says.`);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterPayTheRoom(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([{ label: 'Continue', goto: ['pav_hotel', ''] }]);
     }
@@ -174,10 +174,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Luxury room', handler: (st: GameState) => {
     if (!(s as any).hotelRoomDays) (s as any).hotelRoomDays = {}; (s as any).hotelRoomDays['pav'] = 0;
     if (((s as any).hotelRoomDays ?? 0)?.['pav'] > 0) {
-      (s as any).totalCost = ((s as any).hotelRoomDays ?? {})?.['pav'] * 1500;
+      (s as any).totalCost = (((s as any).hotelRoomDays ?? {})?.['pav'] ?? 0) * 1500;
       // TODO-QSP: dynamic text: "A luxury room for <<hotelRoomDays['pav']>> days will be <<$func('money', 'strin...
-      scene.text(`"A luxury room for ${((s as any).hotelRoomDays ?? 0)?.['pav']} days will be ${qspFunc(s, 'money', 'string_price', ((s as any).totalCost ?? 0))}," she says.`);
-      qspCall(s, 'pav_hotelReception', 'pay_the_room', 2);
+      scene.text(`"A luxury room for ${((s as any).hotelRoomDays ?? 0)?.['pav'] ?? ''} days will be ${qspFunc(s, 'money', 'string_price', ((s as any).totalCost || ''))}," she says.`);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterPayTheRoom(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([{ label: 'Continue', goto: ['pav_hotel', ''] }]);
     }
@@ -205,9 +205,9 @@ function enterPayTheRoom(s: GameState, scene: SceneBuilder): void {
       { label: 'Pay (<<$func(\'money\', \'string_price\', totalCost)>>)', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', ((s as any).totalCost ?? 0));
     if (!(s as any).HotelRoom) (s as any).HotelRoom = {}; (s as any).HotelRoom['pav'] = ((s as any).hotel_room_id ?? 0);
-    if (!(s as any).hotelRoomDays) (s as any).hotelRoomDays = {}; (s as any).hotelRoomDays['pav'] = ((s as any).daystart ?? 0) + ((s as any).hotelRoomDays ?? {})?.['pav'];
+    if (!(s as any).hotelRoomDays) (s as any).hotelRoomDays = {}; (s as any).hotelRoomDays['pav'] = ((s as any).daystart ?? 0) + (((s as any).hotelRoomDays ?? {})?.['pav'] ?? 0);
     // TODO-QSP: dynamic text: You pay <<$func('money', 'string_price', totalCost)>> for the room.
-    scene.text(`You pay ${qspFunc(s, 'money', 'string_price', ((s as any).totalCost ?? 0))} for the room.`);
+    scene.text(`You pay ${qspFunc(s, 'money', 'string_price', ((s as any).totalCost || ''))} for the room.`);
     // TODO-QSP: dynamic text: She gives you the key to your room in return. "Thank you ' + iif(pavHotelMaid = ...
     scene.text('She gives you the key to your room in return. "Thank you \' + iif(pavHotelMaid = 0, \'miss\', $pcs_nickname) +\', I hope you enjoy your stay!"');
     scene.actions([

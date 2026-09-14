@@ -59,15 +59,15 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'self', ((s as any).diff ?? 0));
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Read from the collected works of Leo Tolstoy (1:00) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Read from the collected works of Leo Tolstoy (1:00)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Read from the collected works of Leo Tolstoy (1:00) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Read from the collected works of Leo Tolstoy (1:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 4) + 3);
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (2);
     qspCall(s, 'stat', '');
@@ -84,7 +84,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Read an adventure novel (1:00)', handler: (st: GameState) => {
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'mood', 'raise', 'small');
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -97,7 +97,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Read a fantasy novel (1:00)', handler: (st: GameState) => {
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'mood', 'raise', 'small');
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -110,7 +110,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Read a romance novel (1:00)', handler: (st: GameState) => {
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'mood', 'raise', 'small');
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
     qspCall(s, 'stat', '');
@@ -123,7 +123,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Read a book on science (1:00)', handler: (st: GameState) => {
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 4) + 3);
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -136,7 +136,7 @@ function enterSetLibraryReadActs(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
     { label: 'Read a science fiction novel (1:00)', handler: (st: GameState) => {
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'mood', 'raise', 'small');
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -172,7 +172,7 @@ function enterSetHomeReadActs(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'library_functions', 'set_magazine_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetMagazineActs(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -287,12 +287,12 @@ function enterSetHomeReadActs(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You still have <<func('string', 'enumerate_list', '$book_text')>> you haven't st...
       scene.text(`You still have ${qspFunc(s, 'string', 'enumerate_list', '$book_text')} you haven't started on.`);
     }
-    qspCall(s, 'library_functions', 'set_home_read_adventure_book_act');
-    qspCall(s, 'library_functions', 'set_home_read_fantasy_book_act');
-    qspCall(s, 'library_functions', 'set_home_read_romance_book_act');
-    qspCall(s, 'library_functions', 'set_home_read_science_book_act');
-    qspCall(s, 'library_functions', 'set_home_read_scifi_book_act');
-    qspCall(s, 'library_functions', 'set_home_read_artem_book_act');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHomeReadAdventureBookAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHomeReadFantasyBookAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHomeReadRomanceBookAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHomeReadScienceBookAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHomeReadScifiBookAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHomeReadArtemBookAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).tractatus ?? 0) > 0) {
       scene.actions([
         { label: 'Study Aleksei\'s magical discourse on unarmed combat. You feel that there are <<tractatus * 100>> pages left (0:15) ', handler: (st: GameState) => {
@@ -343,7 +343,7 @@ function enterSetHomeReadAdventureBookAct(s: GameState, scene: SceneBuilder): vo
   if (((s as any).BookVars ?? 0)?.['adventure_pages'] > 0) {
     scene.actions([
       { label: 'Read Adventure Novel. There are <<BookVars[\'adventure_pages\']>> pages left (1:00)', handler: (st: GameState) => {
-    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + (((s as any).trait_vars ?? {})?.['academic'] ?? 0) * 5);
     if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['adventure_pages'] = ((s as any).BookVars['adventure_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['adventure_pages'] <= 0) {
       if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['adventure_pages'] = 0;
@@ -352,7 +352,7 @@ function enterSetHomeReadAdventureBookAct(s: GameState, scene: SceneBuilder): vo
         (s as any).lib_book_read = 2;
       }
     }
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       scene.img('images/pc/activities/reading/bed_book_nude.jpg');
@@ -376,7 +376,7 @@ function enterSetHomeReadAdventureBookAct(s: GameState, scene: SceneBuilder): vo
         scene.text('You read the final chapters of the adventure novel, completely immersed in the climactic ending to the authors entralling story.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
-        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read || '')} pages.`);
       }
     } else {
       qspCall(s, 'mood', 'raise', 'tiny');
@@ -385,7 +385,7 @@ function enterSetHomeReadAdventureBookAct(s: GameState, scene: SceneBuilder): vo
         scene.text('You read the final chapters of the adventure novel.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read || '')} pages.`);
       }
     }
     scene.actions([
@@ -404,7 +404,7 @@ function enterSetHomeReadFantasyBookAct(s: GameState, scene: SceneBuilder): void
   if (((s as any).BookVars ?? 0)?.['fantasy_pages'] > 0) {
     scene.actions([
       { label: 'Read fantasy book. There are <<BookVars[\'fantasy_pages\']>> pages left (1:00)', handler: (st: GameState) => {
-    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + (((s as any).trait_vars ?? {})?.['academic'] ?? 0) * 5);
     if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['fantasy_pages'] = ((s as any).BookVars['fantasy_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['fantasy_pages'] <= 0) {
       if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['fantasy_pages'] = 0;
@@ -413,7 +413,7 @@ function enterSetHomeReadFantasyBookAct(s: GameState, scene: SceneBuilder): void
         (s as any).lib_book_read = 2;
       }
     }
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       scene.img('images/pc/activities/reading/bed_book_nude.jpg');
@@ -436,7 +436,7 @@ function enterSetHomeReadFantasyBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the fantasy novel, completely immersed in the climactic ending to the authors entralling story.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
-        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read || '')} pages.`);
       }
     } else {
       qspCall(s, 'mood', 'raise', 'tiny');
@@ -444,7 +444,7 @@ function enterSetHomeReadFantasyBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the fantasy novel.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read || '')} pages.`);
       }
     }
     scene.actions([
@@ -463,7 +463,7 @@ function enterSetHomeReadRomanceBookAct(s: GameState, scene: SceneBuilder): void
   if (((s as any).BookVars ?? 0)?.['romance_pages'] > 0) {
     scene.actions([
       { label: 'Read Romance Novel. There are <<BookVars[\'romance_pages\']>> pages left (1:00)', handler: (st: GameState) => {
-    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + (((s as any).trait_vars ?? {})?.['academic'] ?? 0) * 5);
     if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['romance_pages'] = ((s as any).BookVars['romance_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['romance_pages'] <= 0) {
       if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['romance_pages'] = 0;
@@ -472,7 +472,7 @@ function enterSetHomeReadRomanceBookAct(s: GameState, scene: SceneBuilder): void
         (s as any).lib_book_read = 2;
       }
     }
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       scene.img('images/pc/activities/reading/bed_book_nude.jpg');
@@ -496,7 +496,7 @@ function enterSetHomeReadRomanceBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the romance novel, completely immersed in the climactic ending to the authors entralling story.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
-        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read || '')} pages.`);
       }
     } else {
       qspCall(s, 'mood', 'raise', 'tiny');
@@ -505,7 +505,7 @@ function enterSetHomeReadRomanceBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the romance novel.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read || '')} pages.`);
       }
     }
     scene.actions([
@@ -524,7 +524,7 @@ function enterSetHomeReadScienceBookAct(s: GameState, scene: SceneBuilder): void
   if (((s as any).BookVars ?? 0)?.['science_pages'] > 0) {
     scene.actions([
       { label: 'Read Science Book. There are <<BookVars[\'science_pages\']>> pages left (1:00)', handler: (st: GameState) => {
-    (s as any).temp_pages_read = (70 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 10);
+    (s as any).temp_pages_read = (70 + (Math.floor(Math.random() * 41) + 0) + (((s as any).trait_vars ?? {})?.['academic'] ?? 0) * 10);
     if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['science_pages'] = ((s as any).BookVars['science_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['science_pages'] <= 0) {
       if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['science_pages'] = 0;
@@ -534,7 +534,7 @@ function enterSetHomeReadScienceBookAct(s: GameState, scene: SceneBuilder): void
       }
     }
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 4) + 3);
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       scene.img('images/pc/activities/reading/bed_book_nude.jpg');
@@ -558,7 +558,7 @@ function enterSetHomeReadScienceBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the science book, completely immersed in the conclusions the authors make.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the book, completely immersed in absorbing...
-        scene.text(`For an hour you enthusiastically read the book, completely immersed in absorbing the knowledge within. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`For an hour you enthusiastically read the book, completely immersed in absorbing the knowledge within. By the end you've read ${((s as any).temp_pages_read || '')} pages.`);
       }
     } else {
       qspCall(s, 'mood', 'raise', 'tiny');
@@ -567,7 +567,7 @@ function enterSetHomeReadScienceBookAct(s: GameState, scene: SceneBuilder): void
         scene.text('You read the final chapters of the science book.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read || '')} pages.`);
       }
     }
     scene.actions([
@@ -586,7 +586,7 @@ function enterSetHomeReadScifiBookAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).BookVars ?? 0)?.['scifi_pages'] > 0) {
     scene.actions([
       { label: 'Read Science Fiction Novel. There are <<BookVars[\'scifi_pages\']>> pages left (1:00)', handler: (st: GameState) => {
-    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + (((s as any).trait_vars ?? {})?.['academic'] ?? 0) * 5);
     if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['scifi_pages'] = ((s as any).BookVars['scifi_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['scifi_pages'] <= 0) {
       if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['scifi_pages'] = 0;
@@ -595,7 +595,7 @@ function enterSetHomeReadScifiBookAct(s: GameState, scene: SceneBuilder): void {
         (s as any).lib_book_read = 2;
       }
     }
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       scene.img('images/pc/activities/reading/bed_book_nude.jpg');
@@ -619,7 +619,7 @@ function enterSetHomeReadScifiBookAct(s: GameState, scene: SceneBuilder): void {
         scene.text('You read the final chapters of the science fiction novel, completely immersed in the climactic ending to the authors entralling story.');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the novel, completely immersed in the auth...
-        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`For an hour you enthusiastically read the novel, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read || '')} pages.`);
       }
     } else {
       qspCall(s, 'mood', 'raise', 'tiny');
@@ -628,7 +628,7 @@ function enterSetHomeReadScifiBookAct(s: GameState, scene: SceneBuilder): void {
         scene.text('You read the final chapters of the science fiction novel.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read || '')} pages.`);
       }
     }
     scene.actions([
@@ -647,13 +647,13 @@ function enterSetHomeReadArtemBookAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).BookVars ?? 0)?.['artem_pages'] > 0) {
     scene.actions([
       { label: 'Read the book you borrowed from Artem. There are <<BookVars[\'artem_pages\']>> pages left (1:00) ', handler: (st: GameState) => {
-    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + ((s as any).trait_vars ?? {})?.['academic'] * 5);
+    (s as any).temp_pages_read = (80 + (Math.floor(Math.random() * 41) + 0) + (((s as any).trait_vars ?? {})?.['academic'] ?? 0) * 5);
     if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = ((s as any).BookVars['artem_pages'] ?? 0) - (((s as any).temp_pages_read ?? 0));
     if (((s as any).BookVars ?? 0)?.['artem_pages'] <= 0) {
       if (!(s as any).BookVars) (s as any).BookVars = {}; (s as any).BookVars['artem_pages'] = 0;
       (s as any).totalbook = ((s as any).totalbook ?? 0) + (1);
     }
-    qspCall(s, 'library_functions', 'read_book');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReadBook(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
       scene.img('images/pc/activities/reading/bed_book_nude.jpg');
@@ -676,7 +676,7 @@ function enterSetHomeReadArtemBookAct(s: GameState, scene: SceneBuilder): void {
         scene.text('You read the final chapters of the book, completely immersed in the climactic ending to the authors entralling story');
       } else {
         // TODO-QSP: dynamic text: For an hour you enthusiastically read the book, completely immersed in the autho...
-        scene.text(`For an hour you enthusiastically read the book, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`For an hour you enthusiastically read the book, completely immersed in the authors world. By the end you've read ${((s as any).temp_pages_read || '')} pages.`);
       }
     } else {
       qspCall(s, 'mood', 'raise', 'tiny');
@@ -684,7 +684,7 @@ function enterSetHomeReadArtemBookAct(s: GameState, scene: SceneBuilder): void {
         scene.text('You read the final chapters of the book.');
       } else {
         // TODO-QSP: dynamic text: Over the course of an hour you read <<temp_pages_read>> pages.
-        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read ?? 0)} pages.`);
+        scene.text(`Over the course of an hour you read ${((s as any).temp_pages_read || '')} pages.`);
       }
     }
     scene.actions([
@@ -824,11 +824,11 @@ function enterSetReadPornAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetBookBuyActs(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a science book', 'science', 350);
-  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'an adventure novel', 'adventure', 350);
-  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a fantasy novel', 'fantasy', 350);
-  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a science fiction novel', 'scifi', 350);
-  qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a romance novel', 'romance', 350);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'a science book', 'science', 350]; enterSetSingleBookBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'an adventure novel', 'adventure', 350]; enterSetSingleBookBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'a fantasy novel', 'fantasy', 350]; enterSetSingleBookBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'a science fiction novel', 'scifi', 350]; enterSetSingleBookBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'a romance novel', 'romance', 350]; enterSetSingleBookBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -847,7 +847,7 @@ function enterSetSingleBookBuyAct(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['' + String((s as any).$ARGS[2] || '') + '_books'] = ((s as any).mc_inventory['' + String((s as any).$ARGS[2] || '') + '_books'] ?? 0) + (1);
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You buy <<$ARGS[1]>> for <<$func('money', 'string_price', ARGS[3])>>.
-    scene.text(`You buy ${((s as any).locArgs?.[1] ?? 0)} for ${qspFunc(s, 'money', 'string_price', qspUntranslated(s, "ARGS[3]", { location: "library_functions" }))}.`);
+    scene.text(`You buy ${((s as any).locArgs?.[1] ?? '')} for ${qspFunc(s, 'money', 'string_price', qspUntranslated(s, "ARGS[3]", { location: "library_functions" }))}.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -861,9 +861,9 @@ function enterSetSingleBookBuyAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetLoanActs(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'library_functions', 'return_book_act');
-  qspCall(s, 'library_functions', 'pay_debt_act');
-  qspCall(s, 'library_functions', 'loan_book_act');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReturnBookAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPayDebtAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLoanBookAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -871,11 +871,11 @@ function enterSetLoanActs(s: GameState, scene: SceneBuilder): void {
 function enterReturnBookAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lib_book_loaned ?? 0) !== '') {
     // TODO-QSP: dynamic text: You've currently borrowed <<$lib_book_loaned>>.
-    scene.text(`You've currently borrowed ${((s as any).lib_book_loaned ?? 0)}.`);
+    scene.text(`You've currently borrowed ${((s as any).lib_book_loaned || '')}.`);
     if (((s as any).lib_debt ?? 0) <= 0) {
       (s as any).temp_loan_days_left = ((s as any).lib_debt ?? 0) / -50;
       // TODO-QSP: dynamic text: You have <<temp_loan_days_left>> days left before you need to return it.
-      scene.text(`You have ${((s as any).temp_loan_days_left ?? 0)} days left before you need to return it.`);
+      scene.text(`You have ${((s as any).temp_loan_days_left || '')} days left before you need to return it.`);
     } else {
       scene.text('Your book is overdue!');
     }
@@ -939,7 +939,7 @@ function enterReturnBookAct(s: GameState, scene: SceneBuilder): void {
 function enterPayDebtAct(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lib_debt ?? 0) > 0) {
     // TODO-QSP: dynamic text: You owe an outstanding debt of <<$func('money', 'string_price', lib_debt)>> to t...
-    scene.text(`You owe an outstanding debt of ${qspFunc(s, 'money', 'string_price', ((s as any).lib_debt ?? 0))} to the library.`);
+    scene.text(`You owe an outstanding debt of ${qspFunc(s, 'money', 'string_price', ((s as any).lib_debt || ''))} to the library.`);
     if (qspFunc(s, 'money', 'can_afford', ((s as any).lib_debt ?? 0)) === 0) {
       scene.text('You don\'t have enough money to pay your debt!');
     } else {

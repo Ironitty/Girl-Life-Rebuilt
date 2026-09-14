@@ -57,7 +57,7 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['i'] = 0;
   if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['maxi'] = 0;
   // TODO-QSP: :pain_calc_loop
-  if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['total'] = ((s as any).temppain['total'] ?? 0) + (((s as any).pain ?? 0)[((s as any).painParts ?? 0)[((s as any).temppain ?? {})?.['i']]] * ((s as any).pain ?? 0)[((s as any).painParts ?? 0)[((s as any).temppain ?? {})?.['i']]]);
+  if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['total'] = ((s as any).temppain['total'] ?? 0) + (((s as any).pain ?? 0)[((s as any).painParts ?? 0)[(((s as any).temppain ?? {})?.['i'] ?? 0)]] * ((s as any).pain ?? 0)[((s as any).painParts ?? 0)[(((s as any).temppain ?? {})?.['i'] ?? 0)]]);
   if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['i'] = ((s as any).temppain['i'] ?? 0) + (1);
   if (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']) {
     // TODO-QSP: jump 'pain_calc_loop'
@@ -73,7 +73,7 @@ function enterCalc(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'drugs', 'pain_relief');
   if (((s as any).pain ?? 0)?.['relief'] > 0) {
-    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['total'] = ((s as any).pain ?? {})?.['total'] * (100 - ((s as any).pain ?? {})?.['relief']) / 100;
+    if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['total'] = (((s as any).pain ?? {})?.['total'] ?? 0) * (100 - (((s as any).pain ?? {})?.['relief'] ?? 0)) / 100;
     if (((s as any).pain ?? 0)?.['total'] < 0) {
       if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['total'] = 0;
     }
@@ -87,21 +87,21 @@ function enterManage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pain ?? 0)?.['timer'] <= 0) {
     if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['timer'] = ((s as any).totminut ?? 0) + 10;
   }
-  qspCall(s, 'pain', 'calc');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).totminut ?? 0) < ((s as any).pain ?? 0)?.['timer']) {
     // TODO-QSP: exit
   }
   if ((((s as any).pain ?? 0)?.['damage'] + ((s as any).pain ?? 0)?.['total']) <= 0) {
     // TODO-QSP: exit
   }
-  if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['tmp_0'] = 1 + (((s as any).totminut ?? 0) - ((s as any).pain ?? {})?.['timer']) / 10;
+  if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['tmp_0'] = 1 + (((s as any).totminut ?? 0) - (((s as any).pain ?? {})?.['timer'] ?? 0)) / 10;
   if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['i'] = 0;
   if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['maxi'] = 0;
   // TODO-QSP: :pain_manage_loop
   if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['loc'] = qspUntranslated(s, "painParts[temppain['i']]", { location: "pain" });
   if (((s as any).pain ?? 0)[((s as any).temppain ?? 0)?.['loc']] > 0) {
-    if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['tmp_1'] = (Math.floor(Math.random() * (((s as any).temppain ?? {})?.['tmp_0'] - ((s as any).temppain ?? {})?.['tmp_0'] / 3 + 1)) + (((s as any).temppain ?? {})?.['tmp_0'] / 3));
-    if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['tmp_2'] = (Math.floor(Math.random() * (((s as any).temppain ?? {})?.['tmp_0'] - ((s as any).temppain ?? {})?.['tmp_0'] / 2 + 1)) + (((s as any).temppain ?? {})?.['tmp_0'] / 2));
+    if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['tmp_1'] = (Math.floor(Math.random() * ((((s as any).temppain ?? {})?.['tmp_0'] ?? 0) - (((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 3 + 1)) + ((((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 3));
+    if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['tmp_2'] = (Math.floor(Math.random() * ((((s as any).temppain ?? {})?.['tmp_0'] ?? 0) - (((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 2 + 1)) + ((((s as any).temppain ?? {})?.['tmp_0'] ?? 0) / 2));
     if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['tmp_3'] = ((((s as any).inSleep ?? 0)) ? (qspUntranslated(s, "rand(0, pain[temppain['loc']])", { location: "pain" })) : (0));
     // TODO-QSP: pain[$temppain['loc']] -= max(temppain['tmp_1'], temppain['tmp_2'] + temppain['tmp_3'])
   }
@@ -119,8 +119,8 @@ function enterManage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temppain ?? 0)?.['i'] < ((s as any).temppain ?? 0)?.['maxi']) {
     // TODO-QSP: jump 'statpainloop'
   }
-  qspCall(s, 'pain', 'calc');
-  qspCall(s, 'pain', 'stat_changes');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStatChanges(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['timer'] = ((s as any).totminut ?? 0) + 10;
   return;
   // TODO-QSP: end
@@ -158,12 +158,12 @@ function enterStatChanges(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['mood_loss'] = Math.max(1, ((s as any).pain ?? {})?.['total'] / 10);
+  if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['mood_loss'] = Math.max(1, (((s as any).pain ?? {})?.['total'] ?? 0) / 10);
   if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === -1) {
-    if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['mood_loss'] = (((s as any).temppain ?? {})?.['mood_loss'] * 12) / 10;
+    if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['mood_loss'] = ((((s as any).temppain ?? {})?.['mood_loss'] ?? 0) * 12) / 10;
   } else {
     if (((s as any).trait_vars ?? 0)?.['pain_tolerance'] === 1) {
-      if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['mood_loss'] = Math.max(1, ((s as any).temppain ?? {})?.['mood_loss'] * 8 / 10);
+      if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['mood_loss'] = Math.max(1, (((s as any).temppain ?? {})?.['mood_loss'] ?? 0) * 8 / 10);
     }
   }
   if (((s as any).pain ?? 0)?.['total'] <= 40) {
@@ -317,7 +317,7 @@ function enterStatChanges(s: GameState, scene: SceneBuilder): void {
   }
   if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['curpain'] = (((s as any).painCalc ?? 0)[0] * ((s as any).painCalc ?? 0)[1] * ((s as any).painCalc ?? 0)[2]) / 10;
   if (!(s as any).temppain) (s as any).temppain = {}; (s as any).temppain['prevpain'] = ((s as any).pain ?? 0)?.[((s as any).temppain ?? 0)?.['part']];
-  (s as any).lastpain = qspFunc(s, 'math', 'int_sqrt', ((s as any).temppain ?? {})?.['prevpain'] * ((s as any).temppain ?? {})?.['prevpain'] + ((s as any).temppain ?? {})?.['curpain'] * ((s as any).temppain ?? {})?.['curpain']);
+  (s as any).lastpain = qspFunc(s, 'math', 'int_sqrt', (((s as any).temppain ?? {})?.['prevpain'] ?? 0) * (((s as any).temppain ?? {})?.['prevpain'] ?? 0) + (((s as any).temppain ?? {})?.['curpain'] ?? 0) * (((s as any).temppain ?? {})?.['curpain'] ?? 0));
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('get') : -1) >= 0) {
     (s as any).result = ((s as any).lastpain ?? 0);
   } else {
@@ -326,7 +326,7 @@ function enterStatChanges(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: pain[$temppain['part']] = 100
     }
     if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['timer'] = ((s as any).totminut ?? 0) + 30;
-    qspCall(s, 'pain', 'calc');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.build();
 }

@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterOutside(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'prostitution_functions', 'work_clothes');
-  qspCall(s, 'gas_station_gp_117', 'event_check');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'outside');
@@ -19,7 +19,7 @@ function enterOutside(s: GameState, scene: SceneBuilder): void {
   scene.text('The gas station is modern and clean in comparison to other gas stations in the area. To the south of the station is the highway M-10 that goes from St. Petersburg to Moscow. To the north there are small villages and towns similar to Pavlovsk which is even further south than the highway.');
   scene.text('There is a small shop were you can buy something to eat or to drink and a public restroom is also nearby.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
-    qspCall(s, 'gas_station_gp_117', 'gas');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGas(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).prostitute ?? 0)?.['wl_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['full_block'] === 0  &&  ((s as any).prostitute ?? 0)?.['gas_station'] === 1  &&  ((s as any).prostitute ?? 0)?.['active'] === 1) {
     if (((s as any).prostitute ?? 0)?.['earnings_day'] > 0) {
@@ -86,7 +86,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $gas_shop_inside = 'no'
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['gas_station_gp_117', 'outside'] },
-    { label: 'Buy and eat a snack (0:05) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+    { label: 'Buy and eat a snack (0:05)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -101,7 +101,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Buy and eat a healthy snack (0:05) [+$func(\'money\', \'get_cost_string\', 120)]', handler: (st: GameState) => {
+    { label: 'Buy and eat a healthy snack (0:05)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 120) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -116,7 +116,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Buy and drink some water (0:05) [+$func(\'money\', \'get_cost_string\', 40)]', handler: (st: GameState) => {
+    { label: 'Buy and drink some water (0:05)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 40) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -154,7 +154,7 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Enter the women\'s restroom [+$func(\'money\', \'get_cost_string\', 10, \'c...]', handler: (st: GameState) => {
+      { label: 'Enter the women\'s restroom', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -163,7 +163,7 @@ function enterRestroom(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'restroom_women'] }]);
     }
   } },
-      { label: 'Enter the men\'s restroom [+$func(\'money\', \'get_cost_string\', 10, \'c...]', handler: (st: GameState) => {
+      { label: 'Enter the men\'s restroom', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -202,14 +202,14 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gas_station_gp_117', 'condom_dispenser');
   scene.img('images/locations/highway/gas_station_gp_117/condoms.jpg');
   // TODO-QSP: dynamic text: A condom costs <<$func('money', 'string_price', 60)>> and you have <<mc_inventor...
-  scene.text(`A condom costs ${qspFunc(s, 'money', 'string_price', 60)} and you have ${((s as any).mc_inventory ?? 0)?.['normal_condoms']} condoms.`);
+  scene.text(`A condom costs ${qspFunc(s, 'money', 'string_price', 60)} and you have ${((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? ''} condoms.`);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['gas_station_gp_117', 'restroom'] },
-    { label: 'Buy a condom [+$func(\'money\', \'get_cost_string\', 60)]', handler: (st: GameState) => {
+    { label: 'Buy a condom', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 60) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -225,7 +225,7 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'condom_dispenser'] }]);
     }
   } },
-    { label: 'Buy five condoms [+$func(\'money\', \'get_cost_string\', 300)]', handler: (st: GameState) => {
+    { label: 'Buy five condoms', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -241,7 +241,7 @@ function enterCondomDispenser(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gas_station_gp_117', 'condom_dispenser'] }]);
     }
   } },
-    { label: 'Buy ten condoms [+$func(\'money\', \'get_cost_string\', 600)]', handler: (st: GameState) => {
+    { label: 'Buy ten condoms', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 600) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -335,7 +335,7 @@ function enterRestroomMen(s: GameState, scene: SceneBuilder): void {
 
 function enterGas(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Your <a href="exec: gs 'carF', 'start'"><<$car['name']>></a> is parked here.
-  scene.text(`Your <a href="exec: gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked here.`);
+  scene.text(`Your <a href="exec: gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked here.`);
   // TODO-QSP: dynamic text: You can buy petrol for your car, the price is <<$func('money', 'string_price', 3...
   scene.text(`You can buy petrol for your car, the price is ${qspFunc(s, 'money', 'string_price', 30)} per liter.`);
   if (((s as any).kanistra ?? 0) < 5) {
@@ -351,19 +351,19 @@ function enterGas(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).car ?? 0)?.['fuel'] < ((s as any).car ?? 0)?.['tank']) {
-    (s as any).zprbenz = ((s as any).car ?? {})?.['tank'] - ((s as any).car ?? {})?.['fuel'];
+    (s as any).zprbenz = (((s as any).car ?? {})?.['tank'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0);
     if (qspFunc(s, 'money', 'can_afford', ((s as any).zprbenz ?? 0) * 30) === 0) {
       scene.text('You do not have enough money to refuel your car.');
     } else {
       scene.actions([
         { label: 'Fill the tank with petrol', handler: (st: GameState) => {
-    (s as any).zprbenz = ((s as any).car ?? {})?.['tank'] - ((s as any).car ?? {})?.['fuel'];
+    (s as any).zprbenz = (((s as any).car ?? {})?.['tank'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0);
     (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
     if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car ?? 0)?.['tank'];
     qspCall(s, 'money', 'pay', ((s as any).zprpay ?? 0));
     scene.img('images/locations/shared/gas/zapr1.jpg');
     // TODO-QSP: dynamic text: You fill the tank and pay <<$func('money', 'string_price', zprpay)>>.
-    scene.text(`You fill the tank and pay ${qspFunc(s, 'money', 'string_price', ((s as any).zprpay ?? 0))}.`);
+    scene.text(`You fill the tank and pay ${qspFunc(s, 'money', 'string_price', ((s as any).zprpay || ''))}.`);
     scene.actions([
       { label: 'Disengage from the pump', goto: ['gas_station_gp_117', 'outside'] },
     ]);
@@ -403,18 +403,18 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You have earned <<$func(''money'', ''string_profit'', prostitute[''earnings_day''])>> today.'+iif(p...
   }
   if (((s as any).prostitute ?? 0)?.['payment_method'] === 0) {
-    qspCall(s, 'gas_station_gp_117', 'event_check');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'willpower', 'prostitution', 'self', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Look for a client (0:30)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Look for a client (0:30)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['prostitution_car_negotiation', 'look_client'] },
     ]);

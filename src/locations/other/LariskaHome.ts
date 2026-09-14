@@ -21,7 +21,7 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big13.jpg');
       scene.text('You knock on Lariska\'s apartment door.');
       // TODO-QSP: dynamic text: Lariska answers the door. "Come in, <<$pcs_nickname>>."
-      scene.text(`Lariska answers the door. "Come in, ${((s as any).pcs_nickname ?? 0)}."`);
+      scene.text(`Lariska answers the door. "Come in, ${((s as any).pcs_nickname || '')}."`);
       scene.actions([
         { label: 'Enter the apartment', goto: ['LariskaHome', 'hallway'] },
       ]);
@@ -46,15 +46,15 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
         scene.text('You knock on Lariska\'s apartment door and a smart looking brunette opens the door. You look helplessly into her impressive cleavage and let out an involuntary sigh.');
         scene.text('"Hello, are you looking for Lariska?" the woman asks with a smile.');
         // TODO-QSP: dynamic text: "Yes, I'm <<$pcs_nickname>>." you reply tearing your eyes away from her nearly e...
-        scene.text(`"Yes, I'm ${((s as any).pcs_nickname ?? 0)}." you reply tearing your eyes away from her nearly exposed breasts.`);
+        scene.text(`"Yes, I'm ${((s as any).pcs_nickname || '')}." you reply tearing your eyes away from her nearly exposed breasts.`);
         // TODO-QSP: dynamic text: "Ah, <<$pcs_nickname>>, Lariska has told me all about you. I'm Anna, Lariska's m...
-        scene.text(`"Ah, ${((s as any).pcs_nickname ?? 0)}, Lariska has told me all about you. I'm Anna, Lariska's mother. My bunny has been so joyous lately, I am so glad she has found such a good friend! She needed someone to help get her back on her feet."`);
+        scene.text(`"Ah, ${((s as any).pcs_nickname || '')}, Lariska has told me all about you. I'm Anna, Lariska's mother. My bunny has been so joyous lately, I am so glad she has found such a good friend! She needed someone to help get her back on her feet."`);
         // TODO-QSP: dynamic text: "<<$text_home>>"
-        scene.text(`"${((s as any).text_home ?? 0)}"`);
+        scene.text(`"${((s as any).text_home || '')}"`);
         if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['metAnna'] = 1;
       } else {
         // TODO-QSP: dynamic text: Lariska's mother opens the door. "Hello, <<$pcs_nickname>>. Come inside, <<$text...
-        scene.text(`Lariska's mother opens the door. "Hello, ${((s as any).pcs_nickname ?? 0)}. Come inside, ${((s as any).text_home ?? 0)}"`);
+        scene.text(`Lariska's mother opens the door. "Hello, ${((s as any).pcs_nickname || '')}. Come inside, ${((s as any).text_home || '')}"`);
       }
       scene.actions([
         { label: 'Enter the apartment', goto: ['LariskaHome', 'hallway'] },
@@ -90,21 +90,21 @@ function enterFrontDoor(s: GameState, scene: SceneBuilder): void {
         scene.text('You knock on Lariska\'s apartment door and a smart looking brunette opens the door. You look helplessly into her impressive cleavage and let out an involuntary sigh.');
         scene.text('"Hello, are you looking for Lariska?" the woman asks with a smile.');
         // TODO-QSP: dynamic text: "Yes, I'm <<$pcs_nickname>>." you reply tearing your eyes away from her nearly e...
-        scene.text(`"Yes, I'm ${((s as any).pcs_nickname ?? 0)}." you reply tearing your eyes away from her nearly exposed breasts.`);
+        scene.text(`"Yes, I'm ${((s as any).pcs_nickname || '')}." you reply tearing your eyes away from her nearly exposed breasts.`);
         // TODO-QSP: dynamic text: "Ah, <<$pcs_nickname>>, Lariska has told me all about you. I'm Anna, Lariska's m...
-        scene.text(`"Ah, ${((s as any).pcs_nickname ?? 0)}, Lariska has told me all about you. I'm Anna, Lariska's mother. My bunny has been so joyous lately, I am so glad she has found such a good friend! She needed someone to help get her back on her feet."`);
+        scene.text(`"Ah, ${((s as any).pcs_nickname || '')}, Lariska has told me all about you. I'm Anna, Lariska's mother. My bunny has been so joyous lately, I am so glad she has found such a good friend! She needed someone to help get her back on her feet."`);
         // TODO-QSP: dynamic text: "<<$text_home>>"
-        scene.text(`"${((s as any).text_home ?? 0)}"`);
+        scene.text(`"${((s as any).text_home || '')}"`);
         if (!(s as any).LariskaQW) (s as any).LariskaQW = {}; (s as any).LariskaQW['metAnna'] = 1;
       } else {
         // TODO-QSP: dynamic text: Lariska's mother opens the door. "Hello, <<$pcs_nickname>>. <<$text_home>>"
-        scene.text(`Lariska's mother opens the door. "Hello, ${((s as any).pcs_nickname ?? 0)}. ${((s as any).text_home ?? 0)}"`);
+        scene.text(`Lariska's mother opens the door. "Hello, ${((s as any).pcs_nickname || '')}. ${((s as any).text_home || '')}"`);
       }
     } else {
       scene.img('images/characters/pavlovsk/school/girl/lariska/lariska_door.jpg');
       scene.text('You knock on Lariska\'s door, but nobody answers.');
       // TODO-QSP: dynamic text: <<$text_home>>
-      scene.text(`${((s as any).text_home ?? 0)}`);
+      scene.text(`${((s as any).text_home || '')}`);
     }
     scene.actions([
       { label: 'Go back to town', goto: ['pav_residential', ''] },
@@ -137,7 +137,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: Lariska <<$text_home>>.
-  scene.text(`Lariska ${((s as any).text_home ?? 0)}.`);
+  scene.text(`Lariska ${((s as any).text_home || '')}.`);
   if (((s as any).LariskaQW ?? 0)?.['metAnna'] >= 1) {
     scene.actions([
       { label: 'Anna\'s Bedroom', goto: ['LariskaHome', 'anna_bedroom'] },
@@ -238,10 +238,10 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   scene.text('The kitchen in Lariska\'s apartment is impressive, there are several small machines meant for cooking laid out, though you have no idea what most of them do.');
   if (((s as any).lariskalove ?? 0) >= 6) {
     // TODO-QSP: dynamic text: Like your <<$npc_nickname['A29']>> does at home, somebody living here makes larg...
-    scene.text(`Like your ${((s as any).npc_nickname ?? 0)?.['A29']} does at home, somebody living here makes large batches of food, ready to eat anytime. You know you are welcome to anything in here though, so you look around, trying to decide what sounds good.`);
+    scene.text(`Like your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} does at home, somebody living here makes large batches of food, ready to eat anytime. You know you are welcome to anything in here though, so you look around, trying to decide what sounds good.`);
   } else {
     // TODO-QSP: dynamic text: Like your <<$npc_nickname['A29']>> does at home, somebody living here makes larg...
-    scene.text(`Like your ${((s as any).npc_nickname ?? 0)?.['A29']} does at home, somebody living here makes large batches of food, ready to eat anytime. You don't feel comfortable eating a full meal uninvited, but you know nobody will mind if you just have a snack.`);
+    scene.text(`Like your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} does at home, somebody living here makes large batches of food, ready to eat anytime. You don't feel comfortable eating a full meal uninvited, but you know nobody will mind if you just have a snack.`);
   }
   if (((s as any).locat ?? 0)?.['Lariska'] === 3) {
     scene.text('Have <a href="exec: gt \'LariskaHome\', \'kitchen_meal_1\'">breakfast</a> with Lariska.');

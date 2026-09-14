@@ -21,17 +21,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
     // TODO-QSP: dynamic text: <b><<mc_inventory['dish_plates']>></b> clean plates are stored in the cupboard.
-    scene.text(`<b>${((s as any).mc_inventory ?? 0)?.['dish_plates']}</b> clean plates are stored in the cupboard.`);
+    scene.text(`<b>${((s as any).mc_inventory ?? 0)?.['dish_plates'] ?? ''}</b> clean plates are stored in the cupboard.`);
   } else {
     scene.text('<b><font color = red>You have no clean dishes left.</font></b>');
   }
   if (((s as any).dirttarelka ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><<dirttarelka>></b> dirty dishes are lying in the sink. <a href="exec:gs 'kit...
-    scene.text(`<b>${((s as any).dirttarelka ?? 0)}</b> dirty dishes are lying in the sink. <a href="exec:gs 'kit_din', 'dirtarm'">Wash the dishes</a>.`);
+    scene.text(`<b>${((s as any).dirttarelka || '')}</b> dirty dishes are lying in the sink. <a href="exec:gs 'kit_din', 'dirtarm'">Wash the dishes</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
     // TODO-QSP: dynamic text: There is dishwashing liquid next to the sink, enough for <b><<mc_inventory['dish...
-    scene.text(`There is dishwashing liquid next to the sink, enough for <b>${((s as any).mc_inventory ?? 0)?.['dish_soap']}</b> uses.`);
+    scene.text(`There is dishwashing liquid next to the sink, enough for <b>${((s as any).mc_inventory ?? 0)?.['dish_soap'] ?? ''}</b> uses.`);
   } else {
     scene.text('<center><b>You need to buy dishwashing liquid before you can wash the dishes.</b></center>');
   }
@@ -41,7 +41,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
     }
     // TODO-QSP: dynamic text: There's enough food for <b><<mc_inventory['food_basic']>></b> ' + iif(mc_invento...
-    scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot ?? 0)}`);
+    scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot || '')}`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
       scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');

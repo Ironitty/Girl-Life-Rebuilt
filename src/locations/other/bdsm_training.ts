@@ -135,13 +135,13 @@ function enterSub_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'hj', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Cheat and cum [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Cheat and cum', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Cheat and cum [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Cheat and cum', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_horny = 10;
     qspCall(s, 'mood', 'raise', 'small');
@@ -511,7 +511,7 @@ function enterDom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/suburb/bdsm_club/r2_2.jpg');
     scene.text('"Hello." you say to her, confidently.');
     // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>." She replies. "We were not formally introduced, I am M...
-    scene.text(`"Hello ${((s as any).pcs_nickname ?? 0)}." She replies. "We were not formally introduced, I am Mistress Elektra, you may call me Elektra."`);
+    scene.text(`"Hello ${((s as any).pcs_nickname || '')}." She replies. "We were not formally introduced, I am Mistress Elektra, you may call me Elektra."`);
     scene.text('She raises the whip and cracks it against the floor dramatically.');
     scene.text('"This is a simple listing of rules and such, I always found it terribly boring, so I find it more useful to demonstrate."');
     scene.text('"As you were told last time a sub can earn tips and one way is to help me in these sessions. Follow me."');

@@ -26,7 +26,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'pursebratype'
     // TODO-QSP: killvar 'pursebranumber'
   }
-  qspCall(s, 'wardrobe', 'wardrobe_enter_save_outfit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeEnterSaveOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).wardrobeDefaultPagePref ?? 0) === 'currentOutfit') {
     scene.actions([{ label: 'Continue', goto: ['wardrobe', 'main'] }]);
   } else {
@@ -41,7 +41,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspCall(s, 'wardrobe', 'wardrobe_exit_check_outfit');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
     { label: 'Current outfit', goto: ['wardrobe', 'main'] },
@@ -127,7 +127,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).wardrobeDefaultPagePref ?? 0) === 'currentOutfit') {
   }
   // TODO-QSP: dynamic text: <center><<$wardrobeSetDefault>></center>
-  scene.text(`<center>${((s as any).wardrobeSetDefault ?? 0)}</center>`);
+  scene.text(`<center>${((s as any).wardrobeSetDefault || '')}</center>`);
   if (((s as any).pursepantytype ?? 0) !== ''  ||  ((s as any).pursebratype ?? 0) !== '') {
     // TODO-QSP: dynamic text: <center>You put the '+iif($pursepantytype ! ', 'panties', ')+iif($pursepantytype...
     scene.text('<center>You put the \'+iif($pursepantytype ! \', \'panties\', \')+iif($pursepantytype ! \' and $pursebratype ! \', \' and \', \')+iif($pursebratype ! \', \'bra\', \')+\' from your purse back in the wardrobe.</center><br>');
@@ -137,7 +137,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: killvar 'pursebranumber'
   }
   // TODO-QSP: dynamic text: <center><font color="maroon">These are the clothes you are currently wearing - C...
-  scene.text(`<center><font color="maroon">These are the clothes you are currently wearing - Click on an item to change it</font></center><center><table border=0 cellspacing=${((s as any).ward_img_hgt ?? 0)/25} cellpadding=5>`);
+  scene.text(`<center><font color="maroon">These are the clothes you are currently wearing - Click on an item to change it</font></center><center><table border=0 cellspacing=${((s as any).ward_img_hgt ?? '')/25} cellpadding=5>`);
   if (((s as any).underwear ?? 0)?.['type'] === 0) {
     scene.text('<th>Bra worn</th><th>Outfit worn</th><th>Coat (only worn outside when cold)</th>');
     // TODO-QSP: *P '<tr><td><center><a href="exec:gt ''wardrobe'', ''underwear_options'', ''bra''"><img Height = <<w...
@@ -220,7 +220,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Close wardrobe', handler: (st: GameState) => {
-    qspCall(s, 'wardrobe', 'wardrobe_exit_check_outfit');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
     { label: 'Strip all clothing', handler: (st: GameState) => {
@@ -387,19 +387,19 @@ function enterDefaultNameInitialise(s: GameState, scene: SceneBuilder): void {
 
 function enterDefaultTemplate(s: GameState, scene: SceneBuilder): void {
   (s as any).clothing_default_page = qspUntranslated(s, "ARGS[1]", { location: "wardrobe" });
-  qspCall(s, 'wardrobe', 'default_name_initialise');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultNameInitialise(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   scene.img('images/system/icons/clothing/clothes.png');
   if (((s as any).wardrobeDefaultPagePref ?? 0) === ((s as any).wloc ?? 0)) {
   }
   // TODO-QSP: dynamic text: <center><<$wardrobeSetDefault>></center>
-  scene.text(`<center>${((s as any).wardrobeSetDefault ?? 0)}</center>`);
+  scene.text(`<center>${((s as any).wardrobeSetDefault || '')}</center>`);
   scene.text('<center><table><th>Name</th><th>Outfit</th><th>Bra/Bodysuit</th><th>Panties</th><th>Shoes</th><th>Coat</th><th>Purse</th><th></th><th></th><th></th><th></th><th></th><tr>');
   (s as any).temp = ((s as any).default_entry ?? 0);
   // TODO-QSP: :loopdefault_entry_set
   if ((0 as any) !== 0) {
     // TODO-QSP: dynamic text: $func('wardrobe', 'default_clothing_line')
-    scene.text('$func(\'wardrobe\', \'default_clothing_line\')');
+    scene.text(qspFunc(s, 'wardrobe', 'default_clothing_line'));
   }
   (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
   if (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]) {
@@ -409,7 +409,7 @@ function enterDefaultTemplate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loopdefault_entry_empty
   if ((!(0 as any))) {
     // TODO-QSP: dynamic text: $func('wardrobe', 'default_clothing_line')
-    scene.text('$func(\'wardrobe\', \'default_clothing_line\')');
+    scene.text(qspFunc(s, 'wardrobe', 'default_clothing_line'));
   }
   (s as any).default_entry = ((s as any).default_entry ?? 0) + (1);
   if (((s as any).default_entry ?? 0) <= ((s as any).default_entry ?? 0)[1]) {
@@ -431,17 +431,17 @@ function enterDefaultActions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', handler: (st: GameState) => {
-    qspCall(s, 'wardrobe', 'wardrobe_exit_check_outfit');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
     { label: 'Select outfit to wear', handler: (st: GameState) => {
-    qspCall(s, 'wardrobe', 'default_actions_wear');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultActionsWear(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Return', goto: ['wardrobe', 'wardrobeDefaultPagePref'] },
     ]);
   } },
     { label: 'Choose another page', handler: (st: GameState) => {
-    qspCall(s, 'wardrobe', 'default_actions_page');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultActionsPage(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Return', goto: ['wardrobe', 'wardrobeDefaultPagePref'] },
     ]);
@@ -526,8 +526,8 @@ function enterDefault1(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 1;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 10;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[1]
-  qspCall(s, 'wardrobe', 'default_actions', 1);
-  qspCall(s, 'wardrobe', 'default_template', 1);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -536,8 +536,8 @@ function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 11;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 20;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[2]
-  qspCall(s, 'wardrobe', 'default_actions', 2);
-  qspCall(s, 'wardrobe', 'default_template', 2);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -546,8 +546,8 @@ function enterDefault3(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 21;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 30;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[3]
-  qspCall(s, 'wardrobe', 'default_actions', 3);
-  qspCall(s, 'wardrobe', 'default_template', 3);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -556,8 +556,8 @@ function enterDefault4(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 31;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 40;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[4]
-  qspCall(s, 'wardrobe', 'default_actions', 4);
-  qspCall(s, 'wardrobe', 'default_template', 4);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -566,8 +566,8 @@ function enterDefault5(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 41;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 50;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[5]
-  qspCall(s, 'wardrobe', 'default_actions', 5);
-  qspCall(s, 'wardrobe', 'default_template', 5);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -576,8 +576,8 @@ function enterDefault6(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 51;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 60;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[6]
-  qspCall(s, 'wardrobe', 'default_actions', 6);
-  qspCall(s, 'wardrobe', 'default_template', 6);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 6]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 6]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -586,8 +586,8 @@ function enterDefault7(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 61;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 70;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[7]
-  qspCall(s, 'wardrobe', 'default_actions', 7);
-  qspCall(s, 'wardrobe', 'default_template', 7);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 7]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 7]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -596,8 +596,8 @@ function enterDefault8(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 71;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 80;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[8]
-  qspCall(s, 'wardrobe', 'default_actions', 8);
-  qspCall(s, 'wardrobe', 'default_template', 8);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -606,8 +606,8 @@ function enterDefault9(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 81;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 90;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[9]
-  qspCall(s, 'wardrobe', 'default_actions', 9);
-  qspCall(s, 'wardrobe', 'default_template', 9);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 9]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 9]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -616,8 +616,8 @@ function enterDefault10(s: GameState, scene: SceneBuilder): void {
   (s as any).default_entry = 91;
   if (!(s as any).default_entry) (s as any).default_entry = {}; (s as any).default_entry[1] = 100;
   // TODO-QSP: $default_entry[2] = $clothing_default_page[10]
-  qspCall(s, 'wardrobe', 'default_actions', 10);
-  qspCall(s, 'wardrobe', 'default_template', 10);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 10]; enterDefaultActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 10]; enterDefaultTemplate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -715,7 +715,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
             if (((s as any).temp_bodysuit_not_wear_reason ?? 0) !== '') {
               scene.text('ERROR! This should not be reached.');
               // TODO-QSP: dynamic text: You can't wear this bodysuit because <<$temp_bodysuit_not_wear_reason>>, but the...
-              scene.text(`You can't wear this bodysuit because ${((s as any).temp_bodysuit_not_wear_reason ?? 0)}, but the text for this has not be written.`);
+              scene.text(`You can't wear this bodysuit because ${((s as any).temp_bodysuit_not_wear_reason || '')}, but the text for this has not be written.`);
               scene.text('Please contact a developer');
             }
           }
@@ -735,7 +735,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_bra_not_wear_reason ?? 0) !== ''  &&  ((s as any).temp_bra_not_wear_reason ?? 0) !== 'hypno') {
             scene.text('ERROR! This should not be reached.');
             // TODO-QSP: dynamic text: You can't wear this bra because <<$temp_bra_not_wear_reason>>, but the text for ...
-            scene.text(`You can't wear this bra because ${((s as any).temp_bra_not_wear_reason ?? 0)}, but the text for this has not be written.`);
+            scene.text(`You can't wear this bra because ${((s as any).temp_bra_not_wear_reason || '')}, but the text for this has not be written.`);
             scene.text('Please contact a developer');
           }
         }
@@ -753,7 +753,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_panties_not_wear_reason ?? 0) !== ''  &&  ((s as any).temp_panties_not_wear_reason ?? 0) !== 'hypno') {
             scene.text('ERROR! This should not be reached.');
             // TODO-QSP: dynamic text: You can't wear these panties because <<$temp_panties_not_wear_reason>>, but the ...
-            scene.text(`You can't wear these panties because ${((s as any).temp_panties_not_wear_reason ?? 0)}, but the text for this has not be written.`);
+            scene.text(`You can't wear these panties because ${((s as any).temp_panties_not_wear_reason || '')}, but the text for this has not be written.`);
             scene.text('Please contact a developer');
           }
         }
@@ -761,20 +761,20 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
     }
     if ((((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno'  ||  ((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno')) {
       // TODO-QSP: dynamic text: You reach for your <<$temp_hypno_items>> but something holds you back. You hate ...
-      scene.text(`You reach for your ${((s as any).temp_hypno_items ?? 0)} but something holds you back. You hate wearing ${((s as any).temp_hypno_items ?? 0)}, so why put them on?`);
+      scene.text(`You reach for your ${((s as any).temp_hypno_items || '')} but something holds you back. You hate wearing ${((s as any).temp_hypno_items || '')}, so why put them on?`);
       qspCall(s, 'willpower', 'misc', 'resist', 'easy');
       if (((s as any).cheatVars ?? 0)?.['willpower'] === 0) {
         (s as any).will_cost = ((s as any).will_cost ?? 0) + (((s as any).hypnoTime ?? 0));
       }
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Put them on anyways', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Put them on anyways', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     if (((s as any).braworntype ?? 0) !== ((s as any).defbratype ?? 0)?.[String((s as any).default_entry ?? 0)]) {
       // TODO-QSP: gs 'bras', 'wear', $defbratype[default_entry], defbranumber[default_entry]
@@ -815,12 +815,12 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).temp_sho_not_wear_reason ?? 0) === 'low_heels_skill') {
           // TODO-QSP: dynamic text: You try to take a step in these killer heels and almost break your neck. You can...
-          scene.text(`You try to take a step in these killer heels and almost break your neck. You can't walk in your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit. Guess you will have to find something else to wear.`);
+          scene.text(`You try to take a step in these killer heels and almost break your neck. You can't walk in your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? ''} outfit. Guess you will have to find something else to wear.`);
         } else {
           if (((s as any).temp_sho_not_wear_reason ?? 0) !== '') {
             scene.text('ERROR! This should not be reached.');
             // TODO-QSP: dynamic text: You can't wear these shoes because <<$temp_sho_not_wear_reason>>, but the text f...
-            scene.text(`You can't wear these shoes because ${((s as any).temp_sho_not_wear_reason ?? 0)}, but the text for this has not be written.`);
+            scene.text(`You can't wear these shoes because ${((s as any).temp_sho_not_wear_reason || '')}, but the text for this has not be written.`);
             scene.text('Please contact a developer');
           }
         }
@@ -836,7 +836,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_purse_not_wear_reason ?? 0) !== '') {
         scene.text('ERROR! This should not be reached.');
         // TODO-QSP: dynamic text: You can't wear this purse because <<$temp_purse_not_wear_reason>>, but the text ...
-        scene.text(`You can't wear this purse because ${((s as any).temp_purse_not_wear_reason ?? 0)}, but the text for this has not be written.`);
+        scene.text(`You can't wear this purse because ${((s as any).temp_purse_not_wear_reason || '')}, but the text for this has not be written.`);
         scene.text('Please contact a developer');
       }
     }
@@ -853,7 +853,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_coat_not_wear_reason ?? 0) !== '') {
           scene.text('ERROR! This should not be reached.');
           // TODO-QSP: dynamic text: You can't wear this coat because <<$temp_coat_not_wear_reason>>, but the text fo...
-          scene.text(`You can't wear this coat because ${((s as any).temp_coat_not_wear_reason ?? 0)}, but the text for this has not be written.`);
+          scene.text(`You can't wear this coat because ${((s as any).temp_coat_not_wear_reason || '')}, but the text for this has not be written.`);
           scene.text('Please contact a developer');
         }
       }
@@ -862,7 +862,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_clo_not_wear_reason ?? 0) === 'not_owned') {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg');
     // TODO-QSP: dynamic text: As you go to pull your <<$def_clothing_name[default_entry]>> outfit out of your ...
-    scene.text(`As you go to pull your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit out of your wardrobe you remember you don't own that piece of clothing anymore. Maybe you should buy it again? Guess you will have to find something else to wear.`);
+    scene.text(`As you go to pull your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? ''} outfit out of your wardrobe you remember you don't own that piece of clothing anymore. Maybe you should buy it again? Guess you will have to find something else to wear.`);
     scene.actions([
       { label: 'Return', goto: ['wardrobe', 'wloc'] },
     ]);
@@ -870,7 +870,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_clo_not_wear_reason ?? 0) === 'is_lost') {
       scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg');
       // TODO-QSP: dynamic text: As you go to pull your <<$def_clothing_name[default_entry]>> outfit out of your ...
-      scene.text(`As you go to pull your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit out of your wardrobe you remember that you lost that piece of clothing. Maybe you can find the missing clothes somewhere? Guess you will have to find something else to wear.`);
+      scene.text(`As you go to pull your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? ''} outfit out of your wardrobe you remember that you lost that piece of clothing. Maybe you can find the missing clothes somewhere? Guess you will have to find something else to wear.`);
       scene.actions([
         { label: 'Return', goto: ['wardrobe', 'wloc'] },
       ]);
@@ -878,7 +878,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
       if (((s as any).temp_clo_not_wear_reason ?? 0) === 'not_in_wardrobe') {
         scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/strip/strip2.jpg');
         // TODO-QSP: dynamic text: As you go to pull your <<$def_clothing_name[default_entry]>> outfit out of your ...
-        scene.text(`As you go to pull your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit out of your wardrobe you notice that it's not there. You should move it back into your wardrobe from your storage or unwanted pile.`);
+        scene.text(`As you go to pull your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? ''} outfit out of your wardrobe you notice that it's not there. You should move it back into your wardrobe from your storage or unwanted pile.`);
         scene.actions([
           { label: 'Return', goto: ['wardrobe', 'wloc'] },
         ]);
@@ -886,10 +886,10 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_clo_not_wear_reason ?? 0) === 'low_strength') {
           scene.img('images/characters/pavlovsk/school/girl/vicky/event/vika_game_strip16.mp4');
           // TODO-QSP: dynamic text: Your <<$def_clothing_name[default_entry]>> outfit has worn out and can't be used...
-          scene.text(`Your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit has worn out and can't be used anymore. Guess you will have to find something else to wear.`);
+          scene.text(`Your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? ''} outfit has worn out and can't be used anymore. Guess you will have to find something else to wear.`);
           scene.actions([
             { label: 'Strip out of worn out clothing', handler: (st: GameState) => {
-    qspCall(s, 'wardrobe', 'default_entry_delete');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultEntryDelete(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'wardrobe', $wloc
   } },
@@ -898,7 +898,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
           if (((s as any).temp_clo_not_wear_reason ?? 0) === 'low_inhib') {
             scene.img('images/locations/pavlovsk/trainstation/bimbo.strip6.mp4');
             // TODO-QSP: dynamic text: You don't feel daring enough to wear your <<$def_clothing_name[default_entry]>> ...
-            scene.text(`You don't feel daring enough to wear your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit. Maybe you will be confident enough in the future? Guess you will have to find something else to wear.`);
+            scene.text(`You don't feel daring enough to wear your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? ''} outfit. Maybe you will be confident enough in the future? Guess you will have to find something else to wear.`);
             scene.actions([
               { label: 'Strip out of revealing clothing', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -913,7 +913,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                 scene.img(`images/locations/pavlovsk/clinic/therapist/stripping${Math.floor(Math.random() * 4) + 1}.mp4`);
               }
               // TODO-QSP: dynamic text: As you put on your <<$def_clothing_name[default_entry]>> outfit you notice it do...
-              scene.text(`As you put on your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit you notice it doesn't fit correctly anymore. It's ' + iif($temp_clo_not_wear_reason = 'too_small', 'unbearably tight and uncomfortable to wear.', 'extremely loose and won't stay in place no matter how hard you try.') + ' You must have ' + iif($temp_clo_not_wear_reason = 'too_small', 'gained', 'lost') + ' some weight since this was purchased or last tailored. You will have to get this clothing resized before you can wear it again.`);
+              scene.text(`As you put on your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? ''} outfit you notice it doesn't fit correctly anymore. It's ' + iif($temp_clo_not_wear_reason = 'too_small', 'unbearably tight and uncomfortable to wear.', 'extremely loose and won't stay in place no matter how hard you try.') + ' You must have ' + iif($temp_clo_not_wear_reason = 'too_small', 'gained', 'lost') + ' some weight since this was purchased or last tailored. You will have to get this clothing resized before you can wear it again.`);
               scene.actions([
                 { label: 'Strip out of ill-fitting clothing', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -930,13 +930,13 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                 }
                 if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                   scene.actions([
-                    { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                    { label: 'Put them on anyways', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                   ]);
                 } else {
                   scene.actions([
-                    { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                    { label: 'Put them on anyways', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     // TODO-QSP: gs 'clothing', 'wear', $defclothingtype[default_entry], defclothingnumber[default_entry]
     // TODO-QSP: gt 'wardrobe', $wloc
@@ -953,7 +953,7 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).temp_clo_not_wear_reason ?? 0) !== '') {
                   scene.text('ERROR! This should not be reached.');
                   // TODO-QSP: dynamic text: You can't wear this outfit because <<$temp_clo_not_wear_reason>>, but the text f...
-                  scene.text(`You can't wear this outfit because ${((s as any).temp_clo_not_wear_reason ?? 0)}, but the text for this has not be written.`);
+                  scene.text(`You can't wear this outfit because ${((s as any).temp_clo_not_wear_reason || '')}, but the text for this has not be written.`);
                   scene.text('Please contact a developer');
                   scene.actions([
                     { label: 'Return', goto: ['wardrobe', 'wloc'] },
@@ -962,10 +962,10 @@ function enterDefaultEntryWear(s: GameState, scene: SceneBuilder): void {
                   scene.img('images/pc/activities/misc/dress_1.mp4');
                   if (((s as any).temp_panties_not_wear_reason ?? 0) === 'hypno'  ||  ((s as any).temp_bra_not_wear_reason ?? 0) === 'hypno') {
                     // TODO-QSP: dynamic text: You put on your <<$def_clothing_name[default_entry]>> outfit, but couldn't bring...
-                    scene.text(`You put on your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit, but couldn't bring yourself to put on your ' + iif($temp_bra_not_wear_reason = 'hypno' and $temp_panties_not_wear_reason = 'hypno', 'bra or panties', iif($temp_bra_not_wear_reason = 'hypno', 'bra', 'panties')) + '.`);
+                    scene.text(`You put on your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? ''} outfit, but couldn't bring yourself to put on your ' + iif($temp_bra_not_wear_reason = 'hypno' and $temp_panties_not_wear_reason = 'hypno', 'bra or panties', iif($temp_bra_not_wear_reason = 'hypno', 'bra', 'panties')) + '.`);
                   } else {
                     // TODO-QSP: dynamic text: Your put on your <<$def_clothing_name[default_entry]>> outfit without any proble...
-                    scene.text(`Your put on your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)]} outfit without any problems.`);
+                    scene.text(`Your put on your ${((s as any).def_clothing_name ?? 0)?.[String((s as any).default_entry ?? 0)] ?? ''} outfit without any problems.`);
                   }
                   scene.actions([
                     { label: 'Return', goto: ['wardrobe', 'wloc'] },
@@ -1055,11 +1055,11 @@ function enterDefaultEntryRename(s: GameState, scene: SceneBuilder): void {
 function enterDefaultEntryUp(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (!(s as any).temp_wardrobeVars) (s as any).temp_wardrobeVars = {}; (s as any).temp_wardrobeVars['i'] = qspUntranslated(s, "ARGS[1]", { location: "wardrobe" });
-  if (!(s as any).temp_wardrobeVars) (s as any).temp_wardrobeVars = {}; (s as any).temp_wardrobeVars['j'] = ((s as any).temp_wardrobeVars ?? {})?.['i'] - 1;
+  if (!(s as any).temp_wardrobeVars) (s as any).temp_wardrobeVars = {}; (s as any).temp_wardrobeVars['j'] = (((s as any).temp_wardrobeVars ?? {})?.['i'] ?? 0) - 1;
   if (((s as any).temp_wardrobeVars ?? 0)?.['j'] < 0) {
     if (!(s as any).temp_wardrobeVars) (s as any).temp_wardrobeVars = {}; (s as any).temp_wardrobeVars['j'] = 0;
   }
-  qspCall(s, 'wardrobe', 'entry_shift_core');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEntryShiftCore(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gt 'wardrobe', $wloc
   // TODO-QSP: end
   scene.build();
@@ -1068,8 +1068,8 @@ function enterDefaultEntryUp(s: GameState, scene: SceneBuilder): void {
 function enterDefaultEntryDown(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (!(s as any).temp_wardrobeVars) (s as any).temp_wardrobeVars = {}; (s as any).temp_wardrobeVars['i'] = qspUntranslated(s, "ARGS[1]", { location: "wardrobe" });
-  if (!(s as any).temp_wardrobeVars) (s as any).temp_wardrobeVars = {}; (s as any).temp_wardrobeVars['j'] = (((s as any).temp_wardrobeVars ?? {})?.['i'] + 1) % ((s as any).arrsize ?? 0)('defclothingnumber');
-  qspCall(s, 'wardrobe', 'entry_shift_core');
+  if (!(s as any).temp_wardrobeVars) (s as any).temp_wardrobeVars = {}; (s as any).temp_wardrobeVars['j'] = ((((s as any).temp_wardrobeVars ?? {})?.['i'] ?? 0) + 1) % ((s as any).arrsize ?? 0)('defclothingnumber');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEntryShiftCore(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gt 'wardrobe', $wloc
   // TODO-QSP: end
   scene.build();
@@ -1176,7 +1176,7 @@ function enterDefaultEntryDelete(s: GameState, scene: SceneBuilder): void {
   if (((s as any).def_clothing_name ?? 0)[((s as any).temp_i ?? 0) + 1] !== ''  &&  ((s as any).temp_i ?? 0) % 10 > 0) {
     if (!(s as any).temp_wardrobeVars) (s as any).temp_wardrobeVars = {}; (s as any).temp_wardrobeVars['i'] = ((s as any).temp_i ?? 0);
     if (!(s as any).temp_wardrobeVars) (s as any).temp_wardrobeVars = {}; (s as any).temp_wardrobeVars['j'] = ((s as any).temp_i ?? 0) + 1;
-    qspCall(s, 'wardrobe', 'entry_shift_core');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEntryShiftCore(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
     // TODO-QSP: jump 'bubble_shift_loop'
   }
@@ -1206,7 +1206,7 @@ function enterSchoolOutfit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'outfit', 'restore', 'bed');
     qspCall(s, 'clothing', 'wear', 'gm_school', 6);
   } else {
-    qspCall(s, 'wardrobe', 'default_entry_wear', ((s as any).default_school_number ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).default_school_number ?? 0)]; enterDefaultEntryWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -1219,34 +1219,34 @@ function enterDefaultClothingOptions(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).default_school_number ?? 0))) {
     scene.text('<font color = "red">✗</font> You have no default school uniform set, you can set this in your wardrobe.');
   }
-  qspCall(s, 'wardrobe', 'is_school');
-  qspCall(s, 'wardrobe', 'is_sport');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIsSchool(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIsSport(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).default_school_number ?? 0)[2] >= 5) {
-    qspCall(s, 'wardrobe', 'default_sport_wear_act');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultSportWearAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Change into your regular clothes from your school uniform', handler: (st: GameState) => {
-    qspCall(s, 'wardrobe', 'back_to_regular_clothes');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackToRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (qspFunc(s, 'prostitution_functions', 'is_default') !== 0) {
-      qspCall(s, 'wardrobe', 'back_to_regular_clothes');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackToRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
     ]);
   } else {
     if (((s as any).default_sport_number ?? 0)[2] >= 5) {
-      qspCall(s, 'wardrobe', 'default_school_wear_act');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultSchoolWearAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Change into your regular clothes from your sportswear', handler: (st: GameState) => {
-    qspCall(s, 'wardrobe', 'back_to_regular_clothes');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackToRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (qspFunc(s, 'prostitution_functions', 'is_default') !== 0) {
-      qspCall(s, 'wardrobe', 'back_to_regular_clothes');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackToRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
       ]);
     } else {
-      qspCall(s, 'wardrobe', 'default_sport_wear_act');
-      qspCall(s, 'wardrobe', 'default_school_wear_act');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultSportWearAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultSchoolWearAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: end
@@ -1300,17 +1300,17 @@ function enterDefaultSchoolWearAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefaultSchoolWear(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'wardrobe', 'wardrobe_enter_save_outfit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeEnterSaveOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (qspFunc(s, 'prostitution_functions', 'is_default') !== 0) {
-    qspCall(s, 'wardrobe', 'back_to_regular_clothes');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackToRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).default_sport_number ?? 0)[2] >= 5) {
     qspCall(s, 'outfit', 'transfer_backup', 'sport', 'school');
   } else {
     qspCall(s, 'outfit', 'backup', 'school');
   }
-  qspCall(s, 'wardrobe', 'default_entry_wear', ((s as any).default_school_number ?? 0));
-  qspCall(s, 'wardrobe', 'wardrobe_exit_check_outfit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).default_school_number ?? 0)]; enterDefaultEntryWear(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'daily_routine', 'finish_step', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
   // TODO-QSP: end
   scene.build();
@@ -1347,29 +1347,29 @@ function enterDefaultSportWearAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefaultSportWear(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'wardrobe', 'wardrobe_enter_save_outfit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeEnterSaveOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (qspFunc(s, 'prostitution_functions', 'is_default') !== 0) {
-    qspCall(s, 'wardrobe', 'back_to_regular_clothes');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackToRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).default_school_number ?? 0)[2] >= 5) {
     qspCall(s, 'outfit', 'transfer_backup', 'school', 'sport');
   } else {
     qspCall(s, 'outfit', 'backup', 'sport');
   }
-  qspCall(s, 'wardrobe', 'default_entry_wear', ((s as any).default_sport_number ?? 0));
-  qspCall(s, 'wardrobe', 'wardrobe_exit_check_outfit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).default_sport_number ?? 0)]; enterDefaultEntryWear(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'daily_routine', 'finish_step', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDefaultWardrobeWear(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'wardrobe', 'wardrobe_enter_save_outfit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeEnterSaveOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (qspFunc(s, 'prostitution_functions', 'is_default') !== 0) {
-    qspCall(s, 'wardrobe', 'back_to_regular_clothes');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBackToRegularClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: gs 'wardrobe', 'default_entry_wear', ARGS[1]
-  qspCall(s, 'wardrobe', 'wardrobe_exit_check_outfit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'daily_routine', 'finish_step', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
   // TODO-QSP: end
   scene.build();
@@ -1430,7 +1430,7 @@ function enterIsSchool(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBackToRegularClothes(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'wardrobe', 'wardrobe_enter_save_outfit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeEnterSaveOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (qspFunc(s, 'prostitution_functions', 'is_default') !== 0) {
     if (((s as any).lastwornclothingtype ?? 0)?.['prostitute'] === '') {
       qspCall(s, 'clothing', 'wear', 'last_worn', '', 'check');
@@ -1481,7 +1481,7 @@ function enterBackToRegularClothes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'wardrobe', 'wardrobe_exit_check_outfit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWardrobeExitCheckOutfit(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

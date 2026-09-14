@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/suburb/settlement.jpg');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> stands on the street...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> stands on the street.`);
+    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> stands on the street.`);
   }
   // TODO-QSP: dynamic text: The <a href="exec: minut += 20 & gt 'metro', 'suburbs'">Metro</a> station is a 2...
   scene.text('The <a href="exec: minut += 20 & gt \'metro\', \'suburbs\'">Metro</a> station is a 20 minute walk from here.');
@@ -66,13 +66,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Look for Alexandria [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Look for Alexandria', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Look for Alexandria [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Look for Alexandria', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'easy');
   }, goto: ['alexandriaEv', 'interview1'] },
       ]);
@@ -108,11 +108,11 @@ function enterPs1(s: GameState, scene: SceneBuilder): void {
   scene.text('The inscription on the sign by the road reads, "Closed to the public".');
   if ((!((s as any).psiklik ?? 0))) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/suburb/asylum0.jpg" ></cen...
-    scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/city/suburb/asylum0.jpg" ></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/city/suburb/asylum0.jpg" ></center>`);
   }
   if (((s as any).psiklik ?? 0) === 1) {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/suburb/asylum1.jpg" ></cen...
-    scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/city/suburb/asylum1.jpg" ></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/city/suburb/asylum1.jpg" ></center>`);
   }
   // TODO-QSP: end
   scene.actions([

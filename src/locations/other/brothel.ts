@@ -89,7 +89,7 @@ function enterSit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).alko ?? 0) >= 6  &&  (Math.floor(Math.random() * 100) + 1) <= 30  &&  ((s as any).job_status ?? 0)?.['highway_brothel_prostitute'] === '') {
     scene.text('You try to take a seat behind the bar, but you\'re too drunk to sit up straight. Instead, you rest your head on the bar, mumbling incoherently');
-    qspCall(s, 'brothel', 'abduction_start');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAbductionStart(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.text('You take a seat behind the bar, looking around at the few guests sitting around the dining room.');
     scene.text('There\'s nothing of importance, as far as you can see.');
@@ -119,7 +119,7 @@ function enterOrder(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'jobs', 'get_job_definition', 'highway_brothel_prostitute');
   if (((s as any).alko ?? 0) >= 6  &&  (Math.floor(Math.random() * 100) + 1) <= 30  &&  ((s as any).job_status ?? 0)?.['highway_brothel_prostitute'] === '') {
     scene.text('You try to order another drink, but as you faint all that gets out of your mouth is some drunken babble…');
-    qspCall(s, 'brothel', 'abduction_start');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAbductionStart(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.actions([
       { label: 'Cancel order', goto: ['brothel', 'bar'] },
@@ -305,13 +305,13 @@ function enterAbducted7(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>"Well…"</b></center>');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Admit that you somehow liked it as you fancy to be dominated [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Admit that you somehow liked it as you fancy to be dominated', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Admit that you somehow liked it as you fancy to be dominated [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Admit that you somehow liked it as you fancy to be dominated', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -452,7 +452,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('The Receptionist pushes a hidden button, probably signaling the errand boy, because after a minute he arrives with the elevator.');
-    scene.text(`"Go ${((s as any).pcs_firstname ?? 0)}, you are free to leave."`);
+    scene.text(`"Go ${((s as any).pcs_firstname || '')}, you are free to leave."`);
     if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['receptionist_annoy'] = 0;
     if (((s as any).job_last_work_day ?? 0)?.['highway_brothel_prostitute'] < ((s as any).daystart ?? 0)) {
       (s as any).brothelCredit = ((s as any).brothelCredit ?? 0) - (1);
@@ -575,7 +575,7 @@ function enterBrothelDressingroom(s: GameState, scene: SceneBuilder): void {
   scene.text(' 4) Each session is for safety purposes recorded by a camera. The record is ownership of the Organization.');
   scene.text(' 5) The Master can hide his/her identity by wearing a mask.');
   // TODO-QSP: dynamic text:  6) The Slave earns a pay of <<$func('money', 'string_profit', job_pay_rate_def[...
-  scene.text(` 6) The Slave earns a pay of ${qspFunc(s, 'money', 'string_profit', ((s as any).job_pay_rate_def ?? 0)?.['highway_brothel_prostitute'])} for every hour of a session.`);
+  scene.text(` 6) The Slave earns a pay of ${qspFunc(s, 'money', 'string_profit', ((s as any).job_pay_rate_def ?? 0)?.['highway_brothel_prostitute'] ?? '')} for every hour of a session.`);
   scene.text('To begin your work, clean yourself, put on at least vibrant makeup, lip balm, brush your hair and strip of all clothes, then go to the lobby and lock yourself in a cage.');
   scene.text('-------------------------------------------------------------------------------------');
   if (((s as any).mc_inventory ?? 0)?.['shampoo'] > 0) {

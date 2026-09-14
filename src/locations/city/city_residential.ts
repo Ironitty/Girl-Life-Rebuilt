@@ -38,14 +38,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'random_events', '');
   scene.text('<center><h2>St. Petersburg</h2></center>');
   scene.text('<center><b>Residential Area</b></center>');
-  qspCall(s, 'city_residential', 'image');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).opusk ?? 0) > 0  ||  ((s as any).gnewQW ?? 0) === 5) {
     if ((!(Math.floor(Math.random() * 10) + 0))) {
       scene.actions([{ label: 'Continue', goto: ['gopnew', 'start5'] }]);
     }
     if (qspFunc(s, 'homes_properties', 'has_access', 'city_apartment')) {
       // TODO-QSP: dynamic text: Something is written on the wall near the entrance to your building. It reads:<b...
-      scene.text(`Something is written on the wall near the entrance to your building. It reads:<b>"${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)} from apartment 42 is a cheap slut!"</b>`);
+      scene.text(`Something is written on the wall near the entrance to your building. It reads:<b>"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} from apartment 42 is a cheap slut!"</b>`);
     }
   }
   qspCall(s, 'stat', '');
@@ -58,11 +58,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'carF', 'start'">Your <<$car['name']>></a> is in the parking lo...
-    scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name']}</a> is in the parking lot.`);
+    scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in the parking lot.`);
   } else {
     if (qspFunc(s, 'car_funcs', 'is_here', 'city_house_res_misc', 'fronty')) {
       // TODO-QSP: dynamic text: <a href="exec: minut += 10 & gs 'carF', 'start'">Your <<$car['name']>></a> is in...
-      scene.text(`<a href="exec: minut += 10 & gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name']}</a> is in your driveway.`);
+      scene.text(`<a href="exec: minut += 10 & gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is in your driveway.`);
     }
   }
   if (qspFunc(s, 'homes_properties', 'is_property_of_status', 'owned', 'city_house')) {
@@ -145,7 +145,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
-      scene.text(`<table BORDER=1>${((s as any).show_table ?? 0)}</tr></table>`);
+      scene.text(`<table BORDER=1>${((s as any).show_table || '')}</tr></table>`);
     }
   }
   // TODO-QSP: dynamic text: The <a href="exec: minut += 5 & gt 'metro', 'residential'">Metro</a> station is ...
@@ -158,7 +158,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The <a href="exec:gt \'city_clinic\', \'start\'">clinic</a> is also nearby.');
   } else {
     // TODO-QSP: dynamic text: The clinic is closed. It will open at '+func('time', 'get_time_string', 8, 0)+'.
-    scene.text('The clinic is closed. It will open at \'+func(\'time\', \'get_time_string\', 8, 0)+\'.');
+    scene.text('The clinic is closed. It will open at 8:00.');
   }
   if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) <= 9  &&  ((s as any).military ?? 0) === 1  &&  ((s as any).week ?? 0) === 6) {
     // TODO-QSP: dynamic text: There is a <a href="exec:minut += 60 & gt 'Military', 'start'">military bus</a> ...
@@ -166,7 +166,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).military ?? 0) === 1) {
       // TODO-QSP: dynamic text: The military bus will wait between '+func('time', 'get_time_string', 6, 0)+' and...
-      scene.text('The military bus will wait between \'+func(\'time\', \'get_time_string\', 6, 0)+\' and \'+func(\'time\', \'get_time_string\', 9, 0)+\' on Saturdays.');
+      scene.text('The military bus will wait between 6:00 and 9:00 on Saturdays.');
     }
   }
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 14  &&  ((s as any).week ?? 0) !== 1) {
@@ -193,7 +193,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.text('You can hear some <a href="exec:gt \'gopnew\', \'start\'">gopniks</a> laughing and swearing in the parking lot of the Roadhouse diner. The diner itself is currently closed.');
       } else {
         // TODO-QSP: dynamic text: The Roadhouse diner is currently closed. It's open between '+func('time', 'get_t...
-        scene.text('The Roadhouse diner is currently closed. It\'s open between \'+func(\'time\', \'get_time_string\', 12, 0)+\' and \'+func(\'time\', \'get_time_string\', 20, 0)+\' every day except Monday.');
+        scene.text('The Roadhouse diner is currently closed. It\'s open between 12:00 and 20:00 every day except Monday.');
       }
     }
   }

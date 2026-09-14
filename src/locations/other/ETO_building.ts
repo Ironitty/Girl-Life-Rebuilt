@@ -57,7 +57,7 @@ function enterBuildingEntrance(s: GameState, scene: SceneBuilder): void {
       { label: '<<$pcs_nickname>>', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <font color="magenta">"My name is <<$pcs_nickname>>,"</font> you say. He nods an...
-    scene.text(`<font color="magenta">"My name is ${((s as any).pcs_nickname ?? 0)},"</font> you say. He nods and begins to retrieve the key to open apartment 68. The curious face of an elderly woman appears in the doorway. She points her sharp nose at you and stares curiously. Timofei enters the apartment and says irritably, "Mother, stop hanging around the front door!" before closing the door.`);
+    scene.text(`<font color="magenta">"My name is ${((s as any).pcs_nickname || '')},"</font> you say. He nods and begins to retrieve the key to open apartment 68. The curious face of an elderly woman appears in the doorway. She points her sharp nose at you and stares curiously. Timofei enters the apartment and says irritably, "Mother, stop hanging around the front door!" before closing the door.`);
     scene.actions([
       { label: 'Continue', goto: ['ETO_building', 'building_entrance'] },
     ]);

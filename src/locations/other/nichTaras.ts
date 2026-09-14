@@ -224,7 +224,7 @@ function enterKatinka(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[1] ?? 0) === 'talkEnd') {
       scene.text('As you think about what you could say next you hear Taras returning from upstairs. He is dressed for his job.');
       // TODO-QSP: dynamic text: "Time to get you back to your own room." he grabs <<$nichKatinkaName>> by her ha...
-      scene.text(`"Time to get you back to your own room." he grabs ${((s as any).nichKatinkaName ?? 0)} by her hair and pulls her back upstairs. You hear the locks once again being locked.`);
+      scene.text(`"Time to get you back to your own room." he grabs ${((s as any).nichKatinkaName || '')} by her hair and pulls her back upstairs. You hear the locks once again being locked.`);
       (s as any).nichKatinkaPresent = 0;
       scene.actions([
         { label: 'Alone', goto: ['nichTaras', 'dungeon'] },
@@ -233,7 +233,7 @@ function enterKatinka(s: GameState, scene: SceneBuilder): void {
       if (((s as any).locArgs?.[1] ?? 0) === 'wash') {
         scene.img('images/characters/city/taras/washing1.jpg');
         // TODO-QSP: dynamic text: <<$nichKatinkaNameUC>> takes a bottle of shower gel and covers you in it. Being ...
-        scene.text(`${((s as any).nichKatinkaNameUC ?? 0)} takes a bottle of shower gel and covers you in it. Being all tied up there is nothing you can do to prevent it. Her touch feels soft on your skin. Then she uses a hose to clean you. The water is ice cold. She gently dries you with a towel before combing your hair.`);
+        scene.text(`${((s as any).nichKatinkaNameUC || '')} takes a bottle of shower gel and covers you in it. Being all tied up there is nothing you can do to prevent it. Her touch feels soft on your skin. Then she uses a hose to clean you. The water is ice cold. She gently dries you with a towel before combing your hair.`);
         if (((s as any).deodorant_on ?? 0) === 1) {
           qspCall(s, 'sweat', 'remove_deo');
           scene.text('<br>Your deodorant gets washed away in the shower.');
@@ -255,7 +255,7 @@ function enterDungeon(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichTarasLeave ?? 0) <= ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0)  &&  ((s as any).nichKatinkaPresent ?? 0) !== 0) {
     scene.text('You hear Taras returning from upstairs. He is dressed for his job.');
     // TODO-QSP: dynamic text: "Time to get you back to your own room." he grabs <<$nichKatinkaName>> by her ha...
-    scene.text(`"Time to get you back to your own room." he grabs ${((s as any).nichKatinkaName ?? 0)} by her hair and pulls her back upstairs. You hear the locks once again being locked.`);
+    scene.text(`"Time to get you back to your own room." he grabs ${((s as any).nichKatinkaName || '')} by her hair and pulls her back upstairs. You hear the locks once again being locked.`);
     (s as any).nichKatinkaPresent = 0;
   }
   if (((s as any).locArgs?.[1] ?? 0) === '') {
@@ -485,7 +485,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
           scene.text('You don\'t know for how long you slept when a dash of cold water pulls you out of your dreams.');
           scene.text('You immediately realize that you or no longer bolted to the ground. Instead you have already bound in an hogite again.');
           // TODO-QSP: dynamic text: <<$nichKatinkaNameUC>> is the one washing you. Taras is nowhere to be seen for n...
-          scene.text(`${((s as any).nichKatinkaNameUC ?? 0)} is the one washing you. Taras is nowhere to be seen for now.`);
+          scene.text(`${((s as any).nichKatinkaNameUC || '')} is the one washing you. Taras is nowhere to be seen for now.`);
           (s as any).nichKatinkaPresent = 1;
           scene.actions([
             { label: 'Get washed', handler: (st: GameState) => {
@@ -550,7 +550,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
               scene.text('You don\'t know for how long you slept when a dash of cold water pulls you out of your dreams.');
               scene.text('You immediately realize that you are no longer bolted to the ground. Instead you have already bound in an hogite again.');
               // TODO-QSP: dynamic text: <<$nichKatinkaNameUC>> is the one washing you. Taras is nowhere to be seen for n...
-              scene.text(`${((s as any).nichKatinkaNameUC ?? 0)} is the one washing you. Taras is nowhere to be seen for now.`);
+              scene.text(`${((s as any).nichKatinkaNameUC || '')} is the one washing you. Taras is nowhere to be seen for now.`);
               (s as any).nichKatinkaPresent = 1;
               scene.actions([
                 { label: 'Get washed', handler: (st: GameState) => {
@@ -570,10 +570,10 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
         scene.text('Taras lets go of you and takes out a rope with many knots in it, which he places between two poles at hip height.');
         scene.text('Afterwards he repeats this with another rope and two other poles. When he is done he has two taut ropes. They are about 5 meters long.');
         // TODO-QSP: dynamic text: You see <<$nichKatinkaName>> standing next to one poles. She wears the same kind...
-        scene.text(`You see ${((s as any).nichKatinkaName ?? 0)} standing next to one poles. She wears the same kind of gag you are wearing. Her hands are boung behind her back with some ropes.`);
+        scene.text(`You see ${((s as any).nichKatinkaName || '')} standing next to one poles. She wears the same kind of gag you are wearing. Her hands are boung behind her back with some ropes.`);
         scene.text('Taras walks over to her, takes her upper leg and forces it over the rope. The rope is now between legs. It is so high she is forced to stand on tiptoes.');
         // TODO-QSP: dynamic text: You assume that the other rope is meant for you. And you are not wrong. Before l...
-        scene.text(`You assume that the other rope is meant for you. And you are not wrong. Before long you find yourself in exactly the same position on the other rope, less than half a meter away from ${((s as any).nichKatinkaName ?? 0)}. If you were not bound you could easily touch her. But with your hands being secured behind your back there is no way you could reach her.`);
+        scene.text(`You assume that the other rope is meant for you. And you are not wrong. Before long you find yourself in exactly the same position on the other rope, less than half a meter away from ${((s as any).nichKatinkaName || '')}. If you were not bound you could easily touch her. But with your hands being secured behind your back there is no way you could reach her.`);
         scene.actions([
           { label: 'Further', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/rope1a.jpg');
@@ -586,16 +586,16 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
       { label: 'Don\'t move', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/rope1a.jpg');
     // TODO-QSP: dynamic text: You notice that <<$nichKatinkaName>> started to move forward. But you have no in...
-    scene.text(`You notice that ${((s as any).nichKatinkaName ?? 0)} started to move forward. But you have no interest in participating in this humiliating race.`);
+    scene.text(`You notice that ${((s as any).nichKatinkaName || '')} started to move forward. But you have no interest in participating in this humiliating race.`);
     // TODO-QSP: dynamic text: <<$nichKatinkaNameUC>> has advanced two knots when Taras comes over to you.
-    scene.text(`${((s as any).nichKatinkaNameUC ?? 0)} has advanced two knots when Taras comes over to you.`);
+    scene.text(`${((s as any).nichKatinkaNameUC || '')} has advanced two knots when Taras comes over to you.`);
     scene.text('"You don\'t want to get me angry, slut. Get moving or you will regret it."');
     scene.actions([
       { label: 'Move forward' }, // TODO-QSP: empty action body
       { label: 'Stand still', handler: (st: GameState) => {
     scene.img('images/characters/city/taras/rope1a.jpg');
     // TODO-QSP: dynamic text: You decide that you won't let his threat impress you. You watch as <<$nichKatink...
-    scene.text(`You decide that you won't let his threat impress you. You watch as ${((s as any).nichKatinkaName ?? 0)} slowly approaches the end of her rope knot by knot.`);
+    scene.text(`You decide that you won't let his threat impress you. You watch as ${((s as any).nichKatinkaName || '')} slowly approaches the end of her rope knot by knot.`);
     scene.text('When she reaches the end Taras pets her head. "Well done, slut. Too bad your competitor didn\'t show the same ambition. Just stay here while I lecture her the importance of good sportsmanship."');
     scene.text('He grabs the bucket where you usually have to drink from. He opens his pants and starts urinating in the bucket.');
     scene.text('Afterwards he unties you, only to push you inside a crate which is barely big enough for you to fit in. At the end is a hole where your head fits through.');
@@ -605,7 +605,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
     scene.text('Taras tightly ties you in the crate, then he pushes it on a small metal podium and turns it so your head faces downward.');
     scene.text('Then he places the bucket under your face. You can smell the urine. It\'s distgusting.');
     // TODO-QSP: dynamic text: But Taras isn't done yet. From the corner of your eyes you see that he is draggi...
-    scene.text(`But Taras isn't done yet. From the corner of your eyes you see that he is dragging ${((s as any).nichKatinkaName ?? 0)} over to you.`);
+    scene.text(`But Taras isn't done yet. From the corner of your eyes you see that he is dragging ${((s as any).nichKatinkaName || '')} over to you.`);
     scene.text('"Piss!" he commands. Nothing happens. Does she hesitate to follow his order? "I said piss!". It only take a few moments longer before you feel a warm liquid on the back of your head, slowly running down your hair and into your face. She is actually pissing on your head!');
     scene.text('When she is done the bucket is almost have full and the urine is even closer to your face now. But Taras is not satisfied yet. He returns with the water hose and while holding you back by your hair he fills the bucket with water until it reaches your chin.');
     scene.text('When he lets go your face drops into the foul smelling liquid. In order to breath you have to pull it back and hold it in an awkward position.');
@@ -617,7 +617,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/taras/punishment1b.jpg');
     scene.text('You try to keep your head up the best you can. But it is just too exhausting. So you limit yourself on taking a deep breath every few seconds, let your head drop into the liquid and to surface a few seconds later.');
     // TODO-QSP: dynamic text: While you're busy not drowning you hear the reward Taras was speaking of. It sou...
-    scene.text(`While you're busy not drowning you hear the reward Taras was speaking of. It sounds like a mixture of spanking, rape and whipping. Even being in a dire situation you can't tell for sure if ${((s as any).nichKatinkaName ?? 0)} is better of right now.`);
+    scene.text(`While you're busy not drowning you hear the reward Taras was speaking of. It sounds like a mixture of spanking, rape and whipping. Even being in a dire situation you can't tell for sure if ${((s as any).nichKatinkaName || '')} is better of right now.`);
     scene.text('After what appears to be an eternity you hear Taras stepping next to your bucket again.');
     scene.text('"It looks like you are having fun. I think I will leave you like this for the night."');
     scene.text('"Oh, and before I forget: if you drink a little water you can drop your head without drowning."');
@@ -663,7 +663,7 @@ function enterSession(s: GameState, scene: SceneBuilder): void {
       scene.text('You don\'t know for how long you slept when a dash of cold water pulls you out of your dreams.');
       scene.text('You immediately realize that you are no longer tied in the create. Instead you have already bound in an hogite again.');
       // TODO-QSP: dynamic text: <<$nichKatinkaNameUC>> is the one washing you. Taras is nowhere to be seen for n...
-      scene.text(`${((s as any).nichKatinkaNameUC ?? 0)} is the one washing you. Taras is nowhere to be seen for now.`);
+      scene.text(`${((s as any).nichKatinkaNameUC || '')} is the one washing you. Taras is nowhere to be seen for now.`);
       (s as any).nichKatinkaPresent = 1;
       scene.actions([
         { label: 'Get washed', handler: (st: GameState) => {

@@ -205,19 +205,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $FSpers['text'] = '<<$FSname[''text'']>>. <<$FSfemin[''text'']>> <<$FSface[''text'']>> <<$FScolor[''text'']>> <<$FSfigur[''text'']>> <<$FStits[''text'']>> <<$FSskin[''text'']>> <<$FShvost[''text'']>> <<$FSdick[''text'']>> <<$FSvagina[''text'']>>'
   }
   // TODO-QSP: dynamic text: Level <<FSlvl>>, exp <<FSexp>>, need for next level <<FSneedExp>> exp
-  scene.text(`Level ${((s as any).FSlvl ?? 0)}, exp ${((s as any).FSexp ?? 0)}, need for next level ${((s as any).FSneedExp ?? 0)} exp`);
+  scene.text(`Level ${((s as any).FSlvl || '')}, exp ${((s as any).FSexp || '')}, need for next level ${((s as any).FSneedExp || '')} exp`);
   // TODO-QSP: dynamic text: Life <<FSHP>>
-  scene.text(`Life ${((s as any).FSHP ?? 0)}`);
+  scene.text(`Life ${((s as any).FSHP || '')}`);
   // TODO-QSP: dynamic text: Strength <<FSstren>>
-  scene.text(`Strength ${((s as any).FSstren ?? 0)}`);
+  scene.text(`Strength ${((s as any).FSstren || '')}`);
   // TODO-QSP: dynamic text: Speed <<FSspeed>>
-  scene.text(`Speed ${((s as any).FSspeed ?? 0)}`);
+  scene.text(`Speed ${((s as any).FSspeed || '')}`);
   // TODO-QSP: dynamic text: Agility <<FSagil>>
-  scene.text(`Agility ${((s as any).FSagil ?? 0)}`);
+  scene.text(`Agility ${((s as any).FSagil || '')}`);
   // TODO-QSP: dynamic text: Initiative <<FSreakt>>
-  scene.text(`Initiative ${((s as any).FSreakt ?? 0)}`);
+  scene.text(`Initiative ${((s as any).FSreakt || '')}`);
   // TODO-QSP: dynamic text: Endurance <<FSvital>>
-  scene.text(`Endurance ${((s as any).FSvital ?? 0)}`);
+  scene.text(`Endurance ${((s as any).FSvital || '')}`);
   if (((s as any).FShour ?? 0) >= 24) {
     (s as any).FShour = ((s as any).FShour ?? 0) - (24);
     (s as any).FSday = ((s as any).FSday ?? 0) + (1);
@@ -232,9 +232,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<a href="exec:gt \'FSstart\'">Get out of the game</a>');
   // TODO-QSP: dynamic text: Day <<FSday>>, h <<FShour>>
-  scene.text(`Day ${((s as any).FSday ?? 0)}, h ${((s as any).FShour ?? 0)}`);
+  scene.text(`Day ${((s as any).FSday || '')}, h ${((s as any).FShour || '')}`);
   // TODO-QSP: dynamic text: <<FSgem>> of coins. Food enough for <<FSsup>> days
-  scene.text(`${((s as any).FSgem ?? 0)} of coins. Food enough for ${((s as any).FSsup ?? 0)} days`);
+  scene.text(`${((s as any).FSgem || '')} of coins. Food enough for ${((s as any).FSsup || '')} days`);
   scene.text('');
   (s as any).KGOLzas = (Math.floor(Math.random() * (((s as any).FSagilV ?? 0) - ((s as any).FSagilV ?? 0) / 4 + 1)) + (((s as any).FSagilV ?? 0) / 4));
   (s as any).KGOLataka = (Math.floor(Math.random() * (((s as any).FSspeed ?? 0) * 2 - ((s as any).FSspeed ?? 0) / 2 + 1)) + (((s as any).FSspeed ?? 0) / 2));
@@ -242,7 +242,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0) * 2) {
       (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstren ?? 0) - ((s as any).FSstren ?? 0)/2 + 1)) + (((s as any).FSstren ?? 0)/2))+ (Math.floor(Math.random() * (((s as any).FSweaponDam ?? 0) - ((s as any).FSweaponDam ?? 0)/2 + 1)) + (((s as any).FSweaponDam ?? 0)/2));
       (s as any).FSHPV = ((s as any).FSHPV ?? 0) - (((s as any).KGHPnpow ?? 0));
-      scene.text(`CRETE ${((s as any).KGHPnpow ?? 0)}`);
+      scene.text(`CRETE ${((s as any).KGHPnpow || '')}`);
     } else {
       (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstren ?? 0)/2 - ((s as any).FSstren ?? 0)/4 + 1)) + (((s as any).FSstren ?? 0)/4))+ (Math.floor(Math.random() * (((s as any).FSweaponDam ?? 0)/2 - ((s as any).FSweaponDam ?? 0)/4 + 1)) + (((s as any).FSweaponDam ?? 0)/4));
       (s as any).KGHPntpow = ((s as any).KGHPnpow ?? 0) - ((s as any).FSbronaV ?? 0);
@@ -250,10 +250,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
         (s as any).KGHPntpow = 1;
       }
       (s as any).FSHPV = ((s as any).FSHPV ?? 0) - (((s as any).KGHPnpow ?? 0));
-      scene.text(`<center><b>Contact with ${((s as any).KGHPnpow ?? 0)}</b></center>`);
+      scene.text(`<center><b>Contact with ${((s as any).KGHPnpow || '')}</b></center>`);
     }
   } else {
-    scene.text(`${((s as any).FSnameV ?? 0)?.['text']} dodged your attack`);
+    scene.text(`${((s as any).FSnameV ?? 0)?.['text'] ?? ''} dodged your attack`);
   }
   (s as any).KGOLzas = (Math.floor(Math.random() * (((s as any).FSagil ?? 0) - ((s as any).FSagil ?? 0) / 4 + 1)) + (((s as any).FSagil ?? 0) / 4));
   (s as any).KGOLataka = (Math.floor(Math.random() * (((s as any).FSspeedV ?? 0) * 2 - ((s as any).FSspeedV ?? 0) / 2 + 1)) + (((s as any).FSspeedV ?? 0) / 2));
@@ -261,7 +261,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).KGOLataka ?? 0) >= ((s as any).KGOLzas ?? 0) * 2) {
       (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstrenV ?? 0) - ((s as any).FSstrenV ?? 0)/2 + 1)) + (((s as any).FSstrenV ?? 0)/2))+ (Math.floor(Math.random() * (((s as any).FSweaponDamV ?? 0) - ((s as any).FSweaponDamV ?? 0)/2 + 1)) + (((s as any).FSweaponDamV ?? 0)/2));
       (s as any).FSHP = ((s as any).FSHP ?? 0) - (((s as any).KGHPnpow ?? 0));
-      scene.text(`CRETE ${((s as any).KGHPnpow ?? 0)}`);
+      scene.text(`CRETE ${((s as any).KGHPnpow || '')}`);
     } else {
       (s as any).KGHPnpow = (Math.floor(Math.random() * (((s as any).FSstrenV ?? 0)/2 - ((s as any).FSstrenV ?? 0)/4 + 1)) + (((s as any).FSstrenV ?? 0)/4))+ (Math.floor(Math.random() * (((s as any).FSweaponDamV ?? 0)/2 - ((s as any).FSweaponDamV ?? 0)/4 + 1)) + (((s as any).FSweaponDamV ?? 0)/4));
       (s as any).KGHPntpow = ((s as any).KGHPnpow ?? 0) - ((s as any).FSbrona ?? 0);
@@ -270,7 +270,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).FSHP = ((s as any).FSHP ?? 0) - (((s as any).KGHPnpow ?? 0));
       // TODO-QSP: dynamic text: <font color="brown">Contact with <<KGHPnpow>></font>
-      scene.text(`<font color="brown">Contact with ${((s as any).KGHPnpow ?? 0)}</font>`);
+      scene.text(`<font color="brown">Contact with ${((s as any).KGHPnpow || '')}</font>`);
     }
   } else {
     scene.text('You dodged the attack');

@@ -13,28 +13,28 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him and show him all the toys you own. The viewer chooses one, and asks you to play with it. He leaves it up to you as to what exactly you do with it, but seems to want to see it inside your pussy most of all.');
     if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
       if (((s as any).temp_camVars ?? 0)?.['vaginal_vibe_available']) {
-        qspCall(s, 'komp_cam_MFC_requests_one', 'set_vibr_vag_act');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetVibrVagAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).temp_camVars ?? 0)?.['vaginal_small_available']) {
-        qspCall(s, 'komp_cam_MFC_requests_one', 'set_small_vag_act');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSmallVagAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).temp_camVars ?? 0)?.['vaginal_normal_available']) {
-        qspCall(s, 'komp_cam_MFC_requests_one', 'set_normal_vag_act');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetNormalVagAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).temp_camVars ?? 0)?.['vaginal_big_available']) {
-        qspCall(s, 'komp_cam_MFC_requests_one', 'set_big_vag_act');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetBigVagAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).temp_camVars ?? 0)?.['vaginal_large_available']) {
-        qspCall(s, 'komp_cam_MFC_requests_one', 'set_large_vag_act');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetLargeVagAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).temp_camVars ?? 0)?.['vaginal_huge_available']) {
-        qspCall(s, 'komp_cam_MFC_requests_one', 'set_huge_vag_act');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHugeVagAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).temp_camVars ?? 0)?.['vaginal_enormous_available']) {
-        qspCall(s, 'komp_cam_MFC_requests_one', 'set_enormous_vag_act');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetEnormousVagAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).temp_camVars ?? 0)?.['vaginal_gigantic_available']) {
-        qspCall(s, 'komp_cam_MFC_requests_one', 'set_gigantic_vag_act');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetGiganticVagAct(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Can\'t find a suitable toy or you changed your mind', goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -68,13 +68,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ignore him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -124,13 +124,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ignore him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },

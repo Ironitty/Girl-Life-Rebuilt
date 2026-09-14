@@ -18,7 +18,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).week ?? 0) === 1  &&  ((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] === 'parents_home') {
       // TODO-QSP: $sleep_events[] = "gs 'wakeup_events', 'mother_laundry'"
     }
-    qspCall(s, 'wakeup_events', 'vomiting_check');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVomitingCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).MarishaQW ?? 0)?.['marisha_sleepover'] === 1) {
       // TODO-QSP: $sleep_events_priority[] = 'gs ''wakeup_events'', ''marisha_ev_morning'' '
     }
@@ -127,7 +127,7 @@ function enterMotherLaundry2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
-    qspCall(s, 'wakeup_events', 'event_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -148,7 +148,7 @@ function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVomitingEvent(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'wakeup_events', 'exit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'home_activity', 'vomiting_images');
   scene.actions([{ label: 'Continue', goto: ['home_activity', 'morning_vomit'] }]);
   // TODO-QSP: end
@@ -169,7 +169,7 @@ function enterNatWakeupSex1(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'wakeup_events', 'event_end');
   } },
     { label: 'Have morning sex with Natasha', handler: (st: GameState) => {
-    qspCall(s, 'wakeup_events', 'exit');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['natbel_kissinggames', 'wakeup_sex'] },
   ]);
   scene.build();
@@ -178,23 +178,23 @@ function enterNatWakeupSex1(s: GameState, scene: SceneBuilder): void {
 function enterMarishaEvMorning(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
   // TODO-QSP: dynamic text: You wake up feeling relaxed then look over to see Marisha already up. She gives ...
-  scene.text(`You wake up feeling relaxed then look over to see Marisha already up. She gives you a smile and says, "Thanks for everything ${((s as any).pcs_firstname ?? 0)}. See you later." She then leaves as you continue getting up.`);
+  scene.text(`You wake up feeling relaxed then look over to see Marisha already up. She gives you a smile and says, "Thanks for everything ${((s as any).pcs_firstname || '')}. See you later." She then leaves as you continue getting up.`);
   if (!(s as any).MarishaQW) (s as any).MarishaQW = {}; (s as any).MarishaQW['marisha_sleepover'] = 0;
-  qspCall(s, 'wakeup_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterTransEarlyShocked(s: GameState, scene: SceneBuilder): void {
   scene.text('The first thing you think as you wake up is, "Damn! It\'s is not a dream, I really am a woman now."');
-  qspCall(s, 'wakeup_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterTransLittleShocked(s: GameState, scene: SceneBuilder): void {
   scene.text('Looking at your female body, you are still a little surprised it\'s actually you.');
-  qspCall(s, 'wakeup_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -202,7 +202,7 @@ function enterTransLittleShocked(s: GameState, scene: SceneBuilder): void {
 function enterSgGoSchool(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'mood', 'lower', 'small');
   qspCall(s, 'stat', '');
-  qspCall(s, 'wakeup_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -225,7 +225,7 @@ function enterSgSleptIn(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'wakeup_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

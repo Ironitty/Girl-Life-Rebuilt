@@ -10,13 +10,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/locations/pavlovsk/park/theater/kinoteatr.jpg');
   // TODO-QSP: dynamic text: Small cinema in which there is just one small screen. A movie ticket costs ' + $...
-  scene.text('Small cinema in which there is just one small screen. A movie ticket costs \' + $func(\'money\', \'string_price\', 100) + \'.');
+  scene.text('Small cinema in which there is just one small screen. A movie ticket costs 100₽.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the cinema', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['pav_park', 'start'] },
-    { label: 'Go to the movies [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+    { label: 'Go to the movies', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

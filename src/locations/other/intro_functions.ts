@@ -9,15 +9,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterResetAll(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'intro_functions', 'reset_traits');
-  qspCall(s, 'intro_functions', 'reset_body');
-  qspCall(s, 'intro_functions', 'reset_inventory');
-  qspCall(s, 'intro_functions', 'reset_fame');
-  qspCall(s, 'intro_functions', 'reset_other');
-  qspCall(s, 'intro_functions', 'reset_skills');
-  qspCall(s, 'intro_functions', 'reset_relationships');
-  qspCall(s, 'intro_functions', 'reset_school');
-  qspCall(s, 'intro_functions', 'reset_sex');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetTraits(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetBody(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetInventory(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetFame(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetOther(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetSkills(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetRelationships(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetSchool(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResetSex(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();

@@ -69,7 +69,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
           if ((Math.floor(Math.random() * 10) + 1) <= 3) {
             scene.img('images/characters/shared/headshots_main/big30.jpg');
             // TODO-QSP: dynamic text: You stand outside your aunt's apartment, knocking on the door. The door is answe...
-            scene.text(`You stand outside your aunt's apartment, knocking on the door. The door is answered by Luda, and she smiles as soon as she sees you. "${((s as any).pcs_nickname ?? 0)}! Come in, come in!"`);
+            scene.text(`You stand outside your aunt's apartment, knocking on the door. The door is answered by Luda, and she smiles as soon as she sees you. "${((s as any).pcs_nickname || '')}! Come in, come in!"`);
             scene.text('You step inside and she closes the door behind you.');
             scene.actions([
               { label: 'Enter', handler: (st: GameState) => {
@@ -89,7 +89,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
             if ((Math.floor(Math.random() * 7) + 1) <= 3) {
               scene.img('images/characters/shared/headshots_main/big30.jpg');
               // TODO-QSP: dynamic text: You stand outside your aunt's apartment, knocking on the door. The door is answe...
-              scene.text(`You stand outside your aunt's apartment, knocking on the door. The door is answered by Luda, and she smiles as soon as she sees you. "${((s as any).pcs_nickname ?? 0)}! Come in, come in!"`);
+              scene.text(`You stand outside your aunt's apartment, knocking on the door. The door is answered by Luda, and she smiles as soon as she sees you. "${((s as any).pcs_nickname || '')}! Come in, come in!"`);
               scene.text('She invites you in and closes the door behind you.');
               scene.actions([
                 { label: 'Enter', handler: (st: GameState) => {
@@ -117,7 +117,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "I thought I could invite someone if you\'re up for it?"');
     scene.text('He pauses to process what you said before he grins. "Yes, more the better. Is she pretty?"');
     scene.text('You nod. "Yes, she\'s pretty. Let me text her and see if she\'s around."');
-    qspCall(s, 'ludahome', 'invite');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInvite(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
                     ]);
                   }
@@ -172,7 +172,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                       scene.text('You return his smile. "Yes. Is my Aunt Luda home?"');
                       scene.text('He shakes his head. "No, she not home right now. You one her nieces?"');
                       // TODO-QSP: dynamic text: You nod. "Yes, I'm <<$pcs_nickname>>. You must be Olu? I've heard about you. Nic...
-                      scene.text(`You nod. "Yes, I'm ${((s as any).pcs_nickname ?? 0)}. You must be Olu? I've heard about you. Nice to finally meet you."`);
+                      scene.text(`You nod. "Yes, I'm ${((s as any).pcs_nickname || '')}. You must be Olu? I've heard about you. Nice to finally meet you."`);
                       scene.text('He smiles. "All good, I hope. I tell her you stop by. It nice to meet you."');
                       scene.actions([
                         { label: 'Leave', goto: ['pod_ezd', 'etaj_4'] },
@@ -259,7 +259,7 @@ function enterTextanya(s: GameState, scene: SceneBuilder): void {
     scene.text('You wait a few minutes before you get a reply. "Busy, why?"');
     scene.text('You sigh before you send a reply. "Nothing. I\'ll talk to you later."');
     scene.text('You glance at Olu. "Sorry, she\'s busy."');
-    qspCall(s, 'ludahome', 'invite');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInvite(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Say you would rather talk', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big55.jpg');
@@ -308,7 +308,7 @@ function enterTextnush(s: GameState, scene: SceneBuilder): void {
     scene.text('You wait a few minutes before you get a reply. "In the middle of something right now. What\'s up bitch?"');
     scene.text('You sigh before you send a reply. "Nothing. I\'ll talk to you later."');
     scene.text('You glance at Olu. "Sorry, she\'s busy."');
-    qspCall(s, 'ludahome', 'invite');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInvite(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Say you would rather talk', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big55.jpg');
@@ -356,7 +356,7 @@ function enterTextnatasha(s: GameState, scene: SceneBuilder): void {
     scene.text('You wait a few minutes before you get a reply. "Kind of wamped with stuff. What did you need?"');
     scene.text('You sigh as you reply back. "Nothing. I\'ll talk to you later."');
     scene.text('You glance at Olu. "Sorry, she\'s busy."');
-    qspCall(s, 'ludahome', 'invite');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInvite(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Say you would rather talk', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big55.jpg');
@@ -396,7 +396,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
   qspCall(s, 'core_library', 'setloc', 'ludahome', 'hallway');
-  qspCall(s, 'ludahome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Entrance hall</b></center>');
@@ -414,7 +414,7 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBathroom(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'ludahome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Bathroom</b></center>');
@@ -450,7 +450,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterLudaroom(s: GameState, scene: SceneBuilder): void {
   (s as any).music_loop = 1;
-  qspCall(s, 'ludahome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Luda\'s Room</b></center>');
@@ -464,7 +464,7 @@ function enterLudaroom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLivingroom(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'ludahome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Living room</b></center>');
@@ -536,9 +536,9 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/resident/apartment/ludahome/olutv.jpg');
       if (((s as any).hour ?? 0) > 22) {
         // TODO-QSP: dynamic text: As it gets late, your <<$npc_nickname['A29']>> enters the living room. "Come on,...
-        scene.text(`As it gets late, your ${((s as any).npc_nickname ?? 0)?.['A29']} enters the living room. "Come on, ${((s as any).pcs_nickname ?? 0)}, they're about to go to bed. We should leave."`);
+        scene.text(`As it gets late, your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} enters the living room. "Come on, ${((s as any).pcs_nickname || '')}, they're about to go to bed. We should leave."`);
         // TODO-QSP: dynamic text: Knowing better than to argue, you get up and head for the door. Olu gives you bo...
-        scene.text(`Knowing better than to argue, you get up and head for the door. Olu gives you both a brief smile and wave, but quickly focuses back on the game. You don't think he'll go to bed until after the game. Regardless, you follow your ${((s as any).npc_nickname ?? 0)?.['A29']} out.`);
+        scene.text(`Knowing better than to argue, you get up and head for the door. Olu gives you both a brief smile and wave, but quickly focuses back on the game. You don't think he'll go to bed until after the game. Regardless, you follow your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} out.`);
         scene.text('"You should come home before it gets late," she says before she walks down the stairs out of sight.');
         scene.actions([
           { label: 'Stairwell', goto: ['pod_ezd', 'etaj_4'] },
@@ -579,7 +579,7 @@ function enterWatchtv(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterKitchen(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'ludahome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   qspCall(s, 'kit_din', '');
@@ -638,11 +638,11 @@ function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/ludahome/luda_nat.jpg');
     scene.text('You take a seat next to them. "Sure! That sounds great," you smile.');
     // TODO-QSP: dynamic text: You see your <<$npc_nickname['A29']>> give you a friendly smile while Luda fills...
-    scene.text(`You see your ${((s as any).npc_nickname ?? 0)?.['A29']} give you a friendly smile while Luda fills a cup with tea and offers it to you. "So what have you been up to, dear?"`);
+    scene.text(`You see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} give you a friendly smile while Luda fills a cup with tea and offers it to you. "So what have you been up to, dear?"`);
     // TODO-QSP: dynamic text: Before you can even answer, your <<$npc_nickname['A29']>> does and embellishes t...
-    scene.text(`Before you can even answer, your ${((s as any).npc_nickname ?? 0)?.['A29']} does and embellishes things. She makes it sound like things at home and what's going on are better than they are. You feel she's trying to impress her sister with how great her family is, so you simply sit back and sip your tea.`);
+    scene.text(`Before you can even answer, your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} does and embellishes things. She makes it sound like things at home and what's going on are better than they are. You feel she's trying to impress her sister with how great her family is, so you simply sit back and sip your tea.`);
     // TODO-QSP: dynamic text: After a while, they start talking about other things, so you can finally join in...
-    scene.text(`After a while, they start talking about other things, so you can finally join in. However, your ${((s as any).npc_nickname ?? 0)?.['A29']} still occasionally cuts you off, perhaps afraid you'll shatter the illusion she's building up of your family.`);
+    scene.text(`After a while, they start talking about other things, so you can finally join in. However, your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} still occasionally cuts you off, perhaps afraid you'll shatter the illusion she's building up of your family.`);
     scene.actions([
       { label: 'Get up from the table', goto: ['ludahome', 'kitchen'] },
       { label: 'Keep chatting', goto: ['ludahome', 'luda_mom_talk', '1'] },
@@ -656,18 +656,18 @@ function enterLudaMomTalk(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/resident/apartment/ludahome/luda_nat.jpg');
       if (((s as any).hour ?? 0) > 22) {
         // TODO-QSP: dynamic text: As it starts to get late, your <<$npc_nickname['A29']>> gets up. "Come on, <<$pc...
-        scene.text(`As it starts to get late, your ${((s as any).npc_nickname ?? 0)?.['A29']} gets up. "Come on, ${((s as any).pcs_nickname ?? 0)}, it's getting late. We should leave so they can go to bed."`);
+        scene.text(`As it starts to get late, your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} gets up. "Come on, ${((s as any).pcs_nickname || '')}, it's getting late. We should leave so they can go to bed."`);
         // TODO-QSP: dynamic text: Knowing better than to argue, you get up and head for the door. Luda says her go...
-        scene.text(`Knowing better than to argue, you get up and head for the door. Luda says her goodbyes to both of you and hugs you goodbye. Your ${((s as any).npc_nickname ?? 0)?.['A29']} walks out first while Luda holds your hug a little longer, giving your ${((s as any).npc_nickname ?? 0)?.['A29']} time to walk down the stairs.`);
+        scene.text(`Knowing better than to argue, you get up and head for the door. Luda says her goodbyes to both of you and hugs you goodbye. Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} walks out first while Luda holds your hug a little longer, giving your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} time to walk down the stairs.`);
         // TODO-QSP: dynamic text: "Don't worry about your <<$npc_nickname['A29']>>," she says. "She just wants wha...
-        scene.text(`"Don't worry about your ${((s as any).npc_nickname ?? 0)?.['A29']}," she says. "She just wants what's best for you and for you to have a happy family, even if it isn't always so," she says with a wink, letting you know she knows the truth or at least suspects it, but plays along with your ${((s as any).npc_nickname ?? 0)?.['A29']} to make her feel better.`);
+        scene.text(`"Don't worry about your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}," she says. "She just wants what's best for you and for you to have a happy family, even if it isn't always so," she says with a wink, letting you know she knows the truth or at least suspects it, but plays along with your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} to make her feel better.`);
         scene.text('Once you\'re outside the apartment, she closes the door.');
         scene.actions([
           { label: 'Stairwell', goto: ['pod_ezd', 'etaj_4'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: You remain seated at the table with your <<$npc_nickname['A29']>> and Aunt, most...
-        scene.text(`You remain seated at the table with your ${((s as any).npc_nickname ?? 0)?.['A29']} and Aunt, mostly listening to them talk but occasionally taking part, at least when your mother doesn't interrupt you trying to impress your aunt. They seem to get along better than you thought, given how rarely Luda comes down to your apartment. You briefly wonder why that is. Does your ${((s as any).npc_nickname ?? 0)?.['A29']} always make excuses so Luda can't see or overhear something less perfect than the picture she paints?`);
+        scene.text(`You remain seated at the table with your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and Aunt, mostly listening to them talk but occasionally taking part, at least when your mother doesn't interrupt you trying to impress your aunt. They seem to get along better than you thought, given how rarely Luda comes down to your apartment. You briefly wonder why that is. Does your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} always make excuses so Luda can't see or overhear something less perfect than the picture she paints?`);
         scene.actions([
           { label: 'Get up from the table', goto: ['ludahome', 'kitchen'] },
           { label: 'Keep chatting', goto: ['ludahome', 'luda_mom_talk', '1'] },
@@ -706,7 +706,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
   // TODO-QSP: dynamic text: You open the fridge and see:<<$fridge_temp>>.
-  scene.text(`You open the fridge and see:${((s as any).fridge_temp ?? 0)}.`);
+  scene.text(`You open the fridge and see:${((s as any).fridge_temp || '')}.`);
   if (((s as any).LudaQW ?? 0)?.['leftover_count'] > 0) {
     scene.actions([
       { label: 'Eat some leftovers', handler: (st: GameState) => {
@@ -852,7 +852,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, do you remember our conversation? You know… about Olu?"
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, do you remember our conversation? You know… about Olu?"`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, do you remember our conversation? You know… about Olu?"`);
     scene.text('You nod your head. "I do. What about it?"');
     scene.text('"I don\'t want to put you on the spot, but… have you decided yet?" she asks with that same glimmer of hope in her eyes that you left her with the last time.');
     scene.actions([
@@ -959,7 +959,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
     scene.text('This is not what you thought you would be doing today. "No way! You can\'t ask me to be some black guy\'s sex toy!"');
     // TODO-QSP: dynamic text: Aunt Luda looks a little taken aback. "I'm sorry, <<$pcs_nickname>>. I shouldn't...
-    scene.text(`Aunt Luda looks a little taken aback. "I'm sorry, ${((s as any).pcs_nickname ?? 0)}. I shouldn't have asked this of you."`);
+    scene.text(`Aunt Luda looks a little taken aback. "I'm sorry, ${((s as any).pcs_nickname || '')}. I shouldn't have asked this of you."`);
     scene.text('You feel bad for reacting like you did. "I\'m not saying yes, but I\'m not saying no either. I might help the two of you. I just need a while to think about it."');
     scene.text('She smiles. "Of course, dear. I\'ll let him know you\'re thinking about it, so if you change your mind when I\'m not around, you can just let him know."');
     scene.text('You don\'t know what more to say about this, so you change the subject.');
@@ -1007,7 +1007,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
     // TODO-QSP: dynamic text: You ask Luda about your <<$npc_nickname['A29']>> and what she was like growing u...
-    scene.text(`You ask Luda about your ${((s as any).npc_nickname ?? 0)?.['A29']} and what she was like growing up, and she shares a few stories about their childhood and some of the stuff they both got up to. It sounds like she started to get boy crazy in her late teens from your aunt's stories.`);
+    scene.text(`You ask Luda about your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and what she was like growing up, and she shares a few stories about their childhood and some of the stuff they both got up to. It sounds like she started to get boy crazy in her late teens from your aunt's stories.`);
     if (((s as any).momslut ?? 0) >= 1) {
       scene.actions([
         { label: '<<$npc_nickname[\'A29\']>> is a slut', handler: (st: GameState) => {
@@ -1016,9 +1016,9 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
     // TODO-QSP: dynamic text: You look at your Aunt. "I know my <<$npc_nickname['A29']>> is a slut. I can't be...
-    scene.text(`You look at your Aunt. "I know my ${((s as any).npc_nickname ?? 0)?.['A29']} is a slut. I can't believe she's such a hypocrite!"`);
+    scene.text(`You look at your Aunt. "I know my ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is a slut. I can't believe she's such a hypocrite!"`);
     // TODO-QSP: dynamic text: Luda looks a little surprised. "You shouldn't say that sort of thing about your ...
-    scene.text(`Luda looks a little surprised. "You shouldn't say that sort of thing about your mother, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`Luda looks a little surprised. "You shouldn't say that sort of thing about your mother, ${((s as any).pcs_nickname || '')}."`);
     scene.text('You snort a laugh. "Why? It\'s true."');
     scene.text('She sighs. "Maybe so, but it\'s still not nice to say. While I haven\'t always agreed with her choices, she\'s still human and makes mistakes like the rest of us. While she might be hard on you and your sister, she does it out of love because she wants what\'s best for you."');
     scene.text('You decide it\'s best to just change the subject.');
@@ -1037,7 +1037,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/luda/talk.jpg');
     // TODO-QSP: dynamic text: You gather your courage and ask Luda about the rumors you've heard about your mo...
-    scene.text(`You gather your courage and ask Luda about the rumors you've heard about your mother. "Aunt Luda, I've heard some rumors about ${((s as any).npc_nickname ?? 0)?.['A29']}. Are they true?"`);
+    scene.text(`You gather your courage and ask Luda about the rumors you've heard about your mother. "Aunt Luda, I've heard some rumors about ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}. Are they true?"`);
     scene.text('She pauses. "What kind of rumors?"');
     scene.text('"Well, some people have said she\'s a slut, and others have alluded to it. So are they true?"');
     if (((s as any).npc_rel ?? 0)?.['A30'] <= 80) {
@@ -1210,7 +1210,7 @@ function enterChatLuda(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod. "Yes, he\'s good friends with Vasily."');
     scene.text('She shakes her head. "I don\'t like those boys. I get the appeal; trust me. I ran around with my share of bad boys, but they\'re trouble. You be careful around them, you hear?"');
     // TODO-QSP: dynamic text: You nod just to make her happy, but she doesn't understand. At least she's not a...
-    scene.text(`You nod just to make her happy, but she doesn't understand. At least she's not as bad as your ${((s as any).npc_nickname ?? 0)?.['A29']}.`);
+    scene.text(`You nod just to make her happy, but she doesn't understand. At least she's not as bad as your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}.`);
     scene.actions([
       { label: 'Keep talking', goto: ['ludahome', 'chat_luda'] },
       { label: 'Stop talking', goto: ['ludahome', 'livingroom'] },
@@ -1337,10 +1337,10 @@ function enterTellAboutGenericBoyfreind(s: GameState, scene: SceneBuilder): void
   scene.text('"I have a boyfriend," you reply.');
   scene.text('She looks curious. "Who\'s the lucky boy?"');
   // TODO-QSP: dynamic text: "<<$ARGS[1]>>," you reply.
-  scene.text(`"${((s as any).locArgs?.[1] ?? 0)}," you reply.`);
+  scene.text(`"${((s as any).locArgs?.[1] ?? '')}," you reply.`);
   scene.text('She shakes her head. "I don\'t think I know him."');
   // TODO-QSP: dynamic text: You tell her about <<$ARGS[1]>>, and as you do, she nods and has a knowing smile...
-  scene.text(`You tell her about ${((s as any).locArgs?.[1] ?? 0)}, and as you do, she nods and has a knowing smile.`);
+  scene.text(`You tell her about ${((s as any).locArgs?.[1] ?? '')}, and as you do, she nods and has a knowing smile.`);
   scene.text('"Well, that\'s an interesting way to meet a boy, but I\'ve heard of worse ways. As long as he makes you happy, that\'s all that matters."');
   // TODO-QSP: end
   scene.actions([

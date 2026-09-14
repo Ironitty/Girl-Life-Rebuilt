@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).accessoriesBonus = qspFunc(s, 'AppearanceSystem', 'CalcAccessoriesBonus');
   (s as any).groomingBonus = qspFunc(s, 'AppearanceSystem', 'CalcGroomingBonus');
   (s as any).groomingPenalty = qspFunc(s, 'AppearanceSystem', 'CalcGroomingPenalty');
-  (s as any).pcs_apprnc = qspFunc(s, 'AppearanceSystem', 'CalcAppearance', ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0) + ((((s as any).glamouractive ?? 0) === 1) ? (150) : (0)));
+  (s as any).pcs_apprnc = qspFunc(s, 'AppearanceSystem', 'CalcAppearance', (((s as any).arch_effects ?? {})?.['appearance_effect'] ?? 0) + ((s as any).succappbonus ?? 0) + ((((s as any).glamouractive ?? 0) === 1) ? (150) : (0)));
   (s as any).pcs_hotcat = qspFunc(s, 'AppearanceSystem', 'ConvertToHotcat', ((s as any).pcs_apprnc ?? 0));
   // TODO-QSP: end
   scene.build();
@@ -23,7 +23,7 @@ function enterUpdateBaseAppearance(s: GameState, scene: SceneBuilder): void {
   (s as any).bodyShapeBonus = qspFunc(s, 'AppearanceSystem', 'CalcBodyShapeBonus');
   (s as any).visibleAgePenalty = qspFunc(s, 'AppearanceSystem', 'CalcVisibleAgePenalty');
   (s as any).teethPenalty = qspFunc(s, 'AppearanceSystem', 'CalcTeethPenalty');
-  (s as any).pcs_apprncbase = ((s as any).skinBonus ?? 0) + ((s as any).bodyShapeBonus ?? 0) + ((s as any).attributeBonus ?? 0) - ((s as any).visibleAgePenalty ?? 0) - ((s as any).teethPenalty ?? 0) + ((s as any).arch_effects ?? {})?.['appearance_effect'] + ((s as any).succappbonus ?? 0);
+  (s as any).pcs_apprncbase = ((s as any).skinBonus ?? 0) + ((s as any).bodyShapeBonus ?? 0) + ((s as any).attributeBonus ?? 0) - ((s as any).visibleAgePenalty ?? 0) - ((s as any).teethPenalty ?? 0) + (((s as any).arch_effects ?? {})?.['appearance_effect'] ?? 0) + ((s as any).succappbonus ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -168,7 +168,7 @@ function enterCalcGroomingBonus(s: GameState, scene: SceneBuilder): void {
         (s as any).makeupBonus = 30;
       } else {
         if (((s as any).pcs_makeup ?? 0) === 6  &&  ((s as any).arch_vars ?? 0)?.['main_active'] === 'bimbo') {
-          (s as any).makeupBonus = ((s as any).makeupBonus ?? 0) + (((s as any).arch_vars ?? {})?.['bimbo_points'] / 25000);
+          (s as any).makeupBonus = ((s as any).makeupBonus ?? 0) + ((((s as any).arch_vars ?? {})?.['bimbo_points'] ?? 0) / 25000);
         } else {
           if (((s as any).pcs_makeup ?? 0) === 7) {
             (s as any).makeupBonus = ((s as any).makeupBonus ?? 0) + (((s as any).pcs_makupskl ?? 0) / 10 - 5);

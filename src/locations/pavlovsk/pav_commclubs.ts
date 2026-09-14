@@ -94,7 +94,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).ml_guitarlesson ?? 0)?.['nextlesson'] === ((s as any).daystart ?? 0))) {
       if ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour']-1 === ((s as any).hour ?? 0))) {
         scene.actions([
-          { label: 'Wait for your guitar lesson [+$func(\'money\', \'get_cost_string\', ml_gui...]', handler: (st: GameState) => {
+          { label: 'Wait for your guitar lesson', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).ml_guitarlesson ?? 0)?.['lessoncost']) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -106,7 +106,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       if ((((s as any).ml_guitarlesson ?? 0)?.['lessonhour'] === ((s as any).hour ?? 0))) {
         scene.actions([
-          { label: 'Go to your guitar lesson [+$func(\'money\', \'get_cost_string\', ml_gui...]', handler: (st: GameState) => {
+          { label: 'Go to your guitar lesson', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).ml_guitarlesson ?? 0)?.['lessoncost']) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

@@ -13,17 +13,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterBuildWeekSchedule(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_week_start = qspUntranslated(s, "ARGS[1]", { location: "calendar_schedule" });
   if (!(s as any).week_schedule) (s as any).week_schedule = {}; (s as any).week_schedule['start_daystart'] = ((s as any).temp_week_start ?? 0);
-  qspCall(s, 'calendar_schedule', 'collect_events_for_week', ((s as any).temp_week_start ?? 0));
-  qspCall(s, 'calendar_schedule', 'place_allday_events');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_week_start ?? 0)]; enterCollectEventsForWeek(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPlaceAlldayEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).temp_d = 1;
   // TODO-QSP: :loop_days
   if (((s as any).temp_d ?? 0) <= 7) {
-    qspCall(s, 'calendar_schedule', 'place_day_events', ((s as any).temp_d ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0)]; enterPlaceDayEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).temp_d = ((s as any).temp_d ?? 0) + (1);
     // TODO-QSP: jump 'loop_days'
   }
-  qspCall(s, 'calendar_schedule', 'assign_columns');
-  qspCall(s, 'calendar_schedule', 'cleanup_temp_structures');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAssignColumns(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanupTempStructures(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -71,7 +71,7 @@ function enterCollectEventsForWeek(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_flex_count = ((s as any).temp_flex_count ?? 0) + (1);
         } else {
           (s as any).temp_start = ((s as any).event_vars ?? 0)?.['start_ts'];
-          (s as any).temp_end = ((s as any).temp_start ?? 0) + ((s as any).event_vars ?? {})?.['duration_ts'] - 1;
+          (s as any).temp_end = ((s as any).temp_start ?? 0) + (((s as any).event_vars ?? {})?.['duration_ts'] ?? 0) - 1;
           if (((s as any).temp_end ?? 0) > 95) {
             (s as any).temp_end = 95;
           }
@@ -217,8 +217,8 @@ function enterPlaceAlldayEvents(s: GameState, scene: SceneBuilder): void {
 
 function enterPlaceDayEvents(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_d = qspUntranslated(s, "ARGS[1]", { location: "calendar_schedule" });
-  qspCall(s, 'calendar_schedule', 'place_static_events', ((s as any).temp_d ?? 0));
-  qspCall(s, 'calendar_schedule', 'place_flexible_events', ((s as any).temp_d ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0)]; enterPlaceStaticEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0)]; enterPlaceFlexibleEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -238,7 +238,7 @@ function enterPlaceStaticEvents(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_evt_id ?? 0));
         (s as any).temp_start_ts = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', start'];
         (s as any).temp_end_ts = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', end'];
-        qspCall(s, 'calendar_schedule', 'add_event_to_schedule', ((s as any).temp_d ?? 0), ((s as any).temp_start_ts ?? 0), ((s as any).temp_evt_id ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_start_ts ?? 0), ((s as any).temp_evt_id ?? 0)]; enterAddEventToSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
         // TODO-QSP: temp_this_event_index = week_schedule['days=<<temp_d>>, timeslots=<<temp_start_ts>>, event_count'] - 1
         (s as any).temp_check_t = ((s as any).temp_end_ts ?? 0);
         // TODO-QSP: :loop_check_conflicts
@@ -254,12 +254,12 @@ function enterPlaceStaticEvents(s: GameState, scene: SceneBuilder): void {
                   (s as any).temp_other_priority = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_other_id ?? 0)) + ', priority'];
                   if (((s as any).temp_other_priority ?? 0) > ((s as any).temp_evt_priority ?? 0)) {
                     if (!(s as any).week_schedule) (s as any).week_schedule = {}; (s as any).week_schedule['days=' + String((s as any).temp_d || '') + ', timeslots=' + String((s as any).temp_start_ts || '') + ', events=' + String((s as any).temp_this_event_index || '') + ', is_hidden'] = 1;
-                    qspCall(s, 'calendar_schedule', 'change_busy_timeslots', ((s as any).temp_d ?? 0), ((s as any).temp_start_ts ?? 0), ((s as any).temp_this_event_index ?? 0), (-1));
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_start_ts ?? 0), ((s as any).temp_this_event_index ?? 0), (-1)]; enterChangeBusyTimeslots(s, scene); (s as any).locArgs = __savedLocArgs; }
                     // TODO-QSP: jump 'skip_conflict_check'
                   } else {
                     if (((s as any).temp_other_priority ?? 0) < ((s as any).temp_evt_priority ?? 0)) {
                       if (!(s as any).week_schedule) (s as any).week_schedule = {}; (s as any).week_schedule['days=' + String((s as any).temp_d || '') + ', timeslots=' + String((s as any).temp_check_t || '') + ', events=' + String((s as any).temp_check_e || '') + ', is_hidden'] = 1;
-                      qspCall(s, 'calendar_schedule', 'change_busy_timeslots', ((s as any).temp_d ?? 0), ((s as any).temp_check_t ?? 0), ((s as any).temp_check_e ?? 0), (-1));
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_check_t ?? 0), ((s as any).temp_check_e ?? 0), (-1)]; enterChangeBusyTimeslots(s, scene); (s as any).locArgs = __savedLocArgs; }
                     }
                   }
                 }
@@ -295,22 +295,22 @@ function enterPlaceFlexibleEvents(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_i ?? 0) < ((s as any).temp_flex_count ?? 0)) {
       (s as any).temp_evt_priority = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', priority'];
       if (((s as any).temp_evt_priority ?? 0) === ((s as any).temp_priority ?? 0)) {
-        qspCall(s, 'calendar_schedule', 'find_best_placement', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0), 'conflict_free');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0), 'conflict_free']; enterFindBestPlacement(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).placement_found ?? 0) === 1) {
-          qspCall(s, 'calendar_schedule', 'apply_placement', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0));
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0)]; enterApplyPlacement(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (!(s as any).placement_state) (s as any).placement_state = {}; (s as any).placement_state['' + String((s as any).$temp_evt_id || '') + ', attempt'] = 1;
           // TODO-QSP: jump 'next_flex_event'
         }
-        qspCall(s, 'calendar_schedule', 'find_best_placement', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0), 'hide_lower');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0), 'hide_lower']; enterFindBestPlacement(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).placement_found ?? 0) === 1) {
-          qspCall(s, 'calendar_schedule', 'apply_placement', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0));
-          qspCall(s, 'calendar_schedule', 'hide_overlapping_lower_priority', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0));
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0)]; enterApplyPlacement(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0)]; enterHideOverlappingLowerPriority(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (!(s as any).placement_state) (s as any).placement_state = {}; (s as any).placement_state['' + String((s as any).$temp_evt_id || '') + ', attempt'] = 2;
           // TODO-QSP: jump 'next_flex_event'
         }
-        qspCall(s, 'calendar_schedule', 'find_best_placement', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0), 'coexist_same');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0), 'coexist_same']; enterFindBestPlacement(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).placement_found ?? 0) === 1) {
-          qspCall(s, 'calendar_schedule', 'apply_placement', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0));
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_evt_id ?? 0)]; enterApplyPlacement(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (!(s as any).placement_state) (s as any).placement_state = {}; (s as any).placement_state['' + String((s as any).$temp_evt_id || '') + ', attempt'] = 3;
           // TODO-QSP: jump 'next_flex_event'
         }
@@ -413,7 +413,7 @@ function enterFindBestPlacement(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_try_start ?? 0) <= ((s as any).temp_orig_end ?? 0)) {
     (s as any).temp_blocked = qspFunc(s, 'calendar_schedule', 'is_range_blocked', ((s as any).temp_d ?? 0), ((s as any).temp_try_start ?? 0), ((s as any).temp_try_start ?? 0) + ((s as any).temp_duration ?? 0) - 1, ((s as any).temp_evt_id ?? 0), ((s as any).temp_mode ?? 0));
     if ((!((s as any).temp_blocked ?? 0))) {
-      qspCall(s, 'calendar_schedule', 'find_free_window_around', ((s as any).temp_d ?? 0), ((s as any).temp_try_start ?? 0), ((s as any).temp_evt_id ?? 0), ((s as any).temp_mode ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_try_start ?? 0), ((s as any).temp_evt_id ?? 0), ((s as any).temp_mode ?? 0)]; enterFindFreeWindowAround(s, scene); (s as any).locArgs = __savedLocArgs; }
       (s as any).temp_window_size = ((s as any).result_window_end ?? 0) - ((s as any).result_window_start ?? 0) + 1;
       if (((s as any).temp_window_size ?? 0) > ((s as any).temp_best_window_size ?? 0)) {
         (s as any).temp_best_window_size = ((s as any).temp_window_size ?? 0);
@@ -468,7 +468,7 @@ function enterApplyPlacement(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).event_range_cache) (s as any).event_range_cache = {}; (s as any).event_range_cache['' + String((s as any).$temp_evt_id || '') + ', end'] = ((s as any).placement_start ?? 0) + ((s as any).event_range_cache ?? 0)['' + ((s as any).temp_evt_id ?? 0) + ', duration'] - 1;
   if (!(s as any).event_range_cache) (s as any).event_range_cache = {}; (s as any).event_range_cache['' + String((s as any).$temp_evt_id || '') + ', window_start'] = ((s as any).placement_window_start ?? 0);
   if (!(s as any).event_range_cache) (s as any).event_range_cache = {}; (s as any).event_range_cache['' + String((s as any).$temp_evt_id || '') + ', window_end'] = ((s as any).placement_window_end ?? 0);
-  qspCall(s, 'calendar_schedule', 'add_event_to_schedule', ((s as any).temp_d ?? 0), ((s as any).placement_window_start ?? 0), ((s as any).temp_evt_id ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).placement_window_start ?? 0), ((s as any).temp_evt_id ?? 0)]; enterAddEventToSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).placement_state) (s as any).placement_state = {}; (s as any).placement_state['' + String((s as any).$temp_evt_id || '') + ', placed'] = 1;
   return;
   // TODO-QSP: end
@@ -492,7 +492,7 @@ function enterHideOverlappingLowerPriority(s: GameState, scene: SceneBuilder): v
             (s as any).temp_overlaps = qspFunc(s, 'calendar_schedule', 'check_overlap', ((s as any).temp_evt_id ?? 0), ((s as any).temp_other_id ?? 0));
             if (((s as any).temp_overlaps ?? 0) === 1) {
               if (!(s as any).week_schedule) (s as any).week_schedule = {}; (s as any).week_schedule['days=' + String((s as any).temp_d || '') + ', timeslots=' + String((s as any).temp_t || '') + ', events=' + String((s as any).temp_e || '') + ', is_hidden'] = 1;
-              qspCall(s, 'calendar_schedule', 'change_busy_timeslots', ((s as any).temp_d ?? 0), ((s as any).temp_t ?? 0), ((s as any).temp_e ?? 0), (-1));
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_t ?? 0), ((s as any).temp_e ?? 0), (-1)]; enterChangeBusyTimeslots(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
@@ -538,7 +538,7 @@ function enterAddEventToSchedule(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).week_schedule) (s as any).week_schedule = {}; (s as any).week_schedule['days=' + String((s as any).temp_d || '') + ', timeslots=' + String((s as any).temp_t || '') + ', events=' + String((s as any).temp_e || '') + ', span'] = ((s as any).event_range_cache ?? 0)?.[String(((s as any).temp_evt_id ?? 0)) + ', duration'];
   }
   if (!(s as any).week_schedule) (s as any).week_schedule = {}; (s as any).week_schedule['days=' + String((s as any).temp_d || '') + ', timeslots=' + String((s as any).temp_t || '') + ', events=' + String((s as any).temp_e || '') + ', is_hidden'] = 0;
-  qspCall(s, 'calendar_schedule', 'change_busy_timeslots', ((s as any).temp_d ?? 0), ((s as any).temp_t ?? 0), ((s as any).temp_e ?? 0), 1);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0), ((s as any).temp_t ?? 0), ((s as any).temp_e ?? 0), 1]; enterChangeBusyTimeslots(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).week_schedule) (s as any).week_schedule = {}; (s as any).week_schedule['days=' + String((s as any).temp_d || '') + ', timeslots=' + String((s as any).temp_t || '') + ', event_count'] = ((s as any).temp_e ?? 0) + 1;
   return;
   // TODO-QSP: end
@@ -563,14 +563,14 @@ function enterAssignColumns(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_d = 1;
   // TODO-QSP: :loop_pass1
   if (((s as any).temp_d ?? 0) <= 7) {
-    qspCall(s, 'calendar_schedule', 'assign_day_columns', ((s as any).temp_d ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0)]; enterAssignDayColumns(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).temp_d = ((s as any).temp_d ?? 0) + (1);
     // TODO-QSP: jump 'loop_pass1'
   }
   (s as any).temp_d = 1;
   // TODO-QSP: :loop_pass2
   if (((s as any).temp_d ?? 0) <= 7) {
-    qspCall(s, 'calendar_schedule', 'calculate_day_colspans', ((s as any).temp_d ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_d ?? 0)]; enterCalculateDayColspans(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).temp_d = ((s as any).temp_d ?? 0) + (1);
     // TODO-QSP: jump 'loop_pass2'
   }

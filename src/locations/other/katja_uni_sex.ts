@@ -136,13 +136,13 @@ function enterLibraryLicking1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cuni', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Crawl under the table to get to Katja\'s pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Crawl under the table to get to Katja\'s pussy', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Crawl under the table to lick Katja\'s pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Crawl under the table to lick Katja\'s pussy', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['katja_uni_sex', 'library_licking2'] },
     ]);
@@ -159,7 +159,7 @@ function enterLibraryLicking1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You continue to watch Katja while she finishes studying.');
   }
-  qspCall(s, 'katja_uni_sex', 'library_leave_actions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLibraryLeaveActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   // TODO-QSP: end
   scene.build();
@@ -176,7 +176,7 @@ function enterLibraryLicking2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'loathe');
     qspCall(s, 'arousal', 'end');
     // TODO-QSP: dynamic text: Katja abruptly pushes her chair back and quickly stands up, causing you to almos...
-    scene.text(`Katja abruptly pushes her chair back and quickly stands up, causing you to almost fall to the ground. "What the hell are you doing, ${((s as any).pcs_nickname ?? 0)}?!" Katja almost shouts. "Get out of there right now!" You crawl out from under the table.`);
+    scene.text(`Katja abruptly pushes her chair back and quickly stands up, causing you to almost fall to the ground. "What the hell are you doing, ${((s as any).pcs_nickname || '')}?!" Katja almost shouts. "Get out of there right now!" You crawl out from under the table.`);
     scene.text('"What were you thinking?! This is a place for studying, not being a whore!" she exclaims. You don\'t think you\'ve ever seen her so mad before.');
     scene.actions([
       { label: 'Apologize', handler: (st: GameState) => {
@@ -191,23 +191,23 @@ function enterLibraryLicking2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('You apologize to Katja and she returns to her studying. You continue to watch her in silence and by the time she finishes, her anger seems to have blown over.');
     }
-    qspCall(s, 'katja_uni_sex', 'library_leave_actions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLibraryLeaveActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
     if (((s as any).katjaQW ?? 0)?.['slut'] < 40  ||  (((s as any).katjaQW ?? 0)?.['horny'] <= 50  &&  ((s as any).katjaQW ?? 0)?.['slut'] < 80)) {
       // TODO-QSP: dynamic text: Katja immediately reacts by clamping her legs together with your head still betw...
-      scene.text(`Katja immediately reacts by clamping her legs together with your head still between them. "Stop it ${((s as any).pcs_nickname ?? 0)}. This isn't the place for such things. Get out of there," she says in a hard tone.`);
+      scene.text(`Katja immediately reacts by clamping her legs together with your head still between them. "Stop it ${((s as any).pcs_nickname || '')}. This isn't the place for such things. Get out of there," she says in a hard tone.`);
       qspCall(s, 'willpower', 'cuni', 'force', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Force her legs open and eat her pussy anyway [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Force her legs open and eat her pussy anyway', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Force her legs open and eat her pussy anyway [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Force her legs open and eat her pussy anyway', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'hate');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (2);
     qspCall(s, 'willpower', 'pay', 'force');
@@ -230,24 +230,24 @@ function enterLibraryLicking2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('Katja slowly opens her legs when she\'s sure you\'re not trying to do something. You crawl out from under the table and continue to watch Katja while she finishes studying.');
     }
-    qspCall(s, 'katja_uni_sex', 'library_leave_actions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLibraryLeaveActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
       if (((s as any).katjaQW ?? 0)?.['slut'] < 80  ||  ((s as any).katjaQW ?? 0)?.['horny'] <= 50) {
         (s as any).katja_library_consent = 1;
         // TODO-QSP: dynamic text: After a moments pause, Katja replies in a low voice. "Stop it <<$pcs_nickname>>....
-        scene.text(`After a moments pause, Katja replies in a low voice. "Stop it ${((s as any).pcs_nickname ?? 0)}. Not here. Later." She does not sound completely convincing though.`);
+        scene.text(`After a moments pause, Katja replies in a low voice. "Stop it ${((s as any).pcs_nickname || '')}. Not here. Later." She does not sound completely convincing though.`);
         qspCall(s, 'willpower', 'cuni', 'force', 'easy');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Eat her pussy anyway [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Eat her pussy anyway', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Eat her pussy anyway [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Eat her pussy anyway', handler: (st: GameState) => {
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
@@ -270,14 +270,14 @@ function enterLibraryLicking2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('You crawl out from under the table and continue to watch Katja while she finishes studying.');
     }
-    qspCall(s, 'katja_uni_sex', 'library_leave_actions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLibraryLeaveActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
         qspCall(s, 'npc_relationship', 'modify', 'A14', 'like');
         (s as any).katja_library_consent = 2;
         // TODO-QSP: dynamic text: After a moments pause, you hear Katja reply with a low sigh. "Yes… Don't stop <<...
-        scene.text(`After a moments pause, you hear Katja reply with a low sigh. "Yes… Don't stop ${((s as any).pcs_nickname ?? 0)}… Please…"`);
+        scene.text(`After a moments pause, you hear Katja reply with a low sigh. "Yes… Don't stop ${((s as any).pcs_nickname || '')}… Please…"`);
         scene.actions([
           { label: 'Eat Katja\'s pussy', goto: ['katja_uni_sex', 'library_licking3'] },
         ]);
@@ -326,17 +326,17 @@ function enterLibraryLicking3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     if (((s as any).katja_library_consent ?? 0) === 2) {
       // TODO-QSP: dynamic text: Katja comes down while you crawl out from under the table. "Thanks <<$pcs_nickna...
-      scene.text(`Katja comes down while you crawl out from under the table. "Thanks ${((s as any).pcs_nickname ?? 0)}, I really needed that."`);
+      scene.text(`Katja comes down while you crawl out from under the table. "Thanks ${((s as any).pcs_nickname || '')}, I really needed that."`);
       scene.text('"Anytime," you reply. "I love eating your pussy."');
     } else {
       if (((s as any).katja_library_consent ?? 0) === 1) {
         // TODO-QSP: dynamic text: Katja comes down while you crawl out from under the table. "Thanks <<$pcs_nickna...
-        scene.text(`Katja comes down while you crawl out from under the table. "Thanks ${((s as any).pcs_nickname ?? 0)}, that was amazing. But we really should not have done it here. What if somebody noticed?"`);
+        scene.text(`Katja comes down while you crawl out from under the table. "Thanks ${((s as any).pcs_nickname || '')}, that was amazing. But we really should not have done it here. What if somebody noticed?"`);
         scene.text('You smile. "That\'s what makes so exciting, don\'t you think?" you reply.');
         scene.text('"No… I mean maybe." Katja says, but her red face gives away her true thoughts.');
       } else {
         // TODO-QSP: dynamic text: Katja comes down while you crawl out from under the table. "You shouldn't have d...
-        scene.text(`Katja comes down while you crawl out from under the table. "You shouldn't have done that ${((s as any).pcs_nickname ?? 0)}."`);
+        scene.text(`Katja comes down while you crawl out from under the table. "You shouldn't have done that ${((s as any).pcs_nickname || '')}."`);
         scene.text('"Why not? Wasn\'t it good?" you ask.');
         scene.text('"That\'s besides the point. When I tell you no, I mean no!" she says looking angry. You apologize and her demeanor softens.');
       }
@@ -350,7 +350,7 @@ function enterLibraryLicking3(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('Katja composes herself and continues to study while you watch her.');
     }
-    qspCall(s, 'katja_uni_sex', 'library_leave_actions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLibraryLeaveActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -396,7 +396,7 @@ function enterLibraryThreesome1(s: GameState, scene: SceneBuilder): void {
   scene.text('While you and Katja are sitting in one of the reading rooms of the library, a handsome guy comes into the room. He leans over you. "So how are the studies going my beautiful angels?"');
   scene.text('"Good. good. It\'s going good," you manage to say as you notice Katja trying extremely hard to not start laughing over his corny lines.');
   // TODO-QSP: dynamic text: "Well if it's going so good, then perhaps you ladies need a break from your hard...
-  scene.text(`"Well if it's going so good, then perhaps you ladies need a break from your hard work…" he continues. "I'm ${((s as any).npcdesc ?? 0)} and will of course be more than willing to offer my services to make sure that you ladies are entertained during your respite." You look at Katja and see that she also understands his intentions.`);
+  scene.text(`"Well if it's going so good, then perhaps you ladies need a break from your hard work…" he continues. "I'm ${((s as any).npcdesc || '')} and will of course be more than willing to offer my services to make sure that you ladies are entertained during your respite." You look at Katja and see that she also understands his intentions.`);
   if ((((s as any).katjaQW ?? 0)?.['boy_block'] === 1  ||  ((s as any).katjaQW ?? 0)?.['sex_clossedness'] > 0)  &&  ((s as any).katjaQW ?? 0)?.['slut'] >= (Math.floor(Math.random() * 51) + 50)) {
     scene.text('"Sorry, but neither you or any other boy could possibly have anything that could entertain us," Katja says in a completely deadpan voice. He look flabbergasted before quickly turning around and leaving. "Go girl. That was impressive!" you tell Katja, and she blushes slightly.');
     scene.actions([
@@ -419,29 +419,29 @@ function enterLibraryThreesome1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).katjaQW ?? 0)?.['dom'] < -15) {
       scene.text('"No Katja, I don\'t feel like it," you tell her.');
       // TODO-QSP: dynamic text: She looks disappointed but turns to the guy and says "No, we're fine. We have no...
-      scene.text(`She looks disappointed but turns to the guy and says "No, we're fine. We have no time for breaks." ${((s as any).npcdesc ?? 0)} takes the rejection with a smile. "Then I will leave you ladies to your work. Maybe another time?" he says before leaving you alone. It seems like he didn't expect his pick-up line to have worked anyway.`);
+      scene.text(`She looks disappointed but turns to the guy and says "No, we're fine. We have no time for breaks." ${((s as any).npcdesc || '')} takes the rejection with a smile. "Then I will leave you ladies to your work. Maybe another time?" he says before leaving you alone. It seems like he didn't expect his pick-up line to have worked anyway.`);
       scene.actions([
         { label: 'Finish up', goto: ['katja_uni_sex', 'threeseome_over'] },
       ]);
     } else {
       scene.text('"No Katja, I don\'t feel like it," you tell her.');
       // TODO-QSP: dynamic text: She doesn't look pleased. "Come on <<$pcs_nickname>>, don't be such a prude! I c...
-      scene.text(`She doesn't look pleased. "Come on ${((s as any).pcs_nickname ?? 0)}, don't be such a prude! I can't believe I'm the daring one and you're the one afraid of getting caught. It's going to be fun! I really need this. Please ${((s as any).pcs_nickname ?? 0)}?" she says in a low voice, but you notice that ${((s as any).npcdesc ?? 0)} has clearly caught on to that she is trying to convince you.`);
+      scene.text(`She doesn't look pleased. "Come on ${((s as any).pcs_nickname || '')}, don't be such a prude! I can't believe I'm the daring one and you're the one afraid of getting caught. It's going to be fun! I really need this. Please ${((s as any).pcs_nickname || '')}?" she says in a low voice, but you notice that ${((s as any).npcdesc || '')} has clearly caught on to that she is trying to convince you.`);
       qspCall(s, 'willpower', 'group', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Stand firm [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stand firm', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Stand firm [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stand firm', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A14', 'dislike');
     scene.text('"I said no, Katja!" you tell her in a stern voice.');
     // TODO-QSP: dynamic text: She looks disappointed but turns to the guy and says "No, we're fine. My friend ...
-    scene.text(`She looks disappointed but turns to the guy and says "No, we're fine. My friend has no time for a break." ${((s as any).npcdesc ?? 0)} looks a little sad, as if he had gotten his hopes up that his pick-up line would actually work. "Then I will leave you ladies to your work. Maybe another time?" he says before leaving you alone.`);
+    scene.text(`She looks disappointed but turns to the guy and says "No, we're fine. My friend has no time for a break." ${((s as any).npcdesc || '')} looks a little sad, as if he had gotten his hopes up that his pick-up line would actually work. "Then I will leave you ladies to your work. Maybe another time?" he says before leaving you alone.`);
     scene.actions([
       { label: 'Finish up', goto: ['katja_uni_sex', 'threeseome_over'] },
     ]);
@@ -469,19 +469,19 @@ function enterLibraryThreesome1(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'willpower', 'group', 'force');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Convince Katja to have a threesome [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Convince Katja to have a threesome', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Convince Katja to have a threesome [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Convince Katja to have a threesome', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dom'] = ((s as any).katjaQW['dom'] ?? 0) - (1);
     scene.text('You lean over and whisper in Katja\'s ear. "Come on Katja, it\'s going to be fun. You need to loosen up and try more things!" you tell her.');
     scene.text('"We\'re in the library. Somebody could come!" she protests.');
     // TODO-QSP: dynamic text: "That's what makes it more exciting! We're already leading <<$npcdesc>> on, so w...
-    scene.text(`"That's what makes it more exciting! We're already leading ${((s as any).npcdesc ?? 0)} on, so we can't let him leave with blue balls!" Finally, Katja gives you a nod.`);
+    scene.text(`"That's what makes it more exciting! We're already leading ${((s as any).npcdesc || '')} on, so we can't let him leave with blue balls!" Finally, Katja gives you a nod.`);
     scene.actions([
       { label: 'Have a threesome', goto: ['katja_uni_sex', 'library_threesome2'] },
     ]);
@@ -493,7 +493,7 @@ function enterLibraryThreesome1(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Tell <<$npcdesc>> that you are not interested', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You turn to <<$npcdesc>>. "Sorry, but I don't believe you have anything that cou...
-    scene.text(`You turn to ${((s as any).npcdesc ?? 0)}. "Sorry, but I don't believe you have anything that could satisfy us."`);
+    scene.text(`You turn to ${((s as any).npcdesc || '')}. "Sorry, but I don't believe you have anything that could satisfy us."`);
     scene.text('He looks a little disappointed. "I believe you are wrong, but will accept the lady\'s wishes. You don\'t know what know what pleasures you will miss out on!"');
     scene.text('Once he is out of earshot, Katja scoffs. "What a jerk!"');
     scene.actions([
@@ -527,14 +527,14 @@ function enterLibraryThreesome2(s: GameState, scene: SceneBuilder): void {
       { label: 'Get you clothes off', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/library_threesome4.jpg');
     // TODO-QSP: dynamic text: You and Katja takes your clothes off and get down in front <<$npcdesc>> before p...
-    scene.text(`You and Katja takes your clothes off and get down in front ${((s as any).npcdesc ?? 0)} before pulling his very hard cock out of his pants. You both start alternating between stroking his dick. He seems to get really turned on getting treated as a sex toy, so you decide to gently bite his nipple, which seems to turn him on even more.`);
+    scene.text(`You and Katja takes your clothes off and get down in front ${((s as any).npcdesc || '')} before pulling his very hard cock out of his pants. You both start alternating between stroking his dick. He seems to get really turned on getting treated as a sex toy, so you decide to gently bite his nipple, which seems to turn him on even more.`);
     qspCall(s, 'arousal', 'hj', 3, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Start licking', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/library_threesome5.jpg');
     // TODO-QSP: dynamic text: You get up and lay him down at the table. You take his cock into your mouth whil...
-    scene.text(`You get up and lay him down at the table. You take his cock into your mouth while Katja sits on his face. '+iif( pcs_throat < dick, 'You have a little trouble getting his big dick into your mouth', 'His cock easily slides into your mouth')+'. You continue sucking his dick while you hear Katja moan from getting her pussy eaten by ${((s as any).npcdesc ?? 0)}.`);
+    scene.text(`You get up and lay him down at the table. You take his cock into your mouth while Katja sits on his face. '+iif( pcs_throat < dick, 'You have a little trouble getting his big dick into your mouth', 'His cock easily slides into your mouth')+'. You continue sucking his dick while you hear Katja moan from getting her pussy eaten by ${((s as any).npcdesc || '')}.`);
     qspCall(s, 'arousal', 'bj', 2, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -544,7 +544,7 @@ function enterLibraryThreesome2(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/library_threesome6.jpg');
     // TODO-QSP: dynamic text: You beckon Katja forward and she leans down and takes <<$npcdesc>> into her mout...
-    scene.text(`You beckon Katja forward and she leans down and takes ${((s as any).npcdesc ?? 0)} into her mouth. She '+iif( npc_throat['A14'] < dick, 'has a hard time taking his big dick in her mouth', 'Licks his cock like a pro')+' while he continues to lick her pussy and you look on.`);
+    scene.text(`You beckon Katja forward and she leans down and takes ${((s as any).npcdesc || '')} into her mouth. She '+iif( npc_throat['A14'] < dick, 'has a hard time taking his big dick in her mouth', 'Licks his cock like a pro')+' while he continues to lick her pussy and you look on.`);
     qspCall(s, 'arousal', 'voyeur_sex', 2, 'group');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -558,14 +558,14 @@ function enterLibraryThreesome2(s: GameState, scene: SceneBuilder): void {
       { label: 'Switch positions', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/library_threesome8.jpg');
     // TODO-QSP: dynamic text: You climb off his dick and tell Katja that it's her turn. You then guide his dic...
-    scene.text(`You climb off his dick and tell Katja that it's her turn. You then guide his dick into her very wet pussy as she sits down on it. As she starts riding it, you get up and crawl over to ${((s as any).npcdesc ?? 0)}'s face before sitting on it and letting him eat your pussy.`);
+    scene.text(`You climb off his dick and tell Katja that it's her turn. You then guide his dick into her very wet pussy as she sits down on it. As she starts riding it, you get up and crawl over to ${((s as any).npcdesc || '')}'s face before sitting on it and letting him eat your pussy.`);
     qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Get on all fours', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/library_threesome9.jpg');
     // TODO-QSP: dynamic text: You and Katja get off <<$npcdesc>>, who gets up from the table. You and Katja th...
-    scene.text(`You and Katja get off ${((s as any).npcdesc ?? 0)}, who gets up from the table. You and Katja then get gown on all four on the edge of the table, and ${((s as any).npcdesc ?? 0)} slides his dick into you. He continues to fuck you from behind, but also starts alternating between fucking you and Katja.`);
+    scene.text(`You and Katja get off ${((s as any).npcdesc || '')}, who gets up from the table. You and Katja then get gown on all four on the edge of the table, and ${((s as any).npcdesc || '')} slides his dick into you. He continues to fuck you from behind, but also starts alternating between fucking you and Katja.`);
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -580,7 +580,7 @@ function enterLibraryThreesome2(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/library_threesome10.jpg');
     // TODO-QSP: dynamic text: After a while, as he is fucking Katja, you get up and lie yourself on top of Kat...
-    scene.text(`After a while, as he is fucking Katja, you get up and lie yourself on top of Katja. ${((s as any).npcdesc ?? 0)} then starts alternating between pounding his dick into your pussy and into Katja's. After doing this for a while, you hear Katja cum while he is inside her. When she comes down, he switches to you and is clearly getting close to cumming himself.`);
+    scene.text(`After a while, as he is fucking Katja, you get up and lie yourself on top of Katja. ${((s as any).npcdesc || '')} then starts alternating between pounding his dick into your pussy and into Katja's. After doing this for a while, you hear Katja cum while he is inside her. When she comes down, he switches to you and is clearly getting close to cumming himself.`);
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -589,9 +589,9 @@ function enterLibraryThreesome2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.text('He continues to pound you, and you\'re wondering if he will manage to pull out before he pulls out at the last second, causing his cum to splatter all over your pussy. You then climb off Katja and she slides off the table.');
     // TODO-QSP: dynamic text: "That was amazing!" <<$npcdesc>> says while getting dressed.
-    scene.text(`"That was amazing!" ${((s as any).npcdesc ?? 0)} says while getting dressed.`);
+    scene.text(`"That was amazing!" ${((s as any).npcdesc || '')} says while getting dressed.`);
     // TODO-QSP: dynamic text: "Yeah, that wasn't bad," Katja replies. '+iif(katjaQW['slut'] >= 100, '"At least...
-    scene.text(`"Yeah, that wasn't bad," Katja replies. '+iif(katjaQW['slut'] >= 100, '"At least he knows how to use his dick, even if he doesn't know how to use his words,"', '"Yes. We did get something useful out of him after all, who would have thought with such a corny come on" you say.')+' ${((s as any).npcdesc ?? 0)} doesn't seem to know how to react to that, and just puts on the rest of his clothes and leaves.`);
+    scene.text(`"Yeah, that wasn't bad," Katja replies. '+iif(katjaQW['slut'] >= 100, '"At least he knows how to use his dick, even if he doesn't know how to use his words,"', '"Yes. We did get something useful out of him after all, who would have thought with such a corny come on" you say.')+' ${((s as any).npcdesc || '')} doesn't seem to know how to react to that, and just puts on the rest of his clothes and leaves.`);
     scene.text('Once he\'s gone, you and Katja break down laughing before finally getting cleaned up, your clothes back on and returning to the books.');
     qspCall(s, 'cum_call', 'labia', ((s as any).npcID ?? 0), 1);
     qspCall(s, 'cum_cleanup', '', 1);
@@ -632,7 +632,7 @@ function enterThreeseomeOver(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('Katja continues to study while you watch her.');
   }
-  qspCall(s, 'katja_uni_sex', 'library_leave_actions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLibraryLeaveActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -780,7 +780,7 @@ function enterKatjaVagFuckedLazar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/lazar_katja_uni_3some10.jpg');
     // TODO-QSP: dynamic text: Katja's cries get louder, though they're mostly muffled by your pussy as she con...
-    scene.text(`Katja's cries get louder, though they're mostly muffled by your pussy as she continues to eat you out. While he pounds Katja's twat, you noticed he's now looking directly at you, like he wants to swap and fuck you now. He grins. "Alright, I don't want ${((s as any).pcs_nickname ?? 0)} to feel left out."`);
+    scene.text(`Katja's cries get louder, though they're mostly muffled by your pussy as she continues to eat you out. While he pounds Katja's twat, you noticed he's now looking directly at you, like he wants to swap and fuck you now. He grins. "Alright, I don't want ${((s as any).pcs_nickname || '')} to feel left out."`);
     scene.text('He pulls his cock from Katja\'s pussy and takes a seat at his end of the couch before inviting you to ride him.');
     qspCall(s, 'arousal', 'cuni', 3, ((s as any).npcID1 ?? 0), 'group', 'lesbian');
     qspCall(s, 'stat', '');
@@ -809,17 +809,17 @@ function enterGetFuckedByLazar(s: GameState, scene: SceneBuilder): void {
       scene.text('"No, I\'m not a virgin! I\'ve just never been with a guy before," you tell him as you slowly start lowering yourself down, guiding his dick into your wet slit.');
       scene.text('"Oh," You can sense his slight confusion. As you slowly lower yourself more until you feel completely full, Lazar seems content to just let you control things and he coaxes Katja to sit on his face so he can eat her out.');
       // TODO-QSP: dynamic text: You moan loudly as you take more of his <<dick>>cm <<$dick_girth>> dick inside o...
-      scene.text(`You moan loudly as you take more of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick inside of you. "A dick feels different from a dildo, it is so much warmer!" You say to Katja as you slowly ride Lazar's cock.`);
+      scene.text(`You moan loudly as you take more of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick inside of you. "A dick feels different from a dildo, it is so much warmer!" You say to Katja as you slowly ride Lazar's cock.`);
     } else {
       if (((s as any).npc_had_sex ?? 0)?.['A149'] === 0) {
         scene.text('While you straddle him, you look at him. "I don\'t know what you like, but I\'m going to control this, okay?"');
         scene.text('He chuckles, "Sure thing."');
         scene.text('Lazar seems content to just let you control things, and he coaxes Katja to sit on his face so he can eat her out.');
         // TODO-QSP: dynamic text: You moan loudly as you take more of his <<dick>>cm <<$dick_girth>> dick inside o...
-        scene.text(`You moan loudly as you take more of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick inside of you. "He's so much bigger than I was expecting!" you say to Katja as you slowly ride Lazar's cock.`);
+        scene.text(`You moan loudly as you take more of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick inside of you. "He's so much bigger than I was expecting!" you say to Katja as you slowly ride Lazar's cock.`);
       } else {
         // TODO-QSP: dynamic text: You slowly start lowering yourself down, guiding his dick into your wet slit. Yo...
-        scene.text(`You slowly start lowering yourself down, guiding his dick into your wet slit. You moan loudly as you take more of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick inside of you. "Ohh, he is so big! I love it," you say to Katja as you slowly ride Lazar's cock.`);
+        scene.text(`You slowly start lowering yourself down, guiding his dick into your wet slit. You moan loudly as you take more of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick inside of you. "Ohh, he is so big! I love it," you say to Katja as you slowly ride Lazar's cock.`);
       }
     }
   }
@@ -830,7 +830,7 @@ function enterGetFuckedByLazar(s: GameState, scene: SceneBuilder): void {
     { label: 'Ride him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/lazar_katja_uni_3some12.jpg');
     // TODO-QSP: dynamic text: You watch Katja sitting on Lazar's face while you continue riding him. It feels ...
-    scene.text(`You watch Katja sitting on Lazar's face while you continue riding him. It feels so good to be in control of the rhythm and depth. Just as you feel you were reaching your peak, Lazar has Katja get off his face and he grabs you by the waist and pulls you off from him, his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock popping free from your cunt.`);
+    scene.text(`You watch Katja sitting on Lazar's face while you continue riding him. It feels so good to be in control of the rhythm and depth. Just as you feel you were reaching your peak, Lazar has Katja get off his face and he grabs you by the waist and pulls you off from him, his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock popping free from your cunt.`);
     scene.text('"Okay, girls, before I finish, there\'s still one more hole of yours that I need to fuck."');
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'stat', '');
@@ -908,10 +908,10 @@ function enterKatjaAnalFucked(s: GameState, scene: SceneBuilder): void {
     { label: 'Keep eating her out', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/lazar_katja_uni_3some14.jpg');
     // TODO-QSP: dynamic text: While you lick at Katja's pussy, you watch as Lazar sinks his <<dick>>cm <<$dick...
-    scene.text(`While you lick at Katja's pussy, you watch as Lazar sinks his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick most of the way up her ass. She occasionally grunts and flinches when he goes a little too fast or pushes in a little too deep, but he always pulls backs and holds her in place.`);
+    scene.text(`While you lick at Katja's pussy, you watch as Lazar sinks his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick most of the way up her ass. She occasionally grunts and flinches when he goes a little too fast or pushes in a little too deep, but he always pulls backs and holds her in place.`);
     scene.text('Katja\'s moans start to get louder and her pussy juice is running down your face as she quickly approaches an orgasm. Lazar continues fucking her ass as she spasms over you but he pulls out of her once she\'s done.');
     // TODO-QSP: dynamic text: He looks down at you, "Come on, <<$pcs_nickname>>. I want to fuck your ass now."
-    scene.text(`He looks down at you, "Come on, ${((s as any).pcs_nickname ?? 0)}. I want to fuck your ass now."`);
+    scene.text(`He looks down at you, "Come on, ${((s as any).pcs_nickname || '')}. I want to fuck your ass now."`);
     qspCall(s, 'arousal', 'erotic', 2);
     qspCall(s, 'arousal', 'cuni_give', (-2), ((s as any).npcID1 ?? 0), 'group', 'lesbian');
     qspCall(s, 'stat', '');
@@ -930,27 +930,27 @@ function enterFuckedAnalByLazar(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).pcs_ass ?? 0))) {
     scene.text('You reach back and place your hand on Lazar\'s chest. "I haven\'t done this before, so please…"');
     // TODO-QSP: dynamic text: He grabs your hand and gives it a squeeze. "It's alright, <<$pcs_nickname>>, I'l...
-    scene.text(`He grabs your hand and gives it a squeeze. "It's alright, ${((s as any).pcs_nickname ?? 0)}, I'll be gentle. I'll put it in nice and slow; you just breathe and relax, okay?"`);
+    scene.text(`He grabs your hand and gives it a squeeze. "It's alright, ${((s as any).pcs_nickname || '')}, I'll be gentle. I'll put it in nice and slow; you just breathe and relax, okay?"`);
     scene.text('You take a deep breath and slowly release it as you feel the tip of his cock pressing against your virgin sphincter.');
     scene.text('You let out a gasp when his head pops into your butt. "See, that wasn\'t so bad," he says as you adjust to his member inside of your ass.');
     // TODO-QSP: dynamic text: He starts to slowly move his cock inside of you. Katja places her head next to y...
-    scene.text(`He starts to slowly move his cock inside of you. Katja places her head next to yours. "It doesn't feel that painful, does it, ${((s as any).pcs_nickname ?? 0)}? Feels really good?"`);
+    scene.text(`He starts to slowly move his cock inside of you. Katja places her head next to yours. "It doesn't feel that painful, does it, ${((s as any).pcs_nickname || '')}? Feels really good?"`);
   } else {
     if (((s as any).stat ?? 0)?.['anal'] === 0) {
       scene.text('"This is my first time trying this with a guy," you tell him.');
       scene.text('He looks at you and smiles. "Don\'t worry, it will feel good. Just remember to breathe and relax."');
       scene.text('You take a deep breath and slowly release it as you feel the tip of his cock pressing against your butthole.');
       // TODO-QSP: dynamic text: His head pops into your butt and he slowly fills you up with his <<dick>>cm memb...
-      scene.text(`His head pops into your butt and he slowly fills you up with his ${((s as any).dick ?? 0)}cm member. He stops for a second before he starts to slowly fuck you.`);
+      scene.text(`His head pops into your butt and he slowly fills you up with his ${((s as any).dick || '')}cm member. He stops for a second before he starts to slowly fuck you.`);
       // TODO-QSP: dynamic text: "It feels so different from a dildo, doesn't it, <<$pcs_nickname>>?" Katja asks ...
-      scene.text(`"It feels so different from a dildo, doesn't it, ${((s as any).pcs_nickname ?? 0)}?" Katja asks you. "It's so much hotter than a toy!"`);
+      scene.text(`"It feels so different from a dildo, doesn't it, ${((s as any).pcs_nickname || '')}?" Katja asks you. "It's so much hotter than a toy!"`);
     } else {
       if (((s as any).npc_had_sex ?? 0)?.['A149'] === 0) {
         scene.text('"I\'m not sure what you like, but don\'t get too rough," you tell him.');
         scene.text('"Don\'t worry," he says in his most reassuring voice. "It will feel good. Just remember to breathe and relax."');
         scene.text('You take a deep breath and slowly release it as you feel the tip of his cock pressing against your butthole.');
         // TODO-QSP: dynamic text: His head pops into your butt and he slowly fills you up with his <<dick>>cm memb...
-        scene.text(`His head pops into your butt and he slowly fills you up with his ${((s as any).dick ?? 0)}cm member. He stops for a second before he starts to slowly fuck you.`);
+        scene.text(`His head pops into your butt and he slowly fills you up with his ${((s as any).dick || '')}cm member. He stops for a second before he starts to slowly fuck you.`);
         scene.text('"He\'s so big; it feels like he is about to push it out your throat, doesn\'t it?" Katja asks while she watches Lazar fuck you.');
       } else {
         scene.text('You take a deep breath and slowly release it, trying to relax as much as you can. You feel the tip of his dick pushing into your asshole and Lazar starts to slowly fuck you; not too deep and not too fast.');
@@ -966,7 +966,7 @@ function enterFuckedAnalByLazar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/lazar_katja_uni_3some16.jpg');
     // TODO-QSP: dynamic text: He starts slowly pushing his <<dick>>cm <<$dick_girth>> cock deeper up your ass,...
-    scene.text(`He starts slowly pushing his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock deeper up your ass, fucking you faster until he figures out your limit. Once he finds that sweet spot, he tries to stay in it.`);
+    scene.text(`He starts slowly pushing his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock deeper up your ass, fucking you faster until he figures out your limit. Once he finds that sweet spot, he tries to stay in it.`);
     scene.text('Sometimes he goes too deep or fast, which makes you cry out a bit, but he quickly backs off until he makes it feel as good as he can. After a bit, Katja reaches down and starts rubbing your clit.');
     scene.text('Suddenly, Lazar yanks his dick out of your ass and scrambles to his feet. "Fuck, I\'m cumming!"');
     qspCall(s, 'arousal', 'anal', 3, ((s as any).npcID ?? 0), 'group');
@@ -1100,7 +1100,7 @@ function enterLazarIvanKatjaUni_4some(s: GameState, scene: SceneBuilder): void {
       { label: 'The guys join', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/lazar_ivan_katja_uni_4some2.jpg');
     // TODO-QSP: dynamic text: While you and Katja are sitting on your knees on the couch, sharing a long kiss,...
-    scene.text(`While you and Katja are sitting on your knees on the couch, sharing a long kiss, the guys move in. Katja quickly has Lazar's ${((s as any).dick2 ?? 0)} cm, ${((s as any).dick_girth2 ?? 0)} dick in her hand, while Ivan approaches you from behind.`);
+    scene.text(`While you and Katja are sitting on your knees on the couch, sharing a long kiss, the guys move in. Katja quickly has Lazar's ${((s as any).dick2 || '')} cm, ${((s as any).dick_girth2 || '')} dick in her hand, while Ivan approaches you from behind.`);
     scene.text('You and Katja break off your kiss and, with a look, decide to give the guys some attention.');
     qspCall(s, 'arousal', 'foreplay', 2, ((s as any).npcID ?? 0), 'group');
     qspCall(s, 'arousal', 'kiss', (-2), ((s as any).npcID ?? 0), 'group', 'lesbian');
@@ -1109,7 +1109,7 @@ function enterLazarIvanKatjaUni_4some(s: GameState, scene: SceneBuilder): void {
       { label: 'Suck some dick', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/lazar_ivan_katja_uni_4some3.jpg');
     // TODO-QSP: dynamic text: You turn around and take Ivan's <<dick1>> cm, <<$dick_girth1>> cock in your eage...
-    scene.text(`You turn around and take Ivan's ${((s as any).dick1 ?? 0)} cm, ${((s as any).dick_girth1 ?? 0)} cock in your eager mouth. At the same time, Katja is exploring Lazar's cock with her mouth.`);
+    scene.text(`You turn around and take Ivan's ${((s as any).dick1 || '')} cm, ${((s as any).dick_girth1 || '')} cock in your eager mouth. At the same time, Katja is exploring Lazar's cock with her mouth.`);
     scene.text('"Suck that dick," Ivan says.');
     scene.text('"Yeah, show us what good little cocksucking sluts you are!" Lazar adds, and the two of you start sucking eagerly to show off your skills.');
     if (((s as any).npc_throat ?? 0)?.['A14'] < ((s as any).dick2 ?? 0)) {
@@ -1163,14 +1163,14 @@ function enterLazarIvanKatjaUni_4some(s: GameState, scene: SceneBuilder): void {
     }
     if (2*((s as any).pcs_throat ?? 0) < ((s as any).dick1 ?? 0)) {
       // TODO-QSP: dynamic text: You only have a moment before Ivan stuffs his <<$dick_girth1>> cock in your thro...
-      scene.text(`You only have a moment before Ivan stuffs his ${((s as any).dick_girth1 ?? 0)} cock in your throat. You have a lot of trouble accommodating it and your gag reflex is constantly giving you problems.`);
+      scene.text(`You only have a moment before Ivan stuffs his ${((s as any).dick_girth1 || '')} cock in your throat. You have a lot of trouble accommodating it and your gag reflex is constantly giving you problems.`);
     } else {
       if (((s as any).pcs_throat ?? 0) < ((s as any).dick1 ?? 0)) {
         // TODO-QSP: dynamic text: You only have a moment before Ivan stuffs his <<$dick_girth1>> cock in your thro...
-        scene.text(`You only have a moment before Ivan stuffs his ${((s as any).dick_girth1 ?? 0)} cock in your throat. You have a little trouble accommodating it and your gag reflex is occasionally giving you problems.`);
+        scene.text(`You only have a moment before Ivan stuffs his ${((s as any).dick_girth1 || '')} cock in your throat. You have a little trouble accommodating it and your gag reflex is occasionally giving you problems.`);
       } else {
         // TODO-QSP: dynamic text: You only have a moment before Ivan stuffs his <<$dick_girth1>> cock in your thro...
-        scene.text(`You only have a moment before Ivan stuffs his ${((s as any).dick_girth1 ?? 0)} cock in your throat. You have no trouble taking it all and you deepthroat it like a pro.`);
+        scene.text(`You only have a moment before Ivan stuffs his ${((s as any).dick_girth1 || '')} cock in your throat. You have no trouble taking it all and you deepthroat it like a pro.`);
       }
     }
     qspCall(s, 'arousal', 'bj', 4, ((s as any).npcID2 ?? 0), 'group', 'deepthroat');
@@ -1208,7 +1208,7 @@ function enterLazarIvanKatjaUni_4some(s: GameState, scene: SceneBuilder): void {
       { label: 'Get your ass pounded', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/lazar_ivan_katja_uni_4some7.jpg');
     // TODO-QSP: dynamic text: The guys start picking up the pace and they're soon pounding your assholes fast ...
-    scene.text(`The guys start picking up the pace and they're soon pounding your assholes fast and hard. You can see that Katja is '+iif( npc_ass['A14'] + 8*katjaQW['lube'] < dick2, 'taking Lazar's ${((s as any).boydesc2 ?? 0)}, ${((s as any).dick_girth2 ?? 0)} cock like a pro and', 'having some trouble taking Lazar's ${((s as any).boydesc2 ?? 0)}, ${((s as any).dick_girth2 ?? 0)} cock, so you')+' decide to give her another deep kiss.`);
+    scene.text(`The guys start picking up the pace and they're soon pounding your assholes fast and hard. You can see that Katja is '+iif( npc_ass['A14'] + 8*katjaQW['lube'] < dick2, 'taking Lazar's ${((s as any).boydesc2 || '')}, ${((s as any).dick_girth2 || '')} cock like a pro and', 'having some trouble taking Lazar's ${((s as any).boydesc2 || '')}, ${((s as any).dick_girth2 || '')} cock, so you')+' decide to give her another deep kiss.`);
     // TODO-QSP: dynamic text: While you and Katja's tongues are fighting in each other's mouths, you hear Ivan...
     scene.text('While you and Katja\'s tongues are fighting in each other\'s mouths, you hear Ivan say "This\'+iif( pcs_ass < dick1, \' is a nice, tight asshole\', \' asshole is used to taking big dicks, but it\'s still great\')+\'."');
     qspCall(s, 'arousal', 'anal', 4, ((s as any).npcID1 ?? 0), 'group');
@@ -1221,12 +1221,12 @@ function enterLazarIvanKatjaUni_4some(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).npc_ass) (s as any).npc_ass = {}; (s as any).npc_ass['A14'] = ((s as any).npc_ass['A14'] ?? 0) + (1);
     }
     // TODO-QSP: dynamic text: After a few minutes, the guys get off you. "I want some pussy now," Lazar says a...
-    scene.text(`After a few minutes, the guys get off you. "I want some pussy now," Lazar says as he lies on his back on the couch. "Jump on, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`After a few minutes, the guys get off you. "I want some pussy now," Lazar says as he lies on his back on the couch. "Jump on, ${((s as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Get on Lazar\'s cock', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/sex/lazar_ivan_katja_uni_4some8.jpg');
     // TODO-QSP: dynamic text: You do as Lazar says and sit down on his <<$dick_girth2>> dick. Ivan moves so th...
-    scene.text(`You do as Lazar says and sit down on his ${((s as any).dick_girth2 ?? 0)} dick. Ivan moves so that his cock is in your face and Katja joins you in sucking it while you ride Lazar.`);
+    scene.text(`You do as Lazar says and sit down on his ${((s as any).dick_girth2 || '')} dick. Ivan moves so that his cock is in your face and Katja joins you in sucking it while you ride Lazar.`);
     scene.text('After a short period, Ivan moves away and gets behind you, lining his dick with your asshole.');
     qspCall(s, 'arousal', 'vaginal', 3, ((s as any).npcID2 ?? 0), 'group');
     qspCall(s, 'arousal', 'bj', (-2), ((s as any).npcID1 ?? 0), 'group');
@@ -1340,30 +1340,30 @@ function enterLazarIvanKatjaDp(s: GameState, scene: SceneBuilder): void {
   if (((s as any).katjaQW ?? 0)?.['dp'] === 0) {
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (5);
     // TODO-QSP: dynamic text: She does so after a little hesitation, '+iif(npc_vag['A14'] < dick2, 'still not ...
-    scene.text(`She does so after a little hesitation, '+iif(npc_vag['A14'] < dick2, 'still not completely comfortable with a dick his size', 'taking his ${((s as any).boydesc2 ?? 0)} cock like it was something she does every day')+'.`);
+    scene.text(`She does so after a little hesitation, '+iif(npc_vag['A14'] < dick2, 'still not completely comfortable with a dick his size', 'taking his ${((s as any).boydesc2 || '')} cock like it was something she does every day')+'.`);
     // TODO-QSP: dynamic text: You then'+iif(katjaQW['lube'] = 1, ' start adding more lube to her asshole and '...
     scene.text('You then\'+iif(katjaQW[\'lube\'] = 1, \' start adding more lube to her asshole and \', \' \')+\'decide to give Ivan\'s cock a good sloppy blowjob to apply more lubrication.');
     // TODO-QSP: dynamic text: After a minute of getting his dick ready and Katja comfortable on Lazar's cock, ...
-    scene.text(`After a minute of getting his dick ready and Katja comfortable on Lazar's cock, you guide Ivan's ${((s as any).dick_girth1 ?? 0)} dick into Katja's'+iif(npc_ass['A14'] < 5, ' tiny', ' '+iif(npc_vag['A14'] < 10, 'somewhat', 'well')+'used')+' asshole.`);
+    scene.text(`After a minute of getting his dick ready and Katja comfortable on Lazar's cock, you guide Ivan's ${((s as any).dick_girth1 || '')} dick into Katja's'+iif(npc_ass['A14'] < 5, ' tiny', ' '+iif(npc_vag['A14'] < 10, 'somewhat', 'well')+'used')+' asshole.`);
   } else {
     if (((s as any).katjaQW ?? 0)?.['dp'] < 5) {
       if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (3);
       // TODO-QSP: dynamic text: She does so with little hesitation '+iif(npc_vag['A14'] < dick2, 'still not comp...
-      scene.text(`She does so with little hesitation '+iif(npc_vag['A14'] < dick2, 'still not completely comfortable with dicks his size', 'taking his ${((s as any).boydesc2 ?? 0)} cock as if it were something she does everyday')+'.`);
+      scene.text(`She does so with little hesitation '+iif(npc_vag['A14'] < dick2, 'still not completely comfortable with dicks his size', 'taking his ${((s as any).boydesc2 || '')} cock as if it were something she does everyday')+'.`);
       // TODO-QSP: dynamic text: You then'+iif(katjaQW['lube'] = 1, ' start adding more lube to her asshole and '...
       scene.text('You then\'+iif(katjaQW[\'lube\'] = 1, \' start adding more lube to her asshole and \', \' \')+\'decide to give Ivan\'s cock a good sloppy blowjob to apply more lubrication.');
       // TODO-QSP: dynamic text: After a minute of getting his dick ready with Katja already riding Lazar's cock,...
-      scene.text(`After a minute of getting his dick ready with Katja already riding Lazar's cock, you stop her and guide Ivan's ${((s as any).dick_girth1 ?? 0)} dick into Katja's'+iif(npc_ass['A14'] < 5, ' tiny', ' '+iif(npc_vag['A14'] < 10, 'somewhat', 'well')+'used')+' asshole.`);
+      scene.text(`After a minute of getting his dick ready with Katja already riding Lazar's cock, you stop her and guide Ivan's ${((s as any).dick_girth1 || '')} dick into Katja's'+iif(npc_ass['A14'] < 5, ' tiny', ' '+iif(npc_vag['A14'] < 10, 'somewhat', 'well')+'used')+' asshole.`);
     } else {
       if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['slut'] = ((s as any).katjaQW['slut'] ?? 0) + (1);
       // TODO-QSP: dynamic text: She quickly jumps on it '+iif(npc_vag['A14'] < dick2, 'still not completely comf...
-      scene.text(`She quickly jumps on it '+iif(npc_vag['A14'] < dick2, 'still not completely comfortable with dicks his size', 'taking his ${((s as any).boydesc2 ?? 0)} cock as if it were something she does everyday')+'.`);
+      scene.text(`She quickly jumps on it '+iif(npc_vag['A14'] < dick2, 'still not completely comfortable with dicks his size', 'taking his ${((s as any).boydesc2 || '')} cock as if it were something she does everyday')+'.`);
       // TODO-QSP: dynamic text: You then'+iif(katjaQW['lube'] = 1, ' start adding more lube to her asshole and '...
       scene.text('You then\'+iif(katjaQW[\'lube\'] = 1, \' start adding more lube to her asshole and \', \' \')+\'decide to give Ivan\'s cock a good sloppy blowjob to apply more lubrication, while Katja starts to ride Lazar hard.');
       // TODO-QSP: dynamic text: After a minute of getting his dick ready, Katja starts yelling at you. "<<$pcs_n...
-      scene.text(`After a minute of getting his dick ready, Katja starts yelling at you. "${((s as any).pcs_nickname ?? 0)}, get his cock in my ass now!"`);
+      scene.text(`After a minute of getting his dick ready, Katja starts yelling at you. "${((s as any).pcs_nickname || '')}, get his cock in my ass now!"`);
       // TODO-QSP: dynamic text: You guide Ivan's <<$dick_girth1>> dick into Katja's'+iif(npc_ass['A14'] < 5, ' t...
-      scene.text(`You guide Ivan's ${((s as any).dick_girth1 ?? 0)} dick into Katja's'+iif(npc_ass['A14'] < 5, ' tiny', ' '+iif(npc_vag['A14'] < 10, 'somewhat', 'well')+'used')+' asshole.`);
+      scene.text(`You guide Ivan's ${((s as any).dick_girth1 || '')} dick into Katja's'+iif(npc_ass['A14'] < 5, ' tiny', ' '+iif(npc_vag['A14'] < 10, 'somewhat', 'well')+'used')+' asshole.`);
     }
   }
   qspCall(s, 'arousal', 'foreplay', 3, ((s as any).npcID ?? 0), 'group', 'lesbian');
@@ -1407,7 +1407,7 @@ function enterLazarIvanKatjaDp(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: The guys begin to pick up pace and before long, they are plowing both of Katja's...
     scene.text('The guys begin to pick up pace and before long, they are plowing both of Katja\'s holes. \'+iif( pcs_ass[\'A14\'] + 4*katjaQW[\'lube\'] < dick1 or 2*pcs_vag[\'A14\'] < dick2, \'Katja is clearly feeling a mixture of pain and pleasure, but endures\', \'Katja seems to take a lot of pleasure from it, and enjoys\')+\' the pounding.');
     // TODO-QSP: dynamic text: After some minutes with Katja letting out moans of'+iif( pcs_ass['A14'] + 4* kat...
-    scene.text(`After some minutes with Katja letting out moans of'+iif( pcs_ass['A14'] + 4* katjaQW['lube'] < dick1 or 2*pcs_vag['A14'] < dick2, ' pain and ', ' ')+'pleasure, Lazar says, "I want some of ${((s as any).pcs_nickname ?? 0)}'s sweet ass!" and the guys stop.`);
+    scene.text(`After some minutes with Katja letting out moans of'+iif( pcs_ass['A14'] + 4* katjaQW['lube'] < dick1 or 2*pcs_vag['A14'] < dick2, ' pain and ', ' ')+'pleasure, Lazar says, "I want some of ${((s as any).pcs_nickname || '')}'s sweet ass!" and the guys stop.`);
     if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['dp'] = ((s as any).katjaQW['dp'] ?? 0) + (1);
     if (((s as any).katjaQW ?? 0)?.['ivan_lazar_dp'] === 0) {
       if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['ivan_lazar_dp'] = 1;
@@ -1557,7 +1557,7 @@ function enterAfterMovieMasturbation1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/sex/after_movie_mastubation4.jpg');
     // TODO-QSP: dynamic text: Katja starts pulling down your bra, which uncovers your <<$pc_desc['breast']>> b...
-    scene.text(`Katja starts pulling down your bra, which uncovers your ${((s as any).pc_desc ?? 0)?.['breast']} breasts. You then proceed to take your bras off.`);
+    scene.text(`Katja starts pulling down your bra, which uncovers your ${((s as any).pc_desc ?? 0)?.['breast'] ?? ''} breasts. You then proceed to take your bras off.`);
     scene.actions([
       { label: 'Now her panties', goto: ['katja_uni_sex', 'after_movie_masturbation2'] },
     ]);
@@ -1841,7 +1841,7 @@ function enterAfterMovieSex2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/sex/after_movie_sex12.jpg');
     // TODO-QSP: dynamic text: After Katja comes down, she lies on top of you and looks into your eyes for a wh...
-    scene.text(`After Katja comes down, she lies on top of you and looks into your eyes for a while before she finally gets up. "That was great, ${((s as any).pcs_nickname ?? 0)}! Just what I needed. But it is getting late and I should probably go to bed."`);
+    scene.text(`After Katja comes down, she lies on top of you and looks into your eyes for a while before she finally gets up. "That was great, ${((s as any).pcs_nickname || '')}! Just what I needed. But it is getting late and I should probably go to bed."`);
     scene.text('You take the hint. "It was definitely fantastic, we should do this more often. But I really should get going," you tell her, causing her to blush. You start to get dressed while Katja gets ready for bed, before saying your goodbyes.');
     scene.actions([
       { label: 'Go to the hallway', handler: (st: GameState) => {
@@ -2051,7 +2051,7 @@ function enterAfterDateSex2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I don\'t feel like watching a movie right now," you say.');
     scene.text('"Okay. What we just did was still a perfect way to end our evening," Katja replies.');
     // TODO-QSP: dynamic text: "See you some other time, '+iif(katjaQW['couple'] = 1, 'my love', '<<$pcs_nickna...
-    scene.text(`"See you some other time, '+iif(katjaQW['couple'] = 1, 'my love', '${((s as any).pcs_nickname ?? 0)}')+'," she says before'+iif(katjaQW['couple'] = 1, ' she gives you a quick kiss, and ', ' ')+'starts to set up her computer for a movie.`);
+    scene.text(`"See you some other time, '+iif(katjaQW['couple'] = 1, 'my love', '${((s as any).pcs_nickname || '')}')+'," she says before'+iif(katjaQW['couple'] = 1, ' she gives you a quick kiss, and ', ' ')+'starts to set up her computer for a movie.`);
     scene.actions([
       { label: 'Leave her room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -2071,7 +2071,7 @@ function enterAfterDateSex2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Yes, it was," you agree.');
       scene.text('"Now I\'m off to bed," Katja continues.');
       // TODO-QSP: dynamic text: "See you some other time, '+iif(katjaQW['couple'] = 1, 'my love', '<<$pcs_nickna...
-      scene.text(`"See you some other time, '+iif(katjaQW['couple'] = 1, 'my love', '${((s as any).pcs_nickname ?? 0)}')+'," she says before'+iif(katjaQW['couple'] = 1, ' she gives you a quick kiss, and ', ' ')+'starts to set up her computer for a movie.`);
+      scene.text(`"See you some other time, '+iif(katjaQW['couple'] = 1, 'my love', '${((s as any).pcs_nickname || '')}')+'," she says before'+iif(katjaQW['couple'] = 1, ' she gives you a quick kiss, and ', ' ')+'starts to set up her computer for a movie.`);
       scene.actions([
         { label: 'Leave her room', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;

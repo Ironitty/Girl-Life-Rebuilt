@@ -25,7 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('<center><b>Grimoire Magicka</b></center>');
     (s as any).imageid = Math.floor(Math.random() * 2) + 1;
-    scene.img(`images/locations/city/citycenter/library/mage_learning_${((s as any).imageid ?? 0)}.jpg`);
+    scene.img(`images/locations/city/citycenter/library/mage_learning_${((s as any).imageid || '')}.jpg`);
     scene.text('You pick out one of the magic books you can actually read and sit down with it.');
     scene.text('You discover that not only is the subject matter complex and mostly a mystery to you, but the descriptions and explanations are unnecessarily wordy, as if the writer had something to prove.');
     scene.text('After about an hour, you decide to take a break from it and instead test your memory. You don\'t remember much, but you understand magic a little better than before.');

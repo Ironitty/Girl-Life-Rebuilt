@@ -45,7 +45,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).tmppicrand ?? 0) === 1) {
     scene.img('images/shared/sex/blowjob/bjp.jpg');
   } else {
-    scene.img(`images/shared/sex/blowjob/bjp${((s as any).tmppicrand ?? 0)}.jpg`);
+    scene.img(`images/shared/sex/blowjob/bjp${((s as any).tmppicrand || '')}.jpg`);
   }
   scene.text('You put a condom between your lips and slowly guide your mouth to his penis, gently rolling the condom down using only your lips. You can tell the guy is impressed with your skills.');
   if ((!((s as any).prosti ?? 0))) {

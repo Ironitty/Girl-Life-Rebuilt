@@ -11,9 +11,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   // TODO-QSP: dynamic text: You arrive at the restaurant and sit at a table. <<$npcdesc>> orders a meal and ...
-  scene.text(`You arrive at the restaurant and sit at a table. ${((s as any).npcdesc ?? 0)} orders a meal and good wine. You have to wait a little until the food arrives.`);
+  scene.text(`You arrive at the restaurant and sit at a table. ${((s as any).npcdesc || '')} orders a meal and good wine. You have to wait a little until the food arrives.`);
   // TODO-QSP: dynamic text: <<$npcdesc>> tells you an anecdote:<br>
-  scene.text(`${((s as any).npcdesc ?? 0)} tells you an anecdote:<br>`);
+  scene.text(`${((s as any).npcdesc || '')} tells you an anecdote:<br>`);
   qspCall(s, 'anekdot', '');
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     if (((s as any).npc_dates ?? 0)?.[String((s as any).npcID ?? 0)] > 25) {
@@ -60,7 +60,7 @@ function enterA(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   qspCall(s, 'drugs', 'alcohol', 'wine');
   // TODO-QSP: dynamic text: When your food arrives, <<$npcdesc>> pours you a glass of wine and proposes a to...
-  scene.text(`When your food arrives, ${((s as any).npcdesc ?? 0)} pours you a glass of wine and proposes a toast to love.`);
+  scene.text(`When your food arrives, ${((s as any).npcdesc || '')} pours you a glass of wine and proposes a toast to love.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Eat', handler: (st: GameState) => {
@@ -75,7 +75,7 @@ function enterB(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'drugs', 'alcohol', 'wine');
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: After you finish your meal and empty the wine, <<$npcdesc>> offers to take you t...
-  scene.text(`After you finish your meal and empty the wine, ${((s as any).npcdesc ?? 0)} offers to take you to his home.`);
+  scene.text(`After you finish your meal and empty the wine, ${((s as any).npcdesc || '')} offers to take you to his home.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go Home', goto: ['sexm', 'start'] },

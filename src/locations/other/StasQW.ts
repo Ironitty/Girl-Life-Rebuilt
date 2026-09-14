@@ -33,9 +33,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).StasKafe ?? 0) === 1) {
       scene.img('images/locations/city/citycenter/diner/kafe.jpg');
       // TODO-QSP: dynamic text: After the dance, you sit down again at the table. The waitress brings the bill o...
-      scene.text('After the dance, you sit down again at the table. The waitress brings the bill over. You take a look at the bill and are slightly stunned by the total. \' + $func(\'money\', \'string_price\', 5000) + \'! Stas takes the bill out of your hands and says, "Do not worry, I\'ll pay."');
+      scene.text('After the dance, you sit down again at the table. The waitress brings the bill over. You take a look at the bill and are slightly stunned by the total. 5000₽! Stas takes the bill out of your hands and says, "Do not worry, I\'ll pay."');
       scene.actions([
-        { label: 'No thank you, I\'ll pay [+$func(\'money\', \'get_cost_string\', 5000)]', handler: (st: GameState) => {
+        { label: 'No thank you, I\'ll pay', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -52,13 +52,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Invite him in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Invite him in', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Invite him in [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Invite him in', handler: (st: GameState) => {
     (s as any).SStip = 0;
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');

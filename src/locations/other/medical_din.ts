@@ -14,7 +14,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).therapistFuckedPussyStage ?? 0) < 2  &&  (!((s as any).knowpreg ?? 0))) {
     if (((s as any).shotdays ?? 0) < 14  &&  ((s as any).birth_control ?? 0)?.['implant_status'] === 0) {
       scene.actions([
-        { label: 'Get a birth control shot (0:15) [+$func(\'money\', \'get_cost_string\', 2750)]', handler: (st: GameState) => {
+        { label: 'Get a birth control shot (0:15)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 2750) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -25,7 +25,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).birth_control ?? 0)?.['implant_status'] === 0) {
       scene.actions([
-        { label: 'Get a birth control implant (0:35) [+$func(\'money\', \'get_cost_string\', 19650)]', handler: (st: GameState) => {
+        { label: 'Get a birth control implant (0:35)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -36,7 +36,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).birth_control ?? 0)?.['implant_status'] === 1  ||  ((s as any).birth_control ?? 0)?.['implant_status'] === 2) {
         scene.actions([
-          { label: 'Renew your birth control implant (0:35) [+$func(\'money\', \'get_cost_string\', 19650)]', handler: (st: GameState) => {
+          { label: 'Renew your birth control implant (0:35)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 19650) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -49,7 +49,7 @@ function enterBirthControl(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).birth_control ?? 0)?.['implant_status'] > 0) {
     scene.actions([
-      { label: 'Remove your birth control implant (0:20) [+$func(\'money\', \'get_cost_string\', 1000)]', handler: (st: GameState) => {
+      { label: 'Remove your birth control implant (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -68,15 +68,15 @@ function enterBirthControlShot(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re escorted into an examination room, where you\'re told that they must do a small test before giving you the shot. You wait for fifteen minutes before the nurse comes back in.');
   if ((!((s as any).preg ?? 0))) {
     qspCall(s, 'money', 'pay', 2750);
-    qspCall(s, 'medical_din', 'birthControlShot');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBirthControlShot2(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: "Everything looks great," she says and gives you a reassuring smile as she stick...
-    scene.text(`"Everything looks great," she says and gives you a reassuring smile as she sticks a needle in your arm and depresses the plunger. "All done! You should be good for three months, give or take. It depends on body type, hormone levels and so on. If you want to be perfectly safe, we recommend you come back for another treatment one week before the three months are over. Have a nice day, Miss ${((s as any).pcs_lastname ?? 0)}!"`);
+    scene.text(`"Everything looks great," she says and gives you a reassuring smile as she sticks a needle in your arm and depresses the plunger. "All done! You should be good for three months, give or take. It depends on body type, hormone levels and so on. If you want to be perfectly safe, we recommend you come back for another treatment one week before the three months are over. Have a nice day, Miss ${((s as any).pcs_lastname || '')}!"`);
     scene.text('You thank her and wish her the same while you gather your things.');
   } else {
     qspCall(s, 'money', 'pay', 650);
     scene.text('"I\'m sorry, but we can\'t give you the shot because you\'re pregnant."');
     // TODO-QSP: dynamic text: After the initial shock subsides, you pay the ' + $func('money', 'string_price',...
-    scene.text('After the initial shock subsides, you pay the \' + $func(\'money\', \'string_price\', 650) + \' for the test and leave.');
+    scene.text('After the initial shock subsides, you pay the 650₽ for the test and leave.');
     (s as any).thinkpreg = 1;
     (s as any).knowpreg = 1;
   }
@@ -110,7 +110,7 @@ function enterBirthControlImplant(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'pay', 650);
     scene.text('"I\'m sorry, but we can\'t give you the implant because you\'re pregnant."');
     // TODO-QSP: dynamic text: After the initial shock subsides, you only have to pay ' + $func('money', 'strin...
-    scene.text('After the initial shock subsides, you only have to pay \' + $func(\'money\', \'string_price\', 650) + \' for the test and leave.');
+    scene.text('After the initial shock subsides, you only have to pay 650₽ for the test and leave.');
     (s as any).thinkpreg = 1;
     (s as any).knowpreg = 1;
   }
@@ -146,7 +146,7 @@ function enterBirthControlRenew(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).birth_control) (s as any).birth_control = {}; (s as any).birth_control['implant_timer'] = 0;
     scene.text('"I\'m sorry, but we can\'t renew your implant because you\'re pregnant."');
     // TODO-QSP: dynamic text: After the initial shock subsides, you only have to pay ' + $func('money', 'strin...
-    scene.text('After the initial shock subsides, you only have to pay \' + $func(\'money\', \'string_price\', 1650) + \' for the test and the removal of your old implant and leave.');
+    scene.text('After the initial shock subsides, you only have to pay 1650₽ for the test and the removal of your old implant and leave.');
     (s as any).thinkpreg = 1;
     (s as any).knowpreg = 1;
   }
@@ -182,7 +182,7 @@ function enterAbortion(s: GameState, scene: SceneBuilder): void {
   (s as any).vidage = ((s as any).vidage ?? 0) + (1);
   (s as any).abort = ((s as any).abort ?? 0) + (1);
   (s as any).abortionbirthdate = ((s as any).daystart ?? 0);
-  qspCall(s, 'medical_din', 'remove_preg');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRemovePreg(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).knowpregloss = 1;
   (s as any).abortrand = Math.floor(Math.random() * 11) + 0;
   if (((s as any).age ?? 0) > 18) {
@@ -309,7 +309,7 @@ function enterMorningAfterPill(s: GameState, scene: SceneBuilder): void {
       }
     }
     scene.text('<i>Well, that\'s that,</i> you think to yourself. <i>Hopefully I won\'t get pregnant now. I need to be more careful in the future.</i>');
-    qspCall(s, 'medical_din', 'morning_after_pill_function');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMorningAfterPillFunction(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
   } },
         { label: 'Reconsider', handler: (st: GameState) => {
@@ -364,10 +364,10 @@ function enterGiveBirth(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: The doctors clean up <<$kidname[nextBaby]>>.
-  scene.text(`The doctors clean up ${((s as any).kidname ?? 0)?.[String((s as any).nextBaby ?? 0)]}.`);
+  scene.text(`The doctors clean up ${((s as any).kidname ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? ''}.`);
   if (((s as any).BabyEmbryo ?? 0) > 0) {
     // TODO-QSP: dynamic text: You don't have much time to look at your <<$polreb[nextBaby]>> because you're ha...
-    scene.text(`You don't have much time to look at your ${((s as any).polreb ?? 0)?.[String((s as any).nextBaby ?? 0)]} because you're having an another contraction. Your next baby is coming!`);
+    scene.text(`You don't have much time to look at your ${((s as any).polreb ?? 0)?.[String((s as any).nextBaby ?? 0)] ?? ''} because you're having an another contraction. Your next baby is coming!`);
     // TODO-QSP: jump 'multikidloop'
   }
   (s as any).preg = 0;
@@ -384,9 +384,9 @@ function enterGiveBirth(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A34'] = 0;
   if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A29'] = 0;
   (s as any).pregChem = 0;
-  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['preg'] = ((s as any).pcs_mass ?? {})?.['preg'] / 2;
+  if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['preg'] = (((s as any).pcs_mass ?? {})?.['preg'] ?? 0) / 2;
   if (((s as any).pcs_mass ?? 0)?.['preg'] > 0) {
-    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['RecovH_next'] = (((s as any).RecovH ?? 0) * (((s as any).pcs_mass ?? {})?.['preg']-1)) / ((s as any).pcs_mass ?? {})?.['preg'];
+    if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['RecovH_next'] = (((s as any).RecovH ?? 0) * ((((s as any).pcs_mass ?? {})?.['preg'] ?? 0)-1)) / (((s as any).pcs_mass ?? {})?.['preg'] ?? 0);
   }
   (s as any).cycle = 4;
   if (((s as any).virgin_stats ?? 0)?.['lost_cause'] === '') {

@@ -201,7 +201,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
 function enterWork1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/park2.jpg');
   // TODO-QSP: dynamic text: You pretend to think it over for a moment, then look at the man again and smile:...
-  scene.text(`You pretend to think it over for a moment, then look at the man again and smile: "For you, babe? Only ${qspFunc(s, 'money', 'string_profit', ((s as any).ProsMoney ?? 0) * 100, 1)}."`);
+  scene.text(`You pretend to think it over for a moment, then look at the man again and smile: "For you, babe? Only ${qspFunc(s, 'money', 'string_profit', ((s as any).ProsMoney ?? '') * 100, 1)}."`);
   if (((s as any).vidage ?? 0) < 18) {
     (s as any).vnpr = 15;
   } else {
@@ -316,7 +316,7 @@ function enterWork1(s: GameState, scene: SceneBuilder): void {
       }
       if ((Math.floor(Math.random() * 2) + 0) === 1) {
         // TODO-QSP: dynamic text: The client smiles and offers: "I only have <<KlientMON * 100>>… what do you say?...
-        scene.text(`The client smiles and offers: "I only have ${((s as any).KlientMON ?? 0) * 100}… what do you say?"`);
+        scene.text(`The client smiles and offers: "I only have ${((s as any).KlientMON ?? '') * 100}… what do you say?"`);
         // TODO-QSP: dynamic "
         // TODO-QSP: "
         return;
@@ -365,7 +365,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).picrand ?? 0) === 1) {
       scene.img('images/shared/sex/blowjob/bjp.jpg');
     } else {
-      scene.img(`images/shared/sex/blowjob/bjp${((s as any).picrand ?? 0)}.jpg`);
+      scene.img(`images/shared/sex/blowjob/bjp${((s as any).picrand || '')}.jpg`);
     }
     scene.text('You put a condom between your lips and slowly guide your mouth to his penis, you gently roll it down using only your lips. You can tell the guy is really impressed with your skills.');
     if (((s as any).locArgs?.[1] ?? 0) === 'blow job') {
@@ -428,7 +428,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', ((s as any).dickK ?? 0));
     scene.img('images/shared/sex/anal/doggy/anal30.jpg');
     // TODO-QSP: dynamic text: You immediately feel the man's hands on your ass cheeks when you get on your han...
-    scene.text(`You immediately feel the man's hands on your ass cheeks when you get on your hands and knees in the back seat. The man confidently guides his condom-covered cock to your sphincter, and slowly thrusts all of his ${((s as any).dick ?? 0)} centimeter inside you.`);
+    scene.text(`You immediately feel the man's hands on your ass cheeks when you get on your hands and knees in the back seat. The man confidently guides his condom-covered cock to your sphincter, and slowly thrusts all of his ${((s as any).dick || '')} centimeter inside you.`);
     qspCall(s, 'arousal', 'anal', 10, 'prostitution', 'unknown');
     qspCall(s, 'stat', '');
     if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
@@ -608,7 +608,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).pcs_ass ?? 0) < ((s as any).dick ?? 0)) {
       // TODO-QSP: dynamic text: You feel a sharp pain and wince when the man pushes the tip of his <<dick>> cent...
-      scene.text(`You feel a sharp pain and wince when the man pushes the tip of his ${((s as any).dick ?? 0)} centimeter member past your sphincter, and continues to work most of his length inside you. Fortunately, he listens when you beg him to go slow.`);
+      scene.text(`You feel a sharp pain and wince when the man pushes the tip of his ${((s as any).dick || '')} centimeter member past your sphincter, and continues to work most of his length inside you. Fortunately, he listens when you beg him to go slow.`);
       scene.text('The guy holds still for a moment so your ass can get used to how far it\'s being stretched out. After a little while you don\'t think it\'s going to get any better, and you tell the man he can start to fucking you now with a forced, fake smile on your face.');
       scene.text('He\'s still careful at first, but soon forgets about your suffering and accelerates more and more. The man groans loudly while he hammers his cock inside your ass, ignoring your crying and mewling underneath him.');
       qspCall(s, 'arousal', 'anal', 10, 'prostitution', 'unknown', 'rough');

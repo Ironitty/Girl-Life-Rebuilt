@@ -12,14 +12,14 @@ function enterTalkwithzariyah(s: GameState, scene: SceneBuilder): void {
   scene.text('You ask the first waitress about Zariyah, and she directs you to the office. As you approach, she waves at you through the open door, signaling to enter "Yes, yes Ruslan, don\'t worry about it. No, I have to go, talk later."');
   if (((s as any).ml_delparcoQW ?? 0)?.['Stage'] === 1) {
     // TODO-QSP: dynamic text: She puts down the phone "<<$pcs_nickname>>, so glad that you came. How are you? ...
-    scene.text(`She puts down the phone "${((s as any).pcs_nickname ?? 0)}, so glad that you came. How are you? Did you think about the offer?" she smiles at you as you sit down.`);
+    scene.text(`She puts down the phone "${((s as any).pcs_nickname || '')}, so glad that you came. How are you? Did you think about the offer?" she smiles at you as you sit down.`);
     scene.actions([
       { label: 'Accept the offer to play at Del Parco', goto: ['music_delparco', 'delparco_accept'] },
     ]);
   } else {
     if (((s as any).ml_delparcoQW ?? 0)?.['Stage'] === 2) {
       // TODO-QSP: dynamic text: She puts down the phone "<<$pcs_nickname>>, so glad that you came. How are you? ...
-      scene.text(`She puts down the phone "${((s as any).pcs_nickname ?? 0)}, so glad that you came. How are you? Did you come to talk about the offer?" she smiles at you as you sit down.`);
+      scene.text(`She puts down the phone "${((s as any).pcs_nickname || '')}, so glad that you came. How are you? Did you come to talk about the offer?" she smiles at you as you sit down.`);
       scene.actions([
         { label: 'Discuss the live music with', goto: ['music_delparco', 'firstdiscussion'] },
       ]);
@@ -53,7 +53,7 @@ function enterFirstdiscussion(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You take a seat facing Zariyah "I thought about it a bit more and, yes, I would like to do it just need to know a bit more. I never really did anything like this."');
   // TODO-QSP: dynamic text: She nods and picks up a pen "I understand, <<$pcs_nickname>>. Well, it's not lik...
-  scene.text(`She nods and picks up a pen "I understand, ${((s as any).pcs_nickname ?? 0)}. Well, it's not like playing in an arena or anything. We just need someone to play on Fridays. It would be half an hour, but it's not background music, you play songs."`);
+  scene.text(`She nods and picks up a pen "I understand, ${((s as any).pcs_nickname || '')}. Well, it's not like playing in an arena or anything. We just need someone to play on Fridays. It would be half an hour, but it's not background music, you play songs."`);
   // TODO-QSP: dynamic text: She wiggles the pen, writing down some of what she say "And we would pay you. It...
   scene.text(`She wiggles the pen, writing down some of what she say "And we would pay you. It's not a lot of money, but we pay you ${qspFunc(s, 'money', 'string_profit', 800)}. And we would like to start two weeks from now at 8 in the evening."`);
   // TODO-QSP: dynamic text: You think for a moment. <<$func('money', 'string_profit', 800)>> is way more tha...
@@ -64,7 +64,7 @@ function enterFirstdiscussion(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Stage'] = 4;
     scene.text('"I would love to do it!" you almost bite your tongue as you stop, but the fact that someone asks you to play is a first step to your dream. You almost couldn\'t contain yourself.');
     // TODO-QSP: dynamic text: "Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towa...
-    scene.text('"Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towards you "Everything is there. Don\'t forget, two weeks from now, Friday at \'+func(\'time\', \'get_time_string\', 20, 0)+\', so please be here latest half past seven.');
+    scene.text('"Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towards you "Everything is there. Don\'t forget, two weeks from now, Friday at 20:00, so please be here latest half past seven.');
     scene.text('Trust me, you will need the time to set yourself up. And then every Friday if it works out."');
     if (!(s as any).ml_gigday) (s as any).ml_gigday = {}; (s as any).ml_gigday['delparco'] = ((s as any).daystart ?? 0) + 19 - ((s as any).week ?? 0);
     if (!(s as any).ml_gighour) (s as any).ml_gighour = {}; (s as any).ml_gighour['delparco'] = 19;
@@ -79,7 +79,7 @@ function enterFirstdiscussion(s: GameState, scene: SceneBuilder): void {
     (s as any).ml_delparcooriginaldate = ((s as any).daystart ?? 0);
     scene.text('"I have to think, I want to make sure that I can do it. It\'s a big commitment and I don\'t want to, you know… not do it right."');
     // TODO-QSP: dynamic text: Zariyah nods "Ok, <<$pcs_nickname>>, but please, let me know by <<$weekName[ml_a...
-    scene.text(`Zariyah nods "Ok, ${((s as any).pcs_nickname ?? 0)}, but please, let me know by ${((s as any).weekName ?? 0)?.[String((s as any).ml_answerdeadline ?? 0)]}."`);
+    scene.text(`Zariyah nods "Ok, ${((s as any).pcs_nickname || '')}, but please, let me know by ${((s as any).weekName ?? 0)?.[String((s as any).ml_answerdeadline ?? 0)] ?? ''}."`);
     scene.actions([
       { label: 'Leave', goto: ['cafe_parco', 'start'] },
     ]);
@@ -97,7 +97,7 @@ function enterAcceptafterthinking(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Stage'] = 4;
   scene.text('"I would love to do it!" you almost bite your tongue as you stop, but the fact that someone asks you to play is a first step to your dream. You almost couldn\'t contain yourself.');
   // TODO-QSP: dynamic text: "Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towa...
-  scene.text('"Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towards you "Everything is there. Don\'t forget, two weeks from now, Friday at \'+func(\'time\', \'get_time_string\', 20, 0)+\', so please be here latest half past seven.');
+  scene.text('"Excellent!" Zariyah smiles at you, and pushes the paper she was writing on towards you "Everything is there. Don\'t forget, two weeks from now, Friday at 20:00, so please be here latest half past seven.');
   scene.text('Trust me, you will need the time to set yourself up. And then every Friday if it works out."');
   // TODO-QSP: end
   scene.actions([
@@ -108,7 +108,7 @@ function enterAcceptafterthinking(s: GameState, scene: SceneBuilder): void {
 
 function enterEveningshow(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 60;
-  (s as any).ml_correction_chance = ((s as any).ml_performance ?? {})?.['set_quality'] + ((((s as any).pcs_hotcat ?? 0) - 5)*3) + (((s as any).pcs_perform ?? 0)/10);
+  (s as any).ml_correction_chance = (((s as any).ml_performance ?? {})?.['set_quality'] ?? 0) + ((((s as any).pcs_hotcat ?? 0) - 5)*3) + (((s as any).pcs_perform ?? 0)/10);
   (s as any).ml_success = Math.floor(Math.random() * 101) + 0;
   qspCall(s, 'exp_gain', 'instrmusic', Math.floor(Math.random() * 2) + 1);
   qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 2) + 1);

@@ -18,20 +18,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at Kat\'s mysterious look and follow her lead, sitting down near him. Kat immediately pulls you in for a kiss, and slowly rubs your wet slit while the two of you make out.');
     scene.text('The man watches the two of you intently, and you notice a bulge forming in his groin.');
     // TODO-QSP: dynamic text: "Look at him!" Kat moans into your mouth between kisses. "Don't you want him to ...
-    scene.text(`"Look at him!" Kat moans into your mouth between kisses. "Don't you want him to fuck you, ${((s as any).pcs_nickname ?? 0)}? Because I know I do…"`);
+    scene.text(`"Look at him!" Kat moans into your mouth between kisses. "Don't you want him to fuck you, ${((s as any).pcs_nickname || '')}? Because I know I do…"`);
     qspCall(s, 'arousal', 'kiss', (-5), 'lesbian');
     qspCall(s, 'arousal', 'vaginal_finger', 5, 'lesbian');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'willpower', 'foreplay', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'That\'s enough! Leave before this gets out of hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'That\'s enough! Leave before this gets out of hand', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'That\'s enough! Leave before this gets out of hand [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'That\'s enough! Leave before this gets out of hand', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['Nudelake', ''] },

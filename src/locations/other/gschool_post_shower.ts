@@ -322,7 +322,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_rel ?? 0)?.['A17'] <= 20) {
           (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
           // TODO-QSP: dynamic text: "Oh, it's you… Ellen Degenerate," she sneers. "<<$pcs_nickname>> is checking me ...
-          scene.text(`"Oh, it's you… Ellen Degenerate," she sneers. "${((s as any).pcs_nickname ?? 0)} is checking me out like some pervy ten-year-old boy!" she says loud enough to get the attention of the room.`);
+          scene.text(`"Oh, it's you… Ellen Degenerate," she sneers. "${((s as any).pcs_nickname || '')} is checking me out like some pervy ten-year-old boy!" she says loud enough to get the attention of the room.`);
           scene.text('You decide it\'s time to get dressed and leave, embarrassed that you were caught checking her out.');
         } else {
           (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
@@ -759,7 +759,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).npc_rel ?? 0)?.['A140'] >= 60) {
             // TODO-QSP: dynamic text: Noticing you checking her out, she says "Hey <<$pcs_nickname>>, I see you."
-            scene.text(`Noticing you checking her out, she says "Hey ${((s as any).pcs_nickname ?? 0)}, I see you."`);
+            scene.text(`Noticing you checking her out, she says "Hey ${((s as any).pcs_nickname || '')}, I see you."`);
             scene.text('Startled, you try to quickly look away, but it\'s too late. "What was that about?" one of the other girls asks.');
             scene.text('"She was totally checking me out!" Lizaveta replies. "I didn\'t know she swung that way."');
             scene.text('A few of the girls unconsciously cover themselves and give you dirty looks. Now would probably be a good time to get dressed and get out of here, before this gets even more awkward.');
@@ -770,7 +770,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
               scene.text('Now would be a good time to get dressed and get out of here, before this gets even more awkward.');
             } else {
               // TODO-QSP: dynamic text: She snaps her fingers when she notices you checking her out. "Can I help you wit...
-              scene.text(`She snaps her fingers when she notices you checking her out. "Can I help you with something, ${((s as any).pcs_nickname ?? 0)}?"`);
+              scene.text(`She snaps her fingers when she notices you checking her out. "Can I help you with something, ${((s as any).pcs_nickname || '')}?"`);
               scene.text('Startled, you try to quickly look away, but it\'s too late. "What was that about?" one of the other girls asks.');
               scene.text('"She was totally checking me out!" Lizaveta replies. "I didn\'t know she swung that way."');
               scene.text('A few of the girls unconsciously cover themselves and give you dirty looks. Now would be a good time to get dressed and out of here, before this gets even more awkward.');
@@ -1067,7 +1067,7 @@ function enterPostShower(s: GameState, scene: SceneBuilder): void {
           scene.text('"Oh my god, what\'s your problem?" she asks when she catches you staring.');
           scene.text('Startled, you try to quickly look away, but it\'s too late. "What was that about?" Bella asks.');
           // TODO-QSP: dynamic text: "<<$pcs_nickname>> was totally checking me out!" Stasya replies. "She's a total ...
-          scene.text(`"${((s as any).pcs_nickname ?? 0)} was totally checking me out!" Stasya replies. "She's a total dyke!"`);
+          scene.text(`"${((s as any).pcs_nickname || '')} was totally checking me out!" Stasya replies. "She's a total dyke!"`);
           scene.text('Bella and a few other girls cover themselves and give you dirty looks. Now would be a good time to get dressed and get out of here, before this gets even more awkward.');
         }
       }
@@ -1428,7 +1428,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 4) + 1) === 1) {
       if (((s as any).npc_rel ?? 0)?.['A22'] >= 80) {
         // TODO-QSP: dynamic text: She turns and catches you looking at her. "I'm thinking of growing a bush, <<$pc...
-        scene.text(`She turns and catches you looking at her. "I'm thinking of growing a bush, ${((s as any).pcs_nickname ?? 0)}. What do you think?" She then shows you her shaved pussy. "Geez, you don't have to stare that much," she says as she turns off the shower and walks towards the locker room.`);
+        scene.text(`She turns and catches you looking at her. "I'm thinking of growing a bush, ${((s as any).pcs_nickname || '')}. What do you think?" She then shows you her shaved pussy. "Geez, you don't have to stare that much," she says as she turns off the shower and walks towards the locker room.`);
       } else {
         if (((s as any).npc_rel ?? 0)?.['A22'] <= 20) {
           (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
@@ -1981,7 +1981,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).npc_rel ?? 0)?.['A140'] >= 60) {
             // TODO-QSP: dynamic text: She seems to be enjoying her shower when she looks in your direction and notices...
-            scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What's the matter, ${((s as any).pcs_nickname ?? 0)}?"`);
+            scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What's the matter, ${((s as any).pcs_nickname || '')}?"`);
             scene.text('Surprised, you mumble something and quickly look away, but the damage is done. You can hear her telling the others that you were staring at her while she showered.');
             scene.text('It would be best for you to finish your shower and leave before things get even more awkward.');
           } else {
@@ -1991,7 +1991,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
               scene.text('It would be best for you to finish your shower and leave before things get worse.');
             } else {
               // TODO-QSP: dynamic text: She seems to be enjoying her shower when she looks in your direction and notices...
-              scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What do you want, ${((s as any).pcs_nickname ?? 0)}?"`);
+              scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What do you want, ${((s as any).pcs_nickname || '')}?"`);
               scene.text('Surprised, you mumble something and quickly look away, but the damage is done. You can hear her telling the others that you were staring at her while she showered.');
               scene.text('It would be best for you to finish your shower and leave before things get even more awkward.');
             }
@@ -2286,7 +2286,7 @@ function enterPostShower2(s: GameState, scene: SceneBuilder): void {
       (s as any).sveta_dyke_rumor = ((s as any).sveta_dyke_rumor ?? 0) + (1);
       if (((s as any).npc_rel ?? 0)?.['A139'] >= 60) {
         // TODO-QSP: dynamic text: She seems to be enjoying her shower when she looks in your direction and notices...
-        scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What are you looking at, ${((s as any).pcs_nickname ?? 0)}?"`);
+        scene.text(`She seems to be enjoying her shower when she looks in your direction and notices you staring at her. "What are you looking at, ${((s as any).pcs_nickname || '')}?"`);
         scene.text('Surprised, you mumble something and quickly look away, but the damage is done. You can hear her telling the others that you were checking her out while she showered.');
         scene.text('It would be best for you to finish your shower and leave before things get even more awkward.');
       } else {

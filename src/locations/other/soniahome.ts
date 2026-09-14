@@ -36,10 +36,10 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
           if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['tkachenko'] = 1;
           scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face. "Hello. Can I help you?" she asks.');
           // TODO-QSP: dynamic text: You smile at her. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
-          scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}, one of Sonia's classmates. Is she here?"`);
+          scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
           scene.text('She frowns at you. It seems she doesn\'t care for your casual attitude. "I am Tseydlits Ivanko, but you can call me Mrs Ivanko. Who are you exactly?"');
           // TODO-QSP: dynamic text: You keep your smile. "Sorry, Mrs Ivanko. I'm <<$pcs_firstname>> <<$pcs_lastname>...
-          scene.text(`You keep your smile. "Sorry, Mrs Ivanko. I'm ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}."`);
+          scene.text(`You keep your smile. "Sorry, Mrs Ivanko. I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}."`);
           scene.text('She nods. "Sonia says she never wants to see you again, so please leave and don\'t come back!" she says before closing the door in your face.');
         } else {
           scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face.');
@@ -56,10 +56,10 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['tkachenko'] = 1;
               scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face. "Hello. Can I help you?" she asks.');
               // TODO-QSP: dynamic text: You smile at her. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
-              scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}, one of Sonia's classmates. Is she here?"`);
+              scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
               scene.text('She frowns at you. It seems she doesn\'t care for your casual attitude. "I am Tseydlits Ivanko, but you can call me Mrs Ivanko. Who are you exactly?"');
               // TODO-QSP: dynamic text: You keep your smile. "Sorry, Mrs Ivanko. I'm <<$pcs_firstname>> <<$pcs_lastname>...
-              scene.text(`You keep your smile. "Sorry, Mrs Ivanko. I'm ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}."`);
+              scene.text(`You keep your smile. "Sorry, Mrs Ivanko. I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}."`);
               scene.text('She nods a little. "Sonia doesn\'t want to see anyone!" she says before closing the door in your face.');
               scene.actions([
                 { label: 'Leave', goto: ['pav_residential', ''] },
@@ -114,7 +114,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                         (s as any).SoniaLoc = 2;
                         scene.img('images/locations/pavlovsk/resident/soniaHome/tkachenko.jpg');
                         // TODO-QSP: dynamic text: You stand outside the Ivanko household, knocking on the door. It's quickly answe...
-                        scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname ?? 0)}. Sonia is in her room."`);
+                        scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname || '')}. Sonia is in her room."`);
                         scene.text('"Thank you, Mrs Ivanko," you politely reply to keep her happy, and she lets you in before closing the door behind you.');
                         scene.actions([
                           { label: 'Enter', goto: ['soniahome', 'hallway'] },
@@ -124,7 +124,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                           (s as any).SoniaLoc = 5;
                           scene.img('images/locations/pavlovsk/resident/soniaHome/tkachenko.jpg');
                           // TODO-QSP: dynamic text: You stand outside the Ivanko household, knocking on the door. It's quickly answe...
-                          scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname ?? 0)}. Sonia is in the living room."`);
+                          scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname || '')}. Sonia is in the living room."`);
                           scene.text('"Thank you, Mrs Ivanko," you politely reply to keep her happy, and she lets you in before closing the door behind you.');
                           scene.actions([
                             { label: 'Enter', goto: ['soniahome', 'hallway'] },
@@ -134,7 +134,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                             (s as any).SoniaLoc = 7;
                             scene.img('images/locations/pavlovsk/resident/soniaHome/tkachenko.jpg');
                             // TODO-QSP: dynamic text: You stand outside the Ivanko household, knocking on the door. It's quickly answe...
-                            scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname ?? 0)}. Sonia is in the bathroom taking a shower, you are welcome to go wait in her room for her."`);
+                            scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname || '')}. Sonia is in the bathroom taking a shower, you are welcome to go wait in her room for her."`);
                             scene.text('"Thank you, Mrs Ivanko," you politely reply to keep her happy, and she lets you in before closing the door behind you.');
                             scene.actions([
                               { label: 'Enter', goto: ['soniahome', 'hallway'] },
@@ -147,7 +147,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                                 if (((s as any).pcs_hotcat ?? 0) >= 6) {
                                   scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by a young, good-looking man about your sister\'s age who has a friendly smile. "Hello. Can I help you?" he asks as he looks you over with hungry eyes.');
                                   // TODO-QSP: dynamic text: You smile at him. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
-                                  scene.text(`You smile at him. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}, one of Sonia's classmates. Is she here?"`);
+                                  scene.text(`You smile at him. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
                                   scene.text('He nods and stands aside. "My name is Shulyov. A beautiful thing like you shouldn\'t be hanging out with a slut like my sister. It\'s bad for your rep."');
                                   scene.text('You look a little surprised by what he said. "How do you…"');
                                   scene.text('He shrugs and interrupts you. "Anyone remotely in the know, knows all about my sister\'s antics. I can\'t say I\'m remotely surprised. I always knew she was a slut in the making," he says in disgust, like he blames her for what happened.');
@@ -171,7 +171,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                                 } else {
                                   scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by a young, good-looking man about your sister\'s age who has a friendly smile. "Hello. Can I help you?" he asks.');
                                   // TODO-QSP: dynamic text: You smile at him. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
-                                  scene.text(`You smile at him. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}, one of Sonia's classmates. Is she here?"`);
+                                  scene.text(`You smile at him. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
                                   scene.text('He nods and stands aside. "My name is Shulyov. You shouldn\'t be hanging out with a slut like my sister. It\'s bad for your rep."');
                                   scene.text('You look a little surprised by what he said. "How do you…"');
                                   scene.text('He shrugs and interrupts you. "Anyone remotely in the know, knows all about my sister\'s antics. I can\'t say I\'m remotely surprised. I always knew she was a slut in the making," he says in disgust, like he blames her for what happened.');
@@ -199,7 +199,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                               } else {
                                 if (((s as any).pcs_hotcat ?? 0) >= 6) {
                                   // TODO-QSP: dynamic text: You stand outside the Ivanko household, knocking on the door. It's quickly answe...
-                                  scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Shulyov. "Hello again, ${((s as any).pcs_nickname ?? 0)}. Nice to see you again," he says as he looks you over with hungry eyes.`);
+                                  scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Shulyov. "Hello again, ${((s as any).pcs_nickname || '')}. Nice to see you again," he says as he looks you over with hungry eyes.`);
                                   scene.text('You smile at him. "Hi. Is Sonia here?"');
                                   scene.text('He nods and stands aside. "A beautiful thing like you shouldn\'t be hanging out with a slut like my sister. It\'s bad for your rep," he says in disgust, like he blames her for what happened.');
                                   scene.text('You frown at him, sick of his comments. "Is she here or not?"');
@@ -221,7 +221,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                                   }
                                 } else {
                                   // TODO-QSP: dynamic text: You stand outside the Ivanko household, knocking on the door. It's quickly answe...
-                                  scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Shulyov. "Hello again ${((s as any).pcs_nickname ?? 0)}," he says to you with a bored look on his face.`);
+                                  scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Shulyov. "Hello again ${((s as any).pcs_nickname || '')}," he says to you with a bored look on his face.`);
                                   scene.text('You smile at him. "Hi. Is Sonia here?"');
                                   scene.text('He nods and stands aside. "You shouldn\'t be hanging out with a slut like my sister. It\'s bad for your rep," he says in disgust, like he blames her for what happened.');
                                   scene.text('You frown at him, sick of his comments. "Is she here or not?"');
@@ -251,7 +251,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                                 (s as any).SoniaLoc = 4;
                                 scene.img('images/locations/pavlovsk/resident/soniaHome/tkachenko.jpg');
                                 // TODO-QSP: dynamic text: You stand outside the Ivanko household, knocking on the door. It's quickly answe...
-                                scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname ?? 0)}. Sonia is in the kitchen."`);
+                                scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname || '')}. Sonia is in the kitchen."`);
                                 scene.text('"Thank you, Mrs Ivanko," you politely reply to keep her happy, and she lets you in before closing the door behind you.');
                                 scene.actions([
                                   { label: 'Enter', goto: ['soniahome', 'hallway'] },
@@ -261,7 +261,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                                 scene.img('images/characters/shared/headshots_main/big25.jpg');
                                 scene.text('You stand outside the Ivanko household, hoping that Sonia will be the one to open the door.');
                                 // TODO-QSP: dynamic text: To your relief, Sonia answers the door with a smile. "Hi, <<$pcs_nickname>>! Com...
-                                scene.text(`To your relief, Sonia answers the door with a smile. "Hi, ${((s as any).pcs_nickname ?? 0)}! Come in." You can't help but notice she seems more like her old self, well other than she is wearing tighter and more revealing clothes than she used to, before her fall from grace.`);
+                                scene.text(`To your relief, Sonia answers the door with a smile. "Hi, ${((s as any).pcs_nickname || '')}! Come in." You can't help but notice she seems more like her old self, well other than she is wearing tighter and more revealing clothes than she used to, before her fall from grace.`);
                                 scene.text('She closes the door and heads for her room as you walk inside, you can\'t help but notice a little extra sway and wiggle to her butt as she walks down the hall, you don\'t know if that is for you or just how she is now.');
                                 scene.actions([
                                   { label: 'Enter', goto: ['soniahome', 'hallway'] },
@@ -285,10 +285,10 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['tkachenko'] = 1;
               scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face. "Hello. Can I help you?" she asks.');
               // TODO-QSP: dynamic text: You smile at her. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
-              scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}, one of Sonia's classmates. Is she here?"`);
+              scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
               scene.text('She frowns at you. It seems she doesn\'t care for your casual attitude. "I am Tseydlits Ivanko, but you can call me Mrs Ivanko. Who are you exactly?"');
               // TODO-QSP: dynamic text: You keep your smile. "Sorry, Mrs Ivanko. I'm <<$pcs_firstname>> <<$pcs_lastname>...
-              scene.text(`You keep your smile. "Sorry, Mrs Ivanko. I'm ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}."`);
+              scene.text(`You keep your smile. "Sorry, Mrs Ivanko. I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}."`);
               scene.text('She nods. "Sonia isn\'t here, but she should be home later. You can call her then," she says before closing the door in your face.');
             } else {
               scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face.');
@@ -306,15 +306,15 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                 if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['tkachenko'] = 1;
                 scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by Sonia\'s mother, who has an unfriendly, serious look on her face. "Hello. Can I help you?" she asks.');
                 // TODO-QSP: dynamic text: You smile at her. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
-                scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}, one of Sonia's classmates. Is she here?"`);
+                scene.text(`You smile at her. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
                 scene.text('She frowns at you. It seems she doesn\'t care for your casual attitude. "I am Tseydlits Ivanko, but you can call me Mrs Ivanko. Who are you exactly?"');
                 // TODO-QSP: dynamic text: You keep your smile. "Sorry, Mrs Ivanko. I'm <<$pcs_firstname>> <<$pcs_lastname>...
-                scene.text(`You keep your smile. "Sorry, Mrs Ivanko. I'm ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}."`);
+                scene.text(`You keep your smile. "Sorry, Mrs Ivanko. I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}."`);
                 scene.text('She nods a little. "Better. Young ladies should have proper manners after all. Sonia is in her room."');
                 scene.text('She stands aside to let you in before she closes the door.');
               } else {
                 // TODO-QSP: dynamic text: You stand outside the Ivanko household, knocking on the door. It's quickly answe...
-                scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname ?? 0)}. Sonia is in her room."`);
+                scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Sonia's mother, who has an unfriendly, serious look on her face. "Hello again, ${((s as any).pcs_firstname || '')}. Sonia is in her room."`);
                 scene.text('"Thank you, Mrs Ivanko," you politely reply to keep her happy, and she lets you in before closing the door behind you.');
               }
               scene.actions([
@@ -328,7 +328,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).pcs_hotcat ?? 0) >= 6) {
                     scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by a young, good-looking man about your sister\'s age who has a friendly smile. "Hello. Can I help you?" he asks as he looks you over with hungry eyes.');
                     // TODO-QSP: dynamic text: You smile at him. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
-                    scene.text(`You smile at him. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}, one of Sonia's classmates. Is she here?"`);
+                    scene.text(`You smile at him. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
                     (s as any).temprand = Math.floor(Math.random() * 6) + 1;
                     if (((s as any).temprand ?? 0) <= 2) {
                       (s as any).SoniaLoc = 5;
@@ -342,7 +342,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                   } else {
                     scene.text('You stand outside the Ivanko household, knocking on the door. It\'s quickly answered by a young, good-looking man about your sister\'s age who has a friendly smile. "Hello. Can I help you?" he asks.');
                     // TODO-QSP: dynamic text: You smile at him. "Hi, I'm <<$pcs_nickname>>, one of Sonia's classmates. Is she ...
-                    scene.text(`You smile at him. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}, one of Sonia's classmates. Is she here?"`);
+                    scene.text(`You smile at him. "Hi, I'm ${((s as any).pcs_nickname || '')}, one of Sonia's classmates. Is she here?"`);
                     (s as any).temprand = Math.floor(Math.random() * 6) + 1;
                     if (((s as any).temprand ?? 0) <= 2) {
                       (s as any).SoniaLoc = 5;
@@ -357,7 +357,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).pcs_hotcat ?? 0) >= 6) {
                     // TODO-QSP: dynamic text: You stand outside the Ivanko household, knocking on the door. It's quickly answe...
-                    scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Shulyov, who gives you a friendly smile. "Hello again, ${((s as any).pcs_nickname ?? 0)}. Nice to see you," he says as he looks you over with hungry eyes.`);
+                    scene.text(`You stand outside the Ivanko household, knocking on the door. It's quickly answered by Shulyov, who gives you a friendly smile. "Hello again, ${((s as any).pcs_nickname || '')}. Nice to see you," he says as he looks you over with hungry eyes.`);
                     scene.text('You smile at him. "Hi. Is Sonia here?"');
                     (s as any).temprand = Math.floor(Math.random() * 6) + 1;
                     if (((s as any).temprand ?? 0) <= 2) {
@@ -392,7 +392,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                 scene.img('images/characters/shared/headshots_main/big25.jpg');
                 scene.text('You stand outside the Ivanko household, hoping that Sonia will be the one to open the door.');
                 // TODO-QSP: dynamic text: To your relief, Sonia answers the door with a smile. "Hi, <<$pcs_nickname>>! Com...
-                scene.text(`To your relief, Sonia answers the door with a smile. "Hi, ${((s as any).pcs_nickname ?? 0)}! Come in."`);
+                scene.text(`To your relief, Sonia answers the door with a smile. "Hi, ${((s as any).pcs_nickname || '')}! Come in."`);
                 scene.text('She closes the door and heads for her room as you walk inside.');
                 scene.actions([
                   { label: 'Enter', goto: ['soniahome', 'hallway'] },
@@ -452,7 +452,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/soniaHome/Bathroom/sonia_showering1.jpg');
     scene.text('You enter the bathroom, which is fully tiled with a grey-and-white colour scheme. Whilst reasonably small, it\'s very tastefully decorated. It\'s a fairly typical bathroom, but this might be the cleanest one you\'ve ever been in. It looks practically brand new and smells lovely. The shower is running and you can faintly see Sonia\'s naked body through the plastic shower curtain. She stops moving a moment, likely having heard the door. "Is someone there?"');
     // TODO-QSP: dynamic text: You reply to her. "Yeah it's just me <<$pcs_nickname>>, I just wanted to stop by...
-    scene.text(`You reply to her. "Yeah it's just me ${((s as any).pcs_nickname ?? 0)}, I just wanted to stop by and see if you wanted to hangout."`);
+    scene.text(`You reply to her. "Yeah it's just me ${((s as any).pcs_nickname || '')}, I just wanted to stop by and see if you wanted to hangout."`);
     scene.actions([
       { label: 'Wait for her reply', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -461,7 +461,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       scene.text('<center><b>Sonia Showering</b></center>');
       scene.img('images/locations/pavlovsk/resident/soniaHome/Bathroom/sonia_showering2.jpg');
       // TODO-QSP: dynamic text: Sonia jerks the shower curtain wide open, giving you a full view of her naked, w...
-      scene.text(`Sonia jerks the shower curtain wide open, giving you a full view of her naked, wet, soapy body. "Oh hey ${((s as any).pcs_nickname ?? 0)}, sure just give me a few minutes to finish showering."`);
+      scene.text(`Sonia jerks the shower curtain wide open, giving you a full view of her naked, wet, soapy body. "Oh hey ${((s as any).pcs_nickname || '')}, sure just give me a few minutes to finish showering."`);
       qspCall(s, 'arousal', 'voyeur', 1);
       qspCall(s, 'stat', '');
       scene.actions([
@@ -502,7 +502,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/resident/soniaHome/Bathroom/sonia_showering1.jpg');
       (s as any).SoniaLoc = 2;
       // TODO-QSP: dynamic text: Sonia peeks her head out from behind the curtain, while holding it in place so y...
-      scene.text(`Sonia peeks her head out from behind the curtain, while holding it in place so you can't see anything other than her head. "Oh hey ${((s as any).pcs_nickname ?? 0)}, sure just give me a couple of minutes, you can wait in my room."`);
+      scene.text(`Sonia peeks her head out from behind the curtain, while holding it in place so you can't see anything other than her head. "Oh hey ${((s as any).pcs_nickname || '')}, sure just give me a couple of minutes, you can wait in my room."`);
       scene.text('You nod to that. "Ok sure." Then you leave the bathroom and head to her room, you spend a few minutes looking around her room, before she comes in and takes a seat on the bed.');
       scene.actions([
         { label: 'Hang out in Sonia\'s room', goto: ['soniahome', 'sonia_room'] },
@@ -764,7 +764,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
   // TODO-QSP: dynamic text: You open the fridge and see:<<$ivanko['water_txt']>><<$ivanko['soup_txt']>><<$iv...
-  scene.text(`You open the fridge and see:${((s as any).ivanko ?? 0)?.['water_txt']}${((s as any).ivanko ?? 0)?.['soup_txt']}${((s as any).ivanko ?? 0)?.['leftover_txt']}${((s as any).ivanko ?? 0)?.['sandwich_txt']}`);
+  scene.text(`You open the fridge and see:${((s as any).ivanko ?? 0)?.['water_txt'] ?? ''}${((s as any).ivanko ?? 0)?.['soup_txt'] ?? ''}${((s as any).ivanko ?? 0)?.['leftover_txt'] ?? ''}${((s as any).ivanko ?? 0)?.['sandwich_txt'] ?? ''}`);
   if (((s as any).ivanko ?? 0)?.['leftovers'] > 0) {
     scene.actions([
       { label: 'Eat some leftovers', handler: (st: GameState) => {

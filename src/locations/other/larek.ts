@@ -43,7 +43,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec: gs \'larek\', \'buyfood2\' ">One serving of diet friendly food - 250 RUB</a>');
   if (((s as any).bottle ?? 0)===0  &&  ((s as any).bag ?? 0)>0) {
     scene.actions([
-      { label: 'Buy a bottle of water [+$func(\'money\', \'get_cost_string\', 50)]', handler: (st: GameState) => {
+      { label: 'Buy a bottle of water', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -60,7 +60,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['food_sandwich']===0  &&  ((s as any).bag ?? 0)>0) {
     scene.actions([
-      { label: 'Buy a sandwich [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+      { label: 'Buy a sandwich', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -77,7 +77,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['food_wine'] === 0  &&  ((s as any).bag ?? 0) > 0) {
     scene.actions([
-      { label: 'Buy a bottle of cheap wine [+$func(\'money\', \'get_cost_string\', 500)]', handler: (st: GameState) => {
+      { label: 'Buy a bottle of cheap wine', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -95,7 +95,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Exit Department', goto: ['larek', 'start'] },
-    { label: 'Buy tea biscuits [+$func(\'money\', \'get_cost_string\', 300)]', handler: (st: GameState) => {
+    { label: 'Buy tea biscuits', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

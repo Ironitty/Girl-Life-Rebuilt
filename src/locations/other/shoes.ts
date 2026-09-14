@@ -303,7 +303,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_shoe_h[<<ARGS[2]>>] = 0
   // TODO-QSP: "
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).shoeworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).shoewornnumber ?? 0)) {
-    qspCall(s, 'shoes', 'strip_code');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).lastwornshoenumber = 0;
   }
   return;
@@ -321,7 +321,7 @@ function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDispose(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shoes', 'remove_item', ((s as any).shoeworntype ?? 0), ((s as any).shoewornnumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).shoeworntype ?? 0), ((s as any).shoewornnumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -377,7 +377,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
     (s as any).shoewornnumber = 0;
   }
   (s as any).lastwornshoenumber = ((s as any).shoewornnumber ?? 0);
-  qspCall(s, 'shoes', 'strip_code');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -385,8 +385,8 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterStripCode(s: GameState, scene: SceneBuilder): void {
   (s as any).shoewornnumber = 0;
-  qspCall(s, 'shoes', 'reset_ShoVars');
-  qspCall(s, 'shoes', 'reset_PShoVars');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_ShoVars(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PShoVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'outfit', 'set_derived_vars');
   return;
   // TODO-QSP: end
@@ -451,7 +451,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
-  qspCall(s, 'shoes', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'shoe_attributes', $ARGS[1], ARGS[2]
   if ((!((s as any).ShoQuality ?? 0))) {
     return;
@@ -657,14 +657,14 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loopdanilovich_shoe2
   if (qspFunc(s, 'shoes', 'can_wear', 'danilovich', ((s as any).i ?? 0))) {
     // TODO-QSP: dynamic text: <a href="exec:gt 'shoe_view', 'view_item', 'wardrobe', 'danilovich', <<i>>"><img...
-    scene.text(`<a href="exec:gt 'shoe_view', 'view_item', 'wardrobe', 'danilovich', ${((s as any).i ?? 0)}"><img height="250" src="images/pc/items/danilovich/shoes/${((s as any).i ?? 0)}.jpg"/></a>`);
+    scene.text(`<a href="exec:gt 'shoe_view', 'view_item', 'wardrobe', 'danilovich', ${((s as any).i || '')}"><img height="250" src="images/pc/items/danilovich/shoes/${((s as any).i || '')}.jpg"/></a>`);
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (((s as any).i ?? 0) <= 40) {
     // TODO-QSP: jump 'loopdanilovich_shoe2'
   }
   if (((s as any).shoeworntype ?? 0) !== ((s as any).regularwornshoetype ?? 0)) {
-    qspCall(s, 'shoes', 'gym2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGym2(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.actions([

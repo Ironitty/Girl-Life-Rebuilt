@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -458,7 +458,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
                                         (s as any).i = 0;
                                         // TODO-QSP: :mod_get_property_attr_calls_loop
                                         (s as any).temp_app_loc = qspUntranslated(s, "instr(mid(home_property_attr_calls[i], 3), \"'\")", { location: "homes_properties_attr" });
-                                        if (((s as any).loc ?? 0)(((s as any).temp_loc_name ?? 0))) {
+                                        if (hasLocation(((s as any).temp_loc_name ?? 0))) {
                                           // TODO-QSP: dynamic "gs <<$home_property_attr_calls[i]>>"
                                         }
                                         (s as any).i = ((s as any).i ?? 0) + (1);
@@ -492,7 +492,7 @@ function enterGetPropertyAttr(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetPropertyAttribute(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'homes_properties_attr', 'get_property_attr', ((s as any).name ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).name ?? 0)]; enterGetPropertyAttr(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((String(((s as any).locArgs?.[1] ?? 0)).slice((1)-1, ((1)-1)+(1))) === '$') {
   } else {
     (s as any).result = ((s as any).property ?? 0)?.[((s as any).locArgs?.[1] ?? 0)];
@@ -515,7 +515,7 @@ function enterRemoveModGetPropertyAttributeCall(s: GameState, scene: SceneBuilde
   if (((s as any).temp_hpacVars ?? 0)?.['pos'] >= 0) {
     if (!(s as any).temp_hpacVars) (s as any).temp_hpacVars = {}; (s as any).temp_hpacVars['loc'] = qspUntranslated(s, "instr(mid(temp_hpacVars['call'], 3), \"'\")", { location: "homes_properties_attr" });
     if (!(s as any).temp_hpacVars) (s as any).temp_hpacVars = {}; (s as any).temp_hpacVars['name'] = qspUntranslated(s, "mid(temp_hpacVars['call'], 2, temp_hpacVars['loc'])", { location: "homes_properties_attr" });
-    if (((s as any).loc ?? 0)(((s as any).temp_hpacVars ?? 0)?.['name'])) {
+    if (hasLocation(((s as any).temp_hpacVars ?? 0)?.['name'])) {
       // TODO-QSP: dynamic "gs <<$temp_hpacVars['call']>>"
       if (((s as any).home ?? 0)?.['current'] === ((s as any).property ?? 0)?.['code']) {
         qspCall(s, 'homes_properties', 'set_homeless');

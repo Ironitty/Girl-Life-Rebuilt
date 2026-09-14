@@ -12,7 +12,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/shared/home/bedroom/bed2.jpg');
   scene.text('<center><h4>Enter the time using the number pad and click on set to change alarm times, don\'t forget to turn your alarm on.</h></center>');
-  qspCall(s, 'alarmclock', 'build_table');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuildTable(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Finish', handler: (st: GameState) => {
@@ -369,9 +369,9 @@ function enterBuildTable(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $alarmVars_table += '</b></font></table></center>'
   // TODO-QSP: dynamic text: <<$more_html>><<$alarm_html>><<$even_more_html>><<$numbud_table>>
-  scene.text(`${((s as any).more_html ?? 0)}${((s as any).alarm_html ?? 0)}${((s as any).even_more_html ?? 0)}${((s as any).numbud_table ?? 0)}`);
+  scene.text(`${((s as any).more_html || '')}${((s as any).alarm_html || '')}${((s as any).even_more_html || '')}${((s as any).numbud_table || '')}`);
   // TODO-QSP: dynamic text: <<$alarmVars_table>>
-  scene.text(`${((s as any).alarmVars_table ?? 0)}`);
+  scene.text(`${((s as any).alarmVars_table || '')}`);
   // TODO-QSP: end
   scene.build();
 }

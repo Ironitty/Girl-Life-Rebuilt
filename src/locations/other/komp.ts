@@ -81,7 +81,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/items/accessories/computer/komp.jpg');
     if (((s as any).access ?? 0)?.['general'] !== '') {
       // TODO-QSP: dynamic text: <center><h4 style="color: red;"><b><<$access['general']>></b></h4></center>
-      scene.text(`<center><h4 style="color: red;"><b>${((s as any).access ?? 0)?.['general']}</b></h4></center>`);
+      scene.text(`<center><h4 style="color: red;"><b>${((s as any).access ?? 0)?.['general'] ?? ''}</b></h4></center>`);
     }
     scene.text('You head to your favourite start page while you decide what you want to do.');
     scene.text('A blinking banner for a <a href="exec: gt \'komp\',\'agent\'">Kirsanova Real Estate Agency</a> keeps popping up in the corner.');
@@ -184,7 +184,7 @@ function enterBrowse(s: GameState, scene: SceneBuilder): void {
 function enterSale(s: GameState, scene: SceneBuilder): void {
   if (((s as any).access ?? 0)?.['metered']  &&  ((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] < 15) {
     // TODO-QSP: dynamic text: You check the website, but realize that <<subscription[$subs]>> minutes won't be...
-    scene.text(`You check the website, but realize that ${((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)]} minutes won't be enough to fill out all the forms.`);
+    scene.text(`You check the website, but realize that ${((s as any).subscription ?? 0)?.[String((s as any).subs ?? 0)] ?? ''} minutes won't be enough to fill out all the forms.`);
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     (s as any).elektro = ((s as any).elektro ?? 0) + (3);
@@ -211,7 +211,7 @@ function enterSale(s: GameState, scene: SceneBuilder): void {
       if (((s as any).obkvsdam ?? 0) > 1) {
         (s as any).predsum = 14000 + (((s as any).obkvsdam ?? 0)*1000);
         // TODO-QSP: dynamic text: Someone wants to stay in your apartment for a month! They're offering you <<func...
-        scene.text(`Someone wants to stay in your apartment for a month! They're offering you ${qspFunc(s, 'money', 'string_profit', ((s as any).predsum ?? 0))} in cash.`);
+        scene.text(`Someone wants to stay in your apartment for a month! They're offering you ${qspFunc(s, 'money', 'string_profit', ((s as any).predsum || ''))} in cash.`);
         scene.actions([
           { label: 'Accept the offer', handler: (st: GameState) => {
     qspCall(s, 'homes_properties', 'tenants_move_in', 'city_apartment', ((((s as any).month ?? 0) + 1 > 12) ? (1) : (((s as any).month ?? 0) + 1)), 0);
@@ -268,13 +268,13 @@ function enterPorno(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'voyeur', 'resist', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Look up Albina\'s porno [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Look up Albina\'s porno', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Look up Albina\'s porno [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Look up Albina\'s porno', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['albina_events', 'casting_video'] },
@@ -485,7 +485,7 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).npcID ?? 0)] = 0;
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
-    scene.text(`You find a guy named ${((s as any).npcdesc ?? 0)} and send him your number after checking out his profile. You hope he'll call you!`);
+    scene.text(`You find a guy named ${((s as any).npcdesc || '')} and send him your number after checking out his profile. You hope he'll call you!`);
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
@@ -497,7 +497,7 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).npcID ?? 0)] = 0;
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
-    scene.text(`You find a guy named ${((s as any).npcdesc ?? 0)} and send him your number after checking out his profile. You hope he'll call you!`);
+    scene.text(`You find a guy named ${((s as any).npcdesc || '')} and send him your number after checking out his profile. You hope he'll call you!`);
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
@@ -509,7 +509,7 @@ function enterZnak(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).npcID ?? 0)] = 1;
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     // TODO-QSP: dynamic text: You find a guy named <<$npcdesc>> and send him your number after checking out hi...
-    scene.text(`You find a guy named ${((s as any).npcdesc ?? 0)} and send him your number after checking out his profile. You hope he'll call you!`);
+    scene.text(`You find a guy named ${((s as any).npcdesc || '')} and send him your number after checking out his profile. You hope he'll call you!`);
     scene.actions([
       { label: 'Leave this website', goto: ['komp', 'browse'] },
     ]);
@@ -843,7 +843,7 @@ function enterAgent(s: GameState, scene: SceneBuilder): void {
       scene.text(`You have <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'city_apartment')} days</b> remaining on the rental of your St. Petersburg apartment.`);
     }
     scene.actions([
-      { label: 'Pay rent on St. Petersburg [+$func(\'money\', \'get_cost_string\', func(\'...]', handler: (st: GameState) => {
+      { label: 'Pay rent on St. Petersburg', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', qspFunc(s, 'homes_properties', 'get_rent_amount', 'city_apartment'), 'bank') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -874,7 +874,7 @@ function enterAgent(s: GameState, scene: SceneBuilder): void {
       scene.text(`You have <b>${qspFunc(s, 'homes_properties', 'get_rent_days', 'old_town_apartment')} days</b> remaining on the rental of your Pushkin apartment.`);
     }
     scene.actions([
-      { label: 'Pay rent on Pushkin [+$func(\'money\', \'get_cost_string\', func(\'...]', handler: (st: GameState) => {
+      { label: 'Pay rent on Pushkin', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', qspFunc(s, 'homes_properties', 'get_rent_amount', 'old_town_apartment'), 'bank') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -920,7 +920,7 @@ function enterBank(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Buy internet time [+$func(\'money\', \'get_cost_string\', 10, \'b...]', handler: (st: GameState) => {
+    { label: 'Buy internet time', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10, 'bank') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -931,9 +931,9 @@ function enterBank(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: gs 'money', 'pay', intinp * 10, 'bank'
         (s as any).internet = ((s as any).internet ?? 0) + (((s as any).intinp ?? 0));
         // TODO-QSP: dynamic text: You pay for <<intinp>> hours of prepaid internet access. You have a total of <<i...
-        scene.text(`You pay for ${((s as any).intinp ?? 0)} hours of prepaid internet access. You have a total of ${((s as any).internet ?? 0)} hours of internet access remaining.`);
+        scene.text(`You pay for ${((s as any).intinp || '')} hours of prepaid internet access. You have a total of ${((s as any).internet || '')} hours of internet access remaining.`);
         // TODO-QSP: dynamic text: <<$func('money', 'string_price', intinp * 10)>> was removed from your account to...
-        scene.text(`${qspFunc(s, 'money', 'string_price', ((s as any).intinp ?? 0) * 10)} was removed from your account to pay for it.`);
+        scene.text(`${qspFunc(s, 'money', 'string_price', ((s as any).intinp ?? '') * 10)} was removed from your account to pay for it.`);
       }
       scene.actions([
         { label: 'Continue', goto: ['komp', 'bank'] },

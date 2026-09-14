@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterChampagne1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the changing room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -123,7 +123,7 @@ function enterChampagne1_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     // TODO-QSP: dynamic text: After about an hour, they've got all the shots they want for your special. It wa...
-    scene.text(`After about an hour, they've got all the shots they want for your special. It was a pretty short shoot since they knew what they wanted to get and everything was already set up. However, you're very sticky from all that champagne you poured over yourself. Someone gives you an envelope containing ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} and you thank them, excusing yourself to go take a shower and get all this stuff off of you.`);
+    scene.text(`After about an hour, they've got all the shots they want for your special. It was a pretty short shoot since they knew what they wanted to get and everything was already set up. However, you're very sticky from all that champagne you poured over yourself. Someone gives you an envelope containing ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} and you thank them, excusing yourself to go take a shower and get all this stuff off of you.`);
     scene.actions([
       { label: 'Go take a shower', goto: ['foto', 'showers'] },
     ]);
@@ -151,7 +151,7 @@ function enterKickboxingDocumentary(s: GameState, scene: SceneBuilder): void {
       { label: 'Do the shoot', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fitness/KD1.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    (s as any).modelpayfin = 900 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0)) + ((((s as any).fame ?? {})?.['city_kickboxing'] + ((s as any).pcs_apprnc ?? 0))/2)*2;
+    (s as any).modelpayfin = 900 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0)) + (((((s as any).fame ?? {})?.['city_kickboxing'] ?? 0) + ((s as any).pcs_apprnc ?? 0))/2)*2;
     if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
     if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 1);
@@ -171,7 +171,7 @@ function enterKickboxingDocumentary(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fitness/KD2.jpg');
     if (((s as any).fame ?? 0)?.['city_kickboxing'] >=400  &&  ((s as any).kickbox ?? 0)?.['sash'] >= 5) {
       // TODO-QSP: dynamic text: "You are <<$pcs_lastname>> Isn't it?"
-      scene.text(`"You are ${((s as any).pcs_lastname ?? 0)} Isn't it?"`);
+      scene.text(`"You are ${((s as any).pcs_lastname || '')} Isn't it?"`);
       scene.text('The journalist shakes your hand with a big smile on his face. Interviewing you, must be a great thing, as practically without stopping, you are showered with questions, from the sport-related to the personal, passing for the absolute trivial.');
       scene.text('"Your feeling about that victory? Your favorite color? A man in your life?"');
       scene.text('The interview goes and goes like this during a long time, until your allocated time end, and then reluctantly the journalist leaves you to talk to another kickboxer.');
@@ -188,18 +188,18 @@ function enterKickboxingDocumentary(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fitness/KD3.jpg');
     if (((s as any).fame ?? 0)?.['city_kickboxing'] >=400  &&  ((s as any).kickbox ?? 0)?.['sash'] >= 5) {
       // TODO-QSP: dynamic text: Two hours later, the model session/interviews end. After returning to the studio...
-      scene.text(`Two hours later, the model session/interviews end. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in payment for the job.`);
+      scene.text(`Two hours later, the model session/interviews end. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} in payment for the job.`);
       scene.text('Sometime later, the article is sent to your phone…');
       scene.text('And is a little awkward… The realization, that you are getting famous, as one of the best, if not the BEST, female kickboxer in all St. Petersburg. Practically, the article turns around you. With even fans asking all kinds of personal questions. Damn! You are Hot, Mean and Famous!');
     } else {
       if (((s as any).fame ?? 0)?.['city_kickboxing'] >=200  &&  ((s as any).kickbox ?? 0)?.['sash'] >= 2) {
         // TODO-QSP: dynamic text: Two hours later, the model session/interviews end. After returning to the studio...
-        scene.text(`Two hours later, the model session/interviews end. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in payment for the job.`);
+        scene.text(`Two hours later, the model session/interviews end. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} in payment for the job.`);
         scene.text('Sometime later, the article is sent to your phone…');
         scene.text('Being true, is a little dry, mentioning your name, general information and that you are an up-and-coming kickboxer.');
       } else {
         // TODO-QSP: dynamic text: Two hours later, the model session/interviews end. After returning to the studio...
-        scene.text(`Two hours later, the model session/interviews end. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in payment for the job.`);
+        scene.text(`Two hours later, the model session/interviews end. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} in payment for the job.`);
         scene.text('Sometime later, the article is sent to your phone…');
         scene.text('And is disappointing! Beyond your photo is only your name, and the mention, that you are a participant in the League.');
       }
@@ -234,7 +234,7 @@ function enterTrack__FieldDocumentary(s: GameState, scene: SceneBuilder): void {
       { label: 'Do the shoot', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/TD1.jpg');
     (s as any).minut = ((s as any).minut ?? 0) + 120;
-    (s as any).modelpayfin = 1800 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0)) + ((((s as any).fame ?? {})?.['city_running'] + ((s as any).pcs_apprnc ?? 0))/2)*2;
+    (s as any).modelpayfin = 1800 + (((s as any).modelpay ?? 0) * 2) + (50*(Math.floor(Math.random() * 8) + 0)) + (((((s as any).fame ?? {})?.['city_running'] ?? 0) + ((s as any).pcs_apprnc ?? 0))/2)*2;
     if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['nude'] = ((s as any).modelfoto['nude'] ?? 0) + (1);
     if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['shoots'] = ((s as any).modelfoto['shoots'] ?? 0) + (1);
     qspCall(s, 'exp_gain', 'mdlng', Math.floor(Math.random() * 2) + 1);
@@ -253,7 +253,7 @@ function enterTrack__FieldDocumentary(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/TD2.jpg');
     if (((s as any).fame ?? 0)?.['city_running'] >=400  &&  ((s as any).runnerQW ?? 0)?.['prof_stage'] >= 3) {
       // TODO-QSP: dynamic text: "You are <<$pcs_lastname>> Isn't it?"
-      scene.text(`"You are ${((s as any).pcs_lastname ?? 0)} Isn't it?"`);
+      scene.text(`"You are ${((s as any).pcs_lastname || '')} Isn't it?"`);
       scene.text('The journalist shakes your hand with a big smile on his face. Interviewing you must be a great thing, as practically without stopping, you are showered with questions, from the sport-related to the personal, passing for the absolute trivial.');
       scene.text('"Your feeling about that victory? Your favorite color? A man in your life?"');
       scene.text('The interview goes on and on like this for a long time, until you\'re allocated time ends, and then reluctantly the journalist leaves you to talk to another runner.');
@@ -270,19 +270,19 @@ function enterTrack__FieldDocumentary(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/TD3.jpg');
     if (((s as any).fame ?? 0)?.['city_running'] >=400  &&  ((s as any).runnerQW ?? 0)?.['prof_stage'] >= 3) {
       // TODO-QSP: dynamic text: Two hours later, the model session/interviews ends. After returning to the studi...
-      scene.text(`Two hours later, the model session/interviews ends. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in payment for the job.`);
+      scene.text(`Two hours later, the model session/interviews ends. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} in payment for the job.`);
       scene.text('Sometime later, the article is sent to your phone…');
       scene.text('And is a little awkward… The realization, that you are getting famous, as one of the best, if not THE best runner in The Women\'s 400 Meter Dash category in all of St. Petersburg. Practically, the article turns around you. With even fans asking all kinds of personal questions. Damn! You are Hot, Fast and Famous!');
     } else {
       if (((s as any).fame ?? 0)?.['city_running'] >=200  &&  ((s as any).runnerQW ?? 0)?.['prof_stage'] >= 1) {
         // TODO-QSP: dynamic text: Two hours later, the model session/interviews ends. After returning to the studi...
-        scene.text(`Two hours later, the model session/interviews ends. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in payment for the job.`);
+        scene.text(`Two hours later, the model session/interviews ends. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} in payment for the job.`);
         scene.text('Sometime later, the article is sent to your phone…');
         scene.text('Being true, is a little dry, mentioning your name, general information and that you are an up-and-coming runner in The Women\'s 400 Meter Dash category.');
       } else {
         scene.img('images/locations/city/citycenter/photo/TD2.jpg');
         // TODO-QSP: dynamic text: Two hours later, the model session/interview ends. After returning to the studio...
-        scene.text(`Two hours later, the model session/interview ends. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in payment for the job.`);
+        scene.text(`Two hours later, the model session/interview ends. After returning to the studio, you are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} in payment for the job.`);
         scene.text('Sometime later, the article is sent to your phone…');
         scene.text('And is disappointing! Beyond your photo is only your name, and the mention, that you are a new runner in The Women\'s 400 Meter Dash category.');
       }

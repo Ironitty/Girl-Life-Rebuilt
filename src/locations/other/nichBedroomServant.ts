@@ -29,7 +29,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('A luxurious <a href="exec:gt \'divan\', \'start\'">leather sofa</a> is on the other side of the wardrobe.');
   scene.text('Mounted on the wall opposite the sofa is a big flat screen <a href="exec:gt \'TV\', \'start\'">TV</a>.');
   // TODO-QSP: dynamic text: Under the window is a nice <a href="exec:gt 'nichBedroomServant', 'desk'">desk</...
-  scene.text(`Under the window is a nice <a href="exec:gt 'nichBedroomServant', 'desk'">desk</a>${((s as any).komp ?? 0)}`);
+  scene.text(`Under the window is a nice <a href="exec:gt 'nichBedroomServant', 'desk'">desk</a>${((s as any).komp || '')}`);
   if (((s as any).mc_inventory ?? 0)?.['hula_hoop'] > 0) {
     scene.text('<br>Your hula hoop stands in a corner of the room. ');
   }
@@ -41,12 +41,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mishka ?? 0) > 0) {
     // TODO-QSP: dynamic text: On one of the shelves, you've placed your <<mishka>> teddy bear'+iif(mishka = 1,...
-    scene.text(`On one of the shelves, you've placed your ${((s as any).mishka ?? 0)} teddy bear'+iif(mishka = 1, ', 's')+'.`);
+    scene.text(`On one of the shelves, you've placed your ${((s as any).mishka || '')} teddy bear'+iif(mishka = 1, ', 's')+'.`);
   }
   qspCall(s, 'exercise', 'start');
   if (((s as any).nichSalaryOutstanding ?? 0) > 0) {
     // TODO-QSP: dynamic text: On top of your desk lies your paycheck of <<$func('money', 'string_profit', nich...
-    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding ?? 0))} (<a href="exec:gt 'nichBedroomServant', 'redeemSalary'">redeem</a>).`);
+    scene.text(`On top of your desk lies your paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} (<a href="exec:gt 'nichBedroomServant', 'redeemSalary'">redeem</a>).`);
   }
   qspCall(s, 'library_functions', 'set_home_read_acts');
   qspCall(s, 'music_actions', 'start');
@@ -84,7 +84,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0) {
     // TODO-QSP: dynamic text: You have hidden <<mc_inventory['cocaine']>> doses of Pale Lady behind your wardr...
-    scene.text(`You have hidden ${((s as any).mc_inventory ?? 0)?.['cocaine']} doses of Pale Lady behind your wardrobe.`);
+    scene.text(`You have hidden ${((s as any).mc_inventory ?? 0)?.['cocaine'] ?? ''} doses of Pale Lady behind your wardrobe.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['cocaine'] > 0  &&  ((s as any).drugVars ?? 0)?.['cocaine_day'] !== ((s as any).daystart ?? 0)) {
     scene.actions([
@@ -115,7 +115,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: You should start preparing breakfast before '+func('time', 'get_time_string', 7,...
-  scene.text('You should start preparing breakfast before \'+func(\'time\', \'get_time_string\', 7, 15)+\' during the week and before \'+func(\'time\', \'get_time_string\', 8, 15)+\' on weekends.');
+  scene.text('You should start preparing breakfast before 7:15 during the week and before 8:15 on weekends.');
   if ((((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0)  &&  (!((s as any).nichPregnancy ?? 0))) {
     scene.text('');
     scene.text('<b>You are pregnant but Nicholas hasn\'t realized it yet. He won\'t allow you to continue working for him if he figures it out, that\'s for sure. Maybe you should wear baggy clothes to hide your condition?</b>');
@@ -216,7 +216,7 @@ function enterDesk(s: GameState, scene: SceneBuilder): void {
 function enterRedeemSalary(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'earn', ((s as any).nichSalaryOutstanding ?? 0), 'bank');
   // TODO-QSP: dynamic text: Your salary of <<$func('money', 'string_profit', nichSalaryOutstanding)>> is tra...
-  scene.text(`Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding ?? 0))} is transferred to your bank account.`);
+  scene.text(`Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).nichSalaryOutstanding || ''))} is transferred to your bank account.`);
   scene.actions([
     { label: 'Back', goto: ['nichBedroomServant', 'return'] },
   ]);

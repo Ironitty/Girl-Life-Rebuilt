@@ -166,11 +166,11 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['bar_width_css'] = String(((s as any).progressbar ?? 0)?.['bar_width_val']) + 'px';
   if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['bar_width_attr'] = qspUntranslated(s, "str(progressbar['bar_width_val'])", { location: "progressbar" });
   if (((s as any).progressbar ?? 0)?.['max_value'] > 0) {
-    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['value'] = Math.min(100, ((s as any).progressbar ?? {})?.['raw_value'] * 100 / ((s as any).progressbar ?? {})?.['max_value']);
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['value'] = Math.min(100, (((s as any).progressbar ?? {})?.['raw_value'] ?? 0) * 100 / (((s as any).progressbar ?? {})?.['max_value'] ?? 0));
   } else {
     if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['value'] = qspUntranslated(s, "min(max(0, progressbar['raw_value']), 100)", { location: "progressbar" });
   }
-  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['phantom'] = Math.min(Math.max(((s as any).progressbar ?? 0)?.['value'], ((s as any).progressbar ?? 0)?.['phantom_raw']), 100) - ((s as any).progressbar ?? {})?.['value'];
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['phantom'] = Math.min(Math.max(((s as any).progressbar ?? 0)?.['value'], ((s as any).progressbar ?? 0)?.['phantom_raw']), 100) - (((s as any).progressbar ?? {})?.['value'] ?? 0);
   if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label'] = qspUntranslated(s, "str(progressbar['raw_value'])", { location: "progressbar" });
   if (((s as any).progressbar ?? 0)?.['phantom_raw'] > 0  &&  ((s as any).progressbar ?? 0)?.['phantom_raw'] !== ((s as any).progressbar ?? 0)?.['raw_value']) {
     if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label'] = ((s as any).progressbar['label'] ?? 0) + (' (' + qspUntranslated(s, "progressbar['phantom_raw']>", { location: "progressbar" }) + ')');
@@ -180,11 +180,11 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label'] = '<span style="font-size:\' + $str(sd_font_pct) + \'%;">\' + $progressbar[\'label_raw\'] + \'</span>';
   }
   if (((s as any).stat_cfg ?? 0)?.['font_size'] > 0) {
-    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_px'] = (String(((s as any).progressbar ?? 0)?.['label']).length) * (((s as any).stat_cfg ?? {})?.['font_size'] + 2);
+    if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_px'] = (String(((s as any).progressbar ?? 0)?.['label']).length) * ((((s as any).stat_cfg ?? {})?.['font_size'] ?? 0) + 2);
   } else {
     if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_px'] = (String(((s as any).progressbar ?? 0)?.['label']).length) * 9;
   }
-  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_width_pct'] = ((s as any).progressbar ?? {})?.['label_px'] * 100 / ((s as any).progressbar ?? {})?.['bar_width_val'];
+  if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_width_pct'] = (((s as any).progressbar ?? {})?.['label_px'] ?? 0) * 100 / (((s as any).progressbar ?? {})?.['bar_width_val'] ?? 0);
   if (((s as any).progressbar ?? 0)?.['label'] === ''  ||  ((s as any).progressbar ?? 0)?.['label_pos'] === 'none') {
     if (!(s as any).progressbar) (s as any).progressbar = {}; (s as any).progressbar['label_pos'] = 'none';
   } else {
@@ -274,7 +274,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
       }
       (s as any).bar_char_index = 0;
       (s as any).bar_char_step = 5;
-      (s as any).bar_phantom_end = ((s as any).progressbar ?? {})?.['value'] + ((s as any).progressbar ?? {})?.['phantom'];
+      (s as any).bar_phantom_end = (((s as any).progressbar ?? {})?.['value'] ?? 0) + (((s as any).progressbar ?? {})?.['phantom'] ?? 0);
       // TODO-QSP: :progressbar_text_loop
       if (((s as any).bar_char_index ?? 0) < ((s as any).progressbar ?? 0)?.['value']) {
         // TODO-QSP: $bar_html += '█'
@@ -300,7 +300,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: killvar 'bar_char_step'
       // TODO-QSP: killvar 'bar_phantom_end'
     } else {
-      (s as any).bar_bg_pct = 100 - ((s as any).progressbar ?? {})?.['value'] - ((s as any).progressbar ?? {})?.['phantom'];
+      (s as any).bar_bg_pct = 100 - (((s as any).progressbar ?? {})?.['value'] ?? 0) - (((s as any).progressbar ?? {})?.['phantom'] ?? 0);
       if (((s as any).progressbar ?? 0)?.['overlay'] > 0) {
         // TODO-QSP: $bar_html += '<div style="position: relative; width: <<$progressbar[''bar_width_css'']>>; display: i...
         // TODO-QSP: $bar_html += '<table cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; ...
@@ -324,7 +324,7 @@ function enterColor(s: GameState, scene: SceneBuilder): void {
               // TODO-QSP: $bar_html += '<div style="position: absolute; top: 0; left: <<progressbar[''value'']>>%; height: 100...
               // TODO-QSP: $bar_html += '&nbsp;<font color="<<$progressbar[''phantom_on_color'']>>"><<$progressbar[''label_raw'...
             } else {
-              (s as any).pb2d_txt_left = ((s as any).progressbar ?? {})?.['value'] + ((s as any).progressbar ?? {})?.['phantom'];
+              (s as any).pb2d_txt_left = (((s as any).progressbar ?? {})?.['value'] ?? 0) + (((s as any).progressbar ?? {})?.['phantom'] ?? 0);
               // TODO-QSP: $bar_html += '<div style="position: absolute; top: 0; left: <<pb2d_txt_left>>%; height: 100%; z-inde...
               // TODO-QSP: $bar_html += '&nbsp;<<$progressbar[''label_raw'']>>'
             }

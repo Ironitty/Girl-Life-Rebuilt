@@ -14,7 +14,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelperBar(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sd_hb) (s as any).sd_hb = {}; (s as any).sd_hb['rm'] = ((s as any).sd ?? {})?.['render_mode'] + 1;
+  if (!(s as any).sd_hb) (s as any).sd_hb = {}; (s as any).sd_hb['rm'] = (((s as any).sd ?? {})?.['render_mode'] ?? 0) + 1;
   if (((s as any).sd ?? 0)?.['render_mode'] === 2) {
   } else {
     if (((s as any).sd ?? 0)?.['name_side'] === 1) {
@@ -26,7 +26,7 @@ function enterHelperBar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHelperBarCell(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).sd_bc) (s as any).sd_bc = {}; (s as any).sd_bc['bar'] = qspFunc(s, 'progressbar', '$ARGS[1]', qspUntranslated(s, "ARGS[3]", { location: "stat_display" }), qspUntranslated(s, "ARGS[4]", { location: "stat_display" }), qspUntranslated(s, "ARGS[5]", { location: "stat_display" }), qspUntranslated(s, "ARGS[6]", { location: "stat_display" }), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), ((s as any).sd ?? {})?.['render_mode'] + 1);
+  if (!(s as any).sd_bc) (s as any).sd_bc = {}; (s as any).sd_bc['bar'] = qspFunc(s, 'progressbar', '$ARGS[1]', qspUntranslated(s, "ARGS[3]", { location: "stat_display" }), qspUntranslated(s, "ARGS[4]", { location: "stat_display" }), qspUntranslated(s, "ARGS[5]", { location: "stat_display" }), qspUntranslated(s, "ARGS[6]", { location: "stat_display" }), ((s as any).locArgs?.[7] ?? 0), '', ((s as any).locArgs?.[8] ?? 0), (((s as any).sd ?? {})?.['render_mode'] ?? 0) + 1);
   if (((s as any).sd ?? 0)?.['name_side'] === 1) {
   }
   return;
@@ -381,7 +381,7 @@ function enterSecMenuBar(s: GameState, scene: SceneBuilder): void {
     if (((s as any).menu_off ?? 0)  &&  parseFloat(((s as any).sd_mb ?? 0)?.[((s as any).sd_mb ?? 0)?.['key'] + '_dis'])) {
       if (!(s as any).sd_mb) (s as any).sd_mb = {}; (s as any).sd_mb['act'] = 'gs \'obj_din\', \'menu_disabled\'';
     } else {
-      if (!(s as any).sd_mb) (s as any).sd_mb = {}; (s as any).sd_mb['act'] = ((s as any).sd_mb ?? 0)?.[((s as any).sd_mb ?? {})?.['key'] + '_url'];
+      if (!(s as any).sd_mb) (s as any).sd_mb = {}; (s as any).sd_mb['act'] = ((s as any).sd_mb ?? 0)?.[(((s as any).sd_mb ?? {})?.['key'] ?? 0) + '_url'];
     }
     if (!(s as any).sd_mb) (s as any).sd_mb = {}; (s as any).sd_mb['cell'] = '<a href="exec: \' + $sd_mb[\'act\'] + \'"><img title="\' + $sd_mb[$sd_mb[\'key\'] + \'_tip\'] + \'" \' + $sd[\'micon\'] + $sd_mb[$sd_mb[\'key\'] + \'_ico\'] + \'"></a>';
     if (!(s as any).sd_mb) (s as any).sd_mb = {}; (s as any).sd_mb['cells'] = ((s as any).sd_mb['cells'] ?? 0) + ('<span style="display:inline-block; vertical-align:middle;">\' + $sd_mb[\'cell\'] + \'</span>');
@@ -779,10 +779,10 @@ function enterSecSkills(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).skillval) (s as any).skillval = {}; (s as any).skillval['servng'] = ((s as any).pcs_servng ?? 0);
   if (!(s as any).skillval) (s as any).skillval = {}; (s as any).skillval['medcn'] = ((s as any).pcs_medcn ?? 0);
   if (((s as any).stat_cfg ?? 0)?.['skills_mode'] > 0) {
-    if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['render_mode'] = ((s as any).stat_cfg ?? {})?.['skills_mode'] - 1;
+    if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['render_mode'] = (((s as any).stat_cfg ?? {})?.['skills_mode'] ?? 0) - 1;
   }
   if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['name_side'] = ((s as any).stat_cfg ?? 0)?.['name_side_skills'];
-  if (!(s as any).sd_sk) (s as any).sd_sk = {}; (s as any).sd_sk['td_cols'] = ((((s as any).stat_cfg ?? 0)?.['skills_mode'] > 0) ? (((s as any).sd ?? {})?.['skills_columns'] * 2) : (((s as any).sd ?? 0)?.['skills_columns']));
+  if (!(s as any).sd_sk) (s as any).sd_sk = {}; (s as any).sd_sk['td_cols'] = ((((s as any).stat_cfg ?? 0)?.['skills_mode'] > 0) ? ((((s as any).sd ?? {})?.['skills_columns'] ?? 0) * 2) : (((s as any).sd ?? 0)?.['skills_columns']));
   if (!(s as any).sd_sk) (s as any).sd_sk = {}; (s as any).sd_sk['save_barwidth'] = ((s as any).stat_cfg ?? 0)?.['bar_width'];
   if (((s as any).sd ?? 0)?.['skills_columns'] > 1) {
     if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['bar_width'] = ((((s as any).stat_cfg ?? 0)?.['bar_width'] > 0) ? (((s as any).stat_cfg ?? 0)?.['bar_width']) : (200));
@@ -802,7 +802,7 @@ function enterSecSkills(s: GameState, scene: SceneBuilder): void {
   if (((s as any).stat_hide ?? 0)[((s as any).sd_sk ?? 0)?.['grp']] === 0) {
     if (!(s as any).sd_sk) (s as any).sd_sk = {}; (s as any).sd_sk['si'] = 0;
     // TODO-QSP: :sd_skill_entry_loop
-    if (!(s as any).sd_sk) (s as any).sd_sk = {}; (s as any).sd_sk['key'] = ((s as any).skill_grp ?? 0)?.[((s as any).sd_sk ?? {})?.['grp'] + '_' + String(((s as any).sd_sk ?? 0)?.['si'])];
+    if (!(s as any).sd_sk) (s as any).sd_sk = {}; (s as any).sd_sk['key'] = ((s as any).skill_grp ?? 0)?.[(((s as any).sd_sk ?? {})?.['grp'] ?? 0) + '_' + String(((s as any).sd_sk ?? 0)?.['si'])];
     if (((s as any).sd_sk ?? 0)?.['key'] === '') {
       // TODO-QSP: jump 'sd_skill_entry_done'
     }
@@ -844,7 +844,7 @@ function enterSecSkills(s: GameState, scene: SceneBuilder): void {
               if (!(s as any).sd_sk) (s as any).sd_sk = {}; (s as any).sd_sk['hdr_align'] = ' align="right"';
             }
           }
-          if (!(s as any).sd_sk) (s as any).sd_sk = {}; (s as any).sd_sk['rows'] = ((s as any).sd_sk['rows'] ?? 0) + ('<tr><td colspan="' + String(((s as any).sd_sk ?? 0)?.['td_cols']) + '"' + ((s as any).sd_sk ?? {})?.['hdr_align'] + ' style="' + ((s as any).sd_sk ?? {})?.['hdr_style'] + '"><b>' + ((s as any).sd_dn ?? 0)[((s as any).sd_sk ?? {})?.['grp']] + '</b></td></tr>' + ((s as any).sd_sk ?? {})?.['grp_rows']);
+          if (!(s as any).sd_sk) (s as any).sd_sk = {}; (s as any).sd_sk['rows'] = ((s as any).sd_sk['rows'] ?? 0) + ('<tr><td colspan="' + String(((s as any).sd_sk ?? 0)?.['td_cols']) + '"' + (((s as any).sd_sk ?? {})?.['hdr_align'] ?? 0) + ' style="' + (((s as any).sd_sk ?? {})?.['hdr_style'] ?? 0) + '"><b>' + ((s as any).sd_dn ?? 0)[(((s as any).sd_sk ?? {})?.['grp'] ?? 0)] + '</b></td></tr>' + (((s as any).sd_sk ?? {})?.['grp_rows'] ?? 0));
         }
       }
     }
@@ -872,10 +872,10 @@ function enterSecRelations(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['cols'] = ((s as any).sd ?? 0)?.['relations_columns'];
   if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['align'] = qspFunc(s, 'stat_display', 'helper_resolve_align', 'relations');
   if (((s as any).stat_cfg ?? 0)?.['relations_mode'] > 0) {
-    if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['render_mode'] = ((s as any).stat_cfg ?? {})?.['relations_mode'] - 1;
+    if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['render_mode'] = (((s as any).stat_cfg ?? {})?.['relations_mode'] ?? 0) - 1;
   }
   if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['name_side'] = ((s as any).stat_cfg ?? 0)?.['name_side_relations'];
-  if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['td_cols'] = ((((s as any).stat_cfg ?? 0)?.['relations_mode'] > 0) ? (((s as any).sd ?? {})?.['relations_columns'] * 2) : (((s as any).sd ?? 0)?.['relations_columns']));
+  if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['td_cols'] = ((((s as any).stat_cfg ?? 0)?.['relations_mode'] > 0) ? ((((s as any).sd ?? {})?.['relations_columns'] ?? 0) * 2) : (((s as any).sd ?? 0)?.['relations_columns']));
   if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['save_barwidth'] = ((s as any).stat_cfg ?? 0)?.['bar_width'];
   if (((s as any).sd ?? 0)?.['relations_columns'] > 1) {
     if (!(s as any).stat_cfg) (s as any).stat_cfg = {}; (s as any).stat_cfg['bar_width'] = ((((s as any).stat_cfg ?? 0)?.['bar_width'] > 0) ? (((s as any).stat_cfg ?? 0)?.['bar_width']) : (200));
@@ -922,7 +922,7 @@ function enterSecRelations(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).sd_rl ?? 0)?.['lovtype'] !== '') {
         if (((s as any).stat_hide_rel ?? 0)[((s as any).sd_rl ?? 0)?.['lovid']] === 0) {
-          if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['lovname'] = ((s as any).sd_rl ?? {})?.['lovtype'] + ' ' + qspFunc(s, 'stat_display', 'helper_rel_name', '', ((s as any).sd_rl ?? 0)?.['lovid']);
+          if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['lovname'] = (((s as any).sd_rl ?? {})?.['lovtype'] ?? 0) + ' ' + qspFunc(s, 'stat_display', 'helper_rel_name', '', ((s as any).sd_rl ?? 0)?.['lovid']);
           if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['grp_rows'] = ((s as any).sd_rl['grp_rows'] ?? 0) + (qspFunc(s, 'stat_display', 'helper_rel_entry', ((s as any).sd_rl ?? 0)?.['lovname'], ((s as any).npc_rel ?? 0)?.[((s as any).sd_rl ?? 0)?.['lovid']], ((s as any).sd_rl ?? 0)?.['cnt']));
           if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['cnt'] = ((s as any).sd_rl['cnt'] ?? 0) + (1);
         }
@@ -933,7 +933,7 @@ function enterSecRelations(s: GameState, scene: SceneBuilder): void {
     } else {
       if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['mi'] = 0;
       // TODO-QSP: :sd_rel_member_loop
-      if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['key'] = ((s as any).rel_grp ?? 0)?.[((s as any).sd_rl ?? {})?.['grp'] + '_' + String(((s as any).sd_rl ?? 0)?.['mi'])];
+      if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['key'] = ((s as any).rel_grp ?? 0)?.[(((s as any).sd_rl ?? {})?.['grp'] ?? 0) + '_' + String(((s as any).sd_rl ?? 0)?.['mi'])];
       if (((s as any).sd_rl ?? 0)?.['key'] === '') {
         // TODO-QSP: jump 'sd_rel_member_done'
       }
@@ -977,7 +977,7 @@ function enterSecRelations(s: GameState, scene: SceneBuilder): void {
               if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['hdr_align'] = ' align="right"';
             }
           }
-          if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + String(((s as any).sd_rl ?? 0)?.['td_cols']) + '"' + ((s as any).sd_rl ?? {})?.['hdr_align'] + ' style="' + ((s as any).sd_rl ?? {})?.['hdr_style'] + '"><b>' + ((s as any).sd_dn ?? 0)[((s as any).sd_rl ?? {})?.['grp']] + '</b></td></tr>' + ((s as any).sd_rl ?? {})?.['grp_rows']);
+          if (!(s as any).sd_rl) (s as any).sd_rl = {}; (s as any).sd_rl['rows'] = ((s as any).sd_rl['rows'] ?? 0) + ('<tr><td colspan="' + String(((s as any).sd_rl ?? 0)?.['td_cols']) + '"' + (((s as any).sd_rl ?? {})?.['hdr_align'] ?? 0) + ' style="' + (((s as any).sd_rl ?? {})?.['hdr_style'] ?? 0) + '"><b>' + ((s as any).sd_dn ?? 0)[(((s as any).sd_rl ?? {})?.['grp'] ?? 0)] + '</b></td></tr>' + (((s as any).sd_rl ?? {})?.['grp_rows'] ?? 0));
         }
       }
     }
@@ -1054,7 +1054,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['wrap_free'] = 1;
     }
   } else {
-    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cols'] = Math.min(Math.max(((s as any).stat_cfg ?? {})?.['image_columns'] + 1, 1), 3);
+    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cols'] = Math.min(Math.max((((s as any).stat_cfg ?? {})?.['image_columns'] ?? 0) + 1, 1), 3);
   }
   if (((s as any).stat_cfg ?? 0)?.['image_spacing'] === 0) {
     if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cellspacing'] = 0;
@@ -1068,13 +1068,13 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['ci'] = 0;
     // TODO-QSP: :sd_si_wrap_loop
     if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['key'] = ((s as any).sd_img ?? 0)?.['order_' + String(((s as any).sd_si ?? 0)?.['ci'])];
-    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['url'] = ((s as any).sd_img ?? 0)?.['url_' + ((s as any).sd_si ?? {})?.['key']];
+    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['url'] = ((s as any).sd_img ?? 0)?.['url_' + (((s as any).sd_si ?? {})?.['key'] ?? 0)];
     if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = '';
     if (((s as any).stat_cfg ?? 0)?.['image_headers'] === 1) {
-      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['label_' + ((s as any).sd_si ?? {})?.['key']];
+      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['label_' + (((s as any).sd_si ?? {})?.['key'] ?? 0)];
     } else {
       if (((s as any).stat_cfg ?? 0)?.['image_headers'] >= 2) {
-        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['short_' + ((s as any).sd_si ?? {})?.['key']];
+        if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['short_' + (((s as any).sd_si ?? {})?.['key'] ?? 0)];
         if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = qspUntranslated(s, "replace(sd_si['hdr'], 'number ', '#')", { location: "stat_display" });
         if ((String(((s as any).sd_si ?? 0)?.['hdr']).slice((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1, ((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1)+(1))) === '.') {
           if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = (String(((s as any).sd_si ?? 0)?.['hdr']).slice((1)-1, ((1)-1)+((String(((s as any).sd_si ?? 0)?.['hdr']).length) - 1)));
@@ -1092,7 +1092,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
     }
     if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cond'] = '';
     if (((s as any).stat_cfg ?? 0)?.['image_headers'] === 3) {
-      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cond'] = ((s as any).sd_img ?? 0)?.['cond_' + ((s as any).sd_si ?? {})?.['key']];
+      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cond'] = ((s as any).sd_img ?? 0)?.['cond_' + (((s as any).sd_si ?? {})?.['key'] ?? 0)];
     }
     if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['ann'] = '';
     if (((s as any).sd_si ?? 0)?.['hdr'] !== '') {
@@ -1107,11 +1107,11 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $sd_si['img'] = '<a href="exec: view ''<<$sd_si[''url'']>>''"><img <<$sd_si[''size'']>> src="<<$sd_si[''url'']>>"></a>'
     if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cell'] = '<div style="display:inline-block; vertical-align:top; text-align:center; margin:' + qspUntranslated(s, "sd_si['cellspacing']>", { location: "stat_display" }) + 'px;">';
     if (((s as any).sd_si ?? 0)?.['ann_pos'] === 0  &&  ((s as any).sd_si ?? 0)?.['ann'] !== '') {
-      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cell'] = ((s as any).sd_si['cell'] ?? 0) + (((s as any).sd_font_wrap_o ?? 0) + ((s as any).sd_si ?? {})?.['ann'] + ((s as any).sd_font_wrap_c ?? 0) + '<br>');
+      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cell'] = ((s as any).sd_si['cell'] ?? 0) + (((s as any).sd_font_wrap_o ?? 0) + (((s as any).sd_si ?? {})?.['ann'] ?? 0) + ((s as any).sd_font_wrap_c ?? 0) + '<br>');
     }
     if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cell'] = ((s as any).sd_si['cell'] ?? 0) + (((s as any).sd_si ?? 0)?.['img']);
     if (((s as any).sd_si ?? 0)?.['ann_pos'] === 1  &&  ((s as any).sd_si ?? 0)?.['ann'] !== '') {
-      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cell'] = ((s as any).sd_si['cell'] ?? 0) + ('<br>' + ((s as any).sd_font_wrap_o ?? 0) + ((s as any).sd_si ?? {})?.['ann'] + ((s as any).sd_font_wrap_c ?? 0));
+      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cell'] = ((s as any).sd_si['cell'] ?? 0) + ('<br>' + ((s as any).sd_font_wrap_o ?? 0) + (((s as any).sd_si ?? {})?.['ann'] ?? 0) + ((s as any).sd_font_wrap_c ?? 0));
     }
     if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cell'] = ((s as any).sd_si['cell'] ?? 0) + ('</div>');
     // TODO-QSP: $result += $sd_si['cell']
@@ -1134,13 +1134,13 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['has_ann'] = 0;
   // TODO-QSP: :sd_si_cell_loop
   if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['key'] = ((s as any).sd_img ?? 0)?.['order_' + String(((s as any).sd_si ?? 0)?.['ci'])];
-  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['url'] = ((s as any).sd_img ?? 0)?.['url_' + ((s as any).sd_si ?? {})?.['key']];
+  if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['url'] = ((s as any).sd_img ?? 0)?.['url_' + (((s as any).sd_si ?? {})?.['key'] ?? 0)];
   if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = '';
   if (((s as any).stat_cfg ?? 0)?.['image_headers'] === 1) {
-    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['label_' + ((s as any).sd_si ?? {})?.['key']];
+    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['label_' + (((s as any).sd_si ?? {})?.['key'] ?? 0)];
   } else {
     if (((s as any).stat_cfg ?? 0)?.['image_headers'] >= 2) {
-      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['short_' + ((s as any).sd_si ?? {})?.['key']];
+      if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = ((s as any).sd_img ?? 0)?.['short_' + (((s as any).sd_si ?? {})?.['key'] ?? 0)];
       if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = qspUntranslated(s, "replace(sd_si['hdr'], 'number ', '#')", { location: "stat_display" });
       if ((String(((s as any).sd_si ?? 0)?.['hdr']).slice((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1, ((qspUntranslated(s, "len(\u00001\u0000)", { location: "stat_display" }))-1)+(1))) === '.') {
         if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['hdr'] = (String(((s as any).sd_si ?? 0)?.['hdr']).slice((1)-1, ((1)-1)+((String(((s as any).sd_si ?? 0)?.['hdr']).length) - 1)));
@@ -1158,7 +1158,7 @@ function enterSecImages(s: GameState, scene: SceneBuilder): void {
   }
   if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cond'] = '';
   if (((s as any).stat_cfg ?? 0)?.['image_headers'] === 3) {
-    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cond'] = ((s as any).sd_img ?? 0)?.['cond_' + ((s as any).sd_si ?? {})?.['key']];
+    if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['cond'] = ((s as any).sd_img ?? 0)?.['cond_' + (((s as any).sd_si ?? {})?.['key'] ?? 0)];
   }
   if (!(s as any).sd_si) (s as any).sd_si = {}; (s as any).sd_si['ann'] = '';
   if (((s as any).sd_si ?? 0)?.['hdr'] !== '') {
@@ -1561,8 +1561,8 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['micon'] = 'height="\' + str(stat_cfg[\'menu_icon_height\']) + \'" src="images/system/icons/menu/';
-  if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['skills_columns'] = ((s as any).stat_cfg ?? {})?.['skills_columns'] + 1;
-  if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['relations_columns'] = ((s as any).stat_cfg ?? {})?.['relations_columns'] + 1;
+  if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['skills_columns'] = (((s as any).stat_cfg ?? {})?.['skills_columns'] ?? 0) + 1;
+  if (!(s as any).sd) (s as any).sd = {}; (s as any).sd['relations_columns'] = (((s as any).stat_cfg ?? {})?.['relations_columns'] ?? 0) + 1;
   if (Object.keys((s as any).stat_order ?? {}).length !== 14) {
     // TODO-QSP: $stat_order[] = 'weather'
     // TODO-QSP: $stat_order[] = 'time'
@@ -1598,14 +1598,14 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (((s as any).debug ?? 0)?.['trace_shown'] === 1) {
-    qspCall(s, 'stat_display', 'debug_trace');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDebugTrace(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
   if (((s as any).stat_cfg ?? 0)?.['android'] === 0) {
     // TODO-QSP: clear
   }
   // TODO-QSP: $sd_android += '<<$weekName>> <<day>>/<<month>>, <<$func(''money'', ''format'', money)>>, <a href="e...
-  qspCall(s, 'stat_display', 'init');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat_display_compute', 'compute_data');
   if (((s as any).cfg_vars ?? 0)?.['faceturn'] === 1) {
     // TODO-QSP: view $func('$face_image')
@@ -1660,7 +1660,7 @@ function enterFinalize(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sd_d ?? 0)?.['i'] < ((s as any).sd_d ?? 0)?.['max']) {
     // TODO-QSP: jump 'sd_dispatch_loop'
   }
-  qspCall(s, 'stat_display', 'finalize');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFinalize(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 

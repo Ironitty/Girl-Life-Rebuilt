@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Borislav\'s cafe</b></center>');
   scene.img('images/locations/pavlovsk/trainstation/cafe/gkafe.jpg');
   // TODO-QSP: dynamic text: A small shabby cafe attached to the train station. It's closed right now, but is...
-  scene.text('A small shabby cafe attached to the train station. It\'s closed right now, but is usually open between \'+func(\'time\', \'get_time_string\', 8, 0)+\' and \'+func(\'time\', \'get_time_string\', 20, 0)+\'.');
+  scene.text('A small shabby cafe attached to the train station. It\'s closed right now, but is usually open between 8:00 and 20:00.');
   if ((((s as any).locat ?? 0)?.['Mother'] === 7  ||  ((s as any).locat ?? 0)?.['Mother'] === 9)  &&  ((s as any).hour ?? 0) === 16  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).locat ?? 0)?.['Mom_cafe_sex'] === 1) {
     scene.img('images/locations/pavlovsk/trainstation/cafe/gkafe.jpg');
     scene.text('A small shabby cafe attached to the train station.');
@@ -62,26 +62,26 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 19) {
       scene.img('images/locations/pavlovsk/trainstation/cafe/gkafe2.jpg');
       scene.text('A small shabby cafe attached to the train station.');
-      qspCall(s, 'gkafe', 'menu');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
         if (((s as any).gschoolVars ?? 0)?.['block'] === 0) {
           if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
             // TODO-QSP: dynamic text: Since your <<$npc_nickname['A29']>> works here, you can eat-in for free.
-            scene.text(`Since your ${((s as any).npc_nickname ?? 0)?.['A29']} works here, you can eat-in for free.`);
+            scene.text(`Since your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} works here, you can eat-in for free.`);
           } else {
             scene.text('Since you left home, you can no longer eat here for free.');
           }
         } else {
           if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
             // TODO-QSP: dynamic text: Since you got kicked out of school, you can no longer eat here for free. Your <<...
-            scene.text(`Since you got kicked out of school, you can no longer eat here for free. Your ${((s as any).npc_nickname ?? 0)?.['A29']} wants you to earn a living.`);
+            scene.text(`Since you got kicked out of school, you can no longer eat here for free. Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} wants you to earn a living.`);
           } else {
             scene.text('Since you were expelled from school and left home, you can no longer eat here for free.');
           }
         }
       } else {
         // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> works here and when you were a kid you used to be ...
-        scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} works here and when you were a kid you used to be able to eat for free.`);
+        scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} works here and when you were a kid you used to be able to eat for free.`);
       }
       if (((s as any).week ?? 0) < 6) {
         if (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 16) {
@@ -94,7 +94,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       if (((s as any).razvrand ?? 0) > 7  &&  ((s as any).hour ?? 0) > 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).age ?? 0) < 18  &&  ((s as any).dyadyamishaevent ?? 0) === 0  &&  ((s as any).sosedknow ?? 0) === 1) {
         scene.text('');
         // TODO-QSP: dynamic text: A male figure walks closely by your table. You look up and recognize him as Mish...
-        scene.text(`A male figure walks closely by your table. You look up and recognize him as Misha, your neighbor. He stops when he recognizes you as well and sits down next to you, giving you a friendly smile. "Oh hello ${((s as any).pcs_nickname ?? 0)}. Listen, me and your stepfather were working late in the garage yesterday, and went for a nightcap at my place when we were finished. When your stepfather left, he accidentally left some of his tools behind. I'm fairly sure he needs them again today, and I could use a hand bringing them back to the garage. Could you help me out? I'll give you money for your troubles."`);
+        scene.text(`A male figure walks closely by your table. You look up and recognize him as Misha, your neighbor. He stops when he recognizes you as well and sits down next to you, giving you a friendly smile. "Oh hello ${((s as any).pcs_nickname || '')}. Listen, me and your stepfather were working late in the garage yesterday, and went for a nightcap at my place when we were finished. When your stepfather left, he accidentally left some of his tools behind. I'm fairly sure he needs them again today, and I could use a hand bringing them back to the garage. Could you help me out? I'll give you money for your troubles."`);
         scene.actions([
           { label: 'Help Misha', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A54');
@@ -105,7 +105,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         if (((s as any).razvrand ?? 0) > 7  &&  ((s as any).hour ?? 0) > 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).dyadyamishaevent ?? 0) === 1  &&  ((s as any).dmishaday ?? 0) !== ((s as any).daystart ?? 0)) {
           scene.text('');
           // TODO-QSP: dynamic text: A man suddenly slides into the seat next to you as you eat your meal. You look u...
-          scene.text(`A man suddenly slides into the seat next to you as you eat your meal. You look up and see that it's Misha. He has a greedy look in his eyes, the kind that is already stripping you naked in his thoughts. His eyes are fixated on your breasts as he speaks. "Hey, ${((s as any).pcs_nickname ?? 0)}. Would you like to join me for some tea at my place? We can have a bit of fun just like last time, and you can earn some more money…"`);
+          scene.text(`A man suddenly slides into the seat next to you as you eat your meal. You look up and see that it's Misha. He has a greedy look in his eyes, the kind that is already stripping you naked in his thoughts. His eyes are fixated on your breasts as he speaks. "Hey, ${((s as any).pcs_nickname || '')}. Would you like to join me for some tea at my place? We can have a bit of fun just like last time, and you can earn some more money…"`);
           scene.actions([
             { label: '"Drink tea" with Misha', handler: (st: GameState) => {
     qspCall(st, 'boyStat', 'A54');
@@ -138,7 +138,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
     { label: 'Order from the menu', handler: (st: GameState) => {
     // TODO-QSP: gs 'food_menu'
   } },
-    { label: 'Order take-out [+$func(\'money\', \'get_cost_string\', 350)]', handler: (st: GameState) => {
+    { label: 'Order take-out', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,7 +8,7 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing', 'reset_CloVars');
-  if (((s as any).loc ?? 0)('$attributes_' + ((s as any).locArgs?.[0] ?? 0))) {
+  if (hasLocation('$attributes_' + ((s as any).locArgs?.[0] ?? 0))) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>', ARGS[1]
   }
   if ((!((s as any).CloQuality ?? 0))) {

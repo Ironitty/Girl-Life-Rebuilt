@@ -18,7 +18,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/anya/progulka.jpg');
   // TODO-QSP: dynamic text: You feel a hand patting your leg and open your eyes to see Anya kneeling next to...
-  scene.text(`You feel a hand patting your leg and open your eyes to see Anya kneeling next to you. "${((s as any).pcs_nickname ?? 0)}, are you okay? It looks like you were having a bad dream." You quickly look around and realize that you're in your bedroom as Anya stands up. "Come on, everyone's waiting for us."`);
+  scene.text(`You feel a hand patting your leg and open your eyes to see Anya kneeling next to you. "${((s as any).pcs_nickname || '')}, are you okay? It looks like you were having a bad dream." You quickly look around and realize that you're in your bedroom as Anya stands up. "Come on, everyone's waiting for us."`);
   scene.text('You tilt your head as you reply. "Who\'s waiting for us?"');
   scene.text('She smiles. "You know. Mom, Vlad and Kolka. Have you hit your head or something? Come on, you know that we can\'t eat breakfast without you." She takes your hand and leads you to the kitchen.');
   // TODO-QSP: end
@@ -32,7 +32,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/prost\'+rand(4, 6)+\'.jpg');
     // TODO-QSP: dynamic text: Your mother backs out of the kitchen with a tray of food and places some in fron...
-    scene.text(`Your mother backs out of the kitchen with a tray of food and places some in front of each of you. "Nice of you to finally join us, ${((s as any).pcs_nickname ?? 0)}. I was beginning to think that you were never going to wake up." You giggle as you start eating.`);
+    scene.text(`Your mother backs out of the kitchen with a tray of food and places some in front of each of you. "Nice of you to finally join us, ${((s as any).pcs_nickname || '')}. I was beginning to think that you were never going to wake up." You giggle as you start eating.`);
     scene.actions([
       { label: 'Eat breakfast', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -48,9 +48,9 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
     scene.text('You turn to see Kolka squeezing your right breast as he gives your stepfather a thumbs up. You push Kolka away and hear your stepfather shouting. "Hey, don\'t push your little brother like that!"');
     scene.text('You\'re taken aback as you respond. "But he touched me!"');
     // TODO-QSP: dynamic text: Your mother then enters the room with her pants around her ankles. "Come on <<$p...
-    scene.text(`Your mother then enters the room with her pants around her ankles. "Come on ${((s as any).pcs_nickname ?? 0)}, it's not like all the other boys haven't already fucked you before. Why not let your brother have a chance?"`);
+    scene.text(`Your mother then enters the room with her pants around her ankles. "Come on ${((s as any).pcs_nickname || '')}, it's not like all the other boys haven't already fucked you before. Why not let your brother have a chance?"`);
     // TODO-QSP: dynamic text: Kolka quickly chimes in. "Yeah <<$pcs_nickname>>, don't be selfish!"
-    scene.text(`Kolka quickly chimes in. "Yeah ${((s as any).pcs_nickname ?? 0)}, don't be selfish!"`);
+    scene.text(`Kolka quickly chimes in. "Yeah ${((s as any).pcs_nickname || '')}, don't be selfish!"`);
     scene.text('You see everyone in the room scolding you before you hear a voice shout. "Don\'t worry everyone, I\'ll put this bitch in her place!"');
     scene.actions([
       { label: 'Turn to see who it is', handler: (st: GameState) => {
@@ -63,7 +63,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/help/event/gif/ra8.mp4');
     scene.text('You can faintly feel something entering your pussy and feel tears streaming down your cheeks. You faintly hear some soft voices in the distance. "Watch her head! Don\'t drop her! Come on, get that door open!"');
     // TODO-QSP: dynamic text: A few seconds later, you hear someone whispering in your ear. "It's okay <<$pcs_...
-    scene.text(`A few seconds later, you hear someone whispering in your ear. "It's okay ${((s as any).pcs_firstname ?? 0)}. This is your place now. You didn't think that you could keep that precious body to yourself, did you?"`);
+    scene.text(`A few seconds later, you hear someone whispering in your ear. "It's okay ${((s as any).pcs_firstname || '')}. This is your place now. You didn't think that you could keep that precious body to yourself, did you?"`);
     scene.actions([
       { label: 'Turn around', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -437,14 +437,14 @@ function enterTeehee(s: GameState, scene: SceneBuilder): void {
     scene.text('"Umm, what do you want exactly?"');
     scene.text('The cat laughs. "What do I want? You approached me. Tee hee."');
     // TODO-QSP: dynamic text: "My name is <<$pcs_firstname>>. What's yours?"
-    scene.text(`"My name is ${((s as any).pcs_firstname ?? 0)}. What's yours?"`);
+    scene.text(`"My name is ${((s as any).pcs_firstname || '')}. What's yours?"`);
     scene.text('The cat grins again. "My name is TeeHee and I am so happy to meet thee."');
     scene.text('You pet TeeHee\'s head, causing her to start purring. "This is the end of the path for now. Come with me to return to your own path."');
     scene.text('"But that woman might need my help."');
     scene.text('TeeHee frowns as she responds. "She doesn\'t need you for the reasons you may think. You really should come with me, not WeePee."');
   } else {
     // TODO-QSP: dynamic text: We meet again, <<$pcs_firstname>>. Have you come to re-join your own path, or do...
-    scene.text(`We meet again, ${((s as any).pcs_firstname ?? 0)}. Have you come to re-join your own path, or do you wish to stay and face WeePee's wrath?`);
+    scene.text(`We meet again, ${((s as any).pcs_firstname || '')}. Have you come to re-join your own path, or do you wish to stay and face WeePee's wrath?`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -505,7 +505,7 @@ function enterWoodsHide(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "NikoDreams" }) + '');
     scene.text('You quickly duck behind a tree and stare into the forest. You wait for a few seconds before realizing that there\'s nothing there. You get out from behind the tree and brush the dirt from your leg.');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/woods/${((s as any).VKWoods ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/happyhome/woods/${((s as any).VKWoods || '')}.jpg`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -519,12 +519,12 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/vicky.jpg');
   scene.text('You slowly open your eyes and see Vicky playfully shaking your shoulder. "Hey there, sleepy head! Did you sleep well?"');
   // TODO-QSP: dynamic text: You give <<$VK_VikName>> a warm smile. "I guess but… Where am I?"
-  scene.text(`You give ${((s as any).VK_VikName ?? 0)} a warm smile. "I guess but… Where am I?"`);
+  scene.text(`You give ${((s as any).VK_VikName || '')} a warm smile. "I guess but… Where am I?"`);
   scene.text('"After what happened at school, we were bored, so we decided to have you dance for us." Vicky replies and you tilt your head.');
   scene.text('"Dance… for us?" Vicky giggles as she points to her right. You turn to see Katja and Natalia sitting next to the bed.');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/meynold/bedroom/katja.jpg');
   // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>. What are you waiting for?" Katja asks.
-  scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)}. What are you waiting for?" Katja asks.`);
+  scene.text(`"Come on ${((s as any).pcs_nickname || '')}. What are you waiting for?" Katja asks.`);
   scene.text('Natalia nods "Don\'t worry, I threw away all your clothes. Whores don\'t need clothes." You look down and notice that you\'re naked before Katja suddenly slams the bed frame. "Enough messing around! DANCE WHORE!"');
   // TODO-QSP: end
   scene.actions([
@@ -534,7 +534,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly stand up and start dancing as Vicky reaches forward and shoves her fingers inside your pussy while Katja sticks her finger in your ass. Natalia walks up to you and starts squeezing your breasts.');
     scene.text('"And they thought that Sonia was a whore." Vicky says and Katja giggles.');
     // TODO-QSP: dynamic text: "That's just silly! <<$pcs_firstname>> is the only whore here."
-    scene.text(`"That's just silly! ${((s as any).pcs_firstname ?? 0)} is the only whore here."`);
+    scene.text(`"That's just silly! ${((s as any).pcs_firstname || '')} is the only whore here."`);
     scene.text('Natalia nods. "I agree. I don\'t even know why she thought that she could hide it."');
     // TODO-QSP: $OpenInnerThought + 'Why are they being so mean to me? And why can''t I stop dancing?' + $CloseInner...
     scene.text('Vicky gives your ass a firm smack. "Alright, we\'ve kept the boys waiting long enough!"');
@@ -544,7 +544,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/school/locker/exposed1.jpg');
     scene.text('Vicky pulls you toward the door, which opens on it\'s own and you suddenly find yourself in the school hallway with all the boys hollering at you. "Hey everyone! The whore is here!" The boys all charge you and start rubbing on your body while making lude comments.');
     // TODO-QSP: dynamic text: "Here's the whore again! <<$pcs_firstname>> doesn't even care about trying to hi...
-    scene.text(`"Here's the whore again! ${((s as any).pcs_firstname ?? 0)} doesn't even care about trying to hide it!" Artem says.`);
+    scene.text(`"Here's the whore again! ${((s as any).pcs_firstname || '')} doesn't even care about trying to hide it!" Artem says.`);
     scene.text('"I know right? She\'s such a worthless whore. I almost don\'t even want her anymore," Petka responds.');
     scene.text('"Her pussy is probably all stretched out by now. It\'s like ground zero," Radomir adds.');
     scene.actions([
@@ -558,7 +558,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/blowjob/blowjob3.mp4');
     scene.text('You start sucking Lesco\'s dick as the boys around you begin hollering.');
     // TODO-QSP: dynamic text: "Wow! <<$pcs_firstname>> is even sucking Lesco's dick. What a fucking cum dumpst...
-    scene.text(`"Wow! ${((s as any).pcs_firstname ?? 0)} is even sucking Lesco's dick. What a fucking cum dumpster!" Lena comments.`);
+    scene.text(`"Wow! ${((s as any).pcs_firstname || '')} is even sucking Lesco's dick. What a fucking cum dumpster!" Lena comments.`);
     scene.text('"She seems to be enjoying it too. Gross!" Lera responds.');
     scene.text('"Don\'t look at me. I never taught her that." Mr Tsarev adds.');
     scene.actions([
@@ -576,13 +576,13 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/anya/progulka.jpg');
     // TODO-QSP: dynamic text: Anya suddenly grabs you by the hair and leads you to the door. "Mom needs to spe...
-    scene.text(`Anya suddenly grabs you by the hair and leads you to the door. "Mom needs to speak with you, ${((s as any).pcs_firstname ?? 0)}."`);
+    scene.text(`Anya suddenly grabs you by the hair and leads you to the door. "Mom needs to speak with you, ${((s as any).pcs_firstname || '')}."`);
     scene.actions([
       { label: 'Walk through the door', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/mom/prost\'+rand(4, 6)+\'.jpg');
     // TODO-QSP: dynamic text: You enter the room, recognizing it as your apartment. Your mother is standing in...
-    scene.text(`You enter the room, recognizing it as your apartment. Your mother is standing in front of you with a sneer on her face. "${((s as any).pcs_firstname ?? 0)}! You let those boys get you pregnant? I can't believe you!"`);
+    scene.text(`You enter the room, recognizing it as your apartment. Your mother is standing in front of you with a sneer on her face. "${((s as any).pcs_firstname || '')}! You let those boys get you pregnant? I can't believe you!"`);
     scene.text('"Not only that. She\'s also been eating my pussy," Anya adds and your mother\'s eyes widen.');
     scene.text('Kolka speaks up too. "She also had sex with me and is the mother of my child."');
     scene.text('Your mother is seething with rage as she grabs onto a knife and drives it into your inflated stomach, causing the cum to flood out.');
@@ -591,7 +591,7 @@ function enterFriends(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/friends/darkness.jpg');
     // TODO-QSP: dynamic text: You fall to the ground and stare at your stomach, watching as an almost endless ...
-    scene.text(`You fall to the ground and stare at your stomach, watching as an almost endless stream of cum pours out of you. You suddenly hear someone whisper in your ear. "Hey, are you alright?" You look around to see who it was, but see nothing at all. You're surrounded by darkness. ' + $OpenInnerThought + 'Where did everyone go? Where am I? It's so dark.' + $CloseInnerThought + ' You hear the voice whisper again. "${((s as any).pcs_firstname ?? 0)}, wake up…"`);
+    scene.text(`You fall to the ground and stare at your stomach, watching as an almost endless stream of cum pours out of you. You suddenly hear someone whisper in your ear. "Hey, are you alright?" You look around to see who it was, but see nothing at all. You're surrounded by darkness. ' + $OpenInnerThought + 'Where did everyone go? Where am I? It's so dark.' + $CloseInnerThought + ' You hear the voice whisper again. "${((s as any).pcs_firstname || '')}, wake up…"`);
     scene.actions([
       { label: '…', goto: ['NikoEv2', 'niko_wake'] },
     ]);
@@ -620,7 +620,7 @@ function enterClassroomDream(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/class/rest.jpg');
   // TODO-QSP: dynamic text: You can feel yourself getting tired, so you lay your head down on your desk to r...
-  scene.text(`You can feel yourself getting tired, so you lay your head down on your desk to rest as you wait for the period to end. After a few seconds, you hear someone shouting. "Who's that sleeping in my class?" You immediately sit up, pretending that you weren't laying down as you continue listening to the teacher. "Always remember to double check the problem, so that you can be confident with your solution. Now let's move on to the next lesson… How to treat a whore. For this lesson, I will need a volunteer. Miss ${((s as any).pcs_lastname ?? 0)}, get up here now."`);
+  scene.text(`You can feel yourself getting tired, so you lay your head down on your desk to rest as you wait for the period to end. After a few seconds, you hear someone shouting. "Who's that sleeping in my class?" You immediately sit up, pretending that you weren't laying down as you continue listening to the teacher. "Always remember to double check the problem, so that you can be confident with your solution. Now let's move on to the next lesson… How to treat a whore. For this lesson, I will need a volunteer. Miss ${((s as any).pcs_lastname || '')}, get up here now."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Who me?', handler: (st: GameState) => {
@@ -642,13 +642,13 @@ function enterClassroomDream(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/class/sex.jpg');
     // TODO-QSP: dynamic text: He pushes you over, rams his dick inside you and starts thrusting. All you can t...
-    scene.text(`He pushes you over, rams his dick inside you and starts thrusting. All you can think about is the humiliation of being fucked by your teacher in front of your class. ' + $OpenInnerThought + 'Why is this happening? Why me? Will I never have a normal life again? Will I always be…' + $CloseInnerThought + ' You suddenly hear a soft voice whispering in your ear. "Hey ${((s as any).pcs_firstname ?? 0)}, are you okay? Come on, get up…"`);
+    scene.text(`He pushes you over, rams his dick inside you and starts thrusting. All you can think about is the humiliation of being fucked by your teacher in front of your class. ' + $OpenInnerThought + 'Why is this happening? Why me? Will I never have a normal life again? Will I always be…' + $CloseInnerThought + ' You suddenly hear a soft voice whispering in your ear. "Hey ${((s as any).pcs_firstname || '')}, are you okay? Come on, get up…"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikomisc/nightmares/class/leave.jpg');
     // TODO-QSP: dynamic text: You open your eyes and see all of the students getting out of their chairs and l...
-    scene.text(`You open your eyes and see all of the students getting out of their chairs and leaving the class while chatting with each other. You feel a hand on your shoulder shaking you, so you quickly turn to see Natalia with a concerned look on her face. "Are you alright, ${((s as any).pcs_firstname ?? 0)}?"`);
+    scene.text(`You open your eyes and see all of the students getting out of their chairs and leaving the class while chatting with each other. You feel a hand on your shoulder shaking you, so you quickly turn to see Natalia with a concerned look on her face. "Are you alright, ${((s as any).pcs_firstname || '')}?"`);
     scene.text('You take a second to collect your thoughts before responding. "I don\'t know why I keep having these terrible nightmares."');
     scene.text('Natalia rubs your back as she responds. "Things must be so hard for you. I\'m so sorry."');
     scene.text('Not wanting to worry Natalia, you give her a fake smile. "They\'re just dreams, I\'ll be fine."');
@@ -744,10 +744,10 @@ function enterPuppeteer(s: GameState, scene: SceneBuilder): void {
     (s as any).music_loop = 0;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <center><b><h4><font color=#FF00CC><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
-    scene.text(`<center><b><h4><font color=#FF00CC>${qspUntranslated(s, "\"<<pcs_firstname", { location: "NikoDreams" })} [${((s as any).pcs_nickname ?? 0)}] ${((s as any).pcs_lastname ?? 0)}">></font></h4></b></center>`);
+    scene.text(`<center><b><h4><font color=#FF00CC>${qspUntranslated(s, "\"<<pcs_firstname", { location: "NikoDreams" })} [${((s as any).pcs_nickname || '')}] ${((s as any).pcs_lastname || '')}">></font></h4></b></center>`);
     scene.img('' + qspUntranslated(s, "func('face_image')>", { location: "NikoDreams" }) + '');
     // TODO-QSP: dynamic text: You quickly jump up screaming, only to notice that you're still in class. The wh...
-    scene.text(`You quickly jump up screaming, only to notice that you're still in class. The whole class is staring at you in shock. "Miss ${((s as any).pcs_lastname ?? 0)}, what's wrong?" Mr Tsarev asks softly in a concerned voice. You sit completely speechless for a few seconds before hearing the bell ringing. You quickly pack up your things and head for the door as some of your classmates whisper to each other.`);
+    scene.text(`You quickly jump up screaming, only to notice that you're still in class. The whole class is staring at you in shock. "Miss ${((s as any).pcs_lastname || '')}, what's wrong?" Mr Tsarev asks softly in a concerned voice. You sit completely speechless for a few seconds before hearing the bell ringing. You quickly pack up your things and head for the door as some of your classmates whisper to each other.`);
     scene.text('"Whoa, what\'s her problem?" Arkadi asks.');
     scene.text('"Maybe she\'s on the pipe or something?" Niko replies.');
     scene.text('"I hope that she\'s okay…" Natalia asks in a concerned voice.');

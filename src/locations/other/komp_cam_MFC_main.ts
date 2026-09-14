@@ -40,10 +40,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.img('images/pc/items/accessories/computer/camwhore3.jpg');
     // TODO-QSP: dynamic text: You enter your own chatroom on the website. You currently have <<camGirl['MFC_Vi...
-    scene.text(`You enter your own chatroom on the website. You currently have ${((s as any).camGirl ?? 0)?.['MFC_Viewers']} viewers and ${((s as any).camGirl ?? 0)?.['MFC_Followers']} followers.`);
+    scene.text(`You enter your own chatroom on the website. You currently have ${((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers and ${((s as any).camGirl ?? 0)?.['MFC_Followers'] ?? ''} followers.`);
     if (((s as any).totFollowersLost ?? 0) >= 1) {
       // TODO-QSP: dynamic text: You've lost <<totFollowersLost>> due to inactivity
-      scene.text(`You've lost ${((s as any).totFollowersLost ?? 0)} due to inactivity`);
+      scene.text(`You've lost ${((s as any).totFollowersLost || '')} due to inactivity`);
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -81,7 +81,7 @@ function enterStartpage(s: GameState, scene: SceneBuilder): void {
       scene.text('You currently have no viewers. Once you turn on your webcam, things will probably get busier. ');
     } else {
       // TODO-QSP: dynamic text: You casually chat with the <<camGirl['MFC_Viewers']>> viewers currently in your ...
-      scene.text(`You casually chat with the ${((s as any).camGirl ?? 0)?.['MFC_Viewers']} viewers currently in your chatroom. Once you turn on your webcam, things will probably get busier.`);
+      scene.text(`You casually chat with the ${((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers currently in your chatroom. Once you turn on your webcam, things will probably get busier.`);
     }
     scene.actions([
       { label: 'Turn on your webcam', goto: ['komp_cam_MFC_main', 'waitclients', '\'start\''] },
@@ -123,13 +123,13 @@ function enterWaitclients(s: GameState, scene: SceneBuilder): void {
     scene.text('You take a moment of rest, unfortunately, you currently have no viewers.');
   } else {
     // TODO-QSP: dynamic text: You take a moment of rest, and just chat casually with your <<camGirl['MFC_Viewe...
-    scene.text(`You take a moment of rest, and just chat casually with your ${((s as any).camGirl ?? 0)?.['MFC_Viewers']} viewers.`);
+    scene.text(`You take a moment of rest, and just chat casually with your ${((s as any).camGirl ?? 0)?.['MFC_Viewers'] ?? ''} viewers.`);
   }
   // TODO-QSP: dynamic text: You have earned <<camGirl['MFC_tokens']>> tokens so far this session, which amou...
-  scene.text(`You have earned ${((s as any).camGirl ?? 0)?.['MFC_tokens']} tokens so far this session, which amounts to ${qspFunc(s, 'money', 'string_profit', qspFunc(s, 'komp_cam_functions', 'tokens_to_rub', ((s as any).camGirl ?? 0)?.['MFC_tokens']))}.`);
+  scene.text(`You have earned ${((s as any).camGirl ?? 0)?.['MFC_tokens'] ?? ''} tokens so far this session, which amounts to ${qspFunc(s, 'money', 'string_profit', qspFunc(s, 'komp_cam_functions', 'tokens_to_rub', ((s as any).camGirl ?? 0)?.['MFC_tokens'] ?? ''))}.`);
   if (((s as any).camGirl ?? 0)?.['MFC_Followers'] > 1) {
     // TODO-QSP: dynamic text: You have <<camGirl['MFC_Followers']>> followers
-    scene.text(`You have ${((s as any).camGirl ?? 0)?.['MFC_Followers']} followers`);
+    scene.text(`You have ${((s as any).camGirl ?? 0)?.['MFC_Followers'] ?? ''} followers`);
   }
   if (((s as any).camGirl ?? 0)?.['MFC_donate_message'] !== '') {
   }
@@ -375,7 +375,7 @@ function enterAnyaInterrupted(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/items/accessories/computer/camwhore2.jpg');
   // TODO-QSP: dynamic text: Suddenly you hear the handle of your door creak, and an annoyed voice shouting: ...
-  scene.text(`Suddenly you hear the handle of your door creak, and an annoyed voice shouting: "${((s as any).pcs_nickname ?? 0)}, what the hell!? Why is the door locked? Let me in!"`);
+  scene.text(`Suddenly you hear the handle of your door creak, and an annoyed voice shouting: "${((s as any).pcs_nickname || '')}, what the hell!? Why is the door locked? Let me in!"`);
   scene.text('Oh crap, it\'s your sister! "Sorry everyone, the show\'s over!" you whisper to the camera and you close the stream and hide the website. You quickly put your clothes back on and open your door, trying to avoid the scrutinizing gaze of your sister.');
   scene.text('When she\'s no longer paying attention to you, you open the site again and find yourself in the main lobby of MyFreeCams. You\'re a bit bummed that you couldn\'t get more out of that session, but cash in your earnings.');
   qspCall(s, 'internet_mobile', 'add_limitation', 'noporn', 'You can\'t watch porn with your sister in the room');

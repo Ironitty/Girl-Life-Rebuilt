@@ -102,13 +102,13 @@ function enterCheckSubscriptionActions(s: GameState, scene: SceneBuilder): void 
   qspCall(s, 'homes_properties', 'clean_up_property_data');
   if (((s as any).subscription ?? 0)?.['mobile'] === 1) {
     if (((s as any).subscription ?? 0)?.['mobile-date'] === ((s as any).day ?? 0)) {
-      qspCall(s, 'internet_mobile', 'renew_subscription', 'mobile');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mobile']; enterRenewSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).subscription ?? 0)?.['mobile-suspension_day'] > 0) {
         if (((s as any).subscription ?? 0)?.['mobile-suspension_day'] >= ((s as any).daystart ?? 0)) {
-          qspCall(s, 'internet_mobile', 'renew_subscription', 'mobile');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mobile']; enterRenewSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          qspCall(s, 'internet_mobile', 'suspend_subscription', 'mobile');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mobile']; enterSuspendSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -118,13 +118,13 @@ function enterCheckSubscriptionActions(s: GameState, scene: SceneBuilder): void 
   }
   if (((s as any).subscription ?? 0)?.['monthly_calls'] === 1) {
     if (((s as any).subscription ?? 0)?.['monthly_calls-date'] === ((s as any).day ?? 0)) {
-      qspCall(s, 'internet_mobile', 'renew_subscription', 'monthly_calls');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'monthly_calls']; enterRenewSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).subscription ?? 0)?.['monthly_calls-suspension_day'] > 0) {
         if (((s as any).subscription ?? 0)?.['monthly_calls-suspension_day'] >= ((s as any).daystart ?? 0)) {
-          qspCall(s, 'internet_mobile', 'renew_subscription', 'monthly_calls');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'monthly_calls']; enterRenewSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          qspCall(s, 'internet_mobile', 'suspend_subscription', 'monthly_calls');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'monthly_calls']; enterSuspendSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -148,7 +148,7 @@ function enterCancelSubscription(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSuspendSubscription(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'internet_mobile', 'cancel_subscription', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCancelSubscription(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: $subscription[$ARGS[1] + '-contract_message'] = 'Your monthly fee was declined again and services ha...
   // TODO-QSP: end
   scene.build();
@@ -171,7 +171,7 @@ function enterRenewSubscription(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     if (((s as any).subscription ?? 0)[((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] === 0) {
-      qspCall(s, 'internet_mobile', 'set_suspension_date', ((s as any).locArgs?.[1] ?? 0), 5);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 5]; enterSetSuspensionDate(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     (s as any).remainingday = ((s as any).subscription ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '-suspension_day'] - ((s as any).daystart ?? 0);
     if (((s as any).app_discount ?? 0) > 0) {

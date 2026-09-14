@@ -15,7 +15,7 @@ function enterFuckornot(s: GameState, scene: SceneBuilder): void {
     (s as any).fuckornot = 3;
   }
   scene.img('images/pc/items/accessories/computer/fuckornot/fuckable_list.jpg');
-  qspCall(s, 'komp_HF_or_not', 'fuckornot_list');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFuckornotList(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('10: Perfection - Would let her do whatever she wants to me.');
   scene.text('9: Smoking Hot - Would eat her ass.');
   scene.text('8: Hot - Would fuck that ass.');
@@ -50,7 +50,7 @@ function enterHotornot(s: GameState, scene: SceneBuilder): void {
     (s as any).hotornot = 3;
   }
   scene.img('images/pc/items/accessories/computer/hotornot/hotornot.jpg');
-  qspCall(s, 'komp_HF_or_not', 'hotornot_list');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHotornotList(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('10: Perfection - Would let him do whatever he wants to me.');
   scene.text('9: Smoking Hot - Arm candy.');
   scene.text('8: Hot - Would ride him.');
@@ -145,7 +145,7 @@ function enterFuckornotUni(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
   scene.img('images/pc/items/accessories/computer/fuckornot/fuckable_list.jpg');
-  qspCall(s, 'komp_HF_or_not', 'fuckornot_uni_list');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFuckornotUniList(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('10: Perfection - Could die happy after tapping that.');
   scene.text('9: Angelic - Would hit that anywhere anytime.');
   scene.text('8: Smoking Hot - Bragging rights for fucking.');
@@ -167,7 +167,7 @@ function enterHotornotUni(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'internet_mobile', 'use_internet', ((s as any).subs ?? 0), 5);
   scene.img('images/pc/items/accessories/computer/hotornot/hotornot.jpg');
-  qspCall(s, 'komp_HF_or_not', 'hotornot_uni_list');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHotornotUniList(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('10: Perfection - His wish is my command.');
   scene.text('9: Dreamy - Would let him do whatever he wants to me.');
   scene.text('8: Smoking Hot - So hot, would happily have a one night stand.');

@@ -118,7 +118,7 @@ function enterShowerRadislav1Vag(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower_vag2.jpg');
     // TODO-QSP: dynamic text: He reaches up to wrap both his hands behind your head and pull you closer as he ...
-    scene.text(`He reaches up to wrap both his hands behind your head and pull you closer as he shoves his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock balls deep inside your pussy before he starts hammering away at your pussy as hard, fast and deep as he can.`);
+    scene.text(`He reaches up to wrap both his hands behind your head and pull you closer as he shoves his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock balls deep inside your pussy before he starts hammering away at your pussy as hard, fast and deep as he can.`);
     scene.text('"Fuck yeah! Take it, slut! Take my cock!" he says, not caring in the slightest if you\'re enjoying it or not.');
     qspCall(s, 'arousal', 'vaginal', 3, 'rough');
     qspCall(s, 'stat', '');
@@ -155,7 +155,7 @@ function enterShowerRadislav1Anal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower_anal1.jpg');
   scene.text('You look back over your shoulder as he moves up behind you and you feel the tip of his dick pressing against your asshole. "Use some lube," you tell him.');
   // TODO-QSP: dynamic text: He suddenly forces his dick into your ass, the only lube being saliva from your ...
-  scene.text(`He suddenly forces his dick into your ass, the only lube being saliva from your blowjob. You cry out in pain as his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock forces it's way into your ass.`);
+  scene.text(`He suddenly forces his dick into your ass, the only lube being saliva from your blowjob. You cry out in pain as his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock forces it's way into your ass.`);
   scene.text('"There\'s plenty of lube from your slobber," he says as he grips your hips and forces his dick deeper into your ass. "See? It fits just fine," he says as he starts fucking your ass.');
   qspCall(s, 'arousal', 'anal', 3, 'rough');
   qspCall(s, 'stat', '');

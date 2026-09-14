@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterNerds(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_chats', 'nerds');
-  qspCall(s, 'gschool_chats', 'nerd_event_check');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNerdEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/locations/pavlovsk/school/chat/nerd\' + rand(1, 3) + \'.jpg');
   if ((!((s as any).PSchool ?? 0))) {
@@ -206,7 +206,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
 
 function enterGopniks(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_chats', 'gopniks');
-  qspCall(s, 'gschool_chats', 'gopnik_event_check');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGopnikEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/locations/pavlovsk/school/chat/gopnik.jpg');
   if ((!((s as any).PSchool ?? 0))) {
@@ -392,7 +392,7 @@ function enterGopniks2(s: GameState, scene: SceneBuilder): void {
 
 function enterCooljocks(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'gschool_chats', 'cooljocks');
-  qspCall(s, 'gschool_chats', 'cooljock_event_check');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCooljockEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   scene.img('images/locations/pavlovsk/school/chat/cooljocks.jpg');
   scene.text('When the break finally comes, the girls wander through the hallways of the school, gossiping about pretty much everyone they know while the guys are standing around in small groups, some of them sneaking off to have a smoke behind the school building.');
@@ -564,7 +564,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                         qspCall(s, 'npc_relationship', 'modify', 'A140', 1);
                       }
                       // TODO-QSP: dynamic text: As you approach them, several of them give you approving looks. "Looking good <<...
-                      scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname ?? 0)}! Where did you buy that uniform?" Stasya comments.`);
+                      scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname || '')}! Where did you buy that uniform?" Stasya comments.`);
                       // TODO-QSP: dynamic text: "Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, '+iif(np...
                       scene.text('"Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta and Bella all comment on how nice your outfit looks while Dimka, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor \', \')+\'and Svyatoslav talk among themselves. However, you do notice Igor seems to be somewhat paying attention, maybe at you in particular. Christina just pretends you don\'t exist while she talks to Lina and Lariska while Veronika is reading something and seems to be entirely unaware of the conversation.');
                     } else {
@@ -657,7 +657,7 @@ function enterCooljocks(s: GameState, scene: SceneBuilder): void {
                         }
                       }
                       // TODO-QSP: dynamic text: As you approach them, several of them give you approving looks. "Looking good <<...
-                      scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname ?? 0)}! Where did you buy that uniform?" Stasya comments.`);
+                      scene.text(`As you approach them, several of them give you approving looks. "Looking good ${((s as any).pcs_nickname || '')}! Where did you buy that uniform?" Stasya comments.`);
                       // TODO-QSP: dynamic text: "Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, '+iif(np...
                       scene.text('"Yeah I like it, it looks very nice," Vicky adds. Katja, Irina, Albina, \'+iif(npc_grupTipe[\'A25\'] ! 5, \'Sonia, \', \')+\'Lizaveta and Bella all comment on how nice your outfit looks while Dimka, Marcus, Andrey, Mefodiy, Ivan, \'+iif(npc_grupTipe[\'A5\'] ! 5, \'Fedor \', \')+\'and Svyatoslav talk among themselves. However, you do notice Igor seems to be somewhat paying attention, maybe at you in particular. Christina just pretends you don\'t exist while she talks to Lina and Lariska while Veronika is reading something and seems to be entirely unaware of the conversation.');
                     } else {

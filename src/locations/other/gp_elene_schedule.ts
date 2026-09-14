@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -49,7 +49,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A31_loc_prev'] = ((s as any).locat ?? 0)?.['A31_loc'];
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A31_arg_prev'] = ((s as any).locat ?? 0)?.['A31_arg'];
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A31_arg1_prev'] = ((s as any).locat ?? 0)?.['A31_arg1'];
-  qspCall(s, 'gp_elene_schedule', 'update_locat');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -62,7 +62,7 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temp_elene_locat = qspFunc(s, 'gp_elene_schedule', 'get_random_schedule', ((s as any).temp_elene_locat ?? 0));
-  qspCall(s, 'gp_elene_schedule', 'set_locats', ((s as any).temp_elene_locat ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_elene_locat ?? 0)]; enterSetLocats(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -168,25 +168,25 @@ function enterGetRandomSchedule(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).result ?? 0) === 110) {
     if (((s as any).hour ?? 0) < 9) {
-      (s as any).temp_subloc = ((s as any).locat ?? {})?.['A31_rand'] / 4 % 4;
+      (s as any).temp_subloc = (((s as any).locat ?? {})?.['A31_rand'] ?? 0) / 4 % 4;
     } else {
       if (((s as any).hour ?? 0) < 11) {
-        (s as any).temp_subloc = ((s as any).locat ?? {})?.['A31_rand'] / 16 % 4;
+        (s as any).temp_subloc = (((s as any).locat ?? {})?.['A31_rand'] ?? 0) / 16 % 4;
       } else {
         if (((s as any).hour ?? 0) < 13) {
-          (s as any).temp_subloc = ((s as any).locat ?? {})?.['A31_rand'] / 12 % 4;
+          (s as any).temp_subloc = (((s as any).locat ?? {})?.['A31_rand'] ?? 0) / 12 % 4;
         } else {
           if (((s as any).hour ?? 0) < 15) {
-            (s as any).temp_subloc = ((s as any).locat ?? {})?.['A31_rand'] / 48 % 4;
+            (s as any).temp_subloc = (((s as any).locat ?? {})?.['A31_rand'] ?? 0) / 48 % 4;
           } else {
             if (((s as any).hour ?? 0) < 17) {
-              (s as any).temp_subloc = ((s as any).locat ?? {})?.['A31_rand'] / 20 % 4;
+              (s as any).temp_subloc = (((s as any).locat ?? {})?.['A31_rand'] ?? 0) / 20 % 4;
             } else {
               if (((s as any).hour ?? 0) < 18) {
-                (s as any).temp_subloc = ((s as any).locat ?? {})?.['A31_rand'] / 80 % 4;
+                (s as any).temp_subloc = (((s as any).locat ?? {})?.['A31_rand'] ?? 0) / 80 % 4;
               } else {
                 if (((s as any).hour ?? 0) < 21) {
-                  (s as any).temp_subloc = ((s as any).locat ?? {})?.['A31_rand'] / 28 % 4;
+                  (s as any).temp_subloc = (((s as any).locat ?? {})?.['A31_rand'] ?? 0) / 28 % 4;
                 }
               }
             }
@@ -277,7 +277,7 @@ function enterSetLocats(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetLocation(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'gp_elene_schedule', 'update_locat');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A31_loc'] === 'gad_gphouse') {
     if (((s as any).locat ?? 0)?.['A31_arg'] === 'gp_room') {
       if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A31'] = 'Your grandmother is in her bedroom';

@@ -676,7 +676,7 @@ function enterTellAboutGenericBoyfriend(s: GameState, scene: SceneBuilder): void
   scene.text('"I have a boyfriend you know," you tell him.');
   scene.text('"Right. Who are you dating again?" he asks.');
   // TODO-QSP: dynamic text: "<<$ARGS[1]>>," you tell him.
-  scene.text(`"${((s as any).locArgs?.[1] ?? 0)}," you tell him.`);
+  scene.text(`"${((s as any).locArgs?.[1] ?? '')}," you tell him.`);
   scene.text('"Who?" he asks.');
   scene.text('You shake your head slightly. "You\'ve never met him. I just met him."');
   scene.text('"Just some guy you met, huh?" he smirks.');
@@ -694,7 +694,7 @@ function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Radomir\'s Room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/radapt/rads_room/rad_chat1.jpg');
   // TODO-QSP: dynamic text: You sigh in a way only those in love can sigh. "Hopefully <<$ARGS[1]>> and I can...
-  scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((s as any).locArgs?.[1] ?? 0)} and I can get married soon."`);
+  scene.text(`You sigh in a way only those in love can sigh. "Hopefully ${((s as any).locArgs?.[1] ?? '')} and I can get married soon."`);
   scene.text('He rolls his eyes. "So predictable."');
   scene.text('You briefly discuss why and he points out that that is what society expects of people, but they should live a little first.');
   scene.text('You\'re not sure what more to say on the topic, so change the subject.');

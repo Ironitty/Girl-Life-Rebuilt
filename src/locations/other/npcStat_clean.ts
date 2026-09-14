@@ -12,7 +12,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).npcStat_clean_i = 1;
   // TODO-QSP: :npcStat_clean_loop2
   // TODO-QSP: dynamic "
-  if (((s as any).npcID ?? 0)((s as any).npcStat_clean_i ?? 0) !== ''  &&  ((s as any).npcStatCalled ?? 0)((s as any).npcStat_clean_i ?? 0) < ((s as any).daystart ?? 0) - 2) {
+  if (((s as any).npcID ?? 0)?.[String((s as any).npcStat_clean_i ?? 0)] !== ''  &&  ((s as any).npcStatCalled ?? 0)?.[String((s as any).npcStat_clean_i ?? 0)] < ((s as any).daystart ?? 0) - 2) {
   }
   // TODO-QSP: "
   (s as any).npcStat_clean_i = ((s as any).npcStat_clean_i ?? 0) + (1);

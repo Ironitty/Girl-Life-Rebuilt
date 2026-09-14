@@ -24,12 +24,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The parlor is closing and you are asked to leave.');
     return;
   }
-  qspCall(s, 'pirsingsalon', 'shop_menu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShopMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
-    qspCall(s, 'pirsingsalon', 'count');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCount(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['city_industrial', ''] },
   ]);
   scene.build();

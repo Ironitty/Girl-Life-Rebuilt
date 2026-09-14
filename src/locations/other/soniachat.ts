@@ -59,13 +59,13 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kiss her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kiss her', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A25');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -124,7 +124,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"So what have you been up to lately?" you ask.');
     scene.text('She sighs dramatically. "Mostly trying to find some fun and avoid my parents. I think I\'ll hang myself if I hear one more speech about how a proper young lady has to act!"');
     // TODO-QSP: dynamic text: She ends her rant with a giggle and you smile at her. "Well, don't do that. You ...
-    scene.text(`She ends her rant with a giggle and you smile at her. "Well, don't do that. You have too pretty of a neck to bruise." You both laugh at that. "But seriously, I understand. My ${((s as any).npc_nickname ?? 0)?.['A29']} is <i>insanely</i> overbearing as well."`);
+    scene.text(`She ends her rant with a giggle and you smile at her. "Well, don't do that. You have too pretty of a neck to bruise." You both laugh at that. "But seriously, I understand. My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is <i>insanely</i> overbearing as well."`);
     scene.text('The two of you are soon talking about how bad your mothers are. It seems you have a lot in common with your overbearing mothers trying to control every aspect of your lives.');
     scene.actions([
       { label: 'Stop talking', goto: ['soniahome', 'sonia_room'] },
@@ -301,7 +301,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
 function enterTellingMarrigeDreams(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/sonia/soniasmile.jpg');
   // TODO-QSP: dynamic text: You sigh in a way only those who are in love can. "Hopefully <<$ARGS[1]>> and I ...
-  scene.text(`You sigh in a way only those who are in love can. "Hopefully ${((s as any).locArgs?.[1] ?? 0)} and I can get married soon."`);
+  scene.text(`You sigh in a way only those who are in love can. "Hopefully ${((s as any).locArgs?.[1] ?? '')} and I can get married soon."`);
   scene.text('She smiles at you. "Best of luck with that."');
   // TODO-QSP: end
   scene.actions([
@@ -439,7 +439,7 @@ function enterTellAboutGenericBoyfriend(s: GameState, scene: SceneBuilder): void
   scene.text('"I have a boyfriend you know," you tell her.');
   scene.text('She grins at you. "Right. Who are you dating again?"');
   // TODO-QSP: dynamic text: "<<$ARGS[1]>>," you tell her.
-  scene.text(`"${((s as any).locArgs?.[1] ?? 0)}," you tell her.`);
+  scene.text(`"${((s as any).locArgs?.[1] ?? '')}," you tell her.`);
   scene.text('"Who?" she asks as she cocks her head slightly.');
   scene.text('You shake your head slightly. "You\'ve never met him. I only just met him."');
   scene.text('She smiles. "Just some guy you met, huh?"');
@@ -502,7 +502,7 @@ function enterSoniaChatSpecial1(s: GameState, scene: SceneBuilder): void {
     scene.text('"You know you\'re not the only one in this mess; just look at me!" you tell her.');
     scene.text('This brings a smile to her face and you grin back at her as you continue. "Hey, I\'m happy to see you can still smile, but that\'s my reputation you\'re grinning at!"');
     // TODO-QSP: dynamic text: "Oh! I'm sorry, <<$pcs_nickname>>! I didn't mean to..." she trails off.
-    scene.text(`"Oh! I'm sorry, ${((s as any).pcs_nickname ?? 0)}! I didn't mean to..." she trails off.`);
+    scene.text(`"Oh! I'm sorry, ${((s as any).pcs_nickname || '')}! I didn't mean to..." she trails off.`);
     scene.text('"Don\'t worry about it. I was just joking with you. Look, how about we try and do this together?"');
     scene.actions([
       { label: 'Tell her you\'ll redeem yourselves together', handler: (st: GameState) => {
@@ -629,20 +629,20 @@ function enterSoniaChatSpecial2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kiss her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kiss her', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A25', (-10));
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/sonia/home/bed_kiss.jpg');
     // TODO-QSP: dynamic text: You lean in and try and kiss her, but she recoils at once. "What the fuck, <<$pc...
-    scene.text(`You lean in and try and kiss her, but she recoils at once. "What the fuck, ${((s as any).pcs_nickname ?? 0)}?!"`);
+    scene.text(`You lean in and try and kiss her, but she recoils at once. "What the fuck, ${((s as any).pcs_nickname || '')}?!"`);
     scene.text('You\'re a little surprised by her reaction. "Sorry! I didn\'t mean anything by it."');
     scene.text('She gives you a disgusted look. "I can\'t believe you of all people would try that after... After what\'s happened to me... Get out."');
     scene.text('You try to comfort her, but she stands up and points at the door, already starting to cry. "Please leave!"');
@@ -662,7 +662,7 @@ function enterSoniaChatSpecial2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Is there anything you want to talk about?" you ask her softly.');
     scene.text('She shakes her head and you can see tears start to run down her face. "No," she croaks out, trying to stop herself from sobbing. "I\'m sorry, but I don\'t want to talk anymore."');
     // TODO-QSP: dynamic text: As you get up to leave, she suddenly grabs your hand. "I appreciate you stopping...
-    scene.text(`As you get up to leave, she suddenly grabs your hand. "I appreciate you stopping by, ${((s as any).pcs_nickname ?? 0)}. It means more to me than you'll ever know, but I just need to be alone for a while."`);
+    scene.text(`As you get up to leave, she suddenly grabs your hand. "I appreciate you stopping by, ${((s as any).pcs_nickname || '')}. It means more to me than you'll ever know, but I just need to be alone for a while."`);
     scene.text('You nod and offer her a comforting smile. "I understand. I\'ll come and see you again soon. I promise."');
     scene.actions([
       { label: 'Leave', goto: ['pav_residential', ''] },
@@ -732,20 +732,20 @@ function enterSoniaChatSpecial3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kiss her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kiss her', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A25', 'hate');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.text('<center><b>Sonia\'s Room</b></center>');
     scene.img('images/characters/pavlovsk/school/girl/sonia/home/bed_kiss.jpg');
     // TODO-QSP: dynamic text: You lean in and try and kiss her, at first she lets you kiss her, but then she r...
-    scene.text(`You lean in and try and kiss her, at first she lets you kiss her, but then she recoils. "What the fuck, ${((s as any).pcs_nickname ?? 0)}?!"`);
+    scene.text(`You lean in and try and kiss her, at first she lets you kiss her, but then she recoils. "What the fuck, ${((s as any).pcs_nickname || '')}?!"`);
     scene.text('You\'re a little surprised by her reaction. "Sorry! I didn\'t mean anything by it."');
     scene.text('She starts openly crying. "I can\'t, I\'m not ready and you should of all people know better. Please just leave me alone."');
     scene.text('You try to comfort her, but she stands up and points at the door, now fully crying. "Please leave!"');
@@ -765,7 +765,7 @@ function enterSoniaChatSpecial3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Is there anything you want to talk about?" you ask her softly.');
     scene.text('She shakes her head and you can see tears starting to run down her face. "Not yet, I\'m not ready," she croaks out, trying to keep from sobbing. "I\'m sorry, but I don\'t want to talk anymore."');
     // TODO-QSP: dynamic text: As you get up to leave she grabs your hand. "I appreciate you stopping by, <<$pc...
-    scene.text(`As you get up to leave she grabs your hand. "I appreciate you stopping by, ${((s as any).pcs_nickname ?? 0)}. It means more to me than you'll ever know, but I just need to be alone for a while."`);
+    scene.text(`As you get up to leave she grabs your hand. "I appreciate you stopping by, ${((s as any).pcs_nickname || '')}. It means more to me than you'll ever know, but I just need to be alone for a while."`);
     scene.text('You nod and offer her a comforting smile. "I understand. I\'ll come see you again soon. I promise."');
     scene.actions([
       { label: 'Leave', goto: ['pav_residential', ''] },
@@ -785,7 +785,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/soniaHome/Livingroom/sonia_livingroom2.jpg');
     scene.text('As you walk in, Sonia is laying on the couch reading a book. She turns her head to glance back at you, causing her knee to slide off the edge of the couch, which ends up giving you a nice view of her butt cheeks hanging out of her very short shorts.');
     // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, what are you up to?" she asks.
-    scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, what are you up to?" she asks.`);
+    scene.text(`"Hey ${((s as any).pcs_nickname || '')}, what are you up to?" she asks.`);
     scene.text('You can\'t help but stare at her slightly exposed butt cheeks. "Just thought I\'d stop by and see if you wanted to hang out," you tell her.');
     scene.text('"Sure. You want to go to my room for some privacy?" she asks with a slight giggle.');
     scene.actions([
@@ -819,7 +819,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/pavlovsk/resident/soniaHome/Livingroom/sonia_livingroom1.jpg');
     // TODO-QSP: dynamic text: As you walk in, Sonia glances up from the book she's reading and grins at you. "...
-    scene.text(`As you walk in, Sonia glances up from the book she's reading and grins at you. "Hey ${((s as any).pcs_nickname ?? 0)} what are you up to?"`);
+    scene.text(`As you walk in, Sonia glances up from the book she's reading and grins at you. "Hey ${((s as any).pcs_nickname || '')} what are you up to?"`);
     scene.text('You shrug slightly. "Just thought I\'d stop by and see if you wanted to hang out."');
     scene.text('"Sure! You want to go to my room for some juicy gossip?" she asks with a slight giggle.');
     scene.actions([
@@ -902,7 +902,7 @@ function enterLivingroomChat1(s: GameState, scene: SceneBuilder): void {
     scene.text('"So what have you been up to lately?" you ask.');
     scene.text('She sighs dramatically. "Mostly trying to find some fun and avoid my parents. I think I\'ll hang myself if I hear one more speech about how a proper young lady has to act!"');
     // TODO-QSP: dynamic text: She ends her rant with a giggle and you smile at her. "Well, don't do that. You ...
-    scene.text(`She ends her rant with a giggle and you smile at her. "Well, don't do that. You have too pretty of a neck to bruise." You both laugh at that. "But seriously, I understand. My ${((s as any).npc_nickname ?? 0)?.['A29']} is <i>insanely</i> overbearing as well."`);
+    scene.text(`She ends her rant with a giggle and you smile at her. "Well, don't do that. You have too pretty of a neck to bruise." You both laugh at that. "But seriously, I understand. My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is <i>insanely</i> overbearing as well."`);
     scene.text('The two of you are soon talking about how bad your mothers are. It seems you have a lot in common with your overbearing mothers trying to control every aspect of your lives.');
     scene.actions([
       { label: 'Keep talking', goto: ['soniachat', 'livingroom_chat1'] },
@@ -1199,13 +1199,13 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Kiss her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Kiss her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Kiss her', handler: (st: GameState) => {
     qspCall(s, 'npcStat', 'A25');
     qspCall(s, 'willpower', 'pay', 'self');
     if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['kiss_day'] = ((s as any).daystart ?? 0);
@@ -1498,7 +1498,7 @@ function enterSoniaChatHappyslut(s: GameState, scene: SceneBuilder): void {
 function enterTellingMarrigeDreams1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/soniaHome/sonia_bedroom/sonia_happyslut.jpg');
   // TODO-QSP: dynamic text: You sigh in a way only those who are in love can. "Hopefully <<$ARGS[1]>> and I ...
-  scene.text(`You sigh in a way only those who are in love can. "Hopefully ${((s as any).locArgs?.[1] ?? 0)} and I can get married soon."`);
+  scene.text(`You sigh in a way only those who are in love can. "Hopefully ${((s as any).locArgs?.[1] ?? '')} and I can get married soon."`);
   scene.text('She smiles at you. "Why when you can have any boy you want?"');
   scene.text('You start to explain why, but considering what\'s happened in her life, you decide to leave it and change the subject.');
   // TODO-QSP: end
@@ -1621,7 +1621,7 @@ function enterTellAboutGenericBoyfriend1(s: GameState, scene: SceneBuilder): voi
   scene.text('"I have a boyfriend you know," you tell her.');
   scene.text('She grins at you. "Right. Who are you dating again?"');
   // TODO-QSP: dynamic text: "<<$ARGS[1]>>," you tell her.
-  scene.text(`"${((s as any).locArgs?.[1] ?? 0)}," you tell her.`);
+  scene.text(`"${((s as any).locArgs?.[1] ?? '')}," you tell her.`);
   scene.text('"Who?" she asks as she cocks her head slightly.');
   scene.text('You shake your head slightly. "You\'ve never met him. I only just met him."');
   scene.text('She smiles. "Just some guy you met, huh?"');

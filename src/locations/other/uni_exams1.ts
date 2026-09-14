@@ -24,18 +24,18 @@ function enterGeneralEducation_101(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_teaching_studies_semester_1_general education 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
-      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade']}.`);
+      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade'] ?? ''}.`);
     } else {
       if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade'] < 70) {
         // TODO-QSP: dynamic text: You think that you did good enough to pass, and are probably going to get a <<$c...
-        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade']}.`);
+        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade'] ?? ''}.`);
       } else {
         if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade'] < 90) {
           // TODO-QSP: dynamic text: You think you did pretty well and are going to get an <<$class_grade_desc['uni_t...
-          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade']}.`);
+          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade'] ?? ''}.`);
         } else {
           // TODO-QSP: dynamic text: You're sure you did extremely well and are going to get an <<$class_grade_desc['...
-          scene.text(`You're sure you did extremely well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade']}.`);
+          scene.text(`You're sure you did extremely well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_general education 101_grade'] ?? ''}.`);
         }
       }
     }
@@ -65,18 +65,18 @@ function enterTeachingMethods_101(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_teaching_studies_semester_1_teaching methods 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
-      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade']}.`);
+      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] ?? ''}.`);
     } else {
       if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] < 70) {
         // TODO-QSP: dynamic text: You think that you did good enough to pass, and are probably going to get a <<$c...
-        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade']}.`);
+        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] ?? ''}.`);
       } else {
         if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] < 90) {
           // TODO-QSP: dynamic text: You think you did pretty well and are going to get an <<$class_grade_desc['uni_t...
-          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade']}.`);
+          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] ?? ''}.`);
         } else {
           // TODO-QSP: dynamic text: You're sure you did extremely well on the exam and is going to get an <<$class_g...
-          scene.text(`You're sure you did extremely well on the exam and is going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade']}.`);
+          scene.text(`You're sure you did extremely well on the exam and is going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_teaching methods 101_grade'] ?? ''}.`);
         }
       }
     }
@@ -106,18 +106,18 @@ function enterLearningTheories_101(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_teaching_studies_semester_1_learning theories 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
-      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade']}.`);
+      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade'] ?? ''}.`);
     } else {
       if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade'] < 70) {
         // TODO-QSP: dynamic text: You think that you did good enough to pass, and are probably going to get a <<$c...
-        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade']}.`);
+        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade'] ?? ''}.`);
       } else {
         if (((s as any).class ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade'] < 90) {
           // TODO-QSP: dynamic text: You think you did pretty well and are going to get an <<$class_grade_desc['uni_t...
-          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade']}.`);
+          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade'] ?? ''}.`);
         } else {
           // TODO-QSP: dynamic text: You're sure you did extremely well on the exam and is going to get an <<$class_g...
-          scene.text(`You're sure you did extremely well on the exam and is going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade']}.`);
+          scene.text(`You're sure you did extremely well on the exam and is going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_teaching_studies_semester_1_learning theories 101_grade'] ?? ''}.`);
         }
       }
     }
@@ -147,18 +147,18 @@ function enterPatientCare_101(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_nursing_semester_1_patient care 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_nursing_semester_1_patient care 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
-      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_patient care 101_grade']}.`);
+      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_patient care 101_grade'] ?? ''}.`);
     } else {
       if (((s as any).class ?? 0)?.['uni_nursing_semester_1_patient care 101_grade'] < 70) {
         // TODO-QSP: dynamic text: You think that you did good enough to pass, and are probably going to get a <<$c...
-        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_patient care 101_grade']}.`);
+        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_patient care 101_grade'] ?? ''}.`);
       } else {
         if (((s as any).class ?? 0)?.['uni_nursing_semester_1_patient care 101_grade'] < 90) {
           // TODO-QSP: dynamic text: You think you did pretty well and are going to get an <<$class_grade_desc['uni_n...
-          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_patient care 101_grade']}.`);
+          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_patient care 101_grade'] ?? ''}.`);
         } else {
           // TODO-QSP: dynamic text: You're sure you did extremely well and are going to get an <<$class_grade_desc['...
-          scene.text(`You're sure you did extremely well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_patient care 101_grade']}.`);
+          scene.text(`You're sure you did extremely well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_patient care 101_grade'] ?? ''}.`);
         }
       }
     }
@@ -188,18 +188,18 @@ function enterAnatomyAndPhysiology_101(s: GameState, scene: SceneBuilder): void 
     if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_nursing_semester_1_anatomy and physiology 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_nursing_semester_1_anatomy  &&  physiology 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
-      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_anatomy and physiology 101_grade']}.`);
+      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_anatomy and physiology 101_grade'] ?? ''}.`);
     } else {
       if (((s as any).class ?? 0)?.['uni_nursing_semester_1_anatomy  &&  physiology 101_grade'] < 70) {
         // TODO-QSP: dynamic text: You think that you did good enough to pass, and are probably going to get a <<$c...
-        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_anatomy and physiology 101_grade']}.`);
+        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_anatomy and physiology 101_grade'] ?? ''}.`);
       } else {
         if (((s as any).class ?? 0)?.['uni_nursing_semester_1_anatomy  &&  physiology 101_grade'] < 90) {
           // TODO-QSP: dynamic text: You think you did pretty well and are going to get an <<$class_grade_desc['uni_n...
-          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_anatomy and physiology 101_grade']}.`);
+          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_anatomy and physiology 101_grade'] ?? ''}.`);
         } else {
           // TODO-QSP: dynamic text: You're sure you did extremely well on the exam and is going to get an <<$class_g...
-          scene.text(`You're sure you did extremely well on the exam and is going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_anatomy and physiology 101_grade']}.`);
+          scene.text(`You're sure you did extremely well on the exam and is going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_anatomy and physiology 101_grade'] ?? ''}.`);
         }
       }
     }
@@ -229,18 +229,18 @@ function enterExaminationAndTreatment_101(s: GameState, scene: SceneBuilder): vo
     if (!(s as any).class) (s as any).class = {}; (s as any).class['uni_nursing_semester_1_examination and treatment 101_exam_done'] = 1;
     if (((s as any).class ?? 0)?.['uni_nursing_semester_1_examination  &&  treatment 101_grade'] < 40) {
       // TODO-QSP: dynamic text: You think you've done terrible and are probably going to fail with <<$class_grad...
-      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_examination and treatment 101_grade']}.`);
+      scene.text(`You think you've done terrible and are probably going to fail with ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_examination and treatment 101_grade'] ?? ''}.`);
     } else {
       if (((s as any).class ?? 0)?.['uni_nursing_semester_1_examination  &&  treatment 101_grade'] < 70) {
         // TODO-QSP: dynamic text: You think that you did good enough to pass, and are probably going to get a <<$c...
-        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_examination and treatment 101_grade']}.`);
+        scene.text(`You think that you did good enough to pass, and are probably going to get a ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_examination and treatment 101_grade'] ?? ''}.`);
       } else {
         if (((s as any).class ?? 0)?.['uni_nursing_semester_1_examination  &&  treatment 101_grade'] < 90) {
           // TODO-QSP: dynamic text: You think you did pretty well and are going to get an <<$class_grade_desc['uni_n...
-          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_examination and treatment 101_grade']}.`);
+          scene.text(`You think you did pretty well and are going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_examination and treatment 101_grade'] ?? ''}.`);
         } else {
           // TODO-QSP: dynamic text: You're sure you did extremely well on the exam and is going to get an <<$class_g...
-          scene.text(`You're sure you did extremely well on the exam and is going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_examination and treatment 101_grade']}.`);
+          scene.text(`You're sure you did extremely well on the exam and is going to get an ${((s as any).class_grade_desc ?? 0)?.['uni_nursing_semester_1_examination and treatment 101_grade'] ?? ''}.`);
         }
       }
     }

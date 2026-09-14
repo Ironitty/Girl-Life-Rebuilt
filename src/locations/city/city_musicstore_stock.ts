@@ -40,7 +40,7 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $func('cleanHTML', $temp_html)
   if (((s as any).ml_guitars ?? 0)?.['burny-rlg55-vld'] === 0) {
     scene.actions([
-      { label: 'Buy the Burny RLG55 VLD [+$func(\'money\', \'get_cost_string\', 43990)]', handler: (st: GameState) => {
+      { label: 'Buy the Burny RLG55 VLD', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 43990) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -60,7 +60,7 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_guitars ?? 0)?.['epiphone-les-paul-express'] === 0) {
     scene.actions([
-      { label: 'Buy the Epiphone Les Paul Express [+$func(\'money\', \'get_cost_string\', 14280)]', handler: (st: GameState) => {
+      { label: 'Buy the Epiphone Les Paul Express', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 14280) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -80,7 +80,7 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_guitars ?? 0)?.['fender-american-professional-stratocaster'] === 0) {
     scene.actions([
-      { label: 'Buy the Fender American Professional Stratocaster [+$func(\'money\', \'get_cost_string\', 179000...]', handler: (st: GameState) => {
+      { label: 'Buy the Fender American Professional Stratocaster', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 179000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -100,7 +100,7 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_guitars ?? 0)?.['fender-player-tele'] === 0) {
     scene.actions([
-      { label: 'Buy the Fender Player Tele [+$func(\'money\', \'get_cost_string\', 83000)]', handler: (st: GameState) => {
+      { label: 'Buy the Fender Player Tele', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 83000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -120,7 +120,7 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_guitars ?? 0)?.['gibson-2019-les-paul'] === 0) {
     scene.actions([
-      { label: 'Buy the Gibson 2019 Les Paul [+$func(\'money\', \'get_cost_string\', 241000...]', handler: (st: GameState) => {
+      { label: 'Buy the Gibson 2019 Les Paul', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 241000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -140,7 +140,7 @@ function enterElectric(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_guitars ?? 0)?.['yamaha-pacifica-12-rm'] === 0) {
     scene.actions([
-      { label: 'Buy the Yamaha Pacifica 012 RM [+$func(\'money\', \'get_cost_string\', 17990)]', handler: (st: GameState) => {
+      { label: 'Buy the Yamaha Pacifica 012 RM', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 17990) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -192,7 +192,7 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $func('cleanHTML', $temp_html)
   if (((s as any).ml_guitars ?? 0)?.['martin-hdc-28e'] === 0) {
     scene.actions([
-      { label: 'Buy the Martin HDC-28E [+$func(\'money\', \'get_cost_string\', 320000...]', handler: (st: GameState) => {
+      { label: 'Buy the Martin HDC-28E', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 320000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -212,7 +212,7 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_guitars ?? 0)?.['martin-d10e-1'] === 0) {
     scene.actions([
-      { label: 'Buy the Martin D-10E-01 [+$func(\'money\', \'get_cost_string\', 81990)]', handler: (st: GameState) => {
+      { label: 'Buy the Martin D-10E-01', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 81990) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -232,7 +232,7 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_guitars ?? 0)?.['martin-ed-sheeran'] === 0) {
     scene.actions([
-      { label: 'Buy the Martin Ed Sheeran Signature Edition [+$func(\'money\', \'get_cost_string\', 63900)]', handler: (st: GameState) => {
+      { label: 'Buy the Martin Ed Sheeran Signature Edition', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 63900) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -252,7 +252,7 @@ function enterAcoustic(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_guitars ?? 0)?.['martin-lx-1'] === 0) {
     scene.actions([
-      { label: 'Buy the Martin LX-1 [+$func(\'money\', \'get_cost_string\', 41990)]', handler: (st: GameState) => {
+      { label: 'Buy the Martin LX-1', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 41990) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -303,7 +303,7 @@ function enterAmplifier(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $func('cleanHTML', $temp_html)
   if (((s as any).ml_amplifiers ?? 0)?.['kustom-kg112fx'] === 0) {
     scene.actions([
-      { label: 'Buy Kustom KG112FX [+$func(\'money\', \'get_cost_string\', 10790)]', handler: (st: GameState) => {
+      { label: 'Buy Kustom KG112FX', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10790) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -318,7 +318,7 @@ function enterAmplifier(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_amplifiers ?? 0)?.['orange-rocker-32'] === 0) {
     scene.actions([
-      { label: 'Buy Orange Rocker 32 [+$func(\'money\', \'get_cost_string\', 99990)]', handler: (st: GameState) => {
+      { label: 'Buy Orange Rocker 32', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 99990) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -333,7 +333,7 @@ function enterAmplifier(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).ml_amplifiers ?? 0)?.['blackstar-artisan-15'] === 0) {
     scene.actions([
-      { label: 'Buy Blackstar Artisan 15 [+$func(\'money\', \'get_cost_string\', 145900...]', handler: (st: GameState) => {
+      { label: 'Buy Blackstar Artisan 15', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 145900) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -376,7 +376,7 @@ function enterStudio(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $func('cleanHTML', $temp_html)
   if (((s as any).ml_studio ?? 0)?.['scarlet-3rd-gen'] === 0) {
     scene.actions([
-      { label: 'Buy Focusrite Scarlett Solo Studio 3rd Gen [+$func(\'money\', \'get_cost_string\', 19980)]', handler: (st: GameState) => {
+      { label: 'Buy Focusrite Scarlett Solo Studio 3rd Gen', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 19980) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

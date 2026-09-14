@@ -22,7 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Ring the doorbell', handler: (st: GameState) => {
     if (((s as any).hour ?? 0) > 16) {
       // TODO-QSP: dynamic text: You ring the doorbell, and it doesn't take long for Yuri to open the door as he ...
-      scene.text(`You ring the doorbell, and it doesn't take long for Yuri to open the door as he was expecting you, "Come in ${((s as any).pcs_firstname ?? 0)} no need to be standing outside."`);
+      scene.text(`You ring the doorbell, and it doesn't take long for Yuri to open the door as he was expecting you, "Come in ${((s as any).pcs_firstname || '')} no need to be standing outside."`);
       return;
       scene.actions([
         { label: 'Enter apartment', handler: (st: GameState) => {
@@ -100,7 +100,7 @@ function enterQuest(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/yuri/sex/bjdance.jpg');
     // TODO-QSP: dynamic text: You tease Yuri's cock a little further with your hands before squatting in front...
-    scene.text(`You tease Yuri's cock a little further with your hands before squatting in front of him, grabbing it by the base and licking it. After a moment, you cup his purple head with your ${((s as any).pc_desc ?? 0)?.['lips']} lips and start sucking his cock. Your lips slide up and down his rock-hard cock.`);
+    scene.text(`You tease Yuri's cock a little further with your hands before squatting in front of him, grabbing it by the base and licking it. After a moment, you cup his purple head with your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips and start sucking his cock. Your lips slide up and down his rock-hard cock.`);
     scene.text('It doesn\'t take long before Yuri is groaning loudly, looking down at you while you do your best to please him. All of a sudden, he grabs hold of your head and says, "Let\'s move to the bedroom."');
     qspCall(s, 'arousal', 'bj', 5, 'sub');
     qspCall(s, 'stat', '');

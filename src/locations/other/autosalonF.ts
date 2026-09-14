@@ -72,11 +72,11 @@ function enterDisplayVehicle(s: GameState, scene: SceneBuilder): void {
     scene.text('It appears the car you selected does not actually exist.');
   } else {
     // TODO-QSP: dynamic text: <center><b><<$CarName>></b></center>
-    scene.text(`<center><b>${((s as any).CarName ?? 0)}</b></center>`);
-    scene.img(`images/pc/items/accessories/car/car${((s as any).autosalonF_carnum ?? 0)}.jpg`);
+    scene.text(`<center><b>${((s as any).CarName || '')}</b></center>`);
+    scene.img(`images/pc/items/accessories/car/car${((s as any).autosalonF_carnum || '')}.jpg`);
     scene.actions([
       { label: 'Sit behind the wheel', handler: (st: GameState) => {
-    scene.img(`images/pc/items/accessories/car/salon${((s as any).autosalonF_carnum ?? 0)}.jpg`);
+    scene.img(`images/pc/items/accessories/car/salon${((s as any).autosalonF_carnum || '')}.jpg`);
     scene.actions([
       { label: 'Return', goto: ['autosalonF', 'display_vehicle'] },
     ]);
@@ -99,37 +99,37 @@ function enterManager1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Car Dealership</b></center>');
   scene.img('images/locations/city/industrial/cardealer/manager.jpg');
   // TODO-QSP: dynamic text: You have <<$func('money', 'format', karta - bankDebtLimit)>> in your bank accoun...
-  scene.text(`You have ${qspFunc(s, 'money', 'format', ((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0))} in your bank account.`);
+  scene.text(`You have ${qspFunc(s, 'money', 'format', ((s as any).karta ?? '') - ((s as any).bankDebtLimit ?? ''))} in your bank account.`);
   scene.text('The manager smiles affably and explains routinely what is required to purchase a car: A driver\'s license and the sum, in full, in your bank account.');
   scene.text('"With how the economy is right now, we can\'t accept payment by installments at this time I\'m afraid," he apologizes. "A few new laws have also been passed too: We cannot accept cash payment - the Duma believes that will help fight crime - and it is currently not possible to own more than one car, according to the Oblast\'s new anti-corruption law.');
   if (qspFunc(s, 'car_funcs', 'has_car')) {
     scene.text('"You already have a car, you should sell your old car before you buy a new one."');
   }
   if (((s as any).license ?? 0)?.['drive'] === 1  &&  qspFunc(s, 'car_funcs', 'has_car') === 0) {
-    qspCall(s, 'autosalonF', 'set_buy_act', 6);
-    qspCall(s, 'autosalonF', 'set_buy_act', 7);
-    qspCall(s, 'autosalonF', 'set_buy_act', 8);
-    qspCall(s, 'autosalonF', 'set_buy_act', 9);
-    qspCall(s, 'autosalonF', 'set_buy_act', 10);
-    qspCall(s, 'autosalonF', 'set_buy_act', 13);
-    qspCall(s, 'autosalonF', 'set_buy_act', 102);
-    qspCall(s, 'autosalonF', 'set_buy_act', 110);
-    qspCall(s, 'autosalonF', 'set_buy_act', 104);
-    qspCall(s, 'autosalonF', 'set_buy_act', 95);
-    qspCall(s, 'autosalonF', 'set_buy_act', 103);
-    qspCall(s, 'autosalonF', 'set_buy_act', 105);
-    qspCall(s, 'autosalonF', 'set_buy_act', 106);
-    qspCall(s, 'autosalonF', 'set_buy_act', 109);
-    qspCall(s, 'autosalonF', 'set_buy_act', 97);
-    qspCall(s, 'autosalonF', 'set_buy_act', 101);
-    qspCall(s, 'autosalonF', 'set_buy_act', 107);
-    qspCall(s, 'autosalonF', 'set_buy_act', 99);
-    qspCall(s, 'autosalonF', 'set_buy_act', 96);
-    qspCall(s, 'autosalonF', 'set_buy_act', 98);
-    qspCall(s, 'autosalonF', 'set_buy_act', 108);
-    qspCall(s, 'autosalonF', 'set_buy_act', 100);
-    qspCall(s, 'autosalonF', 'set_buy_act', 111);
-    qspCall(s, 'autosalonF', 'set_buy_act', 112);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 6]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 7]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 9]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 10]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 13]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 102]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 110]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 104]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 95]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 103]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 105]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 106]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 109]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 97]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 101]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 107]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 99]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 96]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 98]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 108]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 100]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 111]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 112]; enterSetBuyAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.actions([

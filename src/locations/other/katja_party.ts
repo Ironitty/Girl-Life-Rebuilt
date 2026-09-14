@@ -41,13 +41,13 @@ function enterGoingOutTalk(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince Katja to stay and watch a movie [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince Katja to stay and watch a movie', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince Katja to stay and watch a movie [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince Katja to stay and watch a movie', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja'] = 52;
     if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_rand2'] = ((s as any).daystart ?? 0);
@@ -176,13 +176,13 @@ function enterGoingOut(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince Katja to stay and watch a movie [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince Katja to stay and watch a movie', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince Katja to stay and watch a movie [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince Katja to stay and watch a movie', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja'] = 52;
     if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['katja_rand2'] = ((s as any).daystart ?? 0);
@@ -280,7 +280,7 @@ function enterPartyPreparations(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_surprised\'+iif(npc_had_sex[\'A14\'] and (katjaQW[\'slut\'] > 75 or katjaQW[\'pantiesQWstage\'] >= 5), \'1\', \'2\')+\'.jpg');
   scene.text('"I need to finish prepping. I still need to do my makeup," Katja says as she starts moving around.');
   scene.text('"Let me see how you look," Katja says, stopping and turning around to look at you.');
-  qspCall(s, 'katja_party', 'part_dress_check');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPartDressCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -290,7 +290,7 @@ function enterPartyLookApproval(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_surprised2.jpg');
   scene.text('You show yourself to Katja again. "OK. Let\'s see how you look now," she says and takes a good look at you.');
-  qspCall(s, 'katja_party', 'part_dress_check');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPartDressCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -380,7 +380,7 @@ function enterPartDressCheck(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 2;
     scene.text('Katja subtly applies some neutral tones, with a light application of makeup to bring out your natural beauty.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
       scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
     }
     scene.actions([
@@ -391,7 +391,7 @@ function enterPartDressCheck(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 3;
     scene.text('Katja applies some mildly vibrate tones and colors of makeup to cover your minor imperfections and enhance your best features.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
       scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
     }
     scene.actions([
@@ -402,7 +402,7 @@ function enterPartDressCheck(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_makeup = 4;
     scene.text('Katja applies some deeper, richer shades of makeup that are thick enough to cover most imperfections while drawing attention to your eyes and lips.');
     if (((s as any).katjaQW ?? 0)?.['QWstage'] > 2) {
-      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + ((s as any).npc_had_sex ?? {})?.['A14']));
+      if (!(s as any).katjaQW) (s as any).katjaQW = {}; (s as any).katjaQW['horny'] = ((s as any).katjaQW['horny'] ?? 0) + (5*(1 + (((s as any).npc_had_sex ?? {})?.['A14'] ?? 0)));
       scene.text('Katja suddenly becomes aware that she is staring into your eyes and blushes.');
     }
     scene.actions([
@@ -432,7 +432,7 @@ function enterPartyPreparationsFinal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/dressing_up_show_of_front_descent.jpg');
   scene.text('Katja stands straight up, showing off her elegant blue dress, with a rather short hemline and an ample amount of cleavage, showing a lot of skin.');
   // TODO-QSP: dynamic text: "What do you think, <<$pcs_nickname>>?" she asks.
-  scene.text(`"What do you think, ${((s as any).pcs_nickname ?? 0)}?" she asks.`);
+  scene.text(`"What do you think, ${((s as any).pcs_nickname || '')}?" she asks.`);
   scene.text('"I don\'t know. Show me some more," you say with a wink.');
   // TODO-QSP: end
   scene.actions([
@@ -496,13 +496,13 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drugs', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Say no to the drugs [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Say no to the drugs', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Say no to the drugs [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Say no to the drugs', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -551,13 +551,13 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'drugs', 'resist');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Tell Katja that you don\'t want to take drugs right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Tell Katja that you don\'t want to take drugs right now', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Tell Katja that you don\'t want to take drugs right now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Tell Katja that you don\'t want to take drugs right now', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -607,13 +607,13 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Convince Katja to try cocaine [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Convince Katja to try cocaine', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Convince Katja to try cocaine [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Convince Katja to try cocaine', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 4;
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
@@ -681,13 +681,13 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'drugs', 'resist');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Drop the idea [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Drop the idea', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Drop the idea [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Drop the idea', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
@@ -719,13 +719,13 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Convince Katja to try cocaine [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince Katja to try cocaine', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Convince Katja to try cocaine [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Convince Katja to try cocaine', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 8;
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['cocaine'] = ((s as any).mc_inventory['cocaine'] ?? 0) - (1);
@@ -734,7 +734,7 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/nightclub/katja_cocaine2.jpg');
     scene.text('"Come on, Katja. Just try it. It won\'t harm you," you say, but Katja still looks skeptical.');
     // TODO-QSP: dynamic text: "I don't know, <<$pcs_nickname>>. I'm not sure it's a good idea. I don't think i...
-    scene.text(`"I don't know, ${((s as any).pcs_nickname ?? 0)}. I'm not sure it's a good idea. I don't think it's for me," she replies.`);
+    scene.text(`"I don't know, ${((s as any).pcs_nickname || '')}. I'm not sure it's a good idea. I don't think it's for me," she replies.`);
     scene.text('"You won\'t know unless you try it. See, we are both fine," you continue.');
     scene.text('"I\'m still not sure. Why should I do it?" she asks.');
     scene.text('"Because it feels great. You can\'t say it\'s not for you until you actually know how it feels," you say.');
@@ -782,13 +782,13 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Convince Katja to do some lines with you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Convince Katja to do some lines with you', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Convince Katja to do some lines with you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Convince Katja to do some lines with you', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 8;
     if (((s as any).katjaQW ?? 0)?.['coke_stage'] === 2) {
       qspCall(s, 'willpower', 'drugs', 'force', 'easy');
@@ -803,7 +803,7 @@ function enterPartyHeadingOut(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/dorm/joint_coke.jpg');
     scene.text('"Come on, Katja. Let\'s do it together," you say and start cleaning the table.');
     // TODO-QSP: dynamic text: She still looks skeptical. "I don't know, <<$pcs_nickname>>. I'm not sure it's a...
-    scene.text(`She still looks skeptical. "I don't know, ${((s as any).pcs_nickname ?? 0)}. I'm not sure it's a good idea," she replies.`);
+    scene.text(`She still looks skeptical. "I don't know, ${((s as any).pcs_nickname || '')}. I'm not sure it's a good idea," she replies.`);
     scene.text('"You liked it last time! it will be fine this time, too," you continue.');
     // TODO-QSP: dynamic text: "I'm not sure. '+iif(katjaQW['coke_stage'] = 2, 'I don't want it to become a hab...
     scene.text('"I\'m not sure. \'+iif(katjaQW[\'coke_stage\'] = 2, \'I don\'t want it to become a habit\', \'I think the last time was enough for me\')+\'," she says.');

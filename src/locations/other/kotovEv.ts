@@ -6,21 +6,21 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9']} ${((s as any).npc_lastname ?? 0)?.['A9']}</b></center>`);
+  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big9.jpg');
   if (((s as any).kotovLoveQW ?? 0) > 0  &&  ((s as any).fame ?? 0)?.['pav_slut'] > 200  &&  ((s as any).kotovsluttalk ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: Vitek scowls at you and tells you: "<<$pcs_nickname>>, what is this shit I hear?...
-    scene.text(`Vitek scowls at you and tells you: "${((s as any).pcs_nickname ?? 0)}, what is this shit I hear? I thought you were my girl, but then I hear people talking about you being a ${((s as any).gnikname ?? 0)}! Apparently the whole town knows it, too… all the guys were laughing at me! What do you have to say for yourself, you bitch!?"`);
+    scene.text(`Vitek scowls at you and tells you: "${((s as any).pcs_nickname || '')}, what is this shit I hear? I thought you were my girl, but then I hear people talking about you being a ${((s as any).gnikname || '')}! Apparently the whole town knows it, too… all the guys were laughing at me! What do you have to say for yourself, you bitch!?"`);
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'It\'s all lies, babe! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'It\'s all lies, babe!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'It\'s all lies, babe! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'It\'s all lies, babe!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     if (((s as any).fame ?? 0)?.['pav_sex'] > 75) {
@@ -36,7 +36,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('He frowns while he thinks it over, but your sweet talking seems to have an effect on him. He\'s not as angry any more. In an attempt to win him over again, you whisper: "Come on Vitek, relax… we can go somewhere a bit more quiet later and I\'ll make you feel better, okay?"');
     scene.text('Vitek clenches his fist, and angrily says: "Those bastards! I\'ll knock their teeth out, if I hear anyone talk about you like that again! You hear me!?"');
     // TODO-QSP: dynamic text: Then he puts his hand on your shoulder in an endearing way (for his doing, anywa...
-    scene.text(`Then he puts his hand on your shoulder in an endearing way (for his doing, anyway) and promises you: "Don't worry ${((s as any).pcs_nickname ?? 0)}, I will make sure those rumors stop right now. I'll see you later."`);
+    scene.text(`Then he puts his hand on your shoulder in an endearing way (for his doing, anyway) and promises you: "Don't worry ${((s as any).pcs_nickname || '')}, I will make sure those rumors stop right now. I'll see you later."`);
     scene.text('He kisses your cheek and leaves you alone, and almost immediately afterwards you notice that people treat you differently. No one dares to make remarks about your reputation any more and some even look scared when you walk past, asking you to forgive them. You nearly can\'t believe it, but Vitek actually intimidated everyone to the point where no one dares to bring it up any more.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -68,11 +68,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).loc ?? 0) === 'gdksport') {
     if ((!((s as any).kotovKnowSport ?? 0))) {
       // TODO-QSP: dynamic text: Vitek smiles when he sees you and puts his arms around you, hugging you tightly ...
-      scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname ?? 0)}, what brings you here?"`);
+      scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname || '')}, what brings you here?"`);
       scene.actions([
         { label: '"What are you doing here?"', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9']} ${((s as any).npc_lastname ?? 0)?.['A9']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('"Oh you know… just going to my training," you tell him. "I never expected you in this place, what are you doing here?"');
     scene.text('Vitek snickers: "Are you serious? I\'ve been boxing since I was 8! Last year I got second place in the regional championships!"');
@@ -80,7 +80,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       { label: '"But you drink and smoke!"', handler: (st: GameState) => {
     (s as any).kotovKnowSport = 1;
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9']} ${((s as any).npc_lastname ?? 0)?.['A9']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     scene.text('He smirks when he sees the surprised look on your face. You ask: "But… you smoke and drink so much! How do you combine that with sports at all?"');
     scene.text('He laughs and tells you: "Ha! Coach says I have talent. My physical build is great for a boxer, and no one hits harder than me! I can tolerate alcohol just fine, I think I have that from my dad. Sure, he died of liver cirrhosis eventually, but up until then he was great!"');
@@ -97,7 +97,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).kotovKnowSport ?? 0) > 0) {
         // TODO-QSP: dynamic text: Vitek smiles when he sees you and puts his arms around you, hugging you tightly ...
-        scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname ?? 0)}. It's nice seeing you, but the training starts soon!"`);
+        scene.text(`Vitek smiles when he sees you and puts his arms around you, hugging you tightly while he gives you a kiss. Then he says: "Hi ${((s as any).pcs_nickname || '')}. It's nice seeing you, but the training starts soon!"`);
         scene.actions([
           { label: 'Let him go to his training', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -108,17 +108,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).loc ?? 0) === 'pav_park') {
       // TODO-QSP: dynamic text: Vitek sees you walk by, and waves his hand: "Hey <<$pcs_nickname>>! Come on, joi...
-      scene.text(`Vitek sees you walk by, and waves his hand: "Hey ${((s as any).pcs_nickname ?? 0)}! Come on, join me!"`);
+      scene.text(`Vitek sees you walk by, and waves his hand: "Hey ${((s as any).pcs_nickname || '')}! Come on, join me!"`);
       qspCall(s, 'willpower', 'misc', 'resist', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'No time right now, sorry!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'No time right now, sorry!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -131,17 +131,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     // TODO-QSP: dynamic text: Vitek pours some beer into a plastic cup and offers it to you: "Here, <<$pcs_nic...
-    scene.text(`Vitek pours some beer into a plastic cup and offers it to you: "Here, ${((s as any).pcs_nickname ?? 0)}. Let's have some beers together!"`);
+    scene.text(`Vitek pours some beer into a plastic cup and offers it to you: "Here, ${((s as any).pcs_nickname || '')}. Let's have some beers together!"`);
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No time right now, sorry!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No time right now, sorry!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -160,17 +160,17 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big9.jpg');
     // TODO-QSP: dynamic text: You enjoyed your time with Vitek, but you have to get on with your day. Vitek is...
-    scene.text(`You enjoyed your time with Vitek, but you have to get on with your day. Vitek is a bit disappointed to see you leave and hugs you tightly, while kissing you on your lips. You kiss him back, and can't help but feel a bit more aroused when he lets you go. He smiles at you and says: "${((s as any).pcs_nickname ?? 0)}, babe… want to go to my place for a while?"`);
+    scene.text(`You enjoyed your time with Vitek, but you have to get on with your day. Vitek is a bit disappointed to see you leave and hugs you tightly, while kissing you on your lips. You kiss him back, and can't help but feel a bit more aroused when he lets you go. He smiles at you and says: "${((s as any).pcs_nickname || '')}, babe… want to go to my place for a while?"`);
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No time right now, sorry!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No time right now, sorry! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No time right now, sorry!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     dynamicGoto(st, 'loc', 'loc_arg');

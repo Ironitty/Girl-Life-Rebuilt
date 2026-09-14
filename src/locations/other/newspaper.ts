@@ -34,7 +34,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_np_page = 0;
   qspCall(s, 'stat', '');
-  qspCall(s, 'newspaper', 'view');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterView(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -45,7 +45,7 @@ function enterView(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Flip to the next article', handler: (st: GameState) => {
     (s as any).temp_np_page = ((s as any).temp_np_page ?? 0) + (1);
-    qspCall(s, 'newspaper', 'view');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterView(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -53,7 +53,7 @@ function enterView(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Flip to the previous article', handler: (st: GameState) => {
     (s as any).temp_np_page = ((s as any).temp_np_page ?? 0) - (1);
-    qspCall(s, 'newspaper', 'view');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterView(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

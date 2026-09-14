@@ -38,7 +38,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text(`A rather run-down <a href="exec: minut += 1 & gt 'pav_hotel'">hotel</a> is just across the square${((((s as any).job_hiring_step ?? 0)?.['pav_hotel_maid'] > 0) ? ('; the manager is always looking for maids among the local young girls') : (''))}. Due to its frequent use by local prostitutes, most people prefer to stay at the middle-class hotel by the main road.`);
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked in the par...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked in the parking lot in front of the train station.`);
+    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the parking lot in front of the train station.`);
   }
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
@@ -185,7 +185,7 @@ function enterKidaloa(s: GameState, scene: SceneBuilder): void {
     scene.text('You happily take the box from the girl as the man starts filming. The girl holds the microphone up and invites you to give some shout-outs to relatives and friends while you\'re on TV before she points the microphone at you.');
     scene.text('You gladly accept the invitation and enthusiastically address your friends and family while looking at the camera, sincerely hoping you didn\'t leave anyone out. The man then turns the camera away for a second.');
     // TODO-QSP: dynamic text: "Unfortunately, the government doesn't just let us give away items for nothing,"...
-    scene.text('"Unfortunately, the government doesn\'t just let us give away items for nothing," the girls says. "We\'re legally obligated to have our winners pay VAT over the amount of money their gift is worth. In your case, this comes down to \' + $func(\'money\', \'string_price\', 5000) + \'."');
+    scene.text('"Unfortunately, the government doesn\'t just let us give away items for nothing," the girls says. "We\'re legally obligated to have our winners pay VAT over the amount of money their gift is worth. In your case, this comes down to 5000₽."');
     scene.actions([
       { label: 'Pay the VAT and check out your new laptop', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 5000);
@@ -268,7 +268,7 @@ function enterKidalob(s: GameState, scene: SceneBuilder): void {
   scene.text('As you walk across the square towards the station, you notice two well dressed men staring at you. After some brief consideration they start approaching, and you can just about hear what they\'re saying: "Wow, she\'s just the model we need! She has this… Claudia Schiffer feel to her, don\'t you agree?"');
   scene.text('You can see the other man nod just as they get close to you, and one of the men stops you. "Excuse me, miss. We\'re opening a new fashion store in the city and are looking for a model to feature in our advertisements. We\'ve been looking for just the right girl all day and… I think we just found her!"');
   // TODO-QSP: dynamic text: The second man nods enthusiastically as the first man continues. "We would be ab...
-  scene.text('The second man nods enthusiastically as the first man continues. "We would be able to offer you \' + $func(\'money\', \'string_price\', 10000) + \' for an extensive photoshoot featuring our clothing line."');
+  scene.text('The second man nods enthusiastically as the first man continues. "We would be able to offer you 10000₽ for an extensive photoshoot featuring our clothing line."');
   // TODO-QSP: end
   scene.actions([
     { label: 'Not interested', handler: (st: GameState) => {
@@ -287,13 +287,13 @@ function enterKidalob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['pav_market', ''] },
@@ -308,7 +308,7 @@ function enterKidalob(s: GameState, scene: SceneBuilder): void {
     (s as any).lastwornclothingnumber = 0;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You quickly get into the car and put on the dress the man gave you. You give you...
-    scene.text(`You quickly get into the car and put on the dress the man gave you. You give your ${((s as any).titsize ?? 0)} breasts a squeeze through the fabric, adjusting the dress a bit so it fits well around them for the photo shoot.`);
+    scene.text(`You quickly get into the car and put on the dress the man gave you. You give your ${((s as any).titsize || '')} breasts a squeeze through the fabric, adjusting the dress a bit so it fits well around them for the photo shoot.`);
     scene.actions([
       { label: 'Pose for the camera', handler: (st: GameState) => {
     (s as any).kidalob = 1;

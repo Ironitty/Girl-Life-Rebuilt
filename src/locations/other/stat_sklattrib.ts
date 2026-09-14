@@ -38,7 +38,7 @@ function enterAddTraitToList(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stat_sklattrib', 'init');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locArgs?.[0] ?? 0) === 'daycall') {
     if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['index'] = 0;
     // TODO-QSP: :sklxploop
@@ -51,9 +51,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_sklattrib ?? 0)?.['index'] < Object.keys((s as any).att_name ?? {}).length) {
       // TODO-QSP: jump 'sklxploop'
     }
-    qspCall(s, 'stat_sklattrib', 'degradation_loop');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDegradationLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'stat_sklattrib', 'advancement_loop', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterAdvancementLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat_sklattrib_lvlset', '');
   return;
   // TODO-QSP: end
@@ -70,13 +70,13 @@ function enterDegradationLoop(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['name'] = qspUntranslated(s, "att_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
   } else {
     if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['name'] = qspUntranslated(s, "skl_name[temp_sklattrib['index']]", { location: "stat_sklattrib" });
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['deg_loss'] = 75 * ((s as any).temp_sklattrib ?? {})?.['deg_loss'] / 100;
+    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['deg_loss'] = 75 * (((s as any).temp_sklattrib ?? {})?.['deg_loss'] ?? 0) / 100;
   }
   if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['trait_index'] = 0;
   // TODO-QSP: :traitdegloop
   if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['trait'] = qspUntranslated(s, "traitattskl[temp_sklattrib['trait_index']]", { location: "stat_sklattrib" });
   if (((s as any).temp_sklattrib ?? 0)?.['trait'] !== '') {
-    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + (((s as any).trait_vars ?? 0)?.[((s as any).temp_sklattrib ?? {})?.['trait'] + '-' + ((s as any).temp_sklattrib ?? {})?.['name'] + '-deg_loss']);
+    if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + (((s as any).trait_vars ?? 0)?.[(((s as any).temp_sklattrib ?? {})?.['trait'] ?? 0) + '-' + (((s as any).temp_sklattrib ?? {})?.['name'] ?? 0) + '-deg_loss']);
     if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['deg_loss'] = ((s as any).temp_sklattrib['deg_loss'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-\' + $temp_sklattrib[\'name\'] + \'-deg_loss']);
   }
   if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['trait_index'] = ((s as any).temp_sklattrib['trait_index'] ?? 0) + (1);
@@ -204,11 +204,11 @@ function enterAdvancementLoop(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stat_sklattrib', 'init_vars');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInitVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).attsklupdate ?? 0)  &&  ((s as any).locArgs?.[1] ?? 0) === '') {
     // TODO-QSP: exit
   }
-  qspCall(s, 'stat_sklattrib', 'init_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInitLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).attsklupdate = 1;
   // TODO-QSP: end
   scene.build();

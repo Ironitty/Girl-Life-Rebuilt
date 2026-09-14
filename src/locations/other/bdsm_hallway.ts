@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFoyer(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'bdsm_hallway', 'check_foyer_events');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckFoyerEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_hallway', 'foyer');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/foyer.jpg');

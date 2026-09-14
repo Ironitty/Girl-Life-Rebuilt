@@ -47,7 +47,7 @@ function enterCard(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/card.jpg');
   scene.text('That doesn\'t exactly inspire confidence, but You take his card. It says Sultan Maskaev, Sport Management.');
   // TODO-QSP: dynamic text: <b>Note:</b> You can now find Sultan Maskaev in your smartphone contacts. You ca...
-  scene.text('<b>Note:</b> You can now find Sultan Maskaev in your smartphone contacts. You can call him on weekdays between \' + $func(\'time\', \'get_time_string\', 8, 0) + \' and \' + $func(\'time\', \'get_time_string\', 20, 0) + \'!');
+  scene.text('<b>Note:</b> You can now find Sultan Maskaev in your smartphone contacts. You can call him on weekdays between 8:00 and 20:00!');
   qspCall(s, 'fightClub_phone', 'sultan');
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
@@ -79,7 +79,7 @@ function enterOffice1(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter. The office is not large and is littered with pictures of boxers and trophies. Sitting at a tiny desk is a man who, at first glance, looks like an ex-boxer.');
   scene.text('His eyes light up when you enter and greet him.');
   // TODO-QSP: dynamic text: "Ah, you must be <<$pcs_nickname>>. The boss has already been raving about you. ...
-  scene.text(`"Ah, you must be ${((s as any).pcs_nickname ?? 0)}. The boss has already been raving about you. I'm Oleg, I keep this place together.” He turns on his groaning chair and calls to the back. "Boss, ${((s as any).pcs_nickname ?? 0)}'s here."`);
+  scene.text(`"Ah, you must be ${((s as any).pcs_nickname || '')}. The boss has already been raving about you. I'm Oleg, I keep this place together.” He turns on his groaning chair and calls to the back. "Boss, ${((s as any).pcs_nickname || '')}'s here."`);
   scene.text('"Send her in right away, Oleg!", comes back.');
   scene.text('"You heard him, Dove, just go through, he\'s waiting for you."');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -95,7 +95,7 @@ function enterOffice2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
   scene.text('Sultan Maskaev comes to meet you at the door. "Excellent. I\'m glad to see you, sweetie."');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you correct, slightly annoyed.
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}," you correct, slightly annoyed.`);
+  scene.text(`"${((s as any).pcs_nickname || '')}," you correct, slightly annoyed.`);
   scene.text('He grins. "I might as well call you a superstar, because you soon will be! Come on, have a seat."');
   scene.text('He\'s obviously turned on the charm, and he\'s got a lot of it. He is a bit too quick with his compliments. You want to slow down the things a bit. Your gaze falls on a picture on the wall.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -142,7 +142,7 @@ function enterOffice4(s: GameState, scene: SceneBuilder): void {
   scene.text('"Only for the losers, and you, sweetie, are a winner - I\'ll make sure of that."');
   scene.text('You stare at him questioningly.');
   // TODO-QSP: dynamic text: "I didn't just approach you because you're talented, <<$pcs_nickname>>. You have...
-  scene.text(`"I didn't just approach you because you're talented, ${((s as any).pcs_nickname ?? 0)}. You have a pretty face and an amazing body. That's our capital, and I don't want to waste it. I'll build you up slowly, choose a few easy opponents first. You'll still be able to cash in big time. How does ${qspFunc(s, 'money', 'string_profit', 10000)} for your first fight sound?"`);
+  scene.text(`"I didn't just approach you because you're talented, ${((s as any).pcs_nickname || '')}. You have a pretty face and an amazing body. That's our capital, and I don't want to waste it. I'll build you up slowly, choose a few easy opponents first. You'll still be able to cash in big time. How does ${qspFunc(s, 'money', 'string_profit', 10000)} for your first fight sound?"`);
   scene.text('"10.000?"');
   scene.text('"And it\'ll be a walk in the park, I promise. So - shall we make this clear?"');
   scene.text('You look at him. He seems really confident in you.');
@@ -191,7 +191,7 @@ function enterOfficeSign(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/shared/fightclub/sultan_portrait.jpg');
     scene.text('You arrange the first fight for next Sunday. He promises to pick you up and even get you the right clothes for the fight. He looks happy.');
     // TODO-QSP: dynamic text: <b>Note:</b> On fight day (Sunday), Sultan picks you up at your apartment at ' +...
-    scene.text('<b>Note:</b> On fight day (Sunday), Sultan picks you up at your apartment at \' + $func(\'time\', \'get_time_string\', 19, 0) + \' (be inside)');
+    scene.text('<b>Note:</b> On fight day (Sunday), Sultan picks you up at your apartment at 19:00 (be inside)');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.actions([
@@ -288,7 +288,7 @@ function enterPreparations(s: GameState, scene: SceneBuilder): void {
   scene.text('Sultan helps you with the unfamiliar gloves and provides you with some information about your opponent: "She\'s made a name for herself with wild bar brawls, but that\'s just brute force; she\'s got no technique, no stamina, and she\'s probably drunk. Just dodge her and cover her with punches. And if she does hit you, our shaman will take care of you."');
   scene.text('"Who?"');
   // TODO-QSP: dynamic text: But Sultan is already out the door to give the ring announcer your fight name "<...
-  scene.text(`But Sultan is already out the door to give the ring announcer your fight name "${((s as any).fightClubQW ?? 0)?.['name']}".`);
+  scene.text(`But Sultan is already out the door to give the ring announcer your fight name "${((s as any).fightClubQW ?? 0)?.['name'] ?? ''}".`);
   (s as any).minut = ((s as any).minut ?? 0) + 20;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -301,7 +301,7 @@ function enterPreparations(s: GameState, scene: SceneBuilder): void {
 function enterFirstfight(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/announcer.jpg');
   // TODO-QSP: dynamic text: You enter the arena to the sound of booming music. Bright spotlights blind you s...
-  scene.text(`You enter the arena to the sound of booming music. Bright spotlights blind you so that you can't see much of the jeering crowd. A loud voice announces your fighting weight and size, and yells your fight name "${((s as any).fightClubQW ?? 0)?.['name']}" into the darkness.`);
+  scene.text(`You enter the arena to the sound of booming music. Bright spotlights blind you so that you can't see much of the jeering crowd. A loud voice announces your fighting weight and size, and yells your fight name "${((s as any).fightClubQW ?? 0)?.['name'] ?? ''}" into the darkness.`);
   scene.text('You can feel the adrenaline, the blood rushing in your ears. Someone taps you on the shoulder. It\'s Oleg, who gives you an encouraging nod. You are happy and relieved, that he is in your corner. To your surprise it\'s a classical boxing ring, no cage.');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -389,7 +389,7 @@ function enterKnockout(s: GameState, scene: SceneBuilder): void {
 function enterVictorylap(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/fightclub/victorybypoints.jpg');
   // TODO-QSP: dynamic text: The announcer roars "<<$fightClubQW['name']>>", the crowd cheers and laughs. Sul...
-  scene.text(`The announcer roars "${((s as any).fightClubQW ?? 0)?.['name']}", the crowd cheers and laughs. Sultan climbs into the ring and raises your fists again.`);
+  scene.text(`The announcer roars "${((s as any).fightClubQW ?? 0)?.['name'] ?? ''}", the crowd cheers and laughs. Sultan climbs into the ring and raises your fists again.`);
   scene.text('"What did I promise," he whispers to you, "a walk in the park." You grin and enjoy the feeling of victory. And than it\'s over. The speaker comes to you with a broad fake smile. He shakes your hand and murmurs: "Hurry up, we have to set up the cage for the real fights."');
   qspCall(s, 'money', 'earn', 7500, 'cash');
   (s as any).minut = ((s as any).minut ?? 0) + 1;

@@ -19,7 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><b>${'Vasily [Shulga] Shulgin'}</b></center>`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/gopnikdance\'+rand(1, 2)+\'.mp4');
     // TODO-QSP: dynamic text: You and Fedor follow the laughing to find a clearly drunk Vasily dancing in fron...
-    scene.text(`You and Fedor follow the laughing to find a clearly drunk Vasily dancing in front of Vitek and Dan as they cheer him on. Dan shouts "Keep going and remember if you fall over then you owe us ${qspFunc(s, 'money', 'format', 300)} " as he records Shulgin's drunken dance on his phone. Fedor laughs "It seems like they are having fun. We should probably go before they notice us because I'm sure that having you by my side will only make those poor guys jealous" you lower your head and feel yourself getting flushed as you reply, "I'm sure you say that to all the girls" he then responds, "Only if they were as beautiful as you ${((s as any).pcs_firstname ?? 0)}" after a few moments of silence Fedor chuckles as he takes you by the hand and leads you back down the main path.`);
+    scene.text(`You and Fedor follow the laughing to find a clearly drunk Vasily dancing in front of Vitek and Dan as they cheer him on. Dan shouts "Keep going and remember if you fall over then you owe us ${qspFunc(s, 'money', 'format', 300)} " as he records Shulgin's drunken dance on his phone. Fedor laughs "It seems like they are having fun. We should probably go before they notice us because I'm sure that having you by my side will only make those poor guys jealous" you lower your head and feel yourself getting flushed as you reply, "I'm sure you say that to all the girls" he then responds, "Only if they were as beautiful as you ${((s as any).pcs_firstname || '')}" after a few moments of silence Fedor chuckles as he takes you by the hand and leads you back down the main path.`);
     scene.actions([
       { label: 'Continue walking', goto: ['FedorEv2', 'Park Walk'] },
     ]);
@@ -34,7 +34,7 @@ function enterParkWalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/swingset.jpg');
   // TODO-QSP: dynamic text: While walking along the path you and Fedor Start getting to know each other unti...
-  scene.text(`While walking along the path you and Fedor Start getting to know each other until you come across an unused swing set. Fedor smiles as he asks "${((s as any).pcs_firstname ?? 0)} would you like a push on the swing?"`);
+  scene.text(`While walking along the path you and Fedor Start getting to know each other until you come across an unused swing set. Fedor smiles as he asks "${((s as any).pcs_firstname || '')} would you like a push on the swing?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'I would love to.', handler: (st: GameState) => {
@@ -48,20 +48,20 @@ function enterParkWalk(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Flash Fedor [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Flash Fedor', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Flash Fedor [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Flash Fedor', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'mood', 'raise', 'tiny');
     (s as any).FedorLuv = ((s as any).FedorLuv ?? 0) + (2);
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/swingflash.mp4');
     // TODO-QSP: dynamic text: While swinging, you give Fedor a seductive grin, as you spread your legs after e...
-    scene.text(`While swinging, you give Fedor a seductive grin, as you spread your legs after each swing, giving Fedor a close up of your vagina which gives you a rush of excitement. You can see a shocked look on Fedor's face which soon turns to a very pleased grin, "${((s as any).pcs_nickname ?? 0)} you little minx." You then slide off the swing, landing on your feet and walk past Fedor, giving him a seductive wink while taking his hand and continuing your walk together.`);
+    scene.text(`While swinging, you give Fedor a seductive grin, as you spread your legs after each swing, giving Fedor a close up of your vagina which gives you a rush of excitement. You can see a shocked look on Fedor's face which soon turns to a very pleased grin, "${((s as any).pcs_nickname || '')} you little minx." You then slide off the swing, landing on your feet and walk past Fedor, giving him a seductive wink while taking his hand and continuing your walk together.`);
     qspCall(s, 'arousal', 'flash', 5);
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -91,7 +91,7 @@ function enterParkWalk(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/fedorsad.jpg');
     // TODO-QSP: dynamic text: "Nah, I'm too old for that, Let's find something more my age." Fedor's smile mel...
-    scene.text(`"Nah, I'm too old for that, Let's find something more my age." Fedor's smile melts away as he responds, "Sorry ${((s as any).pcs_firstname ?? 0)}, I didn't mean to… let's just forget I asked." and you both continue walking together in silence.`);
+    scene.text(`"Nah, I'm too old for that, Let's find something more my age." Fedor's smile melts away as he responds, "Sorry ${((s as any).pcs_firstname || '')}, I didn't mean to… let's just forget I asked." and you both continue walking together in silence.`);
     scene.actions([
       { label: 'Continue your walk', goto: ['FedorEv2', 'Train Tracks'] },
     ]);
@@ -115,7 +115,7 @@ function enterTrainTracks(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/park/kiss.jpg');
     // TODO-QSP: dynamic text: As you stare into Fedor's eyes you see a look of desire in his eyes and you can ...
-    scene.text(`As you stare into Fedor's eyes you see a look of desire in his eyes and you can almost feel how badly he wants you which causes your heart to race and unable to resist you further, Fedor moves in and kisses you passionately, massaging your lips with his while never breaking eye contact. You occasionally feel his breath on your upper lip, his hands on your hips ans his lips on yours. The passionate kiss lasts for what feels like an hour until Fedor slowly lowers you to your feet as he whispers in your ear "${((s as any).pcs_firstname ?? 0)}, I've never met a girl like you, I feel like I can relax around you" Fedor then lowers you back to you feet "I had a great time with you but I should really get you home before it gets too late. I wouldn't want your parents to scorn me but feel free to meet me after school whenever you would like to go out again." Fedor says, as he takes your hand and walks you home.`);
+    scene.text(`As you stare into Fedor's eyes you see a look of desire in his eyes and you can almost feel how badly he wants you which causes your heart to race and unable to resist you further, Fedor moves in and kisses you passionately, massaging your lips with his while never breaking eye contact. You occasionally feel his breath on your upper lip, his hands on your hips ans his lips on yours. The passionate kiss lasts for what feels like an hour until Fedor slowly lowers you to your feet as he whispers in your ear "${((s as any).pcs_firstname || '')}, I've never met a girl like you, I feel like I can relax around you" Fedor then lowers you back to you feet "I had a great time with you but I should really get you home before it gets too late. I wouldn't want your parents to scorn me but feel free to meet me after school whenever you would like to go out again." Fedor says, as he takes your hand and walks you home.`);
     qspCall(s, 'arousal', 'kiss', 10, 'sub');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -147,7 +147,7 @@ function enterMovies(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Ivan Prokhorov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/jogging.jpg');
   // TODO-QSP: dynamic text: As you are walking to the cinema you glance around to see Ivan jogging through t...
-  scene.text(`As you are walking to the cinema you glance around to see Ivan jogging through the park, he stops in front of Fedor. "Hey Fedor, Did you check out those vids I sent you?" he then notices you. "Hey ${((s as any).pcs_firstname ?? 0)}, it's good to see you, What are you two up to?" Fedor tells him that you are going to the cinema together and Ivan looks you up and down then nods to Fedor approvingly "Don't let me keep you." as he steps aside. You and Fedor walk past Ivan then Fedor smiles as he says, "Sorry about that ${((s as any).pcs_firstname ?? 0)}, let's keep moving before all the good seats are taken" he then reaches out for your hand…`);
+  scene.text(`As you are walking to the cinema you glance around to see Ivan jogging through the park, he stops in front of Fedor. "Hey Fedor, Did you check out those vids I sent you?" he then notices you. "Hey ${((s as any).pcs_firstname || '')}, it's good to see you, What are you two up to?" Fedor tells him that you are going to the cinema together and Ivan looks you up and down then nods to Fedor approvingly "Don't let me keep you." as he steps aside. You and Fedor walk past Ivan then Fedor smiles as he says, "Sorry about that ${((s as any).pcs_firstname || '')}, let's keep moving before all the good seats are taken" he then reaches out for your hand…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Hold hands', handler: (st: GameState) => {
@@ -156,7 +156,7 @@ function enterMovies(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/handkiss.jpg');
     // TODO-QSP: dynamic text: As you offer Fedor your hand, he lifts it up to his face and very romantically k...
-    scene.text(`As you offer Fedor your hand, he lifts it up to his face and very romantically kisses it softly while staring into your ${((s as any).pcs_eyecolor ?? 0)} eyes. You give Fedor a gentle smile and say, "I never took you for a romantic." he then responds, "Well stick with me and I'll surprise you." Fedor then returns the smile as you both continue toward the cinema.`);
+    scene.text(`As you offer Fedor your hand, he lifts it up to his face and very romantically kisses it softly while staring into your ${((s as any).pcs_eyecolor || '')} eyes. You give Fedor a gentle smile and say, "I never took you for a romantic." he then responds, "Well stick with me and I'll surprise you." Fedor then returns the smile as you both continue toward the cinema.`);
     scene.actions([
       { label: 'Enter the cinema', goto: ['FedorEv2', 'Cinema'] },
     ]);
@@ -238,17 +238,17 @@ function enterMovies2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/scare.mp4');
   // TODO-QSP: dynamic text: The movie starts and you and Fedor sit quietly watching the movie but you occasi...
-  scene.text(`The movie starts and you and Fedor sit quietly watching the movie but you occasionally see Fedor staring at you when he thinks you aren't looking. You continue watching the movie in silence until a jump scare flashes on the screen causing you to jump up in your seat and after you collect yourself, you look down to notice that you were clutching Fedor's hand. As you look at Fedor's face, he giggles and wraps his fingers around your hand as he gazes intently into your ${((s as any).pcs_eyecolor ?? 0)} eyes and a few seconds of silence Fedor leans in closer to you…`);
+  scene.text(`The movie starts and you and Fedor sit quietly watching the movie but you occasionally see Fedor staring at you when he thinks you aren't looking. You continue watching the movie in silence until a jump scare flashes on the screen causing you to jump up in your seat and after you collect yourself, you look down to notice that you were clutching Fedor's hand. As you look at Fedor's face, he giggles and wraps his fingers around your hand as he gazes intently into your ${((s as any).pcs_eyecolor || '')} eyes and a few seconds of silence Fedor leans in closer to you…`);
   qspCall(s, 'willpower', 'kiss', 'resist', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Turn away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Turn away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Turn away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Turn away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).FedorLuv = ((s as any).FedorLuv ?? 0) - (1);
     qspCall(s, 'stat', '');
@@ -268,19 +268,19 @@ function enterMovies2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/scarekiss.mp4');
     // TODO-QSP: dynamic text: You lean forward slightly and kiss his lips, Feeling his soft lips massaging you...
-    scene.text(`You lean forward slightly and kiss his lips, Feeling his soft lips massaging yours enjoying the passionate kiss for what feels like half an hour. When you both finish, Fedor whispers in your ear "Your lips are so soft ${((s as any).pcs_firstname ?? 0)}, I could kiss you for days." Which causes you to feel a little flushed as you start sipping your soda trying to hide how red your face is.`);
+    scene.text(`You lean forward slightly and kiss his lips, Feeling his soft lips massaging yours enjoying the passionate kiss for what feels like half an hour. When you both finish, Fedor whispers in your ear "Your lips are so soft ${((s as any).pcs_firstname || '')}, I could kiss you for days." Which causes you to feel a little flushed as you start sipping your soda trying to hide how red your face is.`);
     qspCall(s, 'arousal', 'kiss', 5);
     qspCall(s, 'stat', '');
     qspCall(s, 'willpower', 'hj', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Unzip his pants [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Unzip his pants', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Unzip his pants [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Unzip his pants', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/cinema/sex/kinosex3.jpg');
@@ -292,7 +292,7 @@ function enterMovies2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/movies/hj.jpg');
     // TODO-QSP: dynamic text: Feeling his warm penis in your hand and seeing his expression just fills you wit...
-    scene.text(`Feeling his warm penis in your hand and seeing his expression just fills you with excitement and a sense of power as you are in full control his pleasure. You continue to jerk him off as you admire the look of pleasure in his face and the slow throbbing of his cock. Soon Fedor's head slams back in his chair and he lets out a muffled groan as his cock starts rapidly throbbing and erupting squirt after squirt of semen on your '+ iif(PCloskirt = 0, 'pants', 'skirt') +' and hand. Fedor lays back motionlessly for a few seconds then turns to you with a very satisfied look on his face, he leans toward you and kiss you on the cheek as he whispers "Wow ${((s as any).pcs_nickname ?? 0)}, You are the best." then leans back in his chair, zipping his pants.`);
+    scene.text(`Feeling his warm penis in your hand and seeing his expression just fills you with excitement and a sense of power as you are in full control his pleasure. You continue to jerk him off as you admire the look of pleasure in his face and the slow throbbing of his cock. Soon Fedor's head slams back in his chair and he lets out a muffled groan as his cock starts rapidly throbbing and erupting squirt after squirt of semen on your '+ iif(PCloskirt = 0, 'pants', 'skirt') +' and hand. Fedor lays back motionlessly for a few seconds then turns to you with a very satisfied look on his face, he leans toward you and kiss you on the cheek as he whispers "Wow ${((s as any).pcs_nickname || '')}, You are the best." then leans back in his chair, zipping his pants.`);
     qspCall(s, 'arousal', 'hj', 5, 'dom');
     qspCall(s, 'cum_call', 'clothes_hidden', ((s as any).boy ?? 0), 1);
     qspCall(s, 'cum_call', 'hands', ((s as any).boy ?? 0), 1);
@@ -332,7 +332,7 @@ function enterMovie4(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big5.jpg');
   // TODO-QSP: dynamic text: Fedor quietly walks up to you and takes you by the hand then you both walk out o...
-  scene.text(`Fedor quietly walks up to you and takes you by the hand then you both walk out of the cinema and as Fedor walks you home you both discuss what you liked best about the movie. When you both get to your door, Fedor smiles "${((s as any).pcs_firstname ?? 0)} I hope you had as much fun as I have." as he stares into your ${((s as any).pcs_eyecolor ?? 0)} eyes for a few seconds, then slowly moves his face closer to yours inching closer to your lips…`);
+  scene.text(`Fedor quietly walks up to you and takes you by the hand then you both walk out of the cinema and as Fedor walks you home you both discuss what you liked best about the movie. When you both get to your door, Fedor smiles "${((s as any).pcs_firstname || '')} I hope you had as much fun as I have." as he stares into your ${((s as any).pcs_eyecolor || '')} eyes for a few seconds, then slowly moves his face closer to yours inching closer to your lips…`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Kiss Fedor', handler: (st: GameState) => {
@@ -341,7 +341,7 @@ function enterMovie4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/endkiss.mp4');
     // TODO-QSP: dynamic text: You press your lips against his and share a soft passionate kiss, as he lightly ...
-    scene.text(`You press your lips against his and share a soft passionate kiss, as he lightly rubs your cheek with his hand, you softly rub his and with yours. You feel Your heart pounding as you get lost in the passion of the moment. Fedor finally pulls away with his eyes never losing contact with yours. "${((s as any).pcs_firstname ?? 0)}, You are the most amazing girl I have ever been with. I can't wait to see you again." he then gives you a soft kiss and you enter your apartment while smiling back at him as you close the door.`);
+    scene.text(`You press your lips against his and share a soft passionate kiss, as he lightly rubs your cheek with his hand, you softly rub his and with yours. You feel Your heart pounding as you get lost in the passion of the moment. Fedor finally pulls away with his eyes never losing contact with yours. "${((s as any).pcs_firstname || '')}, You are the most amazing girl I have ever been with. I can't wait to see you again." he then gives you a soft kiss and you enter your apartment while smiling back at him as you close the door.`);
     qspCall(s, 'arousal', 'kiss', 5);
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -392,7 +392,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/sitting.jpg');
     // TODO-QSP: dynamic text: You and Fedor watch the movie and eating snacks while occasional discussing even...
-    scene.text(`You and Fedor watch the movie and eating snacks while occasional discussing events in the movie. The movie ends and Fedor wraps his arm around your waist, he then gazes into your ${((s as any).pcs_eyecolor ?? 0)} eyes and asks you "${((s as any).pcs_firstname ?? 0)} would you like to go to my bedroom?"`);
+    scene.text(`You and Fedor watch the movie and eating snacks while occasional discussing events in the movie. The movie ends and Fedor wraps his arm around your waist, he then gazes into your ${((s as any).pcs_eyecolor || '')} eyes and asks you "${((s as any).pcs_firstname || '')} would you like to go to my bedroom?"`);
     scene.actions([
       { label: 'Sorry Fedor, but I\'m not ready', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -411,7 +411,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/bedroomkiss1.mp4');
     // TODO-QSP: dynamic text: Fedor immediately lifts you up and carries you in his arms to the bedroom. As so...
-    scene.text(`Fedor immediately lifts you up and carries you in his arms to the bedroom. As soon as you both reach his bedroom he gently puts you down in front of him. He then stares into your ${((s as any).pcs_eyecolor ?? 0)} eyes hungrily craving you. Fedor suddenly starts kissing you very lustfully as you both undress each other.`);
+    scene.text(`Fedor immediately lifts you up and carries you in his arms to the bedroom. As soon as you both reach his bedroom he gently puts you down in front of him. He then stares into your ${((s as any).pcs_eyecolor || '')} eyes hungrily craving you. Fedor suddenly starts kissing you very lustfully as you both undress each other.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/bedroomkiss2.mp4');
     scene.actions([
       { label: 'Push him onto the bed', handler: (st: GameState) => {
@@ -465,7 +465,7 @@ function enterVaginalSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/vag.mp4');
   // TODO-QSP: dynamic text: Suddenly you feel Fedor's <<dick>> centimeter penis enter your vagina then you a...
-  scene.text(`Suddenly you feel Fedor's ${((s as any).dick ?? 0)} centimeter penis enter your vagina then you and Fedor let out a moan simultaneously as he begins to thrust inside you. Thrust after thrust you feel the pleasure building up inside you and the warmth of his body pressed up against yours, your heart racing as you wrap your legs around his waist wanting him deeper inside you, Losing yourself in blissful pleasure.`);
+  scene.text(`Suddenly you feel Fedor's ${((s as any).dick || '')} centimeter penis enter your vagina then you and Fedor let out a moan simultaneously as he begins to thrust inside you. Thrust after thrust you feel the pleasure building up inside you and the warmth of his body pressed up against yours, your heart racing as you wrap your legs around his waist wanting him deeper inside you, Losing yourself in blissful pleasure.`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -484,7 +484,7 @@ function enterVaginalSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/vagcum.mp4');
     // TODO-QSP: dynamic text: After a few minutes you feel Fedor starting to breathe rapidly and then his brea...
-    scene.text(`After a few minutes you feel Fedor starting to breathe rapidly and then his breathing stops. He then quickly pulls out of you and groans as he cums all over your stomach. Squirt after squirt, Fedor drains his penis over your stomach. He takes a second to catch his breath, then tells you "you were amazing ${((s as any).pcs_firstname ?? 0)}", as he wipes the sweat off his forehead. You take a few seconds to catch your breath before you respond, "you were great as well… thank you."`);
+    scene.text(`After a few minutes you feel Fedor starting to breathe rapidly and then his breathing stops. He then quickly pulls out of you and groans as he cums all over your stomach. Squirt after squirt, Fedor drains his penis over your stomach. He takes a second to catch his breath, then tells you "you were amazing ${((s as any).pcs_firstname || '')}", as he wipes the sweat off his forehead. You take a few seconds to catch your breath before you respond, "you were great as well… thank you."`);
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -501,7 +501,7 @@ function enterVirginSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/virgintalk.jpg');
   // TODO-QSP: dynamic text: "Fedor… This is my first time" you tell Fedor and he responds with a puzzled loo...
-  scene.text(`"Fedor… This is my first time" you tell Fedor and he responds with a puzzled look "First time…? ohh you mean… I see…" Fedor lightly bites his lip and asks "${((s as any).pcs_firstname ?? 0)}, Will you let me be your first…? I promise, I will take it slow and be as gentle as possible but if you aren't ready we could try another position" he asks while gently rubbing your legs.`);
+  scene.text(`"Fedor… This is my first time" you tell Fedor and he responds with a puzzled look "First time…? ohh you mean… I see…" Fedor lightly bites his lip and asks "${((s as any).pcs_firstname || '')}, Will you let me be your first…? I promise, I will take it slow and be as gentle as possible but if you aren't ready we could try another position" he asks while gently rubbing your legs.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Lose Virginity <b><h4><font color=#ff00cc>[Go steady]</font></h4></b>', handler: (st: GameState) => {
@@ -512,7 +512,7 @@ function enterVirginSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/virginvag.mp4');
     // TODO-QSP: dynamic text: "It's ok, I'm… I'm ready" you give him a sweet smile and he replies, "I'm so gla...
-    scene.text(`"It's ok, I'm… I'm ready" you give him a sweet smile and he replies, "I'm so glad that you will let me be your first. I promise I will be gentle." you lightly grip his hand and respond, "I know I can trust you." Fedor smiles and starts rubbing his penis head against your pussy lips and after a few seconds slowly pushes his ${((s as any).dick ?? 0)} centimeter penis into your vagina. You feel his penis move deeper inside until it is pressing against your hymen and a second later, you feel it burst through and you can't help but let out a loud moan when you feel your cherry get popped.`);
+    scene.text(`"It's ok, I'm… I'm ready" you give him a sweet smile and he replies, "I'm so glad that you will let me be your first. I promise I will be gentle." you lightly grip his hand and respond, "I know I can trust you." Fedor smiles and starts rubbing his penis head against your pussy lips and after a few seconds slowly pushes his ${((s as any).dick || '')} centimeter penis into your vagina. You feel his penis move deeper inside until it is pressing against your hymen and a second later, you feel it burst through and you can't help but let out a loud moan when you feel your cherry get popped.`);
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -520,7 +520,7 @@ function enterVirginSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/virginvag2.mp4');
     // TODO-QSP: dynamic text: Fedor stops for a moment to make sure that you are alright. Fedor rubs your chee...
-    scene.text(`Fedor stops for a moment to make sure that you are alright. Fedor rubs your cheek with his hand and then starts to thrust. You feel your vagina stretching for his ${((s as any).dick ?? 0)} centimeter penis and as he continues to thrust you feel the pain fade and pleasure take its place as you lay back and enjoy the pleasure building up.`);
+    scene.text(`Fedor stops for a moment to make sure that you are alright. Fedor rubs your cheek with his hand and then starts to thrust. You feel your vagina stretching for his ${((s as any).dick || '')} centimeter penis and as he continues to thrust you feel the pain fade and pleasure take its place as you lay back and enjoy the pleasure building up.`);
     qspCall(s, 'arousal', 'vaginal', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -543,7 +543,7 @@ function enterVirginSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/vagcum.mp4');
     // TODO-QSP: dynamic text: Fedor groans while jerking his cock over your stomach as you lay back enjoying t...
-    scene.text(`Fedor groans while jerking his cock over your stomach as you lay back enjoying the warmth of his seed washing over you. You can't help but feel great joy seeing Fedor so blissful. After Fedor's finishes, he looks down at you with an adoring gaze as he tells you. "${((s as any).pcs_firstname ?? 0)}, You are the sexiest girl I've ever met… thank you for letting me be your first, you were amazing." and you respond. "You were incredible Fyodor, I will never forget this day." and he leans forward and gives you a gentle kiss.`);
+    scene.text(`Fedor groans while jerking his cock over your stomach as you lay back enjoying the warmth of his seed washing over you. You can't help but feel great joy seeing Fedor so blissful. After Fedor's finishes, he looks down at you with an adoring gaze as he tells you. "${((s as any).pcs_firstname || '')}, You are the sexiest girl I've ever met… thank you for letting me be your first, you were amazing." and you respond. "You were incredible Fyodor, I will never forget this day." and he leans forward and gives you a gentle kiss.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/vagkiss.mp4');
     qspCall(s, 'arousal', 'kiss', 5, 'sub');
     qspCall(s, 'arousal', 'end');
@@ -578,7 +578,7 @@ function enterAnalSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/virginanal2.mp4');
     qspCall(s, 'arousal', 'auto_lube', 'anal');
     // TODO-QSP: dynamic text: Fedor slowly enters your asshole, as you feel your anus tighten up around his pe...
-    scene.text(`Fedor slowly enters your asshole, as you feel your anus tighten up around his penis, you clutch the pillow with both hands as you feel the rest of your body tensing up. Fedor gives your ass a chance to adjust to his dick for a few seconds then whispers in your ear "${((s as any).pcs_nickname ?? 0)}, are you ready?" you nod and he begins thrusting and lets out a soft moan. You moan loudly, focusing on his warm penis inside you and enjoying every thrust, bitting your lip as you surrender yourself to the pain and pleasure.`);
+    scene.text(`Fedor slowly enters your asshole, as you feel your anus tighten up around his penis, you clutch the pillow with both hands as you feel the rest of your body tensing up. Fedor gives your ass a chance to adjust to his dick for a few seconds then whispers in your ear "${((s as any).pcs_nickname || '')}, are you ready?" you nod and he begins thrusting and lets out a soft moan. You moan loudly, focusing on his warm penis inside you and enjoying every thrust, bitting your lip as you surrender yourself to the pain and pleasure.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/virginanal3.mp4');
     qspCall(s, 'arousal', 'anal', 5, 'sub');
     qspCall(s, 'arousal', 'end');
@@ -594,7 +594,7 @@ function enterAnalSex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/home/analcum.mp4');
     // TODO-QSP: dynamic text: After a few seconds you feel Fedor's entire body tense as his breathing stops. F...
-    scene.text(`After a few seconds you feel Fedor's entire body tense as his breathing stops. Fedor then lets out a loud groan and you feel a warmth growing in your ass as he fills your ass with his seed. After a few seconds, Fedor's body relaxes and you can feel his heart beating as he lies on top of you. He then pulls out and you feel his sperm leaking out of your ass. You take some time to catch your breath as Fedor tells you. "You were amazing ${((s as any).pcs_firstname ?? 0)}." and you respond, "You were incredible yourself." as you give him a blissful smile.`);
+    scene.text(`After a few seconds you feel Fedor's entire body tense as his breathing stops. Fedor then lets out a loud groan and you feel a warmth growing in your ass as he fills your ass with his seed. After a few seconds, Fedor's body relaxes and you can feel his heart beating as he lies on top of you. He then pulls out and you feel his sperm leaking out of your ass. You take some time to catch your breath as Fedor tells you. "You were amazing ${((s as any).pcs_firstname || '')}." and you respond, "You were incredible yourself." as you give him a blissful smile.`);
     qspCall(s, 'arousal', 'anal', 5, 'sub');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'boyStat', 'A5');
@@ -640,9 +640,9 @@ function enterWashUp(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big5.jpg');
     // TODO-QSP: dynamic text: Fedor walks you out of the bathroom then takes out his phone and asks you to str...
-    scene.text(`Fedor walks you out of the bathroom then takes out his phone and asks you to strike a pose. You happily comply, Fedor takes a picture and says, "Thank you ${((s as any).pcs_firstname ?? 0)}, I needed some beautiful wallpaper for my phone." you reply with a smirk "Flatterer." Fedor chuckles then leads you to the front door, where he helps you into your coat then kisses you on the cheek. "${((s as any).pcs_nickname ?? 0)} are you ready to head home?" you turn to him, smile, nod then grab his hand and start walking home with Fedor.`);
+    scene.text(`Fedor walks you out of the bathroom then takes out his phone and asks you to strike a pose. You happily comply, Fedor takes a picture and says, "Thank you ${((s as any).pcs_firstname || '')}, I needed some beautiful wallpaper for my phone." you reply with a smirk "Flatterer." Fedor chuckles then leads you to the front door, where he helps you into your coat then kisses you on the cheek. "${((s as any).pcs_nickname || '')} are you ready to head home?" you turn to him, smile, nod then grab his hand and start walking home with Fedor.`);
     // TODO-QSP: dynamic text: <center><b><h4><font color=#ff00cc><<"<<$pcs_firstname>> [<<$pcs_nickname>>] <<$...
-    scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv2" })} [${((s as any).pcs_nickname ?? 0)}] ${((s as any).pcs_lastname ?? 0)}">></font></h4></b></center>`);
+    scene.text(`<center><b><h4><font color=#ff00cc>${qspUntranslated(s, "\"<<pcs_firstname", { location: "FedorEv2" })} [${((s as any).pcs_nickname || '')}] ${((s as any).pcs_lastname || '')}">></font></h4></b></center>`);
     scene.img('' + qspUntranslated(s, "FUNC('face_image')>", { location: "FedorEv2" }) + '');
     scene.actions([
       { label: 'Walk Home', handler: (st: GameState) => {
@@ -650,7 +650,7 @@ function enterWashUp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/endkiss.mp4');
     // TODO-QSP: dynamic text: As you walk home, you and Fedor start talking about current events and gossiping...
-    scene.text(`As you walk home, you and Fedor start talking about current events and gossiping about some of your classmates until you reach your apartment and Fedor gives you a big hug and a very passionate kiss that lasts for a full minute until you get interrupted by a couple leaving their apartment while shouting at each other. While watching the couple fight Fedor says, "I guess today can't be perfect for everyone." he then turns to face you. "but it was for me. Thank you ${((s as any).pcs_firstname ?? 0)}." and you respond, "It was a perfect day for us both." as you back into your apartment, blowing Fedor a kiss.`);
+    scene.text(`As you walk home, you and Fedor start talking about current events and gossiping about some of your classmates until you reach your apartment and Fedor gives you a big hug and a very passionate kiss that lasts for a full minute until you get interrupted by a couple leaving their apartment while shouting at each other. While watching the couple fight Fedor says, "I guess today can't be perfect for everyone." he then turns to face you. "but it was for me. Thank you ${((s as any).pcs_firstname || '')}." and you respond, "It was a perfect day for us both." as you back into your apartment, blowing Fedor a kiss.`);
     qspCall(s, 'arousal', 'kiss', 5, 'sub');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -744,7 +744,7 @@ function enterSkateKiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A5');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/Skate/kiss.jpg');
   // TODO-QSP: dynamic text: You slow down the speed of your skating then turn to face Fedor and look into hi...
-  scene.text(`You slow down the speed of your skating then turn to face Fedor and look into his eyes. You slowly lean your head forward toward his as he does the same. After a second you feel his lips pressed against yours. You and Fedor enjoy a long kiss. After a minute you both pull away from each other then Fedor says, "I had a great time with you ${((s as any).pcs_firstname ?? 0)}. Would you like me to walk you home or will you be fine on your own?"`);
+  scene.text(`You slow down the speed of your skating then turn to face Fedor and look into his eyes. You slowly lean your head forward toward his as he does the same. After a second you feel his lips pressed against yours. You and Fedor enjoy a long kiss. After a minute you both pull away from each other then Fedor says, "I had a great time with you ${((s as any).pcs_firstname || '')}. Would you like me to walk you home or will you be fine on your own?"`);
   qspCall(s, 'arousal', 'kiss', 5);
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -763,7 +763,7 @@ function enterSkateEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/Skate/skate5.jpg');
   // TODO-QSP: dynamic text: You and Fedor decide that you've had enough skating for today, so you both sit d...
-  scene.text(`You and Fedor decide that you've had enough skating for today, so you both sit down on a nearby bench and discuss your favorite subjects in school, along with past experiences. After a few minutes of chatting Fedor says, "I had a great time with you ${((s as any).pcs_firstname ?? 0)}. Would you like me to walk you home or will you be fine on your own?"`);
+  scene.text(`You and Fedor decide that you've had enough skating for today, so you both sit down on a nearby bench and discuss your favorite subjects in school, along with past experiences. After a few minutes of chatting Fedor says, "I had a great time with you ${((s as any).pcs_firstname || '')}. Would you like me to walk you home or will you be fine on your own?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Walk home with Fedor', handler: (st: GameState) => {
@@ -778,7 +778,7 @@ function enterCafe(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: Fedor walks you to the cafe in the financial district then orders you some food ...
-  scene.text(`Fedor walks you to the cafe in the financial district then orders you some food and as you both sit down and chat, the food arrives and Fedor says, "Hey ${((s as any).pcs_nickname ?? 0)} wanna get something to eat before we leave?"`);
+  scene.text(`Fedor walks you to the cafe in the financial district then orders you some food and as you both sit down and chat, the food arrives and Fedor says, "Hey ${((s as any).pcs_nickname || '')} wanna get something to eat before we leave?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
@@ -843,7 +843,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/swing2.jpg');
     // TODO-QSP: dynamic text: You take Fedor's hand and pull his face down toward yours then tilt your head fo...
-    scene.text(`You take Fedor's hand and pull his face down toward yours then tilt your head forward, planting your lips on his, in a passionate show of affection. You can feel his tongue enter your mouth as you caress it with yours, feeling some of his saliva dripping into your mouth as you swallow it eagerly while completely lost in the moment. After a minute of passion, Fedor slowly pulls away and says, "${((s as any).pcs_firstname ?? 0)} you are so beautiful and your tongue… so soft." You give him a smile followed by a wink then grab his shoulders, using them to pull yourself to your feet.`);
+    scene.text(`You take Fedor's hand and pull his face down toward yours then tilt your head forward, planting your lips on his, in a passionate show of affection. You can feel his tongue enter your mouth as you caress it with yours, feeling some of his saliva dripping into your mouth as you swallow it eagerly while completely lost in the moment. After a minute of passion, Fedor slowly pulls away and says, "${((s as any).pcs_firstname || '')} you are so beautiful and your tongue… so soft." You give him a smile followed by a wink then grab his shoulders, using them to pull yourself to your feet.`);
     qspCall(s, 'arousal', 'kiss', 10);
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -864,7 +864,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big5.jpg');
     }
     // TODO-QSP: dynamic text: You take Fedor's hand and he helps you off the swing and onto your feet. Fedor g...
-    scene.text(`You take Fedor's hand and he helps you off the swing and onto your feet. Fedor gives you a smile as he asks "Did you enjoy yourself?" You respond, "It was very relaxing. Thanks Fedor." Fedor responds, "Anytime ${((s as any).pcs_firstname ?? 0)}. So would you like me to take you home? or would you like to stay here?"`);
+    scene.text(`You take Fedor's hand and he helps you off the swing and onto your feet. Fedor gives you a smile as he asks "Did you enjoy yourself?" You respond, "It was very relaxing. Thanks Fedor." Fedor responds, "Anytime ${((s as any).pcs_firstname || '')}. So would you like me to take you home? or would you like to stay here?"`);
     scene.actions([
       { label: 'Take me home', goto: ['FedorEv2', 'Park End'] },
       { label: 'I\'ll be fine here', handler: (st: GameState) => {
@@ -886,7 +886,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/swing4.jpg');
     // TODO-QSP: dynamic text: You grab the back of Fedor's neck then slowly pull it toward you while tilting y...
-    scene.text(`You grab the back of Fedor's neck then slowly pull it toward you while tilting your head forward until you feel Fedor's lips make contact with yours. You passionately kiss Fedor while running your fingers though his hair gently. The kiss lasts for a few minutes but soon after you lower your head then look back up at Fedor's eyes as he says, "${((s as any).pcs_firstname ?? 0)} you are such a great kisser and your lips are so soft." You give Fedor a smile as you reply, "Keep treating me right and I may do more for you in the future." Fedor returns the smile as he responds, "I'll treat you better than "Right" just stay with me and I'll show you how a woman should be treated. Anyway are you ready to head home or do you have some business in town to attend to?"`);
+    scene.text(`You grab the back of Fedor's neck then slowly pull it toward you while tilting your head forward until you feel Fedor's lips make contact with yours. You passionately kiss Fedor while running your fingers though his hair gently. The kiss lasts for a few minutes but soon after you lower your head then look back up at Fedor's eyes as he says, "${((s as any).pcs_firstname || '')} you are such a great kisser and your lips are so soft." You give Fedor a smile as you reply, "Keep treating me right and I may do more for you in the future." Fedor returns the smile as he responds, "I'll treat you better than "Right" just stay with me and I'll show you how a woman should be treated. Anyway are you ready to head home or do you have some business in town to attend to?"`);
     qspCall(s, 'arousal', 'kiss', 10, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -903,7 +903,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/swing5.jpg');
     // TODO-QSP: dynamic text: You lean forward and place your head on his shoulder as you wrap your arms aroun...
-    scene.text(`You lean forward and place your head on his shoulder as you wrap your arms around his chest. Fedor returns the hug as he whispers in your ear "You're really sweet ${((s as any).pcs_firstname ?? 0)}. I always enjoy spending time with you." you respond, "I feel the same way Fedor. I hope we could do this kind of stuff more often." Fedor replies, "I would like that. Are you ready for me to take you home? or would you like to stay here?"`);
+    scene.text(`You lean forward and place your head on his shoulder as you wrap your arms around his chest. Fedor returns the hug as he whispers in your ear "You're really sweet ${((s as any).pcs_firstname || '')}. I always enjoy spending time with you." you respond, "I feel the same way Fedor. I hope we could do this kind of stuff more often." Fedor replies, "I would like that. Are you ready for me to take you home? or would you like to stay here?"`);
     scene.actions([
       { label: 'Take me home', goto: ['FedorEv2', 'Park End'] },
       { label: 'I\'ll be fine here', handler: (st: GameState) => {
@@ -923,13 +923,13 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Unzip his pants [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Unzip his pants', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Unzip his pants [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Unzip his pants', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/tree2.jpg');
@@ -950,7 +950,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/home/bedroom/sex/bj3.mp4');
     // TODO-QSP: dynamic text: You give Fedor a wink as you continue sucking on his dick at an increased pace. ...
-    scene.text(`You give Fedor a wink as you continue sucking on his dick at an increased pace. Fedor tilts his head back then bites his lips as you feel a stream of warm cum filling your mouth and shooting down your throat, you begin swallowing every drop of Fedor's cum as you stare up at him, enjoying the twitching of his body as he cums in your mouth. After a few seconds Fedor's body eases as he leans his head against the tree behind him. He then looks down to you. "That was incredible ${((s as any).pcs_nickname ?? 0)}. Thank you." you give Fedor a wink as you respond, "I know how to keep my man satisfied and maybe someday you will be <b>MY MAN</b>." Fedor smiles as he responds, "I better try real hard then." and you give Fedor a seductive wink. Fedor zips his pants then sits up and asks "Are you ready to go home or would you like to remain here?"`);
+    scene.text(`You give Fedor a wink as you continue sucking on his dick at an increased pace. Fedor tilts his head back then bites his lips as you feel a stream of warm cum filling your mouth and shooting down your throat, you begin swallowing every drop of Fedor's cum as you stare up at him, enjoying the twitching of his body as he cums in your mouth. After a few seconds Fedor's body eases as he leans his head against the tree behind him. He then looks down to you. "That was incredible ${((s as any).pcs_nickname || '')}. Thank you." you give Fedor a wink as you respond, "I know how to keep my man satisfied and maybe someday you will be <b>MY MAN</b>." Fedor smiles as he responds, "I better try real hard then." and you give Fedor a seductive wink. Fedor zips his pants then sits up and asks "Are you ready to go home or would you like to remain here?"`);
     qspCall(s, 'arousal', 'bj', 5, 'dom');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'boyStat', 'A5');
@@ -970,7 +970,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/fedorsad.jpg');
     // TODO-QSP: dynamic text: You pull away from him and say, "I would rather not get any cum on me right now....
-    scene.text(`You pull away from him and say, "I would rather not get any cum on me right now." Fedor looks at you with a surprised look on his face. "C'mon ${((s as any).pcs_firstname ?? 0)}, You can't stop now." you give him a confident grin. "Maybe I'll give you one later but for now I need to head home. See you later Fedor." You then get up and leave the park.`);
+    scene.text(`You pull away from him and say, "I would rather not get any cum on me right now." Fedor looks at you with a surprised look on his face. "C'mon ${((s as any).pcs_firstname || '')}, You can't stop now." you give him a confident grin. "Maybe I'll give you one later but for now I need to head home. See you later Fedor." You then get up and leave the park.`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/movies/endbye.mp4');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -990,7 +990,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/tree2.jpg');
     // TODO-QSP: dynamic text: You and Fedor relax for a few minutes, chatting until you turn around to face Fe...
-    scene.text(`You and Fedor relax for a few minutes, chatting until you turn around to face Fedor then stare deep into his eyes for a few seconds before leaning forward to kiss him. Your lips press against Fedor's as his tongue wanders into your mouth. You caress Fedor's tongue with yours while enjoying his strong arms wrapped around your waist. After kissing for a few minutes, Fedor pulls away then whispers "${((s as any).pcs_firstname ?? 0)} you are the sweetest girl I know and the hottest one as well." you give him a quick kiss before responding "You're such a charmer." Fedor smiles as he gives you another kiss. "I better take you home before it gets too late or would you rather stay here?"`);
+    scene.text(`You and Fedor relax for a few minutes, chatting until you turn around to face Fedor then stare deep into his eyes for a few seconds before leaning forward to kiss him. Your lips press against Fedor's as his tongue wanders into your mouth. You caress Fedor's tongue with yours while enjoying his strong arms wrapped around your waist. After kissing for a few minutes, Fedor pulls away then whispers "${((s as any).pcs_firstname || '')} you are the sweetest girl I know and the hottest one as well." you give him a quick kiss before responding "You're such a charmer." Fedor smiles as he gives you another kiss. "I better take you home before it gets too late or would you rather stay here?"`);
     qspCall(s, 'arousal', 'kiss', 15, 'dom');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -1033,7 +1033,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/tracks2.jpg');
     // TODO-QSP: dynamic text: You slowly turn to look Fedor in the eyes as you lean forward and press your lip...
-    scene.text(`You slowly turn to look Fedor in the eyes as you lean forward and press your lips gently against his. Fedor returns the kiss, passionately massaging your lips with his as he wraps his hand around you head to keep you close. You then lightly pull away from him and stand up before he pulls your head back to his face and continues kissing you. You both share an extended kiss for another minute before Fedor finally lets go of you and says, "I can't get enough of your lips ${((s as any).pcs_nickname ?? 0)}. Beautiful and soft just like you." your face already flushed from the kiss, grows more red as you respond. "You're just too sweet Fedor. Thank you." You give him a warm smile as he asks you "Are you ready to head back home or would you like to hang around here for a bit?"`);
+    scene.text(`You slowly turn to look Fedor in the eyes as you lean forward and press your lips gently against his. Fedor returns the kiss, passionately massaging your lips with his as he wraps his hand around you head to keep you close. You then lightly pull away from him and stand up before he pulls your head back to his face and continues kissing you. You both share an extended kiss for another minute before Fedor finally lets go of you and says, "I can't get enough of your lips ${((s as any).pcs_nickname || '')}. Beautiful and soft just like you." your face already flushed from the kiss, grows more red as you respond. "You're just too sweet Fedor. Thank you." You give him a warm smile as he asks you "Are you ready to head back home or would you like to hang around here for a bit?"`);
     qspCall(s, 'arousal', 'kiss', 5);
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -1069,7 +1069,7 @@ function enterPark2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'boyStat', 'A5');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/tracks4.jpg');
     // TODO-QSP: dynamic text: You continue running your finger through his hair as he plays with your hair. Af...
-    scene.text(`You continue running your finger through his hair as he plays with your hair. After a few seconds on staring into his eyes you lower you head and bring your lips to his. You both share a very passionate kiss that lasts for what feels like an hour. Feeling his warm lips against yours and his hot breath on your chin. After a few more minutes you slowly pull away from him and he casually sits up and says, "Damn ${((s as any).pcs_firstname ?? 0)}. Keep kissing me like that and I'm going to fall for you real hard." you respond, "So my plan is working…? Good" You both share a chuckle then Fedor asks "Are you ready to head back home or would you like to relax here for a bit longer?"`);
+    scene.text(`You continue running your finger through his hair as he plays with your hair. After a few seconds on staring into his eyes you lower you head and bring your lips to his. You both share a very passionate kiss that lasts for what feels like an hour. Feeling his warm lips against yours and his hot breath on your chin. After a few more minutes you slowly pull away from him and he casually sits up and says, "Damn ${((s as any).pcs_firstname || '')}. Keep kissing me like that and I'm going to fall for you real hard." you respond, "So my plan is working…? Good" You both share a chuckle then Fedor asks "Are you ready to head back home or would you like to relax here for a bit longer?"`);
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev2/park/tracks5.jpg');
     qspCall(s, 'arousal', 'kiss', 5);
     qspCall(s, 'arousal', 'end');
@@ -1127,7 +1127,7 @@ function enterFedorBreakup(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
   scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/fedorsad.jpg');
   // TODO-QSP: dynamic text: Fedor approaches you with a serious look on his face. "Look <<$pcs_firstname>>, ...
-  scene.text(`Fedor approaches you with a serious look on his face. "Look ${((s as any).pcs_firstname ?? 0)}, I've noticed that you and I don't seem to be progressing at all in this relationship and I feel like I would only be holding you back if I continued this, so I think we should break this off… I'm sorry that I couldn't be the man you needed." and before you get to say a word he turns around and leaves.`);
+  scene.text(`Fedor approaches you with a serious look on his face. "Look ${((s as any).pcs_firstname || '')}, I've noticed that you and I don't seem to be progressing at all in this relationship and I feel like I would only be holding you back if I continued this, so I think we should break this off… I'm sorry that I couldn't be the man you needed." and before you get to say a word he turns around and leaves.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pav_residential', ''] },

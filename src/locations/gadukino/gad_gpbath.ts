@@ -19,13 +19,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('A small room with a low, smoky ceiling, a small stove, a couple of stainless steel water tanks, and a blackened wooden shelf.');
   scene.text('Grandma\'s enema bulb is hidden behind some stuff on the shelf.');
   // TODO-QSP: dynamic text: You can check your weight on your grandma's old mechanical <a href="exec:msg '<c...
-  scene.text(`You can check your weight on your grandma's old mechanical <a href="exec:msg '<center>Your weight is ${qspUntranslated(s, "pcs_weight[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "gad_gpbath" })} kg<br>Your body mass index (BMI) is ${qspUntranslated(s, "pcs_bmi[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "gad_gpbath" })}.<br>${((s as any).bodyVars ?? 0)?.['bmi_desc']}</center>'">scales</a>.`);
+  scene.text(`You can check your weight on your grandma's old mechanical <a href="exec:msg '<center>Your weight is ${qspUntranslated(s, "pcs_weight[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "gad_gpbath" })} kg<br>Your body mass index (BMI) is ${qspUntranslated(s, "pcs_bmi[0]", { location: "gad_gpbath" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "gad_gpbath" })}.<br>${((s as any).bodyVars ?? 0)?.['bmi_desc'] ?? ''}</center>'">scales</a>.`);
   qspCall(s, 'stat', '');
-  qspCall(s, 'gad_gpbath', 'set_leave_acts');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetLeaveActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
-    qspCall(s, 'gad_gpbath', 'with_Mira');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWith_Mira(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'gad_gpbath', 'alone');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlone(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -83,7 +83,7 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
   if (((s as any).week ?? 0) >= 6) {
     if (((s as any).hour ?? 0) >= 12  &&  ((s as any).hour ?? 0) <= 18) {
       // TODO-QSP: dynamic text: You put the wood into the stove to feed the fire. The banya will be ready to use...
-      scene.text('You put the wood into the stove to feed the fire. The banya will be ready to use around \'+func(\'time\', \'get_time_string\', 19, 0)+\'.');
+      scene.text('You put the wood into the stove to feed the fire. The banya will be ready to use around 19:00.');
     } else {
       if (((s as any).hour ?? 0) > 18  &&  ((s as any).hour ?? 0) < 22) {
         scene.text('The banya is now ready.');
@@ -134,13 +134,13 @@ function enterAlone(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         // TODO-QSP: dynamic text: The banya is not in use at this time. However, it is available between '+func('t...
-        scene.text('The banya is not in use at this time. However, it is available between \'+func(\'time\', \'get_time_string\', 19, 0)+\' and \'+func(\'time\', \'get_time_string\', 22, 0)+\' during the weekend.');
+        scene.text('The banya is not in use at this time. However, it is available between 19:00 and 22:00 during the weekend.');
       }
     }
   } else {
     if (((s as any).week ?? 0) < 6) {
       // TODO-QSP: dynamic text: The banya is not used during the week. However, it is usually ready to use from ...
-      scene.text('The banya is not used during the week. However, it is usually ready to use from \'+func(\'time\', \'get_time_string\', 19, 0)+\' during the weekend.');
+      scene.text('The banya is not used during the week. However, it is usually ready to use from 19:00 during the weekend.');
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['shampoo'] > 0  ||  (((s as any).locat ?? 0)?.['Fam_inGad'] === 1  &&  qspFunc(s, 'homes_properties', 'has_access', 'parents_home'))) {
@@ -203,7 +203,7 @@ function enterWith_Mira(s: GameState, scene: SceneBuilder): void {
     scene.text('You watch Mira removing her panties from the corner of your eye.');
     qspCall(s, 'arousal', 'erotic_nudity', 5);
     qspCall(s, 'stat', '');
-    qspCall(s, 'gad_gpbath', 'with_Mira_core');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWith_MiraCore(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -217,7 +217,7 @@ function enterWith_Mira(s: GameState, scene: SceneBuilder): void {
     scene.text('While you undress, you notice Mira removing her panties from the corner of your eye.');
     qspCall(s, 'arousal', 'erotic_nudity', 5);
     qspCall(s, 'stat', '');
-    qspCall(s, 'gad_gpbath', 'with_Mira_core');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWith_MiraCore(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -254,7 +254,7 @@ function enterWith_MiraCore(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'arousal', 'erotic_nudity', 25);
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'gad_gpbath', 'set_leave_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetLeaveActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

@@ -19,7 +19,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
     scene.text('The drive to the club takes about half an hour.');
     scene.text('Sitting next to you, Nicholas is wearing one of his finest suits.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I don't happen what will happen next. The only thing necessa...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, I don't happen what will happen next. The only thing necessary is that you play with the customs of this place. Don't embarrass me. I don't have to tell you again how important it is for me to get into good graces with Mister Fetisov and his associates.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, I don't happen what will happen next. The only thing necessary is that you play with the customs of this place. Don't embarrass me. I don't have to tell you again how important it is for me to get into good graces with Mister Fetisov and his associates.`);
     scene.text('"Yes, Master Nicholas, of course."');
     scene.text('To your surprise, the journey ends in an underground parking garage under a recently constructed mall. The driver of Nicholas steps out and opens the door for his employer first, then he opens your door. Afterwards, he returns to his driver\'s seat. Apparently, he will wait there until you return.');
     scene.text('You realize that you are standing in front of a small corridor. It would be tough to notice if you were not standing next to it.');
@@ -38,7 +38,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
       scene.text('The third guard seems to be in charge. He wears an expensive suit and an earplug and doesn\'t seem to be armed.');
       scene.text('"Good evening," he says.');
       // TODO-QSP: dynamic text: "Good evening. My name is ' + $npc_firstname['A52']+' '+$npc_lastname['A52']+'. ...
-      scene.text(`"Good evening. My name is ' + $npc_firstname['A52']+' '+$npc_lastname['A52']+'. And this is ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}. We have been invited by Mister Fetisov." he hands over the business card Mister Fetisov gave him.`);
+      scene.text(`"Good evening. My name is ' + $npc_firstname['A52']+' '+$npc_lastname['A52']+'. And this is ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}. We have been invited by Mister Fetisov." he hands over the business card Mister Fetisov gave him.`);
       // TODO-QSP: dynamic text: "Very well. Just a few seconds, please, Mister '+$npc_lastname['A52']+'".
       scene.text('"Very well. Just a few seconds, please, Mister \'+$npc_lastname[\'A52\']+\'".');
       scene.actions([

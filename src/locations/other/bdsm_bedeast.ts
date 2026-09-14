@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'bdsm_bedeast', 'check_events');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_bedeast', 'start');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/bedb.jpg');

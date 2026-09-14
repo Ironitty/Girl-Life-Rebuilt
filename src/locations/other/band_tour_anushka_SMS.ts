@@ -14,37 +14,37 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['num_tour_SMS_send'] = ((s as any).anushkaQW['num_tour_SMS_send'] ?? 0) + (1);
   if (!(s as any).anushkaQW) (s as any).anushkaQW = {}; (s as any).anushkaQW['tour_SMS_send'] = ((s as any).daystart ?? 0);
   if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 1) {
-    qspCall(s, 'band_tour_anushka_SMS', 'Week1', 'Add SMS');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 2) {
-      qspCall(s, 'band_tour_anushka_SMS', 'Week2', 'Add SMS');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek2(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 3) {
-        qspCall(s, 'band_tour_anushka_SMS', 'Week3', 'Add SMS');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek3(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 4) {
-          qspCall(s, 'band_tour_anushka_SMS', 'Week4', 'Add SMS');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek4(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 5) {
-            qspCall(s, 'band_tour_anushka_SMS', 'Week5', 'Add SMS');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek5(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 6) {
-              qspCall(s, 'band_tour_anushka_SMS', 'Week6', 'Add SMS');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek6(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 7) {
-                qspCall(s, 'band_tour_anushka_SMS', 'Week7', 'Add SMS');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek7(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 8) {
-                  qspCall(s, 'band_tour_anushka_SMS', 'Week8', 'Add SMS');
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek8(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
                   if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 9) {
-                    qspCall(s, 'band_tour_anushka_SMS', 'Week9', 'Add SMS');
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek9(s, scene); (s as any).locArgs = __savedLocArgs; }
                   } else {
                     if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 10) {
-                      qspCall(s, 'band_tour_anushka_SMS', 'Week10', 'Add SMS');
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek10(s, scene); (s as any).locArgs = __savedLocArgs; }
                     } else {
                       if (((s as any).anushkaQW ?? 0)?.['num_tour_SMS_send'] === 11) {
-                        qspCall(s, 'band_tour_anushka_SMS', 'Week11', 'Add SMS');
+                        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Add SMS']; enterWeek11(s, scene); (s as any).locArgs = __savedLocArgs; }
                         if (!(s as any).gopnikbandQW) (s as any).gopnikbandQW = {}; (s as any).gopnikbandQW['on_tour'] = 0;
                       }
                     }

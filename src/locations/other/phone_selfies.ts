@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -218,7 +218,7 @@ function enterPhoneSelfieTotals(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOpenCamera(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPhoneSelfieTotals(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).locIndex = qspUntranslated(s, "arrpos('selfieLoc', phone_loc['class'])", { location: "phone_selfies" });
   // TODO-QSP: $result += '<a href="exec: gs ''phone_selfies'', ''camera_take_selfie'', ''<<$phone_loc[''class'']>>...
   if (((s as any).clothingworntype ?? 0) !== 'nude'  &&  ((s as any).phone_loc ?? 0)?.['class'] !== ''  &&  ((s as any).phone_loc ?? 0)?.['class'] !== 'misc') {
@@ -256,7 +256,7 @@ function enterCameraTakeSelfie(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPhoneSelfieTotals(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).locIndex = qspUntranslated(s, "arrpos('selfieLoc', ARGS[1])", { location: "phone_selfies" });
   if (((s as any).locArgs?.[2] ?? 0) === 'tits'  ||  ((s as any).locArgs?.[2] ?? 0) === 'titflash') {
     (s as any).temp_titflash = ((s as any).selfieTitFlashTot ?? 0)?.[String((s as any).locIndex ?? 0)];
@@ -321,7 +321,7 @@ function enterSelfieImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCameraTakeSelfieBathing(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPhoneSelfieTotals(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locArgs?.[1] ?? 0) === 'bath') {
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'shower') {
@@ -369,10 +369,10 @@ function enterSendSelfieHandler(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewSelfies(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPhoneSelfieTotals(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: $func('phone_selfies', 'get_selfie_layout')
-  scene.text('$func(\'phone_selfies\', \'get_selfie_layout\')');
-  qspCall(s, 'phone_selfies', 'act_exit');
+  scene.text(qspFunc(s, 'phone_selfies', 'get_selfie_layout'));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -419,8 +419,8 @@ function enterGetSelfieLayout(s: GameState, scene: SceneBuilder): void {
 function enterShowlocation(s: GameState, scene: SceneBuilder): void {
   scene.text(`<center><b>${qspUntranslated(s, "selfieLocDesc[ARGS[1]]", { location: "phone_selfies" })} selfies</b></center>`);
   // TODO-QSP: dynamic text: $func('phone_selfies', 'listretrieve', ARGS[1], $selfieLoc[ARGS[1]])
-  scene.text('$func(\'phone_selfies\', \'listretrieve\', ARGS[1], $selfieLoc[ARGS[1]])');
-  qspCall(s, 'phone_selfies', 'act_exit');
+  scene.text(qspFunc(s, 'phone_selfies', 'listretrieve', qspUntranslated(s, "ARGS[1]", { location: "phone_selfies" }), qspUntranslated(s, "selfieLoc[ARGS[1]]", { location: "phone_selfies" })));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([
@@ -734,9 +734,9 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'familygruploop'
   }
   // TODO-QSP: dynamic text: <<$textgrup>>
-  scene.text(`${((s as any).textgrup ?? 0)}`);
+  scene.text(`${((s as any).textgrup || '')}`);
   scene.text('</table></center>');
-  qspCall(s, 'phone_selfies', 'act_exit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([
@@ -764,9 +764,9 @@ function enterSchool(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'schoolgruploop'
   }
   // TODO-QSP: dynamic text: <<$textgrup>>
-  scene.text(`${((s as any).textgrup ?? 0)}`);
+  scene.text(`${((s as any).textgrup || '')}`);
   scene.text('</table></center>');
-  qspCall(s, 'phone_selfies', 'act_exit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([
@@ -794,9 +794,9 @@ function enterTeacher(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'teachergruploop'
   }
   // TODO-QSP: dynamic text: <<$textgrup>>
-  scene.text(`${((s as any).textgrup ?? 0)}`);
+  scene.text(`${((s as any).textgrup || '')}`);
   scene.text('</table></center>');
-  qspCall(s, 'phone_selfies', 'act_exit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([
@@ -824,9 +824,9 @@ function enterPavlovsk(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'pavgruploop'
   }
   // TODO-QSP: dynamic text: <<$textgrup>>
-  scene.text(`${((s as any).textgrup ?? 0)}`);
+  scene.text(`${((s as any).textgrup || '')}`);
   scene.text('</table></center>');
-  qspCall(s, 'phone_selfies', 'act_exit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([
@@ -837,7 +837,7 @@ function enterPavlovsk(s: GameState, scene: SceneBuilder): void {
 
 function enterCity(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>City friends</b></center>');
-  qspCall(s, 'phone_selfies', 'act_exit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([
@@ -851,39 +851,39 @@ function enterPopulateSelfiesList(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :LocationTakenLoop
   (s as any).CloMaxSize = ((s as any).selfieCloTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
   if (((s as any).CloMaxSize ?? 0) > 0) {
-    qspCall(s, 'phone_selfies', 'populateClothesType', 'closelfie', '$selfieTakenClo', 'clothed', ((s as any).CloMaxSize ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'closelfie', '$selfieTakenClo', 'clothed', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).CloMaxSize = ((s as any).selfieSwimTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
   if (((s as any).CloMaxSize ?? 0) > 0) {
-    qspCall(s, 'phone_selfies', 'populateClothesType', 'swim', '$selfieTakenSwim', 'bikini', ((s as any).CloMaxSize ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'swim', '$selfieTakenSwim', 'bikini', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).CloMaxSize = ((s as any).selfieUndTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
   if (((s as any).CloMaxSize ?? 0) > 0) {
-    qspCall(s, 'phone_selfies', 'populateClothesType', 'undselfie', '$selfieTakenUnd', 'underwear', ((s as any).CloMaxSize ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'undselfie', '$selfieTakenUnd', 'underwear', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).CloMaxSize = ((s as any).selfieNudTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
   if (((s as any).CloMaxSize ?? 0) > 0) {
-    qspCall(s, 'phone_selfies', 'populateClothesType', 'nudselfie', '$selfieTakenNud', 'nude', ((s as any).CloMaxSize ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nudselfie', '$selfieTakenNud', 'nude', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).CloMaxSize = ((s as any).selfieBathTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
   if (((s as any).CloMaxSize ?? 0) > 0) {
-    qspCall(s, 'phone_selfies', 'populateClothesType', 'bathselfie', '$selfieTakenBath', 'bath', ((s as any).CloMaxSize ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathselfie', '$selfieTakenBath', 'bath', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).CloMaxSize = ((s as any).selfieShowerTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
   if (((s as any).CloMaxSize ?? 0) > 0) {
-    qspCall(s, 'phone_selfies', 'populateClothesType', 'showerselfie', '$selfieTakenShower', 'shower', ((s as any).CloMaxSize ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'showerselfie', '$selfieTakenShower', 'shower', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).CloMaxSize = ((s as any).selfieTitFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
   if (((s as any).CloMaxSize ?? 0) > 0) {
-    qspCall(s, 'phone_selfies', 'populateClothesType', 'titflash', '$selfieTakenTitflash', 'titflash', ((s as any).CloMaxSize ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'titflash', '$selfieTakenTitflash', 'titflash', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).CloMaxSize = ((s as any).selfieAssFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
   if (((s as any).CloMaxSize ?? 0) > 0) {
-    qspCall(s, 'phone_selfies', 'populateClothesType', 'assflash', '$selfieTakenAssflash', 'assflash', ((s as any).CloMaxSize ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'assflash', '$selfieTakenAssflash', 'assflash', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).CloMaxSize = ((s as any).selfiePussyFlashTot ?? 0)?.[String((s as any).temp_locationCnt ?? 0)];
   if (((s as any).CloMaxSize ?? 0) > 0) {
-    qspCall(s, 'phone_selfies', 'populateClothesType', 'pussyflash', '$selfieTakenPussyflash', 'pussyflash', ((s as any).CloMaxSize ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pussyflash', '$selfieTakenPussyflash', 'pussyflash', ((s as any).CloMaxSize ?? 0)]; enterPopulateClothesType(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).temp_locationCnt = ((s as any).temp_locationCnt ?? 0) + (1);
   if (((s as any).temp_locationCnt ?? 0) < Object.keys((s as any).selfieLoc ?? {}).length) {
@@ -1146,8 +1146,8 @@ function enterGetNpcSelfieTotals(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'phone_selfies', 'get_npc_selfie_totals', ((s as any).locArgs?.[1] ?? 0));
-  scene.text(`<center><b>${((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]} pictures</b></center>`);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetNpcSelfieTotals(s, scene); (s as any).locArgs = __savedLocArgs; }
+  scene.text(`<center><b>${((s as any).npc_usedname ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} pictures</b></center>`);
   if (((s as any).ps_loopmaxev ?? 0) > 0) {
     // TODO-QSP: $ps_temp_table += '<tr><th colspan=5>Pictures</th></tr>'
     // TODO-QSP: $ps_temp_table += '<tr></tr><tr>'
@@ -1247,7 +1247,7 @@ function enterListretrieve2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ps_temp_table += '</table>'
   // TODO-QSP: dynamic text: $ps_temp_table
   scene.text('$ps_temp_table');
-  qspCall(s, 'phone_selfies', 'act_exit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([

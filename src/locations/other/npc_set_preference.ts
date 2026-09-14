@@ -33,7 +33,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).temp_nsprefVars ?? 0)?.['index'] >= 0) {
           // TODO-QSP: npc_nsp_pref_values[$ARGS[1]] = temp_nsprefVars['value']
-          qspCall(s, 'npc_set_preference', 'rebuild_preferences', ((s as any).locArgs?.[0] ?? 0));
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRebuildPreferences(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           // TODO-QSP: $temp_nsprefVars['pref_string'] = "$npc_pref_traits[] = '<<$ARGS[1]>>'
           if (!(s as any).npc_pref_values) (s as any).npc_pref_values = {}; (s as any).npc_pref_values['' + String((s as any).$ARGS[1] || '') + ''] = ((s as any).temp_nsprefVars ?? 0)?.['value'];
@@ -44,7 +44,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp_nsprefVars ?? 0)?.['index'] >= 0) {
         qspCall(s, 'array', 'remove_element', 'npc_nsp_pref_values', ((s as any).locArgs?.[1] ?? 0));
-        qspCall(s, 'npc_set_preference', 'rebuild_preferences', ((s as any).locArgs?.[0] ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRebuildPreferences(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -77,7 +77,7 @@ function enterRemovePreference(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_nsprefVars) (s as any).temp_nsprefVars = {}; (s as any).temp_nsprefVars['index'] = qspUntranslated(s, "arrpos('npc_nsp_pref_traits', ARGS[2])", { location: "npc_set_preference" });
   if (((s as any).temp_nsprefVars ?? 0)?.['index'] >= 0) {
     qspCall(s, 'array', 'remove_element', 'npc_nsp_pref_values', ((s as any).locArgs?.[2] ?? 0));
-    qspCall(s, 'npc_set_preference', 'rebuild_preferences', ((s as any).locArgs?.[1] ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterRebuildPreferences(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();

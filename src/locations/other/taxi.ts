@@ -12,24 +12,24 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/taxi/base\'+rand(1, 5)+\'.jpg');
     scene.text('Seeing a taxi coming down the road, you raise your arm and wave him down. When he stops, you get in.');
     // TODO-QSP: dynamic text: "The fare is ' + $func('money', 'string_price', 250) + '," he says.
-    scene.text('"The fare is \' + $func(\'money\', \'string_price\', 250) + \'," he says.');
+    scene.text('"The fare is 250₽," he says.');
     if (qspFunc(s, 'money', 'can_afford', 250) === 1) {
-      qspCall(s, 'taxi', 'locations');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLocations(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       qspCall(s, 'willpower', 'misc', 'self', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Don\'t tell him you can\'t pay [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Don\'t tell him you can\'t pay', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Don\'t tell him you can\'t pay [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Don\'t tell him you can\'t pay', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).taxi_pay = 1;
-    qspCall(s, 'taxi', 'locations');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLocations(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -37,13 +37,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'prostitution', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Offer to trade sex for a ride [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Offer to trade sex for a ride', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Offer to trade sex for a ride [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Offer to trade sex for a ride', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'prostitution', 'self');
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['taxi', 'ride'] },
@@ -147,7 +147,7 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/taxi/sex/taxi1,\'+rand(0, 5)+\'.jpg');
   scene.text('He turns off the taxi and gets out before he walks around and opens the back door. He already has his cock out and is stroking it, rubbing some hand lotion for lubrication.');
   // TODO-QSP: dynamic text: He half pulls you out of the taxi and pulls your clothes off just enough to give...
-  scene.text(`He half pulls you out of the taxi and pulls your clothes off just enough to give him a clear path to your pussy. He rubs the tip of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock against your pussy lips.`);
+  scene.text(`He half pulls you out of the taxi and pulls your clothes off just enough to give him a clear path to your pussy. He rubs the tip of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock against your pussy lips.`);
   scene.text('He then shoves his dick in, driving himself balls-deep into you. It hurts at first as he begins to furiously fuck your unprepared pussy, not caring whether or not you\'re enjoying it, but you soon begin to moan in pleasure.');
   qspCall(s, 'arousal', 'vaginal', 10, 'sub', 'unknown', 'rough');
   qspCall(s, 'fame', 'city', 'prostitute', 3);
@@ -155,19 +155,19 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cum_inside', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Beg him not to cum inside you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Beg him not to cum inside you', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Beg him not to cum inside you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Beg him not to cum inside you', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cum_inside', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     if (((s as any).ending ?? 0) === 0  ||  (Math.floor(Math.random() * 3) + 0) !== 0) {
-      qspCall(s, 'taxi', 'cum1');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCum1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'taxi', 'cum2');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCum2(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -175,16 +175,16 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cum_inside', 'force', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Wrap your legs around him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Wrap your legs around him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Wrap your legs around him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Wrap your legs around him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cum_inside', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
-    qspCall(s, 'taxi', 'cum3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCum3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -195,13 +195,13 @@ function enterVag1(s: GameState, scene: SceneBuilder): void {
       (s as any).ending = 2;
     }
     if ((!((s as any).ending ?? 0))) {
-      qspCall(s, 'taxi', 'cum1');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCum1(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).ending ?? 0) === 1) {
-      qspCall(s, 'taxi', 'cum2');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCum2(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).ending ?? 0) === 2) {
-      qspCall(s, 'taxi', 'cum3');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCum3(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -214,7 +214,7 @@ function enterCum1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', 'stomach', 'Taxi Driver');
   qspCall(s, 'stat', '');
-  qspCall(s, 'taxi', 'end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -226,7 +226,7 @@ function enterCum2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', '', '', 'Taxi Driver');
   qspCall(s, 'stat', '');
-  qspCall(s, 'taxi', 'end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -238,7 +238,7 @@ function enterCum3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', '', '', 'Taxi Driver');
   qspCall(s, 'stat', '');
-  qspCall(s, 'taxi', 'end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -249,7 +249,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Choose destination', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    qspCall(s, 'taxi', 'locations');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLocations(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -261,7 +261,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   (s as any).taxioffer = 1;
   scene.img('images/locations/shared/taxi/sex/bj0,\'+rand(0, 2)+\'.mp4');
   // TODO-QSP: dynamic text: He turns the taxi off and tells you to move to the front seat. You get out and c...
-  scene.text(`He turns the taxi off and tells you to move to the front seat. You get out and crawl into the passenger seat. He already has his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock out of his pants and is stroking it. He doesn't say a word, simply giving you a look that causes you to scurry over and wrap your lips around his cock. You start sucking his cock while your hand fondles his balls.`);
+  scene.text(`He turns the taxi off and tells you to move to the front seat. You get out and crawl into the passenger seat. He already has his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock out of his pants and is stroking it. He doesn't say a word, simply giving you a look that causes you to scurry over and wrap your lips around his cock. You start sucking his cock while your hand fondles his balls.`);
   scene.text('He moans and leans back to give you more room to work. Sometime later, he grabs your hair with his hand and forces your head down, ramming his cock down your throat. "That\'s a good little slut."');
   scene.text('This causes you to gag and makes your eyes water, but he doesn\'t seem to care.');
   scene.text('Several minutes later, your throat begins to feel raw as he suddenly stops and holds your head still, his cock still in your mouth. "I\'m cumming, and you better swallow every drop of it, bitch!"');
@@ -275,7 +275,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Choose destination', handler: (st: GameState) => {
-    qspCall(s, 'taxi', 'locations');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLocations(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -286,9 +286,9 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/taxi/sex/taxi3,\'+rand(0, 5)+\'.jpg');
   scene.text('He turns off the taxi and gets out before walking around to the back door. He already has his cock out, rubbing some hand lotion on it for lubrication as he strokes it.');
   // TODO-QSP: dynamic text: He half pulls you out of the taxi and pulls your clothes aside '+iif($pantywornt...
-  scene.text(`He half pulls you out of the taxi and pulls your clothes aside '+iif($pantyworntype ! 'none' or PCloPanties ! 1, 'and your panties down ', ')+'just enough to completely bare your ass, which he gives a hard slap. He then rubs the tip of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock against your anus as you stroke your clit with your hand and bite your lower lip, trying to prepare yourself mentally for what's about to come.`);
+  scene.text(`He half pulls you out of the taxi and pulls your clothes aside '+iif($pantyworntype ! 'none' or PCloPanties ! 1, 'and your panties down ', ')+'just enough to completely bare your ass, which he gives a hard slap. He then rubs the tip of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock against your anus as you stroke your clit with your hand and bite your lower lip, trying to prepare yourself mentally for what's about to come.`);
   // TODO-QSP: dynamic text: With a grunt, he shoves his <<dick>>cm <<$dick_girth>> cock up your ass, pushing...
-  scene.text(`With a grunt, he shoves his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock up your ass, pushing it balls deep. You grunt in pain and bite your lip nearly hard enough to draw blood as he begins to furiously fuck you, not caring whether or not you're enjoying it.`);
+  scene.text(`With a grunt, he shoves his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock up your ass, pushing it balls deep. You grunt in pain and bite your lip nearly hard enough to draw blood as he begins to furiously fuck you, not caring whether or not you're enjoying it.`);
   scene.text('As your asshole begins to loosen up and the teasing you\'re giving your clit turns you on, it begins to hurt less and feel better. A slight moan of pleasure escapes your lips as he pounds your ass until he finally stops, his cock buried balls deep. He grunts as you feel the spurts of cum shooting deep into you.');
   scene.text('With a final moan and spurt, he stands up. Pushing you back inside, he slams the door and returns to the driver\'s seat, starting the taxi before asking you where you need to go.');
   qspCall(s, 'fame', 'city', 'prostitute', 3);
@@ -299,7 +299,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Choose destination', handler: (st: GameState) => {
-    qspCall(s, 'taxi', 'locations');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLocations(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -342,24 +342,24 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'sex', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Tell him your a virgin [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Tell him your a virgin', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Tell him you\'re a virgin [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Tell him you\'re a virgin', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.text('"Wait, I\'m still a virgin! Please don\'t fuck my pussy!" you plead, hoping to change his mind. He pauses for just a moment, considering.');
     scene.actions([
       { label: 'See how he reacts', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 0) < 25) {
-      qspCall(s, 'taxi', 'alleyvag');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlleyvag(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'unknown', 'rough');
       qspCall(s, 'cum_call', '', '', 'Taxi Driver');
     } else {
-      qspCall(s, 'taxi', 'alleyanal');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlleyanal(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'arousal', 'anal', 5, 'sub', 'unknown', 'rough');
       qspCall(s, 'cum_call', 'anus', 'Taxi Driver');
     }
@@ -376,11 +376,11 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Accept the consequences of your actions', handler: (st: GameState) => {
     if ((Math.floor(Math.random() * 100) + 1) > 50) {
-      qspCall(s, 'taxi', 'alleyvag');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlleyvag(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'unknown', 'rough');
       qspCall(s, 'cum_call', '', '', 'Taxi Driver');
     } else {
-      qspCall(s, 'taxi', 'alleyanal');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAlleyanal(s, scene); (s as any).locArgs = __savedLocArgs; }
       qspCall(s, 'arousal', 'anal', 5, 'sub', 'unknown', 'rough');
       qspCall(s, 'cum_call', 'anus', 'Taxi Driver');
     }
@@ -398,7 +398,7 @@ function enterTrip(s: GameState, scene: SceneBuilder): void {
 function enterAlleyvag(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/taxi/sex/taxialleyvag.mp4');
   // TODO-QSP: dynamic text: You hear him spit and look back over your shoulder to see him rubbing his spit o...
-  scene.text(`You hear him spit and look back over your shoulder to see him rubbing his spit on the tip of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock. He comes up behind you and caresses the end of his dick against your pussy lips before he thrusts his unlubricated ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock into your pussy.`);
+  scene.text(`You hear him spit and look back over your shoulder to see him rubbing his spit on the tip of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock. He comes up behind you and caresses the end of his dick against your pussy lips before he thrusts his unlubricated ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into your pussy.`);
   scene.text('He struggles to work his dick into you, but with your hips firmly against the side of his car, you have nowhere to go, and he finally shoves himself balls deep. You cry out in pain, bite your lower lip and look back at him with a pleading look. The harsh, cruel look in his eyes tells you any pleas to be gentle will fall on deaf ears.');
   scene.text('As he starts pounding your pussy hard, his stomach slamming against your ass drives your hips painfully against the car, so you furiously rub your clit, hoping to make yourself at least a little wet.');
   scene.text('He repeatedly pulls nearly all the way out before he violently slams forward, painfully slamming your hips against the taxi\'s cold, hard metal. You\'re sure he\'s making this as unpleasant for you as possible. Biting your lower lip as you endure his furious pounding, you feel pain and pleasure soar through your body. For what seems like an eternity, he fucks you hard, your moans getting louder.');
@@ -412,7 +412,7 @@ function enterAlleyvag(s: GameState, scene: SceneBuilder): void {
 function enterAlleyanal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/taxi/sex/taxialleyanal.jpg');
   // TODO-QSP: dynamic text: You hear him spit and look back over your shoulder to see him rubbing his spit o...
-  scene.text(`You hear him spit and look back over your shoulder to see him rubbing his spit on the tip of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock. He comes up behind you and caresses the end of his dick against your anus before he pushes his unlubricated ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock into your ass, causing you to wince in pain.`);
+  scene.text(`You hear him spit and look back over your shoulder to see him rubbing his spit on the tip of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock. He comes up behind you and caresses the end of his dick against your anus before he pushes his unlubricated ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into your ass, causing you to wince in pain.`);
   scene.text('He struggles to work his dick into you, but with your hips firmly against the side of his car, you have nowhere to go, and he finally shoves himself balls deep. You cry out in pain and turn to ask him to be gentler, but the harsh, cruel look in his eyes stops you before you even ask. You realize he would never be gentle with you. He\'s enjoying hurting you.');
   // TODO-QSP: dynamic text: He starts pounding your ass hard without mercy, his hips slamming against your a...
   scene.text('He starts pounding your ass hard without mercy, his hips slamming against your ass and driving your hips painfully against the taxi\'s cold, hard metal. You close your eyes against the pain and try to rub your clit as a distraction, but the pain is too much and you feel tears running down your cheeks\' + iif(pcs_makeup > 1, \', smearing your makeup\', \') + \'.');

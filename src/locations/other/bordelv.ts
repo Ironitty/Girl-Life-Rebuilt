@@ -29,13 +29,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'voyeur', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Keep watching', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'voyeur', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -63,13 +63,13 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'voyeur', 'self');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Keep watching', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Keep watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Keep watching', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'voyeur', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -101,13 +101,13 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'self', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Comfort her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Comfort her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Comfort her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Comfort her', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
@@ -128,13 +128,13 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Comfort her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Comfort her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Comfort her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Comfort her', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
     qspCall(s, 'willpower', 'misc', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
@@ -159,13 +159,13 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'self', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Ask about getting a job at the brothel [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ask about getting a job at the brothel', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Ask about getting a job at the brothel [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ask about getting a job at the brothel', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
     (s as any).bordel = 1;
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
@@ -205,20 +205,20 @@ function enterOut(s: GameState, scene: SceneBuilder): void {
   scene.text('She quickly shoos you out and slams the door as you rush to the next room and find the same thing again. You rush through the corridors, but all the doors look the same and you start to panic.');
   scene.text('Just as you\'re about to give up and cry, someone pats you on the shoulder. You turn and see a still naked Vika, her face covered in cum.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, wait! Relax! You promised to keep quiet…" she whispers.
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}, wait! Relax! You promised to keep quiet…" she whispers.`);
+  scene.text(`"${((s as any).pcs_nickname || '')}, wait! Relax! You promised to keep quiet…" she whispers.`);
   scene.text('"Where\'s the way out, whore?!" you scream.');
   scene.text('Vika just looks at you, her lips trembling as her eyes slowly tear up.');
   scene.text('"There," she says as she points at one of the doors, barely hiding the fact that she\'s about to burst into tears.');
   qspCall(s, 'willpower', 'misc', 'self', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Comfort her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Comfort her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Comfort her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Comfort her', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A220', 15);
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');

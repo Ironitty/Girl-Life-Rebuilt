@@ -76,9 +76,9 @@ function enterNavConstruct(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'jmp_navigation_gen'
   }
   // TODO-QSP: dynamic text: <center><h1><<$nav_banner>></h1>
-  scene.text(`<center><h1>${((s as any).nav_banner ?? 0)}</h1>`);
+  scene.text(`<center><h1>${((s as any).nav_banner || '')}</h1>`);
   // TODO-QSP: dynamic text: <table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" va...
-  scene.text(`<table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody ?? 0)}</tr></table></center>`);
+  scene.text(`<table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody || '')}</tr></table></center>`);
   qspCall(s, 'journal', 'leaveactions');
   // TODO-QSP: end
   scene.build();
@@ -158,7 +158,7 @@ function enterTableGen(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $bjq_temp_table += '</table></center>'
   // TODO-QSP: dynamic text: <<$bjq_temp_table>>
-  scene.text(`${((s as any).bjq_temp_table ?? 0)}`);
+  scene.text(`${((s as any).bjq_temp_table || '')}`);
   // TODO-QSP: end
   scene.build();
 }

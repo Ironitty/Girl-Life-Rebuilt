@@ -1,5 +1,5 @@
 import type { GameState } from '../../core/types';
-import { goto, invoke } from '../../core/location';
+import { goto, invoke, getLocation } from '../../core/location';
 import { arousal } from '../../core/arousal';
 import { arousalStatsEnd, stretch, setVirginityStats, autoLube, checkEvents } from '../../core/arousal_funcs';
 import {
@@ -47,6 +47,10 @@ export function dynamicGoto(s: GameState, targetVar: string, argVar?: string): v
   const t = String((s as any)[targetVar] ?? '');
   const a = argVar ? String((s as any)[argVar] ?? '') : '';
   goto(s, t, a);
+}
+
+export function hasLocation(name: string): boolean {
+  return getLocation(name) != null;
 }
 
 export function qspCall(s: GameState, module: string, func: string, ...args: unknown[]): void {

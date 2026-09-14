@@ -28,11 +28,11 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'selfplay', 'suction_dildo');
   if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 1  &&  ((s as any).motherKnowDildo ?? 0) === 1) {
     // TODO-QSP: dynamic text: <i>Huh? Where'd my dildos go? I thought I- oh shit! <<$npc_nickname['A29']>> pro...
-    scene.text(`<i>Huh? Where'd my dildos go? I thought I- oh shit! ${((s as any).npc_nickname ?? 0)?.['A29']} probably took them again…</i>`);
+    scene.text(`<i>Huh? Where'd my dildos go? I thought I- oh shit! ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} probably took them again…</i>`);
   } else {
     if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] === 1  &&  ((s as any).motherKnowDildo ?? 0) === 1) {
       // TODO-QSP: dynamic text: <i>Huh? Where'd my dildo go? I thought I- oh shit! <<$npc_nickname['A29']>> prob...
-      scene.text(`<i>Huh? Where'd my dildo go? I thought I- oh shit! ${((s as any).npc_nickname ?? 0)?.['A29']} probably took it again…</i>`);
+      scene.text(`<i>Huh? Where'd my dildo go? I thought I- oh shit! ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} probably took it again…</i>`);
     } else {
       if (((s as any).motherQW ?? 0)?.['bathroom_dildos'] > 1  &&  (!((s as any).vanrPar_suction_dildo ?? 0))) {
         scene.text('<i>Huh? Where\'d my dildos go? I thought I left them right here…</i>');
@@ -107,12 +107,12 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).npc_had_sex ?? 0)?.['A28'] === 0  ||  ((s as any).stepdadqw ?? 0) < 5  ||  ((s as any).mesec ?? 0) > 0  ||  ((s as any).locat ?? 0)?.['Mom_athome'] === 1) {
-        qspCall(s, 'vanrPar', 'stepdad_nosex');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStepdadNosex(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         scene.img('images/characters/pavlovsk/resident/vladimir/sex/bath_voyer_3.jpg');
         scene.text('You suddenly hear the bathroom door creak open and turn to see your stepfather devouring your naked body with his eyes.');
         // TODO-QSP: dynamic text: In that instant, all the little moments the two of you have shared flash through...
-        scene.text(`In that instant, all the little moments the two of you have shared flash through your mind as it dawns on you that your ${((s as any).npc_nickname ?? 0)?.['A29']} is at work…`);
+        scene.text(`In that instant, all the little moments the two of you have shared flash through your mind as it dawns on you that your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is at work…`);
         scene.actions([
           { label: 'Daddy wants to join?', handler: (st: GameState) => {
     qspCall(st, 'vanrPar', 'stepdad_sex');
@@ -138,13 +138,13 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'exhib', 'self', 'easy', 'incest');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Invite him in for a chat [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Invite him in for a chat', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Invite him in for a chat [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Invite him in for a chat', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'exhib', 'self', 'easy', 'incest');
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['brother_voyeur', 'showertalk1'] },
@@ -155,13 +155,13 @@ function enterPeek(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'exhib', 'self', 'incest');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Invite him into the shower with you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Invite him into the shower with you', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Invite him into the shower with you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Invite him into the shower with you', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'exhib', 'self', 'incest');
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['brother_voyeur', 'brother_shower_together'] },
@@ -225,13 +225,13 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cum_inside', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Can you put on a condom? [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Can you put on a condom?', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Can you put on a condom? [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Can you put on a condom?', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cum_inside', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'vaginal', 5, 'rough');
@@ -253,13 +253,13 @@ function enterStepdadSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cum_inside', 'resist', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Don\'t cum inside me! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Don\'t cum inside me!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Don\'t cum inside me! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Don\'t cum inside me!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cum_inside', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'vaginal', 10, 'rough');
@@ -362,7 +362,7 @@ function enterStepdadSexCreampie(s: GameState, scene: SceneBuilder): void {
     scene.text('Your stepfather stumbles back and his dick slips free of your pussy, splattering cum onto the floor.');
     scene.text('He sheepishly scratches his head, but then flashes a cocky grin. "Sorry, Sunshine, I guess the devil made me do it. I\'m sure nothing will come of it, though."');
     scene.text('Furious, you push him out of the bathroom and toss his clothes out after him. Slamming the door closed, you look down at yourself with a troubled sigh as warm cum drips down your leg. You\'ll need to have another shower.');
-    qspCall(s, 'vanrPar', 'stepdad_sex_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStepdadSexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -377,14 +377,14 @@ function enterStepdadSexPullout(s: GameState, scene: SceneBuilder): void {
     scene.text('Your stepfather steps out of the shower and starts getting dressed, but it looks like you\'ll have to wash yourself again before you can do the same.');
   } else {
     // TODO-QSP: dynamic text: "Ahh, my sweet <<$pcs_nickname>>! I've wanted to do that for quite a while," he ...
-    scene.text(`"Ahh, my sweet ${((s as any).pcs_nickname ?? 0)}! I've wanted to do that for quite a while," he admits, giving you a soft smile as he wipes the sweat from his forehead.`);
+    scene.text(`"Ahh, my sweet ${((s as any).pcs_nickname || '')}! I've wanted to do that for quite a while," he admits, giving you a soft smile as he wipes the sweat from his forehead.`);
     scene.text('He pinches your cheek fondly and gives you a slap on the ass before he steps out of the shower and gets dressed. He then leaves.');
     scene.text('Sweaty and covered in cum, it looks like you\'ll be needing another shower before you can leave too.');
   }
   qspCall(s, 'arousal', 'vaginal', 5, 'rough');
   qspCall(s, 'cum_call', 'butt', 'A28', 1);
   qspCall(s, 'stat', '');
-  qspCall(s, 'vanrPar', 'stepdad_sex_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStepdadSexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -399,7 +399,7 @@ function enterStepdadSexAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal', 10, 'rough');
   qspCall(s, 'cum_call', 'butt', 'A28', 1);
   qspCall(s, 'stat', '');
-  qspCall(s, 'vanrPar', 'stepdad_sex_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStepdadSexEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

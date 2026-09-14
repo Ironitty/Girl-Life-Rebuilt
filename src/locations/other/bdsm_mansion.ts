@@ -16,7 +16,7 @@ function enterTaxi(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) < 16  &&  ((s as any).hour ?? 0) > 2) {
     if (!(s as any).bdsmclub) (s as any).bdsmclub = {}; (s as any).bdsmclub['unlocked'] = 1;
     // TODO-QSP: dynamic text: The taxi brings you in a gated community outside of town and drops you off at th...
-    scene.text('The taxi brings you in a gated community outside of town and drops you off at the closed wrought iron gate. You attempt to enter the secret club but the guard tells you it is closed. You show your card and he tells you to come back after \'+func(\'time\', \'get_time_string\', 16, 0)+\'.');
+    scene.text('The taxi brings you in a gated community outside of town and drops you off at the closed wrought iron gate. You attempt to enter the secret club but the guard tells you it is closed. You show your card and he tells you to come back after 16:00.');
     scene.actions([
       { label: 'Leave', goto: ['city_suburbs', 'start'] },
     ]);
@@ -51,7 +51,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You know this to be a BDSM club for rich people and you have access.');
   if (((s as any).hour ?? 0) < 16  &&  ((s as any).hour ?? 0) > 2) {
     // TODO-QSP: dynamic text: The club is closed until ' + $func('time', 'get_time_string', 16, 0) + '.
-    scene.text('The club is closed until \' + $func(\'time\', \'get_time_string\', 16, 0) + \'.');
+    scene.text('The club is closed until 16:00.');
     scene.actions([
       { label: 'Leave', goto: ['city_suburbs', 'start'] },
     ]);
@@ -99,7 +99,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('Your hand trembles as you reach out your passport.');
   scene.text('The woman points you to a chair, turns to the computer and starts clicking on the keys. She nods a few times, but says nothing. Then takes the phone and speaks to someone called Vladimir Viktorovich, discussing you. "There\'s candidacy, but a bit young, can you check and sort the paperwork? She hangs up, after a few minutes from the office comes a strapping man in a perfectly fitting suit and glasses with gold rim. He says, "Hello." And sits down next to you.');
   // TODO-QSP: dynamic text: "What's your name? <<$pcs_nickname>>? Fine. How old are you?"
-  scene.text(`"What's your name? ${((s as any).pcs_nickname ?? 0)}? Fine. How old are you?"`);
+  scene.text(`"What's your name? ${((s as any).pcs_nickname || '')}? Fine. How old are you?"`);
   scene.text('You answer the questions.');
   scene.text('"Tell me, are you sure you want this?"');
   scene.text('You understand, all of the questions he is asking and why.');
@@ -133,7 +133,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       { label: 'Listen', handler: (st: GameState) => {
     scene.img('images/locations/city/suburb/bdsm_club/1_1.jpg');
     // TODO-QSP: dynamic text: She explains that there are two ways to visit the club, either as a submissive w...
-    scene.text('She explains that there are two ways to visit the club, either as a submissive where you will be subject to sexualization and humiliation, but its free. Or you can pay a monthly fee of \' + $func(\'money\', \'string_price\', 10000) + \' and visit as a Dominant, in this case you will be able to sexualize and humiliate the submissives.');
+    scene.text('She explains that there are two ways to visit the club, either as a submissive where you will be subject to sexualization and humiliation, but its free. Or you can pay a monthly fee of 10000₽ and visit as a Dominant, in this case you will be able to sexualize and humiliate the submissives.');
     scene.text('For each role there is something of a dress code in that subs must dress either in submissive fetishwear, as a maid or be naked. A dominant simply has to be dressed in expensive quality clothing.');
     scene.text('There is also a required training aspect.');
     if (((s as any).bdsmclub ?? 0)?.['annatraining'] === 1) {
@@ -169,7 +169,7 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to dressing room', goto: ['bdsm_dressing', ''] },
-    { label: 'Pay to extend your membership and return to the dressing room [+$func(\'money\', \'get_cost_string\', 10000)]', handler: (st: GameState) => {
+    { label: 'Pay to extend your membership and return to the dressing room', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

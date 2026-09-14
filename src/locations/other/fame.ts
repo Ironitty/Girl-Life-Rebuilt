@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -122,21 +122,21 @@ function enterDeg(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'fame', 'calculate', 'acting');
-  qspCall(s, 'fame', 'calculate', 'dance');
-  qspCall(s, 'fame', 'calculate', 'painting');
-  qspCall(s, 'fame', 'calculate', 'music');
-  qspCall(s, 'fame', 'calculate', 'ballet');
-  qspCall(s, 'fame', 'calculate', 'modelling');
-  qspCall(s, 'fame', 'calculate', 'porn');
-  qspCall(s, 'fame', 'calculate', 'stripping');
-  qspCall(s, 'fame', 'calculate', 'kickboxing');
-  qspCall(s, 'fame', 'calculate', 'running');
-  qspCall(s, 'fame', 'calculate', 'volleyball');
-  qspCall(s, 'fame', 'calculate', 'chess');
-  qspCall(s, 'fame', 'calculate', 'teaching');
-  qspCall(s, 'fame', 'calculate', 'media');
-  qspCall(s, 'fame', 'calculateGroups');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'acting']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dance']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'painting']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'music']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ballet']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'modelling']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'porn']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stripping']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'kickboxing']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'running']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'volleyball']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chess']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'teaching']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'media']; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -317,9 +317,9 @@ function enterCity(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fame ?? 0)[((s as any).locArgs?.[0] ?? 0) + '_' + ((s as any).locArgs?.[1] ?? 0) + '_core'] < 0) {
       if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$ARGS[0] || '') + '_' + String((s as any).$ARGS[1] || '') + '_core'] = 0;
     }
-    qspCall(s, 'fame', 'calculate', ((s as any).locArgs?.[1] ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCalculate(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'fame', 'calculateGroups');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -394,7 +394,7 @@ function enterCalculate(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'fame', 'check_if_only_local', ((s as any).locArgs?.[1] ?? 0))) {
     return;
   }
-  qspCall(s, 'fame', 'set_contributions', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterSetContributions(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).fame ?? 0)['pav_' + ((s as any).locArgs?.[1] ?? 0) + '_core'] >= 1000) {
     if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['pav_' + String((s as any).$ARGS[1] || '') + ''] = ((s as any).fame ?? 0)['pav_' + ((s as any).locArgs?.[1] ?? 0) + '_core'] + ((s as any).fame ?? 0)['pav_' + ((s as any).locArgs?.[1] ?? 0) + '_local'] / 1000;
   } else {
@@ -589,7 +589,7 @@ function enterCalculateGroups(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCalculateSlut(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'fame', 'calculateGroups');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -607,7 +607,7 @@ function enterChurchReduction(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)[((s as any).locArgs?.[1] ?? 0) + '_flash'] < 0) {
     if (!(s as any).fame) (s as any).fame = {}; (s as any).fame['' + String((s as any).$ARGS[1] || '') + '_flash'] = 0;
   }
-  qspCall(s, 'fame', 'calculateGroups');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCalculateGroups(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

@@ -18,7 +18,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
   qspCall(s, 'sleep', 'calc_minutes_to_wakeup');
-  qspCall(s, 'sleep_simple', 'loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -39,7 +39,7 @@ function enterForced(s: GameState, scene: SceneBuilder): void {
   }
   if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_to_full'] = ((s as any).sleepVars['time_to_full'] ?? 0) + (60 + (Math.floor(Math.random() * 91) + 0));
   if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['minutes_to_wakeup'] = qspUntranslated(s, "ARGS[1]", { location: "sleep_simple" });
-  qspCall(s, 'sleep_simple', 'loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -49,7 +49,7 @@ function enterSleepUntil(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_minutes ?? 0) < 0) {
     (s as any).temp_minutes = ((s as any).temp_minutes ?? 0) + (1440);
   }
-  qspCall(s, 'sleep_simple', 'forced', ((s as any).temp_minutes ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_minutes ?? 0)]; enterForced(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -66,8 +66,8 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['health_stock'] = ((s as any).sleepVars['health_stock'] ?? 0) + (((s as any).healthmax ?? 0));
   }
   if (((s as any).sleepVars ?? 0)?.['health_stock'] >= 960) {
-    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + (((s as any).sleepVars ?? {})?.['health_stock'] / 960);
-    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['health_stock'] = ((s as any).sleepVars ?? {})?.['health_stock'] % 960;
+    (s as any).pcs_health = ((s as any).pcs_health ?? 0) + ((((s as any).sleepVars ?? {})?.['health_stock'] ?? 0) / 960);
+    if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['health_stock'] = (((s as any).sleepVars ?? {})?.['health_stock'] ?? 0) % 960;
   }
   if (((s as any).trait_vars ?? 0)?.['sleep_duration'] === 1) {
     if (((s as any).sleepVars ?? 0)?.['stime'] % 5 === 0) {
@@ -96,7 +96,7 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).minut ?? 0) === 60) {
     qspCall(s, 'stat', '');
   }
-  qspCall(s, 'sleep_simple', 'mod_sleeptriggers');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterModSleeptriggers(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).sleepVars ?? 0)?.['minutes_to_wakeup'] > 0) {
     // TODO-QSP: jump 'sleep_simple_loop'
   }
@@ -121,7 +121,7 @@ function enterNapBed(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_sleep ?? 0) <= 90) {
       (s as any).inSleep = 1;
-      qspCall(s, 'sleep_simple', 'nap_base', 60);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 60]; enterNapBase(s, scene); (s as any).locArgs = __savedLocArgs; }
       if ((!((s as any).locArgs?.[1] ?? 0))) {
         scene.text('You sleep about an hour.');
       }
@@ -145,7 +145,7 @@ function enterNapBed(s: GameState, scene: SceneBuilder): void {
 function enterNap(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sleep ?? 0) <= 90) {
     (s as any).inSleep = 1;
-    qspCall(s, 'sleep_simple', 'nap_base', 60);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 60]; enterNapBase(s, scene); (s as any).locArgs = __savedLocArgs; }
     if ((!((s as any).locArgs?.[1] ?? 0))) {
       scene.text('You nap for about an hour.');
     }

@@ -70,7 +70,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $temp_text += '</td> <td bgcolor="<<$temp_bgcolor>>" align="right"><font color="<<$func("shortgs", "...
   // TODO-QSP: dynamic text: <<$temp_text>>
-  scene.text(`${((s as any).temp_text ?? 0)}`);
+  scene.text(`${((s as any).temp_text || '')}`);
   (s as any).cetl_i = ((s as any).cetl_i ?? 0) + (1);
   if (((s as any).cetl_i ?? 0) < Object.keys((s as any).trial_names ?? {}).length) {
     // TODO-QSP: jump 'loop_start'
@@ -84,7 +84,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     scene.img('images\\system\\image_needed.png');
     scene.text('We have developed a range of enhancement pills that are designed to improve both body and mood. They\'ve just been approved for human trials, so we\'re still cataloguing the effects.');
     scene.text('The following are expected: mood swings, aches, itches, rashes and physical changes.');
-    qspCall(s, 'city_experimental_trials_list', 'act_go_back');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActGoBack(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Sign up', handler: (st: GameState) => {
     if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = qspUntranslated(s, "trial_names[0]", { location: "city_experimental_trials_list" });
@@ -96,9 +96,9 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
       scene.img('images\\locations\\city\\residential\\clinic\\experiments\\doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
-    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc ?? 0)} neatly sown on the chest. "Miss ${((s as any).pcs_lastname ?? 0)}? Please follow me."`);
+    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc || '')} neatly sown on the chest. "Miss ${((s as any).pcs_lastname || '')}? Please follow me."`);
     // TODO-QSP: dynamic text: You are guided through narrow hallways until you end up in <<$temp_doc>>'s priva...
-    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc ?? 0)}'s private office, where you take a seat in one of the free chairs available.`);
+    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc || '')}'s private office, where you take a seat in one of the free chairs available.`);
     (s as any).temp_rand = Math.floor(Math.random() * 90) + 0;
     if (((s as any).temp_rand ?? 0) < 10) {
       if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['trial_active'] = 'pill_cyan';
@@ -167,14 +167,14 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     }
     if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_0'] = ((s as any).experimentQW['times_participated_0'] ?? 0) + (1);
     // TODO-QSP: dynamic text: <<$temp_doc>> briefly searches through a drawer, pulls out a nondescript <font c...
-    scene.text(`${((s as any).temp_doc ?? 0)} briefly searches through a drawer, pulls out a nondescript <font color=${((s as any).temp_pill_color ?? 0)}>${((s as any).temp_pill_color ?? 0)} pill</font> and hands it to you. "Please swallow this, and you'll get paid."`);
+    scene.text(`${((s as any).temp_doc || '')} briefly searches through a drawer, pulls out a nondescript <font color=${((s as any).temp_pill_color || '')}>${((s as any).temp_pill_color || '')} pill</font> and hands it to you. "Please swallow this, and you'll get paid."`);
     scene.actions([
       { label: 'Swallow the <font color=<<$temp_pill_color>>><<$temp_pill_color>> pill</font>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     qspCall(s, 'stat', '');
     scene.img(`images\\locations\\city\\residential\\clinic\\experiments\\pill${Math.floor(Math.random() * 3) + 2}.jpg`);
     // TODO-QSP: dynamic text: The doctor observes as you swallow the pill and then makes a note on a clipboard...
-    scene.text(`The doctor observes as you swallow the pill and then makes a note on a clipboard. "Thank you for your participation, Miss ${((s as any).pcs_lastname ?? 0)}. We'll speak again soon."`);
+    scene.text(`The doctor observes as you swallow the pill and then makes a note on a clipboard. "Thank you for your participation, Miss ${((s as any).pcs_lastname || '')}. We'll speak again soon."`);
     // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[0]
   } },
     ]);
@@ -187,7 +187,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'stat', '');
       scene.text('We have developed a cream, based on natural hormones, which enhances the natural growth of breasts, leading to fuller and more natural looking breasts.');
       scene.text('No side effects are listed for this clinical trial.');
-      qspCall(s, 'city_experimental_trials_list', 'act_go_back');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActGoBack(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Sign up', handler: (st: GameState) => {
     if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_1'] = ((s as any).experimentQW['times_participated_1'] ?? 0) + (1);
@@ -204,9 +204,9 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
       scene.img('images\\locations\\city\\residential\\clinic\\experiments\\doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
-    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc ?? 0)} neatly sown on the chest. "Miss ${((s as any).pcs_lastname ?? 0)}? Please follow me."`);
+    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc || '')} neatly sown on the chest. "Miss ${((s as any).pcs_lastname || '')}? Please follow me."`);
     // TODO-QSP: dynamic text: You are guided through narrow hallways until you end up in <<$temp_doc>>'s priva...
-    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc ?? 0)}'s private office, where he gestures you lie on the exam table. "Please lie down and expose your chest."`);
+    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc || '')}'s private office, where he gestures you lie on the exam table. "Please lie down and expose your chest."`);
     scene.actions([
       { label: 'Undress and lie down', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -214,9 +214,9 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\bustcream1.jpg');
     // TODO-QSP: dynamic text: <<$temp_doc>> puts on a pair of latex gloves and grabs a generic white tube. Squ...
-    scene.text(`${((s as any).temp_doc ?? 0)} puts on a pair of latex gloves and grabs a generic white tube. Squeezing a large amount of white cream into his hands, he starts massaging it into your breasts.`);
+    scene.text(`${((s as any).temp_doc || '')} puts on a pair of latex gloves and grabs a generic white tube. Squeezing a large amount of white cream into his hands, he starts massaging it into your breasts.`);
     // TODO-QSP: dynamic text: The massage continues for about a minute, at which point <<$temp_doc>> steps awa...
-    scene.text(`The massage continues for about a minute, at which point ${((s as any).temp_doc ?? 0)} steps away and takes off his gloves. "Thank you for your participation, Miss ${((s as any).pcs_lastname ?? 0)}. We'll speak again soon."`);
+    scene.text(`The massage continues for about a minute, at which point ${((s as any).temp_doc || '')} steps away and takes off his gloves. "Thank you for your participation, Miss ${((s as any).pcs_lastname || '')}. We'll speak again soon."`);
     // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[1]
   } },
     ]);
@@ -229,7 +229,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         scene.text('We have developed a hair extension shampoo which enhances your natural hair growth, leading to longer, fuller and glossier hair.');
         scene.text('No side effects are listed for this clinical trial.');
-        qspCall(s, 'city_experimental_trials_list', 'act_go_back');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActGoBack(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'Sign up', handler: (st: GameState) => {
     if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_2'] = ((s as any).experimentQW['times_participated_2'] ?? 0) + (1);
@@ -243,18 +243,18 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
       scene.img('images\\locations\\city\\residential\\clinic\\experiments\\doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
-    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc ?? 0)} neatly sown on the chest. "Miss ${((s as any).pcs_lastname ?? 0)}? Please follow me."`);
+    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc || '')} neatly sown on the chest. "Miss ${((s as any).pcs_lastname || '')}? Please follow me."`);
     // TODO-QSP: dynamic text: You are guided through narrow hallways until you end up in <<$temp_doc>>'s priva...
-    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc ?? 0)}'s private office, where he gestures you lie on the exam table. "Please lie down."`);
+    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc || '')}'s private office, where he gestures you lie on the exam table. "Please lie down."`);
     scene.actions([
       { label: 'Lie down', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\haircream1.jpg');
     // TODO-QSP: dynamic text: <<$temp_doc>> puts on a pair of latex gloves and grabs a generic chestnut brown ...
-    scene.text(`${((s as any).temp_doc ?? 0)} puts on a pair of latex gloves and grabs a generic chestnut brown tube. He squeezes a large amount of beige cream into his hands and starts massaging it into your hair and scalp.`);
+    scene.text(`${((s as any).temp_doc || '')} puts on a pair of latex gloves and grabs a generic chestnut brown tube. He squeezes a large amount of beige cream into his hands and starts massaging it into your hair and scalp.`);
     // TODO-QSP: dynamic text: The massage continues for about a minute, at which point <<$temp_doc>> steps awa...
-    scene.text(`The massage continues for about a minute, at which point ${((s as any).temp_doc ?? 0)} steps away and takes off his gloves. "Thank you for your participation, Miss ${((s as any).pcs_lastname ?? 0)}. We'll speak again soon."`);
+    scene.text(`The massage continues for about a minute, at which point ${((s as any).temp_doc || '')} steps away and takes off his gloves. "Thank you for your participation, Miss ${((s as any).pcs_lastname || '')}. We'll speak again soon."`);
     // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[2]
   } },
     ]);
@@ -268,7 +268,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
           scene.text('We have developed a general aphrodisiac to put you and your partner in the mood and ready to go for hours.');
           scene.text('No side effects are listed for this clinical trial.');
           scene.text('<sub><small>Warning! This is a strictly personal enhancer. The clinic is not liable for any criminal allegations if used on other subjects.</small></sub>');
-          qspCall(s, 'city_experimental_trials_list', 'act_go_back');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActGoBack(s, scene); (s as any).locArgs = __savedLocArgs; }
           scene.actions([
             { label: 'Sign up', handler: (st: GameState) => {
     if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_3'] = ((s as any).experimentQW['times_participated_3'] ?? 0) + (1);
@@ -282,17 +282,17 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
       scene.img('images\\locations\\city\\residential\\clinic\\experiments\\doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
-    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc ?? 0)} neatly sown on the chest. "Miss ${((s as any).pcs_lastname ?? 0)}? Please follow me."`);
+    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc || '')} neatly sown on the chest. "Miss ${((s as any).pcs_lastname || '')}? Please follow me."`);
     // TODO-QSP: dynamic text: You are guided through narrow hallways until you end up in <<$temp_doc>>'s priva...
-    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc ?? 0)}'s private office, where you take a seat in one of the free chairs available.`);
+    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc || '')}'s private office, where you take a seat in one of the free chairs available.`);
     // TODO-QSP: dynamic text: <<$temp_doc>> briefly searches through a drawer, pulls out a brightly coloured p...
-    scene.text(`${((s as any).temp_doc ?? 0)} briefly searches through a drawer, pulls out a brightly coloured pink pill and hands it to you. "Please swallow this, and you'll get paid."`);
+    scene.text(`${((s as any).temp_doc || '')} briefly searches through a drawer, pulls out a brightly coloured pink pill and hands it to you. "Please swallow this, and you'll get paid."`);
     scene.actions([
       { label: 'Swallow the aphrodisiac</font>', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\pill1.jpg');
     // TODO-QSP: dynamic text: The doctor observes as you swallow the pill and then makes a note on a clipboard...
-    scene.text(`The doctor observes as you swallow the pill and then makes a note on a clipboard. "Thank you for your participation, Miss ${((s as any).pcs_lastname ?? 0)}. We'll speak again soon."`);
+    scene.text(`The doctor observes as you swallow the pill and then makes a note on a clipboard. "Thank you for your participation, Miss ${((s as any).pcs_lastname || '')}. We'll speak again soon."`);
     // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[3]
   } },
     ]);
@@ -307,7 +307,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
             scene.text('No side effects are listed for this clinical trial.');
             scene.text('<br><br><br><br><br><br><br><br><br><br>');
             scene.text('<sub><small>*Patent following. The Kardashian Butt Injection is not affiliated with the Kardashian family.</small></sub>');
-            qspCall(s, 'city_experimental_trials_list', 'act_go_back');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActGoBack(s, scene); (s as any).locArgs = __savedLocArgs; }
             scene.actions([
               { label: 'Sign up', handler: (st: GameState) => {
     if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_4'] = ((s as any).experimentQW['times_participated_4'] ?? 0) + (1);
@@ -321,17 +321,17 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
       scene.img('images\\locations\\city\\residential\\clinic\\experiments\\doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
-    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc ?? 0)} neatly sown on the chest. "Miss ${((s as any).pcs_lastname ?? 0)}? Please follow me."`);
+    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc || '')} neatly sown on the chest. "Miss ${((s as any).pcs_lastname || '')}? Please follow me."`);
     // TODO-QSP: dynamic text: You are guided through narrow hallways until you end up in <<$temp_doc>>'s priva...
-    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc ?? 0)}'s private office, where he gestures you lie on the exam table. "Please expose your buttocks and lie face down on the exam table."`);
+    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc || '')}'s private office, where he gestures you lie on the exam table. "Please expose your buttocks and lie face down on the exam table."`);
     scene.actions([
       { label: 'Undress and lie down', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\assinjection1.jpg');
     // TODO-QSP: dynamic text: <<$temp_doc>> briefly searches through a drawer and pulls out a syringe filled w...
-    scene.text(`${((s as any).temp_doc ?? 0)} briefly searches through a drawer and pulls out a syringe filled with a light brownish liquid. A mild sting and a small injection in each bottock, and you are done.`);
+    scene.text(`${((s as any).temp_doc || '')} briefly searches through a drawer and pulls out a syringe filled with a light brownish liquid. A mild sting and a small injection in each bottock, and you are done.`);
     // TODO-QSP: dynamic text: "Thank you for your participation, Miss <<$pcs_lastname>>. We'll speak again soo...
-    scene.text(`"Thank you for your participation, Miss ${((s as any).pcs_lastname ?? 0)}. We'll speak again soon."`);
+    scene.text(`"Thank you for your participation, Miss ${((s as any).pcs_lastname || '')}. We'll speak again soon."`);
     // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[4]
   } },
     ]);
@@ -344,7 +344,7 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               scene.text('Do you want a baby, but are having problems getting pregnant? Fear not, for we have developed the answer! Just one shot and your chances of bringing that little ray of sunshine into your life will quadruple!');
               scene.text('Side effects include: Hormonal imbalance, superovulation and uncontrolled arousal.');
-              qspCall(s, 'city_experimental_trials_list', 'act_go_back');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActGoBack(s, scene); (s as any).locArgs = __savedLocArgs; }
               scene.actions([
                 { label: 'Sign up', handler: (st: GameState) => {
     if (!(s as any).experimentQW) (s as any).experimentQW = {}; (s as any).experimentQW['times_participated_5'] = ((s as any).experimentQW['times_participated_5'] ?? 0) + (1);
@@ -358,17 +358,17 @@ function enterSeeTrials(s: GameState, scene: SceneBuilder): void {
       scene.img('images\\locations\\city\\residential\\clinic\\experiments\\doc2.jpg');
     }
     // TODO-QSP: dynamic text: You are approached by a doctor in a white lab coat, <<$temp_doc>> neatly sown on...
-    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc ?? 0)} neatly sown on the chest. "Miss ${((s as any).pcs_lastname ?? 0)}? Please follow me."`);
+    scene.text(`You are approached by a doctor in a white lab coat, ${((s as any).temp_doc || '')} neatly sown on the chest. "Miss ${((s as any).pcs_lastname || '')}? Please follow me."`);
     // TODO-QSP: dynamic text: You are guided through narrow hallways until you end up in <<$temp_doc>>'s priva...
-    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc ?? 0)}'s private office, where he gestures you lie on the exam table. "Please expose your stomach and lie face down on the exam table."`);
+    scene.text(`You are guided through narrow hallways until you end up in ${((s as any).temp_doc || '')}'s private office, where he gestures you lie on the exam table. "Please expose your stomach and lie face down on the exam table."`);
     scene.actions([
       { label: 'Lie down', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\pregshot1.jpg');
     // TODO-QSP: dynamic text: <<$temp_doc>> briefly searches through a drawer and pulls out a syringe filled w...
-    scene.text(`${((s as any).temp_doc ?? 0)} briefly searches through a drawer and pulls out a syringe filled with a bubbling red liquid. A sharp sting and an injection into your lower stomach, and you are done.`);
+    scene.text(`${((s as any).temp_doc || '')} briefly searches through a drawer and pulls out a syringe filled with a bubbling red liquid. A sharp sting and an injection into your lower stomach, and you are done.`);
     // TODO-QSP: dynamic text: "Thank you for your participation, Miss <<$pcs_lastname>>. We'll speak again soo...
-    scene.text(`"Thank you for your participation, Miss ${((s as any).pcs_lastname ?? 0)}. We'll speak again soon."`);
+    scene.text(`"Thank you for your participation, Miss ${((s as any).pcs_lastname || '')}. We'll speak again soon."`);
     // TODO-QSP: gs 'city_experimental_trials_list', 'act_return', trial_pays[5]
   } },
     ]);
@@ -402,7 +402,7 @@ function enterActReturn(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Return to the clinic', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', ((s as any).temp_pay ?? 0));
-    qspCall(s, 'city_experimental_trials_list', 'killvars');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKillvars(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['city_clinic', 'start'] },
   ]);
   scene.build();

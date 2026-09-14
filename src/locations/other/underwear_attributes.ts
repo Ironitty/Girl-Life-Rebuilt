@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { qspCall, hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -10,7 +10,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bras', 'reset_BraVars');
   qspCall(s, 'panties', 'reset_PanVars');
   if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['pair'] = 0;
-  if (((s as any).loc ?? 0)('$attributes_' + ((s as any).locArgs?.[0] ?? 0))) {
+  if (hasLocation('$attributes_' + ((s as any).locArgs?.[0] ?? 0))) {
     // TODO-QSP: gs '$attributes_<<$ARGS[0]>>', ARGS[1]
   }
   if (((s as any).BraQuality ?? 0) === 0  &&  (!((s as any).PanQuality ?? 0))) {

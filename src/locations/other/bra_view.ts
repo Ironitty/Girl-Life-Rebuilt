@@ -16,7 +16,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_number_sort');
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_quality_sort');
     qspCall(s, 'shop_utils', 'filter_builder', 'setup_sort_direction');
-    qspCall(s, 'bra_view', 'filter_builder', 'setup_sport_filter');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'setup_sport_filter']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'shop_utils', 'filter_builder', 'finish', 'mini');
     return;
   }
@@ -130,7 +130,7 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
 function enterDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'grid_shop') {
     if (((s as any).locArgs?.[2] ?? 0) === 'header') {
-      qspCall(s, 'bra_view', 'filter_builder', 'setup_shop_filter');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'setup_shop_filter']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
       return;
     }
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
@@ -148,7 +148,7 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'grid_wardrobe') {
     if (((s as any).locArgs?.[2] ?? 0) === 'header') {
       qspCall(s, 'shop_utils', 'display', 'wardrobe_storage_unwanted_header', 'view_grid');
-      qspCall(s, 'bra_view', 'filter_builder', 'setup_home_filters');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'setup_home_filters']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
       return;
     }
     if (((s as any).locArgs?.[2] ?? 0) === 'main') {
@@ -192,7 +192,7 @@ function enterViewGrid(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).shop_display ?? 0)?.['init'] === 0) {
     qspCall(s, 'shop_utils', 'init', 'start', 'bras', ((s as any).locArgs?.[1] ?? 0));
-    qspCall(s, 'bra_view', 'init', 'add_types', 'all');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_types', 'all']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).locArgs?.[1] ?? 0) === 'wardrobe'  ||  ((s as any).locArgs?.[1] ?? 0) === 'storage'  ||  ((s as any).locArgs?.[1] ?? 0) === 'unwanted') {
       qspCall(s, 'shop_utils', 'init', 'set_return', 'wardrobe', 'main');
     } else {
@@ -223,12 +223,12 @@ function enterViewItem(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['number'] = qspUntranslated(s, "ARGS[3]", { location: "bra_view" });
   if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['discount'] = qspUntranslated(s, "ARGS[4]", { location: "bra_view" });
   qspCall(s, 'stat', '');
-  scene.img(`${qspFunc(s, '$bra_image', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number'])}`);
+  scene.img(`${qspFunc(s, '$bra_image', '$shop_utils_view[\'type\']', ((s as any).shop_utils_view ?? 0)?.['number'] ?? '')}`);
   // TODO-QSP: gs 'underwear_attributes', $shop_utils_view['type'] + '_bras', shop_utils_view['number']
   qspCall(s, 'underwear_descriptions', 'bras');
   if (((s as any).underwear ?? 0)?.['pair'] > 0) {
     // TODO-QSP: dynamic text: This bra forms a set with panty #<<underwear['pair']>>.
-    scene.text(`This bra forms a set with panty #${((s as any).underwear ?? 0)?.['pair']}.`);
+    scene.text(`This bra forms a set with panty #${((s as any).underwear ?? 0)?.['pair'] ?? ''}.`);
   }
   if (((s as any).shop_utils_view ?? 0)?.['link'] === 'shop'  ||  ((s as any).shop_utils_view ?? 0)?.['link'] === 'cheat') {
     scene.actions([{ label: 'Continue', goto: ['bra_view', 'view_item_shop'] }]);
@@ -263,10 +263,10 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     scene.text('You already own this item.');
     return;
   }
-  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['bra_discount'] = Math.min(Math.max(0, ((s as any).shop_utils_view ?? {})?.['discount'] + ((s as any).shop_utils_view ?? {})?.['discount']), 100);
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['bra_discount'] = Math.min(Math.max(0, (((s as any).shop_utils_view ?? {})?.['discount'] ?? 0) + (((s as any).shop_utils_view ?? {})?.['discount'] ?? 0)), 100);
   if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['bra_price'] = ((s as any).BraPrice ?? 0);
-  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['bra_price'] * (100 - ((s as any).shop_utils_view ?? {})?.['bra_discount']) / 100;
-  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price'] = ((s as any).shop_utils_view ?? {})?.['price'] / 50 * 50;
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price'] = (((s as any).shop_utils_view ?? {})?.['bra_price'] ?? 0) * (100 - (((s as any).shop_utils_view ?? {})?.['bra_discount'] ?? 0)) / 100;
+  if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price'] = (((s as any).shop_utils_view ?? {})?.['price'] ?? 0) / 50 * 50;
   if (((s as any).shop_utils_view ?? 0)?.['price'] === ((s as any).shop_utils_view ?? 0)?.['bra_price']) {
     if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price_string'] = qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['price']);
   } else {
@@ -291,11 +291,11 @@ function enterViewItemShop(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You do not own the matching panties, you can buy this bra and them as a set.');
       // TODO-QSP: gs 'underwear_attributes', $shop_utils_view['type'] + '_panties', underwear['pair']
-      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['pan_discount'] = Math.min(Math.max(0, ((s as any).shop_utils_view ?? {})?.['discount'] + ((s as any).shop_utils_view ?? {})?.['discount']), 100);
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['pan_discount'] = Math.min(Math.max(0, (((s as any).shop_utils_view ?? {})?.['discount'] ?? 0) + (((s as any).shop_utils_view ?? {})?.['discount'] ?? 0)), 100);
       if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['pan_price'] = ((s as any).PanPrice ?? 0);
-      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['set_price'] = 9 * (((s as any).shop_utils_view ?? {})?.['bra_price'] * (100 - ((s as any).shop_utils_view ?? {})?.['bra_discount']) + ((s as any).shop_utils_view ?? {})?.['pan_price'] * (100 - ((s as any).shop_utils_view ?? {})?.['pan_discount'])) / 1000;
-      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['set_price'] = ((s as any).shop_utils_view ?? {})?.['set_price'] / 50 * 50;
-      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['base_price'] = ((s as any).shop_utils_view ?? {})?.['bra_price'] + ((s as any).shop_utils_view ?? {})?.['pan_price'];
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['set_price'] = 9 * ((((s as any).shop_utils_view ?? {})?.['bra_price'] ?? 0) * (100 - (((s as any).shop_utils_view ?? {})?.['bra_discount'] ?? 0)) + (((s as any).shop_utils_view ?? {})?.['pan_price'] ?? 0) * (100 - (((s as any).shop_utils_view ?? {})?.['pan_discount'] ?? 0))) / 1000;
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['set_price'] = (((s as any).shop_utils_view ?? {})?.['set_price'] ?? 0) / 50 * 50;
+      if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['base_price'] = (((s as any).shop_utils_view ?? {})?.['bra_price'] ?? 0) + (((s as any).shop_utils_view ?? {})?.['pan_price'] ?? 0);
       if (!(s as any).shop_utils_view) (s as any).shop_utils_view = {}; (s as any).shop_utils_view['price_string'] = qspFunc(s, 'wrap', 'neg s', qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['base_price'])) + ' <b>' +  qspFunc(s, 'money', 'string_price', ((s as any).shop_utils_view ?? 0)?.['set_price']) + '</b>';
       // TODO-QSP: 'Price for set: ' + $shop_utils_view['price_string']
       if (qspFunc(s, 'money', 'can_afford', ((s as any).shop_utils_view ?? 0)?.['set_price']) === 0) {
@@ -356,7 +356,7 @@ function enterViewItemWardrobe(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  qspCall(s, 'bra_view', 'storage_options');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([
@@ -384,7 +384,7 @@ function enterViewItemBathroom(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).hypnoBra ?? 0) > 0) {
-    qspCall(s, 'bra_view', 'view_item_wear_single_hypno', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterViewItemWearSingleHypno(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
   }
   if (((s as any).underwear ?? 0)?.['pair'] > 0) {
@@ -394,7 +394,7 @@ function enterViewItemBathroom(s: GameState, scene: SceneBuilder): void {
       scene.text('You own these panties and can wear this set.');
       scene.actions([
         { label: 'Wear set', handler: (st: GameState) => {
-    qspCall(s, 'bra_view', 'view_item_wear_pair', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterViewItemWearPair(s, scene); (s as any).locArgs = __savedLocArgs; }
     dynamicGoto(st, 'loc', 'loc_arg');
   } },
       ]);
@@ -412,7 +412,7 @@ function enterViewItemBathroom(s: GameState, scene: SceneBuilder): void {
 
 function enterViewItemStorage(s: GameState, scene: SceneBuilder): void {
   scene.text('This bra is in storage.');
-  qspCall(s, 'bra_view', 'storage_options');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([
@@ -425,7 +425,7 @@ function enterViewItemStorage(s: GameState, scene: SceneBuilder): void {
 
 function enterViewItemUnwanted(s: GameState, scene: SceneBuilder): void {
   scene.text('This bra is unwanted.');
-  qspCall(s, 'bra_view', 'storage_options');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStorageOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([
@@ -463,13 +463,13 @@ function enterViewItemWearSingleHypno(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Put them on anyways', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Put them on anyways', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     // TODO-QSP: gs 'bras', 'wear', $shop_utils_view['type'], shop_utils_view['number']
@@ -538,13 +538,13 @@ function enterViewItemWearPairHypno(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Put them on anyways', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Put them on anyways', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     // TODO-QSP: gs 'bras', 'wear', $shop_utils_view['type'], shop_utils_view['number']

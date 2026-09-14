@@ -19,17 +19,17 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/katalkin/sex/kat.jpg');
   scene.text('Since he doesn\'t notice any clear objections from you, captain Katalkin\'s groping grows bolder.');
   // TODO-QSP: dynamic text: His hands now ravage your body as he roughly squeezes your <<$titsize>> breasts ...
-  scene.text(`His hands now ravage your body as he roughly squeezes your ${((s as any).titsize ?? 0)} breasts and pinches your nipples before he pulls you up and reaches behind you, pawing at your ass as he pulls your clothes to the side for better access.`);
+  scene.text(`His hands now ravage your body as he roughly squeezes your ${((s as any).titsize || '')} breasts and pinches your nipples before he pulls you up and reaches behind you, pawing at your ass as he pulls your clothes to the side for better access.`);
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Push his hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Push his hands away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Push his hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Push his hands away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/katalkin/sex/kat.jpg');
@@ -45,13 +45,13 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Close your eyes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Close your eyes', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Close your eyes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Close your eyes', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['katalkinSex', 'd_katsub'] },

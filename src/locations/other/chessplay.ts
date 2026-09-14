@@ -101,7 +101,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
     scene.text('Stalemate! You have drawn the match against \'+$chess_name+\'!');
     // TODO-QSP: dynamic text: You and '+$chess_name+' could not find a way to win the match.
     scene.text('You and \'+$chess_name+\' could not find a way to win the match.');
-    qspCall(s, 'chessplay', 'expfame', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExpfame(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Return', goto: ['kruchess', ''] },
     ]);
@@ -110,7 +110,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/community/chess/lose\' + rand(1, 1) + \'.jpg');
       // TODO-QSP: dynamic text: Checkmate! You have lost the match against '+$chess_name+'!
       scene.text('Checkmate! You have lost the match against \'+$chess_name+\'!');
-      qspCall(s, 'chessplay', 'expfame', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterExpfame(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Return', goto: ['kruchess', ''] },
       ]);
@@ -120,7 +120,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/pavlovsk/community/chess/win\' + rand(1, 1) + \'.jpg');
         // TODO-QSP: dynamic text: Checkmate! You have won the match against '+$chess_name+'!
         scene.text('Checkmate! You have won the match against \'+$chess_name+\'!');
-        qspCall(s, 'chessplay', 'expfame', 2);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterExpfame(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.actions([
           { label: 'Return', goto: ['kruchess', ''] },
         ]);
@@ -131,7 +131,7 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
           scene.text('Draw! You agree to end the match with \'+$chess_name+\'.');
           // TODO-QSP: dynamic text: You and '+$chess_name+' have both used too many moves and neither could find a w...
           scene.text('You and \'+$chess_name+\' have both used too many moves and neither could find a way to win the match.');
-          qspCall(s, 'chessplay', 'expfame', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExpfame(s, scene); (s as any).locArgs = __savedLocArgs; }
           scene.actions([
             { label: 'Return', goto: ['kruchess', ''] },
           ]);
@@ -142,12 +142,12 @@ function enterGame(s: GameState, scene: SceneBuilder): void {
             scene.text('Draw! You agree to end the match with \'+$chess_name+\'.');
             // TODO-QSP: dynamic text: You and '+$chess_name+' have both used too much time and neither could find a wa...
             scene.text('You and \'+$chess_name+\' have both used too much time and neither could find a way to win the match.');
-            qspCall(s, 'chessplay', 'expfame', 1);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterExpfame(s, scene); (s as any).locArgs = __savedLocArgs; }
             scene.actions([
               { label: 'Return', goto: ['kruchess', ''] },
             ]);
           } else {
-            qspCall(s, 'chessplay', 'moves');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMoves(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -178,22 +178,22 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
       if (((s as any).chessM ?? 0) <= 3) {
         scene.img('images/locations/pavlovsk/community/chess/defensive\' + rand(1, 1) + \'.jpg');
         // TODO-QSP: $chess_name+' plays defensively and is now in a better position than you.'
-        qspCall(s, 'chessplay', 'advantage', 'conservative', 'bad');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'conservative', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).chessM ?? 0) <= 5) {
           scene.img('images/locations/pavlovsk/community/chess/tactical\' + rand(1, 1) + \'.jpg');
           // TODO-QSP: $chess_name+' plays tactically and is able to deftly pick apart your conservative defenses.'
-          qspCall(s, 'chessplay', 'advantage', 'conservative', 'bad');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'conservative', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).chessM ?? 0) <= 7) {
             scene.img('images/locations/pavlovsk/community/chess/trap\' + rand(1, 1) + \'.jpg');
             // TODO-QSP: $chess_name+' tries to trap you, but you encircle it with your defenses.'
-            qspCall(s, 'chessplay', 'advantage', 'conservative', 'good');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'conservative', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).chessM ?? 0) <= 9) {
               scene.img('images/locations/pavlovsk/community/chess/offensive\' + rand(1, 1) + \'.jpg');
               // TODO-QSP: $chess_name+' plays offensively, but your defense repulses his attacks.'
-              qspCall(s, 'chessplay', 'advantage', 'conservative', 'good');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'conservative', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).chessM ?? 0) <= 11) {
                 scene.img('images/locations/pavlovsk/community/chess/aggressive\' + rand(1, 1) + \'.jpg');
@@ -209,13 +209,13 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You are on minute '+str(total_chess_time)+' out of '+str(chess_time_limit)
     (s as any).chess_GG = ((s as any).chess_GG ?? 0) - (1);
     (s as any).chess_com = ((s as any).chess_com ?? 0) - (1);
-    qspCall(s, 'chessplay', 'game');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGame(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Play defensively', handler: (st: GameState) => {
     if (((s as any).chessM ?? 0) <= 1) {
       scene.img('images/locations/pavlovsk/community/chess/conservative\' + rand(1, 1) + \'.jpg');
       // TODO-QSP: $chess_name+' plays very conservatively and does not threaten your defenses at all.'
-      qspCall(s, 'chessplay', 'advantage', 'defense', 'good');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'defense', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).chessM ?? 0) <= 3) {
         scene.img('images/locations/pavlovsk/community/chess/defensive\' + rand(1, 1) + \'.jpg');
@@ -225,12 +225,12 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
         if (((s as any).chessM ?? 0) <= 5) {
           scene.img('images/locations/pavlovsk/community/chess/tactical\' + rand(1, 1) + \'.jpg');
           // TODO-QSP: $chess_name+' plays tactically and is able to deftly pick apart your defenses.'
-          qspCall(s, 'chessplay', 'advantage', 'defense', 'bad');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'defense', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).chessM ?? 0) <= 7) {
             scene.img('images/locations/pavlovsk/community/chess/trap\' + rand(1, 1) + \'.jpg');
             // TODO-QSP: $chess_name+' tries to trap you, but you avoid it with your defenses.'
-            qspCall(s, 'chessplay', 'advantage', 'defense', 'good');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'defense', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).chessM ?? 0) <= 9) {
               scene.img('images/locations/pavlovsk/community/chess/offensive\' + rand(1, 1) + \'.jpg');
@@ -240,7 +240,7 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
               if (((s as any).chessM ?? 0) <= 11) {
                 scene.img('images/locations/pavlovsk/community/chess/aggressive\' + rand(1, 1) + \'.jpg');
                 // TODO-QSP: $chess_name+' plays aggressively and overwhelms your defenses.'
-                qspCall(s, 'chessplay', 'advantage', 'defense', 'bad');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'defense', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             }
           }
@@ -251,18 +251,18 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You are on minute '+str(total_chess_time)+' out of '+str(chess_time_limit)
     (s as any).chess_GG = ((s as any).chess_GG ?? 0) - (1);
     (s as any).chess_com = ((s as any).chess_com ?? 0) - (1);
-    qspCall(s, 'chessplay', 'game');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGame(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Play tactically', handler: (st: GameState) => {
     if (((s as any).chessM ?? 0) <= 1) {
       scene.img('images/locations/pavlovsk/community/chess/conservative\' + rand(1, 1) + \'.jpg');
       // TODO-QSP: $chess_name+' plays very conservatively and your tactical moves leave you in a better position.'
-      qspCall(s, 'chessplay', 'advantage', 'tactical', 'good');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tactical', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).chessM ?? 0) <= 3) {
         scene.img('images/locations/pavlovsk/community/chess/defensive\' + rand(1, 1) + \'.jpg');
         // TODO-QSP: $chess_name+' plays defensively allowing you to pick apart their defenses.'
-        qspCall(s, 'chessplay', 'advantage', 'tactical', 'good');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tactical', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).chessM ?? 0) <= 5) {
           scene.img('images/locations/pavlovsk/community/chess/tactical\' + rand(1, 1) + \'.jpg');
@@ -277,12 +277,12 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
             if (((s as any).chessM ?? 0) <= 9) {
               scene.img('images/locations/pavlovsk/community/chess/offensive\' + rand(1, 1) + \'.jpg');
               // TODO-QSP: $chess_name+' plays offensively, and some of your pieces are caught out of position.'
-              qspCall(s, 'chessplay', 'advantage', 'tactical', 'bad');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tactical', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).chessM ?? 0) <= 11) {
                 scene.img('images/locations/pavlovsk/community/chess/aggressive\' + rand(1, 1) + \'.jpg');
                 // TODO-QSP: $chess_name+' plays aggressively and rushes past your unprepared defenses.'
-                qspCall(s, 'chessplay', 'advantage', 'tactical', 'bad');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tactical', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             }
           }
@@ -293,18 +293,18 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You are on minute '+str(total_chess_time)+' out of '+str(chess_time_limit)
     (s as any).chess_GG = ((s as any).chess_GG ?? 0) - (1);
     (s as any).chess_com = ((s as any).chess_com ?? 0) - (1);
-    qspCall(s, 'chessplay', 'game');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGame(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Bait a trap for your opponent', handler: (st: GameState) => {
     if (((s as any).chessM ?? 0) <= 1) {
       scene.img('images/locations/pavlovsk/community/chess/conservative\' + rand(1, 1) + \'.jpg');
       // TODO-QSP: $chess_name+' plays very conservatively and their defenses are now very well prepared.'
-      qspCall(s, 'chessplay', 'advantage', 'trap', 'bad');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'trap', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).chessM ?? 0) <= 3) {
         scene.img('images/locations/pavlovsk/community/chess/defensive\' + rand(1, 1) + \'.jpg');
         // TODO-QSP: $chess_name+' plays defensively and your bait is now out of position.'
-        qspCall(s, 'chessplay', 'advantage', 'trap', 'bad');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'trap', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).chessM ?? 0) <= 5) {
           scene.img('images/locations/pavlovsk/community/chess/tactical\' + rand(1, 1) + \'.jpg');
@@ -319,12 +319,12 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
             if (((s as any).chessM ?? 0) <= 9) {
               scene.img('images/locations/pavlovsk/community/chess/offensive\' + rand(1, 1) + \'.jpg');
               // TODO-QSP: $chess_name+' plays offensively, and a couple of their pieces are caught out of position.'
-              qspCall(s, 'chessplay', 'advantage', 'trap', 'good');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'trap', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).chessM ?? 0) <= 11) {
                 scene.img('images/locations/pavlovsk/community/chess/aggressive\' + rand(1, 1) + \'.jpg');
                 // TODO-QSP: $chess_name+' plays aggressively and many of their pieces fall into your trap.'
-                qspCall(s, 'chessplay', 'advantage', 'trap', 'good');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'trap', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             }
           }
@@ -335,13 +335,13 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You are on minute '+str(total_chess_time)+' out of '+str(chess_time_limit)
     (s as any).chess_GG = ((s as any).chess_GG ?? 0) - (1);
     (s as any).chess_com = ((s as any).chess_com ?? 0) - (1);
-    qspCall(s, 'chessplay', 'game');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGame(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Play offensively', handler: (st: GameState) => {
     if (((s as any).chessM ?? 0) <= 1) {
       scene.img('images/locations/pavlovsk/community/chess/conservative\' + rand(1, 1) + \'.jpg');
       // TODO-QSP: $chess_name+' plays very conservatively and repulses all your attacks.'
-      qspCall(s, 'chessplay', 'advantage', 'offense', 'bad');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'offense', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).chessM ?? 0) <= 3) {
         scene.img('images/locations/pavlovsk/community/chess/defensive\' + rand(1, 1) + \'.jpg');
@@ -351,12 +351,12 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
         if (((s as any).chessM ?? 0) <= 5) {
           scene.img('images/locations/pavlovsk/community/chess/tactical\' + rand(1, 1) + \'.jpg');
           // TODO-QSP: $chess_name+' plays tactically, but your offense is able to outmaneuver them.'
-          qspCall(s, 'chessplay', 'advantage', 'offense', 'good');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'offense', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).chessM ?? 0) <= 7) {
             scene.img('images/locations/pavlovsk/community/chess/trap\' + rand(1, 1) + \'.jpg');
             // TODO-QSP: $chess_name+' traps some of your pieces. You should think more carefully next time.'
-            qspCall(s, 'chessplay', 'advantage', 'offense', 'bad');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'offense', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).chessM ?? 0) <= 9) {
               scene.img('images/locations/pavlovsk/community/chess/offensive\' + rand(1, 1) + \'.jpg');
@@ -366,7 +366,7 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
               if (((s as any).chessM ?? 0) <= 11) {
                 scene.img('images/locations/pavlovsk/community/chess/aggressive\' + rand(1, 1) + \'.jpg');
                 // TODO-QSP: $chess_name+' plays aggressively and overextends themselves.'
-                qspCall(s, 'chessplay', 'advantage', 'offense', 'good');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'offense', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             }
           }
@@ -377,7 +377,7 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You are on minute '+str(total_chess_time)+' out of '+str(chess_time_limit)
     (s as any).chess_GG = ((s as any).chess_GG ?? 0) - (1);
     (s as any).chess_com = ((s as any).chess_com ?? 0) - (1);
-    qspCall(s, 'chessplay', 'game');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGame(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Play aggressively', handler: (st: GameState) => {
     if (((s as any).chessM ?? 0) <= 1) {
@@ -388,22 +388,22 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
       if (((s as any).chessM ?? 0) <= 3) {
         scene.img('images/locations/pavlovsk/community/chess/defensive\' + rand(1, 1) + \'.jpg');
         // TODO-QSP: $chess_name+' plays defensively and you overwhelm a few of their pieces.'
-        qspCall(s, 'chessplay', 'advantage', 'aggressive', 'good');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'aggressive', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).chessM ?? 0) <= 5) {
           scene.img('images/locations/pavlovsk/community/chess/tactical\' + rand(1, 1) + \'.jpg');
           // TODO-QSP: $chess_name+' plays tactically and cannot cope with your aggressive moves.'
-          qspCall(s, 'chessplay', 'advantage', 'aggressive', 'good');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'aggressive', 'good']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).chessM ?? 0) <= 7) {
             scene.img('images/locations/pavlovsk/community/chess/trap\' + rand(1, 1) + \'.jpg');
             // TODO-QSP: $chess_name+' tries to trap you, but some of your pieces fall for it.'
-            qspCall(s, 'chessplay', 'advantage', 'aggressive', 'bad');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'aggressive', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).chessM ?? 0) <= 9) {
               scene.img('images/locations/pavlovsk/community/chess/offensive\' + rand(1, 1) + \'.jpg');
               // TODO-QSP: $chess_name+' plays offensively, leaving some of your pieces exposed.'
-              qspCall(s, 'chessplay', 'advantage', 'aggressive', 'bad');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'aggressive', 'bad']; enterAdvantage(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).chessM ?? 0) <= 11) {
                 scene.img('images/locations/pavlovsk/community/chess/aggressive\' + rand(1, 1) + \'.jpg');
@@ -419,7 +419,7 @@ function enterMoves(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You are on minute '+str(total_chess_time)+' out of '+str(chess_time_limit)
     (s as any).chess_GG = ((s as any).chess_GG ?? 0) - (1);
     (s as any).chess_com = ((s as any).chess_com ?? 0) - (1);
-    qspCall(s, 'chessplay', 'game');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGame(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

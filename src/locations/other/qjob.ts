@@ -44,13 +44,13 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'kiss', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Tell him to stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell him to stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Tell him to stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell him to stop', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/city/citycenter/photo/photoshoot/f0.jpg');
@@ -78,13 +78,13 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.text('You smile at the photographer confidently. "Thanks, but no thanks. That was nice, but I have other places to be."');
@@ -116,13 +116,13 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('"What!? I\'m not here to do porn! What kind of girl do you think I am!?" you ask indignantly before quickly walking back to the dressing room. The photographer tries to convince you through the door as you put your clothes back on, but you storm out of the building without saying another word.');
@@ -160,7 +160,7 @@ function enterVar1(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Change position', handler: (st: GameState) => {
     (s as any).picrand = Math.floor(Math.random() * 5) + 6;
-    scene.img(`images/locations/city/citycenter/photo/photoshoot/f${((s as any).picrand ?? 0)}.jpg`);
+    scene.img(`images/locations/city/citycenter/photo/photoshoot/f${((s as any).picrand || '')}.jpg`);
     scene.text('You\'re too baffled to complain, even if you wanted to. The photographer enjoys the two of you, still giving commands from time to time. Your tongue feels tired from all the licking by the time it\'s over.');
     scene.text('The three of you lay exhaustedly on the floor, and only slowly get up. "That was great! I loved how feisty this one was… Same time next week?" the other girl asks the photographer as you all get dressed.');
     scene.text('The photographer laughs as she gives you your paycheck. "Absolutely! I love my job…"');
@@ -200,13 +200,13 @@ function enterVar2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Respectfully decline [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Respectfully decline', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Respectfully decline [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Respectfully decline', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'money', 'earn', 2500);
@@ -255,13 +255,13 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Angrily refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Angrily refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Angrily refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Angrily refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('"You made me come all the way down here because you want a whore?! Why not just get a whore?!" you snark at him, barely stopping yourself from spitting in his face in anger.');
@@ -345,13 +345,13 @@ function enterVar3(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'sex', 'resist', 'medium');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Stop him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Stop him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Stop him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('"Could you please stop that?" you ask him intently.');

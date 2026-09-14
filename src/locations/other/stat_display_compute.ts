@@ -109,8 +109,8 @@ function enterQueueMsg(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputeData(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'stat_display_compute', 'compute_stats');
-  qspCall(s, 'stat_display_compute', 'compute_body');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeStats(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeBody(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'din_bad', 'compute_cycle_state');
   qspCall(s, 'din_bad', 'compute_bc_status');
   qspCall(s, 'archetypes', 'compute_stat_display');
@@ -118,14 +118,14 @@ function enterComputeData(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lact_lib', 'compute_stat_display');
   qspCall(s, 'outfit', 'compute_stat_display');
   qspCall(s, 'drugs', 'compute_stat_display');
-  qspCall(s, 'stat_display_compute', 'compute_appearance');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeAppearance(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'cum_manage', 'compute_stat_display');
   qspCall(s, 'jobs', 'compute_stat_display');
   qspCall(s, 'gschool', 'compute_stat_display');
   qspCall(s, 'uni_lessons', 'compute_stat_display');
   qspCall(s, 'stat', 'compute_stat_display');
-  qspCall(s, 'stat_display_compute', 'compute_misc');
-  qspCall(s, 'stat_display_compute', 'compute_images');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeMisc(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeImages(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -215,7 +215,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'sd_ap_collect'
   }
   if (((s as any).sd_ap ?? 0)?.['cnt'] > 0) {
-    if (!(s as any).sd_ap) (s as any).sd_ap = {}; (s as any).sd_ap['mean'] = ((s as any).sd_ap ?? {})?.['sum'] / ((s as any).sd_ap ?? {})?.['cnt'];
+    if (!(s as any).sd_ap) (s as any).sd_ap = {}; (s as any).sd_ap['mean'] = (((s as any).sd_ap ?? {})?.['sum'] ?? 0) / (((s as any).sd_ap ?? {})?.['cnt'] ?? 0);
   } else {
     if (!(s as any).sd_ap) (s as any).sd_ap = {}; (s as any).sd_ap['mean'] = 50;
   }
@@ -225,7 +225,7 @@ function enterComputeAttributesProse(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :sd_ap_bucket
   if (((s as any).sd_ap ?? 0)?.['bi'] < ((s as any).sd_ap ?? 0)?.['cnt']) {
     if (!(s as any).sd_ap) (s as any).sd_ap = {}; (s as any).sd_ap['bv'] = ((s as any).sd_ap ?? 0)?.['v_' + String(((s as any).sd_ap ?? 0)?.['bi'])];
-    if (!(s as any).sd_ap) (s as any).sd_ap = {}; (s as any).sd_ap['dev'] = ((s as any).sd_ap ?? {})?.['bv'] - ((s as any).sd_ap ?? {})?.['mean'];
+    if (!(s as any).sd_ap) (s as any).sd_ap = {}; (s as any).sd_ap['dev'] = (((s as any).sd_ap ?? {})?.['bv'] ?? 0) - (((s as any).sd_ap ?? {})?.['mean'] ?? 0);
     if (((s as any).sd_ap ?? 0)?.['bv'] >= 80  ||  ((s as any).sd_ap ?? 0)?.['dev'] >= 15) {
       // TODO-QSP: $sd_ap['high_' + $str(sd_ap['n_high'])] = $sd_ap['n_' + $str(sd_ap['bi'])]
       if (!(s as any).sd_ap) (s as any).sd_ap = {}; (s as any).sd_ap['n_high'] = ((s as any).sd_ap['n_high'] ?? 0) + (1);
@@ -291,8 +291,8 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_horny ?? 0) >= 100) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['arousal'] = 'Craving floods your senses. You are <a href="exec: view\'images/pc/body/pussy/aroused/' + ((((s as any).pantyworntype ?? 0) !== 'none') ? ('panties') : ('none')) + '_high.jpg\'">soaked</a> from your juices.';
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['arousal_tooltip'] = 'Craving floods your senses. You are soaked from your juices.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'arousal', 'bimbo', 'status/arousal_high', 2);
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You are overwhelmed by arousal.', 'bimbo');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'bimbo', 'status/arousal_high', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are overwhelmed by arousal.', 'bimbo']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
       // TODO-QSP: $sd_pr_urgent[] = 'overcome with desire'
     }
@@ -300,57 +300,57 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_horny ?? 0) >= 75) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['arousal'] = 'You can\'t stop thinking about sex. You are <a href="exec: view\'images/pc/body/pussy/aroused/' + ((((s as any).pantyworntype ?? 0) !== 'none') ? ('panties') : ('none')) + '_low.jpg\'">itching</a> with arousal.';
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['arousal_tooltip'] = 'You can\'t stop thinking about sex. You are itching with arousal.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'arousal', 'bimbo', 'status/arousal_high', 2);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'bimbo', 'status/arousal_high', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
         // TODO-QSP: $sd_pr_warning[] = 'very aroused'
       }
     } else {
       if (((s as any).pcs_horny ?? 0) >= 50) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['arousal'] = 'A warm desire quickens your pulse.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'arousal', 'punk', 'status/arousal_med', 2);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'punk', 'status/arousal_med', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
           // TODO-QSP: $sd_pr_mild[] = 'a bit flushed'
         }
       } else {
         if (((s as any).pcs_horny ?? 0) >= 25) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['arousal'] = 'A faint tug of want pricks at you.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'arousal', 'neutral', 'status/arousal_low', 2, 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'neutral', 'status/arousal_low', 2, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['arousal'] = 'Indifference dulls any erotic spark.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'arousal', 'pos', 'status/arousal_low', 2, 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arousal', 'pos', 'status/arousal_low', 2, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
   }
   if (((s as any).pain ?? 0)?.['total'] > 75) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['pain'] = 'Agonizing pain wracks your body.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'pain', 'v_neg', 'status/pain_3', 2, 'gt \'$menu_character\', \'pain\'');
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You are in agony.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain', 'v_neg', 'status/pain_3', 2, 'gt \'$menu_character\', \'pain\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are in agony.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
       // TODO-QSP: $sd_pr_urgent[] = 'in agony'
     }
   } else {
     if (((s as any).pain ?? 0)?.['total'] > 50) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['pain'] = 'Sharp pain flares through your limbs.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'pain', 'neg', 'status/pain_2', 2, 'gt \'$menu_character\', \'pain\'');
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'You are in sharp pain.', 'neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain', 'neg', 'status/pain_2', 2, 'gt \'$menu_character\', \'pain\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are in sharp pain.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
         // TODO-QSP: $sd_pr_warning[] = 'in sharp pain'
       }
     } else {
       if (((s as any).pain ?? 0)?.['total'] > 25) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['pain'] = 'A nagging pain distracts your focus.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'pain', 'neutral', 'status/pain_1', 2, 'gt \'$menu_character\', \'pain\'');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain', 'neutral', 'status/pain_1', 2, 'gt \'$menu_character\', \'pain\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
           // TODO-QSP: $sd_pr_mild[] = 'a bit achy'
         }
       } else {
         if (((s as any).pain ?? 0)?.['total'] > 5) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['pain'] = 'A small ache tugs at your muscles.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'pain', 'neutral', 'status/pain_1', 2, 'gt \'$menu_character\', \'pain\'', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain', 'neutral', 'status/pain_1', 2, 'gt \'$menu_character\', \'pain\'', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['pain'] = 'Your body feels wholly at ease.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'pain', 'v_pos', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain', 'v_pos', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -358,32 +358,32 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).stat_nums) (s as any).stat_nums = {}; (s as any).stat_nums['health_percent'] = (100 * ((s as any).pcs_health ?? 0)) / ((s as any).healthmax ?? 0);
   if (((s as any).stat_nums ?? 0)?.['health_percent'] < 15) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['health'] = 'You are in critical condition.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'health', 'v_neg');
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You are in critical condition.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'health', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are in critical condition.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
       // TODO-QSP: $sd_pr_urgent[] = 'critically ill'
     }
   } else {
     if (((s as any).stat_nums ?? 0)?.['health_percent'] < 30) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['health'] = 'Your health falters under strain.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'health', 'neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'health', 'neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
         // TODO-QSP: $sd_pr_warning[] = 'in poor health'
       }
     } else {
       if (((s as any).stat_nums ?? 0)?.['health_percent'] < 60) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['health'] = 'You feel noticeably unwell.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'health', 'neutral');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'health', 'neutral']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
           // TODO-QSP: $sd_pr_mild[] = 'feeling unwell'
         }
       } else {
         if (((s as any).stat_nums ?? 0)?.['health_percent'] < 90) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['health'] = 'A subtle weakness saps your vigor.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'health', 'neutral', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'health', 'neutral', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['health'] = 'You are completely healthy.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'health', 'v_pos', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'health', 'v_pos', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -392,28 +392,28 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).stat_nums) (s as any).stat_nums = {}; (s as any).stat_nums['mana_percent'] = (100 * ((s as any).pcs_mana ?? 0)) / ((s as any).manamax ?? 0);
     if (((s as any).stat_nums ?? 0)?.['mana_percent'] < 15) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mana'] = 'You are drained of arcane energy.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'mana', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mana', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
         // TODO-QSP: $sd_pr_warning[] = 'mana-drained'
       }
     } else {
       if (((s as any).stat_nums ?? 0)?.['mana_percent'] < 30) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mana'] = 'Your magical reserves run thin and strained.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'mana', 'neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mana', 'neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
           // TODO-QSP: $sd_pr_mild[] = 'low on mana'
         }
       } else {
         if (((s as any).stat_nums ?? 0)?.['mana_percent'] < 60) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mana'] = 'Your spellpool holds a steady charge.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'mana', 'neutral', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mana', 'neutral', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).stat_nums ?? 0)?.['mana_percent'] < 90) {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mana'] = 'Magic hums lightly beneath your skin.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'mana', 'pos', 'pos');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mana', 'pos', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mana'] = 'Arcane power brims through your veins.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'mana', 'v_pos', 'pos');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mana', 'v_pos', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -422,32 +422,32 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).stat_nums) (s as any).stat_nums = {}; (s as any).stat_nums['willpower_percent'] = (100 * ((s as any).pcs_willpwr ?? 0)) / ((s as any).willpowermax ?? 0);
   if (((s as any).stat_nums ?? 0)?.['willpower_percent'] < 20) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['willpower'] = 'You are completely at others\' mercy.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'willpower', 'v_neg', 'status/willpower_low', 2);
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'Your willpower is broken.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpower', 'v_neg', 'status/willpower_low', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your willpower is broken.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
       // TODO-QSP: $sd_pr_urgent[] = 'broken in will'
     }
   } else {
     if (((s as any).stat_nums ?? 0)?.['willpower_percent'] < 40) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['willpower'] = 'Your resolve wavers under pressure.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'willpower', 'pos', 'status/willpower_low', 2);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpower', 'pos', 'status/willpower_low', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
         // TODO-QSP: $sd_pr_warning[] = 'weak-willed'
       }
     } else {
       if (((s as any).stat_nums ?? 0)?.['willpower_percent'] < 60) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['willpower'] = 'Doubt creeps into your thoughts.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'willpower', 'neutral', 'status/willpower_med', 2);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpower', 'neutral', 'status/willpower_med', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
           // TODO-QSP: $sd_pr_mild[] = 'irresolute'
         }
       } else {
         if (((s as any).stat_nums ?? 0)?.['willpower_percent'] < 80) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['willpower'] = 'You feel steadfast in purpose.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'willpower', 'pos', 'status/willpower_high', 2, 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpower', 'pos', 'status/willpower_high', 2, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['willpower'] = 'Your resolve stands unbreakable.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'willpower', 'v_pos', 'status/willpower_high', 2, 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpower', 'v_pos', 'status/willpower_high', 2, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -455,68 +455,68 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).stat_nums) (s as any).stat_nums = {}; (s as any).stat_nums['stamina_percent'] = (100 * ((s as any).pcs_stam ?? 0)) / ((s as any).stammax ?? 0);
   if (((s as any).stat_nums ?? 0)?.['stamina_percent'] < 15) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['stamina'] = 'Your energy is utterly spent.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'stamina', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stamina', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
       // TODO-QSP: $sd_pr_urgent[] = 'spent'
     }
   } else {
     if (((s as any).stat_nums ?? 0)?.['stamina_percent'] < 30) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['stamina'] = 'Your limbs tremble from exertion.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'stamina', 'neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stamina', 'neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
         // TODO-QSP: $sd_pr_warning[] = 'exhausted'
       }
     } else {
       if (((s as any).stat_nums ?? 0)?.['stamina_percent'] < 60) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['stamina'] = 'Your breath catches with effort.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'stamina', 'neutral');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stamina', 'neutral']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
           // TODO-QSP: $sd_pr_mild[] = 'winded'
         }
       } else {
         if (((s as any).stat_nums ?? 0)?.['stamina_percent'] < 90) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['stamina'] = 'Fatigue flickers at your edge.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'stamina', 'neutral', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stamina', 'neutral', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['stamina'] = 'You feel fresh and alert.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'stamina', 'v_pos', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stamina', 'v_pos', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
   }
   if (((s as any).pcs_mood ?? 0) < 10) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mood'] = 'A dark despair closes in around you.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'mood', 'v_neg', 'status/mood_6', 2);
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You are in deep despair.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'v_neg', 'status/mood_6', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are in deep despair.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
       // TODO-QSP: $sd_pr_urgent[] = 'sunk in despair'
     }
   } else {
     if (((s as any).pcs_mood ?? 0) < 25) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mood'] = 'A sharp melancholy tugs at your thoughts.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'mood', 'v_neg', 'status/mood_5', 2);
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'You are very unhappy.', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'v_neg', 'status/mood_5', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are very unhappy.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
         // TODO-QSP: $sd_pr_warning[] = 'deeply unhappy'
       }
     } else {
       if (((s as any).pcs_mood ?? 0) < 40) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mood'] = 'A heaviness clouds your mood.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'mood', 'neg', 'status/mood_4', 2);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'neg', 'status/mood_4', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
           // TODO-QSP: $sd_pr_mild[] = 'gloomy'
         }
       } else {
         if (((s as any).pcs_mood ?? 0) < 55) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mood'] = 'Your mood sits quietly even.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'mood', 'neutral', 'status/mood_3', 2, 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'neutral', 'status/mood_3', 2, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).pcs_mood ?? 0) < 70) {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mood'] = 'A light warmth colors your thoughts.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'mood', 'pos', 'status/mood_2', 2, 'pos');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'pos', 'status/mood_2', 2, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mood'] = 'Your spirits lift with a bright ease.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'mood', 'v_pos', 'status/mood_1', 2, 'pos');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'v_pos', 'status/mood_1', 2, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (((s as any).stat_cfg ?? 0)?.['render_mode_status'] === 3) {
               // TODO-QSP: $sd_pr_upbeat[] = 'in great spirits'
             }
@@ -530,9 +530,9 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mood_trauma ?? 0) > 0) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['mood_trauma'] = 'Recent events have lowered your maximum mood to ' + qspUntranslated(s, "moodVars['max']>", { location: "stat_display_compute" }) + '.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'mood_trauma', 'v_neg', 'status/mood_6', 2);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood_trauma', 'v_neg', 'status/mood_6', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).pcs_mood ?? 0) >= ((s as any).moodVars ?? 0)?.['max'] - 10) {
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'Your mood is capped by trauma (max: ' + qspUntranslated(s, "moodVars['max']>", { location: "stat_display_compute" }) + ').', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your mood is capped by trauma (max: ' + qspUntranslated(s, "moodVars['max']>", { location: "stat_display_compute" }) + ').', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).pcs_energy ?? 0) <= 5) {
@@ -564,17 +564,17 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_energy ?? 0) <= 50) {
     if (((s as any).cheatVars ?? 0)?.['hunger'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_sandwich'] > 0) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sandwich_icon_tooltip'] = 'Click to eat your sandwich.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'sandwich_icon', '', 'status/need_food_sandwich', 2, 'mc_inventory[\'food_sandwich\'] -= 1 & pcs_energy += 40 & cumspclnt = 2 & gs \'cum_cleanup\' & fat += 1 & gs \'stat\'');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sandwich_icon', '', 'status/need_food_sandwich', 2, 'mc_inventory[\'food_sandwich\'] -= 1 & pcs_energy += 40 & cumspclnt = 2 & gs \'cum_cleanup\' & fat += 1 & gs \'stat\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).pcs_energy ?? 0) <= 5) {
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'energy', 'v_neg', 'status/need_food', 2);
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'You are starving.', 'v_neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'energy', 'v_neg', 'status/need_food', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are starving.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).pcs_energy ?? 0) <= 25) {
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'energy', 'v_neg', 'status/need_food', 2);
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'You are nearly starving.', 'v_neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'energy', 'v_neg', 'status/need_food', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are nearly starving.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'energy', 'neg', 'status/need_food', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'energy', 'neg', 'status/need_food', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -609,45 +609,45 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cheatVars ?? 0)?.['thirst'] === 0  &&  (((s as any).mc_inventory ?? 0)?.['refill_bottle_water'] > 0  ||  ((s as any).mc_inventory ?? 0)?.['food_water'] > 0)) {
       if (((s as any).mc_inventory ?? 0)?.['refill_bottle_water'] > 0) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['water_icon_tooltip'] = 'Click to drink from your refillable water bottle.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'water_icon', '', 'status/need_drink_bottle', 2, 'mc_inventory[\'refill_bottle_water\'] -= 1 & pcs_hydra += 100 & cumspclnt = 2 & gs \'cum_cleanup\' & gs \'stat\'');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'water_icon', '', 'status/need_drink_bottle', 2, 'mc_inventory[\'refill_bottle_water\'] -= 1 & pcs_hydra += 100 & cumspclnt = 2 & gs \'cum_cleanup\' & gs \'stat\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['water_icon_tooltip'] = 'Click to drink from your water bottle.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'water_icon', '', 'status/need_drink_bottle', 2, 'mc_inventory[\'food_water\'] = 0 & pcs_hydra += 100 & cumspclnt = 2 & gs \'cum_cleanup\' & gs \'stat\'');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'water_icon', '', 'status/need_drink_bottle', 2, 'mc_inventory[\'food_water\'] = 0 & pcs_hydra += 100 & cumspclnt = 2 & gs \'cum_cleanup\' & gs \'stat\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).pcs_hydra ?? 0) <= 5) {
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'thirst', 'v_neg', 'status/need_drink', 2);
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'You are parched.', 'v_neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'thirst', 'v_neg', 'status/need_drink', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are parched.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).pcs_hydra ?? 0) <= 25) {
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'thirst', 'v_neg', 'status/need_drink', 2);
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'You are very thirsty.', 'neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'thirst', 'v_neg', 'status/need_drink', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are very thirsty.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'thirst', 'neg', 'status/need_drink', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'thirst', 'neg', 'status/need_drink', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
   }
   if (((s as any).pcs_sleep ?? 0) <= 5) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'You struggle to keep your eyes open.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'v_neg', 'status/need_sleep', 2);
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You are dangerously tired.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'v_neg', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are dangerously tired.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).pcs_sleep ?? 0) <= 25) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'Heavy lids tug at your vision.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'v_neg', 'status/need_sleep', 2);
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'You are barely awake.', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'v_neg', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are barely awake.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).pcs_sleep ?? 0) <= 50) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'You can\'t stop yourself from yawning.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'neg', 'status/need_sleep', 2);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'neg', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).pcs_sleep ?? 0) <= 75) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'A gentle yawn teases you.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'neutral', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'neutral', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'You feel wide awake.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'v_pos', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'v_pos', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -656,48 +656,48 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_sleep ?? 0) <= 50) {
       if (((s as any).drugVars ?? 0)?.['sleep_actual'] > 5) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'Heavy lids tug at your vision, and the coffee offers little relief.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'neg', 'status/need_sleep', 2);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'neg', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).drugVars ?? 0)?.['sleep_actual'] <= 25) {
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'You are barely awake.', 'v_neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are barely awake.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     } else {
       if (((s as any).pcs_sleep ?? 0) <= 75) {
         if (((s as any).drugVars ?? 0)?.['sleep_actual'] <= 5) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'Your body wants to collapse, but caffeine won\'t let it.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'v_neg', 'status/need_sleep', 2);
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'You are dangerously tired.', 'v_neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'v_neg', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are dangerously tired.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).drugVars ?? 0)?.['sleep_actual'] <= 50) {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'Your body is tired beneath a jittery stimulant buzz.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'neg', 'status/need_sleep', 2);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'neg', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (((s as any).drugVars ?? 0)?.['sleep_actual'] <= 25) {
-              qspCall(s, 'stat_display_compute', 'queue_alert', 'You are barely awake.', 'v_neg');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are barely awake.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'You\'re a little sleepy, but the coffee keeps you going.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'neutral', 'status/need_sleep', 2);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'neutral', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       } else {
         if (((s as any).drugVars ?? 0)?.['sleep_actual'] <= 5) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'Your blood is made entirely of caffeine.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'v_neg', 'status/need_sleep', 2);
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'You are dangerously tired.', 'v_neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'v_neg', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are dangerously tired.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).drugVars ?? 0)?.['sleep_actual'] <= 50) {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'You\'re bone-tired beneath a jittery caffeine edge.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'neg', 'status/need_sleep', 2);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'neg', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (((s as any).drugVars ?? 0)?.['sleep_actual'] <= 25) {
-              qspCall(s, 'stat_display_compute', 'queue_alert', 'You are barely awake.', 'v_neg');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are barely awake.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((s as any).drugVars ?? 0)?.['sleep_actual'] <= 75) {
               if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'You feel wide awake, thanks entirely to caffeine.';
-              qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'neutral', 'status/need_sleep', 2);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'neutral', 'status/need_sleep', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sleep'] = 'You feel wide awake, and the coffee helps.';
-              qspCall(s, 'stat_display_compute', 'queue_msg', 'sleep', 'pos', 'pos');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'pos', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
@@ -707,29 +707,29 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arch_vars ?? 0)?.['main_active'] === 'prude') {
     if (((s as any).pcs_faith ?? 0) <= 1) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['faith'] = 'You feel completely cut off from your faith, and your mood is badly affected.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'faith', 'v_neg', 'status/faith', 2);
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'You badly need to spend time at church.', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'faith', 'v_neg', 'status/faith', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You badly need to spend time at church.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).pcs_faith ?? 0) <= 25) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['faith'] = 'It\'s been a while since you\'ve been to church, and it\'s affecting your mood.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'faith', 'neg', 'status/faith', 2);
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'You need to spend some time at church.', 'neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'faith', 'neg', 'status/faith', 2]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You need to spend some time at church.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).pcs_faith ?? 0) <= 50) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['faith'] = 'You could do with a trip to church soon.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'faith', 'neutral', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'faith', 'neutral', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['faith'] = 'Your faith feels solid.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'faith', 'v_pos', 'pos');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'faith', 'v_pos', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
     (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).daystart ?? 0));
     if (((s as any).temp_weekday ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 19) {
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'Church Vigil is this evening.', 'prude');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Church Vigil is this evening.', 'prude']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).temp_weekday ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 5  &&  ((s as any).hour ?? 0) < 10) {
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'Divine Liturgy is this morning.', 'prude');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Divine Liturgy is this morning.', 'prude']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -808,10 +808,10 @@ function enterComputeStats(s: GameState, scene: SceneBuilder): void {
 
 function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hotcat'] = 'People would rate your appearance as a ' + qspUntranslated(s, "pcs_hotcat>", { location: "stat_display_compute" }) + ' out of 10.';
-  qspCall(s, 'stat_display_compute', 'queue_msg', 'hotcat', '', 'status/appearance', 1, 'const');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hotcat', '', 'status/appearance', 1, 'const']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((!((s as any).opPRE ?? 0))) {
     // TODO-QSP: $stat_texts['makeup_hair'] = 'Your face is <<$pc_descWordy[''makeup'']>>, and your hair is <<$pcs_hairstate>>.'
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'makeup_hair');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'makeup_hair']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if ((!((s as any).opPRE ?? 0))) {
     if (((s as any).pcs_makeup ?? 0) === 1  &&  ((s as any).mc_inventory ?? 0)?.['travel_mirror'] > 0  &&  ((s as any).mc_inventory ?? 0)?.['travel_makeup'] > 0) {
@@ -825,64 +825,64 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).opPRE ?? 0))) {
     if (((s as any).pcs_hairbsh ?? 0) !== 1  &&  ((s as any).mc_inventory ?? 0)?.['comb'] > 0) {
       // TODO-QSP: $stat_texts['hair_icon_tooltip'] = 'Your hair is <<$pcs_hairstate>>. Click to brush. It would take about <<min(15, max(1, pcs_hairlng / 80))>> minutes.'
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'hair_icon', '', 'status/hair_0', 1, 'minut += min(15, max(1, pcs_hairlng / 80)) & pcs_hairbsh = 1 & gs \'stat\'');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_icon', '', 'status/hair_0', 1, 'minut += min(15, max(1, pcs_hairlng / 80)) & pcs_hairbsh = 1 & gs \'stat\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hair_icon_tooltip'] = 'Your hair is ' + qspUntranslated(s, "pcs_hairstate>", { location: "stat_display_compute" }) + '.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'hair_icon', '', 'status/hair_' + 0 + '', 1);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_icon', '', 'status/hair_' + 0 + '', 1]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).pcs_lipbalm ?? 0) > 0) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['lipbalm'] = 'Your lips are covered in moisturizing balm.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'lipbalm', 'pos', 'status/lipstick', 1, 'const');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lipbalm', 'pos', 'status/lipstick', 1, 'const']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).false_lashes ?? 0) >= 1) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['lashes'] = 'You\'re wearing false' + ((((s as any).pcs_lashes ?? 0) === 4) ? (' mink ') : (' ')) + 'lashes.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'lashes', 'pos', 'status/lashes', 1, 'const');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lashes', 'pos', 'status/lashes', 1, 'const']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).pcs_leghair ?? 0) >= 4) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shave'] = 'Your legs ' + ((((s as any).pubestyle ?? 0) > 0  &&  ((s as any).pcs_pubes ?? 0) >= ((s as any).shave_trigger ?? 0)) ? ('and pussy ') : ('')) + 'are unshaved.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'shave', '', 'status/need_shave', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shave', '', 'status/need_shave', 1]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).pubestyle ?? 0) > 0  &&  ((s as any).pcs_pubes ?? 0) >= ((s as any).shave_trigger ?? 0)) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['shave'] = 'Your pussy is unshaved.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'shave', '', 'status/need_shave', 1);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shave', '', 'status/need_shave', 1]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).cheatVars ?? 0)?.['no_sweat'] === 0) {
     if (((s as any).pcs_sweat ?? 0) >= 60) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sweat'] = 'You\'re dripping wet with sweat and smell like a gym sock.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'sweat', 'v_neg', 'status/need_shower', 1);
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'You are soaked in sweat.', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sweat', 'v_neg', 'status/need_shower', 1]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are soaked in sweat.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).pcs_sweat ?? 0) >= 50) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sweat'] = 'You really stink.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'sweat', 'v_neg', 'status/need_shower', 1);
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'You reek of sweat.', 'v_neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sweat', 'v_neg', 'status/need_shower', 1]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You reek of sweat.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).pcs_sweat ?? 0) >= 40) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sweat'] = 'You stink.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'sweat', 'neg', 'status/need_shower', 1);
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'You smell of sweat.', 'neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sweat', 'neg', 'status/need_shower', 1]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You smell of sweat.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).pcs_sweat ?? 0) >= 30) {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sweat'] = 'You\'re a little smelly.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'sweat', 'neutral', 'status/need_shower', 1);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sweat', 'neutral', 'status/need_shower', 1]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).pcs_sweat ?? 0) >= 20) {
               if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sweat'] = 'You\'re sweating.';
-              qspCall(s, 'stat_display_compute', 'queue_msg', 'sweat', 'neutral', 'status/need_shower', 1);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sweat', 'neutral', 'status/need_shower', 1]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).pcs_sweat ?? 0) >= 10  &&  ((s as any).deodorant_on ?? 0) === 1) {
                 if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sweat'] = 'You feel fresh with your deodorant on.';
-                qspCall(s, 'stat_display_compute', 'queue_msg', 'sweat', 'pos', 'status/deodorant', 1, 'pos');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sweat', 'pos', 'status/deodorant', 1, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).deodorant_on ?? 0) === 1) {
                   if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sweat'] = 'You feel fresh with your deodorant on.';
-                  qspCall(s, 'stat_display_compute', 'queue_msg', 'sweat', 'v_pos', 'status/deodorant', 1, 'pos');
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sweat', 'v_pos', 'status/deodorant', 1, 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
                   if (Object.keys((s as any).sparrvol ?? {}).length === 0) {
                     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sweat'] = 'You\'re sparkling clean.';
-                    qspCall(s, 'stat_display_compute', 'queue_msg', 'sweat', 'pos', 'pos');
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sweat', 'pos', 'pos']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
                   }
                 }
               }
@@ -894,27 +894,27 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).sick ?? 0) >= 75) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sick'] = 'You toss in the heat. You have a stuffy nose and headache, and ache to the bone. Your throat is inflamed and very sore. You think you\'re going to cough up a lung.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'sick', 'v_neg', 'status/health', 3);
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You are gravely ill.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sick', 'v_neg', 'status/health', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are gravely ill.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).sick ?? 0) >= 50) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sick'] = 'You have a high fever, a stuffy nose, a sore head and throat, and you\'re coughing badly. Maybe it\'s the flu?';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'sick', 'v_neg', 'status/health', 3);
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'You are very sick.', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sick', 'v_neg', 'status/health', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are very sick.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).sick ?? 0) >= 25) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sick'] = 'You have a fever, your nose is clogged and it hurts to swallow. You continually cough and sneeze.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'sick', 'v_neg', 'status/health', 3);
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'You are sick.', 'neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sick', 'v_neg', 'status/health', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are sick.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).sick ?? 0) >= 5) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sick'] = 'Your nose is running and your throat is raw as you cough and sneeze.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'sick', 'v_neg', 'status/health', 3);
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'You feel unwell.', 'neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sick', 'v_neg', 'status/health', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You feel unwell.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).sick ?? 0) === 1) {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['sick'] = 'You have a tickle in your throat and a runny nose.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'sick', 'v_neg', 'status/health', 3);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sick', 'v_neg', 'status/health', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -922,68 +922,68 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['lack_sleep'] = 'You\'re not getting enough sleep, which is severely inhibiting your ability to learn new things. You need to have a full night\'s rest to be better.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'lack_sleep', '', 'status/lack_of_sleep_4', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lack_sleep', '', 'status/lack_of_sleep_4', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['lack_sleep'] = 'You\'re not getting enough sleep, which has a large negative effect on your ability to learn new things. You need to sleep more, maybe have a full night\'s rest.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'lack_sleep', '', 'status/lack_of_sleep_3', 3);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lack_sleep', '', 'status/lack_of_sleep_3', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['lack_sleep'] = 'You\'re not getting enough sleep, which is modestly inhibiting your ability to learn new things. You need to sleep more.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'lack_sleep', '', 'status/lack_of_sleep_2', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lack_sleep', '', 'status/lack_of_sleep_2', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['lack_sleep'] = 'You\'re not sleeping as much as you should, which has a small effect on your ability to learn new things. You should sleep more, or else you risk this getting worse.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'lack_sleep', '', 'status/lack_of_sleep_1', 3);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lack_sleep', '', 'status/lack_of_sleep_1', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
   }
   if (((s as any).frost ?? 0) > 10) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['frost'] = 'You are freezing.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'frost', 'v_neg', 'status/hypothermia', 3);
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You are freezing.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'frost', 'v_neg', 'status/hypothermia', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are freezing.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).frost ?? 0) > 5) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['frost'] = 'You are cold.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'frost', 'v_neg', 'status/hypothermia', 3);
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'You are very cold.', 'neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'frost', 'v_neg', 'status/hypothermia', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are very cold.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).frost ?? 0) > 0) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['frost'] = 'You are a little chilly.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'frost', 'v_neg', 'status/hypothermia', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'frost', 'v_neg', 'status/hypothermia', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
   if (((s as any).recuperation ?? 0) === 1) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['recuperation'] = 'You are still recovering from major surgery.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'recuperation', 'v_neg', 'status/health', 3);
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You are recovering from surgery.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'recuperation', 'v_neg', 'status/health', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You are recovering from surgery.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).body_write ?? 0) >= 1  &&  ((s as any).face_write ?? 0) >= 1) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['writing'] = 'Your body and face are covered in obscene graffiti.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'writing', 'v_neg', 'status/body_writing', 3);
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'You have writing on your body and face.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'writing', 'v_neg', 'status/body_writing', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You have writing on your body and face.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).face_write ?? 0) > 1) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['writing'] = 'You have writing on your face.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'writing', 'v_neg', 'status/body_writing', 3);
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'You have writing on your face.', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'writing', 'v_neg', 'status/body_writing', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You have writing on your face.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).face_write ?? 0) === 1) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['writing'] = 'Your face has a humiliating label written on it.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'writing', 'v_neg', 'status/body_writing', 3);
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'You have a label on your face.', 'v_neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'writing', 'v_neg', 'status/body_writing', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You have a label on your face.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).body_write ?? 0) > 1) {
           if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['writing'] = 'Your body is inscribed with derogatory graffiti.';
-          qspCall(s, 'stat_display_compute', 'queue_msg', 'writing', 'v_neg', 'status/body_writing', 3);
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'You have writing on your body.', 'v_neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'writing', 'v_neg', 'status/body_writing', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You have writing on your body.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).body_write ?? 0) === 1) {
             if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['writing'] = 'Your body has an obscene message written on it.';
-            qspCall(s, 'stat_display_compute', 'queue_msg', 'writing', 'v_neg', 'status/body_writing', 3);
-            qspCall(s, 'stat_display_compute', 'queue_alert', 'You have writing on your body.', 'v_neg');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'writing', 'v_neg', 'status/body_writing', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You have writing on your body.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -991,64 +991,64 @@ function enterComputeBody(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).fingal ?? 0) > 0) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['black_eye'] = 'You have a black eye.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'black_eye', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'black_eye', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).mosol ?? 0) >= 50) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['commando'] = 'Your pussy itches a great deal and is affecting your mood. You should use some cream or stop wearing pants without underwear.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'commando', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'commando', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).mosol ?? 0) >= 30) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['commando'] = 'Your pussy feels a little itchy. It seems to be from rubbing against your clothing.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'commando', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'commando', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).pantyworntype ?? 0) !== 'none'  &&  ((s as any).clit_size ?? 0) >= 40) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['panties_rubbing'] = 'Your panties keep rubbing against your clit and making you horny.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'panties_rubbing', 'bimbo');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panties_rubbing', 'bimbo']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).temp_std_count = 0;
   if (((s as any).Gerpes ?? 0) >= 10  &&  ((s as any).GenHerpes ?? 0) === 1) {
     (s as any).temp_std_count = ((s as any).temp_std_count ?? 0) + (1);
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['std_gen_herpes'] = 'Sores have appeared on your vagina. You have genital herpes.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'std_gen_herpes', 'v_neg', 'status/std', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std_gen_herpes', 'v_neg', 'status/std', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).Gerpes ?? 0) >= 5  &&  ((s as any).GenHerpes ?? 0) === 1) {
       (s as any).temp_std_count = ((s as any).temp_std_count ?? 0) + (1);
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['std_gen_herpes'] = 'Your vagina is red and very itchy. You have genital herpes.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'std_gen_herpes', 'v_neg', 'status/std', 3);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std_gen_herpes', 'v_neg', 'status/std', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).Gerpes ?? 0) >= 3  &&  ((s as any).OrHerpes ?? 0) === 1) {
         (s as any).temp_std_count = ((s as any).temp_std_count ?? 0) + (1);
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['std_oral_herpes'] = 'You have cold sores on your lips. You have oral herpes.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'std_oral_herpes', 'v_neg', 'status/std', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std_oral_herpes', 'v_neg', 'status/std', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
   if (((s as any).Gerpes ?? 0) >= 20  &&  ((s as any).GenHerpes ?? 0) === 1) {
     (s as any).temp_std_count = ((s as any).temp_std_count ?? 0) + (1);
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['std_anal_herpes'] = 'The herpes sores also cover your ass.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'std_anal_herpes', 'v_neg', 'status/std', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std_anal_herpes', 'v_neg', 'status/std', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).Sifilis ?? 0) >= 50) {
     (s as any).temp_std_count = ((s as any).temp_std_count ?? 0) + (1);
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['std_syphilis'] = 'Syphilitic rashes cover your whole body.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'std_syphilis', 'v_neg', 'status/std', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std_syphilis', 'v_neg', 'status/std', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).Sifilis ?? 0) >= 21) {
       (s as any).temp_std_count = ((s as any).temp_std_count ?? 0) + (1);
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['std_syphilis'] = 'You have a single large, hard sore on the lip. You have syphilis.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'std_syphilis', 'v_neg', 'status/std', 3);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std_syphilis', 'v_neg', 'status/std', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).Triper ?? 0) > 2) {
     (s as any).temp_std_count = ((s as any).temp_std_count ?? 0) + (1);
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['std_gonorrhea'] = 'It stings when you\'re urinating. You have gonorrhea.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'std_gonorrhea', 'v_neg', 'status/std', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std_gonorrhea', 'v_neg', 'status/std', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).Kandidoz ?? 0) > 30) {
     (s as any).temp_std_count = ((s as any).temp_std_count ?? 0) + (1);
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['std_yeast'] = 'There\'s a white discharge coming from your vagina. You have a yeast infection.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'std_yeast', 'v_neg', 'status/std', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std_yeast', 'v_neg', 'status/std', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (!(s as any).stat_nums) (s as any).stat_nums = {}; (s as any).stat_nums['std_count'] = ((s as any).temp_std_count ?? 0);
   return;
@@ -1088,38 +1088,38 @@ function enterComputeAppearance(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_style'] = ((s as any).stat_texts['clothes_style'] ?? 0) + (' You look like a' + qspUntranslated(s, "temp_tot>", { location: "stat_display_compute" }) + '.');
     }
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['clothes_style_tooltip'] = ((s as any).stat_texts ?? 0)?.['clothes_tooltip'];
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'clothes_style');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'clothes_style']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).pcs_heels ?? 0) < ((s as any).PShoPain ?? 0)?.['mild']) {
     if (((s as any).pain ?? 0)?.['feet'] >= 70) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['feet_pain'] = 'Your feet are killing you. You should wear more comfortable shoes.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'feet_pain', 'v_neg');
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'Your feet are in serious pain.', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'feet_pain', 'v_neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your feet are in serious pain.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).pain ?? 0)?.['feet'] >= 50) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['feet_pain'] = 'Your feet are aching. You should wear more comfortable shoes.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'feet_pain', 'neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'feet_pain', 'neg']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
   if (((s as any).analPlugIn ?? 0) === 1  &&  ((s as any).vibratorin ?? 0) === 1) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['toys'] = 'You are wearing both a vibrator and a butt plug.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'toys', 'bimbo', 'status/tdouble_stuffed', 4);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'toys', 'bimbo', 'status/tdouble_stuffed', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).analPlugIn ?? 0) === 1) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['toys'] = 'You are wearing a butt plug.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'toys', 'bimbo', 'status/tbutt_plug', 4);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'toys', 'bimbo', 'status/tbutt_plug', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).vibratorin ?? 0) === 1) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['toys'] = 'A vibrator is inserted into your vagina.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'toys', 'bimbo', 'status/tvibrator', 4);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'toys', 'bimbo', 'status/tvibrator', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
   if (((s as any).cumcondslip ?? 0) > 0  &&  ((s as any).cumcondslip_aware ?? 0) > 0) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['stuck_condom'] = 'You feel sick, and are wondering about the used condom you never found. Maybe the two are related?';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'stuck_condom', 'v_neg', 'status/stuck_condom', 3);
-    qspCall(s, 'stat_display_compute', 'queue_alert', 'A used condom is stuck inside you.', 'v_neg');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stuck_condom', 'v_neg', 'status/stuck_condom', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A used condom is stuck inside you.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
   // TODO-QSP: end
@@ -1131,68 +1131,68 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).hour ?? 0) < 16  ||  ((s as any).starlets_missed ?? 0) > 0)) {
       if ((((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 19)  &&  ((s as any).starlets_practice ?? 0) > 0) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['starlets'] = 'You missed practice with the Starlets today!';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'starlets', 'v_neg', 'status/starlets_red', 4, 'stat_nums[\'starlets_late_msg\'] = daystart & msg \'You missed practice with the Starlets today!\'');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'starlets', 'v_neg', 'status/starlets_red', 4, 'stat_nums[\'starlets_late_msg\'] = daystart & msg \'You missed practice with the Starlets today!\'']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         // TODO-QSP: $stat_texts['starlets'] = 'You must be at Starlets practice between <<$func(''time'', ''get_time_string'', 15, 0)>> and <<$func(''time'', ''get_time_string'', 16, 0)>> today.'
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'starlets', '', 'status/starlets_black|status/starlets_white', 4);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'starlets', '', 'status/starlets_black|status/starlets_white', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).hour ?? 0) >= 14) {
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'Starlets practice starts soon.', 'neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Starlets practice starts soon.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
   }
   if (((s as any).vballVars ?? 0)?.['on_team'] === 1  &&  ((s as any).week ?? 0) === 6  &&  ((s as any).vballVars ?? 0)?.['last_match_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) <= 18  &&  (((s as any).daystart ?? 0) % 365) !== 1) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['vball'] = 'There is volleyball tournament today at ' + qspUntranslated(s, "func('time', 'get_time_string', 18, 0)>", { location: "stat_display_compute" }) + '.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'vball', '', 'status/volleyball', 4);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vball', '', 'status/volleyball', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).hour ?? 0) >= 16) {
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'Volleyball tournament starts soon.', 'neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Volleyball tournament starts soon.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).daystart ?? 0) === ((s as any).policeQW_courthearing_dates ?? 0)[0] - 1) {
     // TODO-QSP: $stat_texts['court'] = 'You have a court hearing tomorrow between <<$func(''time'', ''get_time_string'', 7, 0)>> and <<$func(''time'', ''get_time_string'', 11, 0)>>. The court is located in the city center of St. Petersburg.'
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'court', 'neg', 'status/courtdate', 4);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'court', 'neg', 'status/courtdate', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).daystart ?? 0) === ((s as any).policeQW_courthearing_dates ?? 0)[0]) {
       if (((s as any).hour ?? 0) < 11) {
         // TODO-QSP: $stat_texts['court'] = 'You have a court hearing today between <<$func(''time'', ''get_time_string'', 7, 0)>> and <<$func(''time'', ''get_time_string'', 11, 0)>>. The court is located in the city center of St. Petersburg.'
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'court', 'v_neg', 'status/courtdate', 4);
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'You have a court hearing today.', 'v_neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'court', 'v_neg', 'status/courtdate', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You have a court hearing today.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
   if (((s as any).policeQW ?? 0)?.['legal_fine'] > 0) {
     // TODO-QSP: $stat_texts['fines'] = 'You have outstanding fines totalling <<$func(''money'', ''string_debt'', policeQW[''legal_fine''])>> and you have <<policeQW[''fine_deadline'']-daystart>> days left to pay them. You can settle your debt at the post office.'
     if (((s as any).policeQW ?? 0)?.['fine_deadline'] === ((s as any).daystart ?? 0)) {
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'fines', '', 'status/fine', 4);
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'Your fines are due today.', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fines', '', 'status/fine', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your fines are due today.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).policeQW ?? 0)?.['fine_deadline'] - ((s as any).daystart ?? 0) <= 3) {
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'fines', '', 'status/fine', 4);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fines', '', 'status/fine', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'fines', '', 'status/fine', 4);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fines', '', 'status/fine', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
   if (((s as any).ml_guitarlesson ?? 0)?.['nextlesson'] === ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) < 15) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['music_lesson'] = 'You have a guitar lesson scheduled for ' + qspUntranslated(s, "func('time', 'get_time_string', 15, 0)>", { location: "stat_display_compute" }) + ' at the Community Hall.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'music_lesson', '', 'status/musiclesson', 4);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'music_lesson', '', 'status/musiclesson', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).hour ?? 0) >= 13) {
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'Your guitar lesson starts soon.', 'neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your guitar lesson starts soon.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)) {
     if (((s as any).yearstart ?? 0) > 1  &&  ((s as any).hour ?? 0) < 19) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['game_night'] = 'Game night starts tonight at ' + qspUntranslated(s, "func('time', 'get_time_string', 18, 0)>", { location: "stat_display_compute" }) + ' at the Coffee Hole';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'game_night', '', 'status/game_night', 4);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'game_night', '', 'status/game_night', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).hour ?? 0) >= 17) {
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'Game night starts soon.', 'neg');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Game night starts soon.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).yearstart ?? 0) <= 1  &&  ((s as any).hour ?? 0) < 21) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['game_night'] = 'Game night starts tonight at ' + qspUntranslated(s, "func('time', 'get_time_string', 20, 0)>", { location: "stat_display_compute" }) + ' at the Community Center';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'game_night', '', 'status/game_night', 4);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'game_night', '', 'status/game_night', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).hour ?? 0) >= 19) {
-          qspCall(s, 'stat_display_compute', 'queue_alert', 'Game night starts soon.', 'neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Game night starts soon.', 'neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -1201,54 +1201,54 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     if (((s as any).missCum ?? 0) > ((s as any).timeTresh ?? 0)) {
       if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 2) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['cum_craving'] = 'You desperately need cum inside you. Your body aches for it.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'cum_craving', 'hypno', 'status/hypno_addict', 3);
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'You desperately need cum.', 'hypno');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cum_craving', 'hypno', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You desperately need cum.', 'hypno']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['cum_craving'] = 'You crave the feeling of cum inside you. You feel restless and on edge.';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'cum_craving', 'hypno', 'status/hypno_addict', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cum_craving', 'hypno', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
   if (((s as any).hypnoWithdrawal ?? 0) > 0) {
     if (((s as any).hypnoWithdrawal ?? 0) === 2) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hypno_withdrawal'] = 'You need to talk to your therapist, as soon as possible. You feel deeply unbalanced without your sessions.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'hypno_withdrawal', 'hypno', 'status/hypno_addict', 3);
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'You need to see your therapist.', 'hypno');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hypno_withdrawal', 'hypno', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'You need to see your therapist.', 'hypno']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hypno_withdrawal'] = 'You feel like talking to your therapist. You miss your sessions.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'hypno_withdrawal', 'hypno', 'status/hypno_addict', 3);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hypno_withdrawal', 'hypno', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).trait_vars ?? 0)?.['body_hair_attitude'] === -2  &&  (((s as any).pcs_pubes ?? 0) >= 4  ||  ((s as any).pcs_leghair ?? 0) >= 4)) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['body_hair_attitude_discomfort'] = 'Your ' + qspUntranslated(s, "temp_area>", { location: "stat_display_compute" }) + ' feel rough to the touch, lowering your mood.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'body_hair_attitude_discomfort', 'v_neg', 'status/hypno_addict', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude_discomfort', 'v_neg', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).hypnoSchedule ?? 0) === 1  &&  ((s as any).therapist_weekly_block ?? 0) === 0  &&  ((s as any).week ?? 0) === 4  &&  ((s as any).therapistday ?? 0) !== ((s as any).daystart ?? 0)) {
     if (((s as any).hour ?? 0) < 18) {
       if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hypno_schedule'] = 'You have a meeting scheduled with your therapist today at ' + qspUntranslated(s, "func('time', 'get_time_string', 18, 0, cheatVars['time_format'])>", { location: "stat_display_compute" }) + '.';
-      qspCall(s, 'stat_display_compute', 'queue_msg', 'hypno_schedule', 'hypno', 'status/hypno_addict', 3);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hypno_schedule', 'hypno', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).hour ?? 0) > 16) {
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'Your therapy session starts soon.', 'hypno');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your therapy session starts soon.', 'hypno']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).hour ?? 0) === 18  ||  (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) < 15)) {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hypno_schedule'] = 'You have a meeting scheduled with your therapist right now!';
-        qspCall(s, 'stat_display_compute', 'queue_msg', 'hypno_schedule', 'hypno', 'status/hypno_addict', 3);
-        qspCall(s, 'stat_display_compute', 'queue_alert', 'Your therapy session starts soon.', 'hypno');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hypno_schedule', 'hypno', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your therapy session starts soon.', 'hypno']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
   if (((s as any).hypnoPanty ?? 0) === 1  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hypno_panty'] = 'You feel uneasy wearing panties.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'hypno_panty', 'hypno', 'status/hypno_addict', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hypno_panty', 'hypno', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).hypnoBra ?? 0) === 1  &&  ((s as any).braworntype ?? 0) !== 'none') {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['hypno_bra'] = 'You feel uneasy wearing a bra.';
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'hypno_bra', 'hypno', 'status/hypno_addict', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hypno_bra', 'hypno', 'status/hypno_addict', 3]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).succubusflag ?? 0) === 1  &&  ((s as any).succhungry ?? 0) > 0) {
     // TODO-QSP: $stat_texts['succubus_feeding'] = 'You''ve needed to feed for <<succhungry>> day<<iif(succhungry > 1, ''s'', '''')>>.'
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'succubus_feeding', '', 'status/need_succubus_feeding', 4);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'succubus_feeding', '', 'status/need_succubus_feeding', 4]; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (Object.keys((s as any).spellComplete ?? {}).length > 0) {
     if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['spell_text'] = '<br><b>' + qspUntranslated(s, "func('wrap', 'bimbo', 'Active Spells')>", { location: "stat_display_compute" }) + '</b>';
@@ -1260,7 +1260,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: jump 'sd_spell_loop'
     }
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['active_spells'] = qspFunc(s, 'cleanHTML', '$sd_cm[\'spell_text\']');
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'active_spells');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'active_spells']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).stat_cfg ?? 0)?.['notify_exp'] !== 1) {
     if (qspFunc(s, 'exp_notification', 'is_empty') === 0) {
@@ -1268,7 +1268,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     if (((s as any).exp_notif_pending ?? 0) !== '') {
       if (((s as any).loc ?? 0) !== ((s as any).exp_notif_pending_loc ?? 0)) {
       } else {
-        qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).exp_notif_pending ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).exp_notif_pending ?? 0)]; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -1278,7 +1278,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     if (((s as any).archetype_notif_pending ?? 0) !== '') {
       if (((s as any).loc ?? 0) !== ((s as any).archetype_notif_pending_loc ?? 0)) {
       } else {
-        qspCall(s, 'stat_display_compute', 'queue_alert', ((s as any).archetype_notif_pending ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).archetype_notif_pending ?? 0)]; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -1294,11 +1294,11 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).stat_texts ?? 0)?.['rent'] !== '') {
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'rent');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'rent']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['nicholas'] = ((s as any).nichStatMsg ?? 0);
   if (((s as any).stat_texts ?? 0)?.['nicholas'] !== '') {
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'nicholas');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nicholas']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_QW ?? 0)?.['A113'] === 1  &&  ((s as any).belgangPay ?? 0) > 0) {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bely_debt'] = 'You owe Vadim Bely ' + qspUntranslated(s, "func('money', 'string_debt', belgangPay)>", { location: "stat_display_compute" }) + '';
@@ -1309,9 +1309,9 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['bely_debt'] = ((s as any).stat_texts['bely_debt'] ?? 0) + (', and you need to pay him ' + qspUntranslated(s, "func('money', 'string_debt', belgangpayweek)>", { location: "stat_display_compute" }) + ' next week.');
       }
     }
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'bely_debt');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bely_debt']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).week ?? 0) === 7  &&  ((s as any).belgangpayweek ?? 0) > 0  &&  ((s as any).daybelisex ?? 0) < ((s as any).daystart ?? 0)) {
-      qspCall(s, 'stat_display_compute', 'queue_alert', 'Your weekly debt to Vadim Bely is due today.', 'v_neg');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Your weekly debt to Vadim Bely is due today.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).region ?? 0) === 'gad') {
@@ -1335,12 +1335,12 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'gp_elene', 'stat_display');
     qspCall(s, 'gp_zlatek', 'stat_display');
     if (((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] > 0  &&  ((s as any).grandmaQW ?? 0)?.['chore_mushroom_quantity'] > 0  &&  ((s as any).boletus ?? 0) < (((s as any).grandpaQW ?? 0)?.['chore_mushroom_quantity'] + ((s as any).grandmaQW ?? 0)?.['chore_mushroom_quantity'])) {
-      if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['need_boletus'] = (((s as any).grandpaQW ?? {})?.['chore_mushroom_quantity'] + ((s as any).grandmaQW ?? {})?.['chore_mushroom_quantity']) - ((s as any).boletus ?? 0);
+      if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['need_boletus'] = ((((s as any).grandpaQW ?? {})?.['chore_mushroom_quantity'] ?? 0) + (((s as any).grandmaQW ?? {})?.['chore_mushroom_quantity'] ?? 0)) - ((s as any).boletus ?? 0);
     } else {
       if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['need_boletus'] = 0;
     }
     if (((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] > 0  &&  ((s as any).grandmaQW ?? 0)?.['chore_berry_quantity'] > 0  &&  ((s as any).bilberry ?? 0) < (((s as any).grandpaQW ?? 0)?.['chore_berry_quantity'] + ((s as any).grandmaQW ?? 0)?.['chore_berry_quantity'])) {
-      if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['need_bilberry'] = (((s as any).grandpaQW ?? {})?.['chore_berry_quantity'] + ((s as any).grandmaQW ?? {})?.['chore_berry_quantity']) - ((s as any).bilberry ?? 0);
+      if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['need_bilberry'] = ((((s as any).grandpaQW ?? {})?.['chore_berry_quantity'] ?? 0) + (((s as any).grandmaQW ?? {})?.['chore_berry_quantity'] ?? 0)) - ((s as any).bilberry ?? 0);
     } else {
       if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['need_bilberry'] = 0;
     }
@@ -1358,7 +1358,7 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).stat_texts ?? 0)?.['gadukino'] !== '') {
     if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['gadukino_tooltip'] = qspFunc(s, 'cleanHTML', '$stat_texts[\'gadukino\']');
-    qspCall(s, 'stat_display_compute', 'queue_msg', 'gadukino');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gadukino']; enterQueueMsg(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['lover_max'] = 0;
   if (((s as any).sd_cm ?? 0)?.['lover_max'] > 0) {
@@ -1366,18 +1366,18 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :sd_lover_loop
     if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['npcid'] = qspUntranslated(s, "lover[sd_cm['li']]", { location: "stat_display_compute" });
     if (((s as any).npc_meetday ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] === ((s as any).daystart ?? 0)) {
-      if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['label'] = 'lover_' + ((s as any).sd_cm ?? {})?.['npcid'];
+      if (!(s as any).sd_cm) (s as any).sd_cm = {}; (s as any).sd_cm['label'] = 'lover_' + (((s as any).sd_cm ?? {})?.['npcid'] ?? 0);
       if (((s as any).hour ?? 0) < ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
         // TODO-QSP: $stat_texts[$sd_cm['label']] = '<<$npc_usedname[$sd_cm[''npcid'']]>> will be waiting for you near <<...
         // TODO-QSP: gs 'stat_display_compute', 'queue_msg', $sd_cm['label'], 'accent', 'status/date', 4
         if (((s as any).hour ?? 0) >= ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']] - 2) {
-          qspCall(s, 'stat_display_compute', 'queue_alert', '' + qspUntranslated(s, "npc_usedname[sd_cm['npcid']]>", { location: "stat_display_compute" }) + ' is expecting you soon.', 'accent');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + qspUntranslated(s, "npc_usedname[sd_cm['npcid']]>", { location: "stat_display_compute" }) + ' is expecting you soon.', 'accent']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).hour ?? 0) === ((s as any).npc_meethour ?? 0)[((s as any).sd_cm ?? 0)?.['npcid']]) {
           // TODO-QSP: $stat_texts[$sd_cm['label']] = '<<$npc_usedname[$sd_cm[''npcid'']]>> is waiting for you by <<$func('...
           // TODO-QSP: gs 'stat_display_compute', 'queue_msg', $sd_cm['label'], 'v_neg', 'status/date', 4
-          qspCall(s, 'stat_display_compute', 'queue_alert', '' + qspUntranslated(s, "npc_usedname[sd_cm['npcid']]>", { location: "stat_display_compute" }) + ' is waiting for you now.', 'v_neg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + qspUntranslated(s, "npc_usedname[sd_cm['npcid']]>", { location: "stat_display_compute" }) + ' is waiting for you now.', 'v_neg']; enterQueueAlert(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -1447,9 +1447,9 @@ function enterComputeMisc(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).cal_r) (s as any).cal_r = {}; (s as any).cal_r['time_lbl'] = '';
       } else {
         if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
-          if (!(s as any).cal_r) (s as any).cal_r = {}; (s as any).cal_r['time_lbl'] = qspFunc(s, 'time', 'get_time_string', ((s as any).event_vars ?? {})?.['window_start_ts'] / 4, (((s as any).event_vars ?? {})?.['window_start_ts'] % 4) * 15, 0) + '&ndash;' + qspFunc(s, 'time', 'get_time_string', ((s as any).event_vars ?? {})?.['window_end_ts'] / 4, (((s as any).event_vars ?? {})?.['window_end_ts'] % 4) * 15, 0);
+          if (!(s as any).cal_r) (s as any).cal_r = {}; (s as any).cal_r['time_lbl'] = qspFunc(s, 'time', 'get_time_string', (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0) / 4, ((((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0) % 4) * 15, 0) + '&ndash;' + qspFunc(s, 'time', 'get_time_string', (((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) / 4, ((((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) % 4) * 15, 0);
         } else {
-          if (!(s as any).cal_r) (s as any).cal_r = {}; (s as any).cal_r['time_lbl'] = qspFunc(s, 'time', 'get_time_string', ((s as any).cal_upc_ts ?? 0)[((s as any).cal_r ?? {})?.['i']] / 4, (((s as any).cal_upc_ts ?? 0)[((s as any).cal_r ?? {})?.['i']] % 4) * 15, 0);
+          if (!(s as any).cal_r) (s as any).cal_r = {}; (s as any).cal_r['time_lbl'] = qspFunc(s, 'time', 'get_time_string', ((s as any).cal_upc_ts ?? 0)[(((s as any).cal_r ?? {})?.['i'] ?? 0)] / 4, (((s as any).cal_upc_ts ?? 0)[(((s as any).cal_r ?? {})?.['i'] ?? 0)] % 4) * 15, 0);
         }
       }
       // TODO-QSP: $cal_upcoming_html += iif($cal_upcoming_html <> '', '<br>', '') + '<span style="color:rgb(<<$cal_r['...
@@ -1655,7 +1655,7 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).sd_img) (s as any).sd_img = {}; (s as any).sd_img['cond_body'] = qspFunc(s, 'stat_display_compute', 'cond_sweat');
       if ((((s as any).cumloc ?? 0)[6] + ((s as any).cumloc ?? 0)[7] + ((s as any).cumloc ?? 0)[13] + ((s as any).cumloc ?? 0)[16]) > 0) {
         if (!(s as any).sd_ci) (s as any).sd_ci = {}; (s as any).sd_ci['cum_line'] = qspFunc(s, 'wrap', 'v_neg', '[cum on body]');
-        if (!(s as any).sd_img) (s as any).sd_img = {}; (s as any).sd_img['cond_body'] = ((((s as any).sd_img ?? 0)?.['cond_body'] !== '') ? (((s as any).sd_img ?? {})?.['cond_body'] + ' ') : (''));
+        if (!(s as any).sd_img) (s as any).sd_img = {}; (s as any).sd_img['cond_body'] = ((((s as any).sd_img ?? 0)?.['cond_body'] !== '') ? ((((s as any).sd_img ?? {})?.['cond_body'] ?? 0) + ' ') : (''));
       }
     } else {
       if (((s as any).sd_ci ?? 0)?.['key'] === 'coat') {
@@ -1678,7 +1678,7 @@ function enterComputeImages(s: GameState, scene: SceneBuilder): void {
             if (!(s as any).sd_img) (s as any).sd_img = {}; (s as any).sd_img['cond_clothes'] = 0;
             if (!(s as any).sd_ci) (s as any).sd_ci = {}; (s as any).sd_ci['style_line'] = qspFunc(s, 'stat_display_compute', 'cond_clo_style');
             if (((s as any).sd_ci ?? 0)?.['style_line'] !== '') {
-              if (!(s as any).sd_img) (s as any).sd_img = {}; (s as any).sd_img['cond_clothes'] = ((((s as any).sd_img ?? 0)?.['cond_clothes'] !== '') ? (((s as any).sd_img ?? {})?.['cond_clothes'] + ' ') : (''));
+              if (!(s as any).sd_img) (s as any).sd_img = {}; (s as any).sd_img['cond_clothes'] = ((((s as any).sd_img ?? 0)?.['cond_clothes'] !== '') ? ((((s as any).sd_img ?? {})?.['cond_clothes'] ?? 0) + ' ') : (''));
             }
           }
         } else {

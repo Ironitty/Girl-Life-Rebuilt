@@ -15,10 +15,10 @@ function enterFmtPts(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (!(s as any).temp_fmt) (s as any).temp_fmt = {}; (s as any).temp_fmt['abs'] = ((((s as any).locArgs?.[1] ?? 0) < 0) ? (-((s as any).ARGS ?? 0)[1]) : (qspUntranslated(s, "ARGS[1]", { location: "archetypes" })));
-  if (!(s as any).temp_fmt) (s as any).temp_fmt = {}; (s as any).temp_fmt['whole'] = ((s as any).temp_fmt ?? {})?.['abs'] / 250;
+  if (!(s as any).temp_fmt) (s as any).temp_fmt = {}; (s as any).temp_fmt['whole'] = (((s as any).temp_fmt ?? {})?.['abs'] ?? 0) / 250;
   if (!(s as any).temp_fmt) (s as any).temp_fmt = {}; (s as any).temp_fmt['sign'] = ((((s as any).locArgs?.[1] ?? 0) > 0) ? ('+') : ('-'));
   if (((s as any).locArgs?.[2] ?? 0) === 'fine') {
-    if (!(s as any).temp_fmt) (s as any).temp_fmt = {}; (s as any).temp_fmt['tenths'] = (((s as any).temp_fmt ?? {})?.['abs'] % 250) * 10 / 250;
+    if (!(s as any).temp_fmt) (s as any).temp_fmt = {}; (s as any).temp_fmt['tenths'] = ((((s as any).temp_fmt ?? {})?.['abs'] ?? 0) % 250) * 10 / 250;
     if (((s as any).temp_fmt ?? 0)?.['whole'] === 0  &&  ((s as any).temp_fmt ?? 0)?.['tenths'] === 0) {
     }
   } else {
@@ -84,10 +84,10 @@ function enterGetOpposite(s: GameState, scene: SceneBuilder): void {
 function enterGetPercentage(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arch_const ?? 0)?.['point_cap'] > 0) {
     if (((s as any).locArgs?.[2] ?? 0) === 1) {
-      (s as any).temp_gap_gp = Math.max(0, ((s as any).arch_vars ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_points'] - ((s as any).arch_const ?? {})?.['point_min']);
-      (s as any).result = Math.min(100, ((s as any).temp_gap_gp ?? 0) * 100 / (((s as any).arch_const ?? {})?.['point_cap'] - ((s as any).arch_const ?? {})?.['point_min']));
+      (s as any).temp_gap_gp = Math.max(0, ((s as any).arch_vars ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_points'] - (((s as any).arch_const ?? {})?.['point_min'] ?? 0));
+      (s as any).result = Math.min(100, ((s as any).temp_gap_gp ?? 0) * 100 / ((((s as any).arch_const ?? {})?.['point_cap'] ?? 0) - (((s as any).arch_const ?? {})?.['point_min'] ?? 0)));
     } else {
-      (s as any).result = Math.min(100, ((s as any).arch_vars ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_points'] * 100 / ((s as any).arch_const ?? {})?.['point_cap']);
+      (s as any).result = Math.min(100, ((s as any).arch_vars ?? 0)['' + ((s as any).locArgs?.[1] ?? 0) + '_points'] * 100 / (((s as any).arch_const ?? {})?.['point_cap'] ?? 0));
     }
   } else {
     (s as any).result = 0;
@@ -102,7 +102,7 @@ function enterGetLvl(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_gl_pts ?? 0) < ((s as any).arch_const ?? 0)?.['point_min']) {
     (s as any).result = 0;
   } else {
-    (s as any).temp_gl_gap = ((s as any).temp_gl_pts ?? 0) - ((s as any).arch_const ?? {})?.['point_min'];
+    (s as any).temp_gl_gap = ((s as any).temp_gl_pts ?? 0) - (((s as any).arch_const ?? {})?.['point_min'] ?? 0);
     if (((s as any).temp_gl_gap ?? 0) < ((s as any).arch_const ?? 0)?.['level_third']) {
       (s as any).result = 1;
     } else {
@@ -150,19 +150,19 @@ function enterGain(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['' + String((s as any).$ARGS[1] || '') + '_points'] = ((s as any).arch_vars['' + String((s as any).$ARGS[1] || '') + '_points'] ?? 0) + (((s as any).temp_points ?? 0));
-  qspCall(s, 'archetypes', 'clamp', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['' + String((s as any).$temp_opp0 || '') + '_points'] = ((s as any).arch_vars['' + String((s as any).$temp_opp0 || '') + '_points'] ?? 0) - (((s as any).temp_points ?? 0));
-  qspCall(s, 'archetypes', 'clamp', ((s as any).temp_opp0 ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_opp0 ?? 0)]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['' + String((s as any).$temp_opp1 || '') + '_points'] = ((s as any).arch_vars['' + String((s as any).$temp_opp1 || '') + '_points'] ?? 0) - (((s as any).temp_points ?? 0));
-  qspCall(s, 'archetypes', 'clamp', ((s as any).temp_opp1 ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_opp1 ?? 0)]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).stat_cfg ?? 0)?.['notify_archetypes'] !== 1) {
-    qspCall(s, 'archetypes', 'track_archetype', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_points ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).temp_points ?? 0)]; enterTrackArchetype(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).stat_cfg ?? 0)?.['notify_archetypes_opposite'] !== 1) {
       // TODO-QSP: gs 'archetypes', 'track_archetype', $temp_opp0, -temp_points
       // TODO-QSP: gs 'archetypes', 'track_archetype', $temp_opp1, -temp_points
     }
   }
-  qspCall(s, 'archetypes', 'log_event', ((s as any).locArgs?.[1] ?? 0), 'story', ((s as any).locArgs?.[3] ?? 0), ((s as any).temp_points ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'story', ((s as any).locArgs?.[3] ?? 0), ((s as any).temp_points ?? 0)]; enterLogEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'archetypes', 'log_event', $temp_opp0, 'opposition', '', -temp_points
   // TODO-QSP: gs 'archetypes', 'log_event', $temp_opp1, 'opposition', '', -temp_points
   return;
@@ -196,7 +196,7 @@ function enterLose(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['' + String((s as any).$ARGS[1] || '') + '_points'] = ((s as any).arch_vars['' + String((s as any).$ARGS[1] || '') + '_points'] ?? 0) - (((s as any).temp_points ?? 0));
-  qspCall(s, 'archetypes', 'clamp', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).stat_cfg ?? 0)?.['notify_archetypes'] !== 1) {
     // TODO-QSP: gs 'archetypes', 'track_archetype', $ARGS[1], -temp_points
   }
@@ -211,30 +211,30 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: exit
   }
   if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['mul'] = ((((s as any).locArgs?.[6] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[6]", { location: "archetypes" })) : (1));
-  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['bimbo'] = ((s as any).ARGS ?? 0)[1] * ((s as any).temp_change ?? {})?.['mul'];
-  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['preppy'] = ((s as any).ARGS ?? 0)[2] * ((s as any).temp_change ?? {})?.['mul'];
-  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['prude'] = ((s as any).ARGS ?? 0)[3] * ((s as any).temp_change ?? {})?.['mul'];
-  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['punk'] = ((s as any).ARGS ?? 0)[4] * ((s as any).temp_change ?? {})?.['mul'];
-  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['goth'] = ((s as any).ARGS ?? 0)[5] * ((s as any).temp_change ?? {})?.['mul'];
+  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['bimbo'] = ((s as any).ARGS ?? 0)[1] * (((s as any).temp_change ?? {})?.['mul'] ?? 0);
+  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['preppy'] = ((s as any).ARGS ?? 0)[2] * (((s as any).temp_change ?? {})?.['mul'] ?? 0);
+  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['prude'] = ((s as any).ARGS ?? 0)[3] * (((s as any).temp_change ?? {})?.['mul'] ?? 0);
+  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['punk'] = ((s as any).ARGS ?? 0)[4] * (((s as any).temp_change ?? {})?.['mul'] ?? 0);
+  if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['goth'] = ((s as any).ARGS ?? 0)[5] * (((s as any).temp_change ?? {})?.['mul'] ?? 0);
   if (((s as any).temp_change ?? 0)?.['bimbo'] > 0) {
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_prude'] = ((s as any).temp_change['opp_prude'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['bimbo'] - Math.max(0, ((s as any).temp_change ?? 0)?.['prude'])));
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_punk'] = ((s as any).temp_change['opp_punk'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['bimbo'] - Math.max(0, ((s as any).temp_change ?? 0)?.['punk'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_prude'] = ((s as any).temp_change['opp_prude'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['bimbo'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['prude'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_punk'] = ((s as any).temp_change['opp_punk'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['bimbo'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['punk'])));
   }
   if (((s as any).temp_change ?? 0)?.['preppy'] > 0) {
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_punk'] = ((s as any).temp_change['opp_punk'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['preppy'] - Math.max(0, ((s as any).temp_change ?? 0)?.['punk'])));
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_goth'] = ((s as any).temp_change['opp_goth'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['preppy'] - Math.max(0, ((s as any).temp_change ?? 0)?.['goth'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_punk'] = ((s as any).temp_change['opp_punk'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['preppy'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['punk'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_goth'] = ((s as any).temp_change['opp_goth'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['preppy'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['goth'])));
   }
   if (((s as any).temp_change ?? 0)?.['prude'] > 0) {
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_bimbo'] = ((s as any).temp_change['opp_bimbo'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['prude'] - Math.max(0, ((s as any).temp_change ?? 0)?.['bimbo'])));
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_goth'] = ((s as any).temp_change['opp_goth'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['prude'] - Math.max(0, ((s as any).temp_change ?? 0)?.['goth'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_bimbo'] = ((s as any).temp_change['opp_bimbo'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['prude'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['bimbo'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_goth'] = ((s as any).temp_change['opp_goth'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['prude'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['goth'])));
   }
   if (((s as any).temp_change ?? 0)?.['punk'] > 0) {
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_bimbo'] = ((s as any).temp_change['opp_bimbo'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['punk'] - Math.max(0, ((s as any).temp_change ?? 0)?.['bimbo'])));
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_preppy'] = ((s as any).temp_change['opp_preppy'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['punk'] - Math.max(0, ((s as any).temp_change ?? 0)?.['preppy'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_bimbo'] = ((s as any).temp_change['opp_bimbo'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['punk'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['bimbo'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_preppy'] = ((s as any).temp_change['opp_preppy'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['punk'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['preppy'])));
   }
   if (((s as any).temp_change ?? 0)?.['goth'] > 0) {
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_preppy'] = ((s as any).temp_change['opp_preppy'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['goth'] - Math.max(0, ((s as any).temp_change ?? 0)?.['preppy'])));
-    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_prude'] = ((s as any).temp_change['opp_prude'] ?? 0) + (Math.max(0, ((s as any).temp_change ?? {})?.['goth'] - Math.max(0, ((s as any).temp_change ?? 0)?.['prude'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_preppy'] = ((s as any).temp_change['opp_preppy'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['goth'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['preppy'])));
+    if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['opp_prude'] = ((s as any).temp_change['opp_prude'] ?? 0) + (Math.max(0, (((s as any).temp_change ?? {})?.['goth'] ?? 0) - Math.max(0, ((s as any).temp_change ?? 0)?.['prude'])));
   }
   if (((s as any).stat_cfg ?? 0)?.['arch_log_enabled'] === 1) {
     if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['cat'] = ((((s as any).locArgs?.[7] ?? 0) !== '') ? (((s as any).locArgs?.[7] ?? 0)) : ('unknown'));
@@ -276,23 +276,23 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_change) (s as any).temp_change = {}; (s as any).temp_change['goth'] = ((s as any).temp_change['goth'] ?? 0) - (((s as any).temp_change ?? 0)?.['opp_goth']);
   if (((s as any).temp_change ?? 0)?.['bimbo'] !== 0) {
     if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['bimbo_points'] = ((s as any).arch_vars['bimbo_points'] ?? 0) + (((s as any).temp_change ?? 0)?.['bimbo']);
-    qspCall(s, 'archetypes', 'clamp', 'bimbo');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bimbo']; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).temp_change ?? 0)?.['preppy'] !== 0) {
     if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['preppy_points'] = ((s as any).arch_vars['preppy_points'] ?? 0) + (((s as any).temp_change ?? 0)?.['preppy']);
-    qspCall(s, 'archetypes', 'clamp', 'preppy');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'preppy']; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).temp_change ?? 0)?.['prude'] !== 0) {
     if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['prude_points'] = ((s as any).arch_vars['prude_points'] ?? 0) + (((s as any).temp_change ?? 0)?.['prude']);
-    qspCall(s, 'archetypes', 'clamp', 'prude');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'prude']; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).temp_change ?? 0)?.['punk'] !== 0) {
     if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['punk_points'] = ((s as any).arch_vars['punk_points'] ?? 0) + (((s as any).temp_change ?? 0)?.['punk']);
-    qspCall(s, 'archetypes', 'clamp', 'punk');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'punk']; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).temp_change ?? 0)?.['goth'] !== 0) {
     if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['goth_points'] = ((s as any).arch_vars['goth_points'] ?? 0) + (((s as any).temp_change ?? 0)?.['goth']);
-    qspCall(s, 'archetypes', 'clamp', 'goth');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'goth']; enterClamp(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).stat_cfg ?? 0)?.['notify_archetypes'] !== 1  &&  ((s as any).stat_cfg ?? 0)?.['notify_archetypes_state'] === 1) {
     if (((s as any).temp_change ?? 0)?.['bimbo']  !== 0) {
@@ -338,7 +338,7 @@ function enterSexChange(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['sex_bimbo_day'] = ((s as any).daystart ?? 0);
     if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['sex_bimbo_today'] = 0;
   }
-  (s as any).temp_sex_bimbo = Math.max(0, Math.min(qspUntranslated(s, "ARGS[1]", { location: "archetypes" }), ((s as any).arch_const ?? {})?.['sex_bimbo_daily_cap'] - ((s as any).arch_vars ?? {})?.['sex_bimbo_today']));
+  (s as any).temp_sex_bimbo = Math.max(0, Math.min(qspUntranslated(s, "ARGS[1]", { location: "archetypes" }), (((s as any).arch_const ?? {})?.['sex_bimbo_daily_cap'] ?? 0) - (((s as any).arch_vars ?? {})?.['sex_bimbo_today'] ?? 0)));
   if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['sex_bimbo_today'] = ((s as any).arch_vars['sex_bimbo_today'] ?? 0) + (((s as any).temp_sex_bimbo ?? 0));
   // TODO-QSP: gs 'archetypes', 'change', temp_sex_bimbo, 0, ARGS[2], 0, 0, 1, 'story', $ARGS[3]
   return;
@@ -686,7 +686,7 @@ function enterGetStatePoints(s: GameState, scene: SceneBuilder): void {
 
 function enterLoop(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arch_const ?? 0)?.['effect_range'] <= 0) {
-    qspCall(s, 'archetypes', 'init');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).totminut ?? 0) <= 0) {
     if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['last_update'] = (((s as any).minut ?? 0) + ((s as any).hour ?? 0) * 60 + ((s as any).daystart ?? 0) * 1440) - 1;
@@ -701,17 +701,17 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['last_update'] = ((s as any).totminut ?? 0);
     return;
   }
-  (s as any).temp_loop_mul = ((s as any).totminut ?? 0) - ((s as any).arch_vars ?? {})?.['last_update'];
+  (s as any).temp_loop_mul = ((s as any).totminut ?? 0) - (((s as any).arch_vars ?? {})?.['last_update'] ?? 0);
   if ((!((s as any).temp_loop_mul ?? 0))) {
     // TODO-QSP: killvar 'temp_loop_mul'
     // TODO-QSP: exit
   }
   if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['last_update'] = ((s as any).totminut ?? 0);
-  qspCall(s, 'archetypes', 'get_state_points', ((s as any).temp_loop_mul ?? 0));
-  qspCall(s, 'archetypes', 'decay', ((s as any).temp_loop_mul ?? 0));
-  qspCall(s, 'archetypes', 'set_active');
-  qspCall(s, 'archetypes', 'compute_withdrawal');
-  qspCall(s, 'archetypes', 'apply_effects', ((s as any).temp_loop_mul ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_loop_mul ?? 0)]; enterGetStatePoints(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_loop_mul ?? 0)]; enterDecay(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetActive(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeWithdrawal(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_loop_mul ?? 0)]; enterApplyEffects(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -719,8 +719,8 @@ function enterLoop(s: GameState, scene: SceneBuilder): void {
 
 function enterGetDecayRate(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_gdr_x = ((s as any).ARGS ?? 0)[1] / 1000;
-  (s as any).temp_gdr_h = ((s as any).arch_const ?? {})?.['decay_half'] / 1000;
-  (s as any).result = ((s as any).arch_const ?? {})?.['decay_cap'] * ((s as any).temp_gdr_x ?? 0) * ((s as any).temp_gdr_x ?? 0) / (((s as any).temp_gdr_x ?? 0) * ((s as any).temp_gdr_x ?? 0) + ((s as any).temp_gdr_h ?? 0) * ((s as any).temp_gdr_h ?? 0));
+  (s as any).temp_gdr_h = (((s as any).arch_const ?? {})?.['decay_half'] ?? 0) / 1000;
+  (s as any).result = (((s as any).arch_const ?? {})?.['decay_cap'] ?? 0) * ((s as any).temp_gdr_x ?? 0) * ((s as any).temp_gdr_x ?? 0) / (((s as any).temp_gdr_x ?? 0) * ((s as any).temp_gdr_x ?? 0) + ((s as any).temp_gdr_h ?? 0) * ((s as any).temp_gdr_h ?? 0));
   return;
   // TODO-QSP: end
   scene.build();
@@ -735,7 +735,7 @@ function enterDecay(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['' + String((s as any).$temp_decay_archetype || '') + '_points'] = ((s as any).temp_decay_after ?? 0);
   (s as any).temp_decay_delta = ((s as any).temp_decay_after ?? 0) - ((s as any).temp_decay_before ?? 0);
   if (((s as any).temp_decay_delta ?? 0) < 0) {
-    qspCall(s, 'archetypes', 'log_event', ((s as any).temp_decay_archetype ?? 0), 'decay', '', ((s as any).temp_decay_delta ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_decay_archetype ?? 0), 'decay', '', ((s as any).temp_decay_delta ?? 0)]; enterLogEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).temp_decay_i = ((s as any).temp_decay_i ?? 0) + (1);
   if (((s as any).temp_decay_i ?? 0) < 5) {
@@ -750,43 +750,43 @@ function enterApplyEffects(s: GameState, scene: SceneBuilder): void {
   if (((s as any).arch_vars ?? 0)?.['main_active'] === '') {
     // TODO-QSP: exit
   }
-  if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['gap_points'] = qspFunc(s, 'math', 'int_clamp', ((s as any).arch_vars ?? 0)['' + ((s as any).arch_vars ?? 0)?.['main_active'] + '_points'] - ((s as any).arch_const ?? {})?.['point_min'], 0, ((s as any).arch_const ?? 0)?.['effect_range']);
-  if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['basic_effect'] = 2 + (8 * ((s as any).arch_temp ?? {})?.['gap_points']) / ((s as any).arch_const ?? {})?.['effect_range'];
-  if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['denom'] = (90 * ((s as any).arch_temp ?? {})?.['gap_points']) / ((s as any).arch_const ?? {})?.['effect_range'] + 30;
+  if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['gap_points'] = qspFunc(s, 'math', 'int_clamp', ((s as any).arch_vars ?? 0)['' + ((s as any).arch_vars ?? 0)?.['main_active'] + '_points'] - (((s as any).arch_const ?? {})?.['point_min'] ?? 0), 0, ((s as any).arch_const ?? 0)?.['effect_range']);
+  if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['basic_effect'] = 2 + (8 * (((s as any).arch_temp ?? {})?.['gap_points'] ?? 0)) / (((s as any).arch_const ?? {})?.['effect_range'] ?? 0);
+  if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['denom'] = (90 * (((s as any).arch_temp ?? {})?.['gap_points'] ?? 0)) / (((s as any).arch_const ?? {})?.['effect_range'] ?? 0) + 30;
   if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['eff_mul'] = qspUntranslated(s, "ARGS[1]", { location: "archetypes" });
-  if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['numer'] = (((s as any).arch_temp ?? {})?.['gap_points'] * 100 / ((s as any).arch_const ?? {})?.['effect_range']) * ((s as any).arch_temp ?? {})?.['eff_mul'];
+  if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['numer'] = ((((s as any).arch_temp ?? {})?.['gap_points'] ?? 0) * 100 / (((s as any).arch_const ?? {})?.['effect_range'] ?? 0)) * (((s as any).arch_temp ?? {})?.['eff_mul'] ?? 0);
   if (((s as any).arch_vars ?? 0)?.['main_active'] === 'bimbo') {
     if (((s as any).cheatVars ?? 0)?.['smart_bimbo'] === 0  &&  ((s as any).pcs_horny ?? 0) < ((s as any).arch_const ?? 0)?.['bimbo_arousal_target']) {
-      if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['arousal_gap'] = ((s as any).arch_const ?? {})?.['bimbo_arousal_target'] - ((s as any).pcs_horny ?? 0);
-      if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['rate'] = ((s as any).arch_const ?? {})?.['bimbo_rate_min'] + (((s as any).arch_const ?? {})?.['bimbo_rate_range'] * ((s as any).arch_temp ?? {})?.['gap_points']) / ((s as any).arch_const ?? {})?.['effect_range'];
-      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((((s as any).arch_temp ?? {})?.['arousal_gap'] * ((s as any).arch_temp ?? {})?.['rate'] * ((s as any).arch_temp ?? {})?.['eff_mul']) / ((s as any).arch_const ?? {})?.['bimbo_rate_divisor']);
+      if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['arousal_gap'] = (((s as any).arch_const ?? {})?.['bimbo_arousal_target'] ?? 0) - ((s as any).pcs_horny ?? 0);
+      if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['rate'] = (((s as any).arch_const ?? {})?.['bimbo_rate_min'] ?? 0) + ((((s as any).arch_const ?? {})?.['bimbo_rate_range'] ?? 0) * (((s as any).arch_temp ?? {})?.['gap_points'] ?? 0)) / (((s as any).arch_const ?? {})?.['effect_range'] ?? 0);
+      (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((((s as any).arch_temp ?? {})?.['arousal_gap'] ?? 0) * (((s as any).arch_temp ?? {})?.['rate'] ?? 0) * (((s as any).arch_temp ?? {})?.['eff_mul'] ?? 0)) / (((s as any).arch_const ?? {})?.['bimbo_rate_divisor'] ?? 0));
       (s as any).pcs_horny = qspUntranslated(s, "min(pcs_horny, arch_const['bimbo_arousal_target'])", { location: "archetypes" });
     }
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['appearance_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['erotic_dance_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['pole_dance_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['heels_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['service_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['modeling_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['inhib_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['chess_effect'] = -2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['intelligence_effect'] = -2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['perception_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['spirit_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['computer_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['observation_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['sewing_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['appearance_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['erotic_dance_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['pole_dance_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['heels_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['service_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['modeling_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['inhib_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['chess_effect'] = -2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['intelligence_effect'] = -2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['perception_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['spirit_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['computer_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['observation_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+    if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['sewing_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
   } else {
     if (((s as any).arch_vars ?? 0)?.['main_active'] === 'preppy') {
       if (((s as any).cheatVars ?? 0)?.['smart_bimbo'] === 0  &&  ((s as any).pcs_willpwr ?? 0) > 20) {
-        (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) - (((s as any).arch_temp ?? {})?.['eff_mul'] / ((s as any).arch_temp ?? {})?.['denom']);
+        (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) - ((((s as any).arch_temp ?? {})?.['eff_mul'] ?? 0) / (((s as any).arch_temp ?? {})?.['denom'] ?? 0));
         if ((Math.floor(Math.random() * (((s as any).arch_temp ?? 0)?.['denom'] - 1 + 1)) + (1)) <= ((s as any).arch_temp ?? 0)?.['eff_mul'] % ((s as any).arch_temp ?? 0)?.['denom']) {
           (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) - (1);
         }
       }
       if (((s as any).pcs_mood ?? 0) < 80) {
-        if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['successes'] = ((s as any).arch_temp ?? {})?.['numer'] / 1500;
+        if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['successes'] = (((s as any).arch_temp ?? {})?.['numer'] ?? 0) / 1500;
         if ((Math.floor(Math.random() * 1500) + 1) <= ((s as any).arch_temp ?? 0)?.['numer'] % 1500) {
           if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['successes'] = ((s as any).arch_temp['successes'] ?? 0) + (1);
         }
@@ -794,79 +794,79 @@ function enterApplyEffects(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: gs 'mood', 'raise', arch_temp['successes']
         }
       }
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['appearance_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['disposition_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['modeling_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['dancing_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['people_skills_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['cheerleading_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['persuasion_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['computer_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['makeup_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['sports_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['revealing_sports_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['combat_effect'] = -2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['spirit_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['strength_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['artistic_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['music_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['appearance_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['disposition_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['modeling_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['dancing_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['people_skills_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['cheerleading_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['persuasion_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['computer_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['makeup_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['sports_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['revealing_sports_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['combat_effect'] = -2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['spirit_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['strength_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['artistic_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+      if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['music_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
     } else {
       if (((s as any).arch_vars ?? 0)?.['main_active'] === 'prude') {
         if (((s as any).pcs_horny ?? 0) > ((s as any).arch_const ?? 0)?.['prude_arousal_target']) {
-          if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['arousal_gap'] = ((s as any).pcs_horny ?? 0) - ((s as any).arch_const ?? {})?.['prude_arousal_target'];
-          if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['rate'] = ((s as any).arch_const ?? {})?.['prude_rate_min'] + (((s as any).arch_const ?? {})?.['prude_rate_range'] * ((s as any).arch_temp ?? {})?.['gap_points']) / ((s as any).arch_const ?? {})?.['effect_range'];
-          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - ((((s as any).arch_temp ?? {})?.['arousal_gap'] * ((s as any).arch_temp ?? {})?.['rate'] * ((s as any).arch_temp ?? {})?.['eff_mul']) / ((s as any).arch_const ?? {})?.['prude_rate_divisor']);
+          if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['arousal_gap'] = ((s as any).pcs_horny ?? 0) - (((s as any).arch_const ?? {})?.['prude_arousal_target'] ?? 0);
+          if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['rate'] = (((s as any).arch_const ?? {})?.['prude_rate_min'] ?? 0) + ((((s as any).arch_const ?? {})?.['prude_rate_range'] ?? 0) * (((s as any).arch_temp ?? {})?.['gap_points'] ?? 0)) / (((s as any).arch_const ?? {})?.['effect_range'] ?? 0);
+          (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (((((s as any).arch_temp ?? {})?.['arousal_gap'] ?? 0) * (((s as any).arch_temp ?? {})?.['rate'] ?? 0) * (((s as any).arch_temp ?? {})?.['eff_mul'] ?? 0)) / (((s as any).arch_const ?? {})?.['prude_rate_divisor'] ?? 0));
           (s as any).pcs_horny = qspUntranslated(s, "max(pcs_horny, arch_const['prude_arousal_target'])", { location: "archetypes" });
         }
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['intelligence_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['chess_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['computer_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['observation_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['sewing_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['cleaning_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['appearance_effect'] = -2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['erotic_dance_effect'] = -2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['pole_dance_effect'] = -2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['heels_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['makeup_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['songwriting_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['performance_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['inhib_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['revealing_sports_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['intelligence_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['chess_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['computer_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['observation_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['sewing_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['cleaning_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['appearance_effect'] = -2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['erotic_dance_effect'] = -2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['pole_dance_effect'] = -2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['heels_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['makeup_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['songwriting_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['performance_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['inhib_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+        if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['revealing_sports_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
       } else {
         if (((s as any).arch_vars ?? 0)?.['main_active'] === 'punk') {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).willpowermax ?? 0)) {
-            (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (((s as any).arch_temp ?? {})?.['eff_mul'] / ((s as any).arch_temp ?? {})?.['denom']);
+            (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + ((((s as any).arch_temp ?? {})?.['eff_mul'] ?? 0) / (((s as any).arch_temp ?? {})?.['denom'] ?? 0));
             if ((Math.floor(Math.random() * (((s as any).arch_temp ?? 0)?.['denom'] - 1 + 1)) + (1)) <= ((s as any).arch_temp ?? 0)?.['eff_mul'] % ((s as any).arch_temp ?? 0)?.['denom']) {
               (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (1);
             }
           }
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['spirit_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['strength_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['combat_effect'] = 2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['music_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['appearance_effect'] = -4 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['modeling_effect'] = -2 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['dancing_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['service_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['heels_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['computer_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['makeup_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['cleaning_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['spirit_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['strength_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['combat_effect'] = 2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['music_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['appearance_effect'] = -4 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['modeling_effect'] = -2 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['dancing_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['service_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['heels_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['computer_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['makeup_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+          if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['cleaning_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
         } else {
           if (((s as any).arch_vars ?? 0)?.['main_active'] === 'goth') {
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).willpowermax ?? 0)) {
-              (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (((s as any).arch_temp ?? {})?.['eff_mul'] / ((s as any).arch_temp ?? {})?.['denom']);
+              (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + ((((s as any).arch_temp ?? {})?.['eff_mul'] ?? 0) / (((s as any).arch_temp ?? {})?.['denom'] ?? 0));
               if ((Math.floor(Math.random() * (((s as any).arch_temp ?? 0)?.['denom'] - 1 + 1)) + (1)) <= ((s as any).arch_temp ?? 0)?.['eff_mul'] % ((s as any).arch_temp ?? 0)?.['denom']) {
                 (s as any).pcs_willpwr = ((s as any).pcs_willpwr ?? 0) + (1);
               }
             }
             if (((s as any).cheatVars ?? 0)?.['smart_bimbo'] === 0) {
               if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['mood_denom'] = ((((s as any).pcs_mood ?? 0) > 20) ? (1500) : (6000));
-              if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['successes'] = ((s as any).arch_temp ?? {})?.['numer'] / ((s as any).arch_temp ?? {})?.['mood_denom'];
+              if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['successes'] = (((s as any).arch_temp ?? {})?.['numer'] ?? 0) / (((s as any).arch_temp ?? {})?.['mood_denom'] ?? 0);
               if ((Math.floor(Math.random() * (((s as any).arch_temp ?? 0)?.['mood_denom'] - 1 + 1)) + (1)) <= ((s as any).arch_temp ?? 0)?.['numer'] % ((s as any).arch_temp ?? 0)?.['mood_denom']) {
                 if (!(s as any).arch_temp) (s as any).arch_temp = {}; (s as any).arch_temp['successes'] = ((s as any).arch_temp['successes'] ?? 0) + (1);
               }
@@ -874,19 +874,19 @@ function enterApplyEffects(s: GameState, scene: SceneBuilder): void {
                 // TODO-QSP: gs 'mood', 'lower', arch_temp['successes']
               }
             }
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['spirit_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['perception_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['artistic_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['makeup_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['songwriting_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['performance_effect'] = 1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['disposition_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['people_skills_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['cheerleading_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['persuasion_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['sports_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
-            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['revealing_sports_effect'] = -1 * ((s as any).arch_temp ?? {})?.['basic_effect'];
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['spirit_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['perception_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['artistic_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['makeup_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['songwriting_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['performance_effect'] = 1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['charisma_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['disposition_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['people_skills_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['cheerleading_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['persuasion_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['sports_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
+            if (!(s as any).arch_effects) (s as any).arch_effects = {}; (s as any).arch_effects['revealing_sports_effect'] = -1 * (((s as any).arch_temp ?? {})?.['basic_effect'] ?? 0);
           }
         }
       }
@@ -1021,9 +1021,9 @@ function enterDailySnapshot(s: GameState, scene: SceneBuilder): void {
 function enterComputeWithdrawal(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['withdrawal_pct'] = 0;
   if (((s as any).cheatVars ?? 0)?.['no_archetype_withdrawal'] === 0  &&  ((s as any).arch_vars ?? 0)?.['main_active'] !== '') {
-    (s as any).temp_cw_avg = ((s as any).arch_vars ?? 0)?.[((s as any).arch_vars ?? {})?.['main_active'] + '_avg'];
+    (s as any).temp_cw_avg = ((s as any).arch_vars ?? 0)?.[(((s as any).arch_vars ?? {})?.['main_active'] ?? 0) + '_avg'];
     if (((s as any).temp_cw_avg ?? 0) > 0) {
-      (s as any).temp_cw_cur = ((s as any).arch_vars ?? 0)?.[((s as any).arch_vars ?? {})?.['main_active'] + '_points'];
+      (s as any).temp_cw_cur = ((s as any).arch_vars ?? 0)?.[(((s as any).arch_vars ?? {})?.['main_active'] ?? 0) + '_points'];
       if (((s as any).temp_cw_cur ?? 0) < ((s as any).temp_cw_avg ?? 0)) {
         if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['withdrawal_pct'] = ((((s as any).temp_cw_avg ?? 0) - ((s as any).temp_cw_cur ?? 0)) * 100) / ((s as any).temp_cw_avg ?? 0);
       }
@@ -1061,7 +1061,7 @@ function enterSeedSnapshots(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_ss_i ?? 0) < 5) {
     // TODO-QSP: jump 'seed_archetype_loop'
   }
-  qspCall(s, 'archetypes', 'compute_withdrawal');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterComputeWithdrawal(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -1239,18 +1239,18 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['point_cap'] = 2000000;
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['point_min'] = 50000 * ((s as any).temp_diff_num ?? 0) / ((s as any).temp_diff_den ?? 0);
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['points_full_effect'] = 500000 * ((s as any).temp_diff_num ?? 0) / ((s as any).temp_diff_den ?? 0);
-  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['effect_range'] = ((s as any).arch_const ?? {})?.['points_full_effect'] - ((s as any).arch_const ?? {})?.['point_min'];
-  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['level_third'] = ((s as any).arch_const ?? {})?.['effect_range'] / 3;
-  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['decay_half'] = ((s as any).arch_const ?? {})?.['points_full_effect'] * 4 / 5;
+  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['effect_range'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) - (((s as any).arch_const ?? {})?.['point_min'] ?? 0);
+  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['level_third'] = (((s as any).arch_const ?? {})?.['effect_range'] ?? 0) / 3;
+  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['decay_half'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) * 4 / 5;
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['decay_cap'] = 29;
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['bimbo_arousal_target'] = 150;
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['bimbo_rate_divisor'] = 6750;
-  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['bimbo_rate_min'] = (5010 * ((s as any).arch_const ?? {})?.['bimbo_rate_divisor']) / 480000;
-  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['bimbo_rate_range'] = (5010 * ((s as any).arch_const ?? {})?.['bimbo_rate_divisor']) / 120000 - ((s as any).arch_const ?? {})?.['bimbo_rate_min'];
+  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['bimbo_rate_min'] = (5010 * (((s as any).arch_const ?? {})?.['bimbo_rate_divisor'] ?? 0)) / 480000;
+  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['bimbo_rate_range'] = (5010 * (((s as any).arch_const ?? {})?.['bimbo_rate_divisor'] ?? 0)) / 120000 - (((s as any).arch_const ?? {})?.['bimbo_rate_min'] ?? 0);
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['prude_arousal_target'] = 30;
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['prude_rate_divisor'] = 6750;
-  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['prude_rate_min'] = (4780 * ((s as any).arch_const ?? {})?.['prude_rate_divisor']) / 480000;
-  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['prude_rate_range'] = (4780 * ((s as any).arch_const ?? {})?.['prude_rate_divisor']) / 120000 - ((s as any).arch_const ?? {})?.['prude_rate_min'];
+  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['prude_rate_min'] = (4780 * (((s as any).arch_const ?? {})?.['prude_rate_divisor'] ?? 0)) / 480000;
+  if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['prude_rate_range'] = (4780 * (((s as any).arch_const ?? {})?.['prude_rate_divisor'] ?? 0)) / 120000 - (((s as any).arch_const ?? {})?.['prude_rate_min'] ?? 0);
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['sex_bimbo_daily_cap'] = 2500;
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['sex_chastity_days'] = 14;
   if (!(s as any).arch_const) (s as any).arch_const = {}; (s as any).arch_const['sex_chastity_bonus_prude'] = 2700;
@@ -1311,14 +1311,14 @@ function enterDisplayPage(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <table width="82%" align="center" cellpadding="0" cellspacing="0" style="border-...
-    scene.text(`<table width="82%" align="center" cellpadding="0" cellspacing="0" style="border-left: 4px solid ${((s as any).temp_tv ?? 0)?.['active_color']}; margin: 4px auto 8px;">`);
+    scene.text(`<table width="82%" align="center" cellpadding="0" cellspacing="0" style="border-left: 4px solid ${((s as any).temp_tv ?? 0)?.['active_color'] ?? ''}; margin: 4px auto 8px;">`);
     scene.text('<tr><td style="padding: 8px 14px;">');
-    if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['pct'] = (((s as any).arch_vars ?? 0)[((s as any).temp_tv ?? {})?.['active'] + '_points'] * 100) / ((s as any).arch_const ?? {})?.['points_full_effect'];
+    if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['pct'] = (((s as any).arch_vars ?? 0)[(((s as any).temp_tv ?? {})?.['active'] ?? 0) + '_points'] * 100) / (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0);
     if (((s as any).temp_tv ?? 0)?.['pct'] > 100) {
       if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['pct'] = 100;
     }
     // TODO-QSP: dynamic text: <span style="color: <<$temp_tv['active_color']>>; font-size: 1.1em;"><b><<$temp_...
-    scene.text(`<span style="color: ${((s as any).temp_tv ?? 0)?.['active_color']}; font-size: 1.1em;"><b>${((s as any).temp_tv ?? 0)?.['active_label']}</b></span>&nbsp;<font color="#888888">— ${((s as any).temp_tv ?? 0)?.['pct']}%</font>`);
+    scene.text(`<span style="color: ${((s as any).temp_tv ?? 0)?.['active_color'] ?? ''}; font-size: 1.1em;"><b>${((s as any).temp_tv ?? 0)?.['active_label'] ?? ''}</b></span>&nbsp;<font color="#888888">— ${((s as any).temp_tv ?? 0)?.['pct'] ?? ''}%</font>`);
     if (((s as any).arch_vars ?? 0)?.['withdrawal_pct'] > 0) {
       if (((s as any).arch_vars ?? 0)?.['withdrawal_pct'] <= 10) {
         // TODO-QSP: $func('wrap', 'pos', '● Mild withdrawal (' + $str(arch_vars['withdrawal_pct']) + '%)')
@@ -1366,7 +1366,7 @@ function enterDisplayPage(s: GameState, scene: SceneBuilder): void {
     scene.text('</td></tr></table>');
   } else {
     // TODO-QSP: dynamic text: <center><font color="#888888"><i>No active archetype — gain at least <<arch_cons...
-    scene.text(`<center><font color="#888888"><i>No active archetype — gain at least ${((s as any).arch_const ?? {})?.['point_min'] / 250} points in any archetype to activate it.</i></font></center>`);
+    scene.text(`<center><font color="#888888"><i>No active archetype — gain at least ${(((s as any).arch_const ?? {})?.['point_min'] ?? 0) / 250} points in any archetype to activate it.</i></font></center>`);
   }
   if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['max'] = ((s as any).arch_const ?? 0)?.['points_full_effect'];
   if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['saved_bar_width'] = ((s as any).stat_cfg ?? 0)?.['bar_width'];
@@ -1376,7 +1376,7 @@ function enterDisplayPage(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['i'] = 0;
   // TODO-QSP: :tv_dp_bar_loop
   if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['name'] = qspFunc(s, 'archetypes', 'get_archetype', ((s as any).temp_tv ?? 0)?.['i']);
-  if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['pts'] = ((s as any).arch_vars ?? 0)?.[((s as any).temp_tv ?? {})?.['name'] + '_points'];
+  if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['pts'] = ((s as any).arch_vars ?? 0)?.[(((s as any).temp_tv ?? {})?.['name'] ?? 0) + '_points'];
   if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['bar'] = qspFunc(s, 'progressbar', '$temp_tv[\'grads, \' + $str(temp_tv[\'i\'])]', ((s as any).temp_tv ?? 0)?.['pts'], ((s as any).temp_tv ?? 0)?.['max'], 0, 0, '', 'none', '', 1);
   if (((s as any).temp_tv ?? 0)?.['name'] === ((s as any).arch_vars ?? 0)?.['main_active']) {
     if (!(s as any).temp_tv) (s as any).temp_tv = {}; (s as any).temp_tv['lbl'] = '<b><font color="\' + $temp_tv[\'colors, \' + $str(temp_tv[\'i\'])] + \'">\' + $temp_tv[\'labels, \' + $str(temp_tv[\'i\'])] + \'</font></b>';
@@ -1406,8 +1406,8 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><font color="#888888"><i>Archetype history logging is disabled. Enable it via the Settings page.</i></font></center>');
     return;
   }
-  qspCall(s, 'archetypes', 'aggregate', 60);
-  qspCall(s, 'archetypes', 'aggregate', 1440);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 60]; enterAggregate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1440]; enterAggregate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<h3 style="text-align:center;margin:8px 0 4px;">Archetype History</h3>');
   scene.text('<p style="text-align:center;font-size:0.85em;color:#888888;margin:0 0 12px;">Point changes over the last hour and last day, by category.</p>');
   if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['names, 0'] = 'bimbo\'      & $thp[\'labels, 0\'] = \'Bimbo';
@@ -1437,9 +1437,9 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['tlabel'] = ((s as any).thp ?? 0)?.['labels, ' + String(((s as any).thp ?? 0)?.['ti'])];
   if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['tcolor'] = ((s as any).thp ?? 0)?.['colors, ' + String(((s as any).thp ?? 0)?.['ti'])];
   // TODO-QSP: dynamic text: <div style="margin:12px 0 4px;border-bottom:2px solid <<$thp['tcolor']>>;padding...
-  scene.text(`<div style="margin:12px 0 4px;border-bottom:2px solid ${((s as any).thp ?? 0)?.['tcolor']};padding-bottom:3px;">`);
+  scene.text(`<div style="margin:12px 0 4px;border-bottom:2px solid ${((s as any).thp ?? 0)?.['tcolor'] ?? ''};padding-bottom:3px;">`);
   // TODO-QSP: dynamic text: <b><font color="<<$thp['tcolor']>>"><<$thp['tlabel']>></font></b>
-  scene.text(`<b><font color="${((s as any).thp ?? 0)?.['tcolor']}">${((s as any).thp ?? 0)?.['tlabel']}</font></b>`);
+  scene.text(`<b><font color="${((s as any).thp ?? 0)?.['tcolor'] ?? ''}">${((s as any).thp ?? 0)?.['tlabel'] ?? ''}</font></b>`);
   scene.text('</div>');
   scene.text('<table width="100%" cellpadding="2" cellspacing="0" style="font-size:0.9em;">');
   scene.text('<tr>');
@@ -1459,11 +1459,11 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['tot1440'] = ((s as any).thp['tot1440'] ?? 0) + (((s as any).thp ?? 0)?.['v1440']);
   scene.text('<tr>');
   // TODO-QSP: dynamic text: <td><<$thp['clabel']>></td>
-  scene.text(`<td>${((s as any).thp ?? 0)?.['clabel']}</td>`);
+  scene.text(`<td>${((s as any).thp ?? 0)?.['clabel'] ?? ''}</td>`);
   // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v60'] <> 0, $func('archetypes', 'fmt_pts', thp['v60...
-  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v60'], 'coarse')) : ('—'))}</td>`);
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v60'] ?? '', 'coarse')) : ('—'))}</td>`);
   // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v1440'] <> 0, $func('archetypes', 'fmt_pts', thp['v...
-  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v1440'], 'coarse')) : ('—'))}</td>`);
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v1440'] ?? '', 'coarse')) : ('—'))}</td>`);
   scene.text('</tr>');
   if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['ci'] = ((s as any).thp['ci'] ?? 0) + (1);
   if (((s as any).thp ?? 0)?.['ci'] < 9) {
@@ -1476,9 +1476,9 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
   scene.text('<tr style="color:#888888;">');
   scene.text('<td><i>Decay</i></td>');
   // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v60'] <> 0, $func('archetypes', 'fmt_pts', thp['v60...
-  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v60'], 'coarse')) : ('—'))}</td>`);
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v60'] ?? '', 'coarse')) : ('—'))}</td>`);
   // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v1440'] <> 0, $func('archetypes', 'fmt_pts', thp['v...
-  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v1440'], 'coarse')) : ('—'))}</td>`);
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v1440'] ?? '', 'coarse')) : ('—'))}</td>`);
   scene.text('</tr>');
   if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['v60'] = ((s as any).agg ?? 0)?.['arch:\' + $thp[\'tname\'] + \', cat:opposition, w:60'];
   if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['v1440'] = ((s as any).agg ?? 0)?.['arch:\' + $thp[\'tname\'] + \', cat:opposition, w:1440'];
@@ -1487,17 +1487,17 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
   scene.text('<tr style="color:#888888;">');
   scene.text('<td><i>Opposition</i></td>');
   // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v60'] <> 0, $func('archetypes', 'fmt_pts', thp['v60...
-  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v60'], 'coarse')) : ('—'))}</td>`);
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v60'] ?? '', 'coarse')) : ('—'))}</td>`);
   // TODO-QSP: dynamic text: <td align="right"><<iif(thp['v1440'] <> 0, $func('archetypes', 'fmt_pts', thp['v...
-  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v1440'], 'coarse')) : ('—'))}</td>`);
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['v1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['v1440'] ?? '', 'coarse')) : ('—'))}</td>`);
   scene.text('</tr>');
   // TODO-QSP: dynamic text: <tr style="border-top:1px solid <<$thp['border']>>;font-weight:bold;">
-  scene.text(`<tr style="border-top:1px solid ${((s as any).thp ?? 0)?.['border']};font-weight:bold;">`);
+  scene.text(`<tr style="border-top:1px solid ${((s as any).thp ?? 0)?.['border'] ?? ''};font-weight:bold;">`);
   scene.text('<td>Total</td>');
   // TODO-QSP: dynamic text: <td align="right"><<iif(thp['tot60'] <> 0, $func('archetypes', 'fmt_pts', thp['t...
-  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['tot60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['tot60'], 'coarse')) : ('—'))}</td>`);
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['tot60'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['tot60'] ?? '', 'coarse')) : ('—'))}</td>`);
   // TODO-QSP: dynamic text: <td align="right"><<iif(thp['tot1440'] <> 0, $func('archetypes', 'fmt_pts', thp[...
-  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['tot1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['tot1440'], 'coarse')) : ('—'))}</td>`);
+  scene.text(`<td align="right">${((((s as any).thp ?? 0)?.['tot1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['tot1440'] ?? '', 'coarse')) : ('—'))}</td>`);
   scene.text('</tr>');
   scene.text('</table>');
   if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['cutoff24'] = ((s as any).totminut ?? 0) - 1440;
@@ -1542,23 +1542,23 @@ function enterHistoryPage(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['stot1440'] = ((s as any).thp['stot1440'] ?? 0) + (((s as any).thp ?? 0)?.['sv1440']);
     scene.text('<tr>');
     // TODO-QSP: dynamic text: <td><<$thp['slbl']>></td>
-    scene.text(`<td>${((s as any).thp ?? 0)?.['slbl']}</td>`);
+    scene.text(`<td>${((s as any).thp ?? 0)?.['slbl'] ?? ''}</td>`);
     // TODO-QSP: dynamic text: <td width="80" align="right"><<$func('archetypes', 'fmt_pts', thp['sv60'],   'co...
-    scene.text(`<td width="80" align="right">${qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['sv60'], 'coarse')}</td>`);
+    scene.text(`<td width="80" align="right">${qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['sv60'] ?? '', 'coarse')}</td>`);
     // TODO-QSP: dynamic text: <td width="80" align="right"><<$func('archetypes', 'fmt_pts', thp['sv1440'], 'co...
-    scene.text(`<td width="80" align="right">${qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['sv1440'], 'coarse')}</td>`);
+    scene.text(`<td width="80" align="right">${qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['sv1440'] ?? '', 'coarse')}</td>`);
     scene.text('</tr>');
     if (!(s as any).thp) (s as any).thp = {}; (s as any).thp['sj'] = ((s as any).thp['sj'] ?? 0) + (1);
     if (((s as any).thp ?? 0)?.['sj'] < ((s as any).thp ?? 0)?.['story_count']) {
       // TODO-QSP: jump 'thp_story_render'
     }
     // TODO-QSP: dynamic text: <tr style="border-top:1px solid <<$thp['border']>>;font-weight:bold;">
-    scene.text(`<tr style="border-top:1px solid ${((s as any).thp ?? 0)?.['border']};font-weight:bold;">`);
+    scene.text(`<tr style="border-top:1px solid ${((s as any).thp ?? 0)?.['border'] ?? ''};font-weight:bold;">`);
     scene.text('<td>Total</td>');
     // TODO-QSP: dynamic text: <td width="80" align="right"><<iif(thp['stot60']   <> 0, $func('archetypes', 'fm...
-    scene.text(`<td width="80" align="right">${((((s as any).thp ?? 0)?.['stot60']   !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['stot60'], 'coarse')) : ('—'))}</td>`);
+    scene.text(`<td width="80" align="right">${((((s as any).thp ?? 0)?.['stot60']   !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['stot60'] ?? '', 'coarse')) : ('—'))}</td>`);
     // TODO-QSP: dynamic text: <td width="80" align="right"><<iif(thp['stot1440'] <> 0, $func('archetypes', 'fm...
-    scene.text(`<td width="80" align="right">${((((s as any).thp ?? 0)?.['stot1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['stot1440'], 'coarse')) : ('—'))}</td>`);
+    scene.text(`<td width="80" align="right">${((((s as any).thp ?? 0)?.['stot1440'] !== 0) ? (qspFunc(s, 'archetypes', 'fmt_pts', ((s as any).thp ?? 0)?.['stot1440'] ?? '', 'coarse')) : ('—'))}</td>`);
     scene.text('</tr>');
     scene.text('</table>');
   }
@@ -1698,7 +1698,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
   scene.text('<h3 style="text-align:center;margin:8px 0 4px;">Archetype Points Gain & Loss</h3>');
   scene.text('<p style="text-align:center;font-size:0.85em;color:#888888;margin:0 0 8px;">Each cue pushes archetypes up or down every minute it is active. ↑ = moderate &nbsp;↑↑ = strong &nbsp;↑↑↑ = very strong &nbsp; small arrow = slight.</p>');
   if (!(s as any).cc) (s as any).cc = {}; (s as any).cc['btn'] = 'display:inline-block;padding:7px 18px;margin:2px;border:1px solid #888888;border-radius:4px;font-size:0.95em;';
-  if (!(s as any).cc) (s as any).cc = {}; (s as any).cc['btn_on'] = ((s as any).cc ?? {})?.['btn'] + 'font-weight:bold;opacity:0.5;cursor:default;';
+  if (!(s as any).cc) (s as any).cc = {}; (s as any).cc['btn_on'] = (((s as any).cc ?? {})?.['btn'] ?? 0) + 'font-weight:bold;opacity:0.5;cursor:default;';
   if ((!((s as any).archetype_catalog_view ?? 0))) {
     // TODO-QSP: dynamic text: '<div style="text-align:center;margin:10px 0 4px;"><span style="' + $cc['btn_on'...
     scene.text('\'<div style="text-align:center;margin:10px 0 4px;"><span style="\' + $cc[\'btn_on\'] + \'">By Category</span><a href="exec:archetype_catalog_view=1 & archetype_catalog_sort=1 & gt \'$menu_character\', \'archetypes\', \'catalog\'" style="\' + $cc[\'btn\'] + \'">By Archetype</a></div>\'');
@@ -1706,7 +1706,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: '<div style="text-align:center;margin:10px 0 4px;"><a href="exec:archetype_catal...
     scene.text('\'<div style="text-align:center;margin:10px 0 4px;"><a href="exec:archetype_catalog_view=0 & gt \'$menu_character\', \'archetypes\', \'catalog\'" style="\' + $cc[\'btn\'] + \'">By Category</a><span style="\' + $cc[\'btn_on\'] + \'">By Archetype</span></div>\'');
     if (!(s as any).cc) (s as any).cc = {}; (s as any).cc['tb'] = 'display:inline-block;padding:5px 16px;margin:2px;border:1px solid;border-radius:4px;font-size:0.9em;';
-    if (!(s as any).cc) (s as any).cc = {}; (s as any).cc['tb_on'] = ((s as any).cc ?? {})?.['tb'] + 'font-weight:bold;opacity:0.6;cursor:default;';
+    if (!(s as any).cc) (s as any).cc = {}; (s as any).cc['tb_on'] = (((s as any).cc ?? {})?.['tb'] ?? 0) + 'font-weight:bold;opacity:0.6;cursor:default;';
     scene.text('<div style="text-align:center;margin:0 0 12px;">');
     if (((s as any).archetype_catalog_view ?? 0) === 1) {
       // TODO-QSP: dynamic text: '<span style="' + $cc['tb_on'] + 'border-color:' + $theme_hex['bimbo'] + ';color...
@@ -1754,7 +1754,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
           scene.text('</table>');
         }
         // TODO-QSP: dynamic text: <div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px s...
-        scene.text(`<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">${((s as any).cc_prevcat ?? 0)}</div>`);
+        scene.text(`<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">${((s as any).cc_prevcat || '')}</div>`);
         if (((s as any).cc_prevcat ?? 0) === 'Clothing') {
           scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;"><i>Active whenever you\'re dressed. Style, cut, and coverage all shape your archetype scores.</i></p>');
         }
@@ -1783,7 +1783,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         scene.text('$cc[\'tbl\'] + $cc[\'hdr\']');
       }
       // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td>' + $cc[$cc_bv[n]] + $cc[$cc_pv[n]] + $cc[$cc_rv[n]...
-      scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_bv[n]] + $cc[$cc_pv[n]] + $cc[$cc_rv[n]] + $cc[$cc_uv[n]] + $cc[$cc_gv[n]] + '</tr>'`);
+      scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td>' + $cc[$cc_bv[n]] + $cc[$cc_pv[n]] + $cc[$cc_rv[n]] + $cc[$cc_uv[n]] + $cc[$cc_gv[n]] + '</tr>'`);
       (s as any).n = ((s as any).n ?? 0) + 1;
       // TODO-QSP: jump 'cc_cat_loop'
     }
@@ -1819,7 +1819,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cc_tcell ?? 0) === 'b+6'  ||  ((s as any).cc_tcell ?? 0) === 'p+6'  ||  ((s as any).cc_tcell ?? 0) === 'r+6'  ||  ((s as any).cc_tcell ?? 0) === 'u+6'  ||  ((s as any).cc_tcell ?? 0) === 'g+6'  ||  ((s as any).cc_tcell ?? 0) === 'b+4'  ||  ((s as any).cc_tcell ?? 0) === 'p+4'  ||  ((s as any).cc_tcell ?? 0) === 'r+4'  ||  ((s as any).cc_tcell ?? 0) === 'u+4'  ||  ((s as any).cc_tcell ?? 0) === 'g+4') {
           // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
-          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_t_sp'
@@ -1839,7 +1839,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cc_tcell ?? 0) === 'b+2'  ||  ((s as any).cc_tcell ?? 0) === 'p+2'  ||  ((s as any).cc_tcell ?? 0) === 'r+2'  ||  ((s as any).cc_tcell ?? 0) === 'u+2'  ||  ((s as any).cc_tcell ?? 0) === 'g+2'  ||  ((s as any).cc_tcell ?? 0) === 'b+1'  ||  ((s as any).cc_tcell ?? 0) === 'p+1'  ||  ((s as any).cc_tcell ?? 0) === 'r+1'  ||  ((s as any).cc_tcell ?? 0) === 'u+1'  ||  ((s as any).cc_tcell ?? 0) === 'g+1') {
           // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
-          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_t_mp'
@@ -1859,7 +1859,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cc_tcell ?? 0) === 'b-1'  ||  ((s as any).cc_tcell ?? 0) === 'p-1'  ||  ((s as any).cc_tcell ?? 0) === 'r-1'  ||  ((s as any).cc_tcell ?? 0) === 'u-1'  ||  ((s as any).cc_tcell ?? 0) === 'g-1'  ||  ((s as any).cc_tcell ?? 0) === 'b-2'  ||  ((s as any).cc_tcell ?? 0) === 'p-2'  ||  ((s as any).cc_tcell ?? 0) === 'r-2'  ||  ((s as any).cc_tcell ?? 0) === 'u-2'  ||  ((s as any).cc_tcell ?? 0) === 'g-2') {
           // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
-          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_t_mn'
@@ -1879,7 +1879,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cc_tcell ?? 0) === 'b-4'  ||  ((s as any).cc_tcell ?? 0) === 'p-4'  ||  ((s as any).cc_tcell ?? 0) === 'r-4'  ||  ((s as any).cc_tcell ?? 0) === 'u-4'  ||  ((s as any).cc_tcell ?? 0) === 'g-4'  ||  ((s as any).cc_tcell ?? 0) === 'b-6'  ||  ((s as any).cc_tcell ?? 0) === 'p-6'  ||  ((s as any).cc_tcell ?? 0) === 'r-6'  ||  ((s as any).cc_tcell ?? 0) === 'u-6'  ||  ((s as any).cc_tcell ?? 0) === 'g-6') {
           // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
-          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_t_sn'
@@ -1900,7 +1900,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cc_tcell ?? 0) !== '__') {
           // TODO-QSP: dynamic text: '<tr><td><<$cc_cond[n]>></td><td><<$cc_cat[n]>></td>' + $cc[$cc_tcell] + '</tr>'
-          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)]}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)]}</td>' + $cc[$cc_tcell] + '</tr>'`);
+          scene.text(`'<tr><td>${((s as any).cc_cond ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td><td>${((s as any).cc_cat ?? 0)?.[String((s as any).n ?? 0)] ?? ''}</td>' + $cc[$cc_tcell] + '</tr>'`);
         }
         (s as any).n = ((s as any).n ?? 0) + 1;
         // TODO-QSP: jump 'cc_archetype_loop'
@@ -1912,7 +1912,7 @@ function enterCauseCatalog(s: GameState, scene: SceneBuilder): void {
   scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">All archetypes decay every game minute, with the decay strength depending on how many points that archetype currently has. This downward drift is what keeps any one archetype from running away without ongoing reinforcement.</p>');
   scene.text('<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">Opposition</div>');
   // TODO-QSP: dynamic text: <p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Each archetype has two...
-  scene.text(`<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Each archetype has two opposites; gaining points in one always chips away at its opposites. ${((s as any).cc ?? 0)?.['b']} opposes ${((s as any).cc ?? 0)?.['pr']} &amp; ${((s as any).cc ?? 0)?.['pu']}. ${((s as any).cc ?? 0)?.['pp']} opposes ${((s as any).cc ?? 0)?.['pu']} &amp; ${((s as any).cc ?? 0)?.['g']}. ${((s as any).cc ?? 0)?.['pr']} opposes ${((s as any).cc ?? 0)?.['g']} &amp; ${((s as any).cc ?? 0)?.['b']}. ${((s as any).cc ?? 0)?.['pu']} opposes ${((s as any).cc ?? 0)?.['b']} &amp; ${((s as any).cc ?? 0)?.['pp']}. ${((s as any).cc ?? 0)?.['g']} opposes ${((s as any).cc ?? 0)?.['pp']} &amp; ${((s as any).cc ?? 0)?.['pr']}.</p>`);
+  scene.text(`<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Each archetype has two opposites; gaining points in one always chips away at its opposites. ${((s as any).cc ?? 0)?.['b'] ?? ''} opposes ${((s as any).cc ?? 0)?.['pr'] ?? ''} &amp; ${((s as any).cc ?? 0)?.['pu'] ?? ''}. ${((s as any).cc ?? 0)?.['pp'] ?? ''} opposes ${((s as any).cc ?? 0)?.['pu'] ?? ''} &amp; ${((s as any).cc ?? 0)?.['g'] ?? ''}. ${((s as any).cc ?? 0)?.['pr'] ?? ''} opposes ${((s as any).cc ?? 0)?.['g'] ?? ''} &amp; ${((s as any).cc ?? 0)?.['b'] ?? ''}. ${((s as any).cc ?? 0)?.['pu'] ?? ''} opposes ${((s as any).cc ?? 0)?.['b'] ?? ''} &amp; ${((s as any).cc ?? 0)?.['pp'] ?? ''}. ${((s as any).cc ?? 0)?.['g'] ?? ''} opposes ${((s as any).cc ?? 0)?.['pp'] ?? ''} &amp; ${((s as any).cc ?? 0)?.['pr'] ?? ''}.</p>`);
   scene.text('<div style="margin:10px 0 4px;font-size:1em;font-weight:bold;border-bottom:1px solid #888888;">Story Events</div>');
   scene.text('<p style="font-size:0.82em;color:#888888;margin:0 0 4px;">Direct archetype gains and losses from quests, events, and choices in the story.<br>For example, performing a genuine prayer in church may award prude points.</p>');
   scene.text('</div></center>');
@@ -1946,7 +1946,7 @@ function enterLogEvent(s: GameState, scene: SceneBuilder): void {
 
 function enterAggregate(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_agg) (s as any).temp_agg = {}; (s as any).temp_agg['window'] = ((((s as any).locArgs?.[1] ?? 0) > 0) ? (qspUntranslated(s, "ARGS[1]", { location: "archetypes" })) : (1440));
-  if (!(s as any).temp_agg) (s as any).temp_agg = {}; (s as any).temp_agg['cutoff'] = ((s as any).totminut ?? 0) - ((s as any).temp_agg ?? {})?.['window'];
+  if (!(s as any).temp_agg) (s as any).temp_agg = {}; (s as any).temp_agg['cutoff'] = ((s as any).totminut ?? 0) - (((s as any).temp_agg ?? {})?.['window'] ?? 0);
   if (!(s as any).temp_agg) (s as any).temp_agg = {}; (s as any).temp_agg['i'] = 0;
   // TODO-QSP: :agg_loop
   if (((s as any).temp_agg ?? 0)?.['i'] < Object.keys((s as any).arch_log_minut ?? {}).length) {

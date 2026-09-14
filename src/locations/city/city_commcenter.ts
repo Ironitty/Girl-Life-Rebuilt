@@ -17,7 +17,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/community/community_center.jpg');
   }
   // TODO-QSP: dynamic text: The Vladimir Lenin center is open from ' + func('time', 'get_time_string', 9, 0)...
-  scene.text('The Vladimir Lenin center is open from \' + func(\'time\', \'get_time_string\', 9, 0) + \' through to \' + func(\'time\', \'get_time_string\', 17, 0) + \' on weekdays, but is closed on weekends. It is a local community certification and lessons center.');
+  scene.text('The Vladimir Lenin center is open from 9:00 through to 17:00 on weekdays, but is closed on weekends. It is a local community certification and lessons center.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave the center', handler: (st: GameState) => {
@@ -34,13 +34,13 @@ function enterLessons(s: GameState, scene: SceneBuilder): void {
   scene.text('Inside is a reception desk. Next to it is a large bulletin board with a list of currently available course.');
   scene.text('On the bulletin board, you can see they are currently offering:');
   // TODO-QSP: dynamic text: Driving lessons ' + $func('money', 'string_price', 30000) + '  for ten classes t...
-  scene.text('Driving lessons \' + $func(\'money\', \'string_price\', 30000) + \'  for ten classes to get your drivers license <a href="exec:gt \'city_commcenter\', \'drivingschool\'">Course in room 201</a>.');
+  scene.text('Driving lessons 30000₽  for ten classes to get your drivers license <a href="exec:gt \'city_commcenter\', \'drivingschool\'">Course in room 201</a>.');
   // TODO-QSP: dynamic text: Massage therapist courses - ' + $func('money', 'string_price', 10000) + ' for te...
-  scene.text('Massage therapist courses - \' + $func(\'money\', \'string_price\', 10000) + \' for ten classes to get your Masseuse certification <a href="exec:gt \'city_commcenter\', \'masseuse\'">Classes in room 203</a>.');
+  scene.text('Massage therapist courses - 10000₽ for ten classes to get your Masseuse certification <a href="exec:gt \'city_commcenter\', \'masseuse\'">Classes in room 203</a>.');
   // TODO-QSP: dynamic text: Secretarial certification - ' + $func('money', 'string_price', 15000) + ' for te...
-  scene.text('Secretarial certification - \' + $func(\'money\', \'string_price\', 15000) + \' for ten classes to get your Secretarial certification, <a href="exec:gt \'city_commcenter\', \'secretarialschool\'">Classes in room 204</a>.');
+  scene.text('Secretarial certification - 15000₽ for ten classes to get your Secretarial certification, <a href="exec:gt \'city_commcenter\', \'secretarialschool\'">Classes in room 204</a>.');
   // TODO-QSP: dynamic text: Singing lessons - ' + $func('money', 'string_price', 500) + ' per class <a href=...
-  scene.text('Singing lessons - \' + $func(\'money\', \'string_price\', 500) + \' per class <a href="exec:gt \'city_commcenter\', \'singingtutor\'">Classes in room 213. </a>');
+  scene.text('Singing lessons - 500₽ per class <a href="exec:gt \'city_commcenter\', \'singingtutor\'">Classes in room 213. </a>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -53,7 +53,7 @@ function enterLessons(s: GameState, scene: SceneBuilder): void {
 function enterPayments(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'pay', ARGS[2]
   // TODO-QSP: dynamic text: You pay ' + $func('money', 'string_price', ARGS[2]) + ' for the <<$ARGS[1]>> cou...
-  scene.text(`You pay ' + $func('money', 'string_price', ARGS[2]) + ' for the ${((s as any).locArgs?.[1] ?? 0)} course and are now booked in for your lesson. Please refer to the noticeboard for class times and rooms.`);
+  scene.text(`You pay ' + $func('money', 'string_price', ARGS[2]) + ' for the ${((s as any).locArgs?.[1] ?? '')} course and are now booked in for your lesson. Please refer to the noticeboard for class times and rooms.`);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -82,7 +82,7 @@ function enterDrivingschool(s: GameState, scene: SceneBuilder): void {
       scene.text('You aren\'t old enough to take driving lessons.');
     } else {
       scene.actions([
-        { label: 'Book a driving course [+$func(\'money\', \'get_cost_string\', 30000)]', handler: (st: GameState) => {
+        { label: 'Book a driving course', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 30000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -202,9 +202,9 @@ function enterSecretarialschool(s: GameState, scene: SceneBuilder): void {
         scene.text('You nod and she quickly gives you the course details and a pamphlet to read.');
         scene.text('As you read the pamphlet, it tells you that the Secretarial certification courses teach you a wide range of basic secretary skills. From verbal and written communication skills, to time management and organization, to basic computer use and how to use Microsoft Office, Word, Power Point, and Excel, to typing, note taking, and how to use a file system. By the end of the course you should know the basics of all of those skills.');
         // TODO-QSP: dynamic text: Once you finish reading the pamphlet she tells you, "The basic course is 10 less...
-        scene.text('Once you finish reading the pamphlet she tells you, "The basic course is 10 lessons, and the full set of courses costs \' + $func(\'money\', \'string_price\', 15000) + \'."');
+        scene.text('Once you finish reading the pamphlet she tells you, "The basic course is 10 lessons, and the full set of courses costs 15000₽."');
         scene.actions([
-          { label: 'Book a secretarial course ( [+$func(\'money\', \'string_price\', 15000) + ...]', handler: (st: GameState) => {
+          { label: 'Book a secretarial course ( [15000₽]...]', handler: (st: GameState) => {
     scene.text('You pay the money for the course and fill out the application paper. You can now attend secretary training once a day for 2 hours. You need to complete 10 training lessons to earn a certification.');
     scene.actions([
       { label: 'Pay for the course', handler: (st: GameState) => {
@@ -250,7 +250,7 @@ function enterSecretarialschool(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/industrial/community/secretary_class.jpg');
     // TODO-QSP: dynamic text: "Congratulations, <<$pcs_nickname>>. It seems that you've earned your certificat...
-    scene.text(`"Congratulations, ${((s as any).pcs_nickname ?? 0)}. It seems that you've earned your certification," your instructor says.`);
+    scene.text(`"Congratulations, ${((s as any).pcs_nickname || '')}. It seems that you've earned your certification," your instructor says.`);
     scene.text('She pulls a document out of her briefcase, fills in your name and signs it before sending you to reception with it.');
     scene.text('With the receptionist\'s signature and the community center\'s seal, you are now officially qualified for secretary work!');
     scene.actions([
@@ -339,7 +339,7 @@ function enterSingingtutor(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('The center offers singing lessons with Alexei, an established local singer and musician who works with up and coming talent. Unlike the center\'s other classes, he only ever accepts cash for his lessons.');
       scene.actions([
-        { label: 'Singing lessons ( [+$func(\'money\', \'string_price\', 500) + \')...]', handler: (st: GameState) => {
+        { label: 'Singing lessons ( [500₽])...]', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     (s as any).alexeyQW = ((s as any).alexeyQW ?? 0) + (1);
     qspCall(s, 'exp_gain', 'vokal', Math.floor(Math.random() * 6) + 5);
@@ -349,7 +349,7 @@ function enterSingingtutor(s: GameState, scene: SceneBuilder): void {
     if (((s as any).alexeyQW ?? 0) === 1) {
       scene.text('When you enter the office, you see a middle aged man with long hair that\'s been pulled back into a ponytail. He gives you a confident look. "Are you here to learn how to sing, Miss?" he asks in a particularly well-modulated voice.');
       // TODO-QSP: dynamic text: You nod and hand him ' + $func('money', 'string_price', 500) + '.
-      scene.text('You nod and hand him \' + $func(\'money\', \'string_price\', 500) + \'.');
+      scene.text('You nod and hand him 500₽.');
       scene.text('He pockets it and introduces himself. "I\'m Alexei, what is your name?"');
       scene.text('You tell him your name and he acknowledges your answer with little more than a nod before he immediately moves on to the lesson.');
       scene.text('Before you even notice, an hour has passed. You head out and the man politely wishes you goodbye.');

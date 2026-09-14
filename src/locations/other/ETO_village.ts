@@ -135,7 +135,7 @@ function enterInfoColumn(s: GameState, scene: SceneBuilder): void {
   scene.text(`Nina in the 3rd alley sells goat milk at ${qspFunc(s, 'money', 'string_price', 300)} per liter`);
   if (((s as any).pcs_energy ?? 0) < 70) {
     scene.actions([
-      { label: 'Buy milk [+$func(\'money\', \'get_cost_string\', 300)]', handler: (st: GameState) => {
+      { label: 'Buy milk', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -178,7 +178,7 @@ function enterNeighborCottage(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/suburban/kuzmich.jpg');
     // TODO-QSP: dynamic text: You: "Hello! My name is <<$pcs_nickname>>, I'm your new neighbor. We haven't met...
-    scene.text(`You: "Hello! My name is ${((s as any).pcs_nickname ?? 0)}, I'm your new neighbor. We haven't met yet."`);
+    scene.text(`You: "Hello! My name is ${((s as any).pcs_nickname || '')}, I'm your new neighbor. We haven't met yet."`);
     scene.text('Neighbor: "Hi. I\'m Kuzmich. So you\'re the new neighbor."');
     scene.text('<font color="magenta">You: "Yes. Can you help me? My entire garden is overgrown with weeds, and I\'d like to clean it up."</font>');
     scene.text('Kuzmich: "Well, you can hire some of the local men. They\'re all workers. You can find them across the alley."');

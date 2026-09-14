@@ -248,7 +248,7 @@ function enterNikoConfront(s: GameState, scene: SceneBuilder): void {
   scene.text('He places his hands on your hands, bringing them to his face before giving them a soft kiss. "I\'ll always be true to my princess. I\'m your noble knight and guardian who will always keep you safe from all threats. You\'re the only one for me."');
   scene.text('He then leans forward before gently placing his lips on yours, sharing a soft and loving kiss, which seems to make the moments fade away as his lips rub against yours and his arms wrap around you, embracing you firmly but gently.');
   // TODO-QSP: dynamic text: After a few more seconds of kissing, he slowly releases you. "You're the perfect...
-  scene.text(`After a few more seconds of kissing, he slowly releases you. "You're the perfect girl, ${((s as any).pcs_firstname ?? 0)} and I'm so lucky to have such a precious treasure in my life. I should get going. I need to plan out some things for us to do later. I'll see you then." He slowly backs away before walking out of the garage.`);
+  scene.text(`After a few more seconds of kissing, he slowly releases you. "You're the perfect girl, ${((s as any).pcs_firstname || '')} and I'm so lucky to have such a precious treasure in my life. I should get going. I need to plan out some things for us to do later. I'll see you then." He slowly backs away before walking out of the garage.`);
   qspCall(s, 'arousal', 'kiss', 1);
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -462,13 +462,13 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'skill', 'humint', 'force', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Calm them down [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Calm them down', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Calm them down [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Calm them down', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A154', 'like');
     qspCall(s, 'npc_relationship', 'modify', 'A155', 'like');
@@ -526,13 +526,13 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'skill', 'sprt', 'resist', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Stand your ground [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stand your ground', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Stand your ground [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stand your ground', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile2.jpg');
@@ -578,13 +578,13 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'skill', 'sprt', 'resist', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Stand your ground [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stand your ground', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Stand your ground [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stand your ground', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A156', 'loath');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -620,7 +620,7 @@ function enterLavBaddrugs(s: GameState, scene: SceneBuilder): void {
     scene.text('Anushka shakes her head. "It\'s not worth pissing him off, dude."');
     scene.text('Suddenly being put on the spot, Lavrenti reluctantly gives in. "Fine, fuck it." He reaches into his pocket and pulls out a new bag. "I hope you overdose on it!"');
     // TODO-QSP: dynamic text: With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks <<$pcs_nickn...
-    scene.text(`With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks ${((s as any).pcs_nickname ?? 0)}," he says as he lets you go, but not before giving your ass a light squeeze as you walk away.`);
+    scene.text(`With a smirk and a wave, Arkadi watches Lavrenti storm off. "Thanks ${((s as any).pcs_nickname || '')}," he says as he lets you go, but not before giving your ass a light squeeze as you walk away.`);
     scene.actions([
       { label: 'Leave', goto: ['pav_complex', 'garages'] },
     ]);

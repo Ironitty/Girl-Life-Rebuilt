@@ -13,7 +13,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You pull your sewing kit out from under your bed.');
   if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] > 1) {
     // TODO-QSP: dynamic text: You have <<mc_inventory['sewing_fabric']>> pieces of sewing fabric left.
-    scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['sewing_fabric']} pieces of sewing fabric left.`);
+    scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['sewing_fabric'] ?? ''} pieces of sewing fabric left.`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] === 1) {
       scene.text('You have 1 piece of sewing fabric left.');
@@ -115,7 +115,7 @@ function enterTapestry(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).newgobelen ?? 0) < 1000) {
       // TODO-QSP: dynamic text: You spend an hour working on your tapestry, which is now <<newgobelen/10>> perce...
-      scene.text(`You spend an hour working on your tapestry, which is now ${((s as any).newgobelen ?? 0)/10} percent finished.`);
+      scene.text(`You spend an hour working on your tapestry, which is now ${((s as any).newgobelen ?? '')/10} percent finished.`);
     }
     if (((s as any).newgobelen ?? 0) >= 1000) {
       if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['tapestry'] = ((s as any).mc_inventory['tapestry'] ?? 0) + (1);

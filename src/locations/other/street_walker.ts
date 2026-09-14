@@ -105,7 +105,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   if (((s as any).prostitute ?? 0)?.['active'] === 0) {
     if (!(s as any).prostitute) (s as any).prostitute = {}; (s as any).prostitute['active'] = 1;
   }
-  qspCall(s, 'street_walker', 'start');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You check your reflection in a store window, doing a last minute check of your outfit and makeup before making your way down the sidewalk looking for a customer.');
   // TODO-QSP: end
   scene.actions([
@@ -117,9 +117,9 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
 
 function enterEvent1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) > 5  &&  ((s as any).hour ?? 0) < 20) {
-    qspCall(s, 'street_walker', 'start');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: dynamic text: It's past '+func('time', 'get_time_string', 5, 0)+', and too late to find any wo...
-    scene.text('It\'s past \'+func(\'time\', \'get_time_string\', 5, 0)+\', and too late to find any work now. You can try again after \'+func(\'time\', \'get_time_string\', 20, 0)+\'.');
+    scene.text('It\'s past 5:00, and too late to find any work now. You can try again after 20:00.');
     scene.actions([
       { label: 'Leave', goto: ['street_walker', 'end'] },
     ]);
@@ -257,13 +257,13 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'skill', 'sprt', 'resist', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse his deal [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse his deal', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse his deal [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse his deal', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).minut = ((s as any).minut ?? 0) + 5;

@@ -11,12 +11,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: You take your glass of vodka and sit down on a rickety chair at the table, betwe...
-  scene.text(`You take your glass of vodka and sit down on a rickety chair at the table, between two of the guys. The apartment is in rather poor condition; there's very little furniture, and the wallpaper is peeling off the walls. Nevertheless, you enjoy the Gopniks' company, ${((s as any).boydesc ?? 0)}'s in particular.`);
+  scene.text(`You take your glass of vodka and sit down on a rickety chair at the table, between two of the guys. The apartment is in rather poor condition; there's very little furniture, and the wallpaper is peeling off the walls. Nevertheless, you enjoy the Gopniks' company, ${((s as any).boydesc || '')}'s in particular.`);
   if (((s as any).alko ?? 0) < 6) {
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (10);
     scene.text('The vodka has you feeling quite drunk, but you are still able to think. At a certain point in the conversation, you see the smiles on the Gopniks\' faces make place for rather greedy grins. Suddenly everyone\'s looking at you, ogling your body from top to bottom.');
     // TODO-QSP: dynamic text: A few of the guys approach you and pick you up, despite your meek protests. You'...
-    scene.text(`A few of the guys approach you and pick you up, despite your meek protests. You're too drunk to stop them, and just let it happen. While they carry you to another room, one of them hisses to you: "You've made use of our hospitality for long enough, ${((s as any).pcs_nickname ?? 0)}… it's time you do something for us in return."`);
+    scene.text(`A few of the guys approach you and pick you up, despite your meek protests. You're too drunk to stop them, and just let it happen. While they carry you to another room, one of them hisses to you: "You've made use of our hospitality for long enough, ${((s as any).pcs_nickname || '')}… it's time you do something for us in return."`);
     scene.text('You guess this is what they do with all the unlucky girls they meet in the park. The room they\'re carrying you to has no furniture; just a mattress on the ground. The Gopniks unceremoniously dump you on top of it, and reach down for their pants.');
   } else {
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (20);
@@ -76,7 +76,7 @@ function enterRapeEnd(s: GameState, scene: SceneBuilder): void {
   if ((!(Math.floor(Math.random() * 2) + 0))) {
     scene.text('Finally the Gopniks are finished with you. They talk loudly about what a good fuck you were while they get dressed. When they realize you\'re too drunk to get dressed, they help you pull your clothes back on and sloppily button them up, before they drag you outside.');
     // TODO-QSP: dynamic text: After you walk for a few minutes, <<$boydesc>> slaps your ass and tells you: "Yo...
-    scene.text(`After you walk for a few minutes, ${((s as any).boydesc ?? 0)} slaps your ass and tells you: "You should be able to find your way home from here. You were a good fuck, ${((s as any).pcs_nickname ?? 0)}. Come look us up in the park again if you want more where that came from."`);
+    scene.text(`After you walk for a few minutes, ${((s as any).boydesc || '')} slaps your ass and tells you: "You should be able to find your way home from here. You were a good fuck, ${((s as any).pcs_nickname || '')}. Come look us up in the park again if you want more where that came from."`);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Find your way back to the main streets', handler: (st: GameState) => {

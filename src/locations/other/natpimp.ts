@@ -32,7 +32,7 @@ function enterGoSeeOlu(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/olu/olu.jpg');
     scene.text('You take off your shoes and go straight to the living room, where you find Olu resting on the couch.');
     // TODO-QSP: dynamic text: He looks at you, that perpetual smile still on his face. "Hi, <<$pcs_nickname>>!...
-    scene.text(`He looks at you, that perpetual smile still on his face. "Hi, ${((s as any).pcs_nickname ?? 0)}! Who's your friend?" He says in badly accented Russian`);
+    scene.text(`He looks at you, that perpetual smile still on his face. "Hi, ${((s as any).pcs_nickname || '')}! Who's your friend?" He says in badly accented Russian`);
     scene.text('"Hello, Olu! This is Natasha, she wants you to fuck her." You say to him, pointing at his crotch and then slapping Natasha on the ass. He seems to understand quickly and nods with a huge grin holding up the bottle of lube.');
     scene.text('You glance at Natasha. "Well take off your clothes." She nods and does as you ask.');
     scene.actions([
@@ -54,9 +54,9 @@ function enterGoSeeOlu(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/olu/sex/olu2.jpg');
     // TODO-QSP: dynamic text: You help Natasha get undressed and then get her down on all fours in front of Ol...
-    scene.text(`You help Natasha get undressed and then get her down on all fours in front of Olu. While he lubes up his dick and her ass, you get undressed as well. No reason he should have all the fun. You knee down beside Natasha and grab her butt cheeks with your hands and spread them wide for Olu. Not needing any more invitation than that, he kneels down behind her and lines his cock up, she squeals loudly as he forces ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock into her ass.`);
+    scene.text(`You help Natasha get undressed and then get her down on all fours in front of Olu. While he lubes up his dick and her ass, you get undressed as well. No reason he should have all the fun. You knee down beside Natasha and grab her butt cheeks with your hands and spread them wide for Olu. Not needing any more invitation than that, he kneels down behind her and lines his cock up, she squeals loudly as he forces ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into her ass.`);
     // TODO-QSP: dynamic text: He starts fucking her slowly at first but you encourage him to go faster and dee...
-    scene.text(`He starts fucking her slowly at first but you encourage him to go faster and deeper, pulling on her hips. You feel your pussy getting wet listening to Natasha cries and watching the ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock rip up her ass. You start rubbing your clit while watching.`);
+    scene.text(`He starts fucking her slowly at first but you encourage him to go faster and deeper, pulling on her hips. You feel your pussy getting wet listening to Natasha cries and watching the ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock rip up her ass. You start rubbing your clit while watching.`);
     qspCall(s, 'arousal', 'voyeur_sex', 5);
     qspCall(s, 'stat', '');
     scene.actions([

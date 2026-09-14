@@ -15,25 +15,25 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspCall(s, 'komp_cam_functions', 'check_available_oral_dildo');
     if (((s as any).temp_camVars ?? 0)?.['oral_small_available']) {
-      qspCall(s, 'komp_cam_MFC_requests_oral', 'set_small_act');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSmallAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).temp_camVars ?? 0)?.['oral_normal_available']) {
-      qspCall(s, 'komp_cam_MFC_requests_oral', 'set_normal_act');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetNormalAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).temp_camVars ?? 0)?.['oral_big_available']) {
-      qspCall(s, 'komp_cam_MFC_requests_oral', 'set_big_act');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetBigAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).temp_camVars ?? 0)?.['oral_large_available']) {
-      qspCall(s, 'komp_cam_MFC_requests_oral', 'set_large_act');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetLargeAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).temp_camVars ?? 0)?.['oral_huge_available']) {
-      qspCall(s, 'komp_cam_MFC_requests_oral', 'set_huge_act');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetHugeAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).temp_camVars ?? 0)?.['oral_enormous_available']) {
-      qspCall(s, 'komp_cam_MFC_requests_oral', 'set_enormous_act');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetEnormousAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).temp_camVars ?? 0)?.['oral_gigantic_available']) {
-      qspCall(s, 'komp_cam_MFC_requests_oral', 'set_gigantic_act');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetGiganticAct(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Can\'t find a suitable toy or you changed your mind', goto: ['komp_cam_MFC_main', 'waitclients'] },

@@ -110,13 +110,13 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'misc', 'force', 'medium');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Threaten his reputation [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Threaten his reputation', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Threaten his reputation [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Threaten his reputation', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
@@ -144,13 +144,13 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'willpower', 'misc', 'force', 'medium');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Give him a swirly [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Give him a swirly', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Give him a swirly [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Give him a swirly', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
@@ -193,13 +193,13 @@ function enterFollowPetka(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'sex', 'self');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Bribe him with sex [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Bribe him with sex', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Bribe him with sex [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Bribe him with sex', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     if (!(s as any).petkaQW) (s as any).petkaQW = {}; (s as any).petkaQW['bribe'] = 1;
@@ -259,7 +259,7 @@ function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('Getting tired of his lackluster attempt to eat you out, you push his head away.');
     scene.text('"Get your cock out and lay on your back," you order.');
     // TODO-QSP: dynamic text: He quickly gets on his back and unbuttons his pants, his <<dick>>cm <<$dick_girt...
-    scene.text(`He quickly gets on his back and unbuttons his pants, his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick springing free. You take your clothes off and walk over to him before straddling him and slowly lowering yourself down, feeling his cock slide into you.`);
+    scene.text(`He quickly gets on his back and unbuttons his pants, his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick springing free. You take your clothes off and walk over to him before straddling him and slowly lowering yourself down, feeling his cock slide into you.`);
     scene.text('You start off slowly riding him, picking up speed as it starts to feel better and better.');
     qspCall(s, 'arousal', 'vaginal', 5, 'dom');
     qspCall(s, 'stat', '');
@@ -282,7 +282,7 @@ function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('Getting tired of his lackluster attempt to eat you out, you push his head away.');
     scene.text('"Get your cock out and come over here," you order.');
     // TODO-QSP: dynamic text: He quickly unbuttons his pants and his <<dick>>cm <<$dick_girth>> dick springs f...
-    scene.text(`He quickly unbuttons his pants and his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick springs free. You take your clothes off and walk over to the sinks before getting into position. "Come over here and fuck my pussy."`);
+    scene.text(`He quickly unbuttons his pants and his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick springs free. You take your clothes off and walk over to the sinks before getting into position. "Come over here and fuck my pussy."`);
     scene.text('He doesn\'t waste any time and hurries over behind you. His inexperience shows, as it takes him a few tries to get his cock inside you.');
     scene.text('Finally, with your help, he gets himself lined up and slides his cock into your pussy, moaning loudly as he does. He quickly slides himself in balls deep and starts frantically fucking you without technique, like you imagine a virgin would.');
     qspCall(s, 'arousal', 'vaginal', 5);
@@ -319,7 +319,7 @@ function enterHomeworkSexBribe(s: GameState, scene: SceneBuilder): void {
     scene.text('Getting tired of his lackluster attempt to eat you out, you push his head away.');
     scene.text('"Get your cock out and fuck my ass," you order.');
     // TODO-QSP: dynamic text: He quickly unbuttons his pants and his <<dick>>cm <<$dick_girth>> dick springs f...
-    scene.text(`He quickly unbuttons his pants and his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick springs free. You take your clothes off before leaning against the side of the stall, using one hand to spread your cheeks while the other guides his dick to your asshole.`);
+    scene.text(`He quickly unbuttons his pants and his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick springs free. You take your clothes off before leaning against the side of the stall, using one hand to spread your cheeks while the other guides his dick to your asshole.`);
     scene.text('With your help, he gets it lined up and slides his cock into your ass, moaning loudly as he does. He quickly slides himself in balls deep and starts frantically fucking you without technique, like you imagine a virgin would.');
     scene.actions([
       { label: 'Pound my ass', handler: (st: GameState) => {
@@ -539,7 +539,7 @@ function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging3.jpg');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
     // TODO-QSP: dynamic text: As you slide your <<dick>>cm <<$dick_girth>> dildo deeper into his asshole, he g...
-    scene.text(`As you slide your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo deeper into his asshole, he groans and grunts in pain.`);
+    scene.text(`As you slide your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo deeper into his asshole, he groans and grunts in pain.`);
     scene.text('You grin. "Tell me you like taking my cock up your ass."');
     scene.text('He groans louder. "I don\'t like it! It hurts!"');
     scene.text('You thrust your dildo all the way into his ass, causing him to loudly grunt in pain. "I said, tell me you like taking my cock up your ass!"');
@@ -553,11 +553,11 @@ function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
       scene.text('You slap his ass and stop moving. "Beg me to fuck your ass."');
       scene.text('He glances back at you. "Please, fuck my ass!"');
       // TODO-QSP: dynamic text: Since he obeyed, you start really fucking his ass hard and fast. He both groans ...
-      scene.text(`Since he obeyed, you start really fucking his ass hard and fast. He both groans in pain and moans in pleasure, but it sounds like the moans are louder, so you slide your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo deeper into his asshole.`);
+      scene.text(`Since he obeyed, you start really fucking his ass hard and fast. He both groans in pain and moans in pleasure, but it sounds like the moans are louder, so you slide your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo deeper into his asshole.`);
     } else {
       if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
         // TODO-QSP: dynamic text: As you fuck his ass with your with your <<dick>>cm <<$dick_girth>> strap-on, he ...
-        scene.text(`As you fuck his ass with your with your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} strap-on, he starts really moaning in pleasure. He seems to really enjoy it now as you notice him reach between his legs and start jerking off.`);
+        scene.text(`As you fuck his ass with your with your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} strap-on, he starts really moaning in pleasure. He seems to really enjoy it now as you notice him reach between his legs and start jerking off.`);
         scene.text('You grin. "Tell me you like taking my cock up your ass."');
         scene.text('He moans in pleasure. "Yes, it feels so good."');
         scene.text('You slap his ass and start fucking him harder. "Tell me you love getting fucked in the ass."');
@@ -565,7 +565,7 @@ function enterFemdomPetkaDoggy(s: GameState, scene: SceneBuilder): void {
         scene.text('You slap his ass cheeks with your free hand a few more times as you keep pounding into him.');
       } else {
         // TODO-QSP: dynamic text: As you fuck his ass with your <<dick>>cm <<$dick_girth>> strap-on, his groans of...
-        scene.text(`As you fuck his ass with your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} strap-on, his groans of pain slowly start mixing with moans of pleasure. You notice him reach between his legs and start jerking off.`);
+        scene.text(`As you fuck his ass with your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} strap-on, his groans of pain slowly start mixing with moans of pleasure. You notice him reach between his legs and start jerking off.`);
         scene.text('You grin. "Tell me you like taking my cock up your ass."');
         scene.text('He moans in a mixture pleasure and pain as you slide your dildo deeper into his asshole. "It doesn\'t hurt as much and is starting to feel better."');
         scene.text('You slap his ass a few times as you start fucking him a little harder. "I knew you liked taking dick up your ass," you say with a laugh.');
@@ -748,7 +748,7 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/petka/sex/school/restroom/pegging3.jpg');
   if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 1) {
     // TODO-QSP: dynamic text: He groans and grunts in pain as you slide your <<dick>>cm <<$dick_girth>> dick d...
-    scene.text(`He groans and grunts in pain as you slide your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick deeper into his asshole.`);
+    scene.text(`He groans and grunts in pain as you slide your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick deeper into his asshole.`);
     scene.text('You grin. "Tell me you like taking my cock up your ass."');
     scene.text('"I don\'t like it! It hurts!" he whines.');
     scene.text('You thrust your dick all the way into his ass, your magically-induced testicles slapping against his own. This causes him to loudly grunt and groan in pain.');
@@ -758,7 +758,7 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 5) {
       // TODO-QSP: dynamic text: His groans of pain slowly start giving way to moans of pleasure as you slide you...
-      scene.text(`His groans of pain slowly start giving way to moans of pleasure as you slide your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock in and out of him. You notice him reach between his legs and start jerking off.`);
+      scene.text(`His groans of pain slowly start giving way to moans of pleasure as you slide your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock in and out of him. You notice him reach between his legs and start jerking off.`);
       scene.text('You grin. "Tell me you like taking my cock up your ass."');
       scene.text('He moans in pleasure. "Yes, it\'s starting to feel good."');
       scene.text('You slap his ass and stop moving. "Beg me to fuck your ass."');
@@ -767,7 +767,7 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).petkaQW ?? 0)?.['restroom_strapon'] <= 10) {
         // TODO-QSP: dynamic text: As you fuck his ass with your <<dick>>cm <<$dick_girth>> dick, he starts really ...
-        scene.text(`As you fuck his ass with your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick, he starts really moaning in pleasure. He seems to really enjoy it now and you notice him reach between his legs and start jerking off.`);
+        scene.text(`As you fuck his ass with your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick, he starts really moaning in pleasure. He seems to really enjoy it now and you notice him reach between his legs and start jerking off.`);
         scene.text('You grin. "Tell me you like taking my cock up your ass."');
         scene.text('He moans in pleasure. "Yes, it feels so good."');
         scene.text('You slap his ass and start fucking him harder. "Tell me you love getting fucked in the ass."');
@@ -775,7 +775,7 @@ function enterFemdomPetkaDoggyMagic(s: GameState, scene: SceneBuilder): void {
         scene.text('You slap his ass with your free hand a few more times as you keep pounding into him.');
       } else {
         // TODO-QSP: dynamic text: As you fuck his ass with your <<dick>>cm <<$dick_girth>> dick, his groans of pai...
-        scene.text(`As you fuck his ass with your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick, his groans of pain slowly start mixing with moans of pleasure as you notice him reach between his legs and start jerking off.`);
+        scene.text(`As you fuck his ass with your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick, his groans of pain slowly start mixing with moans of pleasure as you notice him reach between his legs and start jerking off.`);
         scene.text('You grin. "Tell me you like taking my cock up your ass."');
         scene.text('He moans in a mixture of pleasure and pain as you slide your dildo deeper into his asshole. "It doesn\'t hurt as much and is starting to feel better."');
         scene.text('You laugh and slap his ass a few times before you start fucking him a little harder. "I knew you liked taking dick up your ass."');

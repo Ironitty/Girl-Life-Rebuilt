@@ -220,7 +220,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/hanterlove1.4.jpg');
     scene.text('Entering the hut, you see Igor. He smiles and walks over to you, grabs your hold, and gives you a passionate kiss.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want you," he whispers.
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, I want you," he whispers.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, I want you," he whispers.`);
     qspCall(s, 'arousal', 'kiss', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -252,7 +252,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/hanterlove1.4.jpg');
     scene.text('Entering the hut, you see Sergei. He smiles and walks over to you, grabs your hold, and gives you a passionate kiss.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want you," he whispers.
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, I want you," he whispers.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, I want you," he whispers.`);
     qspCall(s, 'arousal', 'kiss', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -284,7 +284,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/hanterlove1.4.jpg');
     scene.text('Entering the hut, you see Andrei. He smiles and walks over to you, grabs your hold, and gives you a passionate kiss.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want you," he whispers.
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, I want you," he whispers.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, I want you," he whispers.`);
     qspCall(s, 'arousal', 'kiss', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -319,13 +319,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/hanterswork1.2.jpg');
     scene.text('You see Andrei talking with Sergei in the hut.');
     // TODO-QSP: dynamic text: "Come in, <<$pcs_nickname>>. It's time to consummate the marriage," Andrew jokin...
-    scene.text(`"Come in, ${((s as any).pcs_nickname ?? 0)}. It's time to consummate the marriage," Andrew jokingly remarks. "I hope you're willing to do anything we say.`);
+    scene.text(`"Come in, ${((s as any).pcs_nickname || '')}. It's time to consummate the marriage," Andrew jokingly remarks. "I hope you're willing to do anything we say.`);
     if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.text('"I\'m sorry, I don\'t know if I\'m ready yet…" you say. "I haven\'t been able to clean myself as you asked. Maybe we could skip it this time?');
     }
     if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
       // TODO-QSP: dynamic text: Well, we could, <<$pcs_nickname>>…" says Andrei, "but since you're already here,...
-      scene.text(`Well, we could, ${((s as any).pcs_nickname ?? 0)}…" says Andrei, "but since you're already here, you not being all dolled up doesn't matter to us. But don't dare to try to fool us next time. We will not forget."`);
+      scene.text(`Well, we could, ${((s as any).pcs_nickname || '')}…" says Andrei, "but since you're already here, you not being all dolled up doesn't matter to us. But don't dare to try to fool us next time. We will not forget."`);
     }
     scene.text('"There are some bushes not far from here. We could take her with us there, and no one would be able to find us. Should we tell Igor to join us?" says Sergei. "Never mind Igor, it would take him too long to join us."');
     scene.actions([
@@ -369,7 +369,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/hunters/hanterstable.jpg');
       scene.text('You enter the hut and notice the plastered hunters.');
       // TODO-QSP: dynamic text: "Oh, look who's showed up. <<$pcs_nickname>>, join us for a drink!" they invite ...
-      scene.text(`"Oh, look who's showed up. ${((s as any).pcs_nickname ?? 0)}, join us for a drink!" they invite you in.`);
+      scene.text(`"Oh, look who's showed up. ${((s as any).pcs_nickname || '')}, join us for a drink!" they invite you in.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
     qspCall(st, 'gad_swamphouse', 'hunterstable');
@@ -384,7 +384,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big172.jpg');
       scene.text('You enter the hut and notice the plastered hunters.');
       // TODO-QSP: dynamic text: Oh, <<$pcs_nickname>>, join us for a drink!" says Andrei.
-      scene.text(`Oh, ${((s as any).pcs_nickname ?? 0)}, join us for a drink!" says Andrei.`);
+      scene.text(`Oh, ${((s as any).pcs_nickname || '')}, join us for a drink!" says Andrei.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
     qspCall(st, 'gad_swamphouse', 'hunterstable');
@@ -399,7 +399,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big174.jpg');
       scene.text('You enter the hut and notice the plastered hunters.');
       // TODO-QSP: dynamic text: Oh, <<$pcs_nickname>>, come join us for a drink!" Sergei says, noticing you ente...
-      scene.text(`Oh, ${((s as any).pcs_nickname ?? 0)}, come join us for a drink!" Sergei says, noticing you entering.`);
+      scene.text(`Oh, ${((s as any).pcs_nickname || '')}, come join us for a drink!" Sergei says, noticing you entering.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
     qspCall(st, 'gad_swamphouse', 'hunterstable');
@@ -414,7 +414,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big173.jpg');
       scene.text('You enter the hut and notice the plastered hunters.');
       // TODO-QSP: dynamic text: Oh, <<$pcs_nickname>>, come join us for a drink!" Igor shouts, ignoring the othe...
-      scene.text(`Oh, ${((s as any).pcs_nickname ?? 0)}, come join us for a drink!" Igor shouts, ignoring the other conversation.`);
+      scene.text(`Oh, ${((s as any).pcs_nickname || '')}, come join us for a drink!" Igor shouts, ignoring the other conversation.`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
     qspCall(st, 'gad_swamphouse', 'hunterstable');
@@ -431,7 +431,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: You go into the hut and notice that the hunters have prepared '+iif(hunterVars['...
       scene.text('You go into the hut and notice that the hunters have prepared \'+iif(hunterVars[\'breakfast\'] = 1, \'breakfast.\', \'lunch.\')+\'.');
       // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, you're just in time, come join us!"
-      scene.text(`"Oh, ${((s as any).pcs_nickname ?? 0)}, you're just in time, come join us!"`);
+      scene.text(`"Oh, ${((s as any).pcs_nickname || '')}, you're just in time, come join us!"`);
       scene.actions([
         { label: 'Join them at the table', handler: (st: GameState) => {
     qspCall(st, 'gad_swamphouse', 'hunterstable');
@@ -449,27 +449,27 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).temphunt ?? 0) === 1) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/shared/headshots_main/big172.j...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/shared/headshots_main/big172.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/shared/headshots_main/big172.jpg"></center>`);
     }
     if (((s as any).temphunt ?? 0) === 2) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/shared/headshots_main/big174.j...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/shared/headshots_main/big174.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/shared/headshots_main/big174.jpg"></center>`);
     }
     if (((s as any).temphunt ?? 0) === 3) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/characters/shared/headshots_main/big173.j...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/characters/shared/headshots_main/big173.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/characters/shared/headshots_main/big173.jpg"></center>`);
     }
     if (((s as any).temphunt ?? 0) === 1) {
       // TODO-QSP: dynamic text: You enter the hut and bump into Andrei. "Come here, <<$pcs_nickname>>," he excla...
-      scene.text(`You enter the hut and bump into Andrei. "Come here, ${((s as any).pcs_nickname ?? 0)}," he exclaims, not saying anything more while he throws you on the bed.`);
+      scene.text(`You enter the hut and bump into Andrei. "Come here, ${((s as any).pcs_nickname || '')}," he exclaims, not saying anything more while he throws you on the bed.`);
     }
     if (((s as any).temphunt ?? 0) === 2) {
       // TODO-QSP: dynamic text: You enter the hut and bump into Sergei. Noticing you, he heads toward you, sayin...
-      scene.text(`You enter the hut and bump into Sergei. Noticing you, he heads toward you, saying, "${((s as any).pcs_nickname ?? 0)}, I've got an itch that only you can help scratch."`);
+      scene.text(`You enter the hut and bump into Sergei. Noticing you, he heads toward you, saying, "${((s as any).pcs_nickname || '')}, I've got an itch that only you can help scratch."`);
     }
     if (((s as any).temphunt ?? 0) === 3) {
       // TODO-QSP: dynamic text: You enter the hut and bump into Igor. He smiles, saying, "<<$pcs_nickname>>, I n...
-      scene.text(`You enter the hut and bump into Igor. He smiles, saying, "${((s as any).pcs_nickname ?? 0)}, I need to empty my sack. Help me out…"`);
+      scene.text(`You enter the hut and bump into Igor. He smiles, saying, "${((s as any).pcs_nickname || '')}, I need to empty my sack. Help me out…"`);
     }
     if (((s as any).pcs_horny ?? 0) < 40) {
       scene.text(' You obediently follow suit, knowing what he wants.');
@@ -564,7 +564,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
     (s as any).meat_stew = ((s as any).meat_stew ?? 0) - (1);
     if (((s as any).meat_stew ?? 0) > 0) {
       // TODO-QSP: dynamic text: There's <<meat_stew>> '+iif(meat_stew > 1, 'servings', 'serving')+' of stew left...
-      scene.text(`There's ${((s as any).meat_stew ?? 0)} '+iif(meat_stew > 1, 'servings', 'serving')+' of stew left in the pot`);
+      scene.text(`There's ${((s as any).meat_stew || '')} '+iif(meat_stew > 1, 'servings', 'serving')+' of stew left in the pot`);
     } else {
       scene.text('You finish the last of the stew, and the pot is empty.');
     }
@@ -578,7 +578,7 @@ function enterFood(s: GameState, scene: SceneBuilder): void {
     (s as any).mushroom_soup = ((s as any).mushroom_soup ?? 0) - (1);
     if (((s as any).mushroom_soup ?? 0) > 0) {
       // TODO-QSP: dynamic text: There's <<mushroom_soup>> '+iif(mushroom_soup > 1, 'servings', 'serving')+' of s...
-      scene.text(`There's ${((s as any).mushroom_soup ?? 0)} '+iif(mushroom_soup > 1, 'servings', 'serving')+' of soup left in the pot`);
+      scene.text(`There's ${((s as any).mushroom_soup || '')} '+iif(mushroom_soup > 1, 'servings', 'serving')+' of soup left in the pot`);
     } else {
       scene.text('You finish the last of the soup, and the pot is empty.');
     }
@@ -608,7 +608,7 @@ function enterBucket(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/hunters/vedro2.jpg');
   if (((s as any).bucket ?? 0) > 0) {
     // TODO-QSP: dynamic text: There's a bucket of water by the wall. There's approximately <<bucket>> ' + iif(...
-    scene.text(`There's a bucket of water by the wall. There's approximately ${((s as any).bucket ?? 0)} ' + iif(bucket = 1, 'liter', 'liters') + ' of water left.`);
+    scene.text(`There's a bucket of water by the wall. There's approximately ${((s as any).bucket || '')} ' + iif(bucket = 1, 'liter', 'liters') + ' of water left.`);
     scene.actions([
       { label: 'Drink the water', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -709,15 +709,15 @@ function enterTub(s: GameState, scene: SceneBuilder): void {
 function enterClothesReadMagazines(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/hunters/readmagazines....
-    scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/hunters/readmagazines.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/hunters/readmagazines.jpg"></center>`);
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/hunters/readmagazines_...
-    scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/hunters/readmagazines_tanga.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/hunters/readmagazines_tanga.jpg"></center>`);
   }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/hunters/readmagazines_...
-    scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/hunters/readmagazines_nude.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/hunters/readmagazines_nude.jpg"></center>`);
   }
   // TODO-QSP: end
   scene.build();
@@ -735,7 +735,7 @@ function enterStackmagazines(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'intel', 4);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'stat', '');
-    qspCall(s, 'gad_swamphouse', 'clothes_read_magazines');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothesReadMagazines(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('You decide to look through the scientific journal, trying to understand all sorts of clever things written in the magazine.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -748,7 +748,7 @@ function enterStackmagazines(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'intel', 4);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'stat', '');
-    qspCall(s, 'gad_swamphouse', 'clothes_read_magazines');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothesReadMagazines(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('You decide to look through the literary magazine… But, unfortunately, it\'s a real drag. You almost fall asleep several times while reading it.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -761,7 +761,7 @@ function enterStackmagazines(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'sprt', 4);
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'stat', '');
-    qspCall(s, 'gad_swamphouse', 'clothes_read_magazines');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothesReadMagazines(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('Flicking through the entertainment magazine, you delve into the world of the rich and famous.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -983,7 +983,7 @@ function enterHunterstableBJ(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).hunterVars ?? 0)?.['tableBJA'] === 1  &&  ((s as any).hunterVars ?? 0)?.['tableBJS'] === 1  &&  ((s as any).hunterVars ?? 0)?.['tableBJI'] === 1) {
-    qspCall(s, 'gad_swamphouse', 'hunterstable');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHunterstable(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Get out from under the table', handler: (st: GameState) => {
     (st as any).edahot = 1;
@@ -1072,16 +1072,16 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'drugs', 'smoke', 1);
     scene.img('images/characters/shared/headshots_main/big172.jpg');
     // TODO-QSP: dynamic text: You follow Andrei outside. He gives you a cigarette, and the two of you continue...
-    scene.text(`You follow Andrei outside. He gives you a cigarette, and the two of you continue with your conversation. Then, suddenly, Andrei, looking into your eyes, says, "${((s as any).pcs_nickname ?? 0)}, could you help me?"`);
+    scene.text(`You follow Andrei outside. He gives you a cigarette, and the two of you continue with your conversation. Then, suddenly, Andrei, looking into your eyes, says, "${((s as any).pcs_nickname || '')}, could you help me?"`);
     scene.text('"Of course, Andrei, I\'d be glad to," you reply. "What do you need help with?" you ask, a bit worried.');
     // TODO-QSP: dynamic text: "As you know, <<$pcs_nickname>>, I have been divorced for a long time," Andrei b...
-    scene.text(`"As you know, ${((s as any).pcs_nickname ?? 0)}, I have been divorced for a long time," Andrei begins, "but like every normal man, I need to relieve stress sometimes. Well, you know what I mean…"`);
+    scene.text(`"As you know, ${((s as any).pcs_nickname || '')}, I have been divorced for a long time," Andrei begins, "but like every normal man, I need to relieve stress sometimes. Well, you know what I mean…"`);
     scene.text('You look at his frankness with astonishment.');
     // TODO-QSP: dynamic text: "Now, <<$pcs_nickname>>, if you could help me out now and then, I would be very ...
-    scene.text(`"Now, ${((s as any).pcs_nickname ?? 0)}, if you could help me out now and then, I would be very grateful," Andrei continues.`);
+    scene.text(`"Now, ${((s as any).pcs_nickname || '')}, if you could help me out now and then, I would be very grateful," Andrei continues.`);
     scene.text('You listen in disbelief. He\'s clearly not joking around. However, you can see from Andrei\'s facial expression that he\'s being dead serious.');
     // TODO-QSP: dynamic text: "I won't tell anybody about this, don't worry, no one will know," he adds quickl...
-    scene.text(`"I won't tell anybody about this, don't worry, no one will know," he adds quickly. "Well, ${((s as any).pcs_nickname ?? 0)}, what do you say?`);
+    scene.text(`"I won't tell anybody about this, don't worry, no one will know," he adds quickly. "Well, ${((s as any).pcs_nickname || '')}, what do you say?`);
     if (((s as any).alko ?? 0) < 6) {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
@@ -1113,7 +1113,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.text('After you hear him out, you start seriously considering his offer. Of course, it would be nice to help out a friend, but you sense that there\'s an ulterior motive.');
     scene.text('"Well, Andrei, after carefully thinking about it, I\'ll help you. How do you want me to help you out?" you ask.');
     // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>>, I knew you would," he replies. "Well, I wouldn't mind ...
-    scene.text(`"Damn, ${((s as any).pcs_nickname ?? 0)}, I knew you would," he replies. "Well, I wouldn't mind a blowjob now and then. That's good enough for me."`);
+    scene.text(`"Damn, ${((s as any).pcs_nickname || '')}, I knew you would," he replies. "Well, I wouldn't mind a blowjob now and then. That's good enough for me."`);
     scene.text('"Go back to the hut, and crawl under the table, so no one notices," he adds while getting up from the bench.');
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
@@ -1134,7 +1134,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big172.jpg');
     // TODO-QSP: dynamic text: You go outside for a smoke, with Andrei following you, immediately saying, "Forg...
-    scene.text(`You go outside for a smoke, with Andrei following you, immediately saying, "Forget the cigarette, ${((s as any).pcs_nickname ?? 0)}. Go back inside and crawl under the table. I need you so bad right now…`);
+    scene.text(`You go outside for a smoke, with Andrei following you, immediately saying, "Forget the cigarette, ${((s as any).pcs_nickname || '')}. Go back inside and crawl under the table. I need you so bad right now…`);
     if (((s as any).alko ?? 0) < 6) {
       scene.actions([
         { label: 'Refuse', handler: (st: GameState) => {
@@ -1170,7 +1170,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big172.jpg');
     // TODO-QSP: dynamic text: You go outside for a smoke, with Andrei following you, immediately saying, "To h...
-    scene.text(`You go outside for a smoke, with Andrei following you, immediately saying, "To hell with the cigarette, ${((s as any).pcs_nickname ?? 0)}, I need to relieve some stress."`);
+    scene.text(`You go outside for a smoke, with Andrei following you, immediately saying, "To hell with the cigarette, ${((s as any).pcs_nickname || '')}, I need to relieve some stress."`);
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
     qspCall(st, 'gad_swamphouse', 'huntersmokBJ');
@@ -1879,7 +1879,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/hunters/hanterstable.jpg');
       scene.text('You sit at the table, wanting to eat with the guys, but before you can begin, you hear…');
       // TODO-QSP: dynamic text: "Not so fast, <<$pcs_nickname>>," Andrei says with a smile. "You understand that...
-      scene.text(`"Not so fast, ${((s as any).pcs_nickname ?? 0)}," Andrei says with a smile. "You understand that the only free cheese is the one found in the mousetrap."`);
+      scene.text(`"Not so fast, ${((s as any).pcs_nickname || '')}," Andrei says with a smile. "You understand that the only free cheese is the one found in the mousetrap."`);
       scene.text('"Want to eat with us? You need to do some work," he mockingly grins and points under the table.');
       scene.actions([
         { label: 'Crawl under the table', handler: (st: GameState) => {
@@ -1893,7 +1893,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/hunters/hanterstable.jpg');
       scene.text('Noticing you, the men start grinning…');
       // TODO-QSP: dynamic text: "About time! Our <<$pcs_nickname>> has arrived. Come here, join us at the table,...
-      scene.text(`"About time! Our ${((s as any).pcs_nickname ?? 0)} has arrived. Come here, join us at the table," says Andrei.`);
+      scene.text(`"About time! Our ${((s as any).pcs_nickname || '')} has arrived. Come here, join us at the table," says Andrei.`);
       scene.actions([
         { label: 'Sit at the table', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['tableBJ'] = 1
@@ -1908,7 +1908,7 @@ function enterHunterstable(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/hanterstable.jpg');
     scene.text('You sit at the table, wanting to eat with the guys, but before you can begin, you hear…');
     // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>>, I know you like our artistic work on your face, but yo...
-    scene.text(`"Damn, ${((s as any).pcs_nickname ?? 0)}, I know you like our artistic work on your face, but you must wash up before sitting with us.`);
+    scene.text(`"Damn, ${((s as any).pcs_nickname || '')}, I know you like our artistic work on your face, but you must wash up before sitting with us.`);
     scene.actions([
       { label: 'Go', goto: ['gad_swamphouse', 'start'] },
     ]);
@@ -1950,7 +1950,7 @@ function enterHuntersmokBJ(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).temp_sh ?? 0) === 1) {
-    qspCall(s, 'gad_swamphouse', 'huntersmokBJ');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHuntersmokBJ(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Keep sucking', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['smokeBJ'] = 1
@@ -1967,7 +1967,7 @@ function enterHuntersmokBJ(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/sex/hunter/hantersmokcum.jpg');
     scene.text('You notice Andrei\'s thighs stiffen as he\'s edging… Finally, he grunts and shoots his spunk all over your face.');
     // TODO-QSP: dynamic text: "You're really good at this, <<$pcs_nickname>>," says a pleased Andrei. "You're ...
-    scene.text(`"You're really good at this, ${((s as any).pcs_nickname ?? 0)}," says a pleased Andrei. "You're the perfect stress reliever.`);
+    scene.text(`"You're really good at this, ${((s as any).pcs_nickname || '')}," says a pleased Andrei. "You're the perfect stress reliever.`);
     scene.text('You clean yourself up before walking back to the hut with Andrei.');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -2026,7 +2026,7 @@ function enterGetDressed(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/hunters/swamphousenude1.jpg');
       scene.text('Seeing you naked, the men quickly get aroused…');
       // TODO-QSP: dynamic text: "Come here, <<$pcs_nickname>>, come to us," one of the guys calls out to you.
-      scene.text(`"Come here, ${((s as any).pcs_nickname ?? 0)}, come to us," one of the guys calls out to you.`);
+      scene.text(`"Come here, ${((s as any).pcs_nickname || '')}, come to us," one of the guys calls out to you.`);
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: hunterVars['sexnude'] = 1
@@ -2037,7 +2037,7 @@ function enterGetDressed(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/gadukino/hunters/swamphousenude1.jpg');
       scene.text('Seeing you naked, the men just shake their heads…');
       // TODO-QSP: dynamic text: "Look here, <<$pcs_nickname>>, if you want to charm us, you will need to think o...
-      scene.text(`"Look here, ${((s as any).pcs_nickname ?? 0)}, if you want to charm us, you will need to think of something else," says one of the guys.`);
+      scene.text(`"Look here, ${((s as any).pcs_nickname || '')}, if you want to charm us, you will need to think of something else," says one of the guys.`);
       scene.actions([
         { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -2087,7 +2087,7 @@ function enterGetDressed(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/gadukino/hunters/swamphousenude1.jpg');
     scene.text('You take a deep breath and decide to disregard your nerves and leave yourself as is. Upon encountering the hunters, they can\'t help themselves. They start staring at your most private parts.');
     // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>>, you look outstanding. The things I want to do to you…"...
-    scene.text(`"Damn, ${((s as any).pcs_nickname ?? 0)}, you look outstanding. The things I want to do to you…" a somewhat aroused Andrei says.`);
+    scene.text(`"Damn, ${((s as any).pcs_nickname || '')}, you look outstanding. The things I want to do to you…" a somewhat aroused Andrei says.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');

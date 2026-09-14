@@ -24,7 +24,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/highway/road.jpg');
     }
     // TODO-QSP: dynamic text: <center><<nroad>> km</center>
-    scene.text(`<center>${((s as any).nroad ?? 0)} km</center>`);
+    scene.text(`<center>${((s as any).nroad || '')} km</center>`);
     scene.text('Calling it a highway would be too much credit, but this road is the main way to get from St. Petersburg to the town of Pavlovsk, 20km away.');
     scene.text('Smaller villages named Gadukino and Pushkin can be found along the way. Cars are driving by you at a high speed.');
     if (qspFunc(s, 'car_funcs', 'is_here')  &&  ((s as any).nroad ?? 0) !== 10) {
@@ -112,7 +112,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).gorand ?? 0) <= 60) {
         scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
-        scene.img(`images/locations/highway/autostop (${((s as any).picrand ?? 0)}).jpg`);
+        scene.img(`images/locations/highway/autostop (${((s as any).picrand || '')}).jpg`);
         scene.text('You try to catch the attention of people driving towards Pavlovsk, but everyone just rushes by, ignoring you completely.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
@@ -121,7 +121,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).gorand ?? 0) > 60) {
-          qspCall(s, 'road', 'autostop_d');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAutostopD(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (((s as any).nroad ?? 0) < 10) {
             scene.actions([
               { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
@@ -148,7 +148,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).gorand ?? 0) <= 60) {
         scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
-        scene.img(`images/locations/highway/autostop (${((s as any).picrand ?? 0)}).jpg`);
+        scene.img(`images/locations/highway/autostop (${((s as any).picrand || '')}).jpg`);
         scene.text('You try to catch the attention of people driving towards St. Petersburg, but everyone just rushes by, ignoring you completely.');
         scene.actions([
           { label: 'Continue', handler: (st: GameState) => {
@@ -157,7 +157,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         if (((s as any).gorand ?? 0) > 60) {
-          qspCall(s, 'road', 'autostop_d');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAutostopD(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (((s as any).nroad ?? 0) > 10) {
             scene.actions([
               { label: 'Ask the driver to take you to Gadukino', handler: (st: GameState) => {
@@ -228,7 +228,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                           }
                           if (qspFunc(s, 'car_funcs', 'is_here')) {
                             // TODO-QSP: dynamic text: You parked <a href="exec:gs 'carF', 'start'">your <<$car['name']>></a> in a quie...
-                            scene.text(`You parked <a href="exec:gs 'carF', 'start'">your ${((s as any).car ?? 0)?.['name']}</a> in a quieter spot on the side road to Gadukin.`);
+                            scene.text(`You parked <a href="exec:gs 'carF', 'start'">your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> in a quieter spot on the side road to Gadukin.`);
                           }
                           if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 23  &&  ((s as any).prostitute ?? 0)?.['gadukino'] === 1) {
                             qspCall(s, 'prostitution_functions', 'work_clothes');
@@ -425,7 +425,7 @@ function enterDriveSex1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dick ?? 0) >= 20) {
   }
   // TODO-QSP: dynamic text: You gently massage his cock between your fingers while the man gets comfortable....
-  scene.text(`You gently massage his cock between your fingers while the man gets comfortable. It's ${((s as any).road_text_sex ?? 0)}, roughly ${((s as any).dick ?? 0)} centimeters long and quite girthy. You manage to massage him to a full erection in no time at all, and lower your head to take it between your lips.`);
+  scene.text(`You gently massage his cock between your fingers while the man gets comfortable. It's ${((s as any).road_text_sex || '')}, roughly ${((s as any).dick || '')} centimeters long and quite girthy. You manage to massage him to a full erection in no time at all, and lower your head to take it between your lips.`);
   scene.text('As you lick the tip of his cock with your tongue and begin to suck him off, you have to admit: this is kinda hot! The man is well groomed and has a pleasant masculine smell to him.');
   scene.text('You eagerly bob your head up and down while he drives, totally forgetting about your earlier doubts, and do your best to get him off.');
   scene.text('With success: in no time at all, the man groans, and his cock erupts inside your mouth, shooting gobs of his hot sperm onto your tongue while you keep your lips closed to not make a mess.');
@@ -459,7 +459,7 @@ function enterDriveSex2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).dick ?? 0) >= 20) {
   }
   // TODO-QSP: dynamic text: You gently massage his cock between your fingers while the man gets comfortable....
-  scene.text(`You gently massage his cock between your fingers while the man gets comfortable. It's ${((s as any).road_text_sex ?? 0)}, roughly ${((s as any).dick ?? 0)} centimeters long and quite girthy. You manage to massage him to a full erection in no time at all, and begin to jerk him off while he drives, rubbing your fingertips over his glans.`);
+  scene.text(`You gently massage his cock between your fingers while the man gets comfortable. It's ${((s as any).road_text_sex || '')}, roughly ${((s as any).dick || '')} centimeters long and quite girthy. You manage to massage him to a full erection in no time at all, and begin to jerk him off while he drives, rubbing your fingertips over his glans.`);
   scene.text('Even though you feel a bit awkward for having to service this man to get where you need to be, you\'re serious about what you promised him and jerk him off diligently. In no time at all, your soft touch brings him to an orgasm. Unfortunately, his cock is pointing straight at you when it happens, and most of his sperm ends up on your clothes.');
   qspCall(s, 'arousal', 'hj', 15, 'prostitution');
   qspCall(s, 'cum_call', 'clothes', ((s as any).npcID ?? 0), 0);
@@ -491,9 +491,9 @@ function enterAutostopDrive(s: GameState, scene: SceneBuilder): void {
   (s as any).picrand = Math.floor(Math.random() * 2) + 1;
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
   if (((s as any).truck_drive ?? 0) === 1) {
-    scene.img(`images/locations/highway/truck_drive (${((s as any).picrand ?? 0)}).jpg`);
+    scene.img(`images/locations/highway/truck_drive (${((s as any).picrand || '')}).jpg`);
   } else {
-    scene.img(`images/locations/highway/drive (${((s as any).picrand ?? 0)}).jpg`);
+    scene.img(`images/locations/highway/drive (${((s as any).picrand || '')}).jpg`);
   }
   scene.text('You try to start a conversation once or twice, but the man doesn\'t really seem to be interested in chatting while he drives. You give up and just look out the window, while he drives you to your destination.');
   scene.text('Fifteen minutes later, you arrive, and the man pulls over. "Alright, we\'re here. Take care, girl!"');
@@ -543,12 +543,12 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: You approach the driver and say, "Hello, sir! I need a ride to <<$road_textrand0...
-    scene.text(`You approach the driver and say, "Hello, sir! I need a ride to ${((s as any).road_textrand0 ?? 0)}, can you help me?"`);
+    scene.text(`You approach the driver and say, "Hello, sir! I need a ride to ${((s as any).road_textrand0 || '')}, can you help me?"`);
     scene.text('The driver gives you another appraising look.');
   } else {
     scene.img(`images/locations/highway/guy (${qspUntranslated(s, "ARGS[2]", { location: "road" })}).jpg`);
     // TODO-QSP: dynamic text: You take a small step back, "I think, there is a mistake, sir, I'm just trying t...
-    scene.text(`You take a small step back, "I think, there is a mistake, sir, I'm just trying to get to ${((s as any).road_textrand0 ?? 0)}, can you help me?`);
+    scene.text(`You take a small step back, "I think, there is a mistake, sir, I'm just trying to get to ${((s as any).road_textrand0 || '')}, can you help me?`);
     scene.text('The driver gives you another appraising look.');
   }
   if ((Math.floor(Math.random() * 1201) + 0) <= ((s as any).pcs_apprnc ?? 0)) {
@@ -586,9 +586,9 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: He ponders for a second and then says, "<<$road_textrand4>>"
-    scene.text(`He ponders for a second and then says, "${((s as any).road_textrand4 ?? 0)}"`);
+    scene.text(`He ponders for a second and then says, "${((s as any).road_textrand4 || '')}"`);
     scene.actions([
-      { label: 'Agree to pay him [+$func(\'money\', \'get_cost_string\', autost...]', handler: (st: GameState) => {
+      { label: 'Agree to pay him', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).autostop_price ?? 0) * 100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -612,7 +612,7 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
     if (((s as any).textrand ?? 0) === 3) {
     }
     // TODO-QSP: dynamic text: You twirl your hair between your fingers and give the man a cute look, hoping he...
-    scene.text(`You twirl your hair between your fingers and give the man a cute look, hoping he will have pity on you and lower the price. "${((s as any).road_textrand5 ?? 0)}" you ask him sweetly.`);
+    scene.text(`You twirl your hair between your fingers and give the man a cute look, hoping he will have pity on you and lower the price. "${((s as any).road_textrand5 || '')}" you ask him sweetly.`);
     scene.text('The man seems a bit reluctant and looks at you once more.');
     if ((Math.floor(Math.random() * 401) + 0) <= ((s as any).pcs_apprnc ?? 0)) {
       scene.text('"I can take you there for free, but only if you do something for me in return", the guy smiles.');
@@ -642,9 +642,9 @@ function enterAutostopMoney(s: GameState, scene: SceneBuilder): void {
       (s as any).ivrand = Math.floor(Math.random() * 2) + 1;
       (s as any).autostop_price = ((s as any).autostop_price ?? 0) - (((s as any).ivrand ?? 0));
       // TODO-QSP: dynamic text: The man sighs exasperatedly, but yields, "Okay, fine. I'll make it <<$func('mone...
-      scene.text(`The man sighs exasperatedly, but yields, "Okay, fine. I'll make it ${qspFunc(s, 'money', 'string_price', ((s as any).ivrand ?? 0)*100, 1)} less, because you seem like a nice girl and I want to help you out. I'll take you there for ${qspFunc(s, 'money', 'string_price', ((s as any).autostop_price ?? 0)*100, 1)}, but I can't go any lower than that!"`);
+      scene.text(`The man sighs exasperatedly, but yields, "Okay, fine. I'll make it ${qspFunc(s, 'money', 'string_price', ((s as any).ivrand ?? '')*100, 1)} less, because you seem like a nice girl and I want to help you out. I'll take you there for ${qspFunc(s, 'money', 'string_price', ((s as any).autostop_price ?? '')*100, 1)}, but I can't go any lower than that!"`);
       scene.actions([
-        { label: 'Agree to pay him [+$func(\'money\', \'get_cost_string\', autost...]', handler: (st: GameState) => {
+        { label: 'Agree to pay him', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).autostop_price ?? 0)*100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -723,15 +723,15 @@ function enterAutostopD(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ivrand ?? 0) > 1) {
       (s as any).picrand = Math.floor(Math.random() * 3) + 2;
       (s as any).bandit_drive = 1;
-      scene.img(`images/locations/highway/guy (${((s as any).picrand ?? 0)}).jpg`);
+      scene.img(`images/locations/highway/guy (${((s as any).picrand || '')}).jpg`);
       // TODO-QSP: dynamic text: After a few minutes of you trying to get someone to pull over, a <<$road_textran...
-      scene.text(`After a few minutes of you trying to get someone to pull over, a ${((s as any).road_textrand3 ?? 0)}, ${((s as any).road_textrand2 ?? 0)} car stops near you. The driver rolls down his window and looks at you for a second, probably making sure you wouldn't ruin his seats with dirty clothes or something.`);
+      scene.text(`After a few minutes of you trying to get someone to pull over, a ${((s as any).road_textrand3 || '')}, ${((s as any).road_textrand2 || '')} car stops near you. The driver rolls down his window and looks at you for a second, probably making sure you wouldn't ruin his seats with dirty clothes or something.`);
       if (((s as any).pcs_apprnc ?? 0) < 60) {
         scene.text('Then he shrugs and says, "Where do you need to go, lady?"');
       }
       if (((s as any).pcs_apprnc ?? 0) >= 60) {
         // TODO-QSP: dynamic text: Then he gives you a friendly smile and says, "<<$road_textrand1>>"
-        scene.text(`Then he gives you a friendly smile and says, "${((s as any).road_textrand1 ?? 0)}"`);
+        scene.text(`Then he gives you a friendly smile and says, "${((s as any).road_textrand1 || '')}"`);
       }
     } else {
       scene.img('images/locations/highway/guy (1).jpg');
@@ -742,15 +742,15 @@ function enterAutostopD(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ivrand ?? 0) === 2) {
       (s as any).picrand = Math.floor(Math.random() * 3) + 1;
       (s as any).truck_drive = 1;
-      scene.img(`images/locations/highway/truck_guy (${((s as any).picrand ?? 0)}).jpg`);
+      scene.img(`images/locations/highway/truck_guy (${((s as any).picrand || '')}).jpg`);
       // TODO-QSP: dynamic text: After a few minutes of you trying to get someone to pull over, a huge <<$road_te...
-      scene.text(`After a few minutes of you trying to get someone to pull over, a huge ${((s as any).road_textrand3 ?? 0)}, ${((s as any).road_textrand2 ?? 0)} truck stops near you. The truck driver looks at you intently for a second, probably making sure you wouldn't ruin his seats with dirty clothes or something.`);
+      scene.text(`After a few minutes of you trying to get someone to pull over, a huge ${((s as any).road_textrand3 || '')}, ${((s as any).road_textrand2 || '')} truck stops near you. The truck driver looks at you intently for a second, probably making sure you wouldn't ruin his seats with dirty clothes or something.`);
       if (((s as any).pcs_apprnc ?? 0) < 60) {
         scene.text('Then he shrugs and says, "Where do you need to go, lady?"');
       }
       if (((s as any).pcs_apprnc ?? 0) >= 60) {
         // TODO-QSP: dynamic text: Then he gives you a friendly smile and says, "<<$road_textrand1>>"
-        scene.text(`Then he gives you a friendly smile and says, "${((s as any).road_textrand1 ?? 0)}"`);
+        scene.text(`Then he gives you a friendly smile and says, "${((s as any).road_textrand1 || '')}"`);
       }
     }
   }
@@ -824,11 +824,11 @@ function enterAutostopMistake(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<center><b>Main road between St. Petersburg and Pavlovsk</b></center>');
   (s as any).picrand = Math.floor(Math.random() * 3) + 2;
-  scene.img(`images/locations/highway/guy (${((s as any).picrand ?? 0)}).jpg`);
+  scene.img(`images/locations/highway/guy (${((s as any).picrand || '')}).jpg`);
   // TODO-QSP: dynamic text: After a few minutes of you trying to get someone to pull over, a <<$road_textran...
-  scene.text(`After a few minutes of you trying to get someone to pull over, a ${((s as any).road_textrand1 ?? 0)}, ${((s as any).road_textrand2 ?? 0)} car stops near you. The driver rolls down his window and leans closer, his eyes roaming over your body.`);
+  scene.text(`After a few minutes of you trying to get someone to pull over, a ${((s as any).road_textrand1 || '')}, ${((s as any).road_textrand2 || '')} car stops near you. The driver rolls down his window and leans closer, his eyes roaming over your body.`);
   // TODO-QSP: dynamic text: <<$road_textrand3>>" - rubs his fingers together with a wide smile as he waits f...
-  scene.text(`${((s as any).road_textrand3 ?? 0)}" - rubs his fingers together with a wide smile as he waits for your answer.`);
+  scene.text(`${((s as any).road_textrand3 || '')}" - rubs his fingers together with a wide smile as he waits for your answer.`);
   // TODO-QSP: 'You blink at the question, then you realize that he mistook you for a prositute' + iif(PCloStyle = ...
   if (((s as any).locArgs?.[1] ?? 0) === 'St. Petersburg') {
     if (((s as any).nroad ?? 0) > 10) {

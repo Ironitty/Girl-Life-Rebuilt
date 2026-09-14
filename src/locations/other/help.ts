@@ -70,17 +70,17 @@ function enterDefChild(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTocInit(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'help', 'def_section', 'ui', 'ui_overview', 'User Interface');
-  qspCall(s, 'help', 'def_child', 'ui', 'ui_statbar', 'Stat Bar');
-  qspCall(s, 'help', 'def_child', 'ui', 'ui_menu', 'Navigation Menu');
-  qspCall(s, 'help', 'def_child', 'ui', 'ui_actions', 'Action Buttons');
-  qspCall(s, 'help', 'def_section', 'mechanics', 'mech_overview', 'Game Mechanics');
-  qspCall(s, 'help', 'def_child', 'mechanics', 'mech_time', 'Time & Schedule');
-  qspCall(s, 'help', 'def_child', 'mechanics', 'mech_stats', 'Stats & Attributes');
-  qspCall(s, 'help', 'def_child', 'mechanics', 'mech_money', 'Money & Finances');
-  qspCall(s, 'help', 'def_section', 'chars', 'chars_overview', 'Characters');
-  qspCall(s, 'help', 'def_child', 'chars', 'chars_pc', 'Your Character', 'help_characters');
-  qspCall(s, 'help', 'def_group', 'chars', 'family', 'Family');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ui', 'ui_overview', 'User Interface']; enterDefSection(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ui', 'ui_statbar', 'Stat Bar']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ui', 'ui_menu', 'Navigation Menu']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ui', 'ui_actions', 'Action Buttons']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mechanics', 'mech_overview', 'Game Mechanics']; enterDefSection(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mechanics', 'mech_time', 'Time & Schedule']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mechanics', 'mech_stats', 'Stats & Attributes']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mechanics', 'mech_money', 'Money & Finances']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'chars_overview', 'Characters']; enterDefSection(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'chars_pc', 'Your Character', 'help_characters']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'family', 'Family']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'family',    'char_dad',        $npc_usedname['A28'],    'help_characters...
   // TODO-QSP: gs 'help', 'def_child',    'family',    'char_mom',        $npc_usedname['A29'],    'help_characters...
   // TODO-QSP: gs 'help', 'def_child',    'family',    'char_luda',      $npc_usedname['A30'],    'help_characters'
@@ -89,7 +89,7 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'family',    'char_anya',      $npc_usedname['A33'],    'help_characters'
   // TODO-QSP: gs 'help', 'def_child',    'family',    'char_kolka',      $npc_usedname['A34'],    'help_characters...
   // TODO-QSP: gs 'help', 'def_child',    'family',    'char_uncle_misha',    $npc_usedname['A54'],    'help_charac...
-  qspCall(s, 'help', 'def_group', 'chars', 'sch_cool', 'School: Cool Kids');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'sch_cool', 'School: Cool Kids']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'sch_cool',    'char_dimka',      $npc_usedname['A1'],    'help_character...
   // TODO-QSP: gs 'help', 'def_child',    'sch_cool',    'char_igor',      $npc_usedname['A4'],    'help_characters...
   // TODO-QSP: gs 'help', 'def_child',    'sch_cool',    'char_marcus',      $npc_usedname['A146'],    'help_charac...
@@ -102,7 +102,7 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'sch_cool',    'char_stasya',      $npc_usedname['A139'],    'help_charac...
   // TODO-QSP: gs 'help', 'def_child',    'sch_cool',    'char_lizaveta',    $npc_usedname['A140'],    'help_charac...
   // TODO-QSP: gs 'help', 'def_child',    'sch_cool',    'char_sonia',      $npc_usedname['A25'],    'help_characte...
-  qspCall(s, 'help', 'def_group', 'chars', 'sch_jock', 'School: Jocks');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'sch_jock', 'School: Jocks']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'sch_jock',    'char_ivan',      $npc_usedname['A3'],    'help_characters...
   // TODO-QSP: gs 'help', 'def_child',    'sch_jock',    'char_fedor',      $npc_usedname['A5'],    'help_character...
   // TODO-QSP: gs 'help', 'def_child',    'sch_jock',    'char_svyatoslav',    $npc_usedname['A8'],    'help_charac...
@@ -114,7 +114,7 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'sch_jock',    'char_lina',      $npc_usedname['A19'],    'help_character...
   // TODO-QSP: gs 'help', 'def_child',    'sch_jock',    'char_albina',      $npc_usedname['A23'],    'help_charact...
   // TODO-QSP: gs 'help', 'def_child',    'sch_jock',    'char_ronnie',      $npc_usedname['A141'],    'help_charac...
-  qspCall(s, 'help', 'def_group', 'chars', 'sch_nerd', 'School: Nerds');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'sch_nerd', 'School: Nerds']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'sch_nerd',    'char_artem',      $npc_usedname['A2'],    'help_character...
   // TODO-QSP: gs 'help', 'def_child',    'sch_nerd',    'char_petka',      $npc_usedname['A6'],    'help_character...
   // TODO-QSP: gs 'help', 'def_child',    'sch_nerd',    'char_evgeny',      $npc_usedname['A151'],    'help_charac...
@@ -124,7 +124,7 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'sch_nerd',    'char_natasha_s',    $npc_usedname['A16'],    'help_charac...
   // TODO-QSP: gs 'help', 'def_child',    'sch_nerd',    'char_zina',      $npc_usedname['A142'],    'help_characte...
   // TODO-QSP: gs 'help', 'def_child',    'sch_nerd',    'char_natalia',      $npc_usedname['A240'],    'help_chara...
-  qspCall(s, 'help', 'def_group', 'chars', 'sch_gopnik', 'School: Gopniks');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'sch_gopnik', 'School: Gopniks']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'sch_gopnik',  'char_vitek',      $npc_usedname['A9'],    'help_character...
   // TODO-QSP: gs 'help', 'def_child',    'sch_gopnik',  'char_dan',        $npc_usedname['A10'],    'help_characte...
   // TODO-QSP: gs 'help', 'def_child',    'sch_gopnik',  'char_shulga',      $npc_usedname['A11'],    'help_charact...
@@ -140,10 +140,10 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'sch_gopnik',  'char_alyona',      $npc_usedname['A143'],    'help_charac...
   // TODO-QSP: gs 'help', 'def_child',    'sch_gopnik',  'char_anushka',      $npc_usedname['A144'],    'help_chara...
   // TODO-QSP: gs 'help', 'def_child',    'sch_gopnik',  'char_katyusha',    $npc_usedname['A145'],    'help_charac...
-  qspCall(s, 'help', 'def_group', 'chars', 'sch_outcast', 'School: Outcasts');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'sch_outcast', 'School: Outcasts']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'sch_outcast',  'char_lesco',      $npc_usedname['A7'],    'help_characte...
   // TODO-QSP: gs 'help', 'def_child',    'sch_outcast',  'char_petia',      $npc_usedname['A159'],    'help_charac...
-  qspCall(s, 'help', 'def_group', 'chars', 'sch_teacher', 'School: Teachers');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'sch_teacher', 'School: Teachers']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'sch_teacher',  'char_coach',      $npc_usedname['A69'],    'help_charact...
   // TODO-QSP: gs 'help', 'def_child',    'sch_teacher',  'char_vasilyev',    $npc_usedname['A128'],    'help_chara...
   // TODO-QSP: gs 'help', 'def_child',    'sch_teacher',  'char_ivanov',      $npc_usedname['A129'],    'help_chara...
@@ -157,7 +157,7 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'sch_teacher',  'char_miss_braakman',  $npc_usedname['A137'],    'help_ch...
   // TODO-QSP: gs 'help', 'def_child',    'sch_teacher',  'char_miss_orlov',    $npc_usedname['A138'],    'help_cha...
   // TODO-QSP: gs 'help', 'def_child',    'sch_teacher',  'char_anatoly',      $npc_usedname['A26'],    'help_chara...
-  qspCall(s, 'help', 'def_group', 'chars', 'pav_resident', 'Pavlovsk: Residents');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'pav_resident', 'Pavlovsk: Residents']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'pav_resident',  'char_vera',      $npc_usedname['A27'],    'help_charact...
   // TODO-QSP: gs 'help', 'def_child',    'pav_resident',  'char_olu',        $npc_usedname['A55'],    'help_charac...
   // TODO-QSP: gs 'help', 'def_child',    'pav_resident',  'char_roma',      $npc_usedname['A56'],    'help_charact...
@@ -168,7 +168,7 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'pav_resident',  'char_vadim',      $npc_usedname['A113'],    'help_chara...
   // TODO-QSP: gs 'help', 'def_child',    'pav_resident',  'char_shulyov',      $npc_usedname['A127'],    'help_cha...
   // TODO-QSP: gs 'help', 'def_child',    'pav_resident',  'char_pavlin',      $npc_usedname['A217'],    'help_char...
-  qspCall(s, 'help', 'def_group', 'chars', 'gadukino', 'Gadukino');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'gadukino', 'Gadukino']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'gadukino',    'char_mira',      $npc_usedname['A60'],    'help_character...
   // TODO-QSP: gs 'help', 'def_child',    'gadukino',    'char_kolyamba',    $npc_usedname['A61'],    'help_charact...
   // TODO-QSP: gs 'help', 'def_child',    'gadukino',    'char_vasyan',      $npc_usedname['A62'],    'help_charact...
@@ -178,7 +178,7 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'gadukino',    'char_andrei_g',    $npc_usedname['A172'],    'help_charac...
   // TODO-QSP: gs 'help', 'def_child',    'gadukino',    'char_igor_g',      $npc_usedname['A173'],    'help_charac...
   // TODO-QSP: gs 'help', 'def_child',    'gadukino',    'char_sergei_g',    $npc_usedname['A174'],    'help_charac...
-  qspCall(s, 'help', 'def_group', 'chars', 'city', 'City');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'city', 'City']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'city',      'char_jora',      $npc_usedname['A44'],    'help_characters'
   // TODO-QSP: gs 'help', 'def_child',    'city',      'char_nicholas',    $npc_usedname['A52'],    'help_character...
   // TODO-QSP: gs 'help', 'def_child',    'city',      'char_ilyushkin',    $npc_usedname['A76'],    'help_characte...
@@ -192,7 +192,7 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'city',      'char_grigory',      $npc_usedname['A221'],    'help_charact...
   // TODO-QSP: gs 'help', 'def_child',    'city',      'char_alex',      $npc_usedname['A241'],    'help_characters...
   // TODO-QSP: gs 'help', 'def_child',    'city',      'char_amelia',      $npc_usedname['A267'],    'help_characte...
-  qspCall(s, 'help', 'def_group', 'chars', 'university', 'University');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'university', 'University']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'university',  'char_djibril',      $npc_usedname['A82'],    'help_charac...
   // TODO-QSP: gs 'help', 'def_child',    'university',  'char_goshi',      $npc_usedname['A83'],    'help_characte...
   // TODO-QSP: gs 'help', 'def_child',    'university',  'char_kendra',      $npc_usedname['A84'],    'help_charact...
@@ -205,16 +205,16 @@ function enterTocInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'help', 'def_child',    'university',  'char_prof_marinova',  $npc_usedname['A269'],    'help_cha...
   // TODO-QSP: gs 'help', 'def_child',    'university',  'char_prof_kudelina',  $npc_usedname['A270'],    'help_cha...
   // TODO-QSP: gs 'help', 'def_child',    'university',  'char_prof_borisov',  $npc_usedname['A271'],    'help_char...
-  qspCall(s, 'help', 'def_group', 'chars', 'pushkin', 'Pushkin &amp; Ballet');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chars', 'pushkin', 'Pushkin &amp; Ballet']; enterDefGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'help', 'def_child',    'pushkin',    'char_maya',      $npc_usedname['A274'],    'help_character...
   // TODO-QSP: gs 'help', 'def_child',    'pushkin',    'char_tanis',      $npc_usedname['A276'],    'help_characte...
   // TODO-QSP: gs 'help', 'def_child',    'pushkin',    'char_gasha',      $npc_usedname['A280'],    'help_characte...
   // TODO-QSP: gs 'help', 'def_child',    'pushkin',    'char_rudolf',      $npc_usedname['A283'],    'help_charact...
   // TODO-QSP: gs 'help', 'def_child',    'pushkin',    'char_bronya',      $npc_usedname['A286'],    'help_charact...
-  qspCall(s, 'help', 'def_section', 'locs', 'locs_overview', 'Locations');
-  qspCall(s, 'help', 'def_child', 'locs', 'locs_home', 'Home');
-  qspCall(s, 'help', 'def_child', 'locs', 'locs_school', 'School');
-  qspCall(s, 'help', 'def_child', 'locs', 'locs_town', 'Town');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'locs', 'locs_overview', 'Locations']; enterDefSection(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'locs', 'locs_home', 'Home']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'locs', 'locs_school', 'School']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'locs', 'locs_town', 'Town']; enterDefChild(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -314,7 +314,7 @@ function enterRenderToc(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRender(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'help', 'toc_init');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTocInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).help_page_title ?? 0) === ''  &&  ((s as any).help_toc_label ?? 0)?.[String((s as any).help_page_key ?? 0)] !== '') {
   }
   // TODO-QSP: $help_layout +=    '<td width="20%" valign="top" style="border-right:1px solid;padding:8px 12px 8px ...
@@ -363,7 +363,7 @@ function enterGeneric(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_gen_c += '</small>'
   // TODO-QSP: $help_page_content += '<td style="' + $help_gen_cs + '">' + $help_gen_c + '</td>'
   // TODO-QSP: $help_page_content += '</tr></table>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -373,7 +373,7 @@ function enterUiOverview(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'shows the current scene and your action choices, while the <b>stat panel</b>...
   // TODO-QSP: $help_page_content  += 'right shows your character information and navigation icons.<br><br>'
   // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -382,7 +382,7 @@ function enterUiStatbar(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'The stat panel on the right side of the screen displays your key stats at a ...
   // TODO-QSP: $help_page_content  += 'money, energy, mood, and appearance among others.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with real stat descriptions.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -391,7 +391,7 @@ function enterUiMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'The row of icons at the bottom of the stat panel lets you jump to key screen...
   // TODO-QSP: $help_page_content  += 'your inventory, phone, map, calendar, and this help system.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with icon-by-icon descriptions.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -401,7 +401,7 @@ function enterUiActions(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'to you in the current scene. Actions can move you to a new location, trigger...
   // TODO-QSP: $help_page_content  += 'events, or change your stats.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with further detail.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -411,7 +411,7 @@ function enterMechOverview(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'your stats rise and fall based on your choices, and money must be managed '
   // TODO-QSP: $help_page_content  += 'to cover living expenses.<br><br>'
   // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -421,7 +421,7 @@ function enterMechTime(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'Most actions consume one or more time periods. The week follows a school/wor...
   // TODO-QSP: $help_page_content  += 'schedule, and certain events only occur on specific days.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with real time system details.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -431,7 +431,7 @@ function enterMechStats(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'confidence, and more. Stats have upper and lower bounds and change through '
   // TODO-QSP: $help_page_content  += 'activities, sleep, eating, and events.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with stat list and ranges.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -441,7 +441,7 @@ function enterMechMoney(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'Income comes from jobs, allowances, and other sources depending on '
   // TODO-QSP: $help_page_content  += 'your current living situation.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with income/expense breakdown.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -451,7 +451,7 @@ function enterCharsOverview(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'relationship score with your character. How they treat you depends on '
   // TODO-QSP: $help_page_content  += 'that score and your stats.<br><br>'
   // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -461,7 +461,7 @@ function enterCharsFamily(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'and certain story paths. Relationships with them can be improved or damaged ...
   // TODO-QSP: $help_page_content  += 'over time.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with family member profiles.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -470,7 +470,7 @@ function enterCharsNpc(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'Classmates, teachers, shopkeepers, and others populate the game world. '
   // TODO-QSP: $help_page_content  += 'Building relationships with them unlocks new events and options.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with NPC roster.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -480,7 +480,7 @@ function enterLocsOverview(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'available actions and time costs to reach. You can travel between them '
   // TODO-QSP: $help_page_content  += 'using the map or direct action links.<br><br>'
   // TODO-QSP: $help_page_content  += 'Select a subtopic on the left for more detail.'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -489,7 +489,7 @@ function enterLocsHome(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'Home is your base of operations. Here you can sleep, eat, change clothes, '
   // TODO-QSP: $help_page_content  += 'study, and spend time with family members who live with you.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with room-by-room breakdown.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -498,7 +498,7 @@ function enterLocsSchool(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'School runs on weekdays. Attending classes raises your grades and intelligen...
   // TODO-QSP: $help_page_content  += 'Between lessons you can socialise, join clubs, or sneak off campus.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with school map and schedule.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -507,7 +507,7 @@ function enterLocsTown(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $help_page_content  += 'The town centre has shops, a park, cafes, and various venues to visit. '
   // TODO-QSP: $help_page_content  += 'Most town locations are accessible in the afternoon and evening.<br><br>'
   // TODO-QSP: $help_page_content  += '<i>(Placeholder — fill in with venue list and opening hours.)</i>'
-  qspCall(s, 'help', 'render', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterRender(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

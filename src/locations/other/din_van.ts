@@ -71,7 +71,7 @@ function enterCanBteeth(s: GameState, scene: SceneBuilder): void {
 
 function enterBteethDo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
-  qspCall(s, 'din_van', 'brush_teeth');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrushTeeth(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).clothingworntype ?? 0) === 'nude'  &&  ((s as any).braworntype ?? 0) === 'none'  &&  ((s as any).pantyworntype ?? 0) === 'none') {
     scene.img('images/shared/home/bathroom/brushteeth.mp4');
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -130,7 +130,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).noshampoo_tmp = ((s as any).noshampoo ?? 0);
   (s as any).deodorant_on_tmp = ((s as any).deodorant_on ?? 0);
-  qspCall(s, 'din_van', 'showerdin');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerdin(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/shared/home/bathroom/dush.mp4');
   scene.text('You undress and turn on the water in the shower. When it hits the right temperature, you step into the shower and let the warm water rain down on you.');
   if (((s as any).daystart ?? 0) - ((s as any).daystart_start ?? 0) < 9  &&  ((s as any).start_type ?? 0)?.['magic'] === 'tg') {
@@ -151,7 +151,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).mc_inventory ?? 0)?.['shampoo'] <= 5) {
       // TODO-QSP: dynamic text: You are getting low on shampoo, with only <<mc_inventory['shampoo']>> remaining....
-      scene.text(`You are getting low on shampoo, with only ${((s as any).mc_inventory ?? 0)?.['shampoo']} remaining. When you get a chance, you should stop by the supermarket and buy some more.`);
+      scene.text(`You are getting low on shampoo, with only ${((s as any).mc_inventory ?? 0)?.['shampoo'] ?? ''} remaining. When you get a chance, you should stop by the supermarket and buy some more.`);
     }
   }
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {
@@ -175,7 +175,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).bodyVars ?? 0)?.['weight_warning'] === 2) {
     }
-    scene.text(`<center><b>You seem to be ${((s as any).weightwarn ?? 0)} weight.</b></center>`);
+    scene.text(`<center><b>You seem to be ${((s as any).weightwarn || '')} weight.</b></center>`);
   }
   if (((s as any).normbuffpick ?? 0) === 1) {
     scene.text('<b>You notice that your muscles are starting to show through your skin.</b>');
@@ -210,7 +210,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_massagedherbreasts = 0;
     if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['pc_aware'] = 1;
   }
-  qspCall(s, 'din_van', 'dryOff');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDryOff(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).rapeday ?? 0) === ((s as any).daystart ?? 0)  &&  ((s as any).rape_shower ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Cry (react to rape)', handler: (st: GameState) => {
@@ -222,7 +222,7 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
     scene.text('Your rapist\'s cock <i>inside</i> you.');
     scene.text('His cum <i>leaking</i> out of you.');
     scene.text('You grab the soap again and scrub yourself again, but it still feels like something is there, coating your skin. You scrub and scrub and scrub but it just won\'t go away until you finally cry out, throwing it into the corner. Tremors begin coursing through your body and you slowly sink down onto the shower floor, where you remain, sobbing while the water continues raining down on you.');
-    qspCall(s, 'din_van', 'dryOff');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDryOff(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -249,13 +249,13 @@ function enterShowerDo(s: GameState, scene: SceneBuilder): void {
       (s as any).cumspclnt = 8;
       qspCall(s, 'cum_cleanup', '');
     }
-    qspCall(s, 'din_van', 'dryOff');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDryOff(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
   }
   qspCall(s, 'selfplay', 'shower_dildo_check');
-  qspCall(s, 'din_van', 'brit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).vanr_lock ?? 0) === 0  &&  ((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] === 'parents_home') {
     scene.text('In your absentmindedness, you have forgotten to close the door.');
     scene.text('The idea that the door is open occupies your mind while you are showering. It would be very embarrassing if your brother or stepfather looked in at the wrong time.');
@@ -295,7 +295,7 @@ function enterBathDo(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).noshampoo_tmp = ((s as any).noshampoo ?? 0);
   (s as any).deodorant_on_tmp = ((s as any).deodorant_on ?? 0);
-  qspCall(s, 'din_van', 'showerdin');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerdin(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   scene.img('images/shared/home/bathroom/wash4.jpg');
   scene.text('You undress while the bathtub fills up and dip a toe into the water. It is just the right temperature, so you climb in and let yourself sink into the warm water, moaning softly as you feel your muscles start to relax.');
@@ -318,7 +318,7 @@ function enterBathDo(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).mc_inventory ?? 0)?.['shampoo'] <= 5) {
       // TODO-QSP: dynamic text: You are getting low on shampoo, with only <<mc_inventory['shampoo']>> remaining....
-      scene.text(`You are getting low on shampoo, with only ${((s as any).mc_inventory ?? 0)?.['shampoo']} remaining. When you get a chance, you should stop by the supermarket and buy some more.`);
+      scene.text(`You are getting low on shampoo, with only ${((s as any).mc_inventory ?? 0)?.['shampoo'] ?? ''} remaining. When you get a chance, you should stop by the supermarket and buy some more.`);
     }
   }
   if (((s as any).trait_vars ?? 0)?.['cum_addict'] > 0) {
@@ -342,7 +342,7 @@ function enterBathDo(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).bodyVars ?? 0)?.['weight_warning'] === 2) {
     }
-    scene.text(`<center><b>You seem to be ${((s as any).weightwarn ?? 0)} weight.</b></center>`);
+    scene.text(`<center><b>You seem to be ${((s as any).weightwarn || '')} weight.</b></center>`);
   }
   if (((s as any).normbuffpick ?? 0) === 1) {
     scene.text('');
@@ -351,9 +351,9 @@ function enterBathDo(s: GameState, scene: SceneBuilder): void {
       { label: 'Examine yourself closer while drying off and getting dressed…', goto: ['din_van', 'buffpick'] },
     ]);
   }
-  qspCall(s, 'din_van', 'dryOff');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDryOff(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'selfplay', 'bathtub_dildo_check');
-  qspCall(s, 'din_van', 'brit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrit(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).vanr_lock ?? 0) === 0  &&  ((s as any).home_name ?? 0)?.[String((s as any).loc ?? 0)] === 'parents_home') {
     scene.text('In your absentmindedness, you have forgotten to close the door.');
     scene.text('The idea that the door is open occupies your mind while you are bathing. It would be very embarrassing if your brother or stepfather looked in at the wrong time.');
@@ -377,7 +377,7 @@ function enterBathDo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'clit_vibe', (-10), 'masturbate');
     qspCall(s, 'arousal', 'clit_vibe', 10, 'masturbate');
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'din_van', 'dryOff');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDryOff(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Take a selfie', handler: (st: GameState) => {
     qspCall(s, 'telefon', 'Phone_selfie_image_bathing', 'bath');
@@ -478,9 +478,9 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
       scene.img('images/shared/home/bathroom/trim_bush.mp4');
     }
     // TODO-QSP: dynamic text: <<$shave_txt11>>
-    scene.text(`${((s as any).shave_txt11 ?? 0)}`);
+    scene.text(`${((s as any).shave_txt11 || '')}`);
     // TODO-QSP: dynamic text: <<$shave_txt12>>
-    scene.text(`${((s as any).shave_txt12 ?? 0)}`);
+    scene.text(`${((s as any).shave_txt12 || '')}`);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).pcs_leghair = 0;
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['leg_hair_growth_timer'] = ((s as any).totminut ?? 0);
@@ -493,7 +493,7 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['all']);
     }
     qspCall(s, 'traits', 'body_hair_attitude', 'on_shave');
-    qspCall(s, 'din_van', 'dryOff', 'shave');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shave']; enterDryOff(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'selfplay', 'bathtub_dildo_check');
     qspCall(s, 'selfplay', 'shower_dildo_check');
   } },
@@ -549,13 +549,13 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['razor'] = ((s as any).mc_inventory['razor'] ?? 0) - (((s as any).razors_to_use ?? 0)?.['pussy']);
     }
     // TODO-QSP: dynamic text: <<$shave_txt21>>
-    scene.text(`${((s as any).shave_txt21 ?? 0)}`);
+    scene.text(`${((s as any).shave_txt21 || '')}`);
     // TODO-QSP: dynamic text: <<$shave_txt22>>
-    scene.text(`${((s as any).shave_txt22 ?? 0)}`);
+    scene.text(`${((s as any).shave_txt22 || '')}`);
     if (((s as any).pcs_pubes ?? 0) <= 3) {
       qspCall(s, 'traits', 'body_hair_attitude', 'on_shave');
     }
-    qspCall(s, 'din_van', 'dryOff', 'shave');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shave']; enterDryOff(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'selfplay', 'bathtub_dildo_check');
     qspCall(s, 'selfplay', 'shower_dildo_check');
   } },
@@ -587,7 +587,7 @@ function enterBrit(s: GameState, scene: SceneBuilder): void {
         scene.text('You lather your legs up with some soapy water and shave your legs. After a few swift movements, your legs are smooth as silk. The feeling of your smooth legs turns you on a little.');
       }
     }
-    qspCall(s, 'din_van', 'dryOff', 'shave');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shave']; enterDryOff(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'selfplay', 'bathtub_dildo_check');
     qspCall(s, 'selfplay', 'shower_dildo_check');
   } },
@@ -740,13 +740,13 @@ function enterQuickwash(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Let the cum drain from you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Let the cum drain from you', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>Part of you doesn''t want to let g...
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Let the cum drain from you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Let the cum drain from you', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 2) {
       qspCall(s, 'willpower', 'misc', 'self', 'hard');
     } else {
@@ -770,7 +770,7 @@ function enterQuickwash(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'din_van', 'pblc_pee');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPblcPee(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -1073,13 +1073,13 @@ function enterBasin(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Let the cum drain from you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Let the cum drain from you', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>Part of you doesn''t want to let g...
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Let the cum drain from you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Let the cum drain from you', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 2) {
       qspCall(s, 'willpower', 'misc', 'self', 'hard');
     } else {
@@ -1291,13 +1291,13 @@ function enterEnema(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Wash up cum from your insides [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Wash up cum from your insides', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>Part of you doesn''t want to let g...
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Wash up cum from your insides [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Wash up cum from your insides', handler: (st: GameState) => {
     if (((s as any).trait_vars ?? 0)?.['cum_addict'] === 2) {
       qspCall(s, 'willpower', 'misc', 'self', 'hard');
     } else {
@@ -1495,18 +1495,18 @@ function enterPalelady(s: GameState, scene: SceneBuilder): void {
 function enterPrivate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lashair ?? 0) !== 1  &&  ((s as any).mc_inventory ?? 0)?.['razor'] > 0) {
     // TODO-QSP: dynamic text: Your disposable razors are good for <b><<mc_inventory['razor']>></b> more shaves...
-    scene.text(`Your disposable razors are good for <b>${((s as any).mc_inventory ?? 0)?.['razor']}</b> more shaves. <a href="exec:gs 'din_van', 'shave_options'">Shave Options</a>`);
+    scene.text(`Your disposable razors are good for <b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b> more shaves. <a href="exec:gs 'din_van', 'shave_options'">Shave Options</a>`);
     if (((s as any).mc_inventory ?? 0)?.['razor'] <= 2  &&  ((s as any).razor ?? 0)?.['warning'] < ((s as any).daystart ?? 0)) {
       if (!(s as any).razor) (s as any).razor = {}; (s as any).razor['warning'] = ((s as any).daystart ?? 0) + 5;
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['chafing_cream'] > 0) {
     // TODO-QSP: dynamic text: On a shelf is a tube of ointment for chafing, which will be enough for <b><<mc_i...
-    scene.text(`On a shelf is a tube of ointment for chafing, which will be enough for <b>${((s as any).mc_inventory ?? 0)?.['chafing_cream']}</b> applications.`);
+    scene.text(`On a shelf is a tube of ointment for chafing, which will be enough for <b>${((s as any).mc_inventory ?? 0)?.['chafing_cream'] ?? ''}</b> applications.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['moisturiser'] > 0) {
     // TODO-QSP: dynamic text: You look at your moisturiser and think you have about <b><<mc_inventory['moistur...
-    scene.text(`You look at your moisturiser and think you have about <b>${((s as any).mc_inventory ?? 0)?.['moisturiser']}</b> applications left.`);
+    scene.text(`You look at your moisturiser and think you have about <b>${((s as any).mc_inventory ?? 0)?.['moisturiser'] ?? ''}</b> applications left.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['tampons'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['sanitary_pads'] === 0) {
     scene.text('<center><b>You have no feminine hygiene products left.</b></center>');
@@ -1532,7 +1532,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
         scene.text('You only have <b>1</b> tampon left.');
       } else {
         // TODO-QSP: dynamic text: You have <b><<mc_inventory['tampons']>></b> tampons.
-        scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['tampons']}</b> tampons.`);
+        scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['tampons'] ?? ''}</b> tampons.`);
       }
     }
     if (((s as any).mc_inventory ?? 0)?.['sanitary_pads'] === 0) {
@@ -1542,44 +1542,44 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
         scene.text('You have only <b>1</b> pads left.');
       } else {
         // TODO-QSP: dynamic text: You have <b><<mc_inventory['sanitary_pads']>></b> pads.
-        scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['sanitary_pads']}</b> pads.`);
+        scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['sanitary_pads'] ?? ''}</b> pads.`);
       }
     }
   }
   // TODO-QSP: 'Your deodorant will last you for <b><<mc_inventory[''deodorant'']>></b> more '+iif(mc_inventory['de...
   if (((s as any).locArgs?.[1] ?? 0) === 'HotelRoom') {
-    qspCall(s, 'din_van', 'shower');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShower(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).locArgs?.[2] ?? 0) === 'bath') {
-      qspCall(s, 'din_van', 'bath');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBath(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } else {
     if (((s as any).loc ?? 0) === 'vanrPar') {
       scene.text('You can use your parent\'s shampoo.');
-      qspCall(s, 'din_van', 'shower');
-      qspCall(s, 'din_van', 'bath');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShower(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBath(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).loc ?? 0) === 'LariskaHome') {
         scene.text('You can use Lariska\'s shampoo.');
-        qspCall(s, 'din_van', 'shower');
-        qspCall(s, 'din_van', 'bath');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShower(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBath(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).loc ?? 0) === 'tanvanr') {
           scene.text('You can use Tanya\'s shampoo.');
-          qspCall(s, 'din_van', 'shower');
-          qspCall(s, 'din_van', 'bath');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShower(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBath(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).loc ?? 0) === 'uni_dorm'  &&  ((s as any).mc_inventory ?? 0)?.['shampoo'] > 0) {
             // TODO-QSP: dynamic text: You have enough shampoo for <b><<mc_inventory['shampoo']>></b> uses.
-            scene.text(`You have enough shampoo for <b>${((s as any).mc_inventory ?? 0)?.['shampoo']}</b> uses.`);
-            qspCall(s, 'din_van', 'shower');
+            scene.text(`You have enough shampoo for <b>${((s as any).mc_inventory ?? 0)?.['shampoo'] ?? ''}</b> uses.`);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShower(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).loc ?? 0) === 'gad_gpbath') {
             } else {
               if (((s as any).mc_inventory ?? 0)?.['shampoo'] > 0) {
                 // TODO-QSP: dynamic text: You have enough shampoo for <b><<mc_inventory['shampoo']>></b> uses.
-                scene.text(`You have enough shampoo for <b>${((s as any).mc_inventory ?? 0)?.['shampoo']}</b> uses.`);
-                qspCall(s, 'din_van', 'shower');
-                qspCall(s, 'din_van', 'bath');
+                scene.text(`You have enough shampoo for <b>${((s as any).mc_inventory ?? 0)?.['shampoo'] ?? ''}</b> uses.`);
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShower(s, scene); (s as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBath(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('You\'ve run out of shampoo and will have to buy some more before you can wash yourself.');
               }
@@ -1589,7 +1589,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'din_van', 'SkinCare');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSkinCare(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).mc_inventory ?? 0)?.['painkillers'] > 0) {
     // TODO-QSP: 'You have <b><<mc_inventory[''painkillers'']>></b> painkiller'+iif(mc_inventory['painkillers'] > 1, ...
     if (((s as any).pain ?? 0)?.['total'] > 0) {
@@ -1608,15 +1608,15 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   if (((s as any).mc_inventory ?? 0)?.['hair_extensioncream'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'drugs', 'hair_extensioncream'">Apply hair extension shampoo.</...
-    scene.text(`<a href="exec:gs 'drugs', 'hair_extensioncream'">Apply hair extension shampoo.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['hair_extensioncream']}.`);
+    scene.text(`<a href="exec:gs 'drugs', 'hair_extensioncream'">Apply hair extension shampoo.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['hair_extensioncream'] ?? ''}.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['butt_injection'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'drugs', 'butt_injection'">Inject the KBI butt enhancement shot...
-    scene.text(`<a href="exec:gs 'drugs', 'butt_injection'">Inject the KBI butt enhancement shot.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['butt_injection']}.`);
+    scene.text(`<a href="exec:gs 'drugs', 'butt_injection'">Inject the KBI butt enhancement shot.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['butt_injection'] ?? ''}.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['breastcream'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'drugs', 'breastcream'">Apply breast cream.</a> Uses left: <<mc...
-    scene.text(`<a href="exec:gs 'drugs', 'breastcream'">Apply breast cream.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['breastcream']}.`);
+    scene.text(`<a href="exec:gs 'drugs', 'breastcream'">Apply breast cream.</a> Uses left: ${((s as any).mc_inventory ?? 0)?.['breastcream'] ?? ''}.`);
   }
   qspCall(s, 'piercing_management', 'set_manage_string');
   if (((s as any).fillimplant ?? 0) === 1) {
@@ -1628,15 +1628,15 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
       scene.text('<a href="exec:cls & bodyVars[\'bust_silicone\'] -= 10 & gt $loc, $loc_arg">Drain silicone from your breast implants.</a>');
     }
   }
-  qspCall(s, 'din_van', 'bteeth');
-  qspCall(s, 'din_van', 'tampon');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBteeth(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTampon(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: <a href="exec:msg '<center>Your weight is <<pcs_weight[0]>>.<<pcs_weight[1]>> kg...
-  scene.text(`<a href="exec:msg '<center>Your weight is ${qspUntranslated(s, "pcs_weight[0]", { location: "din_van" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "din_van" })} kg<br>Your body mass index (BMI) is ${qspUntranslated(s, "pcs_bmi[0]", { location: "din_van" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "din_van" })}.<br>${((s as any).bodyVars ?? 0)?.['bmi_desc']}</center>'">Check weight on the scales</a>`);
-  qspCall(s, 'din_van', 'prvt_pee');
-  qspCall(s, 'din_van', 'basin');
-  qspCall(s, 'din_van', 'brit');
-  qspCall(s, 'din_van', 'enema');
-  qspCall(s, 'din_van', 'palelady');
+  scene.text(`<a href="exec:msg '<center>Your weight is ${qspUntranslated(s, "pcs_weight[0]", { location: "din_van" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "din_van" })} kg<br>Your body mass index (BMI) is ${qspUntranslated(s, "pcs_bmi[0]", { location: "din_van" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "din_van" })}.<br>${((s as any).bodyVars ?? 0)?.['bmi_desc'] ?? ''}</center>'">Check weight on the scales</a>`);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrvtPee(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBasin(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrit(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnema(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPalelady(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).mc_inventory ?? 0)?.['chafing_cream'] > 0  &&  ((s as any).mosol ?? 0) > 0  &&  ((s as any).mosal_time ?? 0) <= ((s as any).totminut ?? 0)) {
     scene.actions([
       { label: 'Rub ointment onto your pussy (0:05)', handler: (st: GameState) => {
@@ -1739,8 +1739,8 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Change clothes and toys', handler: (st: GameState) => {
-    qspCall(s, 'din_van', 'wearpan');
-    qspCall(s, 'din_van', 'removepan');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearpan(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRemovepan(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).curloc ?? 0) === 'vanrPar'  &&  ((s as any).clothingworntype ?? 0) === 'nude') {
       scene.actions([
         { label: 'Wear clothes (0:05)', handler: (st: GameState) => {
@@ -1776,7 +1776,7 @@ function enterPrivate(s: GameState, scene: SceneBuilder): void {
         ]);
       }
     }
-    qspCall(s, 'din_van', 'toymanage');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterToymanage(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Return', handler: (st: GameState) => {
     (st as any).menu_off = 0;
@@ -2273,7 +2273,7 @@ function enterPrvtPeeDo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/pc/body/pee/period/tampon/\' + rand(1, 12) + \'.jpg');
     scene.text('Reaching down and taking the string between your fingers, you slowly pull the used tampon from your vagina. You wrap it in toilet paper to be thrown in the trash bin. Opening your purse, you retrieve a fresh one, unpack it and carefully insert it into yourself.');
-    qspCall(s, 'din_van', 'prvt_pee_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrvtPeeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2287,11 +2287,11 @@ function enterPrvtPeeDo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/pc/body/pee/period/pad/\' + rand(1, 6) + \'.jpg');
     scene.text('Checking your pad, you decide it\'s time for a new one. You carefully peel it off of your panties before folding it into thirds and setting it aside to be thrown away. Digging in your bag, you pull out a fresh pad, unpackage it, peel off the adhesive strip, and place it into your underwear. Finally, you wrap the wings around the sides of the gusset to make sure it is nice and secure.');
-    qspCall(s, 'din_van', 'prvt_pee_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrvtPeeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
-  qspCall(s, 'din_van', 'prvt_pee_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrvtPeeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -2358,7 +2358,7 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).rand_pee ?? 0) === 1) {
                   // TODO-QSP: dynamic text: <<$rand_girl>>'s vagina smells like puke!
-                  scene.text(`${((s as any).rand_girl ?? 0)}'s vagina smells like puke!`);
+                  scene.text(`${((s as any).rand_girl || '')}'s vagina smells like puke!`);
                 } else {
                   if (((s as any).rand_pee ?? 0) === 2) {
                     scene.text('Beware of Dimka! He\'s not as nice as he seems!');
@@ -2401,7 +2401,7 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
                                           } else {
                                             if (((s as any).rand_pee ?? 0) === 15) {
                                               // TODO-QSP: dynamic text: <<$rand_girl>> is a slut and everyone knows it!
-                                              scene.text(`${((s as any).rand_girl ?? 0)} is a slut and everyone knows it!`);
+                                              scene.text(`${((s as any).rand_girl || '')} is a slut and everyone knows it!`);
                                             } else {
                                               if (((s as any).rand_pee ?? 0) === 16) {
                                                 scene.text('Men are like pantyhose; They either run, cling, or don\'t fit right in the crotch!');
@@ -2455,7 +2455,7 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/pc/body/pee/period/tampon/\' + rand(1, 12) + \'.jpg');
     scene.text('Reaching down and taking the string between your fingers, you slowly pull the used tampon from your vagina. You wrap it in toilet paper to be thrown in the trash bin. Opening your purse, you retrieve a fresh one before unpackaging it and carefully inserting it into yourself.');
-    qspCall(s, 'din_van', 'pblc_pee_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPblcPeeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -2469,11 +2469,11 @@ function enterPblcPee(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/pc/body/pee/period/pad/\' + rand(1, 6) + \'.jpg');
     scene.text('Checking your pad, you decide it\'s time for a new one. You carefully peel it off of your panties before folding it into thirds and setting it aside to be thrown away. Digging in your bag, you pull out a fresh pad, unpackage it, peel off the adhesive strip, and place it into your underwear. Finally, you wrap the wings around the sides of the gusset to make sure it is nice and secure.');
-    qspCall(s, 'din_van', 'pblc_pee_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPblcPeeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
-    qspCall(s, 'din_van', 'pblc_pee_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPblcPeeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -2531,7 +2531,7 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h3><b>Shaving Options</b></h3>');
   scene.text('Here you can choose your style for pubic hair and which body parts you wish to shave.');
   // TODO-QSP: dynamic text: Your razors will last for&nbsp;<b><<mc_inventory['razor']>></b>&nbsp;more shaves...
-  scene.text(`Your razors will last for&nbsp;<b>${((s as any).mc_inventory ?? 0)?.['razor']}</b>&nbsp;more shaves.`);
+  scene.text(`Your razors will last for&nbsp;<b>${((s as any).mc_inventory ?? 0)?.['razor'] ?? ''}</b>&nbsp;more shaves.`);
   scene.text('<b>Change your shaving routine:');
   scene.text('Note: Choosing to never shave, or to shave legs only, will remove your chosen shave style.');
   scene.text('You can only choose a style if you currently have enough hair to support it.</b>');
@@ -2573,102 +2573,102 @@ function enterShaveOptions(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <table border=0 cellspacing=<<shave_img_hgt/25>> cellpadding=5>
-  scene.text(`<table border=0 cellspacing=${((s as any).shave_img_hgt ?? 0)/25} cellpadding=5>`);
+  scene.text(`<table border=0 cellspacing=${((s as any).shave_img_hgt ?? '')/25} cellpadding=5>`);
   scene.img('images/pc/body/pussy/hair/pussy.jpg');
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
   scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 1) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 1 & shave_length = 0 & shave_trigger = 3 & <<$temp_tog...
-    scene.text(`<a href="exec:pubestyle = 1 & shave_length = 0 & shave_trigger = 3 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Clean Shave</a>`);
+    scene.text(`<a href="exec:pubestyle = 1 & shave_length = 0 & shave_trigger = 3 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Clean Shave</a>`);
   } else {
     scene.text('Clean Shave');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 2  &&  ((s as any).pcs_pubes ?? 0) > 15) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 2 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
-    scene.text(`<a href="exec:pubestyle = 2 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">V-shaped</a>`);
+    scene.text(`<a href="exec:pubestyle = 2 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">V-shaped</a>`);
   } else {
     scene.text('V-shaped');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 3  &&  ((s as any).pcs_pubes ?? 0) > 15) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 3 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
-    scene.text(`<a href="exec:pubestyle = 3 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Triangle-shaped</a>`);
+    scene.text(`<a href="exec:pubestyle = 3 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Triangle-shaped</a>`);
   } else {
     scene.text('Triangle-shaped');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 4  &&  ((s as any).pcs_pubes ?? 0) > 15) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 4 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
-    scene.text(`<a href="exec:pubestyle = 4 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Landing-strip</a>`);
+    scene.text(`<a href="exec:pubestyle = 4 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Landing-strip</a>`);
   } else {
     scene.text('Landing-strip');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 5  &&  ((s as any).pcs_pubes ?? 0) > 15) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 5 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
-    scene.text(`<a href="exec:pubestyle = 5 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Heart-shaped</a>`);
+    scene.text(`<a href="exec:pubestyle = 5 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Heart-shaped</a>`);
   } else {
     scene.text('Heart-shaped');
   }
   scene.text('</center></td></tr>');
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
   scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 6  &&  ((s as any).pcs_pubes ?? 0) > 15) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 6 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
-    scene.text(`<a href="exec:pubestyle = 6 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Flame-shaped</a>`);
+    scene.text(`<a href="exec:pubestyle = 6 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Flame-shaped</a>`);
   } else {
     scene.text('Flame-shaped');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 7  &&  ((s as any).pcs_pubes ?? 0) > 15) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 7 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
-    scene.text(`<a href="exec:pubestyle = 7 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Cross-Shaped</a>`);
+    scene.text(`<a href="exec:pubestyle = 7 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Cross-Shaped</a>`);
   } else {
     scene.text('Cross-Shaped');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 8  &&  ((s as any).pcs_pubes ?? 0) > 16) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 8 & shave_length = 16 & shave_trigger = 21 & <<$temp_t...
-    scene.text(`<a href="exec:pubestyle = 8 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Trimmed</a>`);
+    scene.text(`<a href="exec:pubestyle = 8 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Trimmed</a>`);
   } else {
     scene.text('Trimmed');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 9  &&  ((s as any).pcs_pubes ?? 0) > 20) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 9 & shave_length = 20 & shave_trigger = 26 & <<$temp_t...
-    scene.text(`<a href="exec:pubestyle = 9 & shave_length = 20 & shave_trigger = 26 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Small Bush</a>`);
+    scene.text(`<a href="exec:pubestyle = 9 & shave_length = 20 & shave_trigger = 26 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Small Bush</a>`);
   } else {
     scene.text('Small Bush');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 10) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 10 & shave_length = 26 & shave_trigger = 31 & <<$temp_...
-    scene.text(`<a href="exec:pubestyle = 10 & shave_length = 26 & shave_trigger = 31 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Full Bush</a>`);
+    scene.text(`<a href="exec:pubestyle = 10 & shave_length = 26 & shave_trigger = 31 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Full Bush</a>`);
   } else {
     scene.text('Full Bush');
   }
   scene.text('</center></td></tr>');
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
-  scene.img(`${((s as any).temp_pube_image ?? 0)}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
+  scene.img(`${((s as any).temp_pube_image || '')}`);
   scene.text('<tr><td><center>');
   if (((s as any).pubestyle ?? 0) !== 11  &&  ((s as any).pcs_pubes ?? 0) > 10) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 11 & shave_length = 0 & shave_trigger = 8 & <<$temp_to...
-    scene.text(`<a href="exec:pubestyle = 11 & shave_length = 0 & shave_trigger = 8 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Lazy</a>`);
+    scene.text(`<a href="exec:pubestyle = 11 & shave_length = 0 & shave_trigger = 8 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Lazy</a>`);
   } else {
     scene.text('Lazy');
   }
   scene.text('</center></td><td><center>');
   if (((s as any).pubestyle ?? 0) !== 12  &&  ((s as any).pcs_pubes ?? 0) > 15) {
     // TODO-QSP: dynamic text: <a href="exec:pubestyle = 12 & shave_length = 16 & shave_trigger = 21 & <<$temp_...
-    scene.text(`<a href="exec:pubestyle = 12 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle ?? 0)} & gt 'din_van', 'shave_options'">Mini Bush</a>`);
+    scene.text(`<a href="exec:pubestyle = 12 & shave_length = 16 & shave_trigger = 21 & ${((s as any).temp_toggle || '')} & gt 'din_van', 'shave_options'">Mini Bush</a>`);
   } else {
     scene.text('Mini Bush');
   }

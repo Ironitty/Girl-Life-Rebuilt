@@ -34,7 +34,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><b>Post Office</b></center>');
     scene.img('images/locations/shared/postoffice/city.jpg');
     scene.text('It is currently very busy and it looks like you\'ll have to wait your turn to get to the counter.');
-    qspCall(s, 'post_office', 'set_skipline_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSkiplineActs(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Wait in line (0:30)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -62,13 +62,13 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'exhib', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Flash your tits to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Flash your tits to skip the line', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Flash your tits to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Flash your tits to skip the line', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'flash', 'tits', 'inside', 1);
@@ -83,13 +83,13 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Flash your pussy to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Flash your pussy to skip the line', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Flash your pussy to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Flash your pussy to skip the line', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'flash', 'pussy', 'inside', 1);
@@ -105,13 +105,13 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Flash both your tits and your pussy to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Flash both your tits and your pussy to skip the line', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Flash both your tits and your pussy to skip the line [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Flash both your tits and your pussy to skip the line', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'flash', 'full', 'inside', 1);
@@ -127,13 +127,13 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Offer a blowjob in exchange for jumping the queue [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Offer a blowjob in exchange for jumping the queue', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Offer a blowjob in exchange for jumping the queue [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Offer a blowjob in exchange for jumping the queue', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     if (((s as any).cumloc ?? 0)[11] > 0) {
@@ -167,7 +167,7 @@ function enterSetSkiplineActs(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    scene.img(`images/pc/body/cum/cumface/${((s as any).cum_face_image ?? 0)}.jpg`);
+    scene.img(`images/pc/body/cum/cumface/${((s as any).cum_face_image || '')}.jpg`);
     scene.text('The man cums on your face.');
     qspCall(s, 'cum_call', 'face', 'stranger');
     qspCall(s, 'arousal', 'end');
@@ -270,7 +270,7 @@ function enterCounter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).used_pattest ?? 0) > 0) {
     scene.actions([
-      { label: 'Send paternity test ( [+$func(\'money\', \'string_price\', 20000) + ...]', handler: (st: GameState) => {
+      { label: 'Send paternity test ( [20000₽]...]', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 20000) === 1) {
       qspCall(s, 'money', 'pay', 20000);
       qspCall(s, 'stat', '');
@@ -331,7 +331,7 @@ function enterPickupMail(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp_mail_counter ?? 0) > 0) {
     // TODO-QSP: dynamic text: You have <<temp_mail_counter>> pieces of mail left to pickup.
-    scene.text(`You have ${((s as any).temp_mail_counter ?? 0)} pieces of mail left to pickup.`);
+    scene.text(`You have ${((s as any).temp_mail_counter || '')} pieces of mail left to pickup.`);
   } else {
     scene.text('You have collected all your mail.');
   }

@@ -92,7 +92,7 @@ function enterStudy(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic '  act ''Study for your <<$class_list_name[i]>> class (30 minutes)'': gt ''uni_library'', ''...
       } else {
         // TODO-QSP: dynamic text: You don't need to study any more this week for your <<$class_list_name[i]>> clas...
-        scene.text(`You don't need to study any more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]} class.`);
+        scene.text(`You don't need to study any more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
       }
     }
     (s as any).i = ((s as any).i ?? 0) + (1);
@@ -143,7 +143,7 @@ function enterStudying(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>The University Library</b></center>');
   scene.img('images/locations/city/island/university/library/study\' + rand(1, 7) + \'.jpg');
   // TODO-QSP: dynamic text: You open the books and start studying for your <<$ARGS[2]>> class. The library i...
-  scene.text(`You open the books and start studying for your ${((s as any).locArgs?.[2] ?? 0)} class. The library is mostly quiet, but you hear occasional noises, some of them hard to make out and some of them fairly suspicious. Despite this, it is a good environment to study in and you can see a number of other students studying as well.`);
+  scene.text(`You open the books and start studying for your ${((s as any).locArgs?.[2] ?? '')} class. The library is mostly quiet, but you hear occasional noises, some of them hard to make out and some of them fairly suspicious. Despite this, it is a good environment to study in and you can see a number of other students studying as well.`);
   if ((0 as any) < (0 as any)) {
     scene.text('You study for half an hour and can tell that you will need to study more if you want to completely understand this week\'s material.');
   } else {
@@ -179,7 +179,7 @@ function enterStudyingExam(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'mood', 'raise', (trait_vars['academic']*5 -10)
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   // TODO-QSP: dynamic text: You open the books and start studying for your <<$ARGS[2]>> exam. The library is...
-  scene.text(`You open the books and start studying for your ${((s as any).locArgs?.[2] ?? 0)} exam. The library is mostly quiet, but you hear occasional noises, some of them hard to make out and some of them fairly suspicious. Despite this, it's a good environment to study in and you can see a number of other students studying as well.`);
+  scene.text(`You open the books and start studying for your ${((s as any).locArgs?.[2] ?? '')} exam. The library is mostly quiet, but you hear occasional noises, some of them hard to make out and some of them fairly suspicious. Despite this, it's a good environment to study in and you can see a number of other students studying as well.`);
   if (((s as any).pcs_sleep ?? 0) < 5) {
     (s as any).no_study = 1;
     scene.text('You\'re so tired that you\'re constantly falling asleep. You get no studying done in this condition.');
@@ -470,7 +470,7 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_hotcat ?? 0) >= 5) {
       (s as any).meet_kendra = 1;
       // TODO-QSP: dynamic text: There's something about this ebony girl that intrigues you, so you decide to sit...
-      scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}."`);
+      scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
       scene.text('She eyes you like a pair of shoes she might buy. "I\'m Kendra, but you can call me Mistress," she replies in an exotic accent. "If you like, I can train you to become one of my slaves."');
       scene.text('You\'re taken aback by her comment. "Slaves?"');
       scene.text('She smiles. "Yes, I have many sex slaves here, and I can train you to serve me well. If you\'re interested, come to my dorm room. It\'s on the eighth floor of the east dorm, room 808."');
@@ -482,7 +482,7 @@ function enterKendra(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: There's something about this ebony girl that intrigues you, so you decide to sit...
-      scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}."`);
+      scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
       scene.text('"No. Not interested. Maybe if you do something about all of… \'this\', you can try again." Her hand indicates your entire person with languid disinterest.');
       scene.text('You\'re taken aback by her comment. "What?"');
       scene.text('She rolls her eyes, believing your shocked silence to be stupidity. "Just go away."');
@@ -575,14 +575,14 @@ function enterAlbina(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).start_type ?? 0) === 'city_tg'  ||  ((s as any).start_type ?? 0) === 'uni_tg')  &&  ((s as any).npc_rel ?? 0)?.['A23'] < 60) {
     scene.text('You can\'t help but stare at her ass as she reaches for a book, showing off her well toned physique.');
     // TODO-QSP: dynamic text: "You always were an awkward loser back in school, but you're being extra weird r...
-    scene.text(`"You always were an awkward loser back in school, but you're being extra weird right now, ${((s as any).pcs_nickname ?? 0)}…"`);
+    scene.text(`"You always were an awkward loser back in school, but you're being extra weird right now, ${((s as any).pcs_nickname || '')}…"`);
     scene.text('"Uhh.. What?" you mumble as you\'re brought back to your senses.');
     scene.text('Albina rolls her eyes. "Put your tongue back in and stop drooling at my ass like some pervy loser!"');
     scene.text('You just mumble an apology as she barges past you and heads round the corner out of view.');
   } else {
     if (((s as any).npc_rel ?? 0)?.['A23'] >= 60  ||  ((s as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
       // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>," she says with a smile when she sees you.
-      scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}," she says with a smile when she sees you.`);
+      scene.text(`"Hey ${((s as any).pcs_nickname || '')}," she says with a smile when she sees you.`);
       scene.text('"What\'s up?" you ask.');
       scene.text('"Just grabbing some books to take back to my room," she replies.');
       scene.text('"Why not study here?" you ask.');

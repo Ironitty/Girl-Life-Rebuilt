@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGarden(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'bdsm_garden', 'check_garden_events');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckGardenEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_garden', 'garden');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/garden.jpg');

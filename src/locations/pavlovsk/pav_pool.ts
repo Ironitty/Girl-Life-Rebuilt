@@ -14,7 +14,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/entrance.jpg');
   if (((s as any).hour ?? 0) >= 21  ||  ((s as any).hour ?? 0) < 8) {
     // TODO-QSP: dynamic text: The swimming pool is currently closed. Opening hours are from '+func('time', 'ge...
-    scene.text('The swimming pool is currently closed. Opening hours are from \'+func(\'time\', \'get_time_string\', 8, 0)+\' to \'+func(\'time\', \'get_time_string\', 21, 0)+\'.');
+    scene.text('The swimming pool is currently closed. Opening hours are from 8:00 to 21:00.');
     return;
   }
   scene.text('Pavlovsk\'s public swimming pool is rather dated, but still serves it\'s purpose quite well.');
@@ -32,7 +32,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: You were supposed to show up for lifeguard training today at ' + $func('time', '...
-      scene.text('You were supposed to show up for lifeguard training today at \' + $func(\'time\', \'get_time_string\', 8, 0) + \'!');
+      scene.text('You were supposed to show up for lifeguard training today at 8:00!');
     }
   } else {
     if (((s as any).job_status ?? 0)?.['pav_pool_lifeguard'] === 'employed'  &&  qspFunc(s, 'jobs', 'is_work_day', 'pav_pool_lifeguard', ((s as any).daystart ?? 0)) === 1  &&  ((s as any).job_last_work_day ?? 0)?.['pav_pool_lifeguard'] < ((s as any).daystart ?? 0)) {
@@ -54,7 +54,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).hour ?? 0) > 12) {
             // TODO-QSP: dynamic text: You missed your lifeguard shift! You should have been here by ' + $func('time', ...
-            scene.text('You missed your lifeguard shift! You should have been here by \' + $func(\'time\', \'get_time_string\', 12, 0) + \'!');
+            scene.text('You missed your lifeguard shift! You should have been here by 12:00!');
           }
         }
       }
@@ -77,7 +77,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Pay and enter [+$func(\'money\', \'get_cost_string\', pav_sw...]', handler: (st: GameState) => {
+        { label: 'Pay and enter', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).pav_swimpool ?? 0)?.['entrancefee']) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -108,7 +108,7 @@ function enterEntrance(s: GameState, scene: SceneBuilder): void {
   scene.text('There\'s a sign by the store\'s entrance that reads: "If closed, I\'m working in the pool. Be back soon." It seems like the store clerk is also the janitor.');
   if (((s as any).job_hiring_step ?? 0)?.['pav_pool_lifeguard'] === 0  &&  (((s as any).year ?? 0) === 2016  &&  ((s as any).month ?? 0) < 10)) {
     // TODO-QSP: dynamic text: You also notice a sign stating that the pool is looking for an extra lifeguard a...
-    scene.text('You also notice a sign stating that the pool is looking for an extra lifeguard and that anyone interested should apply in the main office between \'+func(\'time\', \'get_time_string\', 9, 0)+\' and \'+func(\'time\', \'get_time_string\', 18, 0)+\'.');
+    scene.text('You also notice a sign stating that the pool is looking for an extra lifeguard and that anyone interested should apply in the main office between 9:00 and 18:00.');
     if (((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18) {
       scene.actions([
         { label: 'Apply for the lifeguard job', goto: ['pav_pool', 'lifeguard_apply'] },
@@ -888,7 +888,7 @@ function enterLifeguardQuit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/lifeguard_office.jpg');
   scene.text('You make your way to Maria\'s office and knock on the door before entering.');
   // TODO-QSP: dynamic text: Maria smiles at you from behind her desk. "Hello <<$pcs_firstname>>. How can I h...
-  scene.text(`Maria smiles at you from behind her desk. "Hello ${((s as any).pcs_firstname ?? 0)}. How can I help you?"`);
+  scene.text(`Maria smiles at you from behind her desk. "Hello ${((s as any).pcs_firstname || '')}. How can I help you?"`);
   scene.text('"I was thinking of moving on from this job," you reply.');
   scene.text('"I understand. This isn\'t the most glamorous job, especially for a young woman like yourself who probably has ambitions beyond this town, yes?"');
   scene.text('You just smile and nod as she types something into her computer.');
@@ -921,7 +921,7 @@ function enterLifeguardOffer(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/lifeguard_office.jpg');
   // TODO-QSP: dynamic text: "I need to speak with you, <<$pcs_firstname>>," she says as she approaches you. ...
-  scene.text(`"I need to speak with you, ${((s as any).pcs_firstname ?? 0)}," she says as she approaches you. "Come with me to my office."`);
+  scene.text(`"I need to speak with you, ${((s as any).pcs_firstname || '')}," she says as she approaches you. "Come with me to my office."`);
   scene.text('You follow her to her office and she motions for you to take a seat.');
   scene.text('"We need to discuss your employment here," she says and your heart starts racing as she sits across from you.');
   scene.text('"You\'ve been working with us far longer than I originally expected and have proven to be a most reliable employee, far better than the girl you\'re covering, which brings me to my next point."');

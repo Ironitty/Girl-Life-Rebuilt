@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('The construction work has stopped and there is complete silence, the only person there is the guard walking around.');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: The <a href="exec:gs 'carF', 'start'"> <<$car['name']>></a> is standing in the p...
-    scene.text(`The <a href="exec:gs 'carF', 'start'"> ${((s as any).car ?? 0)?.['name']}</a> is standing in the parking.`);
+    scene.text(`The <a href="exec:gs 'carF', 'start'"> ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is standing in the parking.`);
   }
   // TODO-QSP: end
   scene.actions([

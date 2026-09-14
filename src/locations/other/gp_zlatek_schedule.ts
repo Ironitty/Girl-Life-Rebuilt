@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -49,7 +49,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_loc_prev'] = ((s as any).locat ?? 0)?.['A32_loc'];
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg_prev'] = ((s as any).locat ?? 0)?.['A32_arg'];
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A32_arg1_prev'] = ((s as any).locat ?? 0)?.['A32_arg1'];
-  qspCall(s, 'gp_zlatek_schedule', 'update_locat');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -62,7 +62,7 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).temp_zlatek_locat = qspFunc(s, 'gp_zlatek_schedule', 'get_random_schedule', ((s as any).temp_zlatek_locat ?? 0));
-  qspCall(s, 'gp_zlatek_schedule', 'set_locats', ((s as any).temp_zlatek_locat ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_zlatek_locat ?? 0)]; enterSetLocats(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -184,25 +184,25 @@ function enterGetRandomSchedule(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).result ?? 0) === 110) {
     if (((s as any).hour ?? 0) < 9) {
-      (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 16 % 2;
+      (s as any).temp_subloc = (((s as any).locat ?? {})?.['A32_rand'] ?? 0) / 16 % 2;
     } else {
       if (((s as any).hour ?? 0) < 11) {
-        (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 32 % 2;
+        (s as any).temp_subloc = (((s as any).locat ?? {})?.['A32_rand'] ?? 0) / 32 % 2;
       } else {
         if (((s as any).hour ?? 0) < 13) {
-          (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 64 % 2;
+          (s as any).temp_subloc = (((s as any).locat ?? {})?.['A32_rand'] ?? 0) / 64 % 2;
         } else {
           if (((s as any).hour ?? 0) < 15) {
-            (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 128 % 2;
+            (s as any).temp_subloc = (((s as any).locat ?? {})?.['A32_rand'] ?? 0) / 128 % 2;
           } else {
             if (((s as any).hour ?? 0) < 17) {
-              (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 48 % 2;
+              (s as any).temp_subloc = (((s as any).locat ?? {})?.['A32_rand'] ?? 0) / 48 % 2;
             } else {
               if (((s as any).hour ?? 0) < 19) {
-                (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 96 % 2;
+                (s as any).temp_subloc = (((s as any).locat ?? {})?.['A32_rand'] ?? 0) / 96 % 2;
               } else {
                 if (((s as any).hour ?? 0) < 21) {
-                  (s as any).temp_subloc = ((s as any).locat ?? {})?.['A32_rand'] / 80 % 2;
+                  (s as any).temp_subloc = (((s as any).locat ?? {})?.['A32_rand'] ?? 0) / 80 % 2;
                 }
               }
             }
@@ -293,7 +293,7 @@ function enterSetLocats(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetLocation(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'gp_zlatek_schedule', 'update_locat');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A32_loc'] === 'gad_gphouse') {
     if (((s as any).locat ?? 0)?.['A32_arg'] === 'gp_room') {
       if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A32'] = 'Your grandfather is in his bedroom';

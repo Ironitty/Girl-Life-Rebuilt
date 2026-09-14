@@ -35,13 +35,13 @@ function enterAfricanStudies_101(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Listen attentively to Professor Bryant [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Bryant', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Bryant [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Bryant', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -159,13 +159,13 @@ function enterAfricanStudies102(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Listen attentively to Professor Bryant [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Bryant', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Listen attentively to Professor Bryant [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Listen attentively to Professor Bryant', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -260,7 +260,7 @@ function enterAfricanStudies_101TalkKendra_1(s: GameState, scene: SceneBuilder):
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/ebony_girl_talk.jpg');
   // TODO-QSP: dynamic text: There's something about this ebony girl that intrigues you, so you decide to sit...
-  scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}."`);
+  scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
   if (((s as any).pcs_hotcat ?? 0) < 5) {
     scene.text('"No. Not interested. Maybe if you do something about all of... \'this\', you can try again." Her hand indicates your entire person with languid disinterest.');
     scene.text('You\'re taken aback by her comment. "What?"');
@@ -287,7 +287,7 @@ function enterAfricanStudies_102TalkKendra_1(s: GameState, scene: SceneBuilder):
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/classroom/ebony_girl_talk.jpg');
   // TODO-QSP: dynamic text: There's something about this ebony girl that intrigues you, so you decide to sit...
-  scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname ?? 0)}."`);
+  scene.text(`There's something about this ebony girl that intrigues you, so you decide to sit next to her. "Hi, I'm ${((s as any).pcs_nickname || '')}."`);
   if (((s as any).pcs_hotcat ?? 0) < 5) {
     scene.text('"No. Not interested. Maybe if you do something about all of... \'this\', you can try again." Her hand indicates your entire person with languid disinterest.');
     scene.text('You\'re taken aback by her comment. "What?"');
@@ -352,7 +352,7 @@ function enterAfricanStudies_101TalkKendra_2(s: GameState, scene: SceneBuilder):
 }
 
 function enterAfricanStudies_102TalkKendra_2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'uni_lessons_electives_african_studies1', 'african_studies_101_talk_kendra_2');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAfricanStudies_101TalkKendra_2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Wait for the end of the lesson', goto: ['uni_lessons_electives_african_studies1', 'african_studies_101_events'] },
@@ -631,9 +631,9 @@ function enterAfricanStudies_101TalkErmias_1(s: GameState, scene: SceneBuilder):
   }
   scene.text('He looks up at you and smiles. "Hello there. I am Ermias Okeke. What is your name?"');
   // TODO-QSP: dynamic text: You return his smile. "I'm <<$pcs_firstname>> <<$pcs_lastname>>, but my friends ...
-  scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, but my friends just call me ${((s as any).pcs_nickname ?? 0)}."`);
+  scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, but my friends just call me ${((s as any).pcs_nickname || '')}."`);
   // TODO-QSP: dynamic text: "It is nice to meet you, <<$pcs_nickname>>."
-  scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname ?? 0)}."`);
+  scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname || '')}."`);
   scene.text('The two of you start chatting and you learn that he and some of his friends came from Africa to study here in Russia. He himself is studying law.');
   scene.text('You compliment him on how good his Russian is before the lecture starts and a fellow student asks you to be quiet.');
   // TODO-QSP: end
@@ -664,11 +664,11 @@ function enterAfricanStudies_101TalkErmias_2(s: GameState, scene: SceneBuilder):
       scene.text('You sit next to Ermias and spend most of the class quietly talking with him, although he seems far more interested in flirting with you than chatting.');
       if (((s as any).pcs_hotcat ?? 0) < 8) {
         // TODO-QSP: dynamic text: "You are a very cute girl, <<$pcs_nickname>>," he smiles.
-        scene.text(`"You are a very cute girl, ${((s as any).pcs_nickname ?? 0)}," he smiles.`);
+        scene.text(`"You are a very cute girl, ${((s as any).pcs_nickname || '')}," he smiles.`);
       } else {
         if (((s as any).pcs_hotcat ?? 0) < 10) {
           // TODO-QSP: dynamic text: "You are a very pretty girl, <<$pcs_nickname>>," he smiles. "One of the pretties...
-          scene.text(`"You are a very pretty girl, ${((s as any).pcs_nickname ?? 0)}," he smiles. "One of the prettiest girls I have ever seen."`);
+          scene.text(`"You are a very pretty girl, ${((s as any).pcs_nickname || '')}," he smiles. "One of the prettiest girls I have ever seen."`);
         } else {
           scene.text('"Has anyone ever told you that you are the most beautiful looking girl in the world?" he smiles. "I have never seen a girl as pretty as you."');
         }
@@ -683,7 +683,7 @@ function enterAfricanStudies_101TalkErmias_2(s: GameState, scene: SceneBuilder):
   } else {
     if (((s as any).ErmiasQW ?? 0)?.['first_visit'] === 0) {
       // TODO-QSP: dynamic text: "I hope you will come and visit me in my dorm soon, <<$pcs_nickname>>," he says ...
-      scene.text(`"I hope you will come and visit me in my dorm soon, ${((s as any).pcs_nickname ?? 0)}," he says as you sit next to him. "I would love to hang out with a pretty girl like you."`);
+      scene.text(`"I hope you will come and visit me in my dorm soon, ${((s as any).pcs_nickname || '')}," he says as you sit next to him. "I would love to hang out with a pretty girl like you."`);
       scene.text('He spends some time flirting with you before the lecture starts.');
     } else {
       if (((s as any).npc_had_sex ?? 0)?.['A243'] === 0) {
@@ -714,9 +714,9 @@ function enterAfricanStudies_102TalkErmias_1(s: GameState, scene: SceneBuilder):
   }
   scene.text('He looks up at you and smiles. "Hello there. I am Ermias Okeke. What is your name?"');
   // TODO-QSP: dynamic text: You return his smile. "I'm <<$pcs_firstname>> <<$pcs_lastname>>, but my friends ...
-  scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, but my friends just call me ${((s as any).pcs_nickname ?? 0)}."`);
+  scene.text(`You return his smile. "I'm ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, but my friends just call me ${((s as any).pcs_nickname || '')}."`);
   // TODO-QSP: dynamic text: "It is nice to meet you, <<$pcs_nickname>>."
-  scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname ?? 0)}."`);
+  scene.text(`"It is nice to meet you, ${((s as any).pcs_nickname || '')}."`);
   scene.text('The two of you start chatting and you learn that he and some of his friends came from Africa to study here in Russia. He himself is studying law.');
   scene.text('You compliment him on how good his Russian is before the lecture starts and a fellow student asks you to be quiet.');
   // TODO-QSP: end
@@ -748,11 +748,11 @@ function enterAfricanStudies_102TalkErmias_2(s: GameState, scene: SceneBuilder):
       scene.text('You sit next to Ermias and spend most of the class quietly talking with him, although he seems far more interested in flirting with you than chatting.');
       if (((s as any).pcs_hotcat ?? 0) < 8) {
         // TODO-QSP: dynamic text: "You are a very cute girl, <<$pcs_nickname>>," he smiles.
-        scene.text(`"You are a very cute girl, ${((s as any).pcs_nickname ?? 0)}," he smiles.`);
+        scene.text(`"You are a very cute girl, ${((s as any).pcs_nickname || '')}," he smiles.`);
       } else {
         if (((s as any).pcs_hotcat ?? 0) < 10) {
           // TODO-QSP: dynamic text: "You are a very pretty girl, <<$pcs_nickname>>," he smiles. "One of the pretties...
-          scene.text(`"You are a very pretty girl, ${((s as any).pcs_nickname ?? 0)}," he smiles. "One of the prettiest girls I have ever seen."`);
+          scene.text(`"You are a very pretty girl, ${((s as any).pcs_nickname || '')}," he smiles. "One of the prettiest girls I have ever seen."`);
         } else {
           scene.text('"Has anyone ever told you that you are the most beautiful looking girl in the world?" he smiles. "I have never seen a girl as pretty as you."');
         }
@@ -767,7 +767,7 @@ function enterAfricanStudies_102TalkErmias_2(s: GameState, scene: SceneBuilder):
   } else {
     if (((s as any).ErmiasQW ?? 0)?.['first_visit'] === 0) {
       // TODO-QSP: dynamic text: "I hope you will come and visit me in my dorm soon, <<$pcs_nickname>>," he says ...
-      scene.text(`"I hope you will come and visit me in my dorm soon, ${((s as any).pcs_nickname ?? 0)}," he says as you sit next to him. "I would love to hang out with a pretty girl like you."`);
+      scene.text(`"I hope you will come and visit me in my dorm soon, ${((s as any).pcs_nickname || '')}," he says as you sit next to him. "I would love to hang out with a pretty girl like you."`);
       scene.text('He spends some time flirting with you before the lecture starts.');
     } else {
       if (((s as any).npc_had_sex ?? 0)?.['A243'] === 0) {
@@ -1488,7 +1488,7 @@ function enterAnushkaDjibril(s: GameState, scene: SceneBuilder): void {
       scene.text('You snort a soft laugh. "Yeah, you could say that. We went to secondary school together, but we ran in different circles."');
       scene.text('He just nods. "I understand. Anyway, my name is Djibril. Yours?"');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply and you talk for a few minutes before he looks at...
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}," you reply and you talk for a few minutes before he looks at his watch. "Shit, I need to get going, but it was nice meeting you."`);
+      scene.text(`"${((s as any).pcs_nickname || '')}," you reply and you talk for a few minutes before he looks at his watch. "Shit, I need to get going, but it was nice meeting you."`);
       scene.text('He hurries off without waiting for a reply.');
       scene.actions([
         { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
@@ -1573,7 +1573,7 @@ function enterAnushkaDjibril(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A144', 'like');
     scene.img('images/locations/city/island/university/lecture_hall/lecture_hall.jpg');
     // TODO-QSP: dynamic text: You wait out in the hallway for a few minutes before Djibril comes out with Anus...
-    scene.text(`You wait out in the hallway for a few minutes before Djibril comes out with Anushka. They're talking and laughing together. "Catch you later, Nush." He stops when he sees you. "Hey ${((s as any).pcs_nickname ?? 0)}, how you been? I got to go, but we should totally catch up. Later."`);
+    scene.text(`You wait out in the hallway for a few minutes before Djibril comes out with Anushka. They're talking and laughing together. "Catch you later, Nush." He stops when he sees you. "Hey ${((s as any).pcs_nickname || '')}, how you been? I got to go, but we should totally catch up. Later."`);
     scene.text('He walks away, giving you a friendly smile as he does. Once he\'s gone, you turn to Anushka. "Hey, what\'s up?"');
     if (((s as any).npc_rel ?? 0)?.['A144'] <= 20) {
       scene.text('She gives you an annoyed look. "I don\'t have time for you right now." She just walks past you, her tone suggesting that you shouldn\'t follow her.');
@@ -1581,7 +1581,7 @@ function enterAnushkaDjibril(s: GameState, scene: SceneBuilder): void {
       scene.text('You snort a soft laugh. "Yeah, you could say that. We went to secondary school together, but we ran in different circles."');
       scene.text('He just nods. "I understand. Anyway, my name is Djibril. Yours?"');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply and you talk for a few minutes before he looks at...
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}," you reply and you talk for a few minutes before he looks at his watch. "Shit, I need to get going, but it was nice meeting you." He hurries off without waiting for a reply.`);
+      scene.text(`"${((s as any).pcs_nickname || '')}," you reply and you talk for a few minutes before he looks at his watch. "Shit, I need to get going, but it was nice meeting you." He hurries off without waiting for a reply.`);
       scene.actions([
         { label: 'Wait for the end of the lesson', goto: ['uni_lessons', 'short_break'] },
       ]);
@@ -1730,7 +1730,7 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).DjibrilQW ?? 0)?.['nush_africaclass'] === 0) {
       if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['nush_africaclass'] = 1;
       // TODO-QSP: dynamic text: You don't have to wait long before Djibril walks out with a huge grin on his fac...
-      scene.text(`You don't have to wait long before Djibril walks out with a huge grin on his face. When he sees you, he stops and impulsively glances back at the door. You could swear he's blushing, but it's hard to tell with his dark skin. He rubs the back of his head with one hand. "Uh... Hey ${((s as any).pcs_nickname ?? 0)}... Did you need something?"`);
+      scene.text(`You don't have to wait long before Djibril walks out with a huge grin on his face. When he sees you, he stops and impulsively glances back at the door. You could swear he's blushing, but it's hard to tell with his dark skin. He rubs the back of his head with one hand. "Uh... Hey ${((s as any).pcs_nickname || '')}... Did you need something?"`);
       scene.text('You grin at him and decide to tease him a little. "Yeah, I was waiting on my friend to leave class and see if they wanted to study, but you guys were in there for so long and it sounded like you were exercising or something..."');
       scene.text('Now you\'re sure he\'s blushing. "Oh..." Then he just laughs and relaxes. "Yeah, you caught us. We were fucking like rabbits. Maybe next time you might want to stay over instead, or maybe join us?"');
       scene.text('Now it\'s your turn to blush. "Maybe..." you mutter back.');
@@ -1750,7 +1750,7 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).DjibrilQW ?? 0)?.['nush_africaclass'] === 0) {
       if (!(s as any).DjibrilQW) (s as any).DjibrilQW = {}; (s as any).DjibrilQW['nush_africaclass'] = 1;
       // TODO-QSP: dynamic text: A few minutes later, the door opens again and Anushka comes out, all cleaned up ...
-      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "Been waiting long, ${((s as any).pcs_nickname ?? 0)}?"`);
+      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "Been waiting long, ${((s as any).pcs_nickname || '')}?"`);
       scene.text('You grin at her and decide to tease her a little. "Yeah, I was waiting on my friend to leave class and see if they wanted to study, but you guys were in there for so long and it sounded like you were exercising or something..."');
       scene.text('She just rolls her eyes at your attempt at a joke, then smirks at you. "Uh-huh. You know what we were doing. I was getting fucked good and proper by a big black cock and I loved it."');
       scene.text('You laugh and hip bump her. "Yeah, I could hear that much. So where are you off to?" you ask as you start walking together.');
@@ -1778,7 +1778,7 @@ function enterAnushkaDjibrilSex(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: A few minutes later, the door opens again and Anushka comes out, all cleaned up ...
-      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "You been perving and spying on us again, ${((s as any).pcs_nickname ?? 0)}?"`);
+      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "You been perving and spying on us again, ${((s as any).pcs_nickname || '')}?"`);
       scene.text('You can\'t help but blush. "Maybe... I was waiting to see if you wanted to do something after class and well... You took your time..."');
       scene.text('She giggles. "What can I say? He knows how to make a girl feel <i>really</i> good."');
       scene.text('You laugh and hip bump her. "Yeah, I heard you calling out to god a few times in there. So where are you off to?" you ask as you start walking together.');
@@ -1925,7 +1925,7 @@ function enterNushHarunaAfrica101(s: GameState, scene: SceneBuilder): void {
     if (((s as any).harunaQW ?? 0)?.['nush_af101_fuck'] === 0) {
       if (!(s as any).harunaQW) (s as any).harunaQW = {}; (s as any).harunaQW['nush_af101_fuck'] = 1;
       // TODO-QSP: dynamic text: A few minutes later, the door opens again and Anushka comes out, all cleaned up ...
-      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "Been waiting long, ${((s as any).pcs_nickname ?? 0)}?"`);
+      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "Been waiting long, ${((s as any).pcs_nickname || '')}?"`);
       scene.text('You grin at her and decide to tease her a little. "Yeah, I was waiting on my friend to leave class and see if they wanted to study, but you guys were in there for so long and it sounded like you were exercising or something..."');
       scene.text('She just rolls her eyes at your attempt at a joke, then smirks at you. "Uh-huh. You know what we were doing. I was getting fucked good and proper by a big black cock and I loved it."');
       scene.text('You laugh and hip bump her. "Yeah, I could hear that much. So where are you off to?" you ask as you start walking together.');
@@ -1953,7 +1953,7 @@ function enterNushHarunaAfrica101(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: A few minutes later, the door opens again and Anushka comes out, all cleaned up ...
-      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "You been perving and spying on us again, ${((s as any).pcs_nickname ?? 0)}?"`);
+      scene.text(`A few minutes later, the door opens again and Anushka comes out, all cleaned up and clothes back in order. She gives you a knowing little smile. "You been perving and spying on us again, ${((s as any).pcs_nickname || '')}?"`);
       scene.text('You can\'t help but blush. "Maybe... I was waiting to see if you wanted to do something after class and well... You took your time..."');
       scene.text('She giggles. "What can I say? He knows how to make a girl feel <i>really</i> good."');
       scene.text('You laugh and hip bump her. "Yeah, I heard you calling out to god a few times in there. So where are you off to?" you ask as you start walking together.');

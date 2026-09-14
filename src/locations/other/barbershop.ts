@@ -18,18 +18,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('Your hair is not long enough to require cutting.');
   } else {
     // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 700) = 1, '"exec: gt 'barbershop', '...
-    scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 700) = 1, \'"exec: gt \'barbershop\', \'cuthair\'"\', \') + \'>Cut your hair (\' + $func(\'money\', \'string_price\', 700) + \')</a>');
+    scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 700) = 1, \'"exec: gt \'barbershop\', \'cuthair\'"\', \') + \'>Cut your hair (700₽)</a>');
   }
   // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 750) = 1, '"exec: gt 'barbershop', '...
-  scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 750) = 1, \'"exec: gt \'barbershop\', \'dyehair\'"\', \') + \'>Dye your hair (\' + $func(\'money\', \'string_price\', 750) + \')</a>');
+  scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 750) = 1, \'"exec: gt \'barbershop\', \'dyehair\'"\', \') + \'>Dye your hair (750₽)</a>');
   if (((s as any).nathcol ?? 0) !== ((s as any).pcs_haircol ?? 0)) {
     if (((s as any).dyefade ?? 0) > 0  &&  ((s as any).dyefade ?? 0) < 7) {
       // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 375) = 1, '"exec: gt 'barbershop', '...
-      scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 375) = 1, \'"exec: gt \'barbershop\', \'touchup\'"\', \') + \'>Touch up hair color (\' + $func(\'money\', \'string_price\', 375) + \')</a>');
+      scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 375) = 1, \'"exec: gt \'barbershop\', \'touchup\'"\', \') + \'>Touch up hair color (375₽)</a>');
     } else {
       if ((!((s as any).dyefade ?? 0))) {
         // TODO-QSP: dynamic text: <a href=' + iif(func('money', 'can_afford', 750) = 1, '"exec: gt 'barbershop', '...
-        scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 750) = 1, \'"exec: gt \'barbershop\', \'touchup2\'"\', \') + \'>Re-dye your existing hair color (\' + $func(\'money\', \'string_price\', 750) + \')</a>');
+        scene.text('<a href=\' + iif(func(\'money\', \'can_afford\', 750) = 1, \'"exec: gt \'barbershop\', \'touchup2\'"\', \') + \'>Re-dye your existing hair color (750₽)</a>');
       }
     }
   }
@@ -51,7 +51,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk up to Mr. Syomin, the owner of the barbershop.');
     scene.text('"Hello Mr. Syomin", you greet him.');
     // TODO-QSP: dynamic text: "Hello <<$pcs_nickname>>! What can I do for you today?", he asks you in his usua...
-    scene.text(`"Hello ${((s as any).pcs_nickname ?? 0)}! What can I do for you today?", he asks you in his usual soothing voice.`);
+    scene.text(`"Hello ${((s as any).pcs_nickname || '')}! What can I do for you today?", he asks you in his usual soothing voice.`);
     scene.text('"I was wondering if you\'re looking for some help around here"');
     scene.text('"Well, I don\'t think you have experience as a hairdresser…" He thinks for a second. "…, but my back isn\'t the best anymore, so I could use some help keeping the shop clean. It\'s not much work, but I\'d be happy if you could come in once a day for about an hour. Just come by, when you\'re done with school and when I\'m still open, obviously."');
     scene.text('You smile cheerfully. "That sound great! What would I have to do?"');
@@ -71,7 +71,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: 'Think about it', handler: (st: GameState) => {
     scene.text('"I guess I\'ll think about it some more.", you answer.');
     // TODO-QSP: dynamic text: "Sure <<$pcs_nickname>>, come back when you want to work."
-    scene.text(`"Sure ${((s as any).pcs_nickname ?? 0)}, come back when you want to work."`);
+    scene.text(`"Sure ${((s as any).pcs_nickname || '')}, come back when you want to work."`);
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -104,7 +104,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 3;
   }, goto: ['pav_commercial', ''] },
-    { label: 'Buy Scrunchies [+$func(\'money\', \'get_cost_string\', 60)]', handler: (st: GameState) => {
+    { label: 'Buy Scrunchies', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 60) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -116,7 +116,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Buy Hair accessories [+$func(\'money\', \'get_cost_string\', 80)]', handler: (st: GameState) => {
+    { label: 'Buy Hair accessories', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 80) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -601,7 +601,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Restore your hair to its natural colour', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I want to go back to my natural hair colour." you say as you pick at your hair ...
-    scene.text(`"I want to go back to my natural hair colour." you say as you pick at your hair in the mirror, "I don't think ${((s as any).pcs_haircolor ?? 0)} is working for me."`);
+    scene.text(`"I want to go back to my natural hair colour." you say as you pick at your hair in the mirror, "I don't think ${((s as any).pcs_haircolor || '')} is working for me."`);
     scene.text('"Sure thing!", he says, "Why don\'t you take a seat?"');
     scene.text('"We\'ll be done in no time!", he says and points your over to sit down on one of the seats.');
     scene.actions([
@@ -614,7 +614,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('Less than an hour later your hair is dyed and dried.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -642,7 +642,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('Not even an hour later everything seems to have dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -670,7 +670,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('45 minutes later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -698,7 +698,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('45 minutes later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -725,7 +725,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -754,7 +754,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -783,7 +783,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -812,7 +812,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -841,7 +841,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -870,7 +870,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -900,7 +900,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -929,7 +929,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -958,7 +958,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -987,7 +987,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -1016,7 +1016,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -1045,7 +1045,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -1074,7 +1074,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -1103,7 +1103,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -1132,7 +1132,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -1161,7 +1161,7 @@ function enterDyehair(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('Mr. Syomin removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay him ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay him \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay him 750₽.');
     scene.actions([
       { label: 'Leave', goto: ['barbershop', 'start'] },
     ]);
@@ -1187,7 +1187,7 @@ function enterTouchup(s: GameState, scene: SceneBuilder): void {
   scene.text('She has a bubbly personality, chatting about this and that without pause or much feedback from you, but you don\'t mind as it keeps you distracted while you go through the usual wash and dry routine.');
   scene.text('She flits around your head with her tools, and before you know it, your hair is restored to its earlier luster and color.');
   // TODO-QSP: dynamic text: You stand up from the chair and pay her ' + $func('money', 'string_price', 375) ...
-  scene.text('You stand up from the chair and pay her \' + $func(\'money\', \'string_price\', 375) + \'.');
+  scene.text('You stand up from the chair and pay her 375₽.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Move away', goto: ['barbershop', 'start'] },
@@ -1197,7 +1197,7 @@ function enterTouchup(s: GameState, scene: SceneBuilder): void {
 
 function enterTouchup2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: The hairdresser smiles apologetically, "Sorry, but you're going to need a comple...
-  scene.text('The hairdresser smiles apologetically, "Sorry, but you\'re going to need a completely new dye job to cover that up. I can do it, if you want? It\'s only \' + $func(\'money\', \'string_price\', 750) + \'."');
+  scene.text('The hairdresser smiles apologetically, "Sorry, but you\'re going to need a completely new dye job to cover that up. I can do it, if you want? It\'s only 750₽."');
   // TODO-QSP: end
   scene.actions([
     { label: 'Sure', handler: (st: GameState) => {
@@ -1209,7 +1209,7 @@ function enterTouchup2(s: GameState, scene: SceneBuilder): void {
     scene.text('About an hour later, everything should be dried up.');
     scene.text('The hairdresser removes the dryer hood. "And we\'re all done."');
     // TODO-QSP: dynamic text: You stand up from the chair and pay her ' + $func('money', 'string_price', 750) ...
-    scene.text('You stand up from the chair and pay her \' + $func(\'money\', \'string_price\', 750) + \'.');
+    scene.text('You stand up from the chair and pay her 750₽.');
     scene.actions([
       { label: 'Move away', goto: ['barbershop', 'start'] },
     ]);

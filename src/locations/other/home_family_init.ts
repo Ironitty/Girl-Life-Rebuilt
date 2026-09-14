@@ -10,7 +10,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'stat', '');
   qspCall(s, 'core_library', 'stage_title');
-  qspCall(s, 'home_family_init', 'trackers');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTrackers(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

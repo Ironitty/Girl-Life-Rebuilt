@@ -58,7 +58,6 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
   // TODO-QSP: :loopclonum
   // TODO-QSP: dynamic "
-  // TODO-QSP: dynamic var name <<$loc_clothestypes[j]>>_w[i]
   const _dynVarName = ((s as any).loc_clothestypes ?? 0)?.[String((s as any).j ?? 0)] + '_w';
   if ((s as any)[_dynVarName]?.[String((s as any).i ?? 0)] === 1) {
     // TODO-QSP: <<$loc_clothestypes[j]>>_w[i] = 0

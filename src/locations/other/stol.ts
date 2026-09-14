@@ -21,15 +21,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You sit down at your desk.');
   if (((s as any).mc_inventory ?? 0)?.['mentats'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'drugs', 'mentats' & gt 'stol', 'start'"><b>Take neurobooster p...
-    scene.text(`<a href="exec:gs 'drugs', 'mentats' & gt 'stol', 'start'"><b>Take neurobooster pill.</b></a> Uses left: ${((s as any).mc_inventory ?? 0)?.['mentats']}. A warning on the box says not to take more than one per day.`);
+    scene.text(`<a href="exec:gs 'drugs', 'mentats' & gt 'stol', 'start'"><b>Take neurobooster pill.</b></a> Uses left: ${((s as any).mc_inventory ?? 0)?.['mentats'] ?? ''}. A warning on the box says not to take more than one per day.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['steroids'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'drugs', 'steroids' & gt 'stol', 'start'"><b>Take steroids.</b>...
-    scene.text(`<a href="exec:gs 'drugs', 'steroids' & gt 'stol', 'start'"><b>Take steroids.</b></a> Uses left: ${((s as any).mc_inventory ?? 0)?.['steroids']}.`);
+    scene.text(`<a href="exec:gs 'drugs', 'steroids' & gt 'stol', 'start'"><b>Take steroids.</b></a> Uses left: ${((s as any).mc_inventory ?? 0)?.['steroids'] ?? ''}.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['aphrodisiac'] > 0) {
     // TODO-QSP: dynamic text: <a href="exec:gs 'drugs', 'aphrodisiac' & gt 'stol', 'start'"><b>Chew aphrodisia...
-    scene.text(`<a href="exec:gs 'drugs', 'aphrodisiac' & gt 'stol', 'start'"><b>Chew aphrodisiac gum.</b></a> Uses left: ${((s as any).mc_inventory ?? 0)?.['aphrodisiac']}.`);
+    scene.text(`<a href="exec:gs 'drugs', 'aphrodisiac' & gt 'stol', 'start'"><b>Chew aphrodisiac gum.</b></a> Uses left: ${((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? ''}.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1) {
     if (((s as any).mc_inventory ?? 0)?.['dildo_small'] + ((s as any).mc_inventory ?? 0)?.['dildo_normal'] + ((s as any).mc_inventory ?? 0)?.['dildo_big'] + ((s as any).mc_inventory ?? 0)?.['dildo_large'] + ((s as any).mc_inventory ?? 0)?.['dildo_huge'] + ((s as any).mc_inventory ?? 0)?.['dildo_enormous'] + ((s as any).mc_inventory ?? 0)?.['dildo_gigantic'] > 0) {
@@ -130,7 +130,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: dynamic ' act ''Study for your <<$class_list_name[i]>> class'': gt ''stol'', ''studying'', ''<<$clas...
         } else {
           // TODO-QSP: dynamic text: You don't need to study more this week for your <<$class_list_name[i]>> class.
-          scene.text(`You don't need to study more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)]} class.`);
+          scene.text(`You don't need to study more this week for your ${((s as any).class_list_name ?? 0)?.[String((s as any).i ?? 0)] ?? ''} class.`);
         }
       }
       (s as any).i = ((s as any).i ?? 0) + (1);
@@ -165,13 +165,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Do some homework [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Do some homework', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Do some homework (1:00) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Do some homework (1:00)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'chore', 'self', ((((s as any).grupTipe ?? 0) === 4) ? ('hard') : (((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? ('easy') : ('medium')))));
     if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
       (s as any).will_cost = ((s as any).will_cost ?? 0) / 2;
@@ -208,13 +208,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).will_cost = ((s as any).will_cost ?? 0) * ((s as any).lernHome ?? 0);
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Finish all of your homework [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Finish all of your homework', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Finish all of your homework (<<lernHome>>:00) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Finish all of your homework (<<lernHome>>:00)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + (60 * ((s as any).lernHome ?? 0));
     // TODO-QSP: gs 'mood', 'raise', 5 * trait_vars['academic'] *lernHome
     (s as any).lern = ((s as any).lern ?? 0) + (1 + ((s as any).lernHome ?? 0)/2);
@@ -225,11 +225,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/shared/apartment/homework.jpg');
     if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
       // TODO-QSP: dynamic text: It took you <<lernHome>> hours to complete your homework.
-      scene.text(`It took you ${((s as any).lernHome ?? 0)} hours to complete your homework.`);
+      scene.text(`It took you ${((s as any).lernHome || '')} hours to complete your homework.`);
       qspCall(s, 'grades', 'homework', 'school', 'yes', ((s as any).lernHome ?? 0), 0, 0);
     } else {
       // TODO-QSP: dynamic text: It took you <<lernHome>> hours to complete your homework., but the part for comp...
-      scene.text(`It took you ${((s as any).lernHome ?? 0)} hours to complete your homework., but the part for computer class is not as good as it could be since you don't have a computer. You could do your homework at the library at the community center in the future since there's a computer available to use there.`);
+      scene.text(`It took you ${((s as any).lernHome || '')} hours to complete your homework., but the part for computer class is not as good as it could be since you don't have a computer. You could do your homework at the library at the community center in the future since there's a computer available to use there.`);
       qspCall(s, 'grades', 'homework', 'school', 'no', ((s as any).lernHome ?? 0), 0, 0);
     }
     scene.actions([
@@ -252,7 +252,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).temp_ShortCutMoney ?? 0) !== 0) {
       (s as any).bankShortCutMoney = ((s as any).temp_ShortCutMoney ?? 0);
-      qspCall(s, 'stol', 'start');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -319,11 +319,11 @@ function enterBc(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).preziktype ?? 0) === 2  ||  ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] > 0) {
         // TODO-QSP: dynamic text: You have <<iif(preziktype = 2, mc_inventory['normal_condoms'], mc_inventory['nor...
-        scene.text(`You have ${((((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['normal_condoms']) : (((s as any).mc_inventory ?? {})?.['normal_condoms']+((s as any).mc_inventory ?? {})?.['equipped_condoms']))} normal, and ${((((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? {})?.['equipped_condoms']+((s as any).mc_inventory ?? {})?.['sabotaged_condoms']) : (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']))} sabotaged <a href="exec:gs 'din_bad', 'din_Table_Condom_Menu'"><b>condoms.</b></a>`);
+        scene.text(`You have ${((((s as any).preziktype ?? 0) === 2) ? (((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? '') : ((((s as any).mc_inventory ?? {})?.['normal_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)))} normal, and ${((((s as any).preziktype ?? 0) === 2) ? ((((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['sabotaged_condoms'] ?? 0)) : (((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] ?? ''))} sabotaged <a href="exec:gs 'din_bad', 'din_Table_Condom_Menu'"><b>condoms.</b></a>`);
       } else {
         if (((s as any).preziktype ?? 0) < 2  &&  ((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] === 0) {
           // TODO-QSP: dynamic text: You have <<mc_inventory['equipped_condoms']+mc_inventory['normal_condoms']>> <a ...
-          scene.text(`You have ${((s as any).mc_inventory ?? {})?.['equipped_condoms']+((s as any).mc_inventory ?? {})?.['normal_condoms']} <a href="exec:gs 'din_bad', 'din_Table_Condom_Menu'"><b>condoms.</b></a>`);
+          scene.text(`You have ${(((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['normal_condoms'] ?? 0)} <a href="exec:gs 'din_bad', 'din_Table_Condom_Menu'"><b>condoms.</b></a>`);
         }
       }
     } else {
@@ -340,15 +340,15 @@ function enterBc(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
         // TODO-QSP: dynamic text: You have <<mc_inventory['contraceptive_pill']>> unopened packages of <a href="ex...
-        scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill']} unopened packages of <a href="exec:gs 'din_bad', 'd_tabletkiedt'">birth control pills</a> and ${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)]} pills left in your opened package.</b>`);
+        scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of <a href="exec:gs 'din_bad', 'd_tabletkiedt'">birth control pills</a> and ${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''} pills left in your opened package.</b>`);
       } else {
         if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] === 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
           // TODO-QSP: dynamic text: You have <<pillsleft[ptype]>> <a href="exec:gs 'din_bad', 'd_tabletkiedt'">birth...
-          scene.text(`You have ${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)]} <a href="exec:gs 'din_bad', 'd_tabletkiedt'">birth control pills</a> left.</b>`);
+          scene.text(`You have ${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''} <a href="exec:gs 'din_bad', 'd_tabletkiedt'">birth control pills</a> left.</b>`);
         } else {
           if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0  &&  ((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] === 0) {
             // TODO-QSP: dynamic text: You have <<mc_inventory['contraceptive_pill']>> unopened packages of <a href="ex...
-            scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill']} unopened packages of <a href="exec:gs 'din_bad', 'd_tabletkiedt'">birth control pills</a>.`);
+            scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''} unopened packages of <a href="exec:gs 'din_bad', 'd_tabletkiedt'">birth control pills</a>.`);
           }
         }
       }
@@ -368,7 +368,7 @@ function enterBc(s: GameState, scene: SceneBuilder): void {
         scene.text('You have a <a href="exec:gs\'medical_din\',\'morning_after_pill\'">morning after pill</a> hidden in the back corner of the drawer.');
       } else {
         // TODO-QSP: dynamic text: You have <b><<mc_inventory['morning_after_pill']>></b> <a href="exec:gs'medical_...
-        scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['morning_after_pill']}</b> <a href="exec:gs'medical_din','morning_after_pill'">morning after pills</a> stacked in the back corner of the drawer.`);
+        scene.text(`You have <b>${((s as any).mc_inventory ?? 0)?.['morning_after_pill'] ?? ''}</b> <a href="exec:gs'medical_din','morning_after_pill'">morning after pills</a> stacked in the back corner of the drawer.`);
       }
     } else {
       if (((s as any).locclass ?? 0) === 'bedr'  ||  ((s as any).locclass ?? 0) === 'bedroom') {

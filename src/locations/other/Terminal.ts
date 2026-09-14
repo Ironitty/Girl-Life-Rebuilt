@@ -71,9 +71,9 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hello, are you Mikhail Kuznetsov?"');
       scene.text('"Yes, that\'s me. Are you from the control room? Did something happen? Did someone call about my driving? I am careful on the roads."');
       // TODO-QSP: dynamic text: "No no, I am <<$pcs_nickname>> <<$pcs_lastname>>, your daughter.
-      scene.text(`"No no, I am ${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, your daughter.`);
+      scene.text(`"No no, I am ${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')}, your daughter.`);
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>? Hell, my daughter? Is it really you?"
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}? Hell, my daughter? Is it really you?"`);
+      scene.text(`"${((s as any).pcs_nickname || '')}? Hell, my daughter? Is it really you?"`);
       scene.text('Your father breaks down in tears, looking into your eyes, and recognizing his facial features in you, he quickly grabs you and pulls you into a hug, with his oily hands wrapped around you, both of you cry happily.');
       scene.actions([
         { label: 'Hug', handler: (st: GameState) => {
@@ -86,13 +86,13 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Tell him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell him off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Tell him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell him off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -117,7 +117,7 @@ function enterAskfather(s: GameState, scene: SceneBuilder): void {
     scene.text('You reply to his questions with enthusiasm and talk about yourself, what you do, where go to school. Talk about Anya, that she did not go to the university, and works as a salesgirl in the supermarket.');
     scene.text('You tell him about your mother, she remarried, and you now have a stepfather and half brother Kolka…');
     // TODO-QSP: dynamic text: After talking for a while your father says. "<<$pcs_nickname>> I have to go, I h...
-    scene.text(`After talking for a while your father says. "${((s as any).pcs_nickname ?? 0)} I have to go, I have a schedule to keep. I am here on weekends 12 00 to 14 00, I would be happy if you would visit me sometimes." With that he gets up, pays for lunch and kisses you on the cheek goodbye.`);
+    scene.text(`After talking for a while your father says. "${((s as any).pcs_nickname || '')} I have to go, I have a schedule to keep. I am here on weekends 12 00 to 14 00, I would be happy if you would visit me sometimes." With that he gets up, pays for lunch and kisses you on the cheek goodbye.`);
     (s as any).trfatherQW = 4;
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -149,7 +149,7 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
     scene.text('You go up to the managers office. "Good afternoon! What I can help you?" he says.');
     scene.text('"Hello, I wanted to know, if you know a Mikhail Kuznetsov or if he works here?"');
     // TODO-QSP: dynamic text: He turns to his computer and pulls something up. "I'll check in our database, ye...
-    scene.text('He turns to his computer and pulls something up. "I\'ll check in our database, yes, we have a driver by that name. He is on the road right now and only comes in on Saturday at \'+func(\'time\', \'get_time_string\', 12, 0)+\'."');
+    scene.text('He turns to his computer and pulls something up. "I\'ll check in our database, yes, we have a driver by that name. He is on the road right now and only comes in on Saturday at 12:00."');
     scene.text('"Thank you very much, you helped me a lot." With that you leaved but now you know when and where to find him.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -168,13 +168,13 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Tell them to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell them to fuck off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Tell them to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell them to fuck off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -226,7 +226,7 @@ function enterSearchfather(s: GameState, scene: SceneBuilder): void {
     scene.text('"So, What did you want to know?" The first man asked.');
     scene.text('"I wanted you to know, whether you know a Mikhail Kuznetsov?"');
     // TODO-QSP: dynamic text: "Aaa, Micah, Sure, great guy, he is out on a run. He will be back Saturday at '+...
-    scene.text('"Aaa, Micah, Sure, great guy, he is out on a run. He will be back Saturday at \'+func(\'time\', \'get_time_string\', 12, 0)+\'."');
+    scene.text('"Aaa, Micah, Sure, great guy, he is out on a run. He will be back Saturday at 12:00."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -258,13 +258,13 @@ function enterSearchApproachMen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'drink', 'resist', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['Terminal', ''] },
@@ -288,13 +288,13 @@ function enterSearchApproachMen(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['Terminal', ''] },

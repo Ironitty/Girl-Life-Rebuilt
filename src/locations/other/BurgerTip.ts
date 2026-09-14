@@ -48,7 +48,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     (s as any).bossrand = Math.floor(Math.random() * 4) + 0;
     if ((!((s as any).bossrand ?? 0))) {
       // TODO-QSP: dynamic text: When you enter Anatoly's office he glances up and says, "<<$pcs_nickname>>, brin...
-      scene.text(`When you enter Anatoly's office he glances up and says, "${((s as any).pcs_nickname ?? 0)}, bring me a cup of coffee."`);
+      scene.text(`When you enter Anatoly's office he glances up and says, "${((s as any).pcs_nickname || '')}, bring me a cup of coffee."`);
       scene.actions([
         { label: 'Fetch him a coffee', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -72,7 +72,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).bossrand ?? 0) === 1) {
         // TODO-QSP: dynamic text: When you enter his office, Anatoly tells you: "<<$pcs_nickname>>, I need these d...
-        scene.text(`When you enter his office, Anatoly tells you: "${((s as any).pcs_nickname ?? 0)}, I need these documents signed by the accountant. Take them to her, and see that she signs them. When she does, return them to me."`);
+        scene.text(`When you enter his office, Anatoly tells you: "${((s as any).pcs_nickname || '')}, I need these documents signed by the accountant. Take them to her, and see that she signs them. When she does, return them to me."`);
         scene.actions([
           { label: 'Go to the chief accountant', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -103,7 +103,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).bossrand ?? 0) === 2) {
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I need Ilyushkin working on these documents in a hurry", Ana...
-          scene.text(`"${((s as any).pcs_nickname ?? 0)}, I need Ilyushkin working on these documents in a hurry", Anatoly says. You grab the papers, and scamper out of the office`);
+          scene.text(`"${((s as any).pcs_nickname || '')}, I need Ilyushkin working on these documents in a hurry", Anatoly says. You grab the papers, and scamper out of the office`);
           scene.actions([
             { label: 'Take the papers to Ilyushkin', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -137,7 +137,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             (s as any).bossexrand = Math.floor(Math.random() * 4) + 0;
             (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
             qspCall(s, 'stat', '');
-            scene.img(`images/characters/city/anatoly/sex/boss${((s as any).bossexrand ?? 0)}.jpg`);
+            scene.img(`images/characters/city/anatoly/sex/boss${((s as any).bossexrand || '')}.jpg`);
             scene.text('When you enter Anatoly\'s office, he approaches you with a hungry look in his eye.');
             if ((!((s as any).bossexrand ?? 0))) {
               scene.text('He passionately presses you against the wall, and covers you with kisses.');
@@ -225,14 +225,14 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
           if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['TerminalTask'] = 1;
           if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['TerminalTaskDay'] = ((s as any).daystart ?? 0);
           // TODO-QSP: dynamic text: Anatoly comes out of the office, and asks, "<<$pcs_nickname>>, I know it's lunch...
-          scene.text(`Anatoly comes out of the office, and asks, "${((s as any).pcs_nickname ?? 0)}, I know it's lunch time, but I really need these documents taken to the storage terminal in the city industrial area to be signed. I'll give you the rest of the day off if you take care of it for me," he finishes, with a smile.`);
+          scene.text(`Anatoly comes out of the office, and asks, "${((s as any).pcs_nickname || '')}, I know it's lunch time, but I really need these documents taken to the storage terminal in the city industrial area to be signed. I'll give you the rest of the day off if you take care of it for me," he finishes, with a smile.`);
           scene.actions([
             { label: 'Deliver the papers', goto: ['city_center', ''] },
           ]);
         } else {
           if (((s as any).bosstiprand ?? 0) === 1) {
             // TODO-QSP: dynamic text: Anatoly comes out of the office, and says: "<<$pcs_nickname>>, before lunch I ne...
-            scene.text(`Anatoly comes out of the office, and says: "${((s as any).pcs_nickname ?? 0)}, before lunch I need you to head down to the loading dock, and sign for a shipment of food that's due to arrive. There's a gold star in it for you if you take care of this for me."`);
+            scene.text(`Anatoly comes out of the office, and says: "${((s as any).pcs_nickname || '')}, before lunch I need you to head down to the loading dock, and sign for a shipment of food that's due to arrive. There's a gold star in it for you if you take care of this for me."`);
             scene.actions([
               { label: 'Go sign for the shipment', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -257,14 +257,14 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['BankTask'] = 1;
               if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['BankTaskDay'] = ((s as any).daystart ?? 0);
               // TODO-QSP: dynamic text: Anatoly comes out of the office, and says, "<<$pcs_nickname>>, please run these ...
-              scene.text(`Anatoly comes out of the office, and says, "${((s as any).pcs_nickname ?? 0)}, please run these documents to the bank for me. I'll give you the rest of the day off if you take care of it for me," he finishes, with a smile.`);
+              scene.text(`Anatoly comes out of the office, and says, "${((s as any).pcs_nickname || '')}, please run these documents to the bank for me. I'll give you the rest of the day off if you take care of it for me," he finishes, with a smile.`);
               scene.actions([
                 { label: 'Go to the bank', goto: ['city_center', ''] },
               ]);
             } else {
               if (((s as any).bosstiprand ?? 0) === 3) {
                 // TODO-QSP: dynamic text: Anatoly comes out of the office, and says, "<<$pcs_nickname>>, call that guy we ...
-                scene.text(`Anatoly comes out of the office, and says, "${((s as any).pcs_nickname ?? 0)}, call that guy we had set up our computers. The on button of my PC seems to be broken."`);
+                scene.text(`Anatoly comes out of the office, and says, "${((s as any).pcs_nickname || '')}, call that guy we had set up our computers. The on button of my PC seems to be broken."`);
                 scene.actions([
                   { label: 'Call the programmer', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -305,7 +305,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
           (s as any).bosstiprand = Math.floor(Math.random() * 4) + 0;
           if ((!((s as any).bosstiprand ?? 0))) {
             // TODO-QSP: dynamic text: Anatoly comes out of the office and says, "<<$pcs_nickname>>, I have to leave ea...
-            scene.text(`Anatoly comes out of the office and says, "${((s as any).pcs_nickname ?? 0)}, I have to leave early today. Here's a few papers for you to file," He hands you a folder on his way out of the office.`);
+            scene.text(`Anatoly comes out of the office and says, "${((s as any).pcs_nickname || '')}, I have to leave early today. Here's a few papers for you to file," He hands you a folder on his way out of the office.`);
             (s as any).bburand = Math.floor(Math.random() * 11) + 0;
             if ((!((s as any).bburand ?? 0))) {
               scene.text('The senior manager Ilyushkin shows up in your office.');
@@ -325,7 +325,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                   }
                 }
               } else {
-                qspCall(s, 'BurgerTip', 'ily_work');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIlyWork(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             } else {
               if (((s as any).bburand ?? 0) === 1) {
@@ -334,11 +334,11 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                 scene.text('"No, he just he just left." you tell him.');
                 if (((s as any).BurgerQW ?? 0)?.['sergeyQW'] === 1) {
                   // TODO-QSP: dynamic text: The pimply young man chuckles, and sits on the edge of your desk. "<<$pcs_nickna...
-                  scene.text(`The pimply young man chuckles, and sits on the edge of your desk. "${((s as any).pcs_nickname ?? 0)}, you're dynamite. We are very lucky to have a girl like you around," he says, leering at you.`);
+                  scene.text(`The pimply young man chuckles, and sits on the edge of your desk. "${((s as any).pcs_nickname || '')}, you're dynamite. We are very lucky to have a girl like you around," he says, leering at you.`);
                 } else {
                   if (((s as any).BurgerQW ?? 0)?.['sergeyQW'] === 0) {
                     // TODO-QSP: dynamic text: The pimply young man chuckles, and sits on the edge of your desk. "<<$pcs_nickna...
-                    scene.text(`The pimply young man chuckles, and sits on the edge of your desk. "${((s as any).pcs_nickname ?? 0)} you seem like such a cool girl, do you think… I mean would you like, to go out with me after work?"`);
+                    scene.text(`The pimply young man chuckles, and sits on the edge of your desk. "${((s as any).pcs_nickname || '')} you seem like such a cool girl, do you think… I mean would you like, to go out with me after work?"`);
                     return;
                     scene.actions([
                       { label: 'Eww, no way!', handler: (st: GameState) => {
@@ -363,7 +363,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/diner/work7.jpg');
     scene.text('Sergei is delighted when you meet up with him after work');
     // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>, let's go hit the town," he says, as he takes your ha...
-    scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)}, let's go hit the town," he says, as he takes your hand and leads you outside.`);
+    scene.text(`"Come on ${((s as any).pcs_nickname || '')}, let's go hit the town," he says, as he takes your hand and leads you outside.`);
     scene.actions([
       { label: 'Follow him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -463,7 +463,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).bosstiprand ?? 0) === 1) {
               // TODO-QSP: dynamic text: Anatoly comes out of the office and says, "<<$pcs_nickname>>, let's get out of h...
-              scene.text(`Anatoly comes out of the office and says, "${((s as any).pcs_nickname ?? 0)}, let's get out of here and go have some fun."`);
+              scene.text(`Anatoly comes out of the office and says, "${((s as any).pcs_nickname || '')}, let's get out of here and go have some fun."`);
               return;
               scene.actions([
                 { label: 'Go with Anatoly', handler: (st: GameState) => {
@@ -478,14 +478,14 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     if (((s as any).saunaWhore ?? 0) >= 1) {
       if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SaunaWhoreKnown'] = 1;
       // TODO-QSP: dynamic text: When you enter the sauna you stop dead in your tracks when you see the madam. "<...
-      scene.text(`When you enter the sauna you stop dead in your tracks when you see the madam. "${((s as any).pcs_nickname ?? 0)}, what a surprise, are you coming back to work for us?"`);
+      scene.text(`When you enter the sauna you stop dead in your tracks when you see the madam. "${((s as any).pcs_nickname || '')}, what a surprise, are you coming back to work for us?"`);
       scene.text('Anatoly says, "What\'s going on here?"');
       // TODO-QSP: dynamic text: "Oh, you don't know? Little <<$pcs_nickname>> is one of the best little cocksuck...
-      scene.text(`"Oh, you don't know? Little ${((s as any).pcs_nickname ?? 0)} is one of the best little cocksuckers I've ever had work for me, and her pussy is a goldmine," she laughs.`);
+      scene.text(`"Oh, you don't know? Little ${((s as any).pcs_nickname || '')} is one of the best little cocksuckers I've ever had work for me, and her pussy is a goldmine," she laughs.`);
       // TODO-QSP: dynamic text: Anatoly is furious: "How? <<$pcs_nickname>>? You're just a common whore?" If tha...
-      scene.text(`Anatoly is furious: "How? ${((s as any).pcs_nickname ?? 0)}? You're just a common whore?" If that's the case you can stay here, and ply your trade. I guess I was wrong about you." He storms off, and moments later you hear the screech of his car tires as he drives away.`);
+      scene.text(`Anatoly is furious: "How? ${((s as any).pcs_nickname || '')}? You're just a common whore?" If that's the case you can stay here, and ply your trade. I guess I was wrong about you." He storms off, and moments later you hear the screech of his car tires as he drives away.`);
       // TODO-QSP: dynamic text: The madam continues: "<<$pcs_nickname>>, you're a whore. You will always be a wh...
-      scene.text(`The madam continues: "${((s as any).pcs_nickname ?? 0)}, you're a whore. You will always be a whore. If you do manage to trick some nice man your past will eventually catch up with you. Consider this a free lesson."`);
+      scene.text(`The madam continues: "${((s as any).pcs_nickname || '')}, you're a whore. You will always be a whore. If you do manage to trick some nice man your past will eventually catch up with you. Consider this a free lesson."`);
       scene.actions([
         { label: 'Leave', goto: ['city_residential', ''] },
       ]);
@@ -545,7 +545,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     (s as any).sexcontra = 0;
     qspCall(s, 'din_van', 'showerdin');
     // TODO-QSP: dynamic text: You head to the shower to wash up. When you return, you see that he is already d...
-    scene.text(`You head to the shower to wash up. When you return, you see that he is already dressed."${((s as any).pcs_nickname ?? 0)}, I've got to run, but you were great baby," he says, giving you a kiss before he leaves.`);
+    scene.text(`You head to the shower to wash up. When you return, you see that he is already dressed."${((s as any).pcs_nickname || '')}, I've got to run, but you were great baby," he says, giving you a kiss before he leaves.`);
     if (((s as any).deodorant_on ?? 0) === 1) {
       qspCall(s, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
@@ -572,7 +572,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/anatoly/sex/bossbjcar.jpg');
     // TODO-QSP: dynamic text: Determined to send Anatoly home with a smile, you lean over and unzip his pants....
-    scene.text(`Determined to send Anatoly home with a smile, you lean over and unzip his pants. You wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around his flaccid penis, and start working your magic. Soon your mouth is full of hard throbbing cock. You make an effort to get him home quickly, and suck like a woman possessed with the need for seed. He does finish quickly, and you slurp it all down with a smile. Anatoly gets himself back in his pants, and sends you on your way saying, "Thanks babe, you're the best."`);
+    scene.text(`Determined to send Anatoly home with a smile, you lean over and unzip his pants. You wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his flaccid penis, and start working your magic. Soon your mouth is full of hard throbbing cock. You make an effort to get him home quickly, and suck like a woman possessed with the need for seed. He does finish quickly, and you slurp it all down with a smile. Anatoly gets himself back in his pants, and sends you on your way saying, "Thanks babe, you're the best."`);
     qspCall(s, 'arousal', 'bj', 5, 'sub');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -587,7 +587,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).bosstiprand ?? 0) === 2) {
                 // TODO-QSP: dynamic text: Anatoly comes out of the office, and says, "<<$pcs_nickname>>, call the that guy...
-                scene.text(`Anatoly comes out of the office, and says, "${((s as any).pcs_nickname ?? 0)}, call the that guy we had set up our computers. The on button of my PC seems to be broken."`);
+                scene.text(`Anatoly comes out of the office, and says, "${((s as any).pcs_nickname || '')}, call the that guy we had set up our computers. The on button of my PC seems to be broken."`);
                 scene.actions([
                   { label: 'Call the computer guy', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -622,7 +622,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).bosstiprand ?? 0) === 3) {
                   // TODO-QSP: dynamic text: Anatoly comes out of the office, and says, "<<$pcs_nickname>>, I need you to sta...
-                  scene.text(`Anatoly comes out of the office, and says, "${((s as any).pcs_nickname ?? 0)}, I need you to stay late today. I have some men coming in for a meeting, and I might need an extra set of hand around.`);
+                  scene.text(`Anatoly comes out of the office, and says, "${((s as any).pcs_nickname || '')}, I need you to stay late today. I have some men coming in for a meeting, and I might need an extra set of hand around.`);
                   scene.actions([
                     { label: 'Sure thing boss', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -758,7 +758,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
                 if (((s as any).BurgerQW ?? 0)?.['SlutReputation'] >= 10) {
                   scene.text('She looks at you with contempt, and storms into Anatoly\'s office. You can here her screaming through the door: "I know all about your adventures with that slut out there. If you don\'t send your whore packing immediately I\'m leaving you, and taking you for everything you\'re worth." With that she storms out of the office, and spits on you on her way out the door.');
                   // TODO-QSP: dynamic text: A few minutes later Anatoly comes out, and says, "<<$pcs_nickname>>, I'm sorry, ...
-                  scene.text(`A few minutes later Anatoly comes out, and says, "${((s as any).pcs_nickname ?? 0)}, I'm sorry, I can't afford to lose my marriage over you. I'm going to have to insist on your resignation."`);
+                  scene.text(`A few minutes later Anatoly comes out, and says, "${((s as any).pcs_nickname || '')}, I'm sorry, I can't afford to lose my marriage over you. I'm going to have to insist on your resignation."`);
                   scene.actions([
                     { label: 'Write a letter of resignation', handler: (st: GameState) => {
     (s as any).pay = qspFunc(s, 'jobs', 'paycheck', 'city_diner_secretary');
@@ -766,7 +766,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You quickly write out something that effectively says "I quit!" with some fancy words thrown in.');
     // TODO-QSP: dynamic text: Anatoly pays you the <<$func('money', 'string_profit', pay)>> you are owed, and ...
-    scene.text(`Anatoly pays you the ${qspFunc(s, 'money', 'string_profit', ((s as any).pay ?? 0))} you are owed, and says, "It's over ${((s as any).pcs_nickname ?? 0)}, get out of here."`);
+    scene.text(`Anatoly pays you the ${qspFunc(s, 'money', 'string_profit', ((s as any).pay || ''))} you are owed, and says, "It's over ${((s as any).pcs_nickname || '')}, get out of here."`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -793,14 +793,14 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   (s as any).numbjrand = Math.floor(Math.random() * 15) + 0;
   (s as any).wantrand = Math.floor(Math.random() * 4) + 0;
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/city/anatoly/sex/bossbj${((s as any).numbjrand ?? 0)}.jpg`);
+  scene.img(`images/characters/city/anatoly/sex/bossbj${((s as any).numbjrand || '')}.jpg`);
   // TODO-QSP: dynamic text: You greedily wrap your <<$pc_desc['lips']>> lips around the head of his cock. Sm...
-  scene.text(`You greedily wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around the head of his cock. Smiling up at Anatoly, you give your lips a playfully little pop, before you begin to suck in earnest.`);
+  scene.text(`You greedily wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around the head of his cock. Smiling up at Anatoly, you give your lips a playfully little pop, before you begin to suck in earnest.`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).wantrand ?? 0) === 3) {
     // TODO-QSP: dynamic text: After a short time, Anatoly takes his cock from your mouth and says, "<<$pcs_nic...
-    scene.text(`After a short time, Anatoly takes his cock from your mouth and says, "${((s as any).pcs_nickname ?? 0)}, I want all of you."`);
+    scene.text(`After a short time, Anatoly takes his cock from your mouth and says, "${((s as any).pcs_nickname || '')}, I want all of you."`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 0  ||  ((s as any).pcs_ass ?? 0) > 0) {
       scene.actions([
         { label: 'Bend over the desk', goto: ['BurgerTip', 'bend'] },
@@ -816,7 +816,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).wantrand ?? 0) === 2) {
       // TODO-QSP: dynamic text: After a short time, Anatoly groans, "<<$pcs_nickname>> if you keep sucking, I'm ...
-      scene.text(`After a short time, Anatoly groans, "${((s as any).pcs_nickname ?? 0)} if you keep sucking, I'm going to finish"`);
+      scene.text(`After a short time, Anatoly groans, "${((s as any).pcs_nickname || '')} if you keep sucking, I'm going to finish"`);
       if (((s as any).stat ?? 0)?.['think_virgin'] === 0  ||  ((s as any).pcs_ass ?? 0) > 0) {
         scene.actions([
           { label: 'Bend over the desk', goto: ['BurgerTip', 'bend'] },
@@ -846,34 +846,34 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bosstoirand ?? 0) === 10) {
     if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
     scene.text('On your way to the toilet, you accidentally collide with Ilyushkin. He looks at you with a knowing little grin, before going about his business.');
-    qspCall(s, 'BurgerTip', 'toilet_wash');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterToiletWash(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).bosstoirand ?? 0) === 9) {
       if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
       scene.text('On your way to the toilet, you encounter Lena. The accountant notices the stain on your blouse and mutters "whore", before walking away.');
-      qspCall(s, 'BurgerTip', 'toilet_wash');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterToiletWash(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).bosstoirand ?? 0) === 8) {
         if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
         scene.text('On your way to the toilet, you accidentally collided with the personnel manager. Vic notices the cum stain, and her eyes widen in surprise. She wrinkles her nose in disgust, and walks away.');
-        qspCall(s, 'BurgerTip', 'toilet_wash');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterToiletWash(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).bosstoirand ?? 0) === 7) {
           if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
           scene.text('On your way to the toilet, you encounter Sergei. The pimply deputy manager notices the cum stain and laughs. "I thought you always swallowed everything, cocksucker", he says, as he walks away.');
-          qspCall(s, 'BurgerTip', 'toilet_wash');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterToiletWash(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).bosstoirand ?? 0) < 7) {
             (s as any).bosstoirandin = Math.floor(Math.random() * 11) + 0;
             if (((s as any).bosstoirandin ?? 0) === 10) {
               if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
               scene.text('You quietly slipped into the toilet, but come face to face with Lena. She notices the stain on your top and muttered "whore" before walking away.');
-              qspCall(s, 'BurgerTip', 'toilet_wash2');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterToiletWash2(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).bosstoirandin ?? 0) === 9) {
                 if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['SlutReputation'] = ((s as any).BurgerQW['SlutReputation'] ?? 0) + (1);
                 scene.text('In the bathroom you come face to face with toilet faced nose to nose with Vik. The personnel manager notices what you are doing, and shakes her head with disdain, as she walks out.');
-                qspCall(s, 'BurgerTip', 'toilet_wash2');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterToiletWash2(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).bosstoirandin ?? 0) < 9) {
                   if ((((s as any).cumloc ?? 0)[6] === 1  ||  ((s as any).cumloc ?? 0)[7] === 1)) {
@@ -887,7 +887,7 @@ function enterToilet(s: GameState, scene: SceneBuilder): void {
                   (s as any).cumspclnt = 6;
                   qspCall(s, 'cum_cleanup', '');
                   // TODO-QSP: dynamic text: You go into the bathroom, and turn the water on in the sink. <<$deytoibur>><<$de...
-                  scene.text(`You go into the bathroom, and turn the water on in the sink. ${((s as any).deytoibur ?? 0)}${((s as any).deytoibur2 ?? 0)}`);
+                  scene.text(`You go into the bathroom, and turn the water on in the sink. ${((s as any).deytoibur || '')}${((s as any).deytoibur2 || '')}`);
                   if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 1) {
                     scene.actions([
                       { label: 'Have your lunch', goto: ['burgerWork', 'work'] },
@@ -925,7 +925,7 @@ function enterToiletWash(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 6;
   qspCall(s, 'cum_cleanup', '');
   // TODO-QSP: dynamic text: You go into the bathroom, and turn the water on in the sink. <<$deytoibur>><<$de...
-  scene.text(`You go into the bathroom, and turn the water on in the sink. ${((s as any).deytoibur ?? 0)}${((s as any).deytoibur2 ?? 0)}`);
+  scene.text(`You go into the bathroom, and turn the water on in the sink. ${((s as any).deytoibur || '')}${((s as any).deytoibur2 || '')}`);
   if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 1) {
     scene.actions([
       { label: 'Have your lunch', goto: ['burgerWork', 'work'] },
@@ -955,7 +955,7 @@ function enterToiletWash2(s: GameState, scene: SceneBuilder): void {
   (s as any).cumspclnt = 6;
   qspCall(s, 'cum_cleanup', '');
   // TODO-QSP: dynamic text: You go into the bathroom, and turn the water on in the sink. <<$deytoibur>><<$de...
-  scene.text(`You go into the bathroom, and turn the water on in the sink. ${((s as any).deytoibur ?? 0)}${((s as any).deytoibur2 ?? 0)}`);
+  scene.text(`You go into the bathroom, and turn the water on in the sink. ${((s as any).deytoibur || '')}${((s as any).deytoibur2 || '')}`);
   if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 1) {
     scene.actions([
       { label: 'Have your lunch', goto: ['burgerWork', 'work'] },
@@ -1121,7 +1121,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bosswantrand ?? 0) >= 3) {
     qspCall(s, 'cum_call', 'butt', 'A74', 1);
     // TODO-QSP: dynamic text: <<$boydesc>> withdraws his cock, and shoots hot streams of semen all over your n...
-    scene.text(`${((s as any).boydesc ?? 0)} withdraws his cock, and shoots hot streams of semen all over your naked ass.`);
+    scene.text(`${((s as any).boydesc || '')} withdraws his cock, and shoots hot streams of semen all over your naked ass.`);
     qspCall(s, 'arousal', 'end');
     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 1) {
       scene.actions([
@@ -1189,7 +1189,7 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).bosswantrand ?? 0) >= 3) {
     qspCall(s, 'cum_call', 'stomach', 'A74', 1);
     // TODO-QSP: dynamic text: <<$boydesc>> withdraws his cock, and shoots hot streams of semen all over your n...
-    scene.text(`${((s as any).boydesc ?? 0)} withdraws his cock, and shoots hot streams of semen all over your naked ass.`);
+    scene.text(`${((s as any).boydesc || '')} withdraws his cock, and shoots hot streams of semen all over your naked ass.`);
     qspCall(s, 'arousal', 'end');
     if (((s as any).BurgerQW ?? 0)?.['WorkShift'] === 1) {
       scene.actions([
@@ -1251,7 +1251,7 @@ function enterIlyWork(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/diner/work.jpg');
   scene.text('The senior manager Ilyushkin shows up in your office.');
   // TODO-QSP: dynamic text: Ilyushkin grins, "<<$pcs_nickname>>, <<$pcs_nickname>>, I would have never imagi...
-  scene.text(`Ilyushkin grins, "${((s as any).pcs_nickname ?? 0)}, ${((s as any).pcs_nickname ?? 0)}, I would have never imagined this from a sweet young thing like you." He puts a photo on your desk. You pick it up, and take a look. ${((s as any).BurgerQW ?? 0)?.['IlyQWBlackmailPhoto']}. Ilyushkin is looking at you like a cat about to catch a mouse: "${((s as any).pcs_nickname ?? 0)}, we can't have this our boss has aims at a career in politics. If something like this were to get out it would… well we can't let that happen. I'm afraid you are just going to have to quit. Anatoly can't be known as a man who keeps a slutty secretary."`);
+  scene.text(`Ilyushkin grins, "${((s as any).pcs_nickname || '')}, ${((s as any).pcs_nickname || '')}, I would have never imagined this from a sweet young thing like you." He puts a photo on your desk. You pick it up, and take a look. ${((s as any).BurgerQW ?? 0)?.['IlyQWBlackmailPhoto'] ?? ''}. Ilyushkin is looking at you like a cat about to catch a mouse: "${((s as any).pcs_nickname || '')}, we can't have this our boss has aims at a career in politics. If something like this were to get out it would… well we can't let that happen. I'm afraid you are just going to have to quit. Anatoly can't be known as a man who keeps a slutty secretary."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Plead with him not to show the pictures', goto: ['BurgerTip', 'ily_work2'] },
@@ -1291,13 +1291,13 @@ function enterIlyWork2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'ily_work3'] },
@@ -1312,13 +1312,13 @@ function enterIlyWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'ily_work3'] },

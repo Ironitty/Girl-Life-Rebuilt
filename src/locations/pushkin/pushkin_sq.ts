@@ -20,13 +20,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('A small <a href="exec:gt \'larek\',\'start\'">grocery store</a> is currently open.');
   } else {
     // TODO-QSP: dynamic text: There is a small whole foods store that is open from 8:00 - '+func('time', 'get_...
-    scene.text('There is a small whole foods store that is open from 8:00 - \'+func(\'time\', \'get_time_string\', 20, 0)+\' everyday. It is currently closed.');
+    scene.text('There is a small whole foods store that is open from 8:00 - 20:00 everyday. It is currently closed.');
   }
   if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) <= 22) {
     scene.text('A quaint little restaurant has put a sign outside of its door, reading, "<a href="exec:gt \'pushkin_cafe\',\'start\'">Liamel Cafe</a>."');
   } else {
     // TODO-QSP: dynamic text: Liamel Cafe is current closed, it is open every day '+func('time', 'get_time_str...
-    scene.text('Liamel Cafe is current closed, it is open every day \'+func(\'time\', \'get_time_string\', 10, 0)+\' - \'+func(\'time\', \'get_time_string\', 22, 0)+\'');
+    scene.text('Liamel Cafe is current closed, it is open every day 10:00 - 22:00');
   }
   if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 17) {
     scene.text('The long standing alternative clothing shop <a href="exec:gt \'shop_tsar_bomba\',\'start\'">Tsar Bomba</a> is unmistakable amongst the tourist shops on the main square.');
@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Catering for the burlesque club here there is the <a href="exec:gt \'shop_fancy_pancy\',\'start\'">Fancy Pancy</a> boutique clothing store.');
   } else {
     // TODO-QSP: dynamic text: Tsar Bomba, Flamingos and Fansy Pansy, are all current closed, they are open ope...
-    scene.text('Tsar Bomba, Flamingos and Fansy Pansy, are all current closed, they are open open Mon - Sat day 9:00 - \'+func(\'time\', \'get_time_string\', 18, 0)+\'');
+    scene.text('Tsar Bomba, Flamingos and Fansy Pansy, are all current closed, they are open open Mon - Sat day 9:00 - 18:00');
   }
   if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) < 18) {
     scene.text('<a href="exec:gt \'pushkin_ballet_secrets\',\'init\'">Ballet Secrets</a> is located at the end of a well maintained alleyway with a flamboyant ballet shop display and despite it\'s name the premises offers a wide range of services for dancers and athletes. ');
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('The dance shop is closed, but you can still access the <a href="exec:gt \'pushkin_ballet_secrets\',\'init\'">Members Area</a> with your card.');
     } else {
       // TODO-QSP: dynamic text: Ballet Secrets is currently closed. The shop opens '+func('time', 'get_time_stri...
-      scene.text('Ballet Secrets is currently closed. The shop opens \'+func(\'time\', \'get_time_string\', 9, 0)+\'-\'+func(\'time\', \'get_time_string\', 17, 0)+\' Monday to Saturday, and members only access for class is open on Sunday from \'+func(\'time\', \'get_time_string\', 10, 0)+\' - \'+func(\'time\', \'get_time_string\', 17, 0)+\'.');
+      scene.text('Ballet Secrets is currently closed. The shop opens 9:00-17:00 Monday to Saturday, and members only access for class is open on Sunday from 10:00 - 17:00.');
     }
   }
   if (((s as any).exhibitionQW ?? 0) > 3) {
@@ -51,7 +51,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('<a href="exec:gt \'shop_exhibitionist\',\'start\'">Simply Salacious</a> is just down a small side street from here.');
     } else {
       // TODO-QSP: dynamic text: <b>Simply Salacious,</b> is open Mon - Sat, 8:00 - '+func('time', 'get_time_stri...
-      scene.text('<b>Simply Salacious,</b> is open Mon - Sat, 8:00 - \'+func(\'time\', \'get_time_string\', 18, 0)+\'');
+      scene.text('<b>Simply Salacious,</b> is open Mon - Sat, 8:00 - 18:00');
     }
   }
   if (((s as any).hour ?? 0) >= 12  ||  ((s as any).hour ?? 0) < 2) {
@@ -63,7 +63,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     // TODO-QSP: dynamic text: The old theatre that houses a burlesque club is closed now. It is open every day...
-    scene.text('The old theatre that houses a burlesque club is closed now. It is open every day \'+func(\'time\', \'get_time_string\', 18, 0)+\' - \'+func(\'time\', \'get_time_string\', 23, 0)+\'');
+    scene.text('The old theatre that houses a burlesque club is closed now. It is open every day 18:00 - 23:00');
   }
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).cumloc ?? 0)[11] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
@@ -88,9 +88,9 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npcgeneratec', '', 0, '', 'like');
       qspCall(s, 'npcStat', '', ((s as any).npclastgenerated ?? 0));
       // TODO-QSP: dynamic text: You are approached by <<$npcheight_pref>>, <<$npcbuild>> guy with <<$npchair>> h...
-      scene.text(`You are approached by ${((s as any).npcheight_pref ?? 0)}, ${((s as any).npcbuild ?? 0)} guy with ${((s as any).npchair ?? 0)} hair. He is wearing ${((s as any).npcClo ?? 0)}.`);
+      scene.text(`You are approached by ${((s as any).npcheight_pref || '')}, ${((s as any).npcbuild || '')} guy with ${((s as any).npchair || '')} hair. He is wearing ${((s as any).npcClo || '')}.`);
       // TODO-QSP: dynamic text: The guy introduced himself as <<$boydesc>> and asks you for your telephone numbe...
-      scene.text(`The guy introduced himself as ${((s as any).boydesc ?? 0)} and asks you for your telephone number.`);
+      scene.text(`The guy introduced himself as ${((s as any).boydesc || '')} and asks you for your telephone number.`);
       return;
       scene.actions([
         { label: 'Walk away', goto: ['pushkin_sq', ''] },
@@ -98,7 +98,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lover', 'add_boyfriend', ((s as any).npcID ?? 0));
     (s as any).stopboy = 0;
     // TODO-QSP: dynamic text: <<$boydesc>> saved your phone number and left.
-    scene.text(`${((s as any).boydesc ?? 0)} saved your phone number and left.`);
+    scene.text(`${((s as any).boydesc || '')} saved your phone number and left.`);
     scene.actions([
       { label: 'Continue', goto: ['pushkin_sq', ''] },
     ]);
@@ -142,7 +142,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('The girls and boys at the local hangout happily greet you.');
     if (((s as any).pantyworntype ?? 0) === 'none'  &&  (!((s as any).sttan ?? 0))) {
       // TODO-QSP: dynamic text: "Hey guys, <<$pcs_nickname>> is going commando," one of the boys says.
-      scene.text(`"Hey guys, ${((s as any).pcs_nickname ?? 0)} is going commando," one of the boys says.`);
+      scene.text(`"Hey guys, ${((s as any).pcs_nickname || '')} is going commando," one of the boys says.`);
       scene.actions([
         { label: 'Continue', goto: ['dibodi', 'sotusa'] },
       ]);
@@ -160,13 +160,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Hold it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Hold it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Hold it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Hold it', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).stallionQ = 1;
   }, goto: ['pushkin_sq', ''] },

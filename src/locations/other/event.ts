@@ -56,7 +56,7 @@ function enterCityPark(s: GameState, scene: SceneBuilder): void {
 function enterHand(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/sex/event/event.jpg');
   // TODO-QSP: dynamic text: Without breaking the kiss you deftly unbutton his pants <<$boydesc>> and start t...
-  scene.text(`Without breaking the kiss you deftly unbutton his pants ${((s as any).boydesc ?? 0)} and start to wank your ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)]} cm friend. Unable to withstand such pressure he spills his seed on the ground.`);
+  scene.text(`Without breaking the kiss you deftly unbutton his pants ${((s as any).boydesc || '')} and start to wank your ${((s as any).npc_dick ?? 0)?.[String((s as any).boy ?? 0)] ?? ''} cm friend. Unable to withstand such pressure he spills his seed on the ground.`);
   qspCall(s, 'arousal', 'hj', 5, 'dom');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -69,7 +69,7 @@ function enterHand(s: GameState, scene: SceneBuilder): void {
 function enterBlow(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/centralpark/sex/event/event1.jpg');
   // TODO-QSP: dynamic text: You get on your knees, unbutton his pants, and dramatically immerse yourself in ...
-  scene.text(`You get on your knees, unbutton his pants, and dramatically immerse yourself in sucking his member, looking up as his face relaxs. After a few minutes the ${((s as any).boydesc ?? 0)} tenses in anticipation of orgasm`);
+  scene.text(`You get on your knees, unbutton his pants, and dramatically immerse yourself in sucking his member, looking up as his face relaxs. After a few minutes the ${((s as any).boydesc || '')} tenses in anticipation of orgasm`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -78,7 +78,7 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
     scene.img('images/shared/sex/cum/mouth/cum30.jpg');
     // TODO-QSP: dynamic text: A jet of hot sperm hits you in the mouth. You begin to swallow cum, and <<$boyde...
-    scene.text(`A jet of hot sperm hits you in the mouth. You begin to swallow cum, and ${((s as any).boydesc ?? 0)} continues to cum in your mouth. Finally, the flow of hot pungent liquid stops.`);
+    scene.text(`A jet of hot sperm hits you in the mouth. You begin to swallow cum, and ${((s as any).boydesc || '')} continues to cum in your mouth. Finally, the flow of hot pungent liquid stops.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'end');
@@ -89,27 +89,27 @@ function enterBlow(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
       scene.img('images/shared/sex/handjob/hj.jpg');
       // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
-      scene.text(`You take his cock out of your mouth and ${((s as any).boydesc ?? 0)} finishes in your hand.`);
+      scene.text(`You take his cock out of your mouth and ${((s as any).boydesc || '')} finishes in your hand.`);
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
         (s as any).tiprand = Math.floor(Math.random() * 4) + 0;
         if ((Math.floor(Math.random() * 4) + 0) < 3) {
           scene.img('images/shared/sex/handjob/hj.jpg');
           // TODO-QSP: dynamic text: You take his cock out of your mouth and <<$boydesc>> finishes in your hand.
-          scene.text(`You take his cock out of your mouth and ${((s as any).boydesc ?? 0)} finishes in your hand.`);
+          scene.text(`You take his cock out of your mouth and ${((s as any).boydesc || '')} finishes in your hand.`);
         } else {
           (s as any).spafinloc = 11;
           qspCall(s, 'cum_manage', '');
           scene.img('images/shared/sex/cum/facial/facial0,8.jpg');
           // TODO-QSP: dynamic text: You took his cock out of your mouth and immediately <<$boydesc>> cums directly o...
-          scene.text(`You took his cock out of your mouth and immediately ${((s as any).boydesc ?? 0)} cums directly on your face, covering it with his warm and sticky seed.`);
+          scene.text(`You took his cock out of your mouth and immediately ${((s as any).boydesc || '')} cums directly on your face, covering it with his warm and sticky seed.`);
         }
       } else {
         (s as any).spafinloc = 11;
         qspCall(s, 'cum_manage', '');
         scene.img('images/shared/sex/cum/facial/facial0,8.jpg');
         // TODO-QSP: dynamic text: <<$boydesc>> holds your hair, pulls his dick out of your mouth and finishes on y...
-        scene.text(`${((s as any).boydesc ?? 0)} holds your hair, pulls his dick out of your mouth and finishes on your face. Covering it with warm and sticky cum.`);
+        scene.text(`${((s as any).boydesc || '')} holds your hair, pulls his dick out of your mouth and finishes on your face. Covering it with warm and sticky cum.`);
       }
     }
     scene.actions([
@@ -127,7 +127,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
   scene.img('images/shared/sex/vag/doggy/dog.jpg');
   // TODO-QSP: dynamic text: You remove your heels, pull down your pants, and shake your ass invitingly. <<$b...
-  scene.text(`You remove your heels, pull down your pants, and shake your ass invitingly. ${((s as any).boydesc ?? 0)} pushes you onto all fours, and abruptly enters you`);
+  scene.text(`You remove your heels, pull down your pants, and shake your ass invitingly. ${((s as any).boydesc || '')} pushes you onto all fours, and abruptly enters you`);
   qspCall(s, 'arousal', 'vaginal', 15, 'sub');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -154,24 +154,24 @@ function enterDima(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     scene.text('"Thanks, My name is Dmitry".');
     // TODO-QSP: dynamic text: You hold out your hand to him - "<<$pcs_nickname>>".
-    scene.text(`You hold out your hand to him - "${((s as any).pcs_nickname ?? 0)}".`);
+    scene.text(`You hold out your hand to him - "${((s as any).pcs_nickname || '')}".`);
     scene.text('He was a man in his forties, average height, a pretty strong constitution, short dark hair, nose slightly hooked. Off you go, speaking about the weather, and current affairs. Finally, Dima says that you had arrived at his home. The house is a two-story, pretty cute. In the living room there is a man holding a bottle of beer.');
     scene.text('"Hi Dima, and I was bored and didn\'t know what to do", he says and adds, "What a beautiful woman you have with you, this lovely girl will surely brighten up our evening.". His eyes look all over your body and stop on your breasts.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>> meet Aleksei, my friend. My wife is not home yet, she went to...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)} meet Aleksei, my friend. My wife is not home yet, she went to see her mother, the train must be running late. Luda should be here soon and then we will be at full strength" Dima said smiling.`);
+    scene.text(`"${((s as any).pcs_nickname || '')} meet Aleksei, my friend. My wife is not home yet, she went to see her mother, the train must be running late. Luda should be here soon and then we will be at full strength" Dima said smiling.`);
     // TODO-QSP: dynamic text: "Aleksei, but you can call me Alex" introduced his friend. He was slightly talle...
-    scene.text(`"Aleksei, but you can call me Alex" introduced his friend. He was slightly taller than Dima and looked a little older. Dark-haired with blue eyes, a rather handsome man. You thought to yourself, "What am I doing here?" Probably, there is no wife, it's not too late to get out of here! But Dmitry puts his arm around your waist and leads you into the kitchen. "Alex, you have set the table without me, well done!" says Dmitry. "Here, have a seat in the middle ${((s as any).pcs_nickname ?? 0)}, we will look after you" said Alex while helping you sit. On the table are plates of snacks and a bottle of vodka. Dima pours the vodka. You say:`);
+    scene.text(`"Aleksei, but you can call me Alex" introduced his friend. He was slightly taller than Dima and looked a little older. Dark-haired with blue eyes, a rather handsome man. You thought to yourself, "What am I doing here?" Probably, there is no wife, it's not too late to get out of here! But Dmitry puts his arm around your waist and leads you into the kitchen. "Alex, you have set the table without me, well done!" says Dmitry. "Here, have a seat in the middle ${((s as any).pcs_nickname || '')}, we will look after you" said Alex while helping you sit. On the table are plates of snacks and a bottle of vodka. Dima pours the vodka. You say:`);
     scene.text('"I don\'t usually drink vodka." Maybe this was a bad idea.');
     qspCall(s, 'willpower', 'drink', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Make excuses and go [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Make excuses and go', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Make excuses and go [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Make excuses and go', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_residential', ''] },
@@ -570,13 +570,13 @@ function enterDima32(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'self', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Kick [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kick', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Kick [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kick', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['event', 'dima37'] },

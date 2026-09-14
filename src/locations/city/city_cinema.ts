@@ -10,10 +10,10 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Cinema</b></center>');
   scene.img('images/locations/city/citycenter/mall/cinema/cinema.jpg');
   // TODO-QSP: dynamic text: Small cinema ticket costs ' + $func('money', 'string_price', 300) + '.
-  scene.text('Small cinema ticket costs \' + $func(\'money\', \'string_price\', 300) + \'.');
+  scene.text('Small cinema ticket costs 300₽.');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
     scene.actions([
-      { label: 'Watch a movie [+$func(\'money\', \'get_cost_string\', 300)]', handler: (st: GameState) => {
+      { label: 'Watch a movie', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -40,7 +40,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) < 8) {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'stat', '');
-    qspCall(s, 'city_cinema', 'movie');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMovie(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave', goto: ['city_cinema', ''] },
     ]);
@@ -55,7 +55,7 @@ function enterWatchMovie(s: GameState, scene: SceneBuilder): void {
         { label: 'Just watch the movie', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'stat', '');
-    qspCall(s, 'city_cinema', 'movie');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMovie(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Leave', goto: ['city_cinema', ''] },
     ]);
@@ -142,13 +142,13 @@ function enterSex2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Run away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Run away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_cinema', ''] },

@@ -168,7 +168,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
   // TODO-QSP: dynamic text: You open the fridge and see:<<$artem_tea>><<$artem_water>><<$artem_sup>><<$artem...
-  scene.text(`You open the fridge and see:${((s as any).artem_tea ?? 0)}${((s as any).artem_water ?? 0)}${((s as any).artem_sup ?? 0)}${((s as any).artem_lefto ?? 0)}${((s as any).artem_sanw ?? 0)}`);
+  scene.text(`You open the fridge and see:${((s as any).artem_tea || '')}${((s as any).artem_water || '')}${((s as any).artem_sup || '')}${((s as any).artem_lefto || '')}${((s as any).artem_sanw || '')}`);
   if (((s as any).kotovlefto_count ?? 0) > 0) {
     scene.actions([
       { label: 'Eat some left overs', handler: (st: GameState) => {
@@ -385,7 +385,7 @@ function enterAfterSex(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npc_rel ?? 0)?.[String((s as any).boy ?? 0)] <= 50  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
     // TODO-QSP: dynamic text: "Thanks for the fuck, <<$pcs_nickname>>," he says with a satisfied grin while lo...
-    scene.text(`"Thanks for the fuck, ${((s as any).pcs_nickname ?? 0)}," he says with a satisfied grin while looking up at you from the bed. "Take care, you are more than welcome here."`);
+    scene.text(`"Thanks for the fuck, ${((s as any).pcs_nickname || '')}," he says with a satisfied grin while looking up at you from the bed. "Take care, you are more than welcome here."`);
     scene.actions([
       { label: 'Say goodbye and leave', goto: ['pav_residential', ''] },
     ]);

@@ -200,7 +200,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).mosol = 0;
   } else {
     if (((s as any).pantyworntype ?? 0) === 'none'  &&  ((s as any).PCloPants ?? 0) > 0  &&  ((s as any).PCloPanties ?? 0) === 0  &&  ((s as any).clothingworntype ?? 0) !== 'nude') {
-      (s as any).mosol = ((s as any).mosol ?? 0) + (Math.max(0, 2 - ((s as any).trait_vars ?? {})?.['panty_preference']));
+      (s as any).mosol = ((s as any).mosol ?? 0) + (Math.max(0, 2 - (((s as any).trait_vars ?? {})?.['panty_preference'] ?? 0)));
       if (((s as any).mosol ?? 0) >= 100) {
         qspCall(s, 'mood', 'lower', 'tiny');
       }

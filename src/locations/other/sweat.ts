@@ -1,7 +1,5 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -27,7 +25,7 @@ function enterShower(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_sweat ?? 0) >= 10) {
     (s as any).pcs_sweat = Math.floor(Math.random() * 10) + 0;
   }
-  qspCall(s, 'sweat', 'remove_deo');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRemoveDeo(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

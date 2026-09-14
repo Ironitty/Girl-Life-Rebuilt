@@ -260,7 +260,7 @@ function enterBuy(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: gs 'money', 'pay', ARGS[4]
   // TODO-QSP: gs 'tattoo_management', 'add', $ARGS[2], ARGS[3]
-  qspCall(s, 'tattoo_management', 'count');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCount(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc', 'loc_arg'); } }]);
   // TODO-QSP: end

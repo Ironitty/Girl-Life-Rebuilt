@@ -16,7 +16,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/industrial/bbq/lakecafe.jpg');
   scene.text('An old-fashioned BBQ café/diner near the lake, known for offering relatively cheap but tasty meals.');
   // TODO-QSP: dynamic text: Opening hours are from '+func('time', 'get_time_string', 14, 0)+' until '+func('...
-  scene.text('Opening hours are from \'+func(\'time\', \'get_time_string\', 14, 0)+\' until \'+func(\'time\', \'get_time_string\', 4, 0)+\'');
+  scene.text('Opening hours are from 14:00 until 4:00');
   if (((s as any).hour ?? 0) >= 14  ||  ((s as any).hour ?? 0) < 4) {
     if (((s as any).npc_QW ?? 0)?.['A89'] === 0) {
       if (((s as any).barrnd ?? 0) === 1) {
@@ -50,7 +50,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).LCwork ?? 0) === 1) {
           // TODO-QSP: dynamic text: <a href="exec:gt 'LCwork', 'start1'"><<randguycafe>> men</a> are seated at one o...
-          scene.text(`<a href="exec:gt 'LCwork', 'start1'">${((s as any).randguycafe ?? 0)} men</a> are seated at one of the tables. They're talking loudly and laughing while having drinks.`);
+          scene.text(`<a href="exec:gt 'LCwork', 'start1'">${((s as any).randguycafe || '')} men</a> are seated at one of the tables. They're talking loudly and laughing while having drinks.`);
         }
       } else {
         if (((s as any).LCWorkRand ?? 0) === 2) {
@@ -107,7 +107,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: gs 'food_menu'
   } },
-      { label: 'Order take-out (0:20) [+$func(\'money\', \'get_cost_string\', 350)]', handler: (st: GameState) => {
+      { label: 'Order take-out (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -165,7 +165,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).npc_QW ?? 0)?.['A89'] >= 1) {
       // TODO-QSP: dynamic text: Eugene smiles as she sees you approach the bar and cheerfully greets you. "Hi <<...
-      scene.text(`Eugene smiles as she sees you approach the bar and cheerfully greets you. "Hi ${((s as any).pcs_nickname ?? 0)}! What's up?"`);
+      scene.text(`Eugene smiles as she sees you approach the bar and cheerfully greets you. "Hi ${((s as any).pcs_nickname || '')}! What's up?"`);
       scene.actions([
         { label: 'Leave Eugene so she can work', goto: ['lakecafe', 'main'] },
       ]);
@@ -214,7 +214,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
     scene.text('"No!" you shout in resistance.');
     scene.text('She seems disappointed as she lets go of your hand.');
     // TODO-QSP: dynamic text: "We both know what kind of girl you are, <<$pcs_nickname>>. Don't pretend you ar...
-    scene.text(`"We both know what kind of girl you are, ${((s as any).pcs_nickname ?? 0)}. Don't pretend you aren't."`);
+    scene.text(`"We both know what kind of girl you are, ${((s as any).pcs_nickname || '')}. Don't pretend you aren't."`);
     scene.actions([
       { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', (-5));
@@ -248,7 +248,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
               ]);
             } else {
               // TODO-QSP: dynamic text: "I seem to have a growing problem, <<$pcs_nickname>>. Could you help me out?"
-              scene.text(`"I seem to have a growing problem, ${((s as any).pcs_nickname ?? 0)}. Could you help me out?"`);
+              scene.text(`"I seem to have a growing problem, ${((s as any).pcs_nickname || '')}. Could you help me out?"`);
               scene.actions([
                 { label: 'Not today', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', (-1));
@@ -323,7 +323,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
     if (((s as any).LCworkwork2 ?? 0) < 1) {
       scene.text('"I\'m looking for a job. Would you happen to know about anything?" you ask Eugene with a smile.');
       // TODO-QSP: dynamic text: She ponders for a second before answering. "Actually, my sister always complains...
-      scene.text(`She ponders for a second before answering. "Actually, my sister always complains about how busy she is in the kitchen during the early evening hours. If you come between '+func('time', 'get_time_string', 18, 0)+' and '+func('time', 'get_time_string', 19, 0)+', you could probably help her out for a bit. We'd pay you ${qspFunc(s, 'money', 'string_profit', 300)} for your troubles!"`);
+      scene.text(`She ponders for a second before answering. "Actually, my sister always complains about how busy she is in the kitchen during the early evening hours. If you come between 18:00 and 19:00, you could probably help her out for a bit. We'd pay you ${qspFunc(s, 'money', 'string_profit', 300)} for your troubles!"`);
       scene.text('You smile at and thank her, saying you\'ll keep it in mind.');
       (s as any).LCworkwork2 = 1;
       (s as any).LCwork2 = 1;
@@ -334,7 +334,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: When you ask Eugene about a job, she laughs. "Did you forget <<$pcs_nickname>>? ...
-      scene.text(`When you ask Eugene about a job, she laughs. "Did you forget ${((s as any).pcs_nickname ?? 0)}? I already told you that my sister could use some help in the kitchen! If you come between '+func('time', 'get_time_string', 18, 0)+' and '+func('time', 'get_time_string', 19, 0)+', you can help her out for a bit and we'll pay you ${qspFunc(s, 'money', 'string_profit', 300)} for your time."`);
+      scene.text(`When you ask Eugene about a job, she laughs. "Did you forget ${((s as any).pcs_nickname || '')}? I already told you that my sister could use some help in the kitchen! If you come between 18:00 and 19:00, you can help her out for a bit and we'll pay you ${qspFunc(s, 'money', 'string_profit', 300)} for your time."`);
       scene.actions([
         { label: 'Thank her for the reminder', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 4;
@@ -355,7 +355,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_love ?? 0)?.['A89'] > 60) {
           // TODO-QSP: dynamic text: Eugene blushes. "That's something some of the girls do here. I don't think you s...
-          scene.text(`Eugene blushes. "That's something some of the girls do here. I don't think you should do it, ${((s as any).pcs_nickname ?? 0)}."`);
+          scene.text(`Eugene blushes. "That's something some of the girls do here. I don't think you should do it, ${((s as any).pcs_nickname || '')}."`);
           scene.actions([
             { label: 'Press for more information', handler: (st: GameState) => {
     scene.text('You press for more information, but Eugene seems to be hurt by your insistence. She begs you not to ask any more.');
@@ -364,23 +364,23 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).npc_love) (s as any).npc_love = {}; (s as any).npc_love['A89'] = ((s as any).npc_love['A89'] ?? 0) - (5);
     qspCall(s, 'npc_relationship', 'modify', 'A89', (-20));
     // TODO-QSP: dynamic text: You refuse to relent and Eugene sighs. "All our regulars know that we 'arrange m...
-    scene.text(`You refuse to relent and Eugene sighs. "All our regulars know that we 'arrange meetings' every Monday between '+func('time', 'get_time_string', 22, 0)+' and '+func('time', 'get_time_string', 23, 0)+'. If you're here at that time and want to earn some money, introduce yourself to the person or group you want to service and say 'I'll be your waitress tonight.' They'll know what it means, but I beg you, please don't do it ${((s as any).pcs_nickname ?? 0)}!"`);
+    scene.text(`You refuse to relent and Eugene sighs. "All our regulars know that we 'arrange meetings' every Monday between 22:00 and 23:00. If you're here at that time and want to earn some money, introduce yourself to the person or group you want to service and say 'I'll be your waitress tonight.' They'll know what it means, but I beg you, please don't do it ${((s as any).pcs_nickname || '')}!"`);
     scene.text('You see tears forming in her eyes.');
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Say you won\'t do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Say you won\'t do it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Say you won\'t do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Say you won\'t do it', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.text('Eugene seems relieved as she looks back at you.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>. I don't know what I would do if you were doing th...
-    scene.text(`"Thank you, ${((s as any).pcs_nickname ?? 0)}. I don't know what I would do if you were doing that…"`);
+    scene.text(`"Thank you, ${((s as any).pcs_nickname || '')}. I don't know what I would do if you were doing that…"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).LCworkwork = 2;
@@ -407,28 +407,28 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).npc_love ?? 0)?.['A89'] > 30) {
             // TODO-QSP: dynamic text: Eugene blushes. "That's something some of the girls do here, but it's not someth...
-            scene.text(`Eugene blushes. "That's something some of the girls do here, but it's not something I would like to see you doing, ${((s as any).pcs_nickname ?? 0)}."`);
+            scene.text(`Eugene blushes. "That's something some of the girls do here, but it's not something I would like to see you doing, ${((s as any).pcs_nickname || '')}."`);
             scene.actions([
               { label: 'Press for more information', handler: (st: GameState) => {
     scene.text('You press Eugene for more information and Eugene seems to be hurt by your insistence, but she reluctantly relents.');
     // TODO-QSP: dynamic text: "All our regulars know that we 'arrange meetings' every Monday between '+func('t...
-    scene.text(`"All our regulars know that we 'arrange meetings' every Monday between '+func('time', 'get_time_string', 22, 0)+' and '+func('time', 'get_time_string', 23, 0)+'. If you're here at that time and want to earn some money, introduce yourself to the person or group you want to service and say 'I'll be your waitress tonight.' They'll know what it means. From what the girls told me, they get paid between ${qspFunc(s, 'money', 'string_profit', 500)} and ${qspFunc(s, 'money', 'string_profit', 1000)}."`);
+    scene.text(`"All our regulars know that we 'arrange meetings' every Monday between 22:00 and 23:00. If you're here at that time and want to earn some money, introduce yourself to the person or group you want to service and say 'I'll be your waitress tonight.' They'll know what it means. From what the girls told me, they get paid between ${qspFunc(s, 'money', 'string_profit', 500)} and ${qspFunc(s, 'money', 'string_profit', 1000)}."`);
     scene.text('Before you leave, she adds "Please don\'t do it though. I\'m starting to care for you and…" She looks away from you before finishing her sentence.');
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Say you won\'t do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Say you won\'t do it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Say you won\'t do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Say you won\'t do it', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.text('Eugene seems relieved as she looks back at you.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>. I don't know what I would do if you were doing th...
-    scene.text(`"Thank you, ${((s as any).pcs_nickname ?? 0)}. I don't know what I would do if you were doing that…"`);
+    scene.text(`"Thank you, ${((s as any).pcs_nickname || '')}. I don't know what I would do if you were doing that…"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).LCworkwork = 2;
@@ -453,14 +453,14 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
           } else {
             if ((!((s as any).LCknowslut ?? 0))) {
               // TODO-QSP: dynamic text: Eugene ponders for a minute before deciding that she can trust you. "We… we do o...
-              scene.text('Eugene ponders for a minute before deciding that she can trust you. "We… we do offer special services, once a week. It\'s every Monday, at \'+func(\'time\', \'get_time_string\', 22, 0)+\'. I\'m not sure it\'s something you would be interested in though…"');
+              scene.text('Eugene ponders for a minute before deciding that she can trust you. "We… we do offer special services, once a week. It\'s every Monday, at 22:00. I\'m not sure it\'s something you would be interested in though…"');
               scene.text('She confesses when she sees the confusion on your face. "It\'s… it\'s borderline prostitution, really. Some of the girls working here earn some extra money on the side by offering themselves to our customers after work. It happened sporadically at first, but then it became so popular that we organize a weekly event now. Customers can hook up with our waitresses, and our waitresses can earn some extra cash if they want. Everybody wins… right?"');
               scene.actions([
                 { label: 'Ask for more information', handler: (st: GameState) => {
     scene.text('Eugene notices the spark in your eye and laughs. "I see you might be interested after all!"');
     scene.text('You play it cool. "Maybe. But just in case I were, how does it work?"');
     // TODO-QSP: dynamic text: She gives you a kind smile. "I trust you, so… okay. I'll let you do it if you wa...
-    scene.text(`She gives you a kind smile. "I trust you, so… okay. I'll let you do it if you want. Like I said, all our regulars know that we 'arrange meetings' every Monday between '+func('time', 'get_time_string', 22, 0)+' and '+func('time', 'get_time_string', 23, 0)+'. If you're here at that time and want to earn some money, introduce yourself to the person or group you want to service and say 'I'll be your waitress tonight.' They'll know what it means. From what the girls told me, they get paid between ${qspFunc(s, 'money', 'string_profit', 500)} and ${qspFunc(s, 'money', 'string_profit', 1000)}."`);
+    scene.text(`She gives you a kind smile. "I trust you, so… okay. I'll let you do it if you want. Like I said, all our regulars know that we 'arrange meetings' every Monday between 22:00 and 23:00. If you're here at that time and want to earn some money, introduce yourself to the person or group you want to service and say 'I'll be your waitress tonight.' They'll know what it means. From what the girls told me, they get paid between ${qspFunc(s, 'money', 'string_profit', 500)} and ${qspFunc(s, 'money', 'string_profit', 1000)}."`);
     scene.text('Before you leave, she adds "Keep in mind that the diner is just a meeting area; whatever happens when you leave with someone is between you and them! Don\'t embarrass us though, we\'d hate to lose regular customers, no matter how perverted they might be!" She added the last bit with a laugh and a wink.');
     scene.actions([
       { label: 'Say you\'ll think about it', handler: (st: GameState) => {
@@ -474,7 +474,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
             } else {
               scene.text('Eugene smiles at you. "This is something right up your alley"');
               // TODO-QSP: dynamic text: All our regulars know that we 'arrange meetings' every Monday between '+func('ti...
-              scene.text(`All our regulars know that we 'arrange meetings' every Monday between '+func('time', 'get_time_string', 22, 0)+' and '+func('time', 'get_time_string', 23, 0)+'. If you're here at that time and want to earn some money, introduce yourself to the person or group you want to service and say: 'I'll be your waitress tonight.' They'll know what it means. From what the girls told me, they get paid between ${qspFunc(s, 'money', 'string_profit', 500)} and ${qspFunc(s, 'money', 'string_profit', 1000)}."`);
+              scene.text(`All our regulars know that we 'arrange meetings' every Monday between 22:00 and 23:00. If you're here at that time and want to earn some money, introduce yourself to the person or group you want to service and say: 'I'll be your waitress tonight.' They'll know what it means. From what the girls told me, they get paid between ${qspFunc(s, 'money', 'string_profit', 500)} and ${qspFunc(s, 'money', 'string_profit', 1000)}."`);
               scene.text('Before you leave, she adds "Keep in mind that the diner is just a meeting area; whatever happens when you leave with someone is between you and them! Don\'t embarrass us though, we\'d hate to lose regular customers, no matter how perverted they might be."');
               scene.actions([
                 { label: 'Thank her for the information', handler: (st: GameState) => {
@@ -492,7 +492,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
         if (((s as any).LCknowslut ?? 0) === 1  &&  ((s as any).npc_love ?? 0)?.['A89'] > 30) {
           scene.text('Eugene glares at you.');
           // TODO-QSP: dynamic text: "Did you come to brag about how much of a slut you are, <<$pcs_firstname>>? If y...
-          scene.text(`"Did you come to brag about how much of a slut you are, ${((s as any).pcs_firstname ?? 0)}? If you want to whore yourself out, come here on Monday night between '+func('time', 'get_time_string', 22, 0)+' and '+func('time', 'get_time_string', 23, 0)+' and show the men here what kind of a person you are. Just don't lose us any customers."`);
+          scene.text(`"Did you come to brag about how much of a slut you are, ${((s as any).pcs_firstname || '')}? If you want to whore yourself out, come here on Monday night between 22:00 and 23:00 and show the men here what kind of a person you are. Just don't lose us any customers."`);
           scene.text('She turns around and walks away from you.');
           if (!(s as any).npc_love) (s as any).npc_love = {}; (s as any).npc_love['A89'] = (-5);
           scene.actions([
@@ -502,7 +502,7 @@ function enterBarmensha(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           // TODO-QSP: dynamic text: "So you're still interested in that, huh?" she smirks when you mention the speci...
-          scene.text(`"So you're still interested in that, huh?" she smirks when you mention the special work. "Like I said, our regulars know that we 'arrange meetings' every Monday between '+func('time', 'get_time_string', 22, 0)+' and '+func('time', 'get_time_string', 23, 0)+'. If you're here at that time and want to earn some money using your body, introduce yourself to the person or group you want to service and say 'I'll be your waitress tonight.' They'll know what it means. From what the girls told me, they get paid between ${qspFunc(s, 'money', 'string_profit', 500)} and ${qspFunc(s, 'money', 'string_profit', 1000)}."`);
+          scene.text(`"So you're still interested in that, huh?" she smirks when you mention the special work. "Like I said, our regulars know that we 'arrange meetings' every Monday between 22:00 and 23:00. If you're here at that time and want to earn some money using your body, introduce yourself to the person or group you want to service and say 'I'll be your waitress tonight.' They'll know what it means. From what the girls told me, they get paid between ${qspFunc(s, 'money', 'string_profit', 500)} and ${qspFunc(s, 'money', 'string_profit', 1000)}."`);
           scene.actions([
             { label: 'Thank her for the reminder', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -530,7 +530,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     (s as any).eugene_randy = ((s as any).daystart ?? 0);
     scene.text('Angela leaves as you\'re in the middle of chopping vegetables. A few seconds later, Eugene comes in and walks up behind you, leaning against your back. You can feel her breasts against your back and her stiff cock against your ass.');
     // TODO-QSP: dynamic text: "I seem to have a growing problem, <<$pcs_nickname>>. Could you help me out?"
-    scene.text(`"I seem to have a growing problem, ${((s as any).pcs_nickname ?? 0)}. Could you help me out?"`);
+    scene.text(`"I seem to have a growing problem, ${((s as any).pcs_nickname || '')}. Could you help me out?"`);
     scene.actions([
       { label: 'Not today', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A89', (-1));
@@ -584,7 +584,7 @@ function enterBandits(s: GameState, scene: SceneBuilder): void {
       { label: 'Promise you\'ll pay him on time', handler: (st: GameState) => {
     scene.text('"I\'ll pay you back on time! I swear!" you plead.');
     // TODO-QSP: dynamic text: "Talk is cheap, <<$pcs_firstname>> <<$pcs_lastname>>. You have <<workDolgDay>> d...
-    scene.text(`"Talk is cheap, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}. You have ${((s as any).workDolgDay ?? 0)} days, don't forget!" he shrugs, and turns back to his associates.`);
+    scene.text(`"Talk is cheap, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}. You have ${((s as any).workDolgDay || '')} days, don't forget!" he shrugs, and turns back to his associates.`);
   } },
     ]);
   }
@@ -674,7 +674,7 @@ function enterBandits(s: GameState, scene: SceneBuilder): void {
           scene.text('One of them extends his hand out at you. "Passport. Now."');
           scene.text('With your passport in his hand, he makes a few quick phone calls. He writes some stuff down before handing you your passport back, along with your money.');
           // TODO-QSP: dynamic text: "Listen up, <<$pcs_firstname>> <<$pcs_lastname>>," he grunts. "You have <<workDo...
-          scene.text(`"Listen up, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}," he grunts. "You have ${((s as any).workDolgDay ?? 0)} days to pay back the ${qspFunc(s, 'money', 'string_profit', ((s as any).intinp ?? 0), 1)}, plus ${qspFunc(s, 'money', 'string_price', (((s as any).intinp ?? 0) / 100) * 20, 1)} in interest."`);
+          scene.text(`"Listen up, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}," he grunts. "You have ${((s as any).workDolgDay || '')} days to pay back the ${qspFunc(s, 'money', 'string_profit', ((s as any).intinp || ''), 1)}, plus ${qspFunc(s, 'money', 'string_price', (((s as any).intinp ?? '') / 100) * 20, 1)} in interest."`);
           scene.text('When you nod, he grabs your wrist roughly. "<i>Don\'t</i> screw us over! I know everything about you, and I <i>will</i> get my money back, one way or the other…"');
           scene.actions([
             { label: 'Promise you\'ll pay and leave', goto: ['lakecafe', 'main'] },

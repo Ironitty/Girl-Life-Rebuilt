@@ -119,7 +119,7 @@ function enterShortBreak(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/island/university/lecture_hall/lecture_hall.jpg');
   scene.text('Walking down the halls, you\'re amazed at how well maintained the buildings are compared to your old school.');
   qspCall(s, 'katja_pantyquest', 'uni');
-  qspCall(s, 'uni_lessons', 'schedule');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.actions([

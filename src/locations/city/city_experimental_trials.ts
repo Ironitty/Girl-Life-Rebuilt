@@ -26,7 +26,7 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).experimentQW ?? 0)?.['signed'] !== 0) {
     // TODO-QSP: dynamic text: She looks up as you walk in and warmly welcomes you inside. "Hello Miss <<$pcs_l...
-    scene.text(`She looks up as you walk in and warmly welcomes you inside. "Hello Miss ${((s as any).pcs_lastname ?? 0)}, how can I help you today?"`);
+    scene.text(`She looks up as you walk in and warmly welcomes you inside. "Hello Miss ${((s as any).pcs_lastname || '')}, how can I help you today?"`);
     if (((s as any).experimentQW ?? 0)?.['trial_active'] === '') {
       scene.actions([
         { label: 'Ask which clinical trials are available', goto: ['city_experimental_trials_list', 'see_trials'] },
@@ -46,7 +46,7 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
       if ((!(Math.floor(Math.random() * 3) + 0))) {
         (s as any).temp_tip = 10 * (((s as any).pcs_intel ?? 0) * (Math.floor(Math.random() * 3) + 1) / 10);
         // TODO-QSP: dynamic text: "I think your dedication should be rewarded," she adds and hands you various not...
-        scene.text(`"I think your dedication should be rewarded," she adds and hands you various notes adding up to ${qspFunc(s, 'money', 'string_profit', ((s as any).temp_tip ?? 0))}.`);
+        scene.text(`"I think your dedication should be rewarded," she adds and hands you various notes adding up to ${qspFunc(s, 'money', 'string_profit', ((s as any).temp_tip || ''))}.`);
         qspCall(s, 'money', 'earn', ((s as any).temp_tip ?? 0));
       }
     }
@@ -98,7 +98,7 @@ function enterFrontDesk(s: GameState, scene: SceneBuilder): void {
     scene.img('images\\locations\\city\\residential\\clinic\\experiments\\desk1.jpg');
     scene.text('You hand the signed document back to the woman.');
     // TODO-QSP: dynamic text: "Thank you Miss… <<$pcs_lastname>>," she says as she looks it over. "We'll add y...
-    scene.text(`"Thank you Miss… ${((s as any).pcs_lastname ?? 0)}," she says as she looks it over. "We'll add you to our database and you can enter our various trials. The contract you signed is legally binding, so you're not allowed to discuss your experiences with anybody outside of this clinic."`);
+    scene.text(`"Thank you Miss… ${((s as any).pcs_lastname || '')}," she says as she looks it over. "We'll add you to our database and you can enter our various trials. The contract you signed is legally binding, so you're not allowed to discuss your experiences with anybody outside of this clinic."`);
     scene.text('"It\'s to protect our proprietary technology," she adds, seemingly having noticed the look on your face. "If you talk about what happens here, then you can leak our discoveries. Everything will be fine so long as you keep this to yourself."');
     scene.actions([
       { label: 'Return to the front desk', goto: ['city_experimental_trials', 'front_desk'] },

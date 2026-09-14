@@ -8,13 +8,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   (s as any).nosave = 1;
   qspCall(s, 'stat', '');
-  if (!(s as any).KGZVars) (s as any).KGZVars = {}; (s as any).KGZVars['rec'] = (((s as any).KGZVars ?? {})?.['day'] - 1) * 24 + (((s as any).KGZVars ?? {})?.['hour'] - 8);
+  if (!(s as any).KGZVars) (s as any).KGZVars = {}; (s as any).KGZVars['rec'] = ((((s as any).KGZVars ?? {})?.['day'] ?? 0) - 1) * 24 + ((((s as any).KGZVars ?? {})?.['hour'] ?? 0) - 8);
   if (((s as any).KGZVars ?? 0)?.['record'] < ((s as any).KGZVars ?? 0)?.['rec']) {
     if (!(s as any).KGZVars) (s as any).KGZVars = {}; (s as any).KGZVars['record'] = ((s as any).KGZVars ?? 0)?.['rec'];
   }
   scene.text('<center><b>Dead City</b></center>');
   // TODO-QSP: dynamic text: <center><b>Your record: <<KGZVars['record']>> hours</b></center>
-  scene.text(`<center><b>Your record: ${((s as any).KGZVars ?? 0)?.['record']} hours</b></center>`);
+  scene.text(`<center><b>Your record: ${((s as any).KGZVars ?? 0)?.['record'] ?? ''} hours</b></center>`);
   if (((s as any).KGZVars ?? 0)?.['dost'] === 1) {
     scene.text('Achievement unlocked: Found Fort Bragg');
   }

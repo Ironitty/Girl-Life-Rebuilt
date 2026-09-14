@@ -42,13 +42,13 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'exhib', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Carry on [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Carry on', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Carry on [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Carry on', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'modify', 'A69', 2);
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (2);
@@ -89,13 +89,13 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   if ((((s as any).pcs_horny ?? 0) >= 70  ||  ((s as any).fame ?? 0)?.['pav_slut'] > 50)) {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Masturbate [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Masturbate', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Masturbate [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Masturbate', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'modify', 'A69', 1);
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (4);
@@ -152,13 +152,13 @@ function enter3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'cum_outside', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Cover up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Cover up', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Cover up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Cover up', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower12.jpg');
     scene.text('Scared, you cover you ass with your hands and look at him like a deer caught in the headlights.');
@@ -332,13 +332,13 @@ function enter5(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'sex', 'self');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Jump on his member [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Jump on his member', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Jump on his member [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Jump on his member', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/community/gym/volley/sex/voltrenersexshower27.jpg');
     qspCall(s, 'arousal', 'foreplay', (-15), 'sub');

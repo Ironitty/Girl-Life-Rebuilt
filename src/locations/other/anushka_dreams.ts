@@ -975,16 +975,16 @@ function enterDream3Fuck2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'D<<strapNumber>>');
   if (((s as any).strapNumber ?? 0) > 3) {
     // TODO-QSP: dynamic text: You push your hips forward, there is a little resistance from her pussy. As your...
-    scene.text(`You push your hips forward, there is a little resistance from her pussy. As your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} magical cock forces it's way into her wet pussy stretching it out, she gasps which quickly turns into a moan of pleasure. Her pussy tightly grips the shaft of your dick as you slide it further into her, "OH FUCK! You cock is so big." She cries out.`);
+    scene.text(`You push your hips forward, there is a little resistance from her pussy. As your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} magical cock forces it's way into her wet pussy stretching it out, she gasps which quickly turns into a moan of pleasure. Her pussy tightly grips the shaft of your dick as you slide it further into her, "OH FUCK! You cock is so big." She cries out.`);
     scene.text('You moan yourself as her tight little snatch milks your dick. "Just the way you like it." You respond to her as you start fucking her slowly, she tries to pull away a little, but your hands hold her hips firmly. You go slow letting her get use to your huge cock.');
   } else {
     if (((s as any).strapNumber ?? 0) < 3) {
       // TODO-QSP: dynamic text: You push your hips forward, your small <<dick>>cm <<$dick_girth>> magical cock s...
-      scene.text(`You push your hips forward, your small ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} magical cock slides into her pussy fairly easily. She moans slightly as you slide it deeper inside of her, "OH! Yes… that feels good, but maybe next time bring a bigger dick." She says with a giggle.`);
+      scene.text(`You push your hips forward, your small ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} magical cock slides into her pussy fairly easily. She moans slightly as you slide it deeper inside of her, "OH! Yes… that feels good, but maybe next time bring a bigger dick." She says with a giggle.`);
       scene.text('You moan yourself as her tight little snatch milks your dick. "Fuck you slut, what are you a size queen?" You respond to her as you start fucking her, she doesn\'t respond to your question but rocks back against your hips as you fuck her.');
     } else {
       // TODO-QSP: dynamic text: You push your hips forward, your <<dick>>cm <<$dick_girth>> magical cock slides ...
-      scene.text(`You push your hips forward, your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} magical cock slides into her snug little pussy. She moans as you slide it deeper inside of her, "OH fuck! Oh um… yes… that feels so good." She says between moans of pleasure.`);
+      scene.text(`You push your hips forward, your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} magical cock slides into her snug little pussy. She moans as you slide it deeper inside of her, "OH fuck! Oh um… yes… that feels so good." She says between moans of pleasure.`);
       scene.text('You moan yourself as her tight little snatch milks your dick. "Yeah you like my fat cock in your pussy, don\'t you slut?" You respond to her as you start fucking her, she doesn\'t respond to your question. She just stays in her doggy style position hot and ready to be fucked by you.');
     }
   }
@@ -1036,16 +1036,16 @@ function enterDream3Fuck3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'D<<strapNumber>>');
   if (((s as any).strapNumber ?? 0) > 3) {
     // TODO-QSP: dynamic text: You push your hips forward, feel a lot of resistance from her asshole as she say...
-    scene.text(`You push your hips forward, feel a lot of resistance from her asshole as she says. "Owe, fuck… you're to big." You know some of the guys she lets fuck her butt, you know you are not to big for her. Grabbing her hips with both hands and thrusting your hips forward. You pop the head of your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} magical cock into her ass, you feel her try and pull away as she hisses in pain, as she cries out. "NO… fuck… your to big… fuck… stop…"`);
+    scene.text(`You push your hips forward, feel a lot of resistance from her asshole as she says. "Owe, fuck… you're to big." You know some of the guys she lets fuck her butt, you know you are not to big for her. Grabbing her hips with both hands and thrusting your hips forward. You pop the head of your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} magical cock into her ass, you feel her try and pull away as she hisses in pain, as she cries out. "NO… fuck… your to big… fuck… stop…"`);
     scene.text('You moan in pleasure as her tight little asshole grips you shaft. "Oh fuck your ass is tight, this feels amazing." You respond to her as you start pushing your dick deeper up her butt, she tries to pull away a little, but your hands hold her hips firmly. You go slow letting her get use to your huge cock.');
   } else {
     if (((s as any).strapNumber ?? 0) < 3) {
       // TODO-QSP: dynamic text: You push your hips forward, your small <<dick>>cm <<$dick_girth>> magical cock s...
-      scene.text(`You push your hips forward, your small ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} magical cock slides fairly easily into her lubed asshole. She moans slightly as you pop first the head of your dick and then slide it deeper inside of her butt, "OH! Yes… that feels good, but maybe next time bring a bigger dick." She says with a giggle.`);
+      scene.text(`You push your hips forward, your small ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} magical cock slides fairly easily into her lubed asshole. She moans slightly as you pop first the head of your dick and then slide it deeper inside of her butt, "OH! Yes… that feels good, but maybe next time bring a bigger dick." She says with a giggle.`);
       scene.text('You moan yourself as her tight little asshole milks your dick. "You are such a slut." You respond to her as you start fucking her butt, she doesn\'t respond to your question but rocks back against your hips as you fuck her.');
     } else {
       // TODO-QSP: dynamic text: You push your hips forward, the head of your <<dick>>cm <<$dick_girth>> magical ...
-      scene.text(`You push your hips forward, the head of your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} magical cock pops into her tight little lubed up asshole, causing her to gasp in pain for a moment. She moans as you slide it deeper inside of her, "OH fuck! Oh um… yes… that feels so good." She says between moans of pleasure.`);
+      scene.text(`You push your hips forward, the head of your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} magical cock pops into her tight little lubed up asshole, causing her to gasp in pain for a moment. She moans as you slide it deeper inside of her, "OH fuck! Oh um… yes… that feels so good." She says between moans of pleasure.`);
       scene.text('You moan yourself as her tight little asshole milks your dick. "Yeah you like taking cock in the ass, don\'t you slut?" You respond to her as you start fucking her, she doesn\'t respond to your question. She just stays in her doggy style position hot and ready to be butt fucked by you.');
     }
   }

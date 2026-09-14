@@ -74,7 +74,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
     { label: 'Ignore her', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
-    { label: 'Give her [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
+    { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -85,7 +85,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        qspCall(s, 'street_events_city', 'minor_girl_beggar_sub_event');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -94,7 +94,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Give her [+$func(\'money\', \'get_cost_string\', 100, \'...]', handler: (st: GameState) => {
+    { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -105,7 +105,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        qspCall(s, 'street_events_city', 'minor_girl_beggar_sub_event');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -114,7 +114,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Give her [+$func(\'money\', \'get_cost_string\', 250, \'...]', handler: (st: GameState) => {
+    { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 250, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -125,7 +125,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        qspCall(s, 'street_events_city', 'minor_girl_beggar_sub_event');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -134,7 +134,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Give her [+$func(\'money\', \'get_cost_string\', 500, \'...]', handler: (st: GameState) => {
+    { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -145,7 +145,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        qspCall(s, 'street_events_city', 'minor_girl_beggar_sub_event');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -154,7 +154,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Give her [+$func(\'money\', \'get_cost_string\', 1000, ...]', handler: (st: GameState) => {
+    { label: 'Give her', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -165,7 +165,7 @@ function enterMinorGirlBeggar_2(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/shared/street/girlcat.jpg');
       scene.text('You open your purse up and pull out the money you can spare and hand it to her. She thanks you profusely and gives you a heartwarming smile as she hugs her cat close to her and whispers to him that they will get to eat tonight.');
       if (qspFunc(s, 'money', 'can_afford', 5000, 'cash') === 1) {
-        qspCall(s, 'street_events_city', 'minor_girl_beggar_sub_event');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMinorGirlBeggarSubEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
@@ -230,7 +230,7 @@ function enterMinorGirlBeggarSubEvent(s: GameState, scene: SceneBuilder): void {
   return;
   // TODO-QSP: end
   scene.actions([
-    { label: 'Give her another  [+$func(\'money\', \'string_price\', 5000)]', handler: (st: GameState) => {
+    { label: 'Give her another  [5000₽]', handler: (st: GameState) => {
     qspCall(s, 'money', 'pay', 5000, 'cash');
     qspCall(s, 'mood', 'raise', 'huge');
     qspCall(s, 'stat', '');

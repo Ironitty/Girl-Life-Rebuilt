@@ -65,7 +65,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.img('images/characters/shared/headshots_main/big144.jpg');
             // TODO-QSP: dynamic text: Anushka opens the door, smiling. "Hey <<$pcs_nickname>>. Come on in." She leads ...
-            scene.text(`Anushka opens the door, smiling. "Hey ${((s as any).pcs_nickname ?? 0)}. Come on in." She leads you down the hall to her room.`);
+            scene.text(`Anushka opens the door, smiling. "Hey ${((s as any).pcs_nickname || '')}. Come on in." She leads you down the hall to her room.`);
             if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 2;
             scene.actions([
               { label: 'Enter', goto: ['anush_bedroom_city', 'anushroom'] },
@@ -75,7 +75,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
           if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A144'] = 2;
           scene.img('images/characters/shared/headshots_main/big144.jpg');
           // TODO-QSP: dynamic text: Anushka opens the door, smiling. "Hey <<$pcs_nickname>>. Come on in." She leads ...
-          scene.text(`Anushka opens the door, smiling. "Hey ${((s as any).pcs_nickname ?? 0)}. Come on in." She leads you down the hall to her room.`);
+          scene.text(`Anushka opens the door, smiling. "Hey ${((s as any).pcs_nickname || '')}. Come on in." She leads you down the hall to her room.`);
           scene.actions([
             { label: 'Enter', goto: ['anush_bedroom_city', 'anushroom'] },
           ]);
@@ -187,7 +187,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               if (((s as any).aptdoor ?? 0) === 1) {
                 scene.img('images/characters/shared/headshots_main/big144.jpg');
                 // TODO-QSP: dynamic text: Anushka opens the door, smiling. "Hey <<$pcs_nickname>>. Come on in." She leads ...
-                scene.text(`Anushka opens the door, smiling. "Hey ${((s as any).pcs_nickname ?? 0)}. Come on in." She leads you down the hall to her room.`);
+                scene.text(`Anushka opens the door, smiling. "Hey ${((s as any).pcs_nickname || '')}. Come on in." She leads you down the hall to her room.`);
                 scene.actions([
                   { label: 'Enter', goto: ['anush_bedroom_city', 'anushroom'] },
                 ]);
@@ -252,7 +252,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).aptdoor ?? 0) === 2) {
                     scene.img('images/characters/shared/headshots_main/big144.jpg');
                     // TODO-QSP: dynamic text: Anushka opens the door, smiling. "Hey <<$pcs_nickname>>. Come on in." She leads ...
-                    scene.text(`Anushka opens the door, smiling. "Hey ${((s as any).pcs_nickname ?? 0)}. Come on in." She leads you down the hall to her room.`);
+                    scene.text(`Anushka opens the door, smiling. "Hey ${((s as any).pcs_nickname || '')}. Come on in." She leads you down the hall to her room.`);
                     scene.actions([
                       { label: 'Enter', goto: ['anush_bedroom_city', 'anushroom'] },
                     ]);

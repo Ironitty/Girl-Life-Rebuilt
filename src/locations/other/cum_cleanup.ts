@@ -19,7 +19,7 @@ function enterCleanloc(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_cum_cleanup_cleanloc_i ?? 0) < Object.keys((s as any).sparrnam ?? {}).length) {
     if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
       if (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] !== 0  &&  ((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] !== 3) {
-        qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_cleanloc_i ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_cleanloc_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
         // TODO-QSP: jump 'cleanlocloop'
       } else {
         if (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 0) {
@@ -28,7 +28,7 @@ function enterCleanloc(s: GameState, scene: SceneBuilder): void {
           if (!(s as any).sparrvol) (s as any).sparrvol = {}; (s as any).sparrvol[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
           if (!(s as any).sparrslc) (s as any).sparrslc = {}; (s as any).sparrslc[String((s as any).temp_cum_cleanup_cleanloc_i ?? 0)] = 0;
         } else {
-          qspCall(s, 'cum_cleanup', '', 15);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 15]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -80,7 +80,7 @@ function enterCumcondslip(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cumcondslip_deep ?? 0) > (((s as any).pcs_vag ?? 0) / 2)  &&  ((s as any).vgape ?? 0) < 3) {
     scene.text('The condom is too deep inside you to be pulled out by hand. You need to seek professional help!');
   } else {
-    qspCall(s, 'cum_cleanup', 'cleanloc', 17);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 17]; enterCleanloc(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).cumcondslip = 0;
     qspCall(s, 'stat', '');
     scene.text('With some effort, you manage to remove the condom.');
@@ -351,7 +351,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
           if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 0) === 1  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).locArgs?.[0] ?? 0) === 10  ||  ((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 3))))) {
             (s as any).isprok = 0;
             (s as any).vibratorIN = 0;
-            qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_i ?? 0));
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
             // TODO-QSP: jump 'cumcleanloop'
           }
         } else {
@@ -359,11 +359,11 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
             if (qspFunc(s, 'cum_manage', 'check_inner_overflow', 3) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 7  ||  (((s as any).trait_vars ?? 0)?.['cum_addict'] === 0  &&  (((s as any).cheatVars ?? 0)?.['enema'] === 1  ||  (((s as any).mc_inventory ?? 0)?.['enema_kit'] === 1  &&  (((s as any).locArgs?.[0] ?? 0) === 10  ||  ((s as any).locArgs?.[0] ?? 0) === 1  ||  ((s as any).locArgs?.[0] ?? 0) === 3))))) {
               (s as any).analPlugIn = 0;
               (s as any).analPlugOut = 0;
-              qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_i ?? 0));
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
               // TODO-QSP: jump 'cumcleanloop'
             }
           } else {
-            qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_i ?? 0));
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
             // TODO-QSP: jump 'cumcleanloop'
           }
         }
@@ -375,7 +375,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp_cum_cleanup_pos ?? 0) >= Object.keys((s as any).toclean ?? {}).length) {
         if (((s as any).sparrvol ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] <= 0  &&  (((s as any).sparrnam ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === ''  ||  ((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] !== 0  ||  (((s as any).sparrloc ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] === 0  &&  ((s as any).sparrage ?? 0)?.[String((s as any).temp_cum_cleanup_i ?? 0)] > 10))) {
-          qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_i ?? 0));
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           (s as any).temp_cum_cleanup_i = ((s as any).temp_cum_cleanup_i ?? 0) + (1);
         }
@@ -386,7 +386,7 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
               (s as any).isprok = 0;
               (s as any).vibratorIN = 0;
             }
-            qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_i ?? 0));
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             (s as any).temp_cum_cleanup_i = ((s as any).temp_cum_cleanup_i ?? 0) + (1);
           }
@@ -397,12 +397,12 @@ function enterFace(s: GameState, scene: SceneBuilder): void {
                 (s as any).analPlugIn = 0;
                 (s as any).analPlugOut = 0;
               }
-              qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_i ?? 0));
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               (s as any).temp_cum_cleanup_i = ((s as any).temp_cum_cleanup_i ?? 0) + (1);
             }
           } else {
-            qspCall(s, 'cum_cleanup', 'cleandeposit', ((s as any).temp_cum_cleanup_i ?? 0));
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_cleanup_i ?? 0)]; enterCleandeposit(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }

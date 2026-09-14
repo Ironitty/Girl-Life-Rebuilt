@@ -15,13 +15,13 @@ function enterInterview1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/alexandria/alexhome2.jpg');
   }
   // TODO-QSP: dynamic text: "Ok, sub-zero <<$pcs_nickname>>, you can do this!"
-  scene.text(`"Ok, sub-zero ${((s as any).pcs_nickname ?? 0)}, you can do this!"`);
+  scene.text(`"Ok, sub-zero ${((s as any).pcs_nickname || '')}, you can do this!"`);
   scene.text('Asking yourself for the umpteenth time if this is a good idea, you search the residentials for the mighty wizard\'s lair, and what you find is… pretty normal? Utterly different from Tatiana\'s carefully hidden lab. A big home in the more wealthy side of the neighborhood, but… not exactly "Rich", big, but not excessively, and with a modest fence to protect it\'s privacy. In general, you will say, that Alexandria\'s home is pretty forgettable.');
   // TODO-QSP: dynamic text: "And you <<$pcs_nickname>> are talking alone, like a loonie, stalling for time, ...
-  scene.text(`"And you ${((s as any).pcs_nickname ?? 0)} are talking alone, like a loonie, stalling for time, and gathering the courage to knock."`);
+  scene.text(`"And you ${((s as any).pcs_nickname || '')} are talking alone, like a loonie, stalling for time, and gathering the courage to knock."`);
   scene.text('Sighing, you finally reach for the intercom, when there is a sudden surge of magic, and something pop behind you.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>> please, can we talk?"
-  scene.text(`"${((s as any).pcs_nickname ?? 0)} please, can we talk?"`);
+  scene.text(`"${((s as any).pcs_nickname || '')} please, can we talk?"`);
   scene.text('Turning towards the voice, you see…');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
@@ -32,32 +32,32 @@ function enterInterview1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/alexandria/alexandria.jpg');
     scene.text('There it is, your supposed guardian, with a look of concern, and suddenly, you feel like your mom caught you stealing her condoms… crap!');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, the situation is tense enough. Tatiana advised you against…"
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, the situation is tense enough. Tatiana advised you against…"`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, the situation is tense enough. Tatiana advised you against…"`);
     scene.text('At that moment the front door opens, and Alexandria get out, locking her gaze with Reinhold, and suddenly, the air around you feel cold and heavy with tension.');
     scene.text('"There is a problem? Ehm… Reinhold isn\'t it?"');
     scene.text('The mentioned, walk slowly until he is in front of you and to the right, with his left hand slightly raised in a protective(possessive?) gesture in front of you.');
     // TODO-QSP: dynamic text: "Yes, Councilor and I am here to talk with <<$pcs_firstname>> in an official mat...
-    scene.text(`"Yes, Councilor and I am here to talk with ${((s as any).pcs_firstname ?? 0)} in an official matter, so… if you excuse us."`);
+    scene.text(`"Yes, Councilor and I am here to talk with ${((s as any).pcs_firstname || '')} in an official matter, so… if you excuse us."`);
     scene.text('Alexandria look around the street, looking for something, before returning her gaze towards you two, a purple flash flicking through her eyes, and Reinhold quickly put himself between the two of you. There is a sudden flash, and you blink surprised as something appears on Reinhold\'s hand. The item seems to flick around your visual field, in some sort of focused(and powerful) Haste spell… It\'s a gun! Fuck! Are they going to fight here?!');
     qspCall(s, 'willpower', 'misc', 'force', 'hard');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Ask Reinhold to leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ask Reinhold to leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Ask Reinhold to leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ask Reinhold to leave', handler: (st: GameState) => {
     scene.text('<center><b>?????????</b></center>');
     scene.img('images/characters/city/thelilith/thelilith.jpg');
     scene.text('You must stop this, they are two high-level wizards in the middle of the street, go figure the level of damage, so there is only one thing you can do… stand before Reinhold, look him in the eyes and…');
     scene.text('"Ok Reinhold, you better go."');
     scene.text('Reinhold looks like he has just received a backhanded blow and Alexandria looks at you with renewed interest and during a moment there is silence before Reinhold talks again.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I don't think it is a good idea, so please, listen to me and...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, I don't think it is a good idea, so please, listen to me and…"`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, I don't think it is a good idea, so please, listen to me and…"`);
     scene.text('And then, he stops, as around you, magic begins to rain, silencing the sounds and concealing your surroundings, there is a flicker of light and the partial image of the most beautiful and alien woman that you have ever seen, blooms in the air between you three.');
     scene.text('"Reinhold, it\'s seems that your protege\'s words sound truer than you seem to imagine, as our presence here attests."');
     scene.text('The clear and lyric voice sends shivers down your spine, makes Reinhold hide his weapon in embarrassment and… makes Alexandria focus angrily on the eerie woman, that holds her gaze with an elegant smile, before talking again.');
@@ -84,7 +84,7 @@ function enterInterview1(s: GameState, scene: SceneBuilder): void {
       scene.text('"Ok you two stop right now! I don\'t care who you think you are, this is a public place, so stop the cock wielding contest!"');
       scene.text('The two of them seem to ignore your words, but after some tense heartbeats, they slowly turn towards you. Reinhold seems intrigued at your words and Alexandria… is smiling? At least her next words sound… amused?');
       // TODO-QSP: dynamic text: "And <<$pcs_lastname>> how do you think, we must resolve…"
-      scene.text(`"And ${((s as any).pcs_lastname ?? 0)} how do you think, we must resolve…"`);
+      scene.text(`"And ${((s as any).pcs_lastname || '')} how do you think, we must resolve…"`);
       scene.text('And then, he stops, as around you, magic begins to rain, silencing the sounds and concealing your surroundings, there is a flicker of light and the partial image of the most beautiful and alien woman that you have ever seen, bloom in the air between you three.');
       scene.text('"With our help as our presence here attest."');
       scene.text('The clear and lyric voice sends shivers down your spine, makes Reinhold hide his weapon in embarrassment and… makes Alexandria focus angrily on the eerie woman, that holds her gaze with an elegant smile, before talking again.');
@@ -133,15 +133,15 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/alexandria/alexandria.jpg');
   scene.text('During some moments, you three stand there considering what just happened. Reinhold seems lost in his thoughts and Alexandria… Well… it\'s seems that she wants to burn with her glade the point where the mysterious apparition was. Without knowing what to do, you wait for some kind of break, that fortunately is provided by a weary Reinhold.');
   // TODO-QSP: dynamic text: "I guess… that The Council approves, but now they are watching, and <<$pcs_nickn...
-  scene.text(`"I guess… that The Council approves, but now they are watching, and ${((s as any).pcs_nickname ?? 0)} had better be safe here. My wrath is nothing compared to theirs."`);
+  scene.text(`"I guess… that The Council approves, but now they are watching, and ${((s as any).pcs_nickname || '')} had better be safe here. My wrath is nothing compared to theirs."`);
   scene.text('Alexandria gives Reinhold a side glance, and seems to calm a little before answering, with a sigh full of content… for Reinhold, The Council or you are anybody\'s guess.');
   // TODO-QSP: dynamic text: "I had accepted the loss of my amulet, my interest in <<$pcs_lastname>> is not m...
-  scene.text(`"I had accepted the loss of my amulet, my interest in ${((s as any).pcs_lastname ?? 0)} is not malicious. There will not be danger coming from me, make sure you can say the same for your Council."`);
+  scene.text(`"I had accepted the loss of my amulet, my interest in ${((s as any).pcs_lastname || '')} is not malicious. There will not be danger coming from me, make sure you can say the same for your Council."`);
   scene.text('Coming to some kind of awkward resolution, Reinhold steps aside so you can walk towards Alexandria\'s home, and as you follow her inside, a question surges towards your lips.');
   scene.text('"Who was she?"');
   scene.text('You don\'t think she will answer, as Alexandria lights a cigarette and takes a deep breath, it isn\'t tobacco, but some kind of weed that leaves an oily sensation in your nostrils… Finally calmed, she talks.');
   // TODO-QSP: dynamic text: "She, <<$pcs_lastname>>, is The Lilith, head of all Succubae, holder of the Succ...
-  scene.text(`"She, ${((s as any).pcs_lastname ?? 0)}, is The Lilith, head of all Succubae, holder of the Succubus seat on The Council, and the direct leader of the Eastern European Succubae… and the high-minded fool that thinks herself in the right to interfere in our affairs."`);
+  scene.text(`"She, ${((s as any).pcs_lastname || '')}, is The Lilith, head of all Succubae, holder of the Succubus seat on The Council, and the direct leader of the Eastern European Succubae… and the high-minded fool that thinks herself in the right to interfere in our affairs."`);
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -151,10 +151,10 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/alexandria/alexandria2.jpg');
     scene.text('After that informational tidbit, Alexandria seems to calm, and lets you take notice of your surroundings. Her home is gloomy with most windows closed and a Victorian decoration ');
     // TODO-QSP: dynamic text: "I must ask forgiveness for my surliness, <<$pcs_lastname>>, I wasn't planning t...
-    scene.text(`"I must ask forgiveness for my surliness, ${((s as any).pcs_lastname ?? 0)}, I wasn't planning to meet you under these circumstances, and after these mismatches, you, without doubt, must hold me in low esteem… my lack of control obviously will cement any slander coming from your so-called <i>guardians</i>"`);
+    scene.text(`"I must ask forgiveness for my surliness, ${((s as any).pcs_lastname || '')}, I wasn't planning to meet you under these circumstances, and after these mismatches, you, without doubt, must hold me in low esteem… my lack of control obviously will cement any slander coming from your so-called <i>guardians</i>"`);
     scene.text('At this, you flinch, remembering Tatiana\'s words and some of the things that she told you, that paint a bleak image on Alexandria, and then jump at her next words.');
     // TODO-QSP: dynamic text: "Oh! So there was badmouthing! Don't worry, <<$pcs_lastname>> I didn't read your...
-    scene.text(`"Oh! So there was badmouthing! Don't worry, ${((s as any).pcs_lastname ?? 0)} I didn't read your mind, but your eyes talk… Let me guess, the hackneyed tale about we the elder, feasting in the unbaptized flesh of mundane children? Nonsense! They don't have Fae blood, how would that help me?"`);
+    scene.text(`"Oh! So there was badmouthing! Don't worry, ${((s as any).pcs_lastname || '')} I didn't read your mind, but your eyes talk… Let me guess, the hackneyed tale about we the elder, feasting in the unbaptized flesh of mundane children? Nonsense! They don't have Fae blood, how would that help me?"`);
     scene.text('Alexandria shakes her head and paces back and forth calming herself down before smiling and adding. "This is that little redhead\'s doing isn\'t it? Take it from me to never trust a trickster, all of them are amoral sociopaths, that hide behind the chaos they sow to further their goals."');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
@@ -173,7 +173,7 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
       scene.text('"Curse?"');
       scene.text('Your words burst out, and Alexandria looks at you as if studying a document to see if there is a spelling mistake. Finally she sighs having worked out what was wrong.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>, did they not even tell you?! I am a man!"
-      scene.text(`"${((s as any).pcs_lastname ?? 0)}, did they not even tell you?! I am a man!"`);
+      scene.text(`"${((s as any).pcs_lastname || '')}, did they not even tell you?! I am a man!"`);
     } else {
       qspCall(s, 'npc_relationship', 'modify_exact', 'A241', (-2));
       qspCall(s, 'mood', 'lower', 'medium');
@@ -198,11 +198,11 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh really? When The Veil was lifted from your eyes, and you ended on our side of reality… What did she do? Teach you about your new world? Call Reinhold to inform him about The Talisman\'s fate? Or just… shut up and wait to see what happened to you as you fumbled your way in total ignorance, uncaring of your and others welfare?"');
     scene.text('At those words, you are not sure how to answer, and feeling your indecision, Alexandria gives you a contemptuous half-smile before continuing.');
     // TODO-QSP: dynamic text: "Let's be generous <<$pcs_lastname>>, she hasn't passed the pale where her antic...
-    scene.text(`"Let's be generous ${((s as any).pcs_lastname ?? 0)}, she hasn't passed the pale where her antics begin to be counted in destroyed lives, but, she isn't really caring about your situation, only on what she can obtain from helping you, believe me I know her type, I learned this lesson when Rikudo, probably the most powerful trickster of all time, cursed me."`);
+    scene.text(`"Let's be generous ${((s as any).pcs_lastname || '')}, she hasn't passed the pale where her antics begin to be counted in destroyed lives, but, she isn't really caring about your situation, only on what she can obtain from helping you, believe me I know her type, I learned this lesson when Rikudo, probably the most powerful trickster of all time, cursed me."`);
     scene.text('"Cursed?"');
     scene.text('Your words burst out, and for a moment that seems to last a lifetime, the two of you stare at each other in baffled surprise.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, Are you telling me that they didn't tell you?! I am a man!"
-    scene.text(`"${((s as any).pcs_lastname ?? 0)}, Are you telling me that they didn't tell you?! I am a man!"`);
+    scene.text(`"${((s as any).pcs_lastname || '')}, Are you telling me that they didn't tell you?! I am a man!"`);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A241', (-1));
     qspCall(s, 'mood', 'lower', 'small');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -216,11 +216,11 @@ function enterInterview2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/alexandria/alexandria3.jpg');
     scene.text('The truth is that you don\'t want to be dragged into a discussion about Tatiana with an obviously very opinionated wizard, so you do the most simple and just shut up, letting Alexandria badmouth your teacher.');
     // TODO-QSP: dynamic text: "Let's be generous <<$pcs_lastname>>, she hasn't passed the pale where her antic...
-    scene.text(`"Let's be generous ${((s as any).pcs_lastname ?? 0)}, she hasn't passed the pale where her antics begin to be counted in destroyed lives, but, she isn't really caring about your situation, only on what she can obtain from helping you, believe me I know her type, I learned this lesson, when Rikudo, probably the most powerful trickster of all time cursed me."`);
+    scene.text(`"Let's be generous ${((s as any).pcs_lastname || '')}, she hasn't passed the pale where her antics begin to be counted in destroyed lives, but, she isn't really caring about your situation, only on what she can obtain from helping you, believe me I know her type, I learned this lesson, when Rikudo, probably the most powerful trickster of all time cursed me."`);
     scene.text('"Cursed?"');
     scene.text('You blurt out, and for a moment, the two of you stare at each other in baffled surprise.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, Are you telling me that they didn't tell you?! I am a man!"
-    scene.text(`"${((s as any).pcs_lastname ?? 0)}, Are you telling me that they didn't tell you?! I am a man!"`);
+    scene.text(`"${((s as any).pcs_lastname || '')}, Are you telling me that they didn't tell you?! I am a man!"`);
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'stat', '');
     scene.actions([
@@ -261,11 +261,11 @@ function enterInterview3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Well… no friend, friend… but, we have much in common! We were models and did similar stuff, and… those shoes were great! I don\'t think that killing her was a good idea!"');
     scene.text('Aleksei\'s mouth hangs open, with the cigarette hanging precariously over the lower lip, an indescribable expression on his face.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, that is one of the more asinine things that I have heard in ...
-    scene.text(`"${((s as any).pcs_lastname ?? 0)}, that is one of the more asinine things that I have heard in decades… No the most… but near, I… will not explain to you, why I did it, only, that it was necessary, and if you accept some advice, read a little more… big books… the ones that are mostly text and deal with, well… anything that uses big words."`);
+    scene.text(`"${((s as any).pcs_lastname || '')}, that is one of the more asinine things that I have heard in decades… No the most… but near, I… will not explain to you, why I did it, only, that it was necessary, and if you accept some advice, read a little more… big books… the ones that are mostly text and deal with, well… anything that uses big words."`);
     scene.text('"Asinine?"');
     scene.text('You ask confused before Aleksei tilt his head like he was hearing something.');
     // TODO-QSP: dynamic text: "Hm… Interesting. <<$pcs_lastname>> we have company."
-    scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname ?? 0)} we have company."`);
+    scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname || '')} we have company."`);
     qspCall(s, 'npc_relationship', 'modify_exact', 'A241', (-1));
     qspCall(s, 'mood', 'lower', 'small');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -283,15 +283,15 @@ function enterInterview3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/alexandria/chair.jpg');
     scene.text('At your words, Aleksei drags his cigarette, and raise an eyebrow questioningly.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, what is your point?"
-    scene.text(`"${((s as any).pcs_lastname ?? 0)}, what is your point?"`);
+    scene.text(`"${((s as any).pcs_lastname || '')}, what is your point?"`);
     scene.text('Your point? He doesn\'t see it? Ok, time for Lady exposition.');
     scene.text('"My point is, that this is my city, and I can\'t let a two-bit poser insult the Succubae. She was asking to be made my little plaything, sitting on her fours, with a bowl at the side, and a leash in my hand."');
     scene.text('Puffs of smoke exit his nostrils, as Aleksei seems to think on your words.');
     // TODO-QSP: dynamic text: "And… interesting point of view, truly you have become a Succubus, but <<$pcs_la...
-    scene.text(`"And… interesting point of view, truly you have become a Succubus, but ${((s as any).pcs_lastname ?? 0)}, Reinhold and I did oaths to protect the inhabitants of this world from beings like her, and at-risk to offend your sensitivities, this was necessary."`);
+    scene.text(`"And… interesting point of view, truly you have become a Succubus, but ${((s as any).pcs_lastname || '')}, Reinhold and I did oaths to protect the inhabitants of this world from beings like her, and at-risk to offend your sensitivities, this was necessary."`);
     scene.text('Aleksei say this as a matter of fact, before tilting his head like he was hearing something.');
     // TODO-QSP: dynamic text: "Hm… Interesting. <<$pcs_lastname>> we have company."
-    scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname ?? 0)} we have company."`);
+    scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname || '')} we have company."`);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.actions([
@@ -308,27 +308,27 @@ function enterInterview3(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'modify_exact', 'A241', 2);
       scene.text('At your words, Aleksei tilts his head and semes to think about them.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>, Let's see, <i>It</i> was a dangerous parasite, whose feeding...
-      scene.text(`"${((s as any).pcs_lastname ?? 0)}, Let's see, <i>It</i> was a dangerous parasite, whose feeding needs has damaged an undetermined number of women, and that left to its own devices would have exposed the whole agency to uncontrolled magic. The Veil is good to hide minor, short-duration events, but a long time magic exposition like her? We are lucky that the whole agency hasn't ended as raving lunatics, so… what would you have done in my place?"`);
+      scene.text(`"${((s as any).pcs_lastname || '')}, Let's see, <i>It</i> was a dangerous parasite, whose feeding needs has damaged an undetermined number of women, and that left to its own devices would have exposed the whole agency to uncontrolled magic. The Veil is good to hide minor, short-duration events, but a long time magic exposition like her? We are lucky that the whole agency hasn't ended as raving lunatics, so… what would you have done in my place?"`);
       scene.text('"I… look, I am not saying that she wasn\'t dangerous, but for what I understand, she was bound to Tatiana\'s photo set, so we could have taken it away to a more discrete place, and then feed her with mana. It was an alternative to just… well… killing her."');
       scene.text('He takes a drag from his cigarette, and seem to digest your explanation.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>, it seems that you have been taking attention to your lessons...
-      scene.text(`"${((s as any).pcs_lastname ?? 0)}, it seems that you have been taking attention to your lessons" He exhales another puff and you can see a half-smile hidden by it "Indeed, I could have done that, but after that… what? ${((s as any).pcs_lastname ?? 0)}, Reinhold and I did oaths to protect the inhabitants of this world from beings like her, and at-risk to offend your morality, this was necessary."`);
+      scene.text(`"${((s as any).pcs_lastname || '')}, it seems that you have been taking attention to your lessons" He exhales another puff and you can see a half-smile hidden by it "Indeed, I could have done that, but after that… what? ${((s as any).pcs_lastname || '')}, Reinhold and I did oaths to protect the inhabitants of this world from beings like her, and at-risk to offend your morality, this was necessary."`);
       scene.text('Aleksei say this as a matter of fact, before tilting his head like he was hearing something.');
       // TODO-QSP: dynamic text: "Hm… Interesting. <<$pcs_lastname>> we have company."
-      scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname ?? 0)} we have company."`);
+      scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname || '')} we have company."`);
     } else {
       qspCall(s, 'npc_relationship', 'modify_exact', 'A241', (-2));
       qspCall(s, 'mood', 'lower', 'medium');
       scene.text('At your words, Aleksei tilts his head and semes to think about them.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>, Let's see, <i>It</i> was a dangerous parasite, whose feeding...
-      scene.text(`"${((s as any).pcs_lastname ?? 0)}, Let's see, <i>It</i> was a dangerous parasite, whose feeding needs has damaged an undetermined number of women, and that left to its own devices would have exposed the whole agency to uncontrolled magic. The Veil is good to hide minor, short-duration events, but a long time magic exposition like her? We are lucky that the whole agency hasn't ended as raving lunatics, so… what would you have done in my place?"`);
+      scene.text(`"${((s as any).pcs_lastname || '')}, Let's see, <i>It</i> was a dangerous parasite, whose feeding needs has damaged an undetermined number of women, and that left to its own devices would have exposed the whole agency to uncontrolled magic. The Veil is good to hide minor, short-duration events, but a long time magic exposition like her? We are lucky that the whole agency hasn't ended as raving lunatics, so… what would you have done in my place?"`);
       scene.text('"I… don\'t know, but just killing her seems wrong."');
       scene.text('He takes a drag from his cigarette, and looks intensely into your eyes.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>, is that your answer? Do you question my decision without kno...
-      scene.text(`"${((s as any).pcs_lastname ?? 0)}, is that your answer? Do you question my decision without knowing if it was the only solution?" He exhales another puff and you can see how he clenches his teeth "let's be clear ${((s as any).pcs_lastname ?? 0)}, Reinhold and I did oaths to protect the inhabitants of this world from beings like <i>It</i>, and at-risk to offend your morality, this was necessary."`);
+      scene.text(`"${((s as any).pcs_lastname || '')}, is that your answer? Do you question my decision without knowing if it was the only solution?" He exhales another puff and you can see how he clenches his teeth "let's be clear ${((s as any).pcs_lastname || '')}, Reinhold and I did oaths to protect the inhabitants of this world from beings like <i>It</i>, and at-risk to offend your morality, this was necessary."`);
       scene.text('Aleksei say this as a matter of fact, before tilting his head like he was hearing something.');
       // TODO-QSP: dynamic text: "Hm… Interesting. <<$pcs_lastname>> we have company."
-      scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname ?? 0)} we have company."`);
+      scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname || '')} we have company."`);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
@@ -343,10 +343,10 @@ function enterInterview3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/alexandria/chair.jpg');
     scene.text('You are taken by surprise, at Aleksei confession, that observes in silence your reaction before deciding to explain himself.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, You must understand, that <i>It</i> was a dangerous parasite...
-    scene.text(`"${((s as any).pcs_lastname ?? 0)}, You must understand, that <i>It</i> was a dangerous parasite, whose feeding needs has damaged an undetermined number of women, and that left to its own devices would have exposed the whole agency to uncontrolled magic. The Veil is good to hide minor, short-duration events, but a long time magic exposition like her? We are lucky that the whole agency hasn't ended as raving lunatics."`);
+    scene.text(`"${((s as any).pcs_lastname || '')}, You must understand, that <i>It</i> was a dangerous parasite, whose feeding needs has damaged an undetermined number of women, and that left to its own devices would have exposed the whole agency to uncontrolled magic. The Veil is good to hide minor, short-duration events, but a long time magic exposition like her? We are lucky that the whole agency hasn't ended as raving lunatics."`);
     scene.text('Then, he takes a drag from his cigarette, and wait for you to digest this explanation, before tilting his head like he was hearing something.');
     // TODO-QSP: dynamic text: "Hm… Interesting. <<$pcs_lastname>> we have company."
-    scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname ?? 0)} we have company."`);
+    scene.text(`"Hm… Interesting. ${((s as any).pcs_lastname || '')} we have company."`);
     scene.actions([
       { label: 'End the interview', goto: ['alexandriaEv', 'interview4'] },
     ]);
@@ -367,22 +367,22 @@ function enterInterview4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'huge');
     scene.text('Aleksei, begin to concentrate on a spell, charging the room with static and making your hair stand, before a purple flash fills the room and something magical exit it.');
     // TODO-QSP: dynamic text: "Hm… That will teach her a lesson <<$pcs_lastname>>, but…" Aleksei turns towards...
-    scene.text(`"Hm… That will teach her a lesson ${((s as any).pcs_lastname ?? 0)}, but…" Aleksei turns towards you with a half-smile, that quickly disappear under cold eyes "I think that you must go and see if that trickster is safe, we will continue our talks later."`);
+    scene.text(`"Hm… That will teach her a lesson ${((s as any).pcs_lastname || '')}, but…" Aleksei turns towards you with a half-smile, that quickly disappear under cold eyes "I think that you must go and see if that trickster is safe, we will continue our talks later."`);
     scene.text('He then stands, and signal towards the door, waiting for you to follow, and as you leave the room towards the exit, Aleksei decides to say something.');
     // TODO-QSP: dynamic text: "I am disappointed with our little talk <<$pcs_lastname>>, is my impression that...
-    scene.text(`"I am disappointed with our little talk ${((s as any).pcs_lastname ?? 0)}, is my impression that you lack, the maturity and will that are required to master the high arts, if not for my need to break Rikudo's curse, I will promptly exhort The Council to take control of the situation… and you, but alas, I see myself in the need of your power."`);
+    scene.text(`"I am disappointed with our little talk ${((s as any).pcs_lastname || '')}, is my impression that you lack, the maturity and will that are required to master the high arts, if not for my need to break Rikudo's curse, I will promptly exhort The Council to take control of the situation… and you, but alas, I see myself in the need of your power."`);
     scene.text('Aleksei put out the cigarette in an ashtray, the next words exiting somewhat forced from his mouth.');
     // TODO-QSP: dynamic text: "I offer you the possibility to train under my wing. This isn't an apprenticeshi...
-    scene.text(`"I offer you the possibility to train under my wing. This isn't an apprenticeship offer ${((s as any).pcs_lastname ?? 0)}, but just common interests, and even with that, I expect respect and diligence, so… until the next time and remember, my door is open only on daily hours."`);
+    scene.text(`"I offer you the possibility to train under my wing. This isn't an apprenticeship offer ${((s as any).pcs_lastname || '')}, but just common interests, and even with that, I expect respect and diligence, so… until the next time and remember, my door is open only on daily hours."`);
   } else {
     qspCall(s, 'npc_relationship', 'set', 'A241', 1);
     qspCall(s, 'mood', 'raise', 'large');
     scene.text('Aleksei, begin to concentrate on a spell, charging the room with static and making your hair stand, before a purple flash fills the room and something magical exit it.');
     // TODO-QSP: dynamic text: "Hm… That will teach her a lesson <<$pcs_lastname>>, but…" Aleksei turns towards...
-    scene.text(`"Hm… That will teach her a lesson ${((s as any).pcs_lastname ?? 0)}, but…" Aleksei turns towards you with a half-smile, and intrigued eyes "I think that you must go and see if your <i>friend</i> is safe, we will continue our talks later."`);
+    scene.text(`"Hm… That will teach her a lesson ${((s as any).pcs_lastname || '')}, but…" Aleksei turns towards you with a half-smile, and intrigued eyes "I think that you must go and see if your <i>friend</i> is safe, we will continue our talks later."`);
     scene.text('He then stands, and signals towards the door, waiting for you to follow, and as you leave the room towards the exit, Aleksei decides to say something.');
     // TODO-QSP: dynamic text: "I must admit, that this has ended better than I expected <<$pcs_lastname>>, is ...
-    scene.text(`"I must admit, that this has ended better than I expected ${((s as any).pcs_lastname ?? 0)}, is my impression that you have the potential to master the high arts, and… even taking into consideration, my personal interest on you, I'm tempted to offer you something."`);
+    scene.text(`"I must admit, that this has ended better than I expected ${((s as any).pcs_lastname || '')}, is my impression that you have the potential to master the high arts, and… even taking into consideration, my personal interest on you, I'm tempted to offer you something."`);
     scene.text('Aleksei put out the cigarette in an ashtray, the next words exiting somewhat excited from his mouth.');
     scene.text('"I offer you the possibility of an apprenticeship under my wing. This will protect you, partially from The Council and Reinhold interests, but, I expect respect and diligence, so… until the next time and remember, my door is open only on daily hours."');
   }
@@ -397,13 +397,13 @@ function enterInterview4(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/1_openings/shared/npc_tatiana.jpg');
     scene.text('Your redheaded magic teacher, is waiting for you outside. There is a smoking phone on her… burned hands, something that doesn\'t seem to bother the sorceress, as she seems musing happily to herself.');
     // TODO-QSP: dynamic text: "Hm… Let's see… Something like? No, it can be… Hm? <<$pcs_nickname>>, oh my! Rei...
-    scene.text(`"Hm… Let's see… Something like? No, it can be… Hm? ${((s as any).pcs_nickname ?? 0)}, oh my! Reinhold send me to watch over you! Are you okay?!"`);
+    scene.text(`"Hm… Let's see… Something like? No, it can be… Hm? ${((s as any).pcs_nickname || '')}, oh my! Reinhold send me to watch over you! Are you okay?!"`);
     scene.text('"Yeah… I am ok, and… you?"');
     // TODO-QSP: dynamic text: Tatiana raises her hands, examining them, with critical eyes. "Don't worry, reme...
-    scene.text(`Tatiana raises her hands, examining them, with critical eyes. "Don't worry, remember… we body modding wizards are a tough breed, but… jeez, I have heard that she dislikes Pranksters, but this? I am curious how she managed to… is there a problem ${((s as any).pcs_nickname ?? 0)}?"`);
+    scene.text(`Tatiana raises her hands, examining them, with critical eyes. "Don't worry, remember… we body modding wizards are a tough breed, but… jeez, I have heard that she dislikes Pranksters, but this? I am curious how she managed to… is there a problem ${((s as any).pcs_nickname || '')}?"`);
     scene.text('"Yes Tatiana, you didn\'t tell me about <i>his</i> curse, and those things about eating babes? What do you think was gonna be <i>his</i> reaction? This is the same, that when you told me about Reinhold and The Council!"');
     // TODO-QSP: dynamic text: "You told her that? And she confirmed it? Because I don't have much information ...
-    scene.text(`"You told her that? And she confirmed it? Because I don't have much information about…" You blink surprised at her lack of concern, which prompts her to sigh and change the theme. "${((s as any).pcs_nickname ?? 0)}, when I talked about Reinhold and The Council, I was… well, <i>having fun at your expense</i>. But the truth is that you must be a little wary of their intentions. I wanted to win some time before talking to Reinhold and prevent, that some red-lipped succubus charmed you away to some gilded cage, and for Alexandria… Look, is my fault ok? I wasn't expecting for you to run after her, but ${((s as any).pcs_nickname ?? 0)}, you must understand that she is the equivalent of a walking magical WMD. She can impose terms at The Council, and ending on her grasp… Well, that can trigger all sort of bad scenarios with you in the middle, something that Reinhold is trying to prevent."`);
+    scene.text(`"You told her that? And she confirmed it? Because I don't have much information about…" You blink surprised at her lack of concern, which prompts her to sigh and change the theme. "${((s as any).pcs_nickname || '')}, when I talked about Reinhold and The Council, I was… well, <i>having fun at your expense</i>. But the truth is that you must be a little wary of their intentions. I wanted to win some time before talking to Reinhold and prevent, that some red-lipped succubus charmed you away to some gilded cage, and for Alexandria… Look, is my fault ok? I wasn't expecting for you to run after her, but ${((s as any).pcs_nickname || '')}, you must understand that she is the equivalent of a walking magical WMD. She can impose terms at The Council, and ending on her grasp… Well, that can trigger all sort of bad scenarios with you in the middle, something that Reinhold is trying to prevent."`);
     scene.text('After this explanation, that you don\'t know if believe, Tatiana turns back and returns to her hideout, leaving you alone to digest the new situation.');
     scene.actions([
       { label: 'Continue', goto: ['city_suburbs', 'start'] },
@@ -424,10 +424,10 @@ function enterFilipp(s: GameState, scene: SceneBuilder): void {
   scene.text('She sits and immediately creeps you, there is something just <i>wrong</i> about her appearance, maybe some kind of magical effect?');
   if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
     // TODO-QSP: dynamic text: "So… Are you <<$pcs_nickname>>? The idiot that betrayed Reinhold's confidence, o...
-    scene.text(`"So… Are you ${((s as any).pcs_nickname ?? 0)}? The idiot that betrayed Reinhold's confidence, only to end as Alexandria's - The greatest bitch The Council has ever produced - sexual Kleenex?"`);
+    scene.text(`"So… Are you ${((s as any).pcs_nickname || '')}? The idiot that betrayed Reinhold's confidence, only to end as Alexandria's - The greatest bitch The Council has ever produced - sexual Kleenex?"`);
   } else {
     // TODO-QSP: dynamic text: "You are <<$pcs_nickname>> isn't it? A pleasure! You are famous! So… Let me gues...
-    scene.text(`"You are ${((s as any).pcs_nickname ?? 0)} isn't it? A pleasure! You are famous! So… Let me guess! Alexandria - The greatest bitch The Council has ever produced - has sent you here in some unfathomable quest?"`);
+    scene.text(`"You are ${((s as any).pcs_nickname || '')} isn't it? A pleasure! You are famous! So… Let me guess! Alexandria - The greatest bitch The Council has ever produced - has sent you here in some unfathomable quest?"`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -464,7 +464,7 @@ function enterFilipp(s: GameState, scene: SceneBuilder): void {
       { label: 'Get out of here', goto: ['alexandriaEv', 'anacall'] },
       { label: 'Kneel', goto: ['alexandriaEv', 'kneel'] },
       { label: '"Mr. Aleksei already paid you"', goto: ['alexandriaEv', 'persufilipp'] },
-      { label: 'Give him a <i>contribution</i> [+$func(\'money\', \'get_cost_string\', 5000)]', handler: (st: GameState) => {
+      { label: 'Give him a <i>contribution</i>', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -574,7 +574,7 @@ function enterSuccubribe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/pc/body/succubusself.jpg');
   // TODO-QSP: dynamic text: You call <<$sucself1>> up from its resting place
-  scene.text(`You call ${((s as any).sucself1 ?? 0)} up from its resting place`);
+  scene.text(`You call ${((s as any).sucself1 || '')} up from its resting place`);
   scene.text('It fills you completely, suffusing through your being with power…');
   scene.text('<center><b>and hunger</b></center>');
   scene.text('Giving a thousand bucks smile, you walk salaciously towards the insulting buffoon, making his eyes bulge at your supernatural presence.');
@@ -625,7 +625,7 @@ function enterPersufilipp(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get out of here', goto: ['alexandriaEv', 'anacall'] },
       { label: 'Kneel', goto: ['alexandriaEv', 'kneel'] },
-      { label: 'Give him a <i>contribution</i> [+$func(\'money\', \'get_cost_string\', 5000)]', handler: (st: GameState) => {
+      { label: 'Give him a <i>contribution</i>', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -943,13 +943,13 @@ function enterAnacrash1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Will you to cast Heal.', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Will you to cast Heal.', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['alexandriaEv', 'heal1'] },
@@ -971,10 +971,10 @@ function enterHospital(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/city/alexandria/alexandria2.jpg');
   // TODO-QSP: dynamic text: A mix of pain and numbness hit you as your conscience returned. You are lying do...
-  scene.text(`A mix of pain and numbness hit you as your conscience returned. You are lying down in a hospital bed, in what seems to be the ER, with an IV and medical equipment monitoring your health. "Feeling better ${((s as any).pcs_lastname ?? 0)}?" You turn towards the voice, and see Aleksei observing you, a cigarette in his hands in defiance of the hospital's rules.`);
+  scene.text(`A mix of pain and numbness hit you as your conscience returned. You are lying down in a hospital bed, in what seems to be the ER, with an IV and medical equipment monitoring your health. "Feeling better ${((s as any).pcs_lastname || '')}?" You turn towards the voice, and see Aleksei observing you, a cigarette in his hands in defiance of the hospital's rules.`);
   scene.text('"Oh… What the hell?" You groan in discomfort and palpate, your body, the shadow of some kind of magical effect dissipating quickly. Everything seems to be in it\'s place and with some effort manages to sit in the bed.');
   // TODO-QSP: dynamic text: "I'm… sorry <<$pcs_lastname>>. I wasn't expecting this task to escalate, and you...
-  scene.text(`"I'm… sorry ${((s as any).pcs_lastname ?? 0)}. I wasn't expecting this task to escalate, and you end up needing urgent medical attention. I… have taken the liberty to heal the most grievous wounds and ordered to clean your clothes. Take your time to recover and then return to me, we need to talk."`);
+  scene.text(`"I'm… sorry ${((s as any).pcs_lastname || '')}. I wasn't expecting this task to escalate, and you end up needing urgent medical attention. I… have taken the liberty to heal the most grievous wounds and ordered to clean your clothes. Take your time to recover and then return to me, we need to talk."`);
   scene.text('Saying that Aleksei departs, leaving you to the care of the medical staff that helps you get up and dress. After a last medical examination - that leaves a baffling physician assuming that your wounds were misdiagnosed - you are put in a wheelchair and escorted to the hospital\'s exit.');
   // TODO-QSP: end
   scene.actions([
@@ -999,16 +999,16 @@ function enterHeal1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ring! Ring!"');
   scene.text('Your phone ring… is Ana…');
   // TODO-QSP: dynamic text: "<i>Madre de dios</i>! <<$pcs_nickname>> are you ok?!"
-  scene.text(`"<i>Madre de dios</i>! ${((s as any).pcs_nickname ?? 0)} are you ok?!"`);
+  scene.text(`"<i>Madre de dios</i>! ${((s as any).pcs_nickname || '')} are you ok?!"`);
   scene.text('"No Ana, I am not ok! Where the fuck is the key!"');
   scene.text('"Ehm… I am… Look, two more blocks… Turn left at the stop signal and look up."');
   scene.text('She then hangs up, leaving you to follow her instructions, and find her fingering in a firescape just over your head.');
   if (((s as any).npc_rel ?? 0)?.['A241'] === 1) {
     // TODO-QSP: dynamic text: "Hm <<$pcs_nickname>> Hm… Maybe you want to take it easy… What if I double my of...
-    scene.text(`"Hm ${((s as any).pcs_nickname ?? 0)} Hm… Maybe you want to take it easy… What if I double my offer… Hm? ${qspFunc(s, 'money', 'string_profit', 70000)}?"`);
+    scene.text(`"Hm ${((s as any).pcs_nickname || '')} Hm… Maybe you want to take it easy… What if I double my offer… Hm? ${qspFunc(s, 'money', 'string_profit', 70000)}?"`);
   } else {
     // TODO-QSP: dynamic text: "Hm <<$pcs_nickname>> Hm… Maybe you want to take it easy…"
-    scene.text(`"Hm ${((s as any).pcs_nickname ?? 0)} Hm… Maybe you want to take it easy…"`);
+    scene.text(`"Hm ${((s as any).pcs_nickname || '')} Hm… Maybe you want to take it easy…"`);
   }
   if (((s as any).spellKnown ?? 0)?.['shock'] === 1  &&  ((s as any).pcs_mana ?? 0) >= 20) {
     scene.actions([
@@ -1175,7 +1175,7 @@ function enterAnachase5(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Pay them a new TV [+$func(\'money\', \'get_cost_string\', 15000)]', handler: (st: GameState) => {
+    { label: 'Pay them a new TV', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 15000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -1255,7 +1255,7 @@ function enterHeal2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ring! Ring!"');
   scene.text('Your phone ring… is Ana…');
   // TODO-QSP: dynamic text: "Shit! <<$pcs_nickname>> I thought you were a goner!"
-  scene.text(`"Shit! ${((s as any).pcs_nickname ?? 0)} I thought you were a goner!"`);
+  scene.text(`"Shit! ${((s as any).pcs_nickname || '')} I thought you were a goner!"`);
   scene.text('"No Ana, I am going after you!!"');
   scene.text('"Ehm… I am… Look, I don\'t think is a good idea, is better if you look for a medic, but… if you must… I am in the parking lot crossing the street."');
   scene.text('She then hangs up, leaving you to follow her instructions, and cross the street towards a multistory car park.');
@@ -1358,13 +1358,13 @@ function enterAnachase6(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'misc', 'self', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Will you to cast Heal.', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Will you to cast Heal. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Will you to cast Heal.', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['alexandriaEv', 'heal3'] },
@@ -1420,10 +1420,10 @@ function enterHeal3(s: GameState, scene: SceneBuilder): void {
   scene.text('"Ring! Ring!"');
   scene.text('Your phone ring… is Ana…');
   // TODO-QSP: dynamic text: "What the fuck <<$pcs_nickname>>?! <i>Te veia cadaver</i>! Why do you try that?!...
-  scene.text(`"What the fuck ${((s as any).pcs_nickname ?? 0)}?! <i>Te veia cadaver</i>! Why do you try that?!"`);
+  scene.text(`"What the fuck ${((s as any).pcs_nickname || '')}?! <i>Te veia cadaver</i>! Why do you try that?!"`);
   scene.text('"Because… I am going to kick your fucking ass, Ana!"');
   // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, but… Well… Ok, you are a tough bitch, I owe you that… ...
-  scene.text(`"Sorry ${((s as any).pcs_nickname ?? 0)}, but… Well… Ok, you are a tough bitch, I owe you that… I am in the nearer parking lot."`);
+  scene.text(`"Sorry ${((s as any).pcs_nickname || '')}, but… Well… Ok, you are a tough bitch, I owe you that… I am in the nearer parking lot."`);
   scene.text('She then hangs up, leaving you to rise like a zombie, scaring the bystanders and following her instructions, you walk towards the multistory car park.');
   // TODO-QSP: end
   scene.actions([
@@ -1544,13 +1544,13 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'force', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"You know that I am not going to stop." [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"You know that I am not going to stop."', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"You know that I am not going to stop." [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"You know that I am not going to stop."', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
   }, goto: ['alexandriaEv', 'anascore'] },
@@ -1561,13 +1561,13 @@ function enterAnachasefinal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'force', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"Or you can kindly give me the key." [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"Or you can kindly give me the key."', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"Or you can kindly give me the key." [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"Or you can kindly give me the key."', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
   }, goto: ['alexandriaEv', 'anaryan'] },
@@ -1601,7 +1601,7 @@ function enterHeal4(s: GameState, scene: SceneBuilder): void {
   scene.text('"I… am ready for round two!"');
   scene.text('It takes you an eternal moment to rise, and look at the now silent Ana, that is observing you with? Respect?');
   // TODO-QSP: dynamic text: "That is impressive <<$pcs_nickname>>."
-  scene.text(`"That is impressive ${((s as any).pcs_nickname ?? 0)}."`);
+  scene.text(`"That is impressive ${((s as any).pcs_nickname || '')}."`);
   scene.text('Then she takes a key and launches it to you… It\'s a <i>key</i> but now that you can examine it, not the sort used on security boxes. You are going to retort to the annoying fuck before she rise her hands in a conciliating gesture.');
   scene.text('"Yeah I know! It just… Look sexy, I don\'t have the key, but if you come with me, I will tell you where is the sword! Ehm… Girl Scout Word!"');
   scene.text('Ana pout, giving puppy eyes, as she raises a hand in the three-finger salute.');
@@ -1678,9 +1678,9 @@ function enterAnamotel(s: GameState, scene: SceneBuilder): void {
     scene.text('She is already in the shower, when you, half-naked, reach her, and before she has time to start the water, you step into the shower, a fresh and minty fragrance fills the small space. Ana just looks at you with her trademarked big puppy eyes as you bend to kiss the shorter girl\'s lips.');
     scene.text('She freezes as your tongue tries to get past her mint-flavored lips, and you realize your mistake. Ana looks at you with frightened, doe-like eyes. Then she snorts and rests her forehead on your chest, laughing uncontrollably.');
     // TODO-QSP: dynamic text: "<i>Lo siento <<$pcs_nickname>>! Te-He! Virginal e Inocente?! Te-He! Por Dios no...
-    scene.text(`"<i>Lo siento ${((s as any).pcs_nickname ?? 0)}! Te-He! Virginal e Inocente?! Te-He! Por Dios no</i>!" Ana - <i>slowly</i> - calms and looks at you with this big-goofy smile "${((s as any).pcs_nickname ?? 0)} Sigh… but seriously, yeah… I have never been with a woman and feel out of my comfort zone so… well… sorry, but I am not as experienced as you."`);
+    scene.text(`"<i>Lo siento ${((s as any).pcs_nickname || '')}! Te-He! Virginal e Inocente?! Te-He! Por Dios no</i>!" Ana - <i>slowly</i> - calms and looks at you with this big-goofy smile "${((s as any).pcs_nickname || '')} Sigh… but seriously, yeah… I have never been with a woman and feel out of my comfort zone so… well… sorry, but I am not as experienced as you."`);
     // TODO-QSP: dynamic text: "Ana, What do you mean by <i>experienced</i>?!" At your question, she just rolls...
-    scene.text(`"Ana, What do you mean by <i>experienced</i>?!" At your question, she just rolls her eyes. "Oh! Come on ${((s as any).pcs_nickname ?? 0)}! Alexandria is a lot of things, but <i>chaste</i> isn't one of them! It would be surprising, if she hasn't tied you to her bed, and had her way with your ass!"`);
+    scene.text(`"Ana, What do you mean by <i>experienced</i>?!" At your question, she just rolls her eyes. "Oh! Come on ${((s as any).pcs_nickname || '')}! Alexandria is a lot of things, but <i>chaste</i> isn't one of them! It would be surprising, if she hasn't tied you to her bed, and had her way with your ass!"`);
     scene.text('You mussed over Ana\'s word, remembering your <i>teaching lessons</i> with Aleksei, and strange words find their way towards your mouth. "So… Ana… Do you want to learn what <i>Aleksei</i> taught me? What if I ask you to kneel?"');
     scene.actions([
       { label: 'She does it.', handler: (st: GameState) => {
@@ -1688,7 +1688,7 @@ function enterAnamotel(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/city/ana/sex/AS2.jpg');
     // TODO-QSP: dynamic text: Ana doesn't hesitate, and with eyes full of determination, she kneels before you...
-    scene.text(`Ana doesn't hesitate, and with eyes full of determination, she kneels before you in submission, then… as an afterthought, Ana turns the water back on, and grabs a bar of soap and a sponge. "Well… I promised to scrub you ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`Ana doesn't hesitate, and with eyes full of determination, she kneels before you in submission, then… as an afterthought, Ana turns the water back on, and grabs a bar of soap and a sponge. "Well… I promised to scrub you ${((s as any).pcs_nickname || '')}."`);
     scene.text('You try to reconcile Ana\'s sudden meekness with her recent craziness, as your brain searches for a trick. New words fill the shower: "Don\'t use it, Ana."');
     scene.text('Again, she doesn\'t falters, and without taking her eyes from your face, she grabs your tighs and begins to kiss your leg, adding little laps to the sweaty skin. You meanwhile take away what is left of your cumbersome clothes until nothing is separating your skin from Ana\'s mouth.');
     scene.text('"Are you so desperate to be my sub, Ana? Hm? Then, show me <i>Mutant Girl</i>."');
@@ -1711,7 +1711,7 @@ function enterAnamotel(s: GameState, scene: SceneBuilder): void {
     scene.text('"<i>Me corro! Me corro!</i>"');
     scene.text('In no time you have the horny Ana shaking in orgasmic bliss, and during a moment her form <i>ripple</i> showing you… brunette hair? But is just a moment before she recovers her self-control, and you observe Ana\'s blissed-out expression.');
     // TODO-QSP: dynamic text: "Woah! That was great <<$pcs_nickname>>! Ehm… Can we sit on the floor? Is your t...
-    scene.text(`"Woah! That was great ${((s as any).pcs_nickname ?? 0)}! Ehm… Can we sit on the floor? Is your turn, and I want to try something!"`);
+    scene.text(`"Woah! That was great ${((s as any).pcs_nickname || '')}! Ehm… Can we sit on the floor? Is your turn, and I want to try something!"`);
     scene.actions([
       { label: 'You two sit.', handler: (st: GameState) => {
     if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
@@ -1757,7 +1757,7 @@ function enterAnamotel(s: GameState, scene: SceneBuilder): void {
       scene.text('Saying this she doesn\'t seem in the mood to talk more, and you take your things and leave the room.');
     } else {
       // TODO-QSP: dynamic text: Ana snort "Oh my god! No! Look, I am sorry <<$pcs_nickname>>, but you need more ...
-      scene.text(`Ana snort "Oh my god! No! Look, I am sorry ${((s as any).pcs_nickname ?? 0)}, but you need more than fulfill my lesbian fantasy, for this straight girl to rethink her sexual orientation! I prefer my lovers tall, dark-skinned, and very male, but… I can add certain tall Russian woman!"`);
+      scene.text(`Ana snort "Oh my god! No! Look, I am sorry ${((s as any).pcs_nickname || '')}, but you need more than fulfill my lesbian fantasy, for this straight girl to rethink her sexual orientation! I prefer my lovers tall, dark-skinned, and very male, but… I can add certain tall Russian woman!"`);
       scene.text('"So… what happened back there?"');
       scene.text('She grimaces "just some little fun? I like you… but not in the <i>really</i> like you… that doesn\'t mean, that we can\'t have more fun together, and remember! I want a rematch!"');
       scene.text('Ana wink and you understand that there isn\'t more to do, so yo take your things and leave the room.');

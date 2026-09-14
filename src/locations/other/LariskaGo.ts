@@ -6,14 +6,14 @@ import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A13']} ${((s as any).npc_lastname ?? 0)?.['A13']}</b></center>`);
+  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A13'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A13'] ?? ''}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big13.jpg');
   scene.text('You join Lariska and start walking with her to her home.');
   scene.actions([
     { label: 'Go with Lariska', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A13']} ${((s as any).npc_lastname ?? 0)?.['A13']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A13'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A13'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big13.jpg');
     scene.text('You walk down the street with Lariska, discussing small stuff until you reach her place, about 15 minutes later.');
     scene.actions([

@@ -134,7 +134,7 @@ function enterVolleyballMenu(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).week ?? 0) === 6  &&  ((s as any).vballVars ?? 0)?.['last_match_day'] !== ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 18) {
               // TODO-QSP: dynamic text: As you look around, you don't see anyone from the team. You suddenly realize tha...
-              scene.text('As you look around, you don\'t see anyone from the team. You suddenly realize that there was a tournament game today and you were supposed to be here at \' + $func(\'time\', \'get_time_string\', 18, 0) + \'! You missed the bus and the coach is going to be furious!');
+              scene.text('As you look around, you don\'t see anyone from the team. You suddenly realize that there was a tournament game today and you were supposed to be here at 18:00! You missed the bus and the coach is going to be furious!');
               qspCall(s, 'npc_relationship', 'modify', 'A69', (-20));
               if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['last_match_day'] = ((s as any).daystart ?? 0);
               scene.actions([
@@ -206,54 +206,54 @@ function enterTeamPractice(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['team_attack'] = 40;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['team_defense'] = 40;
   }
-  qspCall(s, 'volleyball_ev', 'level_up_init');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUpInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'exercise', 'tier2', 80, 'vball');
   qspCall(s, 'exercise', 'tier3', 40, 'vball', 'stren', 'agil', 'vital', 'prcptn', 'react');
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['defense_exp'] = ((s as any).vballVars['defense_exp'] ?? 0) + (1);
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['attack_exp'] = ((s as any).vballVars['attack_exp'] ?? 0) + (1);
   if (((s as any).vballVars ?? 0)?.['coachsex'] === 0) {
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['practice_message'] = Math.floor(Math.random() * 10) + 1;
-    scene.img(`images/pc/activities/volleyball/team_practice/${((s as any).vballVars ?? 0)?.['practice_message']}.jpg`);
+    scene.img(`images/pc/activities/volleyball/team_practice/${((s as any).vballVars ?? 0)?.['practice_message'] ?? ''}.jpg`);
     scene.text('Coach Mikhail runs the team through various drills, helping you work on all aspects of volleyball.');
     if (((s as any).vballVars ?? 0)?.['practice_message'] === 1) {
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>! You need to put the weight on the balls of your feet when yo...
-      scene.text(`"${((s as any).pcs_lastname ?? 0)}! You need to put the weight on the balls of your feet when you jump! Plant yourself more firmly! Focus when you jump! Don't just throw yourself at the ball!"`);
+      scene.text(`"${((s as any).pcs_lastname || '')}! You need to put the weight on the balls of your feet when you jump! Plant yourself more firmly! Focus when you jump! Don't just throw yourself at the ball!"`);
     } else {
       if (((s as any).vballVars ?? 0)?.['practice_message'] === 2) {
         // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Your spikes are too obvious! The blockers know exactly where...
-        scene.text(`"${((s as any).pcs_lastname ?? 0)}! Your spikes are too obvious! The blockers know exactly where you're going to hit it! Try changing it up!"`);
+        scene.text(`"${((s as any).pcs_lastname || '')}! Your spikes are too obvious! The blockers know exactly where you're going to hit it! Try changing it up!"`);
       } else {
         if (((s as any).vballVars ?? 0)?.['practice_message'] === 3) {
           // TODO-QSP: dynamic text: "<<$pcs_lastname>>! If you're going to fake a spike, jump like you mean it! Anyo...
-          scene.text(`"${((s as any).pcs_lastname ?? 0)}! If you're going to fake a spike, jump like you mean it! Anyone who's paying attention will discount you as a threat!"`);
+          scene.text(`"${((s as any).pcs_lastname || '')}! If you're going to fake a spike, jump like you mean it! Anyone who's paying attention will discount you as a threat!"`);
         } else {
           if (((s as any).vballVars ?? 0)?.['practice_message'] === 4) {
             // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Don't flail your arms around when you block! Go straight up!...
-            scene.text(`"${((s as any).pcs_lastname ?? 0)}! Don't flail your arms around when you block! Go straight up! You don't have to block it every time if the people receiving behind you can pick it up! Make it easier on them!"`);
+            scene.text(`"${((s as any).pcs_lastname || '')}! Don't flail your arms around when you block! Go straight up! You don't have to block it every time if the people receiving behind you can pick it up! Make it easier on them!"`);
           } else {
             if (((s as any).vballVars ?? 0)?.['practice_message'] === 5) {
               // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Don't just try to block where you <i>think</i> the ball is g...
-              scene.text(`"${((s as any).pcs_lastname ?? 0)}! Don't just try to block where you <i>think</i> the ball is going to be! Watch where it's going before you jump!"`);
+              scene.text(`"${((s as any).pcs_lastname || '')}! Don't just try to block where you <i>think</i> the ball is going to be! Watch where it's going before you jump!"`);
             } else {
               if (((s as any).vballVars ?? 0)?.['practice_message'] === 6) {
                 // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Get right underneath the ball when you go to set it! If you ...
-                scene.text(`"${((s as any).pcs_lastname ?? 0)}! Get right underneath the ball when you go to set it! If you set it from the side they know which way you're going to toss it!"`);
+                scene.text(`"${((s as any).pcs_lastname || '')}! Get right underneath the ball when you go to set it! If you set it from the side they know which way you're going to toss it!"`);
               } else {
                 if (((s as any).vballVars ?? 0)?.['practice_message'] === 7) {
                   // TODO-QSP: dynamic text: "<<$pcs_lastname>>! You need to be more consistent when you toss for your serve!...
-                  scene.text(`"${((s as any).pcs_lastname ?? 0)}! You need to be more consistent when you toss for your serve! Don't just throw it up randomly! Throw it to the same height every time!"`);
+                  scene.text(`"${((s as any).pcs_lastname || '')}! You need to be more consistent when you toss for your serve! Don't just throw it up randomly! Throw it to the same height every time!"`);
                 } else {
                   if (((s as any).vballVars ?? 0)?.['practice_message'] === 8) {
                     // TODO-QSP: dynamic text: "<<$pcs_lastname>>! You need to lower your hips when you receive! Your center of...
-                    scene.text(`"${((s as any).pcs_lastname ?? 0)}! You need to lower your hips when you receive! Your center of gravity isn't secure! That's why you keep falling over!"`);
+                    scene.text(`"${((s as any).pcs_lastname || '')}! You need to lower your hips when you receive! Your center of gravity isn't secure! That's why you keep falling over!"`);
                   } else {
                     if (((s as any).vballVars ?? 0)?.['practice_message'] === 9) {
                       // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Stop wimping out when you go for a dive! You have pads for a...
-                      scene.text(`"${((s as any).pcs_lastname ?? 0)}! Stop wimping out when you go for a dive! You have pads for a reason!"`);
+                      scene.text(`"${((s as any).pcs_lastname || '')}! Stop wimping out when you go for a dive! You have pads for a reason!"`);
                     } else {
                       if (((s as any).vballVars ?? 0)?.['practice_message'] === 10) {
                         // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Move your legs! Don't give up just because the initial recei...
-                        scene.text(`"${((s as any).pcs_lastname ?? 0)}! Move your legs! Don't give up just because the initial receive was off! If you run you can still keep the ball in play!"`);
+                        scene.text(`"${((s as any).pcs_lastname || '')}! Move your legs! Don't give up just because the initial receive was off! If you run you can still keep the ball in play!"`);
                       }
                     }
                   }
@@ -272,35 +272,35 @@ function enterTeamPractice(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (Math.floor(Math.random() * 8) + 1);
       if (((s as any).vballVars ?? 0)?.['practice_message'] === 1) {
         // TODO-QSP: dynamic text: "Move your pretty little butt <<$pcs_lastname>>! I don't want you training to ma...
-        scene.text(`"Move your pretty little butt ${((s as any).pcs_lastname ?? 0)}! I don't want you training to make it look good, I want you to use that ass to jump!"`);
+        scene.text(`"Move your pretty little butt ${((s as any).pcs_lastname || '')}! I don't want you training to make it look good, I want you to use that ass to jump!"`);
       } else {
         if (((s as any).vballVars ?? 0)?.['practice_message'] === 2) {
           // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Your spikes are too obvious! The blockers know exactly where...
-          scene.text(`"${((s as any).pcs_lastname ?? 0)}! Your spikes are too obvious! The blockers know exactly where you're going to hit it! Change it up!"`);
+          scene.text(`"${((s as any).pcs_lastname || '')}! Your spikes are too obvious! The blockers know exactly where you're going to hit it! Change it up!"`);
         } else {
           if (((s as any).vballVars ?? 0)?.['practice_message'] === 3) {
             // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Don't aim with your arms when you bump! Get low! Stick your ...
-            scene.text(`"${((s as any).pcs_lastname ?? 0)}! Don't aim with your arms when you bump! Get low! Stick your ass out! Aim with those childbearing hips!"`);
+            scene.text(`"${((s as any).pcs_lastname || '')}! Don't aim with your arms when you bump! Get low! Stick your ass out! Aim with those childbearing hips!"`);
           } else {
             if (((s as any).vballVars ?? 0)?.['practice_message'] === 4) {
               // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Don't flail your arms like you're jerking off boys! Go strai...
-              scene.text(`"${((s as any).pcs_lastname ?? 0)}! Don't flail your arms like you're jerking off boys! Go straight up when you block!"`);
+              scene.text(`"${((s as any).pcs_lastname || '')}! Don't flail your arms like you're jerking off boys! Go straight up when you block!"`);
             } else {
               if (((s as any).vballVars ?? 0)?.['practice_message'] === 5) {
                 // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Get right underneath the ball like you're going to eat its a...
-                scene.text(`"${((s as any).pcs_lastname ?? 0)}! Get right underneath the ball like you're going to eat its ass! If you set it from the side they know which way you're going to toss it!"`);
+                scene.text(`"${((s as any).pcs_lastname || '')}! Get right underneath the ball like you're going to eat its ass! If you set it from the side they know which way you're going to toss it!"`);
               } else {
                 if (((s as any).vballVars ?? 0)?.['practice_message'] === 6) {
                   // TODO-QSP: dynamic text: "<<$pcs_lastname>>! You need to lower your hips when you receive! Your center of...
-                  scene.text(`"${((s as any).pcs_lastname ?? 0)}! You need to lower your hips when you receive! Your center of gravity isn't secure! Do you fall over like that when you are riding boys?"`);
+                  scene.text(`"${((s as any).pcs_lastname || '')}! You need to lower your hips when you receive! Your center of gravity isn't secure! Do you fall over like that when you are riding boys?"`);
                 } else {
                   if (((s as any).vballVars ?? 0)?.['practice_message'] === 7) {
                     // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Stop wimping out when you go for a dive! You have pads for a...
-                    scene.text(`"${((s as any).pcs_lastname ?? 0)}! Stop wimping out when you go for a dive! You have pads for a reason!"`);
+                    scene.text(`"${((s as any).pcs_lastname || '')}! Stop wimping out when you go for a dive! You have pads for a reason!"`);
                   } else {
                     if (((s as any).vballVars ?? 0)?.['practice_message'] === 8) {
                       // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Move those sexy legs! Pumps those thighs! Don't give up just...
-                      scene.text(`"${((s as any).pcs_lastname ?? 0)}! Move those sexy legs! Pumps those thighs! Don't give up just because the initial receive was off! If you run you can still keep the ball in play!"`);
+                      scene.text(`"${((s as any).pcs_lastname || '')}! Move those sexy legs! Pumps those thighs! Don't give up just because the initial receive was off! If you run you can still keep the ball in play!"`);
                     }
                   }
                 }
@@ -313,7 +313,7 @@ function enterTeamPractice(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['practice_message'] = Math.floor(Math.random() * 5) + 1;
       if (((s as any).vballVars ?? 0)?.['practice_message'] === 1) {
         // TODO-QSP: dynamic text: "<<$pcs_lastname>>!" he calls, walking over to you. "You need to widen your stan...
-        scene.text(`"${((s as any).pcs_lastname ?? 0)}!" he calls, walking over to you. "You need to widen your stance more when you receive. Like this…"`);
+        scene.text(`"${((s as any).pcs_lastname || '')}!" he calls, walking over to you. "You need to widen your stance more when you receive. Like this…"`);
         scene.text('He gets behind you, putting his hands on your body and pushing down on your hips. At the same time, he slides his hands down to your thighs, pushing your legs open wider, copping a feel of them as he does.');
         scene.text('You glance around at the other girls. They\'re still focused on their own drills and don\'t seem to notice what the coach is doing.');
         scene.actions([
@@ -324,7 +324,7 @@ function enterTeamPractice(s: GameState, scene: SceneBuilder): void {
     scene.text('"Exactly like that," he says. You can hear the smile in his voice. You bounce a few more times before slowly standing back up.');
     scene.text('"Thank you Coach Mikhail," you smile back.');
     // TODO-QSP: dynamic text: "Any time <<$pcs_nickname>>," he says before walking off to coach another girl.
-    scene.text(`"Any time ${((s as any).pcs_nickname ?? 0)}," he says before walking off to coach another girl.`);
+    scene.text(`"Any time ${((s as any).pcs_nickname || '')}," he says before walking off to coach another girl.`);
     scene.actions([
       { label: 'Continue', goto: ['volleyball_ev', 'team_practice2'] },
     ]);
@@ -333,14 +333,14 @@ function enterTeamPractice(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).vballVars ?? 0)?.['practice_message'] <= 4) {
           // TODO-QSP: dynamic text: "<<$pcs_lastname>>! Your spikes are too obvious! The blockers know exactly where...
-          scene.text(`"${((s as any).pcs_lastname ?? 0)}! Your spikes are too obvious! The blockers know exactly where you're going to hit it! Try changing it up!"`);
+          scene.text(`"${((s as any).pcs_lastname || '')}! Your spikes are too obvious! The blockers know exactly where you're going to hit it! Try changing it up!"`);
           scene.actions([
             { label: 'Continue', goto: ['volleyball_ev', 'team_practice2'] },
           ]);
         } else {
           if (((s as any).vballVars ?? 0)?.['practice_message'] === 5) {
             // TODO-QSP: dynamic text: "<<$pcs_lastname>>!" he says, walking over to you. "Your arms need to be straigh...
-            scene.text(`"${((s as any).pcs_lastname ?? 0)}!" he says, walking over to you. "Your arms need to be straight over your head when you go for a block. Go straight up! Keep them totally in line with your body."`);
+            scene.text(`"${((s as any).pcs_lastname || '')}!" he says, walking over to you. "Your arms need to be straight over your head when you go for a block. Go straight up! Keep them totally in line with your body."`);
             scene.text('As he explains he puts your arms over your head and begins running his hands down them, down to your shoulders, and down your sides, his fingers trailing over the sides of your breasts as they go past.');
             scene.actions([
               { label: 'Tease him', handler: (st: GameState) => {
@@ -350,7 +350,7 @@ function enterTeamPractice(s: GameState, scene: SceneBuilder): void {
     scene.text('"Exactly like that," he says. You can hear the smile in his voice. You bounce a few more times before slowly standing back up.');
     scene.text('"Thank you Coach Mikhail," you smile back.');
     // TODO-QSP: dynamic text: "Any time <<$pcs_nickname>>," he says before walking off to coach another girl.
-    scene.text(`"Any time ${((s as any).pcs_nickname ?? 0)}," he says before walking off to coach another girl.`);
+    scene.text(`"Any time ${((s as any).pcs_nickname || '')}," he says before walking off to coach another girl.`);
     scene.actions([
       { label: 'Continue', goto: ['volleyball_ev', 'team_practice2'] },
     ]);
@@ -369,7 +369,7 @@ function enterTeamPractice2(s: GameState, scene: SceneBuilder): void {
   if (((s as any).vballVars ?? 0)?.['plan_b'] > 0  &&  ((s as any).vballVars ?? 0)?.['last_plan_b_check'] < ((s as any).daystart ?? 0)) {
     scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'plan_b_check'] }]);
   }
-  qspCall(s, 'volleyball_ev', 'level_up');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUp(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/pc/activities/volleyball/team1.jpg');
   scene.text('After two hours, Coach Mikhail calls practice to a close.');
   if (((s as any).vballVars ?? 0)?.['level_up_message'] === 1) {
@@ -384,7 +384,7 @@ function enterTeamPractice2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You watch as some girls walk off immediately to hit the showers.');
   }
-  qspCall(s, 'volleyball_ev', 'level_up_init');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUpInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'General practice', goto: ['volleyball_ev', 'general_practice'] },
@@ -402,7 +402,7 @@ function enterPlanBCheck(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener6.jpg');
   scene.text('In the middle of practice, Coach Mikhail pulls you aside to speak to you in a hushed voice.');
   // TODO-QSP: dynamic text: <<$pcs_usedname['A69']>>, did you… do that thing? After… what happened…?" He eye...
-  scene.text(`${((s as any).pcs_usedname ?? 0)?.['A69']}, did you… do that thing? After… what happened…?" He eyes you meaningfully and you know he's talking about when the condom broke. About the morning after pill.`);
+  scene.text(`${((s as any).pcs_usedname ?? 0)?.['A69'] ?? ''}, did you… do that thing? After… what happened…?" He eyes you meaningfully and you know he's talking about when the condom broke. About the morning after pill.`);
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['last_plan_b_check'] = ((s as any).daystart ?? 0);
   if (((s as any).stat ?? 0)?.['last_morning_after_pill'] > ((s as any).vballVars ?? 0)?.['plan_b']) {
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['plan_b'] = 0;
@@ -419,11 +419,11 @@ function enterPlanBCheck(s: GameState, scene: SceneBuilder): void {
     scene.text('You gasp, putting your hand over your mouth.');
     scene.text('"I totally forgot!" you squeak, hiding your grin behind your fingers. Coach Mikhail pales.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>!" he hisses. "This isn't something you forget! This could mea...
-    scene.text(`"${((s as any).pcs_lastname ?? 0)}!" he hisses. "This isn't something you forget! This could mean serious trouble for both of us!"`);
+    scene.text(`"${((s as any).pcs_lastname || '')}!" he hisses. "This isn't something you forget! This could mean serious trouble for both of us!"`);
     scene.text('"I forgot!" you say again. "… to tell you I took it the other day."');
     scene.text('You let your hand fall, revealing your grin, trying not to burst out laughing. He stares at you in disbelief for a moment before it turns into a scowl.');
     // TODO-QSP: dynamic text: "That isn't funny, <<$pcs_lastname>>," he growls. You keep grinning at his back ...
-    scene.text(`"That isn't funny, ${((s as any).pcs_lastname ?? 0)}," he growls. You keep grinning at his back as he stalks away.`);
+    scene.text(`"That isn't funny, ${((s as any).pcs_lastname || '')}," he growls. You keep grinning at his back as he stalks away.`);
     scene.actions([
       { label: 'Continue', goto: ['volleyball_ev', 'team_practice2'] },
     ]);
@@ -462,10 +462,10 @@ function enterCoachGlare(s: GameState, scene: SceneBuilder): void {
     scene.text('Careful not to make any quick movements that would draw attention, you slowly turn your head to meet his gaze and glare at him.');
     scene.text('A glare that says, "Now? Really?"');
     // TODO-QSP: dynamic text: "Was that helpful <<$pcs_lastname>>?" he asks innocently.
-    scene.text(`"Was that helpful ${((s as any).pcs_lastname ?? 0)}?" he asks innocently.`);
+    scene.text(`"Was that helpful ${((s as any).pcs_lastname || '')}?" he asks innocently.`);
     scene.text('"Yes, you were so much help. Thank you Coach Mikhail," you smile back warmly while retaining cold eyes.');
     // TODO-QSP: dynamic text: "Any time <<$pcs_nickname>>, he grins back before walking off to coach another g...
-    scene.text(`"Any time ${((s as any).pcs_nickname ?? 0)}, he grins back before walking off to coach another girl.`);
+    scene.text(`"Any time ${((s as any).pcs_nickname || '')}, he grins back before walking off to coach another girl.`);
     scene.actions([
       { label: 'Continue', goto: ['volleyball_ev', 'team_practice2'] },
     ]);
@@ -519,7 +519,7 @@ function enterPracticeEnd2(s: GameState, scene: SceneBuilder): void {
 function enterGeneralPractice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'tier2', 40, 'vball');
   qspCall(s, 'exercise', 'tier2', 20, 'vball', 'stren', 'agil', 'vital', 'react', 'prcptn');
-  qspCall(s, 'volleyball_ev', 'level_up');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUp(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img(`images/pc/activities/volleyball/team_practice/${Math.floor(Math.random() * 10) + 1}.jpg`);
   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['defense_exp'] = ((s as any).vballVars['defense_exp'] ?? 0) + (1);
@@ -541,7 +541,7 @@ function enterGeneralPractice(s: GameState, scene: SceneBuilder): void {
 function enterBlockPractice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'tier2', 40, 'vball_block');
   qspCall(s, 'exercise', 'tier3', 20, 'vball_block', 'vital', 'react');
-  qspCall(s, 'volleyball_ev', 'level_up');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUp(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img(`images/pc/activities/volleyball/team_practice/${Math.floor(Math.random() * 3) + 3}.jpg`);
   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['attack_exp'] = ((s as any).vballVars['attack_exp'] ?? 0) + ((Math.floor(Math.random() * 3) + 0) / 2);
@@ -571,7 +571,7 @@ function enterBlockPractice(s: GameState, scene: SceneBuilder): void {
 function enterReceivePractice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'tier2', 40, 'vball_rec');
   qspCall(s, 'exercise', 'tier3', 20, 'vball_rec', 'agil', 'react');
-  qspCall(s, 'volleyball_ev', 'level_up');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUp(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img(`images/pc/activities/volleyball/team_practice/${Math.floor(Math.random() * 2) + 8}.jpg`);
   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['attack_exp'] = ((s as any).vballVars['attack_exp'] ?? 0) + (1);
@@ -593,7 +593,7 @@ function enterReceivePractice(s: GameState, scene: SceneBuilder): void {
 function enterServePractice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'tier2', 40, 'vball_serve');
   qspCall(s, 'exercise', 'tier3', 20, 'vball_serve', 'stren', 'prcptn');
-  qspCall(s, 'volleyball_ev', 'level_up');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUp(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/pc/activities/volleyball/team_practice/7.jpg');
   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['defense_exp'] = ((s as any).vballVars['defense_exp'] ?? 0) + (1);
@@ -661,7 +661,7 @@ function enterJumpServeComplete(s: GameState, scene: SceneBuilder): void {
 function enterSetPractice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'tier2', 40, 'vball_set');
   qspCall(s, 'exercise', 'tier3', 20, 'vball_set', 'agil', 'prcptn');
-  qspCall(s, 'volleyball_ev', 'level_up');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUp(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/pc/activities/volleyball/team_practice/6.jpg');
   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['attack_exp'] = ((s as any).vballVars['attack_exp'] ?? 0) + (1);
@@ -683,7 +683,7 @@ function enterSetPractice(s: GameState, scene: SceneBuilder): void {
 function enterSpikePractice(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'exercise', 'tier2', 40, 'vball_spike');
   qspCall(s, 'exercise', 'tier3', 20, 'vball_spike', 'stren', 'vital');
-  qspCall(s, 'volleyball_ev', 'level_up');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLevelUp(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img(`images/pc/activities/volleyball/team_practice/${Math.floor(Math.random() * 5) + 1}.jpg`);
   if (((s as any).vballVars ?? 0)?.['on_team'] === 1) {
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['defense_exp'] = ((s as any).vballVars['defense_exp'] ?? 0) + (1);
@@ -705,7 +705,7 @@ function enterSpikePractice(s: GameState, scene: SceneBuilder): void {
 function enterPregnancyReact(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).npc_pregtalk) (s as any).npc_pregtalk = {}; (s as any).npc_pregtalk['A69'] = 1;
   // TODO-QSP: dynamic text: As you approach the team, your coach notices you and calls you aside. "<<$pcs_fi...
-  scene.text(`As you approach the team, your coach notices you and calls you aside. "${((s as any).pcs_firstname ?? 0)}, are you pregnant? I can't let you play like that. Also, a pregnant teenager would definitely reflect poorly on me and the rest of the team. Sorry, but off the team." Tears welling in your eyes, you leave.`);
+  scene.text(`As you approach the team, your coach notices you and calls you aside. "${((s as any).pcs_firstname || '')}, are you pregnant? I can't let you play like that. Also, a pregnant teenager would definitely reflect poorly on me and the rest of the team. Sorry, but off the team." Tears welling in your eyes, you leave.`);
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['on_team'] = 0;
@@ -729,7 +729,7 @@ function enterPickOpponent(s: GameState, scene: SceneBuilder): void {
     (s as any).i = Math.floor(Math.random() * 5) + 1;
   }
   if (((s as any).i ?? 0) > 0  &&  ((s as any).vballVars ?? 0)?.['opponent'] === ((s as any).i ?? 0)) {
-    qspCall(s, 'volleyball_ev', 'pick_opponent');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPickOpponent(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opponent'] = ((s as any).i ?? 0);
@@ -779,7 +779,7 @@ function enterArrival(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_points'] = 0;
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['team_points'] = 0;
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = 0;
-  qspCall(s, 'volleyball_ev', 'pick_opponent');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPickOpponent(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/pc/activities/volleyball/court.jpg');
   scene.text('You arrive at the gym with your team and wait for your admission to the court.');
   if (((s as any).vballVars ?? 0)?.['opponent'] === 0) {
@@ -787,18 +787,18 @@ function enterArrival(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).vballVars ?? 0)['match_result_' + ((s as any).vballVars ?? 0)?.['opponent']] === 'defeat') {
       // TODO-QSP: dynamic text: You'll have a rematch against the "<<$vballVars['opponent_name']>>" today. The c...
-      scene.text(`You'll have a rematch against the "${((s as any).vballVars ?? 0)?.['opponent_name']}" today. The coach gathers everyone to hold his pre-game speech. "They may have beat us last time, but we trained for this day. Show them what you're made of!"`);
+      scene.text(`You'll have a rematch against the "${((s as any).vballVars ?? 0)?.['opponent_name'] ?? ''}" today. The coach gathers everyone to hold his pre-game speech. "They may have beat us last time, but we trained for this day. Show them what you're made of!"`);
     } else {
       if (((s as any).vballVars ?? 0)['match_result_' + ((s as any).vballVars ?? 0)?.['opponent']] === 'victory') {
         // TODO-QSP: dynamic text: You will be playing against the "<<$vballVars['opponent_name']>>" again. The coa...
-        scene.text(`You will be playing against the "${((s as any).vballVars ?? 0)?.['opponent_name']}" again. The coach gathers everyone to hold his pre-game speech. "We beat them before, we can do it again. Let's go girls!"`);
+        scene.text(`You will be playing against the "${((s as any).vballVars ?? 0)?.['opponent_name'] ?? ''}" again. The coach gathers everyone to hold his pre-game speech. "We beat them before, we can do it again. Let's go girls!"`);
       } else {
         if (((s as any).vballVars ?? 0)?.['opponent'] > 3) {
           // TODO-QSP: dynamic text: You will be playing against the "<<$vballVars['opponent_name']>>" today. The coa...
-          scene.text(`You will be playing against the "${((s as any).vballVars ?? 0)?.['opponent_name']}" today. The coach gathers everyone around and tells you "This is a proper opponent girls. We have been training for this. Show me what you can do!"`);
+          scene.text(`You will be playing against the "${((s as any).vballVars ?? 0)?.['opponent_name'] ?? ''}" today. The coach gathers everyone around and tells you "This is a proper opponent girls. We have been training for this. Show me what you can do!"`);
         } else {
           // TODO-QSP: dynamic text: You will be playing against the "<<$vballVars['opponent_name']>>" today. The coa...
-          scene.text(`You will be playing against the "${((s as any).vballVars ?? 0)?.['opponent_name']}" today. The coach gathers everyone around and tells you "They have some new players this season. Don't underestimate them and remember our training."`);
+          scene.text(`You will be playing against the "${((s as any).vballVars ?? 0)?.['opponent_name'] ?? ''}" today. The coach gathers everyone around and tells you "They have some new players this season. Don't underestimate them and remember our training."`);
         }
       }
     }
@@ -841,7 +841,7 @@ function enterWarmUps(s: GameState, scene: SceneBuilder): void {
         if (((s as any).pcs_vball_serve ?? 0) > 35  &&  ((s as any).vballVars ?? 0)?.['libero'] !== 1) {
           scene.text('"We\'ll serve first," your team captain says and looks back at you.');
           // TODO-QSP: dynamic text: "<<$pcs_lastname>>! You're up!" Coach Mikhail calls from the bench.
-          scene.text(`"${((s as any).pcs_lastname ?? 0)}! You're up!" Coach Mikhail calls from the bench.`);
+          scene.text(`"${((s as any).pcs_lastname || '')}! You're up!" Coach Mikhail calls from the bench.`);
           scene.actions([
             { label: 'Serve', goto: ['volleyball_ev', 'serve_start'] },
           ]);
@@ -870,7 +870,7 @@ function enterWarmUps(s: GameState, scene: SceneBuilder): void {
       if (((s as any).pcs_vball_serve ?? 0) > 35) {
         scene.text('"We\'ll receive first," their team captain says. Your own captain nods in response and looks back at you.');
         // TODO-QSP: dynamic text: "<<$pcs_lastname>>! You're up!" Coach Mikhail calls from the bench as you nod ba...
-        scene.text(`"${((s as any).pcs_lastname ?? 0)}! You're up!" Coach Mikhail calls from the bench as you nod back.`);
+        scene.text(`"${((s as any).pcs_lastname || '')}! You're up!" Coach Mikhail calls from the bench as you nod back.`);
         scene.actions([
           { label: 'Serve', goto: ['volleyball_ev', 'serve_start'] },
         ]);
@@ -944,10 +944,10 @@ function enterFreeBall(s: GameState, scene: SceneBuilder): void {
   scene.text('"Free ball!" you shout as the ball soars high over the net towards your team.');
   scene.text('Your team just got in a good attack but didn\'t manage to score a point off of it. Fortunately, it seemed to take your opponents off balance and they couldn\'t attack back, forced to use all three of their touches just to get it back over the net.');
   scene.text('As the ball begins to come back down, you need to decide what to do next.');
-  qspCall(s, 'volleyball_ev', 'block_follow');
-  qspCall(s, 'volleyball_ev', 'set');
-  qspCall(s, 'volleyball_ev', 'spike');
-  qspCall(s, 'volleyball_ev', 'spike_fake');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlockFollow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpike(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpikeFake(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -956,8 +956,8 @@ function enterOppSpike(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
   scene.text('"Here it comes!" you shout as your opponents jump up to spike the ball.');
   scene.text('They had a clean receive on their end and they quickly turned it into an attack. Once you see them coming back, you decide to…');
-  qspCall(s, 'volleyball_ev', 'block');
-  qspCall(s, 'volleyball_ev', 'receive');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlock(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceive(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -991,8 +991,8 @@ function enterReceiveStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 1;
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
-  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['rec'] = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_vball_rec ?? 0) / 4 - ((s as any).vballVars ?? {})?.['exhaust'];
-  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['rec'] = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_vball_rec ?? 0) / 4 - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
   // TODO-QSP: end
   scene.build();
 }
@@ -1004,8 +1004,8 @@ function enterBlock(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 2) + 2;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
-    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 4);
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 4);
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((s as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((s as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
     if ((Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? 0)?.['opp_att_result'] < ((s as any).vballVars ?? 0)?.['team_defense'] - 40) {
       if ((Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? 0)?.['team_defense'] + ((s as any).pcs_vball_block ?? 0) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
         scene.actions([{ label: 'Continue', goto: ['volleyball_ev', 'block3_win'] }]);
@@ -1111,7 +1111,7 @@ function enterBlockFollow(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Follow-up in case of block', handler: (st: GameState) => {
     qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['block_follow'] = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_vball_rec ?? 0) / 4 - ((s as any).vballVars ?? {})?.['exhaust'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['block_follow'] = (Math.floor(Math.random() * 100) + 1) + ((s as any).pcs_vball_rec ?? 0) / 4 - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
     if ((Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? 0)?.['team_attack'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
       scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
       scene.text('You hang back waiting and watching carefully in case the enemy manages to block your team\'s attack.');
@@ -1125,7 +1125,7 @@ function enterBlockFollow(s: GameState, scene: SceneBuilder): void {
         scene.img('images/pc/activities/volleyball/receive/1.jpg');
         scene.text('You hang back waiting and watching carefully in case the enemy manages to block your team\'s attack.');
         scene.text('And a good thing that you did. Your opponents manage to get up a block in time and the ball bounces right off it, coming back towards your side of the court. You quickly move in, bumping it high into the air, trying to give your team another opportunity to attack.');
-        qspCall(s, 'volleyball_ev', 'spike');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpike(s, scene); (s as any).locArgs = __savedLocArgs; }
         qspCall(s, 'volleyball_ev', 'fake_spike');
       } else {
         if (((s as any).vballVars ?? 0)?.['block_follow'] > 50) {
@@ -1175,12 +1175,12 @@ function enterReceiveStart(s: GameState, scene: SceneBuilder): void {
     scene.text('The serve comes up and flies over the net, directly towards you!');
     scene.actions([
       { label: 'Receive!', handler: (st: GameState) => {
-    qspCall(s, 'volleyball_ev', 'receive_stats');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
     if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) > ((s as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
       scene.img('images/pc/activities/volleyball/receive/1.mp4');
       scene.text('You lunge forward, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
-      qspCall(s, 'volleyball_ev', 'block_follow');
-      qspCall(s, 'volleyball_ev', 'spike2');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlockFollow(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpike2(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
@@ -1226,7 +1226,7 @@ function enterReceive(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Dig to receive (bump)', handler: (st: GameState) => {
     qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((s as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((s as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
     if (((s as any).vballVars ?? 0)?.['opp_att_result'] < ((s as any).vballVars ?? 0)?.['team_defense']) {
       if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['team_points'] = ((s as any).vballVars['team_points'] ?? 0) + (1);
       scene.img(`images/pc/activities/volleyball/receive/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
@@ -1237,14 +1237,14 @@ function enterReceive(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
-        qspCall(s, 'volleyball_ev', 'receive_stats');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.img('images/pc/activities/volleyball/receive/1.mp4');
         scene.text('Your opponents jump up for their spike and you read their movements perfectly, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
-        qspCall(s, 'volleyball_ev', 'block_follow');
-        qspCall(s, 'volleyball_ev', 'spike2');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlockFollow(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpike2(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
-          qspCall(s, 'volleyball_ev', 'receive_stats');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['team_points'] = ((s as any).vballVars['team_points'] ?? 0) + (1);
             scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
@@ -1254,7 +1254,7 @@ function enterReceive(s: GameState, scene: SceneBuilder): void {
               { label: 'Continue', goto: ['volleyball_ev', 'point_check'] },
             ]);
           } else {
-            qspCall(s, 'volleyball_ev', 'receive_stats');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_points'] = ((s as any).vballVars['opp_points'] ?? 0) + (1);
             scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
             scene.text('Your opponents catch your team off guard, spiking the ball into the perfect hole in your defenses. You dive for the ball, arm outstretched and just somehow barely get your hand under it before it touches the floor.');
@@ -1264,7 +1264,7 @@ function enterReceive(s: GameState, scene: SceneBuilder): void {
             ]);
           }
         } else {
-          qspCall(s, 'volleyball_ev', 'receive_stats');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (((s as any).vballVars ?? 0)?.['service'] === 1) {
             if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['service'] = 0;
           }
@@ -1288,7 +1288,7 @@ function enterReceive2(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Receive the spike', handler: (st: GameState) => {
     qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((s as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((s as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
     if (((s as any).vballVars ?? 0)?.['opp_att_result'] < ((s as any).vballVars ?? 0)?.['team_defense']) {
       if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['team_points'] = ((s as any).vballVars['team_points'] ?? 0) + (1);
       scene.img(`images/pc/activities/volleyball/block/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
@@ -1299,14 +1299,14 @@ function enterReceive2(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
-        qspCall(s, 'volleyball_ev', 'receive_stats');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.img('images/pc/activities/volleyball/block/1.mp4');
         scene.text('Obviously put off balance by your serve, you read their movements perfectly, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
-        qspCall(s, 'volleyball_ev', 'block_follow');
-        qspCall(s, 'volleyball_ev', 'spike');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlockFollow(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpike(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
-          qspCall(s, 'volleyball_ev', 'receive_stats');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['team_points'] = ((s as any).vballVars['team_points'] ?? 0) + (1);
             scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
@@ -1325,7 +1325,7 @@ function enterReceive2(s: GameState, scene: SceneBuilder): void {
             ]);
           }
         } else {
-          qspCall(s, 'volleyball_ev', 'receive_stats');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_points'] = ((s as any).vballVars['opp_points'] ?? 0) + (1);
           if (((s as any).vballVars ?? 0)?.['service'] === 1) {
             if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['service'] = 0;
@@ -1349,7 +1349,7 @@ function enterReceive3(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Receive the spike', handler: (st: GameState) => {
     qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((s as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((s as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
     if (((s as any).vballVars ?? 0)?.['opp_att_result'] < ((s as any).vballVars ?? 0)?.['team_defense']) {
       if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['team_points'] = ((s as any).vballVars['team_points'] ?? 0) + (1);
       scene.img(`images/pc/activities/volleyball/block/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
@@ -1360,14 +1360,14 @@ function enterReceive3(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result'] + 20) {
-        qspCall(s, 'volleyball_ev', 'receive_stats');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
         scene.img('images/pc/activities/volleyball/receive/1.mp4');
         scene.text('Despite how well they did receiving the ball, you read their movements perfectly, moving directly into the path of the ball. It bounces off your forearms high into the air and it\'s a perfect opportunity for your team to counter attack.');
-        qspCall(s, 'volleyball_ev', 'block_follow');
-        qspCall(s, 'volleyball_ev', 'spike2');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlockFollow(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSpike2(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if ((Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_rec ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? 0)?.['exhaust'] > ((s as any).vballVars ?? 0)?.['opp_att_result']) {
-          qspCall(s, 'volleyball_ev', 'receive_stats');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['team_points'] = ((s as any).vballVars['team_points'] ?? 0) + (1);
             scene.img('images/pc/activities/volleyball/receive/dive1.jpg');
@@ -1386,7 +1386,7 @@ function enterReceive3(s: GameState, scene: SceneBuilder): void {
             ]);
           }
         } else {
-          qspCall(s, 'volleyball_ev', 'receive_stats');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceiveStats(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (((s as any).vballVars ?? 0)?.['service'] === 1) {
             if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['service'] = 0;
           }
@@ -1408,10 +1408,10 @@ function enterReceive3(s: GameState, scene: SceneBuilder): void {
 function enterServeStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['service'] = 1;
-  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_serve ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_serve ?? 0) - 20 + 1)) + (20)) - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 3;
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
-  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
   scene.img('images/pc/activities/volleyball/serve/pre.jpg');
   scene.text('You exhale slowly as you hold the ball in your hands.');
   scene.text('This is the first point of the game. How this goes could possibly determine the flow of the rest of the game…');
@@ -1434,14 +1434,14 @@ function enterServeStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
         if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_penalty'] = ((s as any).vballVars['opp_att_penalty'] ?? 0) + (20);
-        if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+        if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((s as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((s as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
         scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders manage to get a hand on the ball, but your spike was powerful enough that it wasn\'t a good reception.');
         scene.text('Despite that, they still manage to get the ball up and it looks like they\'ll manage to get in an attack. You rush to a defensive position, preparing for if they manage to get past the block.');
-        qspCall(s, 'volleyball_ev', 'receive2');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceive2(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense'] - 20) {
           scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders were ready for you and bump the ball high into the air. It looks like they\'re going to get a good opportunity to spike. Quickly, you get into your own defensive position and prepare to receive the ball.');
-          qspCall(s, 'volleyball_ev', 'receive3');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceive3(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_points'] = ((s as any).vballVars['opp_points'] ?? 0) + (1);
           if (((s as any).vballVars ?? 0)?.['service'] === 1) {
@@ -1470,10 +1470,10 @@ function enterServeStart(s: GameState, scene: SceneBuilder): void {
 
 function enterServe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'sweat', 'add', Math.floor(Math.random() * 3) + 3);
-  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_serve ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+  if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['serve'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_serve ?? 0) - 20 + 1)) + (20)) - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 3;
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
-  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+  (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
   scene.img('images/pc/activities/volleyball/serve/pre.jpg');
   if (((s as any).vballVars ?? 0)?.['service'] === 1) {
     scene.text('A teammate throws the ball back to you. You close your eyes, going through your pre-serve rhythm.');
@@ -1502,14 +1502,14 @@ function enterServe(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense']) {
         if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_penalty'] = ((s as any).vballVars['opp_att_penalty'] ?? 0) + (20);
-        if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['opp_attack'] - ((s as any).vballVars ?? {})?.['opp_att_penalty'];
+        if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_att_result'] = (Math.floor(Math.random() * 50) + 1) + (((s as any).vballVars ?? {})?.['opp_attack'] ?? 0) - (((s as any).vballVars ?? {})?.['opp_att_penalty'] ?? 0);
         scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders manage to get a hand on the ball, but your spike was powerful enough that it wasn\'t a good reception.');
         scene.text('Despite that, they still manage to get the ball up and it looks like they\'ll manage to get in an attack. You rush to a defensive position, preparing for if they manage to get past the block.');
-        qspCall(s, 'volleyball_ev', 'receive2');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceive2(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).vballVars ?? 0)?.['serve'] > ((s as any).vballVars ?? 0)?.['opp_defense'] - 20) {
           scene.text('Your hand whips forward, slapping into the ball which soars forward over the net. The defenders were ready for you and bump the ball high into the air. It looks like they\'re going to get a good opportunity to spike. Quickly, you get into your own defensive position and prepare to receive the ball.');
-          qspCall(s, 'volleyball_ev', 'receive3');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceive3(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_points'] = ((s as any).vballVars['opp_points'] ?? 0) + (1);
           if (((s as any).vballVars ?? 0)?.['service'] === 1) {
@@ -1539,10 +1539,10 @@ function enterSet(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Prepare to set', handler: (st: GameState) => {
     scene.img(`images/pc/activities/volleyball/set/${Math.floor(Math.random() * 3) + 1}.jpg`);
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['set'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['team_attack'] + (Math.floor(Math.random() * (((s as any).pcs_vball_set ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['set'] = (Math.floor(Math.random() * 50) + 1) + (((s as any).vballVars ?? {})?.['team_attack'] ?? 0) + (Math.floor(Math.random() * (((s as any).pcs_vball_set ?? 0) - 20 + 1)) + (20)) - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
-    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
     scene.text('You quickly get under the ball and toss it towards one of your teammates, setting them up to spike.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1576,15 +1576,15 @@ function enterSpike(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go for a spike', handler: (st: GameState) => {
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
-    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
     scene.img(`images/pc/activities/volleyball/spike/run/${Math.floor(Math.random() * 2) + 1}.jpg`);
     scene.text('You take a step back before running forward, bending your knees and throwing your arms back, preparing to vault into a jump to spike the ball.');
     if (((s as any).vballVars ?? 0)?.['position'] !== '') {
       // TODO-QSP: dynamic text: "<<$vballVars['position']>>!" you call, leaping into the air.
-      scene.text(`"${((s as any).vballVars ?? 0)?.['position']}!" you call, leaping into the air.`);
+      scene.text(`"${((s as any).vballVars ?? 0)?.['position'] ?? ''}!" you call, leaping into the air.`);
     }
     scene.actions([
       { label: 'Spike it!', handler: (st: GameState) => {
@@ -1600,8 +1600,8 @@ function enterSpike(s: GameState, scene: SceneBuilder): void {
       if (((s as any).vballVars ?? 0)?.['spike'] > ((s as any).vballVars ?? 0)?.['opp_defense'] - 20) {
         scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
         scene.text('Your opponents manage to cleanly receive your spike even though it got past the block. You can see they\'re already getting ready to counterattack back and you quickly need to decide what your next move is.');
-        qspCall(s, 'volleyball_ev', 'block');
-        qspCall(s, 'volleyball_ev', 'receive');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlock(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceive(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_points'] = ((s as any).vballVars['opp_points'] ?? 0) + (1);
         scene.img(`images/pc/activities/volleyball/block/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
@@ -1623,10 +1623,10 @@ function enterSpike2(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go for a spike', handler: (st: GameState) => {
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 75) + 1) + (Math.floor(Math.random() * (((s as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
-    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
     scene.img(`images/pc/activities/volleyball/spike/run/${Math.floor(Math.random() * 2) + 1}.jpg`);
     scene.text('You decide to go on the offense, running forward, bending your knees and throwing your arms back, preparing to spike the ball from the back line.');
     scene.actions([
@@ -1643,8 +1643,8 @@ function enterSpike2(s: GameState, scene: SceneBuilder): void {
       if (((s as any).vballVars ?? 0)?.['spike'] > ((s as any).vballVars ?? 0)?.['opp_defense'] - 20) {
         scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
         scene.text('Your opponents manage to cleanly receive your spike even though it got past the block. You can see they\'re already getting ready to counterattack back and you quickly need to decide what your next move is.');
-        qspCall(s, 'volleyball_ev', 'block');
-        qspCall(s, 'volleyball_ev', 'receive');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlock(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceive(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_points'] = ((s as any).vballVars['opp_points'] ?? 0) + (1);
         scene.img(`images/pc/activities/volleyball/receive/${Math.floor(Math.random() * 3) + 1}_win.jpg`);
@@ -1666,10 +1666,10 @@ function enterSpikeFake(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Fake a spike, provide distraction', handler: (st: GameState) => {
-    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 50) + 1) + ((s as any).vballVars ?? {})?.['team_attack'] + (Math.floor(Math.random() * (((s as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - ((s as any).vballVars ?? {})?.['exhaust'];
+    if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['spike'] = (Math.floor(Math.random() * 50) + 1) + (((s as any).vballVars ?? {})?.['team_attack'] ?? 0) + (Math.floor(Math.random() * (((s as any).pcs_vball_spike ?? 0) - 20 + 1)) + (20)) - (((s as any).vballVars ?? {})?.['exhaust'] ?? 0);
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust_temp'] = Math.floor(Math.random() * 3) + 2;
     if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['exhaust'] = ((s as any).vballVars['exhaust'] ?? 0) + (((s as any).vballVars ?? 0)?.['exhaust_temp']);
-    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - (((s as any).vballVars ?? {})?.['exhaust_temp'] * 5);
+    (s as any).pcs_stam = ((s as any).pcs_stam ?? 0) - ((((s as any).vballVars ?? {})?.['exhaust_temp'] ?? 0) * 5);
     scene.text('You decide to try and distract the enemy and draw their attention away from the real spikers.');
     scene.actions([
       { label: 'Jump!', handler: (st: GameState) => {
@@ -1687,8 +1687,8 @@ function enterSpikeFake(s: GameState, scene: SceneBuilder): void {
         scene.img(`images/pc/activities/volleyball/wait${Math.floor(Math.random() * 2) + 1}.jpg`);
         scene.text('You fling yourself into the empty air, fully taking a spiker\'s form as if the ball really were coming to you. Your jump manages to fool one of the defenders and your teammate spikes it past the others, but they still manage to get a good receive in, bumping the ball high into the air over their side.');
         scene.text('The ball is coming back! How are you going to try to stop it?');
-        qspCall(s, 'volleyball_ev', 'block');
-        qspCall(s, 'volleyball_ev', 'receive');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBlock(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReceive(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['opp_points'] = ((s as any).vballVars['opp_points'] ?? 0) + (1);
         scene.img('images/pc/activities/volleyball/receive/3_win.jpg');
@@ -1713,7 +1713,7 @@ function enterVictory(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $vballVars['match_result_<<vballVars[''opponent'']>>'] = 'victory'
   scene.text('Victory!');
   // TODO-QSP: dynamic text: The match is over, the scoreboard reading 25 to <<vballVars['opp_points'] * 5 + ...
-  scene.text(`The match is over, the scoreboard reading 25 to ${((s as any).vballVars ?? {})?.['opp_points'] * 5 + (Math.floor(Math.random() * 5) + 0)}. You won!`);
+  scene.text(`The match is over, the scoreboard reading 25 to ${(((s as any).vballVars ?? {})?.['opp_points'] ?? 0) * 5 + (Math.floor(Math.random() * 5) + 0)}. You won!`);
   scene.text('"We did it!" you cheer, the whole team gathering together for a team hug.');
   scene.text('"Alright, good job girls!" Coach Mikhail says, congratulating you. "Let\'s pack up now. Make sure we leave nothing behind. You can all shower back at the community centre."');
   scene.text('"Yes coach!" the team replies in unison before quickly dispersing to carry out his orders.');
@@ -1735,7 +1735,7 @@ function enterDefeat(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['result'] = (-1);
   if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['losses'] = ((s as any).vballVars['losses'] ?? 0) + (1);
   // TODO-QSP: dynamic text: The match is over, the scoreboard reading <<(vballVars['team_points'] * 5) + ran...
-  scene.text(`The match is over, the scoreboard reading ${(((s as any).vballVars ?? {})?.['team_points'] * 5) + (Math.floor(Math.random() * 5) + 0)} to 25. Your team… lost.`);
+  scene.text(`The match is over, the scoreboard reading ${((((s as any).vballVars ?? {})?.['team_points'] ?? 0) * 5) + (Math.floor(Math.random() * 5) + 0)} to 25. Your team… lost.`);
   scene.text('Soft sniffles come from the team as you walk off the court, some girls wiping tears from their eyes even as others try to hold back sobs.');
   scene.text('"It was a good hussle out there girls," Coach Mikhail says. "We\'ll talk about what went wrong and what can improve later. We\'ll get \'em next time. But right now, we need to pack up. Make sure we leave nothing behind. You can all shower back at the community centre."');
   scene.text('"Yes coach," the team dejectedly, sluggishly dispersing to carry out his orders.');

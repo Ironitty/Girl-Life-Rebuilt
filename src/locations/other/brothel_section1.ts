@@ -15,9 +15,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterPrintStats(s: GameState, scene: SceneBuilder): void {
   scene.text('<h3>Playroom</h3>');
   // TODO-QSP: dynamic text: <b>Orgasm meter: <<brothel_vars['orgasm_meter']>> / 100</b>
-  scene.text(`<b>Orgasm meter: ${((s as any).brothel_vars ?? 0)?.['orgasm_meter']} / 100</b>`);
+  scene.text(`<b>Orgasm meter: ${((s as any).brothel_vars ?? 0)?.['orgasm_meter'] ?? ''} / 100</b>`);
   // TODO-QSP: dynamic text: <b>Rage meter: <<brothel_vars['rage_meter']>> / 100</b>
-  scene.text(`<b>Rage meter: ${((s as any).brothel_vars ?? 0)?.['rage_meter']} / 100</b>`);
+  scene.text(`<b>Rage meter: ${((s as any).brothel_vars ?? 0)?.['rage_meter'] ?? ''} / 100</b>`);
   return;
   // TODO-QSP: end
   scene.build();
@@ -272,14 +272,14 @@ function enterSection1CageClient(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hmm, she looks young, exactly as I ordered. What is your age, slave?"');
       scene.text('<center><b>"I… I am 18, Master."</b></center>');
       scene.text('"No, tell me your true age, girl."');
-      scene.text(`<center><b>"Well… it's ${((s as any).age ?? 0)} years, Master."</b></center>`);
+      scene.text(`<center><b>"Well… it's ${((s as any).age || '')} years, Master."</b></center>`);
       scene.text('"Good, very good. Now let us go."');
     } else {
       if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['rage_meter'] = 50;
       scene.text('"Ahh, my pet is already in its place I see."');
       scene.text('He scans you through the bars with hungry eyes.');
       scene.text('"Hmm, she doesn\'t look as young as I expected. What is your age, slave?"');
-      scene.text(`<center><b>"I… I am ${((s as any).age ?? 0)}, Master."</b></center>`);
+      scene.text(`<center><b>"I… I am ${((s as any).age || '')}, Master."</b></center>`);
       scene.text('He turns pale and is obviously annoyed.');
       scene.text('<center><b>"Idiots. I told them what I want, and they delivered me this. Bad for you slut, you will feel the cost of their failure."</b></center>');
       scene.text('"Let\'s go you walking set of holes!"');
@@ -414,11 +414,11 @@ function enterSection1ElectroMain(s: GameState, scene: SceneBuilder): void {
   }
   if ((((s as any).pain ?? 0)?.['total'] > 50  &&  ((s as any).analPlugIn ?? 0) === 1)) {
     if ((Math.floor(Math.random() * 100) + 1) <= 25) {
-      qspCall(s, 'brothel_section1', 'section1_electro_push_plug');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSection1ElectroPushPlug(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).analPlugIn ?? 0) === 0  &&  (Math.floor(Math.random() * 100) + 1) <= 30  &&  ((s as any).analplay ?? 0) === 1) {
-    qspCall(s, 'brothel_section1', 'section1_electro_buttplug');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSection1ElectroButtplug(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).analplay = 1;
   if (((s as any).brothel_vars ?? 0)?.['orgasm_meter'] >= 100) {
@@ -506,14 +506,14 @@ function enterSection1ElectroMain(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1ElectroAsshigh(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 2, 'legR', 'bind');
   qspCall(s, 'pain', '', 2, 'legL', 'bind');
   qspCall(s, 'pain', '', 2, 'wrists', 'bind');
   qspCall(s, 'pain', '', 2, 'thighs', 'bind');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'bound');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bound']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/asshigh.mp4');
   scene.text('You are bound, lying on your chest. Master raises your ass high in the air, forcing you in an awkward position with both your holes on display, while tying you so you cannot move at all.');
   // TODO-QSP: end
@@ -541,11 +541,11 @@ function enterSection1ElectroDislike(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1ElectroButtplug(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'anal_dildo', 2, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 5, 'asshole', 'stretch');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).analPlugIn = 1;
   scene.img('images/locations/shared/brothel/buttplug.mp4');
   scene.text('<center><b>(What in the world have I gotten into…)</b></center>');
@@ -569,7 +569,7 @@ function enterSection1ElectroButtplug(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1ElectroPushPlug(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 1;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).analPlugIn = 0;
   (s as any).analPlugOut = ((s as any).hadOwnanalPlugIn ?? 0);
   qspCall(s, 'pain', '', 6, 'asshole', 'cramp');
@@ -598,8 +598,8 @@ function enterSection1ElectroRod(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (5);
   qspCall(s, 'pain', '', 9, 'asshole', 'shock');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/shockanus.mp4');
   scene.text('You have obviously annoyed the Client by what you did.');
   // TODO-QSP: 'He takes a long rod: ' + $func('wrap', 'neg', '"Now where''s the fucking button!"')
@@ -620,8 +620,8 @@ function enterSection1ElectroReplug(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (5);
   qspCall(s, 'pain', '', 6, 'asshole', 'stretch');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'anal_dildo', 2, 'bound', 'sub', 'prostitution', 'humiliation');
   (s as any).analPlugIn = 1;
   scene.img('images/locations/shared/brothel/buttplug.mp4');
@@ -639,7 +639,7 @@ function enterSection1ElectroReplug(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1ElectroElectrodes(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 5, 'bound', 'sub', 'prostitution', 'humiliation');
   scene.img('images/locations/shared/brothel/electrodesass.jpg');
   scene.text('You feel a slightly cold sensation, as if something wet was put on and near your private areas.');
@@ -653,13 +653,13 @@ function enterSection1ElectroElectrodes(s: GameState, scene: SceneBuilder): void
 
 function enterSection1ElectroElectrocute(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'pain', '', 4, 'asscheeks', 'shock');
   qspCall(s, 'pain', '', 5, 'labia', 'shock');
   qspCall(s, 'pain', '', 3, 'thighs', 'shock');
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough', 'maso', 'bound');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/electrocuteass.mp4');
   scene.text('Your body trembles and cramps as the electric discharge flows through your sensitive parts.');
   scene.text('<center><b>"Owwchhh! It hurts!"</b></center>');
@@ -667,10 +667,10 @@ function enterSection1ElectroElectrocute(s: GameState, scene: SceneBuilder): voi
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you hate it and want him to stop', handler: (st: GameState) => {
-    qspCall(s, 'brothel_section1', 'section1_electro_dislike');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSection1ElectroDislike(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['brothel_section1', 'section1_electro_main', '4'] },
     { label: 'Tell him you love it', handler: (st: GameState) => {
-    qspCall(s, 'brothel_section1', 'section1_electro_like');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSection1ElectroLike(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['brothel_section1', 'section1_electro_main', '4'] },
   ]);
   scene.build();
@@ -678,12 +678,12 @@ function enterSection1ElectroElectrocute(s: GameState, scene: SceneBuilder): voi
 
 function enterSection1ElectroElectrocuteMore(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'anal', 5, 'sub', 'rough', 'maso', 'bound');
   qspCall(s, 'pain', '', 6, 'asscheeks', 'shock');
   qspCall(s, 'pain', '', 5, 'thighs', 'shock');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/electrocuteassmore.mp4');
   scene.text('Your body trembles and cramps, pushing you to your limit, as the electric discharge set on high settings flows through your sensitive parts.');
   scene.text('You feel as if your skin should peel away and your anus would tear apart at any second.');
@@ -692,10 +692,10 @@ function enterSection1ElectroElectrocuteMore(s: GameState, scene: SceneBuilder):
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him you hate it and want him to stop', handler: (st: GameState) => {
-    qspCall(s, 'brothel_section1', 'section1_electro_dislike');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSection1ElectroDislike(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['brothel_section1', 'section1_electro_main', '6'] },
     { label: 'Tell him you love it', handler: (st: GameState) => {
-    qspCall(s, 'brothel_section1', 'section1_electro_like');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSection1ElectroLike(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['brothel_section1', 'section1_electro_main', '6'] },
   ]);
   scene.build();
@@ -710,8 +710,8 @@ function enterSection1ElectroElectrocuteMax(s: GameState, scene: SceneBuilder): 
   // TODO-QSP: gs 'pain', 4 + brothel_vars['electro_counter'], 'asshole', 'shock'
   // TODO-QSP: gs 'pain', 6 + brothel_vars['electro_counter'], 'thighs', 'shock'
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['electro_counter'] = ((s as any).brothel_vars['electro_counter'] ?? 0) + (1);
   scene.img('images/locations/shared/brothel/electrocuteassmax.mp4');
   scene.text('Your body trembles and cramps far beyond what you thought possible, as the electric discharge set on the highest settings flows through your sensitive parts and spreads throughout your whole body.');
@@ -721,10 +721,10 @@ function enterSection1ElectroElectrocuteMax(s: GameState, scene: SceneBuilder): 
   // TODO-QSP: end
   scene.actions([
     { label: 'Cry that you hate it and want him to stop', handler: (st: GameState) => {
-    qspCall(s, 'brothel_section1', 'section1_electro_dislike');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSection1ElectroDislike(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['brothel_section1', 'section1_electro_main', '7'] },
     { label: 'Cry that you love it', handler: (st: GameState) => {
-    qspCall(s, 'brothel_section1', 'section1_electro_like');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSection1ElectroLike(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['brothel_section1', 'section1_electro_main', '7'] },
   ]);
   scene.build();
@@ -818,12 +818,12 @@ function enterSection1TitsMain(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1TitsHangNeck(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 2, 'neck', 'choke');
   qspCall(s, 'pain', '', 3, 'wrists', 'bind');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'bound');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bound']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/hangbyneck.jpg');
   scene.text('First he binds your hands behind your back.');
   scene.text('As you stand there, you are getting more nervous about what he\'s going to do with you…');
@@ -839,11 +839,11 @@ function enterSection1TitsHangNeck(s: GameState, scene: SceneBuilder): void {
 function enterSection1TitsWhip(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['did_whip'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 5, 'breasts', 'spank');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/whiptits.mp4');
   scene.text('As you hang with your hands tied, you can only watch as the Client takes a whip and repeatedly punishes your tender titties…');
   scene.text('<center><b>"Oww! Oww! Nooo! Owww! Not… Any… More… Please… Oww…"</b></center>');
@@ -857,11 +857,11 @@ function enterSection1TitsWhip(s: GameState, scene: SceneBuilder): void {
 function enterSection1TitsCane(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['did_cane'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 5, 'breasts', 'spank');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/canetits.mp4');
   scene.text('As you hang with hands tied, you can only watch as the Client takes a wooden cane and repeatedly punishes your tender titties…');
   scene.text('<center><b>"Oww! Oww! Nooo! Owww! Not… Any… More… Please… Oww…"</b></center>');
@@ -875,11 +875,11 @@ function enterSection1TitsCane(s: GameState, scene: SceneBuilder): void {
 function enterSection1TitsPinch(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['did_pinch'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 5, 'nipples', 'pinch');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/pinchtits.mp4');
   scene.text('As you hang with hands tied, you can only watch as the Client takes a few wooden pins and pinches your sensitive nipples and areolas.');
   scene.text('First it is just unpleasant but the repeated attacks on your tits make it worse with each attempt…');
@@ -894,11 +894,11 @@ function enterSection1TitsPinch(s: GameState, scene: SceneBuilder): void {
 function enterSection1TitsPunch(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['did_punch'] = 1;
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 6, 'breasts', 'hit');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/punchtits.mp4');
   scene.text('As you hang with hands tied, you can only watch as the Client closes his strong, manly fists.');
   scene.text('Your tender titties are but punchbags for him, as if this was a boxing session!');
@@ -912,12 +912,12 @@ function enterSection1TitsPunch(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1TitsPullNipples(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 7, 'nipples', 'stretch');
   qspCall(s, 'pain', '', 4, 'breasts', 'stretch');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/pullnipples.mp4');
   scene.text('The client takes a piece of rope and attaches it to your nipples.');
   scene.text('As soon as both strings are in place, he pulls them hard, as if he was trying to tear off your nipples!');
@@ -932,13 +932,13 @@ function enterSection1TitsPullNipples(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1TitsBind(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 7, 'breasts', 'stretch');
   qspCall(s, 'pain', '', 3, 'chest', 'bind');
   qspCall(s, 'pain', '', 3, 'ribs', 'bind');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'bound');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bound']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/bindtits.jpg');
   scene.text('The client takes a piece of rope and starts attaching it to your chest.');
   scene.text('First you do not know what he is planning, but as soon as he circles your breasts with the ropes, you know it well.');
@@ -954,12 +954,12 @@ function enterSection1TitsBind(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1TitsPinchBound(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 7, 'breasts', 'stretch');
   qspCall(s, 'pain', '', 6, 'nipples', 'stretch');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/pinchboundtits.mp4');
   scene.text('Your tits are already squeezed by the ropes, but the Client wants to unleash additional suffering upon them.');
   scene.text('He uses his fingers to pinch your nipples, stretching them as far as they go.');
@@ -973,13 +973,13 @@ function enterSection1TitsPinchBound(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1TitsHangTits(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'foreplay', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'pain', '', 8, 'breasts', 'stretch');
   qspCall(s, 'pain', '', 6, 'chest', 'stretch');
   qspCall(s, 'pain', '', 6, 'ribs', 'bind');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/hangbytits.mp4');
   scene.text('The client attaches another rope to your already bound tits, using a pulley attached to the ceiling.');
   scene.text('You start to shake the moment he connects the ropes attached to your breasts with the pulley above you…');
@@ -995,7 +995,7 @@ function enterSection1TitsHangTits(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 20;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     // TODO-QSP: 'The Client is obviously aroused beyond his expectation:' + $func('wrap', 'neg', '"I have these beau...
     scene.text('<center><b>"What the…?"</b></center>');
@@ -1044,7 +1044,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
             qspCall(s, 'pain', '', 8, 'nipples', 'pierce');
             qspCall(s, 'pain', '', 7, 'breasts', 'pierce');
             qspCall(s, 'stat', '');
-            qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
             scene.img('images/locations/shared/brothel/needlesintits.mp4');
             scene.text('He brings a bag with a set of needles of various sizes. Judging by the fancy bag he carries them in, he is not doing this to a girl for the first time…');
             scene.text('One by one he takes them out of the bag and slowly penetrates your areola.');
@@ -1068,7 +1068,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
               qspCall(s, 'pain', '', 6, 'chest', 'pierce');
               qspCall(s, 'pain', '', 5, 'hair', 'stretch');
               qspCall(s, 'stat', '');
-              qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
               scene.img('images/locations/shared/brothel/nailtits.mp4');
               scene.text('He pulls out the needles, fast and not caring about the further pain it causes.');
               scene.text('He let\'s you down, laying you on a wooden plank with your tits touching it.');
@@ -1084,7 +1084,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
               if (((s as any).locArgs?.[1] ?? 0) === 6) {
                 qspCall(s, 'pain', '', 9, 'breasts', 'pierce');
                 qspCall(s, 'stat', '');
-                qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
                 scene.img('images/locations/shared/brothel/nailedbytitstotheground.jpg');
                 scene.text('At the end of the session, you lie on the wooden ground with your nipples being nailed to it, hanging by your hair and barely staying awake.');
                 scene.text('"So slut, how did you like it?"');
@@ -1106,7 +1106,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
                       (s as any).caneFeetCount = ((s as any).caneFeetCount ?? 0) + (1);
                       qspCall(s, 'pain', '', 6, 'feet', 'spank');
                       qspCall(s, 'stat', '');
-                      qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
                       scene.img('images/locations/shared/brothel/canefeet.mp4');
                       scene.text('"I think you need more motivation, slut."');
                       scene.text('With that he takes your feet and starts to cane your sensitive feet, increasing the pace with every stroke!');
@@ -1123,7 +1123,7 @@ function enterSection1TitsNailsNeedles(s: GameState, scene: SceneBuilder): void 
                       qspCall(s, 'pain', '', 5, 'legR', 'spank');
                       qspCall(s, 'pain', '', 5, 'legL', 'spank');
                       qspCall(s, 'stat', '');
-                      qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
                       scene.img('images/locations/shared/brothel/canefeet.mp4');
                       scene.text('"Think about it slut! Think about your poor feet right now!"');
                       scene.text('<center><b>"Oww! Oww! Oww! Oww! Oww!"</b></center>');
@@ -1228,8 +1228,8 @@ function enterSection1TiedMain(s: GameState, scene: SceneBuilder): void {
 function enterSection1TiedLieBack(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'pain', '', 3, 'neck', 'choke');
-  qspCall(s, 'brothel_section1', 'print_stats');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'sub');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sub']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/onbackkneeshigh.jpg');
   scene.text('The client reaches for your neck, forcefully leading you to one of the beds.');
   // TODO-QSP: 'You know what''s coming… he throws you on the soft pillows:' + $func('wrap', 'neg', '"Lie on your b...
@@ -1244,7 +1244,7 @@ function enterSection1TiedLieBack(s: GameState, scene: SceneBuilder): void {
 function enterSection1TiedOnBack(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['orgasm_meter'] = ((s as any).brothel_vars['orgasm_meter'] ?? 0) + (5);
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/tiedonbackkneeshigh.jpg');
   // TODO-QSP: 'He brings some ropes and wooden sticks. ' + $func('wrap', 'bimbo', '(What does he need those for?)'...
   scene.text('Soon you get to know what for - your titties! Not that he ties you, that would be expected, but he secures your tender tits with the wooden sticks, forcing them to get fuller and fuller…');
@@ -1253,7 +1253,7 @@ function enterSection1TiedOnBack(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 4, 'LegR', 'bind');
   qspCall(s, 'pain', '', 4, 'LegL', 'bind');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'bound');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bound']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
@@ -1265,7 +1265,7 @@ function enterSection1TiedMouth(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['orgasm_meter'] = ((s as any).brothel_vars['orgasm_meter'] ?? 0) + (25);
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (5);
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/tied_mouth.mp4');
   scene.text('You are still bound on your back, with hands and knees tied together, exposing both of your holes.');
   scene.text('The Client reaches out to you, looking down at your crotch.');
@@ -1278,7 +1278,7 @@ function enterSection1TiedMouth(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'pain', '', 5, 'throat', 'stretch');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'humiliation');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'humiliation']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
@@ -1290,7 +1290,7 @@ function enterSection1TiedAnal(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['orgasm_meter'] = ((s as any).brothel_vars['orgasm_meter'] ?? 0) + (25);
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (5);
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/tied_anal.mp4');
   scene.text('You are still bound on your back, with hands and knees tied together, exposing both of your holes.');
   scene.text('The Client reaches out to you, looking down at your crotch.');
@@ -1306,7 +1306,7 @@ function enterSection1TiedAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 6, 'asshole', 'stretch');
   qspCall(s, 'pain', '', 4, 'breasts', 'slap');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'sub');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sub']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
@@ -1318,7 +1318,7 @@ function enterSection1TiedVaginal(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['orgasm_meter'] = ((s as any).brothel_vars['orgasm_meter'] ?? 0) + (25);
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (5);
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/tied_vaginal.mp4');
   scene.text('You are still bound on your back, with hands and knees tied together, exposing both of your holes.');
   scene.text('The Client reaches out to you, looking down at your crotch.');
@@ -1332,7 +1332,7 @@ function enterSection1TiedVaginal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 6, 'vaginal', 'stretch');
   qspCall(s, 'pain', '', 4, 'breasts', 'slap');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'sub');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sub']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'vaginal', 10, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1346,7 +1346,7 @@ function enterSection1TiedTease(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['orgasm_meter'] = ((s as any).brothel_vars['orgasm_meter'] ?? 0) + (5);
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (5);
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/tied_tease.mp4');
   scene.text('The client circles around you, touching every part of your body as if he is looking for something.');
   scene.text('He starts by exploring both of your holes, stretching the lips and probing the insides.');
@@ -1357,7 +1357,7 @@ function enterSection1TiedTease(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'pain', '', 4, 'nipples', 'stretch');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'humiliation');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'humiliation']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
@@ -1369,7 +1369,7 @@ function enterSection1TiedAnalfisting(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (10);
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['orgasm_meter'] = ((s as any).brothel_vars['orgasm_meter'] ?? 0) + (10);
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/tied_analfisting.mp4');
   scene.text('"What\'s the longest dick you are able to take inside your ass, slut?"');
   scene.text('<center><b>"I… I don\'t know master, I have never measured any."</b></center>');
@@ -1388,7 +1388,7 @@ function enterSection1TiedAnalfisting(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 7, 'asshole', 'stretch');
   qspCall(s, 'pain', '', 4, 'tummy', 'cramp');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['brothel_section1', 'section1_tied_main', '2'] },
@@ -1400,7 +1400,7 @@ function enterSection1TiedVibrate(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['orgasm_meter'] = ((s as any).brothel_vars['orgasm_meter'] ?? 0) + (10);
   if (!(s as any).brothel_vars) (s as any).brothel_vars = {}; (s as any).brothel_vars['rage_meter'] = ((s as any).brothel_vars['rage_meter'] ?? 0) + (10);
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/tied_vibrate.mp4');
   scene.text('"Is your pussy a sensitive one, girl?"');
   scene.text('<center><b>"I… I would say regularly sensitive, master."</b></center>');
@@ -1411,7 +1411,7 @@ function enterSection1TiedVibrate(s: GameState, scene: SceneBuilder): void {
   scene.text('Then he slowly reaches for the button with a big red ON.');
   qspCall(s, 'pain', '', 6, 'clitoris', 'stretch');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'arousal', 'vaginal_vibe', 15, 'bound', 'sub', 'prostitution', 'humiliation');
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
@@ -1432,8 +1432,8 @@ function enterSection1TiedWhip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'pain', '', 4, 'clitoris', 'spank');
   qspCall(s, 'pain', '', 4, 'pubic', 'spank');
   qspCall(s, 'stat', '');
-  qspCall(s, 'brothel_section1', 'section1_pref_update', 'maso');
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'maso']; enterSection1PrefUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/locations/shared/brothel/tied_whip.mp4');
   scene.text('"Is your pussy a sensitive one, girl?"');
   scene.text('<center><b>"I… I would say regularly sensitive, master."</b></center>');
@@ -1483,7 +1483,7 @@ function enterSection1EndMain(s: GameState, scene: SceneBuilder): void {
 
 function enterSection1EndRage(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
-  qspCall(s, 'brothel_section1', 'print_stats');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrintStats(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/brothel/masturbateinface.mp4');
   scene.text('The client is now too excited by the violence unleashed upon you. He takes his dick in his hands and starts masturbating right in front of your face.');

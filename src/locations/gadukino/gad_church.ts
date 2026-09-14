@@ -35,9 +35,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/church/church.jpg');
   scene.text('The local church is small and relatively old, it is not in the best shape, but it appears well-loved.');
   // TODO-QSP: dynamic text: The vigil is held on Saturdays at '+func('time', 'get_time_string', 19, 0)+'.
-  scene.text('The vigil is held on Saturdays at \'+func(\'time\', \'get_time_string\', 19, 0)+\'.');
+  scene.text('The vigil is held on Saturdays at 19:00.');
   // TODO-QSP: dynamic text: The Divine Liturgy is on Sundays between '+func('time', 'get_time_string', 9, 0)...
-  scene.text('The Divine Liturgy is on Sundays between \'+func(\'time\', \'get_time_string\', 9, 0)+\' and \'+func(\'time\', \'get_time_string\', 12, 0)+\'.');
+  scene.text('The Divine Liturgy is on Sundays between 9:00 and 12:00.');
   if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >=19  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Attend vigil', goto: ['gad_church', 'vigil'] },
@@ -154,7 +154,7 @@ function enterNarthex(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Leave the church', goto: ['gad_church', 'start'] },
     { label: 'Light a candle', goto: ['gad_church', 'candle'] },
-    { label: 'Donate for a candle [+$func(\'money\', \'get_cost_string\', 10, \'c...]', handler: (st: GameState) => {
+    { label: 'Donate for a candle', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -189,7 +189,7 @@ function enterCandle1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'fame', 'church_reduction', 'village', 1);
   scene.img('images/locations/pavlovsk/church/ch_candle.jpg');
   // TODO-QSP: dynamic text: You approach the counter and put ' + $func('money', 'string_price', 10) + ' in t...
-  scene.text('You approach the counter and put \' + $func(\'money\', \'string_price\', 10) + \' in the jar for a candle. Then, you take one of the candles and light it.');
+  scene.text('You approach the counter and put 10₽ in the jar for a candle. Then, you take one of the candles and light it.');
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to Narthex', goto: ['gad_church', 'Narthex'] },
@@ -271,7 +271,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + 60;
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = ((s as any).drugVars ?? {})?.['cocaine_system'] / 2;
+                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 2;
               }
               scene.text('The Nave is lit only with candles and small presence lights, and the darkness feels very comforting, like being in the womb. You get the urge to pray very intensely, and before you know it, more than an hour has passed, and you feel reborn and cleansed.');
             }

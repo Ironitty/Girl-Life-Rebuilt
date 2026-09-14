@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('The local gas station, the cheap pumps are limited in functionality and will always fill the tank up completely.');
   // TODO-QSP: dynamic text: The petrol price is ' + $func('money', 'string_price', 30) + ' per liter.
-  scene.text('The petrol price is \' + $func(\'money\', \'string_price\', 30) + \' per liter.');
+  scene.text('The petrol price is 30₽ per liter.');
   scene.text('When the weather is nice, girls will sometimes offer a car washing service for some tips. There\'s no structure to it, so you could always try it.');
   if (((s as any).temper ?? 0) < 10) {
     scene.text('It\'s too cold to wash cars. You\'re more likely to get ill than make money. Maybe try again when the weather is warmer?');
@@ -43,7 +43,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'car_funcs', 'has_car')) {
     if (((s as any).kanistra ?? 0) < 5) {
       scene.actions([
-        { label: 'Buy a canister and fill it with 5 liters of gasoline ( [+$func(\'money\', \'string_price\', 150) + \')...]', handler: (st: GameState) => {
+        { label: 'Buy a canister and fill it with 5 liters of gasoline ( [150₽])...]', handler: (st: GameState) => {
     (s as any).kanistra = ((s as any).kanistra ?? 0) + (1);
     qspCall(s, 'money', 'pay', 150);
     scene.text('You buy a canister of gasoline. (It will automatically be put in the trunk of your car)');
@@ -55,16 +55,16 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
     if (qspFunc(s, 'car_funcs', 'is_here')) {
       // TODO-QSP: dynamic text: Your <a href="exec: gs 'carF', 'start'"><<$car['name']>></a> is parked here.
-      scene.text(`Your <a href="exec: gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked here.`);
+      scene.text(`Your <a href="exec: gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked here.`);
       if (((s as any).car ?? 0)?.['fuel'] < ((s as any).car ?? 0)?.['tank']) {
-        (s as any).zprbenz = (((s as any).car ?? {})?.['tank'] - ((s as any).car ?? {})?.['fuel']);
+        (s as any).zprbenz = ((((s as any).car ?? {})?.['tank'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0));
         (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
         scene.actions([
-          { label: 'Fill the tank with petrol [+$func(\'money\', \'get_cost_string\', zprpay...]', handler: (st: GameState) => {
+          { label: 'Fill the tank with petrol', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).zprpay ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
-      (s as any).zprbenz = ((s as any).car ?? {})?.['tank'] - ((s as any).car ?? {})?.['fuel'];
+      (s as any).zprbenz = (((s as any).car ?? {})?.['tank'] ?? 0) - (((s as any).car ?? {})?.['fuel'] ?? 0);
       (s as any).zprpay = ((s as any).zprbenz ?? 0) * 30;
       if (!(s as any).car) (s as any).car = {}; (s as any).car['fuel'] = ((s as any).car ?? 0)?.['tank'];
       qspCall(s, 'money', 'pay', ((s as any).zprpay ?? 0));

@@ -35,7 +35,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'raise', 'tiny');
     qspCall(s, 'exercise', 'tier3', 30, 'jab', 'punch', 'kick', 'def');
     qspCall(s, 'kickboxing_funcs', 'init_fight_vars');
-    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['opponent'] = ((s as any).kickbox ?? {})?.['sash'] + ((Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))) / 2);
+    if (!(s as any).kickbox) (s as any).kickbox = {}; (s as any).kickbox['opponent'] = (((s as any).kickbox ?? {})?.['sash'] ?? 0) + ((Math.floor(Math.random() * (5 - (-2) + 1)) + ((-2))) / 2);
     if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['fight_type'] = 1;
     // TODO-QSP: gs 'kickboxing_funcs', 'generate_opponent', 'amateur_fight', kickbox['opponent']
   }, goto: ['havana_kickboxing', 'match'] },
@@ -124,17 +124,17 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).temp_kickboxVars ?? 0)?.['npc_health'] <= 0) {
       // TODO-QSP: dynamic text: <b><font color = green><<$boydesc>> lost by TKO</font></b>
-      scene.text(`<b><font color = green>${((s as any).boydesc ?? 0)} lost by TKO</font></b>`);
+      scene.text(`<b><font color = green>${((s as any).boydesc || '')} lost by TKO</font></b>`);
       scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'winKO\''] }]);
     }
   }
   if (((s as any).temp_kickboxVars ?? 0)?.['round'] >= 1) {
     // TODO-QSP: dynamic text: <center><b>Round <<temp_kickboxVars['round']>></b></center>
-    scene.text(`<center><b>Round ${((s as any).temp_kickboxVars ?? 0)?.['round']}</b></center>`);
+    scene.text(`<center><b>Round ${((s as any).temp_kickboxVars ?? 0)?.['round'] ?? ''}</b></center>`);
     if (((s as any).temp_kickboxVars ?? 0)?.['fight_type'] === 0) {
       scene.img('images/locations/city/citycenter/gym/kickboxing/kik1.jpg');
     } else {
-      scene.img(`images/locations/city/citycenter/gym/kickboxing/ring${((s as any).temp_kickboxVars ?? 0)?.['round']}.jpg`);
+      scene.img(`images/locations/city/citycenter/gym/kickboxing/ring${((s as any).temp_kickboxVars ?? 0)?.['round'] ?? ''}.jpg`);
     }
     qspCall(s, 'kickboxing_funcs', 'display_header');
     if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['time'] = ((s as any).temp_kickboxVars['time'] ?? 0) + (1);
@@ -165,12 +165,12 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
   }, goto: ['havana_kickboxing', 'sta'] },
       ]);
     } else {
-      scene.text(`${((s as any).boydesc ?? 0)} attacks`);
+      scene.text(`${((s as any).boydesc || '')} attacks`);
       (s as any).tiprand = Math.floor(Math.random() * 3) + 0;
       if ((!((s as any).tiprand ?? 0))) {
         scene.actions([
           { label: 'Block <<$boydesc>>\'s quick jab', handler: (st: GameState) => {
-    scene.text(`${((s as any).boydesc ?? 0)} deals a quick jab, stepping forward.`);
+    scene.text(`${((s as any).boydesc || '')} deals a quick jab, stepping forward.`);
     qspCall(s, 'kickboxing_funcs', 'attack', 'enemy', 'jab');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'lossKO\''] }]);
@@ -181,7 +181,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
         if (((s as any).tiprand ?? 0) === 1) {
           scene.actions([
             { label: 'Dodge <<$boydesc>>\'s power punch', handler: (st: GameState) => {
-    scene.text(`${((s as any).boydesc ?? 0)} applies a power punch.`);
+    scene.text(`${((s as any).boydesc || '')} applies a power punch.`);
     qspCall(s, 'kickboxing_funcs', 'attack', 'enemy', 'punch');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'lossKO\''] }]);
@@ -191,7 +191,7 @@ function enterMatch(s: GameState, scene: SceneBuilder): void {
         } else {
           scene.actions([
             { label: 'Dodge <<$boydesc>>\'s kick', handler: (st: GameState) => {
-    scene.text(`${((s as any).boydesc ?? 0)} goes for a kick.`);
+    scene.text(`${((s as any).boydesc || '')} goes for a kick.`);
     qspCall(s, 'kickboxing_funcs', 'attack', 'enemy', 'kick');
     if (((s as any).temp_kickboxVars ?? 0)?.['KO'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['havana_kickboxing', 'end', '\'lossKO\''] }]);
@@ -211,7 +211,7 @@ function enterSta(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_kickboxVars ?? 0)?.['time'] === 6) {
     if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['time'] = 0;
     // TODO-QSP: dynamic text: The bell rings, indicating the end of round <<temp_kickboxVars['round']>>.
-    scene.text(`The bell rings, indicating the end of round ${((s as any).temp_kickboxVars ?? 0)?.['round']}.`);
+    scene.text(`The bell rings, indicating the end of round ${((s as any).temp_kickboxVars ?? 0)?.['round'] ?? ''}.`);
     if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['round'] = ((s as any).temp_kickboxVars['round'] ?? 0) + (1);
     if (((s as any).temp_kickboxVars ?? 0)?.['round'] <= ((s as any).temp_kickboxVars ?? 0)?.['max_rounds']) {
       scene.actions([
@@ -336,7 +336,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: gs 'money', 'earn', 500 + kickbox['money']
       (s as any).rikudo = ((s as any).rikudo ?? 0) + (5);
       // TODO-QSP: dynamic text: You're awarded a cash prize of <<$func('money', 'string_profit', 500 + kickbox['...
-      scene.text(`You're awarded a cash prize of ${qspFunc(s, 'money', 'string_profit', 500 + ((s as any).kickbox ?? {})?.['money'])}.`);
+      scene.text(`You're awarded a cash prize of ${qspFunc(s, 'money', 'string_profit', 500 + (((s as any).kickbox ?? {})?.['money'] ?? 0))}.`);
       qspCall(s, 'kickboxing_funcs', 'sash_advancement');
     } else {
       if (((s as any).temp_kickboxVars ?? 0)?.['result'] === 'winKO') {
@@ -370,7 +370,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: gs 'money', 'earn', 500 + kickbox['money']
         (s as any).rikudo = ((s as any).rikudo ?? 0) + (10);
         // TODO-QSP: dynamic text: You're awarded a cash prize of <<$func('money', 'string_profit', 500 + kickbox['...
-        scene.text(`You're awarded a cash prize of ${qspFunc(s, 'money', 'string_profit', 500 + ((s as any).kickbox ?? {})?.['money'])}.`);
+        scene.text(`You're awarded a cash prize of ${qspFunc(s, 'money', 'string_profit', 500 + (((s as any).kickbox ?? {})?.['money'] ?? 0))}.`);
         qspCall(s, 'kickboxing_funcs', 'sash_advancement');
       } else {
         if (((s as any).temp_kickboxVars ?? 0)?.['result'] === 'loss') {

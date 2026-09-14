@@ -33,7 +33,7 @@ function enterPornstarConvo(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['sexual_comfort'] = ((s as any).hunterVars['sexual_comfort'] ?? 0) + (7);
   if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['collective_opinion'] = ((s as any).hunterVars['collective_opinion'] ?? 0) - (5);
   // TODO-QSP: dynamic text: "I recently downloaded some porn, and guess who was getting fucked in the video....
-  scene.text(`"I recently downloaded some porn, and guess who was getting fucked in the video. Trust me, it was ${((s as any).pcs_firstname ?? 0)}." you overhear Andrei.`);
+  scene.text(`"I recently downloaded some porn, and guess who was getting fucked in the video. Trust me, it was ${((s as any).pcs_firstname || '')}." you overhear Andrei.`);
   scene.text('As soon as they notice you, the men stop talking and change the subject to another topic.');
   // TODO-QSP: end
   scene.build();
@@ -244,25 +244,25 @@ function enterYardConvo(s: GameState, scene: SceneBuilder): void {
   (s as any).convo_rng_roll = Math.floor(Math.random() * 20) + 1;
   if (((s as any).convo_rng_roll ?? 0) === 1) {
     if (((s as any).fame_sexind ?? 0) > 10  &&  ((s as any).fame ?? 0)?.['city_modelling'] > 30  &&  ((s as any).hunterVars ?? 0)?.['knowfoto'] === 0) {
-      qspCall(s, 'hunter_ambient', 'nude_model_convo');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNudeModelConvo(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } else {
     if (((s as any).convo_rng_roll ?? 0) === 2) {
       if (((s as any).strip_club ?? 0)?.['total_stripshows'] > 0  &&  ((s as any).hunterVars ?? 0)?.['knowstrip'] === 0) {
-        qspCall(s, 'hunter_ambient', 'stripper_convo');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripperConvo(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).convo_rng_roll ?? 0) === 3) {
         if (((s as any).film ?? 0) > 0  &&  ((s as any).hunterVars ?? 0)?.['knowfilm'] === 0) {
-          qspCall(s, 'hunter_ambient', 'pornstar_convo');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPornstarConvo(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).convo_rng_roll ?? 0) === 4) {
           if (((s as any).GadBoy ?? 0)?.['river_gang'] > 0  &&  ((s as any).hunterVars ?? 0)?.['Rape'] === 0) {
-            qspCall(s, 'hunter_ambient', 'river_rape_convo');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRiverRapeConvo(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
-          qspCall(s, 'hunter_ambient', 'generic_convo');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGenericConvo(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }

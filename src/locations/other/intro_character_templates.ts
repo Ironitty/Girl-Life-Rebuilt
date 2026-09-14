@@ -88,16 +88,16 @@ function enterGetRandomTemplate(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetTemplate(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'intro_character_templates', 'set_group', ((s as any).locArgs?.[1] ?? 0));
-  qspCall(s, 'intro_character_templates', 'do_subgroup', ((s as any).locArgs?.[1] ?? 0), 'body');
-  qspCall(s, 'intro_character_templates', 'do_subgroup', ((s as any).locArgs?.[1] ?? 0), 'traits');
-  qspCall(s, 'intro_character_templates', 'do_subgroup', ((s as any).locArgs?.[1] ?? 0), 'skills');
-  qspCall(s, 'intro_character_templates', 'do_subgroup', ((s as any).locArgs?.[1] ?? 0), 'inventory');
-  qspCall(s, 'intro_character_templates', 'do_subgroup', ((s as any).locArgs?.[1] ?? 0), 'relationships');
-  qspCall(s, 'intro_character_templates', 'do_subgroup', ((s as any).locArgs?.[1] ?? 0), 'school');
-  qspCall(s, 'intro_character_templates', 'do_subgroup', ((s as any).locArgs?.[1] ?? 0), 'sex');
-  qspCall(s, 'intro_character_templates', 'do_subgroup', ((s as any).locArgs?.[1] ?? 0), 'fame');
-  qspCall(s, 'intro_character_templates', 'do_subgroup', ((s as any).locArgs?.[1] ?? 0), 'other');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterSetGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'body']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'traits']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'skills']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'inventory']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'relationships']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'school']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'sex']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'fame']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'other']; enterDoSubgroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -134,7 +134,7 @@ function enterSetGroup(s: GameState, scene: SceneBuilder): void {
 function enterDoSubgroup(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'intro_functions', 'reset_<<$ARGS[2]>>');
   // TODO-QSP: gs 'intro_character_templates', $start_type['group'], $ARGS[2]
-  qspCall(s, 'intro_character_templates', '', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();

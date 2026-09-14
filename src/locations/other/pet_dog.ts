@@ -13,7 +13,7 @@ function enterGadukino(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/rex/rex_gadukino_\'+iif(month > 3 and month < 11, \'summer\', \'winter\')+\'.jpg');
   // TODO-QSP: dynamic text: <<$rex['name']>> is running around '+iif(month > 3 and month < 11, 'sniffing eve...
-  scene.text(`${((s as any).rex ?? 0)?.['name']} is running around '+iif(month > 3 and month < 11, 'sniffing everything', 'playing in the snow')+'. Your grandmother loves taking care of him, so you don't have to worry about him while you're in Gadukino.`);
+  scene.text(`${((s as any).rex ?? 0)?.['name'] ?? ''} is running around '+iif(month > 3 and month < 11, 'sniffing everything', 'playing in the snow')+'. Your grandmother loves taking care of him, so you don't have to worry about him while you're in Gadukino.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {
@@ -39,15 +39,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('<b>Chores:</b>');
     if (((s as any).rex ?? 0)?.['count_walk'] > 0) {
       // TODO-QSP: dynamic text: - You have to walk him <<rex['count_walk']>>x today.
-      scene.text(`- You have to walk him ${((s as any).rex ?? 0)?.['count_walk']}x today.`);
+      scene.text(`- You have to walk him ${((s as any).rex ?? 0)?.['count_walk'] ?? ''}x today.`);
     }
     if (((s as any).rex ?? 0)?.['count_feed'] > 0) {
       // TODO-QSP: dynamic text: - You have to feed him <<rex['count_feed']>>x today.
-      scene.text(`- You have to feed him ${((s as any).rex ?? 0)?.['count_feed']}x today.`);
+      scene.text(`- You have to feed him ${((s as any).rex ?? 0)?.['count_feed'] ?? ''}x today.`);
     }
     if (((s as any).rex ?? 0)?.['count_bath'] > 0) {
       // TODO-QSP: dynamic text: - You have to bath him <<rex['count_bath']>>x this week.
-      scene.text(`- You have to bath him ${((s as any).rex ?? 0)?.['count_bath']}x this week.`);
+      scene.text(`- You have to bath him ${((s as any).rex ?? 0)?.['count_bath'] ?? ''}x this week.`);
     }
   }
   if (((s as any).rex ?? 0)?.['relationship'] < 10) {
@@ -63,7 +63,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'pet_dog', 'activities_normal');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterActivitiesNormal(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -94,7 +94,7 @@ function enterActivitiesNormal(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     // TODO-QSP: dynamic text: <br>You should put some clothes on if you want to go for a walk with <<$rex['nam...
-    scene.text(`<br>You should put some clothes on if you want to go for a walk with ${((s as any).rex ?? 0)?.['name']}.`);
+    scene.text(`<br>You should put some clothes on if you want to go for a walk with ${((s as any).rex ?? 0)?.['name'] ?? ''}.`);
   } else {
     if (((s as any).rex ?? 0)?.['count_walk'] > 0  &&  ((s as any).hour ?? 0) > (((s as any).rex ?? 0)?.['timer_walk'] + 3)) {
       if (((s as any).rex ?? 0)?.['count_run'] === 0  &&  ((s as any).PSport ?? 0) === 1) {
@@ -142,7 +142,7 @@ function enterFeed(s: GameState, scene: SceneBuilder): void {
   scene.text('"Come \'+iif(rand(0, 1) = 0, \'boy\', $rex[\'name\'])+\' let\'s get you something to eat," you say and go into the kitchen. He \'+iif(rand(0, 1) = 0, \'follows and watches you fill his bowl with big thankful eyes\', \'runs into the kitchen the second he hears you filling his bowl\')+\' before he eagerly digs in.');
   if (((s as any).home ?? 0)?.['current'] !== 'parents_home') {
     // TODO-QSP: dynamic text: You have enough dog food for <<objects['dog_food']>> meals.
-    scene.text(`You have enough dog food for ${((s as any).objects ?? 0)?.['dog_food']} meals.`);
+    scene.text(`You have enough dog food for ${((s as any).objects ?? 0)?.['dog_food'] ?? ''} meals.`);
   }
   // TODO-QSP: end
   scene.actions([
@@ -218,9 +218,9 @@ function enterExercise(s: GameState, scene: SceneBuilder): void {
     (s as any).fat = ((s as any).fat ?? 0) - (Math.floor(Math.random() * 3) + 1);
     scene.img('images/characters/shared/rex/run_\'+iif(daystage = 1 or daystage = 3 or daystage = 4 or daystage = 6, \'sunset\', str(rand(0, 1)))+\'.jpg');
     // TODO-QSP: dynamic text: <<$rex['name']>> excitedly runs around you as you put on your running shoes. He ...
-    scene.text(`${((s as any).rex ?? 0)?.['name']} excitedly runs around you as you put on your running shoes. He loves going on runs with you. "Yes," you say with a smile. "We're going for a run. Are you ready?" He wags his tail. "Alright, let's go boy!"`);
+    scene.text(`${((s as any).rex ?? 0)?.['name'] ?? ''} excitedly runs around you as you put on your running shoes. He loves going on runs with you. "Yes," you say with a smile. "We're going for a run. Are you ready?" He wags his tail. "Alright, let's go boy!"`);
     // TODO-QSP: dynamic text: You head out and start your run. <<$rex['name']>> follows obediently, sometimes ...
-    scene.text(`You head out and start your run. ${((s as any).rex ?? 0)?.['name']} follows obediently, sometimes stopping to sniff or mark his territory, but he always returns to your side before you get too far away.`);
+    scene.text(`You head out and start your run. ${((s as any).rex ?? 0)?.['name'] ?? ''} follows obediently, sometimes stopping to sniff or mark his territory, but he always returns to your side before you get too far away.`);
     scene.text('You return home an hour later, exhausted and sweaty.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -241,7 +241,7 @@ function enterPlayInside(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/rex/play_inside_\'+rand(0, 3)+\'.jpg');
   // TODO-QSP: dynamic text: You cavort with <<$rex['name']>> and lavish him with all the attention he deserv...
-  scene.text(`You cavort with ${((s as any).rex ?? 0)?.['name']} and lavish him with all the attention he deserves. You get one of his toy balls and roll it around the apartment, playing a safe version of indoor catch. You cuddle up on the couch with him and spend the last few minutes stroking his soft fur.`);
+  scene.text(`You cavort with ${((s as any).rex ?? 0)?.['name'] ?? ''} and lavish him with all the attention he deserves. You get one of his toy balls and roll it around the apartment, playing a safe version of indoor catch. You cuddle up on the couch with him and spend the last few minutes stroking his soft fur.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Stop playing', handler: (st: GameState) => {
@@ -258,7 +258,7 @@ function enterBath(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/rex/bath.jpg');
   // TODO-QSP: dynamic text: "Come <<$rex['name']>>, time to take a bath," you say and open the door to the b...
-  scene.text(`"Come ${((s as any).rex ?? 0)?.['name']}, time to take a bath," you say and open the door to the bathroom. ${((s as any).rex ?? 0)?.['name']} looks a bit confused. "Come on boy," you say clicking your fingers and he finally follows you inside.`);
+  scene.text(`"Come ${((s as any).rex ?? 0)?.['name'] ?? ''}, time to take a bath," you say and open the door to the bathroom. ${((s as any).rex ?? 0)?.['name'] ?? ''} looks a bit confused. "Come on boy," you say clicking your fingers and he finally follows you inside.`);
   scene.text('You brush his fur before trying to get him into the tub. It takes a few tries to convince him, but he eventually listens.');
   scene.text('"Stay," you say in a calm and reassuring voice and gently start scrubbing him with dog shampoo before rinsing and drying his fur. Once you\'re finished, you let him leave the bathroom.');
   // TODO-QSP: end

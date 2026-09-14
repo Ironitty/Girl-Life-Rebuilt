@@ -103,7 +103,7 @@ function enterStepdadDream(s: GameState, scene: SceneBuilder): void {
   scene.text('You had a very strange dream: You were blindfolded while having sex with a stranger. When you were done, you removed the blindfold to see your stepfather grinning at you.');
   (s as any).pcs_horny = 0;
   (s as any).stepdadQW = ((s as any).stepdadQW ?? 0) + (1);
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -112,7 +112,7 @@ function enterBraidHairDream(s: GameState, scene: SceneBuilder): void {
   (s as any).canBraidHair = 1;
   scene.img('images/characters/pavlovsk/resident/anya/braid.jpg');
   scene.text('You dream about the time your sister taught you how to braid your hair. It was one of the more memorable bonding moments you had not long before you moved out.');
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -126,7 +126,7 @@ function enterSuccubusDream(s: GameState, scene: SceneBuilder): void {
     scene.text('You have the same dream of absorbing energy from multiple partners.');
   }
   (s as any).pcs_horny = 0;
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -146,7 +146,7 @@ function enterNoDream(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -158,27 +158,27 @@ function enterEroticDreamSwitch(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rand = (Math.floor(Math.random() * (7 + ((s as any).succublvl ?? 0) - 1 + 1)) + (1));
   }
   if (((s as any).temp_rand ?? 0) <= 1) {
-    qspCall(s, 'dream_events', 'd_dreams');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDDreams(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).temp_rand ?? 0) === 2) {
-      qspCall(s, 'dream_events', 'ero_dreams');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEroDreams(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).temp_rand ?? 0) === 3) {
-        qspCall(s, 'dream_events', 'sex_dreams');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexDreams(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).temp_rand ?? 0) === 4) {
-          qspCall(s, 'dream_events', 'bj_dreams');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBjDreams(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).temp_rand ?? 0) === 5) {
-            qspCall(s, 'dream_events', 'anal_dreams');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnalDreams(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).temp_rand ?? 0) === 6) {
-              qspCall(s, 'dream_events', 'preg_dreams');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPregDreams(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).temp_rand ?? 0) === 7) {
-                qspCall(s, 'dream_events', 'gang_dreams');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGangDreams(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
-                qspCall(s, 'dream_events', 'succub_dreams');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuccubDreams(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             }
           }
@@ -263,7 +263,7 @@ function enterDDreams(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -384,7 +384,7 @@ function enterHypnoDreams(s: GameState, scene: SceneBuilder): void {
         scene.text('You\'ve never had a cock in your pussy before, yet the sensations from the dream felt very real and have gotten you a little excited.');
       } else {
         // TODO-QSP: dynamic text: It seems your <<$vaginatipe>> pussy urgently needs some attention.
-        scene.text(`It seems your ${((s as any).vaginatipe ?? 0)} pussy urgently needs some attention.`);
+        scene.text(`It seems your ${((s as any).vaginatipe || '')} pussy urgently needs some attention.`);
       }
     }
   }
@@ -395,7 +395,7 @@ function enterHypnoDreams(s: GameState, scene: SceneBuilder): void {
       scene.text('What you did with your therapist felt good… really good. Your pussy throbs simply thinking about it. You lay in bed absentmindedly fantasizing of ways that he could fuck you.');
     }
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -437,7 +437,7 @@ function enterEroDreams(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -475,10 +475,10 @@ function enterSexDreams(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'ve never had a cock in your pussy before, yet the sensations from the dream felt very real and have gotten you a little excited.');
     } else {
       // TODO-QSP: dynamic text: It seems your <<$vaginatipe>> pussy urgently needs some attention.
-      scene.text(`It seems your ${((s as any).vaginatipe ?? 0)} pussy urgently needs some attention.`);
+      scene.text(`It seems your ${((s as any).vaginatipe || '')} pussy urgently needs some attention.`);
     }
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -497,7 +497,7 @@ function enterBjDreams(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('It seems you subconsciously want to suck a dick…');
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -518,10 +518,10 @@ function enterAnalDreams(s: GameState, scene: SceneBuilder): void {
       scene.text('You\'ve never had a cock in your ass before, but the sensations from the dream felt very real and have gotten you a little excited.');
     } else {
       // TODO-QSP: dynamic text: It seems your <<$anustipe>> anus urgently needs some attention.
-      scene.text(`It seems your ${((s as any).anustipe ?? 0)} anus urgently needs some attention.`);
+      scene.text(`It seems your ${((s as any).anustipe || '')} anus urgently needs some attention.`);
     }
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -568,7 +568,7 @@ function enterGangDreams(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -597,7 +597,7 @@ function enterSuccubDreams(s: GameState, scene: SceneBuilder): void {
         if (((s as any).succublvl ?? 0) < 3) {
         }
         // TODO-QSP: dynamic text: You dream that you're arguing with <<$sucselftmp>>.
-        scene.text(`You dream that you're arguing with ${((s as any).sucselftmp ?? 0)}.`);
+        scene.text(`You dream that you're arguing with ${((s as any).sucselftmp || '')}.`);
         scene.text('You don\'t know what it\'s about, but you think you won…');
       } else {
         if (((s as any).temp_rand ?? 0) === 4) {
@@ -616,7 +616,7 @@ function enterSuccubDreams(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -672,7 +672,7 @@ function enterPregDreams(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'dream_events', 'event_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

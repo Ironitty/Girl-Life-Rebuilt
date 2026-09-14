@@ -591,7 +591,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_h[<<ARGS[2]>>] = 0
   // TODO-QSP: "
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).clothingworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).clothingwornnumber ?? 0)) {
-    qspCall(s, 'clothing', 'strip_code');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).lastwornclothingnumber = 0;
   }
   return;
@@ -623,7 +623,7 @@ function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDispose(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'clothing', 'remove_item', ((s as any).clothingworntype ?? 0), ((s as any).clothingwornnumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).clothingworntype ?? 0), ((s as any).clothingwornnumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -727,7 +727,7 @@ function enterRecoverLostClothes(s: GameState, scene: SceneBuilder): void {
   (s as any).findLocInd = qspUntranslated(s, "arrpos('CloLosDay', CloLosDay[cloLoc])", { location: "clothing" });
   (s as any).findLocInd = qspUntranslated(s, "arrpos('CloLosLoc', cloLoc)", { location: "clothing" });
   if (((s as any).cloAction ?? 0) === 1) {
-    qspCall(s, 'clothing', 'wear', ((s as any).clothType ?? 0), ((s as any).clothNumber ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).clothType ?? 0), ((s as any).clothNumber ?? 0)]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).cloAction ?? 0) === 2) {
     }
@@ -738,7 +738,7 @@ function enterRecoverLostClothes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'clothing', 'wear', 'last_worn', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'last_worn', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -747,8 +747,8 @@ function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
 function enterGadSwampClothes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 1) {
     (s as any).swamp_clothes = 1;
-    qspCall(s, 'clothing', 'add_item', 'misc_outfits', 1);
-    qspCall(s, 'clothing', 'wear', 'misc_outfits', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'misc_outfits', 1]; enterAddItem(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'misc_outfits', 1]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if ((!((s as any).locArgs?.[1] ?? 0))) {
     if (!(s as any).misc_outfits) (s as any).misc_outfits = {}; (s as any).misc_outfits[1] = 0;
@@ -760,7 +760,7 @@ function enterGadSwampClothes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStripAll(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'clothing', 'strip', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'underwear', 'strip');
   return;
   // TODO-QSP: end
@@ -789,7 +789,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
       (s as any).lastwornclothingnumber = 0;
     }
   }
-  qspCall(s, 'clothing', 'strip_code');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -797,8 +797,8 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterStripCode(s: GameState, scene: SceneBuilder): void {
   (s as any).clothingwornnumber = 0;
-  qspCall(s, 'clothing', 'reset_CloVars');
-  qspCall(s, 'clothing', 'reset_PCloVars');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_CloVars(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PCloVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'outfit', 'set_derived_vars');
   return;
   // TODO-QSP: end
@@ -901,7 +901,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'nude') {
     // TODO-QSP: exit
   }
-  qspCall(s, 'clothing', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'clothing_attributes', $ARGS[1], ARGS[2]
   if ((!((s as any).CloQuality ?? 0))) {
     return;
@@ -1208,10 +1208,10 @@ function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = 0;
       } else {
         if ((0 as any)) {
-          qspCall(s, 'clothing', '_school_check_archetype_process');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchoolCheckArchetypeProcess(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = 'This uniform complies with the regulations on skirt length and is in a ' + qspUntranslated(s, "temp_school_check['style']>", { location: "clothing" }) + ' style.';
           if (((s as any).temp_school_check ?? 0)?.['disapprove'] !== '') {
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? {})?.['disapprove'] + ((s as any).temp_school_check ?? {})?.['approve-sep']);
+            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + ((((s as any).temp_school_check ?? {})?.['disapprove'] ?? 0) + (((s as any).temp_school_check ?? {})?.['approve-sep'] ?? 0));
           }
           if (((s as any).temp_school_check ?? 0)?.['approve'] !== '') {
             if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? 0)?.['approve']);
@@ -1256,10 +1256,10 @@ function enterSchoolCheck(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = qspFunc(s, 'wrap', 'v_neg', 'This uniform slightly breaches the school uniform regulations  &&  it is too risqué. Everybody in school apart from the Gopniks will think that you\'re a slut.');
       } else {
         if ((0 as any)) {
-          qspCall(s, 'clothing', '_school_check_archetype_process');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchoolCheckArchetypeProcess(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = 'This uniform slightly breaches the school regulations on skirt length and is in a ' + qspUntranslated(s, "temp_school_check['style']>", { location: "clothing" }) + ' style.';
           if (((s as any).temp_school_check ?? 0)?.['disapprove'] !== '') {
-            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? {})?.['disapprove'] + ((s as any).temp_school_check ?? {})?.['approve-sep']);
+            if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + ((((s as any).temp_school_check ?? {})?.['disapprove'] ?? 0) + (((s as any).temp_school_check ?? {})?.['approve-sep'] ?? 0));
           }
           if (((s as any).temp_school_check ?? 0)?.['approve'] !== '') {
             if (!(s as any).temp_school_check) (s as any).temp_school_check = {}; (s as any).temp_school_check['wardrobe_text'] = ((s as any).temp_school_check['wardrobe_text'] ?? 0) + (((s as any).temp_school_check ?? 0)?.['approve']);

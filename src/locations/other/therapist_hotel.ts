@@ -31,7 +31,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'RUN!!!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'medium');
-    qspCall(s, 'therapist_hotel', 'leave', 'pav_hotel');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_hotel']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -97,13 +97,13 @@ function enterEvent1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No, Master [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No, Master', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No, Master [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No, Master', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'medium');
     qspCall(s, 'stat', '');
@@ -200,13 +200,13 @@ function enterEvent2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"No" - (rebel) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"No" - (rebel)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"No" - (rebel) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"No" - (rebel)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'medium');
     qspCall(s, 'stat', '');
@@ -253,13 +253,13 @@ function enterEvent2Shower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Bite down hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Bite down hard', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Bite down hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Bite down hard', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['escaped'] = 1;
     qspCall(s, 'calendar', 'remove', 'therapist_hotel_visit');
@@ -323,7 +323,7 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/hotel/hotel.room.better1.jpg');
   // TODO-QSP: dynamic text: You make your way into the hotel room once again and see no one around. You wond...
-  scene.text(`You make your way into the hotel room once again and see no one around. You wonder if its empty, but before you can look around, you hear a snap and your mind goes blank. "Welcome back, Wife. ' + $func('wrap', 'hypno', 'Today you will be doing house work for me and you will be doing it naked. You always want to be naked around me. This will change when we have children, but for now, this will be natural for you. When I say, <font color="purple">"This place is a mess"</font>, you will start cleaning up the place on your own. Do a good job and you will get a reward,"') + ' he says and then asks: ${qspFunc(s, 'wrap', 'hypno', '"Got it, wife?"')}`);
+  scene.text(`You make your way into the hotel room once again and see no one around. You wonder if its empty, but before you can look around, you hear a snap and your mind goes blank. "Welcome back, Wife. Today you will be doing house work for me and you will be doing it naked. You always want to be naked around me. This will change when we have children he says and then asks: ${qspFunc(s, 'wrap', 'hypno', '"Got it, wife?"')}`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Yes Sir', handler: (st: GameState) => {
@@ -354,13 +354,13 @@ function enterEvent3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', 60, 'sub', 'rape');
     qspCall(s, 'willpower', 'pay', 'medium');
     qspCall(s, 'arousal', 'end');
@@ -449,13 +449,13 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_left'] = ((s as any).therapistQW['hotel_left'] ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'medium');
@@ -596,7 +596,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'stat', '');
-    qspCall(s, 'therapist_hotel', 'leave', 'pav_market');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -625,7 +625,7 @@ function enterEvent5Submit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'stat', '');
-    qspCall(s, 'therapist_hotel', 'leave', 'pav_market');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -685,7 +685,7 @@ function enterEvent6Submit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear', 'wear');
     qspCall(s, 'outfit', 'wear_last_worn');
     qspCall(s, 'stat', '');
-    qspCall(s, 'therapist_hotel', 'leave', 'pav_market');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_market']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -711,7 +711,7 @@ function enterEvent6Submit2(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 20;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You enter the living room with your suitcase and just say, "<<$npc_nickname['A29...
-    scene.text(`You enter the living room with your suitcase and just say, "${((s as any).npc_nickname ?? 0)?.['A29']}, Dad, Im moving out. I have found a place to stay and I will be living there" you say and your mother stands up looking confused. "What are you talking about?" she says.`);
+    scene.text(`You enter the living room with your suitcase and just say, "${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, Dad, Im moving out. I have found a place to stay and I will be living there" you say and your mother stands up looking confused. "What are you talking about?" she says.`);
     scene.text('"I\'m moving out" you repeat.');
     scene.text('"I heard that, but why?" she asks as Valdimer walks up behind her to keep her back.');
     scene.text('"Dear, stop, she\'s out of school and she\'s old enough to live on her own now." He walks up to you and gives you a hug. "Just make sure you come home from time to time" he says and you can see your mother starting to cry.');
@@ -816,7 +816,7 @@ function enterEvent6Submit4(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_key'] = 3;
   qspCall(s, 'calendar', 'remove', 'therapist_hotel_visit');
   qspCall(s, 'homes_properties', 'set_home', 'hotel_therapist');
-  qspCall(s, 'therapist_hotel', 'leave', 'pav_hotel');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_hotel']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

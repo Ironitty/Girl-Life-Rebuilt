@@ -38,13 +38,13 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
     scene.text('In addition, instead of a flat 1 main job limit, you can now sign up for as many jobs as you want, <i>so long as you have the time</i>. The calendar is used to make sure new job schedules don\'t conflict with existing ones, so you can fit an evening job after a morning one, for example.');
     scene.text('<center><table cellpadding="10"><tr>');
     // TODO-QSP: dynamic text: <td align="center"><b>Shift today</b><br><<$temp_icon_today>></td>
-    scene.text(`<td align="center"><b>Shift today</b><br>${((s as any).temp_icon_today ?? 0)}</td>`);
+    scene.text(`<td align="center"><b>Shift today</b><br>${((s as any).temp_icon_today || '')}</td>`);
     // TODO-QSP: dynamic text: <td align="center"><b>Arrive now</b><br><<$temp_icon_blue>></td>
-    scene.text(`<td align="center"><b>Arrive now</b><br>${((s as any).temp_icon_blue ?? 0)}</td>`);
+    scene.text(`<td align="center"><b>Arrive now</b><br>${((s as any).temp_icon_blue || '')}</td>`);
     // TODO-QSP: dynamic text: <td align="center"><b>Working</b><br><<$temp_icon_green>></td>
-    scene.text(`<td align="center"><b>Working</b><br>${((s as any).temp_icon_green ?? 0)}</td>`);
+    scene.text(`<td align="center"><b>Working</b><br>${((s as any).temp_icon_green || '')}</td>`);
     // TODO-QSP: dynamic text: <td align="center"><b>Missed</b><br><<$temp_icon_red>></td>
-    scene.text(`<td align="center"><b>Missed</b><br>${((s as any).temp_icon_red ?? 0)}</td>`);
+    scene.text(`<td align="center"><b>Missed</b><br>${((s as any).temp_icon_red || '')}</td>`);
     scene.text('</tr></table></center>');
     scene.text('<center><b>Difficulty Settings</b></center>');
     scene.text('The difficulty settings have been greatly expanded, and moved into their own tab in the settings menu. You can now individually customize skill gain rate, skill degradation rate, income and expenditure multipliers, event mood multipliers, random event changes, and more.');

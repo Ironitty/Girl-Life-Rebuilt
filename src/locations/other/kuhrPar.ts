@@ -26,7 +26,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locat ?? 0)?.['Mother'] === 4) {
       if (((s as any).locat ?? 0)?.['Mom_kitchen_action'] === 1) {
         // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> is here, busy making breakfast.
-        scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} is here, busy making breakfast.`);
+        scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} is here, busy making breakfast.`);
       } else {
         if (((s as any).locat ?? 0)?.['Mom_kitchen_action'] === 2) {
           qspCall(s, 'npc_relationship', 'modify', 'A29', 1);
@@ -34,7 +34,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           scene.img('images/characters/pavlovsk/resident/mom/gotovka.jpg');
           // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> turns to you. "Please set the table for breakfast,...
-          scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} turns to you. "Please set the table for breakfast, ${((s as any).pcs_nickname ?? 0)}."`);
+          scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} turns to you. "Please set the table for breakfast, ${((s as any).pcs_nickname || '')}."`);
           scene.text('You just sigh and grab the dishes.');
           return;
           scene.actions([
@@ -43,29 +43,29 @@ function enter(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).locat ?? 0)?.['Mom_kitchen_action'] === 4) {
             // TODO-QSP: dynamic text: Your <a href="exec:gt'mother'"><<$npc_nickname['A29']>></a> is here clearing awa...
-            scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29']}</a> is here clearing away the breakfast dishes.`);
+            scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a> is here clearing away the breakfast dishes.`);
           }
         }
       }
     }
     if (((((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) >= 45)  ||  (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) <= 15))  &&  ((s as any).week ?? 0) < 6  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
       // TODO-QSP: dynamic text: <a href="exec:gt'father'">Your stepfather</a><<$mombreak>>, <a href="exec:gt 'si...
-      scene.text(`<a href="exec:gt'father'">Your stepfather</a>${((s as any).mombreak ?? 0)}, <a href="exec:gt 'sister_chat', 'talking'">Anya</a> and <a href="exec:gt 'brother', 'start'">Kolka</a> are sitting at the table eating breakfast. You could sit down and join them or just grab something and go.`);
+      scene.text(`<a href="exec:gt'father'">Your stepfather</a>${((s as any).mombreak || '')}, <a href="exec:gt 'sister_chat', 'talking'">Anya</a> and <a href="exec:gt 'brother', 'start'">Kolka</a> are sitting at the table eating breakfast. You could sit down and join them or just grab something and go.`);
     } else {
       if (((((s as any).hour ?? 0) === 6  &&  ((s as any).minut ?? 0) >= 45)  ||  (((s as any).hour ?? 0) === 7  &&  ((s as any).minut ?? 0) <= 15))  &&  ((s as any).week ?? 0) > 5  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
         // TODO-QSP: dynamic text: <a href="exec:gt'father'">Your stepfather</a><<$mombreak>>, and <a href="exec:gt...
-        scene.text(`<a href="exec:gt'father'">Your stepfather</a>${((s as any).mombreak ?? 0)}, and <a href="exec:gt 'brother', 'start'">Kolka</a> are sitting at the table eating breakfast. It seems your sister is sleeping in again. You could sit down and join them or just grab something and go.`);
+        scene.text(`<a href="exec:gt'father'">Your stepfather</a>${((s as any).mombreak || '')}, and <a href="exec:gt 'brother', 'start'">Kolka</a> are sitting at the table eating breakfast. It seems your sister is sleeping in again. You could sit down and join them or just grab something and go.`);
       } else {
         if (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) <= 30  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0  &&  ((s as any).locat ?? 0)?.['Anya'] === 12) {
           // TODO-QSP: dynamic text: <a href="exec:gt'father'">Your stepfather</a>, <a href="exec:gt'mother'"><<$npc_...
-          scene.text(`<a href="exec:gt'father'">Your stepfather</a>, <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29']}</a>, <a href="exec:gt 'sister_chat', 'talking'">Anya</a> and <a href="exec:gt 'brother', 'start'">Kolka</a> are sitting at the table eating dinner. You could sit down and join them or just grab something and go.`);
+          scene.text(`<a href="exec:gt'father'">Your stepfather</a>, <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a>, <a href="exec:gt 'sister_chat', 'talking'">Anya</a> and <a href="exec:gt 'brother', 'start'">Kolka</a> are sitting at the table eating dinner. You could sit down and join them or just grab something and go.`);
         } else {
           if (((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) <= 30  &&  ((s as any).locat ?? 0)?.['Fam_inGad'] === 0) {
             // TODO-QSP: dynamic text: <a href="exec:gt'father'">Your stepfather</a>, <a href="exec:gt'mother'"><<$npc_...
-            scene.text(`<a href="exec:gt'father'">Your stepfather</a>, <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29']}</a> and <a href="exec:gt 'brother', 'start'">Kolka</a> are sitting at the table eating dinner. You could sit down and join them or just grab something and go.`);
+            scene.text(`<a href="exec:gt'father'">Your stepfather</a>, <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a> and <a href="exec:gt 'brother', 'start'">Kolka</a> are sitting at the table eating dinner. You could sit down and join them or just grab something and go.`);
           } else {
             // TODO-QSP: dynamic text: The kitchen is not very impressive, but it has everything your family needs. Sin...
-            scene.text(`The kitchen is not very impressive, but it has everything your family needs. Since everyone can't always join for family meals, your ${((s as any).npc_nickname ?? 0)?.['A29']} usually pre-cooks some meals and stores them in the fridge. Of course, you could also just have a snack if you're not that hungry.`);
+            scene.text(`The kitchen is not very impressive, but it has everything your family needs. Since everyone can't always join for family meals, your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} usually pre-cooks some meals and stores them in the fridge. Of course, you could also just have a snack if you're not that hungry.`);
           }
         }
       }
@@ -73,20 +73,20 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locat ?? 0)?.['Mother'] === 11) {
     // TODO-QSP: dynamic text: Your <a href="exec:gt'mother'"><<$npc_nickname['A29']>></a> is busy preparing di...
-    scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29']}</a> is busy preparing dinner.`);
+    scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a> is busy preparing dinner.`);
   } else {
     if (((s as any).locat ?? 0)?.['Mother'] === 13) {
       if (((s as any).locat ?? 0)?.['Anya'] === 23) {
         // TODO-QSP: dynamic text: Your <a href="exec:gt'mother'"><<$npc_nickname['A29']>></a> and <a href="exec:gt...
-        scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29']}</a> and <a href="exec:gt 'sister_chat', 'talking'">Anya</a> are cleaning up after dinner.`);
+        scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a> and <a href="exec:gt 'sister_chat', 'talking'">Anya</a> are cleaning up after dinner.`);
       } else {
         // TODO-QSP: dynamic text: Your <a href="exec:gt'mother'"><<$npc_nickname['A29']>></a> is busy cleaning up ...
-        scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29']}</a> is busy cleaning up after dinner.`);
+        scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a> is busy cleaning up after dinner.`);
       }
     } else {
       if (((s as any).locat ?? 0)?.['Mother'] === 23) {
         // TODO-QSP: dynamic text: Your <a href="exec:gt'mother'"><<$npc_nickname['A29']>></a> is busy cleaning the...
-        scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29']}</a> is busy cleaning the kitchen.`);
+        scene.text(`Your <a href="exec:gt'mother'">${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</a> is busy cleaning the kitchen.`);
       }
     }
   }

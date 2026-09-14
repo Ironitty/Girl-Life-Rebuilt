@@ -42,7 +42,7 @@ function enterTrace(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['trace_index'] = ((s as any).debug['trace_index'] ?? 0) + (1);
     // TODO-QSP: jump 'trace_loc_change_loop'
   }
-  if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['' + String((s as any).$ARGS[1] || '') + '_trace'] = ((s as any).debug['' + String((s as any).$ARGS[1] || '') + '_trace'] ?? 0) + (((s as any).debug ?? {})?.['trace_line'] + '<br>');
+  if (!(s as any).debug) (s as any).debug = {}; (s as any).debug['' + String((s as any).$ARGS[1] || '') + '_trace'] = ((s as any).debug['' + String((s as any).$ARGS[1] || '') + '_trace'] ?? 0) + ((((s as any).debug ?? {})?.['trace_line'] ?? 0) + '<br>');
   if (((s as any).debug ?? 0)?.['trace_shown'] !== 0) {
     qspCall(s, 'stat_display', '');
   }

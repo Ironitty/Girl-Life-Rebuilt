@@ -223,7 +223,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_coats_h[<<ARGS[2]>>] = 0
   // TODO-QSP: "
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).coatworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).coatwornnumber ?? 0)) {
-    qspCall(s, 'coats', 'strip_code');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).lastworncoatnumber = 0;
   }
   return;
@@ -238,7 +238,7 @@ function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDispose(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'coats', 'remove_item', ((s as any).coatworntype ?? 0), ((s as any).coatwornnumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).coatworntype ?? 0), ((s as any).coatwornnumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -290,7 +290,7 @@ function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'coats', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -301,7 +301,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
     (s as any).coatwornnumber = 0;
   }
   (s as any).lastworncoatnumber = ((s as any).coatwornnumber ?? 0);
-  qspCall(s, 'coats', 'strip_code');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -309,8 +309,8 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterStripCode(s: GameState, scene: SceneBuilder): void {
   (s as any).coatwornnumber = 0;
-  qspCall(s, 'coats', 'reset_CoatVars');
-  qspCall(s, 'coats', 'reset_PCoatVars');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_CoatVars(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PCoatVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'outfit', 'set_derived_vars');
   return;
   // TODO-QSP: end
@@ -348,7 +348,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
-  qspCall(s, 'coats', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'coat_attributes', $ARGS[1], ARGS[2]
   if ((Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('check') : -1) > 0) {
     if (((s as any).temp_not_wear_reason ?? 0) !== '') {

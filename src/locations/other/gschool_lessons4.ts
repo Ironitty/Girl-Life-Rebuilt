@@ -39,9 +39,9 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
       scene.text('"Math determines many important aspects of daily life. For example, you need math to determine the current date and time. If today is the 17th, then tomorrow will be the 18th. How do I know that? Seventeen plus one equals eighteen. Time is no different and some countries have different ways of displaying time. For example, some display time in 12 hour increments, showing 17:00 as 5 PM."');
       if (((s as any).VKrand ?? 0) === 1  &&  ((s as any).npc_grupTipe ?? 0)?.['A189'] === 4) {
         if (((s as any).NikoPayback ?? 0) > 0) {
-          scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+          scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
         } else {
-          scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+          scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
         }
         scene.text('Mr. Tsarev pauses and turns to the door as Niko casually strolls in.');
         scene.text('"Late again I see," Mr. Tsarev says as he crosses his arms. "What\'s the reason for it this time?"');
@@ -125,13 +125,13 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Focus on your school work [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Focus on your school work', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Focus on your school work [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Focus on your school work', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -229,18 +229,18 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'stat', '');
           scene.img('images/locations/pavlovsk/school/classroom/caughtsleeping.jpg');
           // TODO-QSP: dynamic text: Today's lesson doesn't particularly interest you and you find yourself drifting ...
-          scene.text(`Today's lesson doesn't particularly interest you and you find yourself drifting off constantly. After a while, you notice that Mr. Tsarev has paused his lesson and is giving you a stern look. "Miss ${((s as any).pcs_lastname ?? 0)}, maybe you'd like to explain what I just went over?"`);
+          scene.text(`Today's lesson doesn't particularly interest you and you find yourself drifting off constantly. After a while, you notice that Mr. Tsarev has paused his lesson and is giving you a stern look. "Miss ${((s as any).pcs_lastname || '')}, maybe you'd like to explain what I just went over?"`);
           scene.text('You give him a puzzled look while trying to figure out what to say. You feel embarrassed having the class stare at you.');
           qspCall(s, 'willpower', 'misc', 'self', 'medium');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Give him attitude [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Give him attitude', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Give him attitude [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Give him attitude', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
@@ -250,17 +250,17 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/kickedout.jpg');
     scene.text('"Of course. Please continue your super-fascinating lesson. Just keep it a bit upbeat please. If you talk any slower, I might fall asleep!" you answer boldly.');
     // TODO-QSP: dynamic text: The whole class bursts into laughter and Mr. Tsarev has a rough time getting eve...
-    scene.text(`The whole class bursts into laughter and Mr. Tsarev has a rough time getting everyone to quiet down. "Miss ${((s as any).pcs_lastname ?? 0)}, do you find this kind of behavior amusing? Or are you just seeking attention? Try to answer this question for yourself while you head to the principal's office." He then points to the door.`);
+    scene.text(`The whole class bursts into laughter and Mr. Tsarev has a rough time getting everyone to quiet down. "Miss ${((s as any).pcs_lastname || '')}, do you find this kind of behavior amusing? Or are you just seeking attention? Try to answer this question for yourself while you head to the principal's office." He then points to the door.`);
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Don\'t leave the classroom [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Don\'t leave the classroom', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Don\'t leave the classroom [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Don\'t leave the classroom', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
@@ -333,7 +333,7 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
             scene.text('"I was thinking of wearing those with my blue skirt. Do you think that they will look good together?"');
             scene.text('"They would look great together. The colors would compliment each other very well," you reply.');
             // TODO-QSP: dynamic text: "Thanks, <<$pcs_nickname>>. I was worried that they were a bit too much on the e...
-            scene.text(`"Thanks, ${((s as any).pcs_nickname ?? 0)}. I was worried that they were a bit too much on the eyes."`);
+            scene.text(`"Thanks, ${((s as any).pcs_nickname || '')}. I was worried that they were a bit too much on the eyes."`);
             scene.text('You give Sonia a smile before she turns back towards the teacher while continuing to browse the internet.');
             scene.actions([
               { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
@@ -344,13 +344,13 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'willpower', 'misc', 'self', 'medium');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Keep using your phone', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Keep using your phone', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[4] = ((s as any).grupvalue[4] ?? 0) + (1);
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
@@ -361,13 +361,13 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Take photos under your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take photos under your skirt', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Take photos under your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take photos under your skirt', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -394,13 +394,13 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'self', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Hide the phone in your bra [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Hide the phone in your bra', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Hide the phone in your bra [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Hide the phone in your bra', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -424,7 +424,7 @@ function enterMath(s: GameState, scene: SceneBuilder): void {
     scene.text('He extends his hand. "What\'s so important on there that you need to disrupt my lesson? Hand it over."');
     scene.text('You realize that he isn\'t messing around and decide that it\'s not worth it, so you silently hand your phone to him.');
     // TODO-QSP: dynamic text: "I'm holding onto this for now, Miss <<$pcs_lastname>>. You can have it back aft...
-    scene.text(`"I'm holding onto this for now, Miss ${((s as any).pcs_lastname ?? 0)}. You can have it back after class," he says as he walks back to the front of the class.`);
+    scene.text(`"I'm holding onto this for now, Miss ${((s as any).pcs_lastname || '')}. You can have it back after class," he says as he walks back to the front of the class.`);
     scene.actions([
       { label: 'Wait for the end of the lesson', goto: ['gschool_lessons', 'short_break'] },
     ]);
@@ -468,7 +468,7 @@ function enterMathLate(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/late/latem1.jpg');
     scene.text('When you open the door and walk in, Mr. Tsarev stops talking and everyone turns their eyes towards you.');
     // TODO-QSP: dynamic text: "So good of you to join us, Miss <<$pcs_lastname>>," Mr. Tsarev says as several ...
-    scene.text(`"So good of you to join us, Miss ${((s as any).pcs_lastname ?? 0)}," Mr. Tsarev says as several of your classmates smirk, while a few look annoyed that you interrupted the class.`);
+    scene.text(`"So good of you to join us, Miss ${((s as any).pcs_lastname || '')}," Mr. Tsarev says as several of your classmates smirk, while a few look annoyed that you interrupted the class.`);
     scene.actions([
       { label: 'Apologize', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/classroom/late/latem2.jpg');
@@ -484,7 +484,7 @@ function enterMathLate(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/classroom/late/latem2.jpg');
     scene.text('You roll your eyes, but say nothing in response.');
     // TODO-QSP: dynamic text: He shakes his head slightly and frowns. "I'll have to report this, Miss <<$pcs_l...
-    scene.text(`He shakes his head slightly and frowns. "I'll have to report this, Miss ${((s as any).pcs_lastname ?? 0)}. Now please take your seat. You've interrupted my class enough."`);
+    scene.text(`He shakes his head slightly and frowns. "I'll have to report this, Miss ${((s as any).pcs_lastname || '')}. Now please take your seat. You've interrupted my class enough."`);
     scene.actions([
       { label: 'Take your seat', goto: ['gschool_lessons4', 'math'] },
     ]);
@@ -517,13 +517,13 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Listen attentively [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Listen attentively', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Listen attentively [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Listen attentively', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'self', 'chore');
     }
@@ -557,20 +557,20 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'exp_gain', 'chrsm', Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'stat', '');
     if (((s as any).NikoPayback ?? 0) > 0) {
-      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
       scene.text('Niko sneers at you as you approach. "What do you want?"');
       scene.text('"I just want to talk," you reply and he scoffs before nodding. You spend the next few minutes having a strained conversation until the end of the class.');
     } else {
       if (((s as any).NikoVolkovQW ?? 0) >= 5) {
         qspCall(s, 'npc_relationship', 'modify', 'A189', 'like');
-        scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+        scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
         scene.text('As you approach Niko, he gives you a warm smile. "My princess graces with me with her presence. How can be of assistance?"');
         scene.text('You giggle. "I have spare time and I can\'t think of a better use of it than spending it with you."');
         scene.text('He chuckles and grabs onto your hand, lifting it toward his face and giving it a soft kiss. "Your wish is my command."');
         scene.text('You both spend the next few minutes chatting while exchanging loving glares until the end of the class.');
       } else {
         qspCall(s, 'npc_relationship', 'modify', 'A189', 'like');
-        scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+        scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
         scene.text('As you approach Niko, he gives you a warm smile. "Ahh a lovely princess decides to grace me with her presence. How can I be of assistance?"');
         scene.text('You giggle. "You\'re so weird! I just want to chat for a bit, okay?"');
         scene.text('He chuckles and grabs onto your hand, lifting it toward his face and giving it a soft kiss. "Your wish is my command."');
@@ -668,19 +668,19 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/school/classroom/sleeping.jpg');
       scene.text('Unable to pay attention, you retreat into your own thoughts. You distract yourself with a number of things, from doodling in your notebook to just staring blankly out the window.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>!"
-      scene.text(`"${((s as any).pcs_lastname ?? 0)}!"`);
+      scene.text(`"${((s as any).pcs_lastname || '')}!"`);
       scene.text('Hearing your name being called, you snap back to reality to see Ms. Braakman staring daggers at you from the front of the class. The scattered laughter from students causes you to squirm slightly in your seat.');
       scene.text('"I\'ve called your name three times now! If you want to sleep, you can do it during detention!" she warns as she points to the door.');
       qspCall(s, 'willpower', 'misc', 'self', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Be a smart ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Be a smart ass', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Be a smart ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Be a smart ass', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
@@ -761,17 +761,17 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/locations/pavlovsk/school/classroom/phone.jpg');
       // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, are you playing on your phone during class?" Ms. Braakm...
-      scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, are you playing on your phone during class?" Ms. Braakman asks as she makes her way towards you.`);
+      scene.text(`"Miss ${((s as any).pcs_lastname || '')}, are you playing on your phone during class?" Ms. Braakman asks as she makes her way towards you.`);
       qspCall(s, 'willpower', 'misc', 'self', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Keep using your phone', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Keep using your phone [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Keep using your phone', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
@@ -783,13 +783,13 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Take photos under your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take photos under your skirt', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Take photos under your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take photos under your skirt', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -811,7 +811,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       scene.text('"Hand it over," she orders, one of her hands now held out in front of you. You obediently hand over your phone to her without argument. When she sees the screen is still on, she smiles smugly. "You were texting, weren\'t you? Of course you were, that\'s all you kids do these days. Well, I\'m sure you wouldn\'t mind if I shared with the class what you were--"');
       scene.text('You can barely keep a straight face as you watch Ms. Braakman\'s expression change from smug to confusion and then anger in a matter of seconds. You silently wait for her to order you out of the class and to the principal\'s office, but she looks lost in her own thoughts as she continues to stare at the screen. When she finally snaps back to reality, you could have sworn you saw a twinkle of excitement and longing in her eyes.');
       // TODO-QSP: dynamic text: "I don't want to see you doing such things in my class again, Miss <<$pcs_lastna...
-      scene.text(`"I don't want to see you doing such things in my class again, Miss ${((s as any).pcs_lastname ?? 0)}! You can have this back after class," she says sharply, but the way she licks her lips afterwards speaks of something else. Without another word, she turns the screen off and returns to the front of the class to resume the lesson.`);
+      scene.text(`"I don't want to see you doing such things in my class again, Miss ${((s as any).pcs_lastname || '')}! You can have this back after class," she says sharply, but the way she licks her lips afterwards speaks of something else. Without another word, she turns the screen off and returns to the front of the class to resume the lesson.`);
       scene.actions([
         { label: 'Wait for the end of the lesson', handler: (st: GameState) => {
     qspCall(st, 'gschool_lessonsev3', 'getphone');
@@ -825,13 +825,13 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'self', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Hide the phone in your bra [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Hide the phone in your bra', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Hide the phone in your bra [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Hide the phone in your bra', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).demerit = ((s as any).demerit ?? 0) + (5);
@@ -839,7 +839,7 @@ function enterEnglish(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/classroom/nophone.jpg');
     // TODO-QSP: dynamic text: You deftly shove the phone in your bra, and smile fiendishly as you see the mome...
-    scene.text(`You deftly shove the phone in your bra, and smile fiendishly as you see the momentary hesitation from your teacher as they stop at your desk. "You think this is a joke, Miss ${((s as any).pcs_lastname ?? 0)}?" Ms. Braakman asks, her eyes narrowing.`);
+    scene.text(`You deftly shove the phone in your bra, and smile fiendishly as you see the momentary hesitation from your teacher as they stop at your desk. "You think this is a joke, Miss ${((s as any).pcs_lastname || '')}?" Ms. Braakman asks, her eyes narrowing.`);
     scene.text('"If you want my phone, go ahead and take it," you reply in a mockingly sweet voice as you thrust your chest out. Her eyes darken dangerously as you think you\'ve won, but your bluff is called as one of Ms. Braakman\'s hands plunges into your shirt. "Ms. Braakman, I didn\'t know today\'s lesson would be so hands on!" you tease as you feel her hand slip inside your bra. Your smile widens as you hear the class erupt with cheering and laughter.');
     scene.text('"You think you\'re clever, don\'t you?" she whispers, her voice low so only you can hear. You try to respond, but your words get caught in your throat as she starts to tease one of your nipples between her fingertips. Suddenly, she\'s no longer searching but groping, her skillful fingers carefully moving between each breast until both of your sensitive buds are hard and straining almost uncomfortably against your bra. You can\'t help but shift slightly in your seat as you feel a tightening sensation in your lower belly and an aching throb between your legs.');
     scene.text('"Don\'t make me remind you of your place, little girl!" Ms. Braakman\'s warning is punctuated painfully as she gives a sharp pinch and tug to one of your nipples, eliciting a soft whimper from you. Having gotten her point across, she grabs your phone and removes her hand from your shirt. "You can get this back after class."');
@@ -902,14 +902,14 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_racetype'] = 1;
     }
     // TODO-QSP: dynamic text: Coach Pavlovich announces that the inter-school running competition will be held...
-    scene.text('Coach Pavlovich announces that the inter-school running competition will be held this Saturday at \' + func(\'time\', \'get_time_string\', 11, 0) + \'. If you want to participate, you should come to school between \' + func(\'time\', \'get_time_string\', 10, 0) + \' and \' + func(\'time\', \'get_time_string\', 11, 0) + \'.');
+    scene.text('Coach Pavlovich announces that the inter-school running competition will be held this Saturday at 11:00. If you want to participate, you should come to school between 10:00 and 11:00.');
   } else {
     if (((s as any).week ?? 0) === 5  &&  ((s as any).runnerQW ?? 0)?.['pav_stage'] === 1) {
       if (((s as any).runnerQW ?? 0)?.['pav_racetype'] === 0) {
         if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['pav_racetype'] = 2;
       }
       // TODO-QSP: dynamic text: Coach Pavlovich announces that the inter-school running competition will be held...
-      scene.text('Coach Pavlovich announces that the inter-school running competition will be held this Saturday at \' + func(\'time\', \'get_time_string\', 11, 0) + \'. If you want to participate, you should come to school between \' + func(\'time\', \'get_time_string\', 10, 0) + \' and \' + func(\'time\', \'get_time_string\', 11, 0) + \'.');
+      scene.text('Coach Pavlovich announces that the inter-school running competition will be held this Saturday at 11:00. If you want to participate, you should come to school between 10:00 and 11:00.');
     }
   }
   // TODO-QSP: end
@@ -945,16 +945,16 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/fizra3.jpg');
     if (((s as any).pcs_hotcat ?? 0) >= 6) {
       // TODO-QSP: dynamic text: Making sure no one else is nearby, you pull up your shirt and reveal your <<$tit...
-      scene.text(`Making sure no one else is nearby, you pull up your shirt and reveal your ${((s as any).titsize ?? 0)} breasts to Ivan. You almost immediately notice the erection growing in his tight shorts, and he awkwardly tries to hide it. As you pull your shirt back down, you give him a sweet smile. "Try hiding that while you're running past everyone!"`);
+      scene.text(`Making sure no one else is nearby, you pull up your shirt and reveal your ${((s as any).titsize || '')} breasts to Ivan. You almost immediately notice the erection growing in his tight shorts, and he awkwardly tries to hide it. As you pull your shirt back down, you give him a sweet smile. "Try hiding that while you're running past everyone!"`);
       scene.text('He grimaces as he sprints away from you, carefully checking to make sure no one is near him. You have a knowing smile on your face when, at the end of the class, his friends ask him why his lap time was so much slower than usual.');
     } else {
       if (((s as any).pcs_hotcat ?? 0) >= 4) {
         // TODO-QSP: dynamic text: Making sure no one else is nearby, you pull up your shirt and reveal your <<$tit...
-        scene.text(`Making sure no one else is nearby, you pull up your shirt and reveal your ${((s as any).titsize ?? 0)} breasts to Ivan. He smiles and shakes his head as he sprints away and you slow down a little to get everything back in place.`);
+        scene.text(`Making sure no one else is nearby, you pull up your shirt and reveal your ${((s as any).titsize || '')} breasts to Ivan. He smiles and shakes his head as he sprints away and you slow down a little to get everything back in place.`);
         scene.text('At the end of the class, Ivan puts in the fastest time. Again.');
       } else {
         // TODO-QSP: dynamic text: Making sure no one else is nearby, you pull up your shirt and reveal your <<$tit...
-        scene.text(`Making sure no one else is nearby, you pull up your shirt and reveal your ${((s as any).titsize ?? 0)} breasts to Ivan. He gives you a disgusted look and shakes his head as he sprints away. You slow down a little to get everything back in place.`);
+        scene.text(`Making sure no one else is nearby, you pull up your shirt and reveal your ${((s as any).titsize || '')} breasts to Ivan. He gives you a disgusted look and shakes his head as he sprints away. You slow down a little to get everything back in place.`);
         scene.text('At the end of the class, Ivan puts in the fastest time. Again.');
       }
     }
@@ -1303,7 +1303,7 @@ function enterPe(s: GameState, scene: SceneBuilder): void {
                     scene.text('After the roll call, Coach Nikolaevich announces that you\'ll all be taking turns climbing the ropes today.');
                     scene.text('You climb as instructed, but can\'t help but feel the rough rope rubbing against your pussy through your clothes. You do your best to climb up, but the rubbing of the rope against your pussy gets more intense. After a few seconds, the stimulation from the rope against your clit brings you to orgasm, and you have to do everything in your power not to fall as you quiver against the rope, stifling your moans.');
                     // TODO-QSP: dynamic text: The coach looks up to you. "Why are you shaking, <<$pcs_lastname>>? Are you scar...
-                    scene.text(`The coach looks up to you. "Why are you shaking, ${((s as any).pcs_lastname ?? 0)}? Are you scared of heights? Go ahead and come down then."`);
+                    scene.text(`The coach looks up to you. "Why are you shaking, ${((s as any).pcs_lastname || '')}? Are you scared of heights? Go ahead and come down then."`);
                   }
                 }
                 scene.actions([
@@ -1567,13 +1567,13 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/shower/showerspank.mp4');
     scene.text('You pick one of the empty shower heads at random and turn the water on, letting it pour over you and run down your body, caressing you in the relaxing way that is unique to hot showers - after PE, this feels simply great. After spending a few minutes basking in the water, you lather up your body with soap. You barely pay any attention to the other girls showering with you, their conversations mostly drowned out by the sound of the shower.');
     scene.text('As you wash off the soap, you turn to see Albina bending over to let Bella spank her; most of the girls stop what they\'re doing to watch. After several fairly hard smacks that echo into the room, they stop and laugh about it as Albina rubs her ass. You turn back and finish your shower as Bella and Albina giggle at each other.');
-    qspCall(s, 'gschool_lessons4', 'shower_options');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).gymshower ?? 0) === 2) {
       scene.img('images/locations/pavlovsk/school/gym/shower/picture.jpg');
       scene.text('You pick one of the empty shower heads at random and turn the water on, letting it pour over you and run down your body, caressing you in the relaxing way that\'s unique to hot showers - after PE, this feels simply great. After spending a few minutes basking in the water, you lather up your body with soap. You barely pay any attention to the other girls showering with you, their conversations mostly drowned out by the sound of the shower.');
       scene.text('As you wash off the soap, you turn just in time to see Christina holding up her phone and taking pictures. All the girls quickly notice. Some laugh and others quickly finish and leave as everyone except Anushka covers up. After a few laughs and some good-natured yelling, Christina stops and everyone goes back to showering.');
-      qspCall(s, 'gschool_lessons4', 'shower_options');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).gymshower ?? 0) === 3) {
         scene.img('images/locations/pavlovsk/school/gym/sex/aylnushkiss.jpg');
@@ -1581,7 +1581,7 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
         scene.text('As you wash off the soap, you turn to see Anushka and Aylona sharing a kiss under one of the shower heads. Several other girls notice and a few whistle, make cat calls or yell encouragements, but others look disgusted.');
         scene.text('"Stop that, you fucking dykes!" Katyusha scowls. "That\'s fucking disgusting!"');
         scene.text('Anushka looks at Katyusha, makes a V with her fingers and sticks her tongue between them, wiggling it back and forth. Katyusha glares at her, then shakes her head, turns off the water and walks into the locker room. Anushka and Aylona laugh about it before they go back to showering.');
-        qspCall(s, 'gschool_lessons4', 'shower_options');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).gymshower ?? 0) === 4  &&  ((s as any).npc_grupTipe ?? 0)?.['A25'] === 5) {
           scene.img('images/locations/pavlovsk/school/gym/sex/sonia_busted_1.jpg');
@@ -1733,7 +1733,7 @@ function enterShower2(s: GameState, scene: SceneBuilder): void {
           } else {
             scene.img('images/shared/home/bathroom/dush.mp4');
             scene.text('You pick one of the empty shower heads at random and turn the water on, letting it pour over you, and rinse the sweat from your body. After a tiring gym class, the hot water feels great, soothing your aching muscles and relaxing your mind. After a few minutes of enjoyment, you grab some soap and start lathering yourself up. You quickly become lost in the task, the sound of your scrubbing mixing with the squeak of faucets, the slap of your classmates feet across the tile floor, and the endless white noise of cascading water.');
-            qspCall(s, 'gschool_lessons4', 'shower_options');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -1759,7 +1759,7 @@ function enterPubeBully(s: GameState, scene: SceneBuilder): void {
     scene.text('"You\'d need a chainsaw to trim that!"');
   } else {
     // TODO-QSP: dynamic text: "Seriously <<$pcs_nickname>>?" Bella scoffs. "Waxing isn't just for floors you k...
-    scene.text(`"Seriously ${((s as any).pcs_nickname ?? 0)}?" Bella scoffs. "Waxing isn't just for floors you know!"`);
+    scene.text(`"Seriously ${((s as any).pcs_nickname || '')}?" Bella scoffs. "Waxing isn't just for floors you know!"`);
     scene.text('"Is that pubic hair or a gorilla between her legs?" Irina laughs loudly, prompting Stasya to join in.');
     scene.text('"You\'d need a chainsaw to trim that!"');
   }
@@ -1771,19 +1771,19 @@ function enterPubeBully(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Ignore them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Ignore them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Ignore them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Ignore them', handler: (st: GameState) => {
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (4);
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (2);
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('You ignore them completely, paying no heed as you turn on the faucet and start rinsing off. In turn, they continue to sling insults at you.');
     // TODO-QSP: dynamic text: "Tell me <<$pcs_nickname>>, do you need a vacuum cleaner to wash that rug?" Irin...
-    scene.text(`"Tell me ${((s as any).pcs_nickname ?? 0)}, do you need a vacuum cleaner to wash that rug?" Irina giggles.`);
+    scene.text(`"Tell me ${((s as any).pcs_nickname || '')}, do you need a vacuum cleaner to wash that rug?" Irina giggles.`);
     scene.text('"Or is it dry clean only?" Bella adds on with a smirk.');
     scene.text('"More like dog shampoo," scoffs Stasya.');
     scene.text('Their words wash over you as easily as the water from the shower and you calmly soap yourself up, making sure to get a good lather under your armpits and between your legs. You were just in gym class after all, and wouldn\'t want to leave any errant smells.');
@@ -1852,7 +1852,7 @@ function enterPubeCompliment(s: GameState, scene: SceneBuilder): void {
   scene.text('As you step into the shower, some girls turn to look at you and smile.');
   if (((s as any).pube_style ?? 0)?.['word'] === 'shaved') {
     // TODO-QSP: dynamic text: "Ugh, I'm so jealous <<$pcs_nickname>>!" Bella says. "You have <i>such</i> a nic...
-    scene.text(`"Ugh, I'm so jealous ${((s as any).pcs_nickname ?? 0)}!" Bella says. "You have <i>such</i> a nice pussy!"`);
+    scene.text(`"Ugh, I'm so jealous ${((s as any).pcs_nickname || '')}!" Bella says. "You have <i>such</i> a nice pussy!"`);
     scene.text('"Not as nice as mine," Irina grins, drawing attention to her hips where she proudly displays the neatly trimmed landing strip atop her mound. "But she\'s definitely got a nice set of lips down there."');
     scene.text('"How do you get it so smooth?" Stasya asks. "Do you shave or wax?"');
     scene.text('The girls spend a few more minutes fawning over the loveliness of your hairless pussy while you shower in both the water and their compliments until you all decide to towel off together.');
@@ -1865,7 +1865,7 @@ function enterPubeCompliment(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pube_style ?? 0)?.['word'] === 'patch') {
         // TODO-QSP: dynamic text: "Oh my gosh, <<$pcs_nickname>>!" Bella squeals. All eyes in the room follow her ...
-        scene.text(`"Oh my gosh, ${((s as any).pcs_nickname ?? 0)}!" Bella squeals. All eyes in the room follow her gaze to home in on the tidy patch of hair between your legs. "Your pubes are <i>so cute!</i>"`);
+        scene.text(`"Oh my gosh, ${((s as any).pcs_nickname || '')}!" Bella squeals. All eyes in the room follow her gaze to home in on the tidy patch of hair between your legs. "Your pubes are <i>so cute!</i>"`);
         scene.text('"Finally, someone else with a sense of style," Irina grins, turning to show off her neatly trimmed landing strip to the other girls.');
         scene.text('"I guess it\'s pretty cute," Stasya says in a sweet voice with undertones of jealousy and superiority. "Andrey likes me clean shaven. Isn\'t that what all boys want?"');
         scene.text('The girls spend a few more minutes fawning over your bush while you shower in both the water and their compliments until you all decide to towel off together.');
@@ -1878,7 +1878,7 @@ function enterPubeCompliment(s: GameState, scene: SceneBuilder): void {
             scene.text('As fast as your bush drew their attention, it\'s already gone as they descend into bickering about how boys like their girls shaven and you end up taking your shower without anyone to talk to.');
           } else {
             // TODO-QSP: dynamic text: "Oh my gosh!" Bella squeals. All eyes in the room follow her gaze to home in on ...
-            scene.text(`"Oh my gosh!" Bella squeals. All eyes in the room follow her gaze to home in on the tidy ${((s as any).pube_style ?? 0)?.['shape']} of hair between your legs. "Your pubes are <i>so cute!</i>"`);
+            scene.text(`"Oh my gosh!" Bella squeals. All eyes in the room follow her gaze to home in on the tidy ${((s as any).pube_style ?? 0)?.['shape'] ?? ''} of hair between your legs. "Your pubes are <i>so cute!</i>"`);
             if (((s as any).pube_style ?? 0)?.['shape'] === 'landing strip') {
               scene.text('"Finally, someone <i>else</i> with a sense of style," Irina grins, blatantly turning to show off her own landing strip to the other girls.');
               scene.text('"I guess it\'s pretty cute," Stasya says in a sweet voice with undertones of jealousy and superiority. "Andrey likes me clean shaven. Isn\'t that what all boys want?"');
@@ -1919,13 +1919,13 @@ function enterWhoreBully(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/shower/nudepic.jpg');
     scene.text('Caught in the middle, you have no choice to but to keep heading towards the shower you chose. The other girls, seemingly egged on by Bella, also reach out to swat your ass along the way. Some of them giggle as they do, but what hurts more are the ones that don\'t. They clap your cheeks with movements so casual they might as well have been giving you a high five in the hallway.');
     scene.text('You finally reach the shower head and turn the faucet on, dousing your face. Hopefully, that way nobody will notice your tears…');
-    qspCall(s, 'gschool_lessons4', 'shower_options');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Fume', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/gym/shower/bully_slap1.jpg');
     scene.text('Caught in the middle, you have no choice to but to keep heading towards the shower you chose. The other girls, seemingly egged on by Bella, also reach out to swat your ass along the way. Some of them giggle as they do, but what hurts more are the ones that don\'t. They clap your cheeks with movements so casual they might as well have been giving you a high five in the hallway.');
     scene.text('You finally reach the shower head and turn the faucet on, dousing your face. Hopefully, that way nobody will notice your tears…');
-    qspCall(s, 'gschool_lessons4', 'shower_options');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1933,7 +1933,7 @@ function enterWhoreBully(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/gym/shower/bully_slap2.jpg');
     scene.text('You do your best to ignore it and keep heading towards the shower you chose. The other girls, seemingly egged on by Bella, also reach out to swat your ass along the way. Some of them giggle as they do, but what hurts more are the ones that don\'t. They clap your cheeks with movements so casual they might as well have been giving you a high five in the hallway.');
     scene.text('You finally reach the shower head and turn the faucet on, dousing your face. Hopefully, that way nobody will notice your tears…');
-    qspCall(s, 'gschool_lessons4', 'shower_options');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1974,20 +1974,20 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/lazar/sex/school/shower/lazar2.jpg');
     // TODO-QSP: dynamic text: You look back and see Lazar standing there with his hard cock in his hand, strok...
-    scene.text(`You look back and see Lazar standing there with his hard cock in his hand, stroking it while he watches you shower with a big grin on his face. "Hey ${((s as any).pcs_nickname ?? 0)}! Looking good."`);
+    scene.text(`You look back and see Lazar standing there with his hard cock in his hand, stroking it while he watches you shower with a big grin on his face. "Hey ${((s as any).pcs_nickname || '')}! Looking good."`);
     scene.text('Before you can react, he continues talking. "Why don\'t you suck my dick?" he says as he starts walking towards you while still stroking his cock. You can\'t help but stare. It\'s as long and nearly as thick as your forearm.');
     qspCall(s, 'arousal', 'erotic_nudity', 2);
     qspCall(s, 'stat', '');
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Tell him to get out [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell him to get out', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Tell him to get out [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell him to get out', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/lazar/sex/school/shower/lazarno.jpg');
@@ -2034,13 +2034,13 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Tell them to get out [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell them to get out', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Tell them to get out [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell them to get out', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/pavlovsk/school/gym/sex/vd2.jpg');
@@ -2136,7 +2136,7 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'re barely able to react before she delivers a stinging smack to your ass, causing you to whimper. She continues spanking you until your ass is red and numb.');
     scene.text('You look back and see a devious smile on her face as she licks her lips. "Have you learned your lesson?"');
     // TODO-QSP: dynamic text: You nod and rub your ass as she starts getting dressed. Once she finishes, she g...
-    scene.text(`You nod and rub your ass as she starts getting dressed. Once she finishes, she gives you a wink and a smile. "Until next time, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`You nod and rub your ass as she starts getting dressed. Once she finishes, she gives you a wink and a smile. "Until next time, ${((s as any).pcs_nickname || '')}."`);
     scene.text('She then walks out the door, leaving you alone to finish getting dressed. You can\'t help but think that she was more than a little aroused.');
     qspCall(s, 'arousal', 'foreplay', 2);
     qspCall(s, 'pain', 'asscheeks', 'spank', 2);
@@ -2172,7 +2172,7 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide to just confess your feelings. "Yeah, sorry. You\'re beautiful and it\'s hard to resist looking at your amazing body."');
     scene.text('She walks up and turns you around so you\'re facing the lockers before giving your ass a hard slap. "What a dirty girl you are! I\'m going to have to punish you!" You\'re barely able to react before she delivers a stinging smack to your ass, causing you to whimper. She continues spanking you until your ass is red and numb. You look back and see a devious smile on her face as she licks her lips. "Have you learned your lesson?"');
     // TODO-QSP: dynamic text: You nod and rub your ass as she starts getting dressed. Once she finishes, she g...
-    scene.text(`You nod and rub your ass as she starts getting dressed. Once she finishes, she gives you a wink and a smile. "Until next time, ${((s as any).pcs_nickname ?? 0)}." She then walks out the door, leaving you alone to finish getting dressed. You can't help but think that she was more than a little aroused.`);
+    scene.text(`You nod and rub your ass as she starts getting dressed. Once she finishes, she gives you a wink and a smile. "Until next time, ${((s as any).pcs_nickname || '')}." She then walks out the door, leaving you alone to finish getting dressed. You can't help but think that she was more than a little aroused.`);
     qspCall(s, 'arousal', 'foreplay', 2);
     qspCall(s, 'pain', 'asscheeks', 'spank', 2);
     qspCall(s, 'stat', '');
@@ -2205,13 +2205,13 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Pull away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Pull away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A23', (-5));
     qspCall(s, 'stat', '');
@@ -2263,13 +2263,13 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Pull away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Pull away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'npc_relationship', 'modify', 'A23', (-5));
     qspCall(s, 'stat', '');
@@ -2320,13 +2320,13 @@ function enterLongShower(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Ask him to leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ask him to leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Ask him to leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ask him to leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/teacher/victor/sex/locker1.jpg');

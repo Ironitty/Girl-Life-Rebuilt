@@ -15,7 +15,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Artem\'s Dorm Room</b></center>');
   scene.img('images/locations/city/island/university/dorm/artemroom/artem_dorm_room.jpg');
   scene.text('The dorm room has two beds. The one on the left belongs to Artem\'s roommate while the one on the right is Artem\'s.');
-  qspCall(s, 'artem_dorm', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A2'] === 'dormroom_studying_or_relaxing') {
     scene.text('Above his bed is a small <a href="exec:gt \'artem_dorm\',\'bookshelf\'">bookshelf</a> full of books, and the wall is plastered with sci-fi, fantasy, anime and super hero posters. Next to the bed is a small <a href="exec:gt \'artem_dorm\',\'night_stand\'">night stand.</a> At the foot of his bed is a small desk with a <a href="exec:gt \'artem_dorm\',\'computer\'">laptop</a> on it. Artem is sitting on a couch facing a TV sitting against the wall.');
   } else {
@@ -59,7 +59,7 @@ function enterBookshelf(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/artemroom/bookshelf.jpg');
   scene.text('The small bookshelf has a lot of fantasy and science fiction books, a few gaming books and a lot of various nerdy nicknacks from popular fantasy, anime, and science fiction movies and TV shows. Maybe he wouldn\'t mind if you borrowed a book?');
-  qspCall(s, 'artem_dorm', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).artem_borrowed_book ?? 0) !== 1) {
     scene.actions([
       { label: 'Ask to borrow a book', handler: (st: GameState) => {
@@ -148,7 +148,7 @@ function enterComputer(s: GameState, scene: SceneBuilder): void {
 function enterSitCouch(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/island/university/dorm/artemroom/sitcouch.jpg');
-  qspCall(s, 'artem_dorm', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).artemQW ?? 0)?.['date'] > 0) {
     scene.text('You walk over and sit on the couch next to Artem, who scoots over as he smiles at you. "I\'m glad you stopped by. Would you like to play some games? Or we could watch TV? Or just talk if you prefer?"');
     scene.text('You can tell he\'s trying to make you happy.');
@@ -270,7 +270,7 @@ function enterWatchMore(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "Let\'s watch another episode."');
     scene.text('He grins at you, clearly happy you seem to be enjoying one of his favorite shows. He gives you a quick hug before starting the next episode.');
     scene.text('"What do you want to do now?" he asks when it ends.');
-    qspCall(s, 'artem_dorm', 'timecheck');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Talk to Artem', goto: ['artem_dorm', 'chat'] },
       { label: 'Watch another episode', goto: ['artem_dorm', 'watch_more'] },
@@ -288,7 +288,7 @@ function enterWatchMore(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "Let\'s watch another episode."');
     scene.text('He grins at you, clearly happy you seem to be enjoying one of his favorite shows, and quickly starts the next episode.');
     scene.text('"What do you want to do now?" he asks when it ends.');
-    qspCall(s, 'artem_dorm', 'timecheck');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Talk to Artem', goto: ['artem_dorm', 'chat'] },
       { label: 'Watch another episode', goto: ['artem_dorm', 'watch_more'] },
@@ -315,32 +315,32 @@ function enterChat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   scene.text('You sit on the couch next to Artem and talk about various topics. Or rather: you\'re doing most of the talking, and Artem is mostly listening while occasionally commenting on something you said.');
-  qspCall(s, 'artem_dorm', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).artemQW ?? 0)?.['artfall'] > 5  &&  ((s as any).artkissing ?? 0) !== ((s as any).daystart ?? 0)) {
-    qspCall(s, 'artem_dorm', 'kiss');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterKiss(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).artemQW ?? 0)?.['date'] === 0  &&  ((s as any).artemQW ?? 0)?.['artfall'] >= 10  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
-      qspCall(s, 'artem_dorm', 'walk');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWalk(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).artemQW ?? 0)?.['date'] > 0  &&  ((s as any).artemQW ?? 0)?.['date'] <= 3  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
-        qspCall(s, 'artem_dorm', 'date');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDate(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).artemQW ?? 0)?.['date'] === 4  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
-          qspCall(s, 'artem_dorm', 'strip');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).artemQW ?? 0)?.['date'] === 5  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
-            qspCall(s, 'artem_dorm', 'flowers');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFlowers(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).artemQW ?? 0)?.['date'] >= 6  &&  ((s as any).artemQW ?? 0)?.['date'] <= 8  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
-              qspCall(s, 'artem_dorm', 'another_date');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnotherDate(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).artemQW ?? 0)?.['date'] >= 9  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)  &&  ((s as any).artemQW ?? 0)?.['bf'] === 0) {
-                qspCall(s, 'artem_dorm', 'proposal');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterProposal(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).artemQW ?? 0)?.['bf'] === 1  &&  (Math.floor(Math.random() * 4) + 0) === 0  &&  ((s as any).artemQW ?? 0)?.['dateask'] !== ((s as any).daystart ?? 0)) {
-                  qspCall(s, 'artem_dorm', 'one_more_date');
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOneMoreDate(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
-                  qspCall(s, 'artem_dorm', 'other_topics');
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOtherTopics(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
               }
             }
@@ -360,13 +360,13 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kiss him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Kiss him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
     if (((s as any).artkissing ?? 0) !== ((s as any).daystart ?? 0)) {
       if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
@@ -423,13 +423,13 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away and stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away and stop', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -464,13 +464,13 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'bj', 'resist', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Pull away and stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Pull away and stop', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -580,7 +580,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('"I enjoyed seeing you naked last time. I want you to strip for me again, but can you make a bit more of a show of it this time?"');
   }
-  qspCall(s, 'artem_dorm', 'askedstrip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAskedstrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -598,19 +598,19 @@ function enterFlowers(s: GameState, scene: SceneBuilder): void {
     scene.text('You smile at him. "Awww, they\'re beautiful! You shouldn\'t have!"');
     scene.text('He blushes. "Not as beautiful as you…"');
     // TODO-QSP: dynamic text: He leans in and kisses you before you can pull away and gently begins to caress ...
-    scene.text(`He leans in and kisses you before you can pull away and gently begins to caress your ${((s as any).titsize ?? 0)} breasts through your clothes.`);
+    scene.text(`He leans in and kisses you before you can pull away and gently begins to caress your ${((s as any).titsize || '')} breasts through your clothes.`);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     qspCall(s, 'willpower', 'kiss', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Tell him to stop it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell him to stop it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Tell him to stop it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tell him to stop it', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -631,13 +631,13 @@ function enterFlowers(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away and stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away and stop', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -712,11 +712,11 @@ function enterProposal(s: GameState, scene: SceneBuilder): void {
   scene.text('He smiles at you. "Well, we\'ve spent a lot of time dating, so I figured it would be nice to make it official."');
   scene.text('You\'re still not sold on the idea, and question him further. "Make what official? And where did you get that wine from?"');
   // TODO-QSP: dynamic text: Artem reassures you. "Relax, <<$pcs_nickname>>. My roommate will be out all nigh...
-  scene.text(`Artem reassures you. "Relax, ${((s as any).pcs_nickname ?? 0)}. My roommate will be out all night. So please… Let's just sit down and chat?"`);
+  scene.text(`Artem reassures you. "Relax, ${((s as any).pcs_nickname || '')}. My roommate will be out all night. So please… Let's just sit down and chat?"`);
   scene.text('You relax a little and nod at him. "Okay… I have to admit, that does sound nice."');
   scene.text('You spend the next half hour talking about your plans for the future. The bottle of wine is empty before you know it, and you feel a bit tipsy.');
   // TODO-QSP: dynamic text: After you've drunk most of the wine and talked for a while, Artem is silent for ...
-  scene.text(`After you've drunk most of the wine and talked for a while, Artem is silent for a few seconds before he takes a deep breath. "${((s as any).pcs_nickname ?? 0)}, will you be my girlfriend?" he quickly asks.`);
+  scene.text(`After you've drunk most of the wine and talked for a while, Artem is silent for a few seconds before he takes a deep breath. "${((s as any).pcs_nickname || '')}, will you be my girlfriend?" he quickly asks.`);
   (s as any).minut = ((s as any).minut ?? 0) + 30;
   if (((s as any).pcs_hydra ?? 0) >= 100) {
     (s as any).pcs_hydra = ((s as any).pcs_hydra ?? 0) - (5);
@@ -745,7 +745,7 @@ function enterProposal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'adore');
     scene.img('images/characters/pavlovsk/school/boy/artem/hugging.jpg');
     // TODO-QSP: dynamic text: A huge grin appears on his face as he gets up and rushes around the table, almos...
-    scene.text(`A huge grin appears on his face as he gets up and rushes around the table, almost knocking it over in his haste to get to you. He pulls you up and into a tight fierce hug. He nuzzles your neck as the two of you hug. "You just made me the happiest guy in the world. I love you ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`A huge grin appears on his face as he gets up and rushes around the table, almost knocking it over in his haste to get to you. He pulls you up and into a tight fierce hug. He nuzzles your neck as the two of you hug. "You just made me the happiest guy in the world. I love you ${((s as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Tell him you love him too', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'adore');
@@ -753,13 +753,13 @@ function enterProposal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/hugging.jpg');
     scene.text('You kiss him. "I love you too, Artem."');
     scene.text('You\'ve never seen him look so happy as he starts kissing you and roaming his hands all over your body.');
-    qspCall(s, 'artem_dorm', 'artemgirlfriend');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterArtemgirlfriend(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Say nothing, just hug him back', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/artem/hugging.jpg');
     scene.text('You kiss him and hug him back.');
     scene.text('You\'ve never seen him look so happy as he starts kissing you and roaming his hands all over your body.');
-    qspCall(s, 'artem_dorm', 'artemgirlfriend');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterArtemgirlfriend(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -771,7 +771,7 @@ function enterOneMoreDate(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['dateask'] = ((s as any).daystart ?? 0);
   scene.img('images/characters/shared/headshots_main/big2.jpg');
   // TODO-QSP: dynamic text: Artem smiles at you as he walks over and hugs you. "<<$pcs_nickname>>, would you...
-  scene.text(`Artem smiles at you as he walks over and hugs you. "${((s as any).pcs_nickname ?? 0)}, would you like to go out on another date?"`);
+  scene.text(`Artem smiles at you as he walks over and hugs you. "${((s as any).pcs_nickname || '')}, would you like to go out on another date?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Stay here', handler: (st: GameState) => {
@@ -808,7 +808,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
     scene.text('You quietly walk past Artem and enter his room, sitting on the couch without saying a word.');
     // TODO-QSP: dynamic text: He looks at you questioningly. "<<$pcs_nickname>>…"
-    scene.text(`He looks at you questioningly. "${((s as any).pcs_nickname ?? 0)}…"`);
+    scene.text(`He looks at you questioningly. "${((s as any).pcs_nickname || '')}…"`);
     scene.text('You frown as you look at him. "We need to talk."');
     scene.text('His eyes start to water up. "Okay… About what?" He\'s trying to put on a brave face and salvage this.');
     scene.text('You sigh. "I think we should have an open relationship." You can tell that\'s not what he expected and you hurry on before he can say something. "I think we should keep dating, I love you, but we\'re both young and have a lot to experience, so I think we should see other people as well. We\'ll stay boyfriend and girlfriend, though."');
@@ -836,13 +836,13 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'misc', 'force', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Convince him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Convince him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Convince him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Convince him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artem_open_relationship'] = 1;
     qspCall(s, 'stat', '');
@@ -933,12 +933,12 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/artemcry.jpg');
     scene.text('You quietly walk past Artem and enter his room, sitting on the couch without saying a word.');
     // TODO-QSP: dynamic text: He looks at you questioningly. "<<$pcs_nickname>>…"
-    scene.text(`He looks at you questioningly. "${((s as any).pcs_nickname ?? 0)}…"`);
+    scene.text(`He looks at you questioningly. "${((s as any).pcs_nickname || '')}…"`);
     scene.text('You frown as you look at him. "We need to talk."');
     scene.text('His eyes start to water up. "Okay… About what?" He\'s trying to put on a brave face and salvage this.');
     scene.text('You sigh. "I think we should break up."');
     // TODO-QSP: dynamic text: He tries to hug you, but you stop him. "Why <<$pcs_nickname>>? What did I do wro...
-    scene.text(`He tries to hug you, but you stop him. "Why ${((s as any).pcs_nickname ?? 0)}? What did I do wrong?"`);
+    scene.text(`He tries to hug you, but you stop him. "Why ${((s as any).pcs_nickname || '')}? What did I do wrong?"`);
     scene.text('You get up to put a little space between you. "It\'s not you… I just don\'t love you anymore."');
     scene.text('He openly starts to cry. "Is it someone else?"');
     scene.text('You shake your head. "Look, you\'re a great guy, but I just feel differently now is all." You try to comfort him and he begs and pleads you not to do this, but after some time you finally get up. "I\'m sorry, but this is over. I\'m truly sorry."');
@@ -1157,7 +1157,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>…" he starts. "Can I ask you a question?"
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}…" he starts. "Can I ask you a question?"`);
+        scene.text(`"${((s as any).pcs_nickname || '')}…" he starts. "Can I ask you a question?"`);
         scene.text('You smile at him. "Of course you can! You can ask me anything."');
         scene.text('"Do you think we could have a threesome?" he bluntly states.');
         scene.text('You\'re surprised at his boldness. "That depends. Who were you thinking of asking?"');
@@ -1387,7 +1387,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).mc_inventory ?? 0)?.['strapon'] === 1  &&  ((s as any).strapNumber ?? 0) > 0) {
-    qspCall(s, 'artem_dorm', 'strapon_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStraponChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.actions([
@@ -1410,7 +1410,7 @@ function enterOtherTopics(s: GameState, scene: SceneBuilder): void {
     scene.text('He gives you a slightly puzzled look. "Up to?"');
     scene.text('You smile at him. "You know, what have you been doing in your free time?"');
     // TODO-QSP: dynamic text: The light dawns on him. "Oh…" He looks thoughtful for a moment. "I want to show ...
-    scene.text(`The light dawns on him. "Oh…" He looks thoughtful for a moment. "I want to show you something, ${((s as any).pcs_nickname ?? 0)}…"`);
+    scene.text(`The light dawns on him. "Oh…" He looks thoughtful for a moment. "I want to show you something, ${((s as any).pcs_nickname || '')}…"`);
     scene.text('Filled with excitement, you quickly start jumping around him. "What is it?! Show it to me!"');
     scene.text('To your surprise, Artem takes out a book and shows it to you. "It\'s one of my favorite books…"');
     scene.actions([
@@ -1462,7 +1462,7 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/sex/strapon/first_strapon2.jpg');
     if (((s as any).strapNumber ?? 0) < 4) {
       // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo attached ...
-      scene.text(`You pull the strapon harness with its ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo attached out of your purse and hold it up, showing it to him. "I thought we could use this."`);
+      scene.text(`You pull the strapon harness with its ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo attached out of your purse and hold it up, showing it to him. "I thought we could use this."`);
       scene.text('His eyes bulge when he see\'s what you\'re holding. "Wait… You want to wear that and… you know…"');
       scene.text('You grin at his reaction. "Come on baby, I\'ll go easy on you. I let you fuck me in the ass, so it\'s only fair. You\'ll enjoy it, I promise."');
       scene.text('He looks at the dildo, then to you, and back again before finally sighing and nodding slightly. "Okay fine, but you can\'t tell anyone we tried this, okay?"');
@@ -1473,7 +1473,7 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo out of yo...
-      scene.text(`You pull the strapon harness with its ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo out of your purse and hold it up, showing it to him. "I thought we could use this."`);
+      scene.text(`You pull the strapon harness with its ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo out of your purse and hold it up, showing it to him. "I thought we could use this."`);
       scene.text('His eyes bulge when he sees how big it is and starts shaking his head. "Hell no! That thing is massive! There\'s no way you\'re sticking that in me!"');
       scene.text('You sigh. "Come on baby, I\'ll go easy on you! I let you fuck me in the ass, so it\'s only fair. You\'ll enjoy it, I promise."');
       scene.text('He keeps shaking his head and laughs a little. "Fair? That thing is way bigger than I am! Maybe if it was my size or smaller, I might consider it but not that thing!"');
@@ -1513,7 +1513,7 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
     scene.text('He seems speechless and unsure for a moment, then softly smiles. "Yeah I guess, if it will make you happy, my love." As he talks, he starts taking off his pants.');
     if (((s as any).strapNumber ?? 0) < 4) {
       // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo attached ...
-      scene.text(`You pull the strapon harness with its ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo attached out of your purse and hold it up, showing it to him. "Here it is."`);
+      scene.text(`You pull the strapon harness with its ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo attached out of your purse and hold it up, showing it to him. "Here it is."`);
       scene.text('He looks at the dildo. "Okay fine, but you still can\'t tell anyone we did this, okay?"');
       scene.text('You nod. "I swear I won\'t tell anyone unless you\'re okay with it." He frowns at how you worded it, but it seems good enough.');
       scene.actions([
@@ -1531,7 +1531,7 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo out of yo...
-      scene.text(`You pull the strapon harness with its ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo out of your purse and hold it up, showing it to him. "I thought we could use this."`);
+      scene.text(`You pull the strapon harness with its ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo out of your purse and hold it up, showing it to him. "I thought we could use this."`);
       scene.text('His eyes bulge when he sees how big it is and starts shaking his head. "Hell no! That thing is massive! There\'s no way you\'re sticking that in me!"');
       scene.text('You sigh. "Come on baby, I\'ll go easy on you! I let you fuck me in the ass, so it\'s only fair. You\'ll enjoy it, I promise."');
       scene.text('He keeps shaking his head and laughs a little. "Fair? That thing is way bigger than I am! Maybe if it was my size or smaller, I might consider it but not that thing!"');
@@ -1555,7 +1555,7 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
     scene.text('He blushes bright red. "Ok sure sweety, you can fuck me again." As he talks, he starts taking off his pants.');
     if (((s as any).strapNumber ?? 0) < 4) {
       // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo attached ...
-      scene.text(`You pull the strapon harness with its ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo attached out of your purse and hold it up, showing it to him. "This will soon be up your ass and you'll be moaning like a slut." You say with a giggle.`);
+      scene.text(`You pull the strapon harness with its ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo attached out of your purse and hold it up, showing it to him. "This will soon be up your ass and you'll be moaning like a slut." You say with a giggle.`);
       scene.text('He looks at the dildo and for a moment you think he actually looks eager, then he looks at you and smiles. "Okay fine, but you still can\'t tell anyone we are doing this, okay?"');
       scene.text('You nod. "I swear I won\'t tell anyone unless you\'re okay with it." He frowns at how you worded it, but it seems good enough.');
       scene.actions([
@@ -1573,7 +1573,7 @@ function enterStraponChat(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: You pull the strapon harness with its <<dick>>cm <<$dick_girth>> dildo out of yo...
-      scene.text(`You pull the strapon harness with its ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo out of your purse and hold it up, showing it to him. "I thought we could use this."`);
+      scene.text(`You pull the strapon harness with its ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo out of your purse and hold it up, showing it to him. "I thought we could use this."`);
       scene.text('His eyes bulge when he sees how big it is and starts shaking his head. "Hell no! That thing is massive! There\'s no way you\'re sticking that in me!"');
       scene.text('You sigh. "Come on baby, I\'ll go easy on you! I let you fuck me in the ass, so it\'s only fair. You\'ll enjoy it, I promise."');
       scene.text('He keeps shaking his head and laughs a little. "Fair? That thing is way bigger than I am! Maybe if it was my size or smaller, I might consider it but not that thing!"');
@@ -1615,13 +1615,13 @@ function enterArtemgirlfriend(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away and stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away and stop', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -1647,34 +1647,34 @@ function enterAskedstrip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'exhib', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'No way [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No way', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'No way [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No way', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/artem/talk.jpg');
     scene.text('You decline. "No, I wouldn\'t be comfortable doing that."');
     if (((s as any).artemQW ?? 0)?.['stripsee'] === 0) {
       // TODO-QSP: dynamic text: You can tell he's seriously let down by your refusal. "Please <<$pcs_nickname>>,...
-      scene.text(`You can tell he's seriously let down by your refusal. "Please ${((s as any).pcs_nickname ?? 0)}, all the other guys have seen a naked girl before! Please?"`);
+      scene.text(`You can tell he's seriously let down by your refusal. "Please ${((s as any).pcs_nickname || '')}, all the other guys have seen a naked girl before! Please?"`);
     } else {
       // TODO-QSP: dynamic text: You can tell he's seriously let down by your refusal. "Please <<$pcs_nickname>>,...
-      scene.text(`You can tell he's seriously let down by your refusal. "Please ${((s as any).pcs_nickname ?? 0)}, I really enjoyed watching you naked last time. Please?"`);
+      scene.text(`You can tell he's seriously let down by your refusal. "Please ${((s as any).pcs_nickname || '')}, I really enjoyed watching you naked last time. Please?"`);
     }
     qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'hate');

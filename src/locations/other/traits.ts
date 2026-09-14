@@ -84,7 +84,7 @@ function enterMinute(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['last_update'] = ((s as any).totminut ?? 0);
     return;
   }
-  (s as any).temp_loop_mul = ((s as any).totminut ?? 0) - ((s as any).trait_vars ?? {})?.['last_update'];
+  (s as any).temp_loop_mul = ((s as any).totminut ?? 0) - (((s as any).trait_vars ?? {})?.['last_update'] ?? 0);
   if ((!((s as any).temp_loop_mul ?? 0))) {
     // TODO-QSP: killvar 'temp_loop_mul'
     // TODO-QSP: exit
@@ -123,7 +123,7 @@ function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetDetails(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'traits', '', ((s as any).locArgs?.[1] ?? 0), 'details');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'details']; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -166,7 +166,7 @@ function enterNotify(s: GameState, scene: SceneBuilder): void {
   if (((s as any).opPRE ?? 0) > 0) {
     // TODO-QSP: exit
   }
-  qspCall(s, 'traits', 'get_details', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).trait_temp ?? 0)['msg-' + ((s as any).locArgs?.[2] ?? 0)] !== '') {
   }
   if (((s as any).temp_notify ?? 0) !== '') {
@@ -178,7 +178,7 @@ function enterNotify(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCard(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'traits', 'get_details', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetDetails(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_card) (s as any).temp_card = {}; (s as any).temp_card['icon'] = 'images/system/icons/traits/' + ((((s as any).trait_temp ?? 0)?.['icon'] !== '') ? (((s as any).trait_temp ?? 0)?.['icon']) : ('hidden.png'));
   if (!(s as any).temp_card) (s as any).temp_card = {}; (s as any).temp_card['bg'] = ((s as any).temp_bcolor ?? 0);
   if (!(s as any).temp_card) (s as any).temp_card = {}; (s as any).temp_card['border'] = ((s as any).theme_hex ?? 0)?.['accent'];
@@ -278,10 +278,10 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: exit
     }
     if (((s as any).trait_vars ?? 0)?.['cumeater'] === 0) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumeater_exp'] = ((s as any).trait_vars['cumeater_exp'] ?? 0) + ((((s as any).stat ?? {})?.['swallow'] - ((s as any).stat ?? {})?.['swallow_unaware']) - ((s as any).trait_vars ?? {})?.['cumeater_prev']);
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumeater_prev'] = ((s as any).stat ?? {})?.['swallow'] - ((s as any).stat ?? {})?.['swallow_unaware'];
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumeater_exp'] = ((s as any).trait_vars['cumeater_exp'] ?? 0) + (((((s as any).stat ?? {})?.['swallow'] ?? 0) - (((s as any).stat ?? {})?.['swallow_unaware'] ?? 0)) - (((s as any).trait_vars ?? {})?.['cumeater_prev'] ?? 0));
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumeater_prev'] = (((s as any).stat ?? {})?.['swallow'] ?? 0) - (((s as any).stat ?? {})?.['swallow_unaware'] ?? 0);
       if (((s as any).trait_vars ?? 0)?.['cumeater_exp'] >= 50) {
-        qspCall(s, 'traits', 'level', 'cumeater', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumeater', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -310,11 +310,11 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumeater_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'cumeater', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumeater', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumeater_exp'] = 50;
-        qspCall(s, 'traits', 'level', 'cumeater', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumeater', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -328,23 +328,23 @@ function enterCreampieFetish(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cheatVars ?? 0)?.['creampie_fetish_disabled']) {
       // TODO-QSP: exit
     }
-    (s as any).temp_risky_exp = ((s as any).stat ?? {})?.['creampies_notsafe_known'] + ((s as any).stat ?? {})?.['creampies_risky_known'] * 2;
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_risky'] = ((s as any).trait_vars['creampie_fetish_exp_risky'] ?? 0) + (Math.max(0, ((s as any).temp_risky_exp ?? 0) - ((s as any).trait_vars ?? {})?.['creampie_fetish_exp_prev_risky']));
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp'] = ((s as any).trait_vars['creampie_fetish_exp'] ?? 0) + (Math.max(0, ((s as any).stat ?? {})?.['creampies_safe_known'] + ((s as any).temp_risky_exp ?? 0) * 2 - ((s as any).trait_vars ?? {})?.['creampie_fetish_exp_prev']));
+    (s as any).temp_risky_exp = (((s as any).stat ?? {})?.['creampies_notsafe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_risky_known'] ?? 0) * 2;
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_risky'] = ((s as any).trait_vars['creampie_fetish_exp_risky'] ?? 0) + (Math.max(0, ((s as any).temp_risky_exp ?? 0) - (((s as any).trait_vars ?? {})?.['creampie_fetish_exp_prev_risky'] ?? 0)));
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp'] = ((s as any).trait_vars['creampie_fetish_exp'] ?? 0) + (Math.max(0, (((s as any).stat ?? {})?.['creampies_safe_known'] ?? 0) + ((s as any).temp_risky_exp ?? 0) * 2 - (((s as any).trait_vars ?? {})?.['creampie_fetish_exp_prev'] ?? 0)));
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_prev'] = ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'];
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_risky_prev'] = ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp_risky'];
     if (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'] >= 200  &&  ((s as any).trait_vars ?? 0)?.['creampie_fetish_exp_risky'] >= 100) {
       if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] !== 2) {
-        qspCall(s, 'traits', 'level', 'creampie_fetish', 2);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['creampie_fetish_exp'] >= 150) {
         if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] !== 1) {
-          qspCall(s, 'traits', 'level', 'creampie_fetish', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] !== 0) {
-          qspCall(s, 'traits', 'level', 'creampie_fetish', 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -390,21 +390,21 @@ function enterCreampieFetish(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_risky'] = 0;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_prev'] = 0;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_prev_risky'] = 0;
-      qspCall(s, 'traits', 'level', 'creampie_fetish', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp'] = 150;
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_risky'] = 0;
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_prev'] = 0;
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_prev_risky'] = 0;
-        qspCall(s, 'traits', 'level', 'creampie_fetish', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 2) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp'] = 200;
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_risky'] = 100;
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_prev'] = 0;
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_prev_risky'] = 0;
-          qspCall(s, 'traits', 'level', 'creampie_fetish', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -435,7 +435,7 @@ function enterFertility(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).trait_vars ?? 0)?.['fertility_bc_conditioning'] >= 10) {
       if (((s as any).trait_vars ?? 0)?.['fertility'] < 2) {
-        qspCall(s, 'traits', 'fertility', 'hypno_grant');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hypno_grant']; enterFertility(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['fertility'] === 2) {
@@ -445,7 +445,7 @@ function enterFertility(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'hypno_grant') {
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['fertility_precond'] = ((s as any).trait_vars ?? 0)?.['fertility'];
-    qspCall(s, 'traits', 'level', 'fertility', 2);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fertility', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'details') {
     if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['hidden'] = 0;
@@ -499,9 +499,9 @@ function enterFertility(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['fertility_bc_conditioning'] = 0;
-      qspCall(s, 'traits', 'level', 'fertility', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fertility', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'traits', 'level', 'fertility', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-2), 2));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fertility', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-2), 2)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'overview') {
@@ -525,11 +525,11 @@ function enterFertility(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'fertility\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['fertility'] - 1, (-2), 1);
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'fertility\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['fertility'] + 1, (-2), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'fertility\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['fertility'] ?? 0) - 1, (-2), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'fertility\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['fertility'] ?? 0) + 1, (-2), 1);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'ov_set') {
-    qspCall(s, 'traits', 'level', 'fertility', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-2), 1));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fertility', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-2), 1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
   // TODO-QSP: end
@@ -589,11 +589,11 @@ function enterSensitivity(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
-      qspCall(s, 'traits', 'level', 'sensitivity', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sensitivity', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === -2) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity_override'] = 0;
-        qspCall(s, 'traits', 'level', 'sensitivity', (-2));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sensitivity', (-2)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === -1  ||  ((s as any).locArgs?.[2] ?? 0) === 1) {
           // TODO-QSP: gs 'traits', 'level', 'sensitivity', ARGS[2]
@@ -609,28 +609,28 @@ function enterSensitivity(s: GameState, scene: SceneBuilder): void {
 function enterNewAgain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'level') {
     if ((!((s as any).locArgs?.[2] ?? 0))) {
-      qspCall(s, 'traits', 'deregister_attskl', 'new_again');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again']; enterDeregisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['new_again-all-exp_gain'] = 100;
-      qspCall(s, 'traits', 'register_attskl', 'new_again');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again']; enterRegisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'daily') {
     if (((s as any).cheatVars ?? 0)?.['new_again_disabled']) {
       if (((s as any).trait_vars ?? 0)?.['new_again'] !== 0) {
-        qspCall(s, 'traits', 'level', 'new_again', 0);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       return;
     }
     if (((s as any).trait_vars ?? 0)?.['new_again'] === 0) {
       if (((s as any).trait_vars ?? 0)?.['new_again_exp'] > 0) {
-        qspCall(s, 'traits', 'level', 'new_again', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['new_again_exp'] > 0) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['new_again_exp'] = ((s as any).trait_vars['new_again_exp'] ?? 0) - (1);
       } else {
-        qspCall(s, 'traits', 'level', 'new_again', 0);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -656,11 +656,11 @@ function enterNewAgain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['new_again_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'new_again', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['new_again_exp'] = 84;
-        qspCall(s, 'traits', 'level', 'new_again', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -722,7 +722,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).trait_vars ?? 0)?.['heel_preference'] < 0) {
       if (((s as any).trait_vars ?? 0)?.['heel_preference_exp'] >= 0) {
-        qspCall(s, 'traits', 'level', 'heel_preference', 0);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_daily_limit'] = 120;
     }
@@ -732,21 +732,21 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
     if (((s as any).trait_vars ?? 0)?.['heel_preference'] >= 0) {
       if (((s as any).trait_vars ?? 0)?.['heel_preference_exp'] >= 120000) {
         if (((s as any).trait_vars ?? 0)?.['heel_preference'] !== 3) {
-          qspCall(s, 'traits', 'level', 'heel_preference', 3);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['heel_preference_exp'] >= 70000) {
           if (((s as any).trait_vars ?? 0)?.['heel_preference'] !== 2) {
-            qspCall(s, 'traits', 'level', 'heel_preference', 2);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
           if (((s as any).trait_vars ?? 0)?.['heel_preference_exp'] >= 30000) {
             if (((s as any).trait_vars ?? 0)?.['heel_preference'] !== 1) {
-              qspCall(s, 'traits', 'level', 'heel_preference', 1);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((s as any).trait_vars ?? 0)?.['heel_preference'] !== 0) {
-              qspCall(s, 'traits', 'level', 'heel_preference', 0);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
@@ -764,7 +764,7 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['msg'] = 'You\'ve gained the trait <b>Bambi\'s First Steps</b>.';
       if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['exp_down'] = (-1);
       if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['exp_up'] = 0;
-      if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['tooltip'] = '' + -((s as any).trait_vars ?? {})?.['heel_preference_exp']> + ' progress steps remaining. ';
+      if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['tooltip'] = '' + -(((s as any).trait_vars ?? {})?.['heel_preference_exp'] ?? 0)> + ' progress steps remaining. ';
       if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['tooltip'] = ((s as any).trait_temp['tooltip'] ?? 0) + ('Wear heels to recover — higher heels help more, up to 2 hours per day.');
     } else {
       if (((s as any).trait_vars ?? 0)?.['heel_preference'] === 0) {
@@ -815,23 +815,23 @@ function enterHeelPreference(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'heel_preference', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === -1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = (-1000);
-        qspCall(s, 'traits', 'level', 'heel_preference', (-1));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 1) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = 50000;
-          qspCall(s, 'traits', 'level', 'heel_preference', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 2) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = 95000;
-            qspCall(s, 'traits', 'level', 'heel_preference', 2);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).locArgs?.[2] ?? 0) === 3) {
               if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = 135000;
-              qspCall(s, 'traits', 'level', 'heel_preference', 3);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
@@ -862,27 +862,27 @@ function enterAddictivePersonality(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cheatVars ?? 0)?.['addictive_personality_disabled']) {
       // TODO-QSP: exit
     }
-    (s as any).temp_addictive_exp = ((s as any).drugVars ?? {})?.['cigarettes_exp'] + ((s as any).drugVars ?? {})?.['weed_exp'] + ((s as any).drugVars ?? {})?.['heroin_exp'] + ((s as any).drugVars ?? {})?.['cocaine_exp'] + ((s as any).drugVars ?? {})?.['alcohol_exp'] + ((s as any).drugVars ?? {})?.['amphetamine_exp'] + ((s as any).drugVars ?? {})?.['painkiller_exp'];
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality_exp'] = ((s as any).trait_vars['addictive_personality_exp'] ?? 0) + (((s as any).temp_addictive_exp ?? 0) - ((s as any).trait_vars ?? {})?.['addictive_personality_prev']);
+    (s as any).temp_addictive_exp = (((s as any).drugVars ?? {})?.['cigarettes_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['weed_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['heroin_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['cocaine_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['alcohol_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['amphetamine_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['painkiller_exp'] ?? 0);
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality_exp'] = ((s as any).trait_vars['addictive_personality_exp'] ?? 0) + (((s as any).temp_addictive_exp ?? 0) - (((s as any).trait_vars ?? {})?.['addictive_personality_prev'] ?? 0));
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality_prev'] = ((s as any).temp_addictive_exp ?? 0);
     if (((s as any).trait_vars ?? 0)?.['addictive_personality_exp'] >= 4) {
       if (((s as any).trait_vars ?? 0)?.['addictive_personality'] !== 3) {
-        qspCall(s, 'traits', 'level', 'addictive_personality', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['addictive_personality_exp'] >= 3) {
         if (((s as any).trait_vars ?? 0)?.['addictive_personality'] !== 2) {
-          qspCall(s, 'traits', 'level', 'addictive_personality', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['addictive_personality_exp'] >= 2) {
           if (((s as any).trait_vars ?? 0)?.['addictive_personality'] !== 1) {
-            qspCall(s, 'traits', 'level', 'addictive_personality', 1);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
           if (((s as any).trait_vars ?? 0)?.['addictive_personality_exp'] === 0) {
             if (((s as any).trait_vars ?? 0)?.['addictive_personality'] !== 0) {
-              qspCall(s, 'traits', 'level', 'addictive_personality', 0);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
@@ -945,19 +945,19 @@ function enterAddictivePersonality(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['alcohol_exp'] = 0;
       if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['amphetamine_exp'] = 0;
       if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['painkiller_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'addictive_personality', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality_exp'] = 2;
-        qspCall(s, 'traits', 'level', 'addictive_personality', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 2) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality_exp'] = 3;
-          qspCall(s, 'traits', 'level', 'addictive_personality', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 3) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality_exp'] = 4;
-            qspCall(s, 'traits', 'level', 'addictive_personality', 3);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -973,7 +973,7 @@ function enterButtslut(s: GameState, scene: SceneBuilder): void {
     if (((s as any).cheatVars ?? 0)?.['buttslut_disabled']) {
       // TODO-QSP: exit
     }
-    (s as any).temp_anal_orgasms_today = ((s as any).orgasm_anal ?? 0) - ((s as any).trait_vars ?? {})?.['buttslut_prev_anal'];
+    (s as any).temp_anal_orgasms_today = ((s as any).orgasm_anal ?? 0) - (((s as any).trait_vars ?? {})?.['buttslut_prev_anal'] ?? 0);
     if (((s as any).temp_anal_orgasms_today ?? 0) > 0) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['buttslut_exp'] = ((s as any).trait_vars['buttslut_exp'] ?? 0) + (((s as any).temp_anal_orgasms_today ?? 0));
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['buttslut_prev_anal'] = ((s as any).orgasm_anal ?? 0);
@@ -984,22 +984,22 @@ function enterButtslut(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).trait_vars ?? 0)?.['buttslut_exp'] >= 75) {
       if (((s as any).trait_vars ?? 0)?.['buttslut'] !== 3) {
-        qspCall(s, 'traits', 'level', 'buttslut', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['buttslut_exp'] >= 25) {
         if (((s as any).trait_vars ?? 0)?.['buttslut'] !== 2) {
-          qspCall(s, 'traits', 'level', 'buttslut', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['buttslut_exp'] >= 10) {
           if (((s as any).trait_vars ?? 0)?.['buttslut'] !== 1) {
-            qspCall(s, 'traits', 'level', 'buttslut', 1);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
           if (((s as any).trait_vars ?? 0)?.['buttslut_exp'] === 0) {
             if (((s as any).trait_vars ?? 0)?.['buttslut'] !== 0) {
-              qspCall(s, 'traits', 'level', 'buttslut', 0);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
@@ -1057,19 +1057,19 @@ function enterButtslut(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['buttslut_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'buttslut', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['buttslut_exp'] = 10;
-        qspCall(s, 'traits', 'level', 'buttslut', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 2) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['buttslut_exp'] = 50;
-          qspCall(s, 'traits', 'level', 'buttslut', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 3) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['buttslut_exp'] = 100;
-            qspCall(s, 'traits', 'level', 'buttslut', 3);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -1090,21 +1090,21 @@ function enterExhibitionist(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).trait_vars ?? 0)?.['exhibitionist_exp'] >= 100) {
       if (((s as any).exhibitionQW ?? 0) >= 3  &&  ((s as any).trait_vars ?? 0)?.['exhibitionist'] !== 3) {
-        qspCall(s, 'traits', 'level', 'exhibitionist', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['exhibitionist_exp'] >= 50) {
         if (((s as any).trait_vars ?? 0)?.['exhibitionist'] !== 2) {
-          qspCall(s, 'traits', 'level', 'exhibitionist', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['exhibitionist_exp'] >= 10) {
           if (((s as any).trait_vars ?? 0)?.['exhibitionist'] !== 1) {
-            qspCall(s, 'traits', 'level', 'exhibitionist', 1);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
           if (((s as any).trait_vars ?? 0)?.['exhibitionist'] !== 0) {
-            qspCall(s, 'traits', 'level', 'exhibitionist', 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -1162,22 +1162,22 @@ function enterExhibitionist(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['exhibitionist_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'exhibitionist', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['exhibitionist_exp'] = 30;
-        qspCall(s, 'traits', 'level', 'exhibitionist', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 2) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['exhibitionist_exp'] = 74;
-          qspCall(s, 'traits', 'level', 'exhibitionist', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 3) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['exhibitionist_exp'] = 150;
             if (((s as any).exhibitionQW ?? 0) < 3) {
               (s as any).exhibitionQW = 3;
             }
-            qspCall(s, 'traits', 'level', 'exhibitionist', 3);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -1208,21 +1208,21 @@ function enterPantyPreference(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).trait_vars ?? 0)?.['panty_preference_exp'] >= 40000) {
       if (((s as any).trait_vars ?? 0)?.['panty_preference'] !== 3) {
-        qspCall(s, 'traits', 'level', 'panty_preference', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['panty_preference_exp'] >= 30000) {
         if (((s as any).trait_vars ?? 0)?.['panty_preference'] !== 2) {
-          qspCall(s, 'traits', 'level', 'panty_preference', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['panty_preference_exp'] >= 15000) {
           if (((s as any).trait_vars ?? 0)?.['panty_preference'] !== 1) {
-            qspCall(s, 'traits', 'level', 'panty_preference', 1);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
           if (((s as any).trait_vars ?? 0)?.['panty_preference'] !== 0) {
-            qspCall(s, 'traits', 'level', 'panty_preference', 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -1281,19 +1281,19 @@ function enterPantyPreference(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['panty_preference_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'panty_preference', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['panty_preference_exp'] = 22000;
-        qspCall(s, 'traits', 'level', 'panty_preference', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 2) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['panty_preference_exp'] = 35000;
-          qspCall(s, 'traits', 'level', 'panty_preference', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 3) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['panty_preference_exp'] = 45000;
-            qspCall(s, 'traits', 'level', 'panty_preference', 3);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -1323,22 +1323,22 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = ((s as any).trait_vars['drinking_exp'] ?? 0) + (qspUntranslated(s, "min(trait_vars['alko_today'], 9)", { location: "traits" }));
     } else {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_days_sober'] = ((s as any).trait_vars['drinking_days_sober'] ?? 0) + (1);
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = ((s as any).trait_vars['drinking_exp'] ?? 0) - (qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['drinking_days_sober'] / 3, 1, 9));
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = ((s as any).trait_vars['drinking_exp'] ?? 0) - (qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['drinking_days_sober'] ?? 0) / 3, 1, 9));
     }
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['alko_today'] = 0;
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['drinking_exp'], (-100), 100);
     if (((s as any).trait_vars ?? 0)?.['drinking_exp'] >= 50) {
       if (((s as any).trait_vars ?? 0)?.['drinking'] !== 1) {
-        qspCall(s, 'traits', 'level', 'drinking', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['drinking_exp'] <= -50) {
         if (((s as any).trait_vars ?? 0)?.['drinking'] !== -1) {
-          qspCall(s, 'traits', 'level', 'drinking', (-1));
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['drinking'] !== 0) {
-          qspCall(s, 'traits', 'level', 'drinking', 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -1385,17 +1385,17 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = 0;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_days_sober'] = 0;
-      qspCall(s, 'traits', 'level', 'drinking', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === -1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = (-75);
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_days_sober'] = 0;
-        qspCall(s, 'traits', 'level', 'drinking', (-1));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 1) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = 75;
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_days_sober'] = 0;
-          qspCall(s, 'traits', 'level', 'drinking', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -1411,8 +1411,8 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_label'] = 'Alcohol Tolerance';
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'drinking\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['drinking'] - 1, (-1), 1);
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'drinking\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['drinking'] + 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'drinking\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['drinking'] ?? 0) - 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'drinking\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['drinking'] ?? 0) + 1, (-1), 1);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'ov_set') {
     if (((s as any).locArgs?.[2] ?? 0) === -1) {
@@ -1424,7 +1424,7 @@ function enterDrinking(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = 0;
       }
     }
-    qspCall(s, 'traits', 'level', 'drinking', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
   // TODO-QSP: end
@@ -1457,7 +1457,7 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: exit
         }
         if (((s as any).trait_vars ?? 0)?.['academic_lessons'] >= 8) {
-          if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) + (20 * (((s as any).trait_vars ?? {})?.['academic_lessons'] - 7));
+          if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) + (20 * ((((s as any).trait_vars ?? {})?.['academic_lessons'] ?? 0) - 7));
         } else {
           if (((s as any).trait_vars ?? 0)?.['academic_lessons'] <= 3) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = ((s as any).trait_vars['academic_exp'] ?? 0) - (20 * ((((s as any).trait_vars ?? 0)?.['academic'] > 0) ? (2) : (Math.floor(Math.random() * 2) + 1)));
@@ -1469,28 +1469,28 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['academic_exp'], (-500), 500);
     if (((s as any).trait_vars ?? 0)?.['academic'] === 0) {
       if (((s as any).trait_vars ?? 0)?.['academic_exp'] > 200) {
-        qspCall(s, 'traits', 'level', 'academic', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['academic'] === 1) {
         if (((s as any).trait_vars ?? 0)?.['academic_exp'] > 300) {
-          qspCall(s, 'traits', 'level', 'academic', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
         if (((s as any).trait_vars ?? 0)?.['academic_exp'] < 150) {
-          qspCall(s, 'traits', 'level', 'academic', 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['academic'] === 2) {
           if (((s as any).trait_vars ?? 0)?.['academic_exp'] > 400) {
-            qspCall(s, 'traits', 'level', 'academic', 3);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
           if (((s as any).trait_vars ?? 0)?.['academic_exp'] < 250) {
-            qspCall(s, 'traits', 'level', 'academic', 1);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
           if (((s as any).trait_vars ?? 0)?.['academic'] === 3) {
             if (((s as any).trait_vars ?? 0)?.['academic_exp'] < 350) {
-              qspCall(s, 'traits', 'level', 'academic', 2);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
@@ -1565,19 +1565,19 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = 0;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_lessons'] = 0;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nerd_learn_home'] = 0;
-      qspCall(s, 'traits', 'level', 'academic', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = 200;
-        qspCall(s, 'traits', 'level', 'academic', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 2) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = 325;
-          qspCall(s, 'traits', 'level', 'academic', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 3) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = 400;
-            qspCall(s, 'traits', 'level', 'academic', 3);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -1586,8 +1586,8 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'overview') {
     if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_label'] = 'Academic Pattern';
     if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_val'] = 'TODO';
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'academic\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['academic'] - 1, 0, 3);
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'academic\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['academic'] + 1, 0, 3);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'academic\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['academic'] ?? 0) - 1, 0, 3);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'academic\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['academic'] ?? 0) + 1, 0, 3);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'ov_set') {
     if ((!((s as any).locArgs?.[2] ?? 0))) {
@@ -1605,7 +1605,7 @@ function enterAcademic(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'traits', 'level', 'academic', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), 0, 3));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), 0, 3)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
   // TODO-QSP: end
@@ -1640,15 +1640,15 @@ function enterBookworm(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: exit
     }
     if (((s as any).trait_vars ?? 0)?.['bookworm'] > 0  &&  ((s as any).daystart ?? 0) > ((s as any).lastreadday ?? 0) + 2) {
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['bookworm_exp'] = Math.max(0, ((s as any).trait_vars ?? {})?.['bookworm_exp'] / 10 - ((s as any).stat ?? {})?.['men_fucked'] - ((s as any).stat ?? {})?.['women_fucked'] - ((s as any).stat ?? {})?.['herm_fucked']);
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['bookworm_exp'] = Math.max(0, (((s as any).trait_vars ?? {})?.['bookworm_exp'] ?? 0) / 10 - (((s as any).stat ?? {})?.['men_fucked'] ?? 0) - (((s as any).stat ?? {})?.['women_fucked'] ?? 0) - (((s as any).stat ?? {})?.['herm_fucked'] ?? 0));
     }
     if (((s as any).trait_vars ?? 0)?.['bookworm_exp'] >= 1) {
       if (((s as any).trait_vars ?? 0)?.['bookworm'] === 0) {
-        qspCall(s, 'traits', 'level', 'bookworm', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bookworm', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['bookworm'] === 1) {
-        qspCall(s, 'traits', 'level', 'bookworm', 0);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bookworm', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -1701,12 +1701,12 @@ function enterBookworm(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['bookworm_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'bookworm', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bookworm', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['bookworm_exp'] = 100;
         (s as any).lastreadday = ((s as any).daystart ?? 0);
-        qspCall(s, 'traits', 'level', 'bookworm', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bookworm', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -1755,15 +1755,15 @@ function enterSleepDuration(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'sleep_duration\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['sleep_duration'] - 1, (-1), 1);
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'sleep_duration\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['sleep_duration'] + 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'sleep_duration\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['sleep_duration'] ?? 0) - 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'sleep_duration\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['sleep_duration'] ?? 0) + 1, (-1), 1);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'ov_set') {
-    qspCall(s, 'traits', 'level', 'sleep_duration', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep_duration', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
-      qspCall(s, 'traits', 'level', 'sleep_duration', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep_duration', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === -1  ||  ((s as any).locArgs?.[2] ?? 0) === 1) {
         // TODO-QSP: gs 'traits', 'level', 'sleep_duration', ARGS[2]
@@ -1815,15 +1815,15 @@ function enterElasticity(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'elasticity\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['elasticity'] - 1, (-1), 1);
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'elasticity\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['elasticity'] + 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'elasticity\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['elasticity'] ?? 0) - 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'elasticity\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['elasticity'] ?? 0) + 1, (-1), 1);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'ov_set') {
-    qspCall(s, 'traits', 'level', 'elasticity', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'elasticity', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
-      qspCall(s, 'traits', 'level', 'elasticity', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'elasticity', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === -1  ||  ((s as any).locArgs?.[2] ?? 0) === 1) {
         // TODO-QSP: gs 'traits', 'level', 'elasticity', ARGS[2]
@@ -1901,16 +1901,16 @@ function enterSizequeen(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).trait_vars ?? 0)?.['sizequeen_exp'] >= 120) {
       if (((s as any).trait_vars ?? 0)?.['sizequeen'] !== 2) {
-        qspCall(s, 'traits', 'level', 'sizequeen', 2);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sizequeen', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['sizequeen_exp'] >= 60) {
         if (((s as any).trait_vars ?? 0)?.['sizequeen'] !== 1) {
-          qspCall(s, 'traits', 'level', 'sizequeen', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sizequeen', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
-    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sizequeen_exp'] = Math.max(((s as any).trait_vars ?? {})?.['sizequeen_exp'] - 1, 0);
+    if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sizequeen_exp'] = Math.max((((s as any).trait_vars ?? {})?.['sizequeen_exp'] ?? 0) - 1, 0);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'details') {
     if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['icon'] = 'sizequeen.png';
@@ -1953,15 +1953,15 @@ function enterSizequeen(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sizequeen_exp'] = 0;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sizequeen_temp'] = 0;
-      qspCall(s, 'traits', 'level', 'sizequeen', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sizequeen', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sizequeen_exp'] = 80;
-        qspCall(s, 'traits', 'level', 'sizequeen', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sizequeen', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 2) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sizequeen_exp'] = 130;
-          qspCall(s, 'traits', 'level', 'sizequeen', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sizequeen', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -2008,12 +2008,12 @@ function enterFitnessFreak(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['fitness_freak_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['fitness_freak_exp'], (-10), 100);
     if (((s as any).trait_vars ?? 0)?.['fitness_freak_exp'] >= 60) {
       if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 0) {
-        qspCall(s, 'traits', 'level', 'fitness_freak', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fitness_freak', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['fitness_freak_exp'] <= 40) {
         if (((s as any).trait_vars ?? 0)?.['fitness_freak'] === 1) {
-          qspCall(s, 'traits', 'level', 'fitness_freak', 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fitness_freak', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -2044,11 +2044,11 @@ function enterFitnessFreak(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['fitness_freak_exp'] = 0;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['fitness_freak_today'] = 0;
-      qspCall(s, 'traits', 'level', 'fitness_freak', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fitness_freak', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['fitness_freak_exp'] = 80;
-        qspCall(s, 'traits', 'level', 'fitness_freak', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fitness_freak', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -2094,21 +2094,21 @@ function enterHairGrowthRate(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'hair_growth_rate\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['hair_growth_rate'] - 1, (-1), 1);
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'hair_growth_rate\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['hair_growth_rate'] + 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'hair_growth_rate\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['hair_growth_rate'] ?? 0) - 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'hair_growth_rate\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['hair_growth_rate'] ?? 0) + 1, (-1), 1);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'ov_set') {
     // TODO-QSP: gs 'traits', 'level', 'hair_growth_rate', ARGS[2]
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
-      qspCall(s, 'traits', 'level', 'hair_growth_rate', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_growth_rate', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === -1) {
-        qspCall(s, 'traits', 'level', 'hair_growth_rate', (-1));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_growth_rate', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 1) {
-          qspCall(s, 'traits', 'level', 'hair_growth_rate', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_growth_rate', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -2178,21 +2178,21 @@ function enterBodyHairGrowthRate(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'body_hair_growth_rate\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['body_hair_growth_rate'] - 1, (-1), 1);
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'body_hair_growth_rate\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['body_hair_growth_rate'] + 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'body_hair_growth_rate\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['body_hair_growth_rate'] ?? 0) - 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'body_hair_growth_rate\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['body_hair_growth_rate'] ?? 0) + 1, (-1), 1);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'ov_set') {
     // TODO-QSP: gs 'traits', 'level', 'body_hair_growth_rate', ARGS[2]
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
-      qspCall(s, 'traits', 'level', 'body_hair_growth_rate', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_growth_rate', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === -1) {
-        qspCall(s, 'traits', 'level', 'body_hair_growth_rate', (-1));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_growth_rate', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 1) {
-          qspCall(s, 'traits', 'level', 'body_hair_growth_rate', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_growth_rate', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -2242,7 +2242,7 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).lashair ?? 0) === 1) {
       if (((s as any).trait_vars ?? 0)?.['body_hair_attitude'] !== 0) {
-        qspCall(s, 'traits', 'level', 'body_hair_attitude', 0);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       return;
     }
@@ -2263,21 +2263,21 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['body_hair_attitude_exp'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'], (-500), 500);
     if (((s as any).trait_vars ?? 0)?.['body_hair_attitude'] === 1) {
       if (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'] < 150) {
-        qspCall(s, 'traits', 'level', 'body_hair_attitude', 0);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['body_hair_attitude'] === 0) {
         if (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'] >= 400) {
-          qspCall(s, 'traits', 'level', 'body_hair_attitude', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'] <= -400) {
-            qspCall(s, 'traits', 'level', 'body_hair_attitude', (-1));
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['body_hair_attitude'] === -1) {
           if (((s as any).trait_vars ?? 0)?.['body_hair_attitude_exp'] > -150) {
-            qspCall(s, 'traits', 'level', 'body_hair_attitude', 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -2343,18 +2343,18 @@ function enterBodyHairAttitude(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['body_hair_attitude_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'body_hair_attitude', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === -2) {
-        qspCall(s, 'traits', 'level', 'body_hair_attitude', (-2));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', (-2)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === -1) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['body_hair_attitude_exp'] = (-450);
-          qspCall(s, 'traits', 'level', 'body_hair_attitude', (-1));
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 1) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['body_hair_attitude_exp'] = 450;
-            qspCall(s, 'traits', 'level', 'body_hair_attitude', 1);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -2393,13 +2393,13 @@ function enterPainTolerance(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
-      qspCall(s, 'traits', 'level', 'pain_tolerance', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain_tolerance', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === -1) {
-        qspCall(s, 'traits', 'level', 'pain_tolerance', (-1));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain_tolerance', (-1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 1) {
-          qspCall(s, 'traits', 'level', 'pain_tolerance', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain_tolerance', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -2417,11 +2417,11 @@ function enterPainTolerance(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'pain_tolerance\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['pain_tolerance'] - 1, (-1), 1);
-    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'pain_tolerance\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? {})?.['pain_tolerance'] + 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_left'] = 'gs \'traits\', \'pain_tolerance\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['pain_tolerance'] ?? 0) - 1, (-1), 1);
+    if (!(s as any).trait_temp) (s as any).trait_temp = {}; (s as any).trait_temp['ov_right'] = 'gs \'traits\', \'pain_tolerance\', \'ov_set\', ' + qspFunc(s, 'math', 'int_clamp', (((s as any).trait_vars ?? {})?.['pain_tolerance'] ?? 0) + 1, (-1), 1);
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'ov_set') {
-    qspCall(s, 'traits', 'level', 'pain_tolerance', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain_tolerance', qspFunc(s, 'math', 'int_clamp', qspUntranslated(s, "ARGS[2]", { location: "traits" }), (-1), 1)]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   return;
   // TODO-QSP: end
@@ -2435,21 +2435,21 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).trait_vars ?? 0)?.['doormat_exp'] >= 10) {
       if (((s as any).trait_vars ?? 0)?.['doormat'] !== 3) {
-        qspCall(s, 'traits', 'level', 'doormat', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['doormat_exp'] >= 5) {
         if (((s as any).trait_vars ?? 0)?.['doormat'] !== 2) {
-          qspCall(s, 'traits', 'level', 'doormat', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['doormat_exp'] >= 2) {
           if (((s as any).trait_vars ?? 0)?.['doormat'] !== 1) {
-            qspCall(s, 'traits', 'level', 'doormat', 1);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         } else {
           if (((s as any).trait_vars ?? 0)?.['doormat'] !== 0) {
-            qspCall(s, 'traits', 'level', 'doormat', 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -2497,19 +2497,19 @@ function enterDoormat(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = 0;
-      qspCall(s, 'traits', 'level', 'doormat', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = 2;
-        qspCall(s, 'traits', 'level', 'doormat', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 2) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = 5;
-          qspCall(s, 'traits', 'level', 'doormat', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 3) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['doormat_exp'] = 10;
-            qspCall(s, 'traits', 'level', 'doormat', 3);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat', 3]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -2577,16 +2577,16 @@ function enterCumslut(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumslut_exp_public'] = qspFunc(s, 'math', 'int_clamp', ((s as any).trait_vars ?? 0)?.['cumslut_exp_public'], 0, 2000);
     if (((s as any).trait_vars ?? 0)?.['cumslut_exp'] >= 2000  &&  ((s as any).trait_vars ?? 0)?.['cumslut_exp_public'] >= 1000) {
       if (((s as any).trait_vars ?? 0)?.['cumslut'] !== 2) {
-        qspCall(s, 'traits', 'level', 'cumslut', 2);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).trait_vars ?? 0)?.['cumslut_exp'] >= 300) {
         if (((s as any).trait_vars ?? 0)?.['cumslut'] !== 1) {
-          qspCall(s, 'traits', 'level', 'cumslut', 1);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).trait_vars ?? 0)?.['cumslut'] !== 0) {
-          qspCall(s, 'traits', 'level', 'cumslut', 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -2643,17 +2643,17 @@ function enterCumslut(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumslut_exp'] = 0;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumslut_exp_public'] = 0;
-      qspCall(s, 'traits', 'level', 'cumslut', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumslut_exp'] = 1000;
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumslut_exp_public'] = 0;
-        qspCall(s, 'traits', 'level', 'cumslut', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 1]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 2) {
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumslut_exp'] = 4000;
           if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumslut_exp_public'] = 2000;
-          qspCall(s, 'traits', 'level', 'cumslut', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut', 2]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -2738,7 +2738,7 @@ function enterCumAddict(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'cheat') {
     if (((s as any).locArgs?.[2] ?? 0) === -99  ||  (!((s as any).locArgs?.[2] ?? 0))) {
-      qspCall(s, 'traits', 'level', 'cum_addict', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cum_addict', 0]; enterLevel(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 1  ||  ((s as any).locArgs?.[2] ?? 0) === 2) {
         // TODO-QSP: gs 'traits', 'level', 'cum_addict', ARGS[2]
@@ -2753,16 +2753,16 @@ function enterCumAddict(s: GameState, scene: SceneBuilder): void {
 function enterCharming(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
     if (((s as any).trait_vars ?? 0)?.['charming'] === 0) {
-      qspCall(s, 'traits', 'deregister_attskl', 'charming');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'charming']; enterDeregisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).trait_vars ?? 0)?.['charming'] > 0) {
-        qspCall(s, 'traits', 'register_attskl', 'charming');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'charming']; enterRegisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['charming-humint-exp_gain'] = 10;
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['charming-humint-deg_loss'] = (-10);
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['charming-persuas-exp_gain'] = 10;
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['charming-persuas-deg_loss'] = (-10);
       } else {
-        qspCall(s, 'traits', 'register_attskl', 'charming');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'charming']; enterRegisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['charming-humint-exp_gain'] = (-10);
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['charming-humint-deg_loss'] = 10;
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['charming-persuas-exp_gain'] = (-10);
@@ -2778,9 +2778,9 @@ function enterCharming(s: GameState, scene: SceneBuilder): void {
 function enterFlexible(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
     if (((s as any).trait_vars ?? 0)?.['flexible'] === 0) {
-      qspCall(s, 'traits', 'deregister_attskl', 'flexible');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'flexible']; enterDeregisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'traits', 'register_attskl', 'flexible');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'flexible']; enterRegisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['flexible-dancero-exp_gain'] = 10;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['flexible-dancero-deg_loss'] = (-10);
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['flexible-dancpol-exp_gain'] = 10;
@@ -2795,9 +2795,9 @@ function enterFlexible(s: GameState, scene: SceneBuilder): void {
 function enterLogical(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
     if (((s as any).trait_vars ?? 0)?.['logical'] === 0) {
-      qspCall(s, 'traits', 'deregister_attskl', 'logical');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'logical']; enterDeregisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'traits', 'register_attskl', 'logical');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'logical']; enterRegisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['logical-compskl-exp_gain'] = 10;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['logical-compskl-deg_loss'] = (-10);
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['logical-comphckng-exp_gain'] = 10;
@@ -2814,9 +2814,9 @@ function enterLogical(s: GameState, scene: SceneBuilder): void {
 function enterNatAthlete(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
     if (((s as any).trait_vars ?? 0)?.['nat_athlete'] === 0) {
-      qspCall(s, 'traits', 'deregister_attskl', 'nat_athlete');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nat_athlete']; enterDeregisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'traits', 'register_attskl', 'nat_athlete');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nat_athlete']; enterRegisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nat_athlete-run-exp_gain'] = 10;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nat_athlete-run-deg_loss'] = (-10);
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nat_athlete-icesktng-exp_gain'] = 10;
@@ -2839,9 +2839,9 @@ function enterNatAthlete(s: GameState, scene: SceneBuilder): void {
 function enterNatDancer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'level'  ||  ((s as any).locArgs?.[1] ?? 0) === 'init') {
     if (((s as any).trait_vars ?? 0)?.['nat_dancer'] === 0) {
-      qspCall(s, 'traits', 'deregister_attskl', 'nat_dancer');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nat_dancer']; enterDeregisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'traits', 'register_attskl', 'nat_dancer');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nat_dancer']; enterRegisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nat_dancer-danc-exp_gain'] = 10;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nat_dancer-danc-deg_loss'] = (-10);
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['nat_dancer-dancero-exp_gain'] = 10;
@@ -2858,9 +2858,9 @@ function enterNatDancer(s: GameState, scene: SceneBuilder): void {
 function enterScholarly(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'level') {
     if (((s as any).trait_vars ?? 0)?.['scholarly'] === 0) {
-      qspCall(s, 'traits', 'deregister_attskl', 'scholarly');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'scholarly']; enterDeregisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'traits', 'register_attskl', 'scholarly');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'scholarly']; enterRegisterAttskl(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['scholarly-intel-exp_gain'] = 10;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['scholarly-intel-deg_loss'] = (-10);
     }

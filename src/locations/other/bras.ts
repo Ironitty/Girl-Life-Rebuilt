@@ -296,7 +296,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'gm'  &&  ((s as any).locArgs?.[2] ?? 0) === 1) {
     if (((s as any).locArgs?.[1] ?? 0) === ((s as any).braworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).brawornnumber ?? 0)) {
-      qspCall(s, 'bras', 'strip');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     return;
   }
@@ -307,7 +307,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_bras_h[<<ARGS[2]>>] = 0
   // TODO-QSP: "
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).braworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).brawornnumber ?? 0)) {
-    qspCall(s, 'bras', 'strip_code');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'outfit', 'set_derived_vars');
     (s as any).lastwornbranumber = 0;
   }
@@ -331,7 +331,7 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear_bodysuits', 'dispose');
     return;
   }
-  qspCall(s, 'bras', 'remove_item', ((s as any).braworntype ?? 0), ((s as any).brawornnumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).braworntype ?? 0), ((s as any).brawornnumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -383,7 +383,7 @@ function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'bras', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -398,7 +398,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).lastwornbranumber = ((s as any).brawornnumber ?? 0);
   (s as any).lastwornunderwear = 0;
-  qspCall(s, 'bras', 'strip_code');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -406,8 +406,8 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 function enterStripCode(s: GameState, scene: SceneBuilder): void {
   (s as any).brawornnumber = 0;
   (s as any).bodysuitwornnumber = 0;
-  qspCall(s, 'bras', 'reset_BraVars');
-  qspCall(s, 'bras', 'reset_PBraVars');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_BraVars(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PBraVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'outfit', 'set_derived_vars');
   // TODO-QSP: end
   scene.build();
@@ -461,7 +461,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
-  qspCall(s, 'bras', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bras', ARGS[2]
   if ((!((s as any).BraQuality ?? 0))) {
     return;
@@ -512,7 +512,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
 function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lastwornbratype ?? 0) === '') {
   }
-  qspCall(s, 'bras', 'wear', ((s as any).lastwornbratype ?? 0), ((s as any).lastwornbranumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).lastwornbratype ?? 0), ((s as any).lastwornbranumber ?? 0)]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

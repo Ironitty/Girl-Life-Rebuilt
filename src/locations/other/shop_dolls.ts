@@ -25,7 +25,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).doll_staff ?? 0))) {
     if (((s as any).know_Savva ?? 0) === 1) {
       // TODO-QSP: dynamic text: As you walk in, Savva waves at you and smiles. "Hi <<$pcs_nickname>>, great to s...
-      scene.text(`As you walk in, Savva waves at you and smiles. "Hi ${((s as any).pcs_nickname ?? 0)}, great to see you again! Let me know if I can help you with anything."`);
+      scene.text(`As you walk in, Savva waves at you and smiles. "Hi ${((s as any).pcs_nickname || '')}, great to see you again! Let me know if I can help you with anything."`);
     }
     scene.actions([
       { label: 'Go to the counter', goto: ['shop_dolls', 'savva'] },
@@ -196,7 +196,7 @@ function enterSavva(s: GameState, scene: SceneBuilder): void {
     scene.text('"Can I help you?" he asks so quietly that you can barely hear him.');
   } else {
     // TODO-QSP: dynamic text: Savva is working the counter today. As you walk up, he gives you a friendly smil...
-    scene.text(`Savva is working the counter today. As you walk up, he gives you a friendly smile. "Hey ${((s as any).pcs_nickname ?? 0)}, nice to see you again. What can I help you with?"`);
+    scene.text(`Savva is working the counter today. As you walk up, he gives you a friendly smile. "Hey ${((s as any).pcs_nickname || '')}, nice to see you again. What can I help you with?"`);
   }
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
     scene.actions([
@@ -259,7 +259,7 @@ function enterViola(s: GameState, scene: SceneBuilder): void {
     scene.text('You see a young woman at the counter who is about a year or two older than your sister. She\'s reading a magazine when you walk up, only glancing up at you as you stop at the counter. "How can I help you?"');
   } else {
     // TODO-QSP: dynamic text: "What's up, <<$pcs_nickname>>? You here to do a little shopping or to kill some ...
-    scene.text(`"What's up, ${((s as any).pcs_nickname ?? 0)}? You here to do a little shopping or to kill some time?"`);
+    scene.text(`"What's up, ${((s as any).pcs_nickname || '')}? You here to do a little shopping or to kill some time?"`);
   }
   if (((s as any).anushkaQW ?? 0)?.['dolls'] === 2) {
     scene.actions([

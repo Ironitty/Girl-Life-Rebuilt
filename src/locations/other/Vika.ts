@@ -7,16 +7,16 @@ import type { SceneBuilder } from '../../core/scene';
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).vika_sleep ?? 0) === 1) {
-    qspCall(s, 'Vika', 'text', 'asleep');
-    qspCall(s, 'Vika', 'actions', 'asleep');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'asleep']; enterText(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'asleep']; enterActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).npc_rel ?? 0)?.['A220'] >= 60  &&  ((s as any).birthday ?? 0) === ((s as any).day ?? 0)  &&  ((s as any).birthmonth ?? 0) === ((s as any).month ?? 0)  &&  ((s as any).vikaslut ?? 0) === 1  &&  ((s as any).b_vika_present_Day ?? 0) !== ((s as any).daystart ?? 0)) {
       (s as any).b_vika_present_Day = ((s as any).daystart ?? 0);
-      qspCall(s, 'Vika', 'text', 'awake', 'birthday');
-      qspCall(s, 'Vika', 'actions', 'awake', 'birthday');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'awake', 'birthday']; enterText(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'awake', 'birthday']; enterActions(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'Vika', 'text', 'awake');
-      qspCall(s, 'Vika', 'actions', 'awake');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'awake']; enterText(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'awake']; enterActions(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: end
@@ -27,10 +27,10 @@ function enterText(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><b>Vika Kirilova</b></center>');
   if (((s as any).locArgs?.[1] ?? 0) === 'asleep') {
-    qspCall(s, 'Vika', 'asleep_text');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAsleepText(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'awake') {
-      qspCall(s, 'Vika', 'awake_text', ((s as any).locArgs?.[2] ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterAwakeText(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: end
@@ -40,10 +40,10 @@ function enterText(s: GameState, scene: SceneBuilder): void {
 function enterActions(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).locArgs?.[1] ?? 0) === 'asleep') {
-    qspCall(s, 'Vika', 'asleep_actions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAsleepActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'awake') {
-      qspCall(s, 'Vika', 'awake_actions', ((s as any).locArgs?.[2] ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterAwakeActions(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: end
@@ -80,7 +80,7 @@ function enterAwakeText(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big220.jpg');
   }
   // TODO-QSP: dynamic text: Your roommate is Vika Kirilova, who is <<age + 1>> years old. She comes from a t...
-  scene.text(`Your roommate is Vika Kirilova, who is ${((s as any).age ?? 0) + 1} years old. She comes from a town much further away than yours and, like you, comes from a poor family.`);
+  scene.text(`Your roommate is Vika Kirilova, who is ${((s as any).age ?? '') + 1} years old. She comes from a town much further away than yours and, like you, comes from a poor family.`);
   if (((s as any).vikaslut ?? 0) === 1) {
     scene.text('You know she works as a whore in a brothel in the red light district.');
   } else {
@@ -116,7 +116,7 @@ function enterAwakeText(s: GameState, scene: SceneBuilder): void {
     scene.text('"You look great! I was worried it wouldn\'t fit because I had to guess your size. Put this on, we need to go to your other present."');
     scene.text('She throws you a bathrobe and grabs you by the arm before dragging you out of the room as you struggle to get the robe on in time.');
   }
-  qspCall(s, 'Vika', 'leave_for_night');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveForNight(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -158,13 +158,13 @@ function enterAwakeActions(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'cuni', 'self', 'easy');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Suggest you do something fun [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Suggest you do something fun', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Suggest you do something fun [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Suggest you do something fun', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 60;
     qspCall(s, 'npc_relationship', 'modify', 'A220', 5);
@@ -173,7 +173,7 @@ function enterAwakeActions(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'Vika', 'brothel_questions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrothelQuestions(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Move away', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -185,16 +185,16 @@ function enterAwakeActions(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterTalk(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'Vika', 'text', 'awake', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'awake', ((s as any).locArgs?.[1] ?? 0)]; enterText(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locArgs?.[1] ?? 0) === 'chat') {
-    qspCall(s, 'Vika', 'chat', Math.floor(Math.random() * 12) + 0);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', Math.floor(Math.random() * 12) + 0]; enterChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'study') {
-      qspCall(s, 'Vika', 'study', ((s as any).locArgs?.[2] ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[2] ?? 0)]; enterStudy(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
-  qspCall(s, 'Vika', 'actions', 'awake', ((s as any).locArgs?.[1] ?? 0));
-  qspCall(s, 'Vika', 'leave_for_night');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'awake', ((s as any).locArgs?.[1] ?? 0)]; enterActions(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveForNight(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -304,7 +304,7 @@ function enterBrothelQuestions(s: GameState, scene: SceneBuilder): void {
     (s as any).odkomp = 0;
     scene.text('"Do you think you could get me a job at the brothel?" you ask.');
     // TODO-QSP: dynamic text: "I can ask the manager, but I can't guarantee anything. Come by' + iif(hour < 20...
-    scene.text('"I can ask the manager, but I can\'t guarantee anything. Come by\' + iif(hour < 20, \' after \'+func(\'time\', \'get_time_string\', 20, 0)+\', \') + \', and I\'ll see what I can do."');
+    scene.text('"I can ask the manager, but I can\'t guarantee anything. Come by\' + iif(hour < 20, \' after 20:00, \') + \', and I\'ll see what I can do."');
   } },
           ]);
         }

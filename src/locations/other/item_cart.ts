@@ -14,9 +14,9 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'item_stock_db', 'cleanup');
   qspCall(s, 'item_stock_db', '', ((s as any).locArgs?.[1] ?? 0));
   // TODO-QSP: dynamic text: <center><table border=5 cellspacing=0 cellpadding=5 bgcolor="<<$func("shortgs", ...
-  scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? 0))}"><td>&nbsp;<font color="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).fcolor ?? 0))}" size="+2"><b>${((s as any).shop_title ?? 0)}</b></font>&nbsp;</td></table></center>`);
+  scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor || ''))}"><td>&nbsp;<font color="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).fcolor || ''))}" size="+2"><b>${((s as any).shop_title || '')}</b></font>&nbsp;</td></table></center>`);
   // TODO-QSP: dynamic text: <center><table border=5 cellspacing=0 cellpadding=5 bgcolor="<<$func("shortgs", ...
-  scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? 0))}" width="80%"><tr><th>Item</th><th>You own</th><th>Units/pack</th><th>Cost</th><th colspan="2" width="12%">Remove 10/1</th><th width="8%">In cart</th><th colspan="2" width="12%">Add 1/10</th></tr>`);
+  scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor || ''))}" width="80%"><tr><th>Item</th><th>You own</th><th>Units/pack</th><th>Cost</th><th colspan="2" width="12%">Remove 10/1</th><th width="8%">In cart</th><th colspan="2" width="12%">Add 1/10</th></tr>`);
   (s as any).icon_height = ((s as any).fsize ?? 0) * 15 / 10;
   if ((!((s as any).icon_height ?? 0))) {
     (s as any).icon_height = 18;
@@ -50,7 +50,7 @@ function enterShoppingAisle(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loopshopping_cart'
   }
   scene.text('</table></center>');
-  qspCall(s, 'item_cart', 'cart_total');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCartTotal(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -85,9 +85,9 @@ function enterSimpleAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterCartTotal(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><table border=5 cellspacing=0 cellpadding=5 bgcolor="<<$func("shortgs", ...
-  scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor ?? 0))}"><td>&nbsp;<b>Total cost of items in cart: ' + $func('money', 'string_price', cart_tally) + '</b>&nbsp;</td></table></center>`);
+  scene.text(`<center><table border=5 cellspacing=0 cellpadding=5 bgcolor="${qspFunc(s, 'shortgs', 'rgb_to_hex', ((s as any).bcolor || ''))}"><td>&nbsp;<b>Total cost of items in cart: ' + $func('money', 'string_price', cart_tally) + '</b>&nbsp;</td></table></center>`);
   // TODO-QSP: dynamic text: '<center><table border=5 cellspacing=0 cellpadding=5 bgcolor='+$func("shortgs", ...
-  scene.text('\'<center><table border=5 cellspacing=0 cellpadding=5 bgcolor=\'+$func("shortgs", "rgb_to_hex", bcolor)+\'><tr>\'');
+  scene.text('<center><table border=5 cellspacing=0 cellpadding=5 bgcolor=\'+$func("shortgs", "rgb_to_hex", bcolor)+\'><tr>');
   // TODO-QSP: $item_line[2] = ''
   if (((s as any).cart_tally ?? 0) > 0) {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).cart_tally ?? 0)) === 1) {
@@ -114,14 +114,14 @@ function enterPurchase(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'loopshopping_purchase'
   }
   qspCall(s, 'money', 'pay', ((s as any).cart_tally ?? 0));
-  qspCall(s, 'item_cart', 'shopping_var_clear');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShoppingVarClear(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterCancel(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'item_cart', 'shopping_var_clear');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShoppingVarClear(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc_s', 'args_s'); } }]);
   // TODO-QSP: end
   scene.build();

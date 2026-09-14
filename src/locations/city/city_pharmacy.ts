@@ -14,9 +14,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).people = Math.floor(Math.random() * 15) + 1;
   if (((s as any).people ?? 0) <= 5) {
     scene.text('<center><b>Pharmacy</b></center>');
-    scene.img(`images/locations/pavlovsk/pharmacy/aptekabusy${((s as any).people ?? 0)}.jpg`);
+    scene.img(`images/locations/pavlovsk/pharmacy/aptekabusy${((s as any).people || '')}.jpg`);
     // TODO-QSP: dynamic text: There is <<people>> ' + iif(people < 2 or people > 4, 'people' , 'man' ) + ' in ...
-    scene.text(`There is ${((s as any).people ?? 0)} ' + iif(people < 2 or people > 4, 'people' , 'man' ) + ' in line as you walk up to the counter to check out.`);
+    scene.text(`There is ${((s as any).people || '')} ' + iif(people < 2 or people > 4, 'people' , 'man' ) + ' in line as you walk up to the counter to check out.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -45,7 +45,7 @@ function enterShop(s: GameState, scene: SceneBuilder): void {
   scene.text('A young woman in a white coat stands behind the counter. She smiles as you approach. "Hello, what can I help you with?"');
   if (((s as any).KandidNapr ?? 0) === 1) {
     scene.actions([
-      { label: 'Buy Antifungal medication [+$func(\'money\', \'get_cost_string\', 1050)]', handler: (st: GameState) => {
+      { label: 'Buy Antifungal medication', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1050) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

@@ -99,7 +99,7 @@ function enterIsDayHoliday(s: GameState, scene: SceneBuilder): void {
 
 function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) !== '') {
-    qspCall(s, 'calendar_events', 'get_event', ((s as any).locArgs?.[1] ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).result = 0;
   if (((s as any).event_vars ?? 0)?.['daystart'] > ((s as any).locArgs?.[2] ?? 0)) {
@@ -162,14 +162,14 @@ function enterEventOccursInDay(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             if (((s as any).event_vars ?? 0)?.['recur'] === 'biweekly') {
-              (s as any).day_diff = ((s as any).event_vars ?? {})?.['daystart'] - ((s as any).ARGS ?? 0)[2];
+              (s as any).day_diff = (((s as any).event_vars ?? {})?.['daystart'] ?? 0) - ((s as any).ARGS ?? 0)[2];
               (s as any).day_diff = ((((s as any).day_diff ?? 0) < 0) ? (0 - ((s as any).day_diff ?? 0)) : (((s as any).day_diff ?? 0)));
               if (((s as any).day_diff ?? 0) % 14 === 0) {
                 (s as any).result = 1;
               }
             } else {
               if (((s as any).event_vars ?? 0)?.['recur'] === 'weekly') {
-                (s as any).day_diff = ((s as any).event_vars ?? {})?.['daystart'] - ((s as any).ARGS ?? 0)[2];
+                (s as any).day_diff = (((s as any).event_vars ?? {})?.['daystart'] ?? 0) - ((s as any).ARGS ?? 0)[2];
                 (s as any).day_diff = ((((s as any).day_diff ?? 0) < 0) ? (0 - ((s as any).day_diff ?? 0)) : (((s as any).day_diff ?? 0)));
                 if (((s as any).day_diff ?? 0) % 7 === 0) {
                   (s as any).result = 1;
@@ -200,7 +200,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
     if (parseFloat((String(((s as any).new_ev ?? 0)?.['recur']).slice((1)-1, ((1)-1)+(1)))) > 0) {
       (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).new_ev ?? 0)?.['daystart']);
       if ((String(' \' + \'0\' + \' ').indexOf(String(' \' + $str(temp_weekday) + \' '))) + 1 === 0) {
-        (s as any).temp_check_day = ((s as any).new_ev ?? {})?.['daystart'] + 1;
+        (s as any).temp_check_day = (((s as any).new_ev ?? {})?.['daystart'] ?? 0) + 1;
         (s as any).temp_days_scanned = 0;
         // TODO-QSP: :find_first_match
         (s as any).temp_weekday = qspFunc(s, 'time', 'get_week_from_daystart', ((s as any).temp_check_day ?? 0));
@@ -236,7 +236,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
           (s as any).temp_N = qspUntranslated(s, "val(mid(new_ev['recur'], 9, 1))", { location: "calendar_events" });
           (s as any).temp_W = qspUntranslated(s, "val(mid(new_ev['recur'], 11, 1))", { location: "calendar_events" });
           // TODO-QSP: gs 'time', 'to_date', ARGS[1]
-          (s as any).temp_month = ((s as any).dateVars ?? {})?.['month'] + 1;
+          (s as any).temp_month = (((s as any).dateVars ?? {})?.['month'] ?? 0) + 1;
           (s as any).temp_year = ((s as any).dateVars ?? 0)?.['year'];
           if (((s as any).temp_month ?? 0) > 12) {
             (s as any).temp_month = 1;
@@ -244,7 +244,7 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
           }
           qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_month ?? 0), 1);
           // TODO-QSP: gs 'time', 'to_date', dateVars['daystart']
-          (s as any).temp_day = 1 + ((((s as any).temp_W ?? 0) - ((s as any).dateVars ?? {})?.['week'] + 7) % 7) + (((s as any).temp_N ?? 0) - 1) * 7;
+          (s as any).temp_day = 1 + ((((s as any).temp_W ?? 0) - (((s as any).dateVars ?? {})?.['week'] ?? 0) + 7) % 7) + (((s as any).temp_N ?? 0) - 1) * 7;
           qspCall(s, 'time', 'to_daystart', ((s as any).temp_year ?? 0), ((s as any).temp_month ?? 0), ((s as any).temp_day ?? 0));
           (s as any).candidate = ((s as any).dateVars ?? 0)?.['daystart'];
         } else {
@@ -349,14 +349,14 @@ function enterNextOccurrenceDaystart(s: GameState, scene: SceneBuilder): void {
 function enterNewEvent(s: GameState, scene: SceneBuilder): void {
   (s as any).result = qspFunc(s, 'calendar_events', 'check_event_conflicts');
   if (((s as any).result ?? 0) === 0  &&  ((s as any).locArgs?.[2] ?? 0) !== 'dry_run') {
-    qspCall(s, 'calendar_events', 'add_event', ((s as any).locArgs?.[1] ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterAddEvent(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'calendar_events', 'add_to_events_list', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterAddToEventsList(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'calendar_list', 'assign_color');
   // TODO-QSP: $event_title[$ARGS[1]] = $event_vars['title']
   // TODO-QSP: $event_location[$ARGS[1]] = $event_vars['loc']
@@ -439,21 +439,21 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
   if (((s as any).event_vars ?? 0)?.['blocking'] === 0) {
     // TODO-QSP: exit
   }
-  qspCall(s, 'calendar_events', 'get_blocking_event');
-  qspCall(s, 'calendar_events', 'load_new_ev', 1);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGetBlockingEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterLoadNewEv(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).new_ev ?? 0)?.['all_day'] === 1) {
     if (!(s as any).new_ev) (s as any).new_ev = {}; (s as any).new_ev['start_span'] = 0;
     if (!(s as any).new_ev) (s as any).new_ev = {}; (s as any).new_ev['len_span'] = 96;
   } else {
     if (((s as any).new_ev ?? 0)?.['flex_type'] === 1) {
       if (!(s as any).new_ev) (s as any).new_ev = {}; (s as any).new_ev['start_span'] = ((s as any).new_ev ?? 0)?.['window_start_ts'];
-      if (!(s as any).new_ev) (s as any).new_ev = {}; (s as any).new_ev['len_span'] = (((s as any).new_ev ?? {})?.['window_end_ts'] - ((s as any).new_ev ?? {})?.['window_start_ts']) + ((s as any).new_ev ?? {})?.['duration_ts'];
+      if (!(s as any).new_ev) (s as any).new_ev = {}; (s as any).new_ev['len_span'] = ((((s as any).new_ev ?? {})?.['window_end_ts'] ?? 0) - (((s as any).new_ev ?? {})?.['window_start_ts'] ?? 0)) + (((s as any).new_ev ?? {})?.['duration_ts'] ?? 0);
     } else {
       if (!(s as any).new_ev) (s as any).new_ev = {}; (s as any).new_ev['start_span'] = ((s as any).new_ev ?? 0)?.['start_ts'];
       if (!(s as any).new_ev) (s as any).new_ev = {}; (s as any).new_ev['len_span'] = qspUntranslated(s, "max(1, new_ev['duration_ts'])", { location: "calendar_events" });
     }
   }
-  if (!(s as any).new_ev) (s as any).new_ev = {}; (s as any).new_ev['end_span'] = ((s as any).new_ev ?? {})?.['start_span'] + ((s as any).new_ev ?? {})?.['len_span'] - 1;
+  if (!(s as any).new_ev) (s as any).new_ev = {}; (s as any).new_ev['end_span'] = (((s as any).new_ev ?? {})?.['start_span'] ?? 0) + (((s as any).new_ev ?? {})?.['len_span'] ?? 0) - 1;
   (s as any).new_occurrences = 0;
   (s as any).new_last = (-1);
   // TODO-QSP: :loop_new_occurrence
@@ -467,7 +467,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :loop_existing_events
   if (((s as any).temp_event_id ?? 0) !== ''  &&  ((s as any).temp_event_id ?? 0) !== ((s as any).new_ev ?? 0)?.['id']) {
     if (((s as any).new_ev ?? 0)?.['exclude_prefix'] === ''  ||  (String(((s as any).temp_event_id ?? 0)).indexOf(String(((s as any).new_ev ?? 0)?.['exclude_prefix']))) + 1 !== 1) {
-      qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_event_id ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_event_id ?? 0)]; enterGetEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (qspFunc(s, 'calendar_events', 'event_occurs_in_day', ((s as any).temp_event_id ?? 0), ((s as any).new_day ?? 0)) === 1) {
         if (((s as any).event_vars ?? 0)?.['all_day'] === 1) {
           (s as any).other_start = 0;
@@ -475,7 +475,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
             (s as any).other_start = ((s as any).event_vars ?? 0)?.['window_start_ts'];
-            (s as any).other_len = (((s as any).event_vars ?? {})?.['window_end_ts'] - ((s as any).event_vars ?? {})?.['window_start_ts']) + ((s as any).event_vars ?? {})?.['duration_ts'];
+            (s as any).other_len = ((((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) - (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0)) + (((s as any).event_vars ?? {})?.['duration_ts'] ?? 0);
           } else {
             (s as any).other_start = ((s as any).event_vars ?? 0)?.['start_ts'];
             (s as any).other_len = qspUntranslated(s, "max(1, event_vars['duration_ts'])", { location: "calendar_events" });
@@ -487,13 +487,13 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: jump 'cec_conflict_found'
         }
       }
-      qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_event_id ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_event_id ?? 0)]; enterGetEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (qspFunc(s, 'calendar_events', 'event_occurs_in_day', ((s as any).temp_event_id ?? 0), ((s as any).new_day ?? 0) - 1) === 1) {
         if (((s as any).event_vars ?? 0)?.['all_day'] === 0) {
           if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
-            (s as any).cec_overflow_end = ((s as any).event_vars ?? {})?.['window_start_ts'] + (((s as any).event_vars ?? {})?.['window_end_ts'] - ((s as any).event_vars ?? {})?.['window_start_ts']) + ((s as any).event_vars ?? {})?.['duration_ts'] - 1;
+            (s as any).cec_overflow_end = (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0) + ((((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) - (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0)) + (((s as any).event_vars ?? {})?.['duration_ts'] ?? 0) - 1;
           } else {
-            (s as any).cec_overflow_end = ((s as any).event_vars ?? {})?.['start_ts'] + Math.max(1, ((s as any).event_vars ?? 0)?.['duration_ts']) - 1;
+            (s as any).cec_overflow_end = (((s as any).event_vars ?? {})?.['start_ts'] ?? 0) + Math.max(1, ((s as any).event_vars ?? 0)?.['duration_ts']) - 1;
           }
           if (((s as any).cec_overflow_end ?? 0) > 95) {
             (s as any).cec_overflow_start = 0;
@@ -506,7 +506,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).new_ev ?? 0)?.['end_span'] > 95) {
-        qspCall(s, 'calendar_events', 'get_event', ((s as any).temp_event_id ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_event_id ?? 0)]; enterGetEvent(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (qspFunc(s, 'calendar_events', 'event_occurs_in_day', ((s as any).temp_event_id ?? 0), ((s as any).new_day ?? 0) + 1) === 1) {
           if (((s as any).event_vars ?? 0)?.['all_day'] === 1) {
             (s as any).other_start = 0;
@@ -514,7 +514,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).event_vars ?? 0)?.['flex_type'] === 1) {
               (s as any).other_start = ((s as any).event_vars ?? 0)?.['window_start_ts'];
-              (s as any).other_len = (((s as any).event_vars ?? {})?.['window_end_ts'] - ((s as any).event_vars ?? {})?.['window_start_ts']) + ((s as any).event_vars ?? {})?.['duration_ts'];
+              (s as any).other_len = ((((s as any).event_vars ?? {})?.['window_end_ts'] ?? 0) - (((s as any).event_vars ?? {})?.['window_start_ts'] ?? 0)) + (((s as any).event_vars ?? {})?.['duration_ts'] ?? 0);
             } else {
               (s as any).other_start = ((s as any).event_vars ?? 0)?.['start_ts'];
               (s as any).other_len = qspUntranslated(s, "max(1, event_vars['duration_ts'])", { location: "calendar_events" });
@@ -522,7 +522,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
           }
           (s as any).other_end = ((s as any).other_start ?? 0) + ((s as any).other_len ?? 0) - 1;
           (s as any).cec_overflow_start = 0;
-          (s as any).cec_overflow_end = ((s as any).new_ev ?? {})?.['end_span'] - 96;
+          (s as any).cec_overflow_end = (((s as any).new_ev ?? {})?.['end_span'] ?? 0) - 96;
           if (((s as any).other_start ?? 0) <= ((s as any).cec_overflow_end ?? 0)  &&  ((s as any).other_end ?? 0) >= ((s as any).cec_overflow_start ?? 0)) {
             (s as any).result = 1;
             // TODO-QSP: jump 'cec_conflict_found'
@@ -531,7 +531,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'calendar_events', 'load_new_ev', 0);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterLoadNewEv(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
   if (((s as any).temp_i ?? 0) < Object.keys((s as any).blocking_events_list ?? {}).length) {
     // TODO-QSP: jump 'loop_existing_events'
@@ -544,7 +544,7 @@ function enterCheckEventConflicts(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemoveEvent(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'calendar_events', 'remove_from_events_list', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterRemoveFromEventsList(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: $event_title[$ARGS[1]] = ''
   // TODO-QSP: $event_location[$ARGS[1]] = ''
   // TODO-QSP: $event_desc[$ARGS[1]] = ''

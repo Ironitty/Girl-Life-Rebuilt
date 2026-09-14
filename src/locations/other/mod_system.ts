@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall } from '../_shared/qspBridge';
+import { hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterLOCA(s: GameState, scene: SceneBuilder): void {
   (s as any).mod_warning = 1;
-  qspCall(s, 'mod_system', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -22,7 +22,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
   (s as any).mod_warning = 0;
   // TODO-QSP: $modARGS[0] = $ARGS[1]
   // TODO-QSP: $modARGS[1] = $ARGS[2]
-  qspCall(s, 'mod_system', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -31,7 +31,7 @@ function enterSleep(s: GameState, scene: SceneBuilder): void {
 function enterStat(s: GameState, scene: SceneBuilder): void {
   return;
   (s as any).mod_warning = 0;
-  qspCall(s, 'mod_system', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -40,7 +40,7 @@ function enterStat(s: GameState, scene: SceneBuilder): void {
 function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
   return;
   (s as any).mod_warning = 0;
-  qspCall(s, 'mod_system', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -48,7 +48,7 @@ function enterStatDisplay(s: GameState, scene: SceneBuilder): void {
 function enterFunc(s: GameState, scene: SceneBuilder): void {
   return;
   (s as any).mod_warning = 0;
-  qspCall(s, 'mod_system', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -57,7 +57,7 @@ function enterFunc(s: GameState, scene: SceneBuilder): void {
 function enterArousal(s: GameState, scene: SceneBuilder): void {
   return;
   (s as any).mod_warning = 0;
-  qspCall(s, 'mod_system', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -67,7 +67,7 @@ function enterOutfit(s: GameState, scene: SceneBuilder): void {
   return;
   // TODO-QSP: $modARGS[0] = $ARGS[2]
   if (!(s as any).modARGS) (s as any).modARGS = {}; (s as any).modARGS[1] = qspUntranslated(s, "ARGS[3]", { location: "mod_system" });
-  qspCall(s, 'mod_system', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -80,11 +80,11 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
   (s as any).mod_i = 0;
   // TODO-QSP: :mod_exec
   if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
-    if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+    if (hasLocation(((s as any).mod_su_name ?? 0))) {
       // TODO-QSP: gs $mod_su_name, iif(modARGS[0]=0, $modARGS[0], modARGS[0]), iif(modARGS[1]=0, $modARGS[1], modARGS[...
     } else {
       if (((s as any).mod_warning ?? 0)) {
-        scene.text(`WARNING: ${((s as any).mod_su_name ?? 0)} is not found!`);
+        scene.text(`WARNING: ${((s as any).mod_su_name || '')} is not found!`);
       }
     }
   }
@@ -104,7 +104,7 @@ function enterSaveupdater(s: GameState, scene: SceneBuilder): void {
   (s as any).mod_i = 0;
   // TODO-QSP: :mod_data_updater
   if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
-    if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+    if (hasLocation(((s as any).mod_su_name ?? 0))) {
       // TODO-QSP: gs $mod_su_name, 'saveupdater'
     }
     // TODO-QSP: $mod_name[mod_i]  = $mod_info[0]
@@ -112,7 +112,7 @@ function enterSaveupdater(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $mod_author[mod_i]  = $mod_info[2]
     // TODO-QSP: $mod_desc[mod_i]  = $mod_info[3]
     // TODO-QSP: $mod_opt[mod_i]    = $mod_info[4]
-    if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+    if (hasLocation(((s as any).mod_su_name ?? 0))) {
       // TODO-QSP: gs $mod_su_name
     }
   }
@@ -133,7 +133,7 @@ function enterAddMod(s: GameState, scene: SceneBuilder): void {
   } else {
     // TODO-QSP: inclib 'mod/<<$ARGS[1]>>.qsp'
   }
-  if (((s as any).loc ?? 0)(((s as any).mod_temp ?? 0))) {
+  if (hasLocation(((s as any).mod_temp ?? 0))) {
     // TODO-QSP: gs $mod_temp
   }
   if (((s as any).mod_info ?? 0)[0] === '') {
@@ -153,7 +153,7 @@ function enterDeleteMod(s: GameState, scene: SceneBuilder): void {
   (s as any).mod_i = 0;
   // TODO-QSP: :mod_data_remover
   if (((s as any).mod_i ?? 0) === ((s as any).mod_removed_temp ?? 0)) {
-    if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+    if (hasLocation(((s as any).mod_su_name ?? 0))) {
       // TODO-QSP: gs $mod_su_name
     }
   } else {
@@ -219,7 +219,7 @@ function enterUpdateAllMods(s: GameState, scene: SceneBuilder): void {
     } else {
       // TODO-QSP: inclib 'mod/<<$mod_temp>>.qsp'
     }
-    if (((s as any).loc ?? 0)(((s as any).mod_temp ?? 0))) {
+    if (hasLocation(((s as any).mod_temp ?? 0))) {
       // TODO-QSP: gs $mod_temp
     }
     // TODO-QSP: $mod_name[]    = $mod_info[0]
@@ -241,7 +241,7 @@ function enterDeleteAllMods(s: GameState, scene: SceneBuilder): void {
     (s as any).mod_i = 0;
     // TODO-QSP: :mod_data_remover_delall
     if (((s as any).mod_name ?? 0)?.[String((s as any).mod_i ?? 0)] !== '') {
-      if (((s as any).loc ?? 0)(((s as any).mod_su_name ?? 0))) {
+      if (hasLocation(((s as any).mod_su_name ?? 0))) {
         // TODO-QSP: gs $mod_su_name
       }
     }

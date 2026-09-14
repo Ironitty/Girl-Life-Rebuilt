@@ -15,7 +15,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     (s as any).NikoIntro = (-1);
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: As you're walking out of school, you bump into one of your fellow gopniks, Nikol...
-    scene.text(`As you're walking out of school, you bump into one of your fellow gopniks, Nikolai Volkov, who immediately gives you a warm smile. "Hello there ${((s as any).pcs_firstname ?? 0)}, how was your summer?"`);
+    scene.text(`As you're walking out of school, you bump into one of your fellow gopniks, Nikolai Volkov, who immediately gives you a warm smile. "Hello there ${((s as any).pcs_firstname || '')}, how was your summer?"`);
     scene.text('You smile back at him. "Good. How was yours?"');
     scene.text('He shrugs. "Not bad I guess. I need to go, but I\'ll talk to you later."');
     scene.actions([
@@ -35,9 +35,9 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/charmer1.jpg');
     // TODO-QSP: dynamic text: You return the smile. "Hello yourself. I'm <<$pcs_firstname>>. Nice to meet you....
-    scene.text(`You return the smile. "Hello yourself. I'm ${((s as any).pcs_firstname ?? 0)}. Nice to meet you."`);
+    scene.text(`You return the smile. "Hello yourself. I'm ${((s as any).pcs_firstname || '')}. Nice to meet you."`);
     // TODO-QSP: dynamic text: He smiles. "Ahh, <<$pcs_firstname>>. What a beautiful name, very suitable for yo...
-    scene.text(`He smiles. "Ahh, ${((s as any).pcs_firstname ?? 0)}. What a beautiful name, very suitable for you. I need to get going, but I'm always available at lunchtime and would be very grateful if you would grace me with your presence." He gently takes hold of your hand and gives it a gentle kiss. "Goodbye for now, ${((s as any).pcs_firstname ?? 0)}. I look forward to seeing you again."`);
+    scene.text(`He smiles. "Ahh, ${((s as any).pcs_firstname || '')}. What a beautiful name, very suitable for you. I need to get going, but I'm always available at lunchtime and would be very grateful if you would grace me with your presence." He gently takes hold of your hand and gives it a gentle kiss. "Goodbye for now, ${((s as any).pcs_firstname || '')}. I look forward to seeing you again."`);
     scene.text('He waves goodbye to you as he walks away.');
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'main'] },
@@ -81,15 +81,15 @@ function enterLunchIntro(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/charmer1.jpg');
     // TODO-QSP: dynamic text: You return the smile. "I'm <<$pcs_firstname>>. Nice to meet you and thank you fo...
-    scene.text(`You return the smile. "I'm ${((s as any).pcs_firstname ?? 0)}. Nice to meet you and thank you for the complement."`);
+    scene.text(`You return the smile. "I'm ${((s as any).pcs_firstname || '')}. Nice to meet you and thank you for the complement."`);
     // TODO-QSP: dynamic text: He smiles. "Ahh, <<$pcs_firstname>>. What a beautiful name, very suitable for yo...
-    scene.text(`He smiles. "Ahh, ${((s as any).pcs_firstname ?? 0)}. What a beautiful name, very suitable for you. I would be very grateful if you would grace me with your presence." He gently takes hold of your hand and gives it a gentle kiss. "Now, may I get to know you better?"`);
+    scene.text(`He smiles. "Ahh, ${((s as any).pcs_firstname || '')}. What a beautiful name, very suitable for you. I would be very grateful if you would grace me with your presence." He gently takes hold of your hand and gives it a gentle kiss. "Now, may I get to know you better?"`);
     scene.actions([
       { label: 'Chat with Niko', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A189', Math.floor(Math.random() * 6) + 5);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     scene.text('You sit next to Niko and spend the next few minutes getting to know each other.');
     scene.actions([
       { label: 'Go to class', goto: ['gschool_lessons', 'short_break'] },
@@ -122,9 +122,9 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/bruised2.jpg');
   } else {
     if (((s as any).NikoPayback ?? 0) > 0) {
-      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
     } else {
-      scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     }
   }
   // TODO-QSP: $func('npc_notes', 'A189')
@@ -159,7 +159,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
         scene.text('You approach Niko and he turns to you. "Leave me alone. You\'re nothing but trouble." You giggle as you walk away.');
       } else {
         // TODO-QSP: dynamic text: You approach Niko and his eyes light up. "Hello <<$pcs_firstname>>. I'm so glad ...
-        scene.text(`You approach Niko and his eyes light up. "Hello ${((s as any).pcs_firstname ?? 0)}. I'm so glad to see you again. Please take a seat and chat with me."`);
+        scene.text(`You approach Niko and his eyes light up. "Hello ${((s as any).pcs_firstname || '')}. I'm so glad to see you again. Please take a seat and chat with me."`);
       }
     }
   }
@@ -170,7 +170,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A189', Math.floor(Math.random() * 6) + 5);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     if (((s as any).npc_rel ?? 0)?.['A189'] < 20) {
       scene.text('You and Niko don\'t get along at all.');
     }
@@ -212,7 +212,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).NikoPayed ?? 0) !== ((s as any).daystart ?? 0)) {
       scene.actions([
-        { label: 'Money [+$func(\'money\', \'get_cost_string\', 200)]', handler: (st: GameState) => {
+        { label: 'Money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 200) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -220,7 +220,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
       (s as any).NikoPayed = ((s as any).daystart ?? 0);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
-      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
       // TODO-QSP: dynamic text: "I have your money right here." You extend your hand, giving him <<$func('money'...
       scene.text(`"I have your money right here." You extend your hand, giving him ${qspFunc(s, 'money', 'string_price', 200)}. He quickly counts it and gives you an approving nod. "Good. You're all paid up for today and can get going now."`);
       scene.actions([
@@ -232,7 +232,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
     (s as any).NikoPayed = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
     scene.text('You cast your eyes down. "You can use my body as payment…"');
     scene.text('Niko\'s eyes light up. "I was hoping you\'d say that. Let\'s not waste time."');
     scene.text('He grabs your ass firmly while leading you to the less used restroom.');
@@ -263,7 +263,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
         { label: 'Chat', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
     scene.text('"I just want to talk," you reply. "Is that alright?"');
     scene.text('He shrugs. "Sounds fine with me. I have some spare time."');
     scene.text('You spend the next few minutes chatting about various topics.');
@@ -277,7 +277,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
       scene.actions([
         { label: 'Special Activity', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     scene.text('You sit next to Niko. "Hey, I remember you telling me something about a \'special activity\' that you have planned."');
     scene.text('He grins. "I have something special for us today. Are you ready to find out what it is?"');
     scene.actions([
@@ -324,7 +324,7 @@ function enterLunchChat(s: GameState, scene: SceneBuilder): void {
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     scene.text('"I\'d love to stay, but I need to head to class early today."');
     scene.text('"I understand," he replies. "I guess I\'ll have to wait longer for an audience with this princess."');
     scene.text('You can feel your face flushing as you get up and walk out toward the hallway.');
@@ -350,18 +350,18 @@ function enterDateIntro(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/charmer2.jpg');
   // TODO-QSP: dynamic text: As you're walking toward the hallway, Niko runs up behind you with a small box i...
-  scene.text(`As you're walking toward the hallway, Niko runs up behind you with a small box in his hand. "${((s as any).pcs_firstname ?? 0)}! I have something for you." He holds the box in front of you and slowly opens it, revealing a beautiful purple necklace. "An elegant lady of such beauty, deserves equally stunning jewelry, but I must ask you for a boon in return. I ask only for permission to take you out on a date after school."`);
+  scene.text(`As you're walking toward the hallway, Niko runs up behind you with a small box in his hand. "${((s as any).pcs_firstname || '')}! I have something for you." He holds the box in front of you and slowly opens it, revealing a beautiful purple necklace. "An elegant lady of such beauty, deserves equally stunning jewelry, but I must ask you for a boon in return. I ask only for permission to take you out on a date after school."`);
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/jewelry/necklace1.jpg');
   qspCall(s, 'willpower', 'misc', 'resist', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Decline the gift [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Decline the gift', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Decline the gift [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Decline the gift', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).NikoLuv = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -442,7 +442,7 @@ function enterDate1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/niko1.jpg');
   // TODO-QSP: dynamic text: You walk up to Niko and his eyes light up as he sees you. "Greetings <<$pcs_firs...
-  scene.text(`You walk up to Niko and his eyes light up as he sees you. "Greetings ${((s as any).pcs_firstname ?? 0)}, I hope that you're ready to have a good time."`);
+  scene.text(`You walk up to Niko and his eyes light up as he sees you. "Greetings ${((s as any).pcs_firstname || '')}, I hope that you're ready to have a good time."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'I\'m ready', handler: (st: GameState) => {
@@ -476,7 +476,7 @@ function enterDate2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/niko2.jpg');
   // TODO-QSP: dynamic text: You walk up to Niko and he lowers his cigarette. "Hello <<$pcs_firstname>>, I wa...
-  scene.text(`You walk up to Niko and he lowers his cigarette. "Hello ${((s as any).pcs_firstname ?? 0)}, I wanted to tell you that I'm sorry for how I acted yesterday. I just wanted you to leave your shell a bit. You always seem so tense."`);
+  scene.text(`You walk up to Niko and he lowers his cigarette. "Hello ${((s as any).pcs_firstname || '')}, I wanted to tell you that I'm sorry for how I acted yesterday. I just wanted you to leave your shell a bit. You always seem so tense."`);
   scene.text('"Tense?" you reply. "I guess I could try to lighten up a bit. Maybe."');
   scene.text('He smiles. "Good enough. So are you ready for a surprise I have for you? We could be out all afternoon."');
   // TODO-QSP: end
@@ -511,7 +511,7 @@ function enterDate3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/niko3.jpg');
   // TODO-QSP: dynamic text: You walk up to Niko and his eyes light up as he sees you. "Greetings <<$pcs_firs...
-  scene.text(`You walk up to Niko and his eyes light up as he sees you. "Greetings ${((s as any).pcs_firstname ?? 0)}, I have a surprise activity for today and we could be out all afternoon. Are you up for it?"`);
+  scene.text(`You walk up to Niko and his eyes light up as he sees you. "Greetings ${((s as any).pcs_firstname || '')}, I have a surprise activity for today and we could be out all afternoon. Are you up for it?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'I\'m ready', handler: (st: GameState) => {
@@ -544,13 +544,13 @@ function enterDate4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/smile1.jpg');
   // TODO-QSP: dynamic text: You walk up to Niko and his eyes light up as he sees you. "Ahhh <<$pcs_firstname...
-  scene.text(`You walk up to Niko and his eyes light up as he sees you. "Ahhh ${((s as any).pcs_firstname ?? 0)}, I'm so glad to see you. Are you up for a nice relaxing day at the beach?"`);
+  scene.text(`You walk up to Niko and his eyes light up as he sees you. "Ahhh ${((s as any).pcs_firstname || '')}, I'm so glad to see you. Are you up for a nice relaxing day at the beach?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'I\'m ready', handler: (st: GameState) => {
     (s as any).NikoEv = 5;
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     scene.text('"I could never turn down a day at the beach!" you reply and Niko chuckles.');
     scene.text('"Great! I have everything we should need here." He opens his bag which houses a beach towel, cigarettes and sunscreen.');
     (s as any).NikoNextDate_day = ((s as any).daystart ?? 0) + 7 - ((s as any).week ?? 0) + 1;
@@ -571,7 +571,7 @@ function enterDate4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/nodate.jpg');
     // TODO-QSP: dynamic text: "I just stopped by to let you know that I can't go right now. I have other matte...
-    scene.text(`"I just stopped by to let you know that I can't go right now. I have other matters to attend too." Niko gives you a warm smile as he responds, "I understand ${((s as any).pcs_firstname ?? 0)}, whenever you are ready to go out, you need only return here, I will be patiently awaiting my princess's return."`);
+    scene.text(`"I just stopped by to let you know that I can't go right now. I have other matters to attend too." Niko gives you a warm smile as he responds, "I understand ${((s as any).pcs_firstname || '')}, whenever you are ready to go out, you need only return here, I will be patiently awaiting my princess's return."`);
     scene.actions([
       { label: 'Walk away', goto: ['gschool_grounds', 'main'] },
     ]);
@@ -589,7 +589,7 @@ function enterNewLife(s: GameState, scene: SceneBuilder): void {
     { label: 'Yes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     scene.text('Niko smiles. "Great! Let\'s head out."');
     scene.text('He wraps his arm around your shoulder and walks you toward the park.');
     scene.actions([
@@ -621,9 +621,9 @@ function enterDiscoChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev2/bruised2.jpg');
   } else {
     if (((s as any).NikoPayback ?? 0) > 0) {
-      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
     } else {
-      scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     }
   }
   // TODO-QSP: $func('npc_notes', 'A189')
@@ -719,7 +719,7 @@ function enterDiscoChat(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).NikoPayback ?? 0) === 2  &&  ((s as any).NikoPayed ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
-      { label: 'Money [+$func(\'money\', \'get_cost_string\', 200)]', handler: (st: GameState) => {
+      { label: 'Money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 200) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -727,7 +727,7 @@ function enterDiscoChat(s: GameState, scene: SceneBuilder): void {
       (s as any).NikoPayed = ((s as any).daystart ?? 0);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       qspCall(s, 'stat', '');
-      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
       // TODO-QSP: dynamic text: "I have your money right here." You extend your hand, giving him <<$func('money'...
       scene.text(`"I have your money right here." You extend your hand, giving him ${qspFunc(s, 'money', 'string_price', 200)}. He quickly counts it and gives you an approving nod. "Good. You're all paid up for today and can get going now."`);
       scene.actions([
@@ -774,7 +774,7 @@ function enterDiscoChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Chat', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
     scene.text('"I just want to talk," you reply. "Is that alright?"');
     scene.text('He shrugs. "Sounds fine with me. I have some spare time, but don\'t think that you\'re getting any free beer off of me."');
     scene.text('You spend the next few minutes chatting about various topics.');
@@ -816,7 +816,7 @@ function enterDiscoChat(s: GameState, scene: SceneBuilder): void {
           { label: 'Leave', handler: (st: GameState) => {
     (s as any).NikoAlko = 0;
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     scene.text('"I\'d love to stay, but I need to head home or my mother will freak out," you tell him.');
     scene.text('He smiles. "I know how parents can be. I\'ll always be around if you ever have a few minutes to spare."');
     scene.text('You give him a warm smile as you wave goodbye.');
@@ -849,7 +849,7 @@ function enterLunchBreakup(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
   scene.text('You approach Niko with a stern look on your face. Niko notices you and smiles. "There you are! You disappeared on me yesterday."');
   scene.text('"DISAPPEARED!? YOU RAN OFF AND LEFT ME TIED UP!" you exclaim.');
   scene.text('He recoils. "Did I? I\'m sorry, I just had to…"');
@@ -860,7 +860,7 @@ function enterLunchBreakup(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Walk away', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
     scene.text('He gets noticeably angry. "After all the time and money I spent on you?! You will not leave me! I will get what I deserve!"');
     scene.actions([
       { label: 'Give him what he deserves', handler: (st: GameState) => {
@@ -888,7 +888,7 @@ function enterDiscoBreakup(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+  scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
   scene.text('You approach Niko with a stern look on your face. Niko notices you and smiles. "There you are! You disappeared on me yesterday."');
   scene.text('"DISAPPEARED!? YOU RAN OFF AND LEFT ME TIED UP!" you exclaim.');
   scene.text('He recoils. "Did I? I\'m sorry, I just had to…"');
@@ -899,7 +899,7 @@ function enterDiscoBreakup(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Walk away', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikomisc/avatars/${((s as any).week || '')}.jpg`);
     scene.text('He gets noticeably angry. "After all the time and money I spent on you?! You will not leave me! I will get what I deserve!"');
     scene.actions([
       { label: 'Give him what he deserves', handler: (st: GameState) => {
@@ -933,7 +933,7 @@ function enterFedor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/niko\'+rand(1, 3)+\'.jpg');
   // TODO-QSP: dynamic text: You walk up to Niko and his eyes light up as he sees you. "Greetings <<$pcs_firs...
-  scene.text(`You walk up to Niko and his eyes light up as he sees you. "Greetings ${((s as any).pcs_firstname ?? 0)}, I hope you're ready to have a good time."`);
+  scene.text(`You walk up to Niko and his eyes light up as he sees you. "Greetings ${((s as any).pcs_firstname || '')}, I hope you're ready to have a good time."`);
   scene.text('You\'re about to respond when you suddenly feel a hand gently but firmly grab onto your arm.');
   // TODO-QSP: end
   scene.actions([
@@ -942,23 +942,23 @@ function enterFedor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big5.jpg');
     // TODO-QSP: dynamic text: You turn to see Fedor with a concerned look on his face. "<<$pcs_firstname>>, wh...
-    scene.text(`You turn to see Fedor with a concerned look on his face. "${((s as any).pcs_firstname ?? 0)}, what are doing with him? You should be careful hanging around guys like him. He's no good for you."`);
+    scene.text(`You turn to see Fedor with a concerned look on his face. "${((s as any).pcs_firstname || '')}, what are doing with him? You should be careful hanging around guys like him. He's no good for you."`);
     scene.text('Niko just stares in silence with an annoyed look on his face as you turn to Fedor. "Don\'t worry, it\'s not what it looks like. Niko was just…"');
     // TODO-QSP: dynamic text: Niko quickly continues your sentence. "<<$pcs_firstname>>'s father is planning o...
-    scene.text(`Niko quickly continues your sentence. "${((s as any).pcs_firstname ?? 0)}'s father is planning on buying one of my brother's old bikes, so she came to me to discuss the details. That's all."`);
+    scene.text(`Niko quickly continues your sentence. "${((s as any).pcs_firstname || '')}'s father is planning on buying one of my brother's old bikes, so she came to me to discuss the details. That's all."`);
     // TODO-QSP: dynamic text: Fedor gives Niko a blank stare. "I've seen your brother before and I don't think...
-    scene.text(`Fedor gives Niko a blank stare. "I've seen your brother before and I don't think that ${((s as any).pcs_firstname ?? 0)} should be dealing with him. Or you."`);
+    scene.text(`Fedor gives Niko a blank stare. "I've seen your brother before and I don't think that ${((s as any).pcs_firstname || '')} should be dealing with him. Or you."`);
     // TODO-QSP: dynamic text: Niko just shrugs. "That's <<$pcs_firstname>>'s call, not yours."
-    scene.text(`Niko just shrugs. "That's ${((s as any).pcs_firstname ?? 0)}'s call, not yours."`);
+    scene.text(`Niko just shrugs. "That's ${((s as any).pcs_firstname || '')}'s call, not yours."`);
     scene.text('Fedor walks right up to Niko and clenches his fists. "No one asked for your input."');
     scene.actions([
       { label: 'See what happens', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/niko4.jpg');
     // TODO-QSP: dynamic text: Niko doesn't seem worried as he casually leans against the wall. "No need to get...
-    scene.text(`Niko doesn't seem worried as he casually leans against the wall. "No need to get violent. I'm sure ${((s as any).pcs_firstname ?? 0)} doesn't want us fighting in front of her for no reason. That would be really rude of us, wouldn't it?"`);
+    scene.text(`Niko doesn't seem worried as he casually leans against the wall. "No need to get violent. I'm sure ${((s as any).pcs_firstname || '')} doesn't want us fighting in front of her for no reason. That would be really rude of us, wouldn't it?"`);
     // TODO-QSP: dynamic text: Fedor looks back to you with an embarrassed look on his face. "Sorry <<$pcs_nick...
-    scene.text(`Fedor looks back to you with an embarrassed look on his face. "Sorry ${((s as any).pcs_nickname ?? 0)}. I hope I'm not making you uncomfortable. Just be careful with this one, okay?"`);
+    scene.text(`Fedor looks back to you with an embarrassed look on his face. "Sorry ${((s as any).pcs_nickname || '')}. I hope I'm not making you uncomfortable. Just be careful with this one, okay?"`);
     scene.text('You give Fedor a nod and a smile as he turns around and walks away.');
     scene.actions([
       { label: 'Turn back toward Niko', goto: ['NikoEv', 'niko_dates'] },
@@ -976,17 +976,17 @@ function enterVitek(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big9.jpg');
   // TODO-QSP: dynamic text: You walk up to Niko and give him a smile when you suddenly see Vitek quickly wal...
-  scene.text(`You walk up to Niko and give him a smile when you suddenly see Vitek quickly walking up to Niko. "What are you doing with ${((s as any).pcs_firstname ?? 0)}? She's mine!"`);
+  scene.text(`You walk up to Niko and give him a smile when you suddenly see Vitek quickly walking up to Niko. "What are you doing with ${((s as any).pcs_firstname || '')}? She's mine!"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'See what happens', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/niko/nikoev/niko\'+rand(1, 3)+\'.jpg');
     // TODO-QSP: dynamic text: Niko chuckles as he raises his hands, "I was just helping <<$pcs_firstname>> fin...
-    scene.text(`Niko chuckles as he raises his hands, "I was just helping ${((s as any).pcs_firstname ?? 0)} find the person spreading mean rumors about her."`);
+    scene.text(`Niko chuckles as he raises his hands, "I was just helping ${((s as any).pcs_firstname || '')} find the person spreading mean rumors about her."`);
     scene.text('"What rumors?" Vitek asks and Niko smiles.');
     // TODO-QSP: dynamic text: "Someone said that <<$pcs_firstname>> was dating a fat, brain dead gopnik. I won...
-    scene.text(`"Someone said that ${((s as any).pcs_firstname ?? 0)} was dating a fat, brain dead gopnik. I wonder who that was referring to?"`);
+    scene.text(`"Someone said that ${((s as any).pcs_firstname || '')} was dating a fat, brain dead gopnik. I wonder who that was referring to?"`);
     scene.text('Vitek is seething with anger. "Who the fuck said that shit? Fucking tell me!"');
     scene.text('"It took some digging, but I found out that it was him." Niko points at Lesco, ccausing Vitek to turn to him.');
     scene.text('"You little fucking bitch! I\'ll tear your arm off!" He then charges at Lesco, who starts running for his life. While Vitek is distracted, Niko takes your hand and leads you out of the school grounds.');
@@ -1003,7 +1003,7 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   // TODO-QSP: dynamic text: You walk up to Niko and give him a smile when you see Dimka approaching you and ...
-  scene.text(`You walk up to Niko and give him a smile when you see Dimka approaching you and giving Niko a puzzled look. "What are you doing with ${((s as any).pcs_firstname ?? 0)}? She's my girl."`);
+  scene.text(`You walk up to Niko and give him a smile when you see Dimka approaching you and giving Niko a puzzled look. "What are you doing with ${((s as any).pcs_firstname || '')}? She's my girl."`);
   scene.text('Niko gives Dimka a blank stare. "Sure she is… Why don\'t you just piss off before you piss me off?"');
   scene.text('Dimka scoffs. "Why don\'t we ask her who she\'s dating?"');
   scene.text('Niko grins. "Because asking a girl to kiss and tell is rude."');
@@ -1014,7 +1014,7 @@ function enterDimka(s: GameState, scene: SceneBuilder): void {
     { label: 'See what Dimka does', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/niko/nikoev/avatars/${((s as any).week || '')}.jpg`);
     scene.text('Dimka quickly pulls out his phone and shows a video to Niko. You recognize the video of you sucking Dimka\'s dick. Niko watches the video before turning to you. "You have some talents, I see." He pulls out his phone and taps the screens of both phones for a few seconds before returning Dimka\'s phone.');
     scene.text('Dimka grins. "See? I told you that she\'s a whore."');
     scene.text('"You\'re still being rude," Niko replies. "Thanks for the vid, but you can get lost now."');

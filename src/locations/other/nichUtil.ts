@@ -40,7 +40,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 'shortcut') {
             if (((s as any).locArgs?.[2] ?? 0) === 'meetTanya') {
-              qspCall(s, 'nichUtil', 'clearVars');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearVars(s, scene); (s as any).locArgs = __savedLocArgs; }
               (s as any).abonement = 30;
               (s as any).nichWork = 0;
               if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Relationship'] = 0;
@@ -108,7 +108,7 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec: gt \'nichUtil\', \'debug\',\'shortcut\',\'galaContract\'">Gala Contract</a>: Gala offers a special contract. Meet her in the living room.');
   scene.text('<i><b>Job performance</b></i>');
   // TODO-QSP: dynamic text: Overall performance (higher=better): <<nichPerformance>>
-  scene.text(`Overall performance (higher=better): ${((s as any).nichPerformance ?? 0)}`);
+  scene.text(`Overall performance (higher=better): ${((s as any).nichPerformance || '')}`);
   scene.text('<a href="exec: gt \'nichUtil\', \'debug\', \'evaluation\', \'silent\'">Get silent performance evaluation</a>');
   scene.text('<a href="exec: gt \'nichNicholas\', \'evaluation\'">Get detailed performance evaluation</a>');
   scene.text('<i><b>Chore state</b>: higher numbers are worse</i>');
@@ -150,11 +150,11 @@ function enterDebug(s: GameState, scene: SceneBuilder): void {
   scene.text('-<a href="exec: nichTanya[\'Relationship\'] = 1 & nichTanya[\'RelationshipState\'] = 10 & gt \'nichUtil\', \'debug\'">Casually dating</a>');
   scene.text('-<a href="exec: nichTanya[\'Relationship\'] = 1 & nichTanya[\'RelationshipState\'] = 20 & gt \'nichUtil\', \'debug\'">In a relationship</a>');
   // TODO-QSP: dynamic text: You fucked Tanya <<nichTanya['FuckCounter']>> times
-  scene.text(`You fucked Tanya ${((s as any).nichTanya ?? 0)?.['FuckCounter']} times`);
+  scene.text(`You fucked Tanya ${((s as any).nichTanya ?? 0)?.['FuckCounter'] ?? ''} times`);
   // TODO-QSP: dynamic text: The last time you fucked Tanya was '+(daystart-nichTanya['FuckLast'])+' days ago
   scene.text('The last time you fucked Tanya was \'+(daystart-nichTanya[\'FuckLast\'])+\' days ago');
   // TODO-QSP: dynamic text: Tanya has a dominance of <<nichTanya['Dominance']>> (range: -100 - 100)
-  scene.text(`Tanya has a dominance of ${((s as any).nichTanya ?? 0)?.['Dominance']} (range: -100 - 100)`);
+  scene.text(`Tanya has a dominance of ${((s as any).nichTanya ?? 0)?.['Dominance'] ?? ''} (range: -100 - 100)`);
   scene.actions([
     { label: 'DEBUG: New Workday', handler: (st: GameState) => {
     qspCall(st, 'nichUtil', 'startWorkday');
@@ -248,7 +248,7 @@ function enterFired(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'homes_properties', 'block_access', 'maid_bedroom');
   (s as any).nichWork = 4;
   qspCall(s, 'jobs', 'set_fired', 'nich_maid');
-  qspCall(s, 'nichUtil', 'clearVars');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
     { label: 'Take your belongings and leave the apartment', goto: ['city_center', ''] },
   ]);
@@ -263,7 +263,7 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/nicholas/01.jpg');
   scene.text('"Master Nicholas, I would like to quit," you say as you approach Nicholas.');
   // TODO-QSP: dynamic text: "I see <<$pcs_nickname>>. I am sad to see you go, but I wish you the best of luc...
-  scene.text(`"I see ${((s as any).pcs_nickname ?? 0)}. I am sad to see you go, but I wish you the best of luck."`);
+  scene.text(`"I see ${((s as any).pcs_nickname || '')}. I am sad to see you go, but I wish you the best of luck."`);
   scene.text('You bow as you head out of the room');
   // TODO-QSP: end
   scene.actions([
@@ -275,7 +275,7 @@ function enterQuit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'homes_properties', 'block_access', 'maid_bedroom');
     (s as any).nichWork = 3;
     qspCall(s, 'jobs', 'set_terminated', 'nich_maid');
-    qspCall(s, 'nichUtil', 'clearVarsQuit');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearVarsQuit(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Take your belongings and leave the apartment', goto: ['city_center', ''] },
     ]);
@@ -308,7 +308,7 @@ function enterHired(s: GameState, scene: SceneBuilder): void {
   (s as any).nichLastInspepection = (-1);
   if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[0] = 0;
   (s as any).nichSalaryBase = 10000;
-  if (!(s as any).npc_nickname) (s as any).npc_nickname = {}; (s as any).npc_nickname['A52'] = 'Master '+((s as any).npc_firstname ?? {})?.['A52'];
+  if (!(s as any).npc_nickname) (s as any).npc_nickname = {}; (s as any).npc_nickname['A52'] = 'Master '+(((s as any).npc_firstname ?? {})?.['A52'] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -358,7 +358,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichChoreState ?? 0)?.[String((s as any).nichChoreID ?? 0)] > 0) {
       scene.actions([
         { label: '(<<nichtTimeQuick>> minutes) Clean quickly', handler: (st: GameState) => {
-    scene.img(`${((s as any).nichTempPic ?? 0)}`);
+    scene.img(`${((s as any).nichTempPic || '')}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichtTimeQuick ?? 0));
     if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (0, 1)
@@ -370,7 +370,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: '(<<nichTimeNormal>> minutes) Clean normally', handler: (st: GameState) => {
-    scene.img(`${((s as any).nichTempPic ?? 0)}`);
+    scene.img(`${((s as any).nichTempPic || '')}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeNormal ?? 0));
     if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 3)
@@ -381,7 +381,7 @@ function enterCleanOptions(s: GameState, scene: SceneBuilder): void {
     ]);
   } },
         { label: '(<<nichTimeDiligently>> minutes) Clean diligently', handler: (st: GameState) => {
-    scene.img(`${((s as any).nichTempPic ?? 0)}`);
+    scene.img(`${((s as any).nichTempPic || '')}`);
     (s as any).minut = ((s as any).minut ?? 0) + (((s as any).nichTimeDiligently ?? 0));
     if (!(s as any).nichChoreState) (s as any).nichChoreState = {}; (s as any).nichChoreState[String((s as any).nichChoreID ?? 0)] = 0;
     // TODO-QSP: gs 'exp_gain', 'cleaning', rand (1, 5)
@@ -528,223 +528,223 @@ function enterNpcActivityAdd(s: GameState, scene: SceneBuilder): void {
 function enterNpcActivity(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'nicholas') {
     if (((s as any).week ?? 0) <= 5) {
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 6, 45);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathMorning', 7, 15);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'study', 7, 45);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'breakfast', 8, 30);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 6, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathMorning', 7, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'study', 7, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breakfast', 8, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 7, 45);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathMorning', 8, 15);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'study', 8, 45);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'breakfast', 9, 30);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 7, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathMorning', 8, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'study', 8, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breakfast', 9, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).week ?? 0) <= 4) {
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveWork', 8, 35);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'work', 18, 0);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnWork', 18, 5);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveWork', 8, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'work', 18, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnWork', 18, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).week ?? 0) === 5) {
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveWork', 8, 35);
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'work', 16, 0);
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnWork', 16, 5);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveWork', 8, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'work', 16, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnWork', 16, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).week ?? 0) === 6) {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveShopping', 9, 35);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'shopping', 16, 0);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnShopping', 16, 5);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveShopping', 9, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shopping', 16, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnShopping', 16, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 16, 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 16, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
     if (((s as any).nichGentleclubDayE1 ?? 0) === ((s as any).daystart ?? 0)) {
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'study', 22, 30);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathEvening', 22, 45);
-      qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 24, 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'study', 22, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathEvening', 22, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).week ?? 0) <= 4) {
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'dinner', 18, 30);
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'study', 20, 30);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dinner', 18, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'study', 20, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).week ?? 0) === 1) {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'study', 22, 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'study', 22, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).week ?? 0) === 2  ||  ((s as any).week ?? 0) === 4) {
             if (((s as any).nichNTRelation ?? 0) < 10) {
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'tanya', 22, 0);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tanya', 22, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'study', 22, 0);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'study', 22, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if (((s as any).week ?? 0) === 3) {
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 22, 0);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 22, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathEvening', 22, 15);
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 24, 0);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathEvening', 22, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6) {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'study', 18, 0);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathClub', 18, 30);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveClub', 18, 35);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'club', 23, 45);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnClub', 23, 50);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 24, 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'study', 18, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathClub', 18, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveClub', 18, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'club', 23, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnClub', 23, 50]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'study', 18, 0);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'dinner', 18, 30);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'gala', 21, 30);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathEvening', 21, 45);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 24, 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'study', 18, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dinner', 18, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gala', 21, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathEvening', 21, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'gala') {
       if (((s as any).nichGalaDisabled ?? 0) === 1) {
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'vanished', 24, 0);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vanished', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).week ?? 0) <= 5) {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 6, 45);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'snooze', 7, 15);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathMorning', 7, 45);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'breakfast', 8, 30);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 6, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'snooze', 7, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathMorning', 7, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breakfast', 8, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 7, 45);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'snooze', 8, 15);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathMorning', 8, 45);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'breakfast', 9, 30);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 7, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'snooze', 8, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathMorning', 8, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breakfast', 9, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
         if (((s as any).week ?? 0) === 1  ||  ((s as any).week ?? 0) === 3) {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 18, 5);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 18, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).week ?? 0) === 2) {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 9, 0);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveSpa', 9, 5);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'spa', 15, 30);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnSpa', 15, 35);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 18, 5);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 9, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveSpa', 9, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'spa', 15, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnSpa', 15, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 18, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).week ?? 0) === 4) {
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 9, 0);
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveFriend', 9, 5);
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'friend', 17, 30);
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnFriend', 17, 35);
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 18, 5);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 9, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveFriend', 9, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'friend', 17, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnFriend', 17, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 18, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).week ?? 0) === 5) {
-                qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 18, 5);
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 18, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).week ?? 0) === 6) {
-                  qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 18, 5);
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 18, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
                 } else {
-                  qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 18, 0);
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 18, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
               }
             }
           }
         }
         if (((s as any).week ?? 0) <= 4) {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'dinner', 18, 30);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'living', 20, 30);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathEvening', 22, 15);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 24, 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dinner', 18, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'living', 20, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathEvening', 22, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6) {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'prepareClub', 18, 30);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveClub', 18, 35);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'club', 23, 45);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnClub', 23, 50);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 24, 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'prepareClub', 18, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveClub', 18, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'club', 23, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnClub', 23, 50]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'dinner', 18, 30);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'nicholas', 21, 30);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathEvening', 21, 45);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 24, 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dinner', 18, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nicholas', 21, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathEvening', 21, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'tanya') {
         if (((s as any).week ?? 0) <= 5) {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 7, 45);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'breakfast', 8, 30);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathMorning', 9, 15);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 7, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breakfast', 8, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathMorning', 9, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).week ?? 0) === 6) {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'club', 2, 30);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnClub', 2, 35);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 8, 45);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'breakfast', 9, 30);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathMorning', 10, 15);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'club', 2, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnClub', 2, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 8, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breakfast', 9, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathMorning', 10, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 8, 45);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'breakfast', 9, 30);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'bathMorning', 10, 15);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 8, 45]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breakfast', 9, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bathMorning', 10, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
         if (((s as any).nichTanya ?? 0)?.['Uni'] >= 100  &&  ((s as any).nichTanya ?? 0)?.['UniStart'] !== ((s as any).daystart ?? 0)) {
           if (((s as any).week ?? 0) <= 5) {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveUni', 10, 20);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'uni', 14, 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveUni', 10, 20]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'uni', 14, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (((s as any).week ?? 0) === 2  ||  ((s as any).week ?? 0) === 5) {
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnUni', 14, 5);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnUni', 14, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         } else {
           if (((s as any).week ?? 0) === 1) {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'tanya', 13, 55);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveBallet', 14, 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tanya', 13, 55]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveBallet', 14, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).week ?? 0) === 3) {
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'tanya', 12, 0);
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveFriend', 12, 5);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tanya', 12, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveFriend', 12, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).week ?? 0) === 4) {
-                qspCall(s, 'nichUtil', 'npcActivityAdd', 'tanya', 12, 0);
-                qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveShopping', 12, 5);
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tanya', 12, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveShopping', 12, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             }
           }
         }
         if (((s as any).week ?? 0) === 1) {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'ballet', 16, 30);
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnBallet', 16, 35);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ballet', 16, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnBallet', 16, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).week ?? 0) === 3) {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'friend', 17, 0);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnFriend', 17, 5);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'friend', 17, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnFriend', 17, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).week ?? 0) === 4) {
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'shopping', 16, 15);
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'returnShopping', 16, 20);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shopping', 16, 15]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'returnShopping', 16, 20]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'tanya', 18, 5);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tanya', 18, 5]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).week ?? 0) <= 4  ||  ((s as any).week ?? 0) === 7) {
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'dinner', 18, 30);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dinner', 18, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
-        qspCall(s, 'nichUtil', 'npcActivityAdd', 'tanya', 20, 30);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tanya', 20, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).week ?? 0) === 2  ||  ((s as any).week ?? 0) === 4) {
           if (((s as any).nichNTRelation ?? 0) < 10) {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'nicholas', 22, 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nicholas', 22, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).nichTanya ?? 0)?.['BF'] > 0) {
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'boyfriend', 23, 0);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'boyfriend', 23, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
-              qspCall(s, 'nichUtil', 'npcActivityAdd', 'tanya', 22, 0);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tanya', 22, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
-          qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 24, 0);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).week ?? 0) === 5) {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'prepareClub', 21, 30);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'leaveClub', 21, 35);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'club', 24, 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'prepareClub', 21, 30]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leaveClub', 21, 35]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'club', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'tanya', 22, 0);
-            qspCall(s, 'nichUtil', 'npcActivityAdd', 'sleep', 24, 0);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tanya', 22, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 24, 0]; enterNpcActivityAdd(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }

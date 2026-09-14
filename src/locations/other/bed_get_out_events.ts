@@ -79,7 +79,7 @@ function enterContinue(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterVomit(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'bed_get_out_events', 'exit');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([{ label: 'Continue', goto: ['home_activity', 'vomiting_exit'] }]);
   // TODO-QSP: end
   scene.build();

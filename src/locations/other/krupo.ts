@@ -40,10 +40,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: Your sewing skill is now <<pcs_sewng>>.
-  scene.text(`Your sewing skill is now ${((s as any).pcs_sewng ?? 0)}.`);
+  scene.text(`Your sewing skill is now ${((s as any).pcs_sewng || '')}.`);
   if (((s as any).mc_inventory ?? 0)?.['sewing_fabric'] >= 0) {
     // TODO-QSP: dynamic text: Your cloth will suffice for <<mc_inventory['sewing_fabric']>> more lessons.
-    scene.text(`Your cloth will suffice for ${((s as any).mc_inventory ?? 0)?.['sewing_fabric']} more lessons.`);
+    scene.text(`Your cloth will suffice for ${((s as any).mc_inventory ?? 0)?.['sewing_fabric'] ?? ''} more lessons.`);
   }
   qspCall(s, 'stat', '');
   scene.actions([

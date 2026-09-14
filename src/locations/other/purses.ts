@@ -217,7 +217,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_purses[<<ARGS[2]>>] = 0
   // TODO-QSP: "
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).currentpursetype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).currentpursenumber ?? 0)) {
-    qspCall(s, 'purses', 'strip');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'outfit', 'set_derived_vars');
     (s as any).lastwornpursenumber = 0;
   }
@@ -233,7 +233,7 @@ function enterResetImmutables(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDispose(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'purses', 'remove_item', ((s as any).currentpursetype ?? 0), ((s as any).currentpursenumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).currentpursetype ?? 0), ((s as any).currentpursenumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -285,7 +285,7 @@ function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'purses', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -296,7 +296,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
     (s as any).currentpursenumber = 0;
   }
   (s as any).purselastwornnumber = ((s as any).currentpursenumber ?? 0);
-  qspCall(s, 'purses', 'strip_code');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -304,8 +304,8 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
 
 function enterStripCode(s: GameState, scene: SceneBuilder): void {
   (s as any).currentpursenumber = 0;
-  qspCall(s, 'purses', 'reset_PurseVars');
-  qspCall(s, 'purses', 'reset_PPurseVars');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PurseVars(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PPurseVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'outfit', 'set_derived_vars');
   return;
   // TODO-QSP: end
@@ -341,7 +341,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
-  qspCall(s, 'purses', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'purse_attributes', $ARGS[1], ARGS[2]
   if ((!((s as any).PursePrice ?? 0))) {
     return;

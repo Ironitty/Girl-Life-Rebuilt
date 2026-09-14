@@ -34,7 +34,7 @@ function enterAbdCustomerGo(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 3) + 1;
-  scene.img(`images/locations/shared/abduction/sex/ledonfour${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/ledonfour${((s as any).i || '')}.mp4`);
   scene.text('Your master removes your regular chain and attaches a leash to your collar.');
   scene.text('You are led up the stairs into the house above your cellar.');
   scene.text('When you enter the hall, your master orders you on your knees. "Crawl on your hands and legs like the bitch you are!"');
@@ -193,11 +193,11 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/locations/shared/abduction/sex/slavewhorekneelmaster.mp4');
     // TODO-QSP: dynamic text: The customer is a <<$heightType>> <<$bodyType>> <<$raceType>>.
-    scene.text(`The customer is a ${((s as any).heightType ?? 0)} ${((s as any).bodyType ?? 0)} ${((s as any).raceType ?? 0)}.`);
+    scene.text(`The customer is a ${((s as any).heightType || '')} ${((s as any).bodyType || '')} ${((s as any).raceType || '')}.`);
     // TODO-QSP: dynamic text: Kneeling in front of him, you look up and see the <<$charType>> look in his eyes...
-    scene.text(`Kneeling in front of him, you look up and see the ${((s as any).charType ?? 0)} look in his eyes.`);
+    scene.text(`Kneeling in front of him, you look up and see the ${((s as any).charType || '')} look in his eyes.`);
     // TODO-QSP: dynamic text: You then look down and see his crotch directly in front of you. It's obvious tha...
-    scene.text(`You then look down and see his crotch directly in front of you. It's obvious that he has something ${((s as any).dick_girth ?? 0)} in his pants.`);
+    scene.text(`You then look down and see his crotch directly in front of you. It's obvious that he has something ${((s as any).dick_girth || '')} in his pants.`);
   }
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
     scene.text('Your master speaks to the customer. "So this is her. You can be sure she\'s a virgin as her hymen is intact."');
@@ -206,7 +206,7 @@ function enterAbdCustomer(s: GameState, scene: SceneBuilder): void {
     scene.text('"In your establishment, I have paid for six virgins in total. This one is the seventh.');
     if (((s as any).age ?? 0) < 17) {
       // TODO-QSP: dynamic text: "Good number. Good slut, too. She's only <<age>> years old, so her pussy will be...
-      scene.text(`"Good number. Good slut, too. She's only ${((s as any).age ?? 0)} years old, so her pussy will be especially tight."`);
+      scene.text(`"Good number. Good slut, too. She's only ${((s as any).age || '')} years old, so her pussy will be especially tight."`);
       scene.text('"That\'s how I like it."');
     } else {
       scene.text('"Good number. She\'s a good slut, too."');
@@ -233,29 +233,29 @@ function enterAbdCustomerBuyout1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/leonid/leonid.jpg');
   scene.text('As you look up at his face, a chill runs down your spine - you know him!');
   // TODO-QSP: dynamic text: You remember this man from one of the parent-school conferences. It's Dimka's da...
-  scene.text(`You remember this man from one of the parent-school conferences. It's Dimka's dad, ${((s as any).bName ?? 0)}!`);
+  scene.text(`You remember this man from one of the parent-school conferences. It's Dimka's dad, ${((s as any).bName || '')}!`);
   // TODO-QSP: dynamic text: He recognizes you too. "Oh… what the? Who do we have here? Aren't you that missi...
-  scene.text(`He recognizes you too. "Oh… what the? Who do we have here? Aren't you that missing girl, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}?`);
+  scene.text(`He recognizes you too. "Oh… what the? Who do we have here? Aren't you that missing girl, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}?`);
   // TODO-QSP: dynamic text: With a trembling voice, only a few words leave your mouth. "Th… that's me mister...
-  scene.text(`With a trembling voice, only a few words leave your mouth. "Th… that's me mister ${((s as any).bSurname ?? 0)}…"`);
+  scene.text(`With a trembling voice, only a few words leave your mouth. "Th… that's me mister ${((s as any).bSurname || '')}…"`);
   scene.text('"You do realize that the police have already given up searching for you. As if they made any effort though…"');
   scene.text('"I-I don\'t even know how long I\'ve been here. The only thing I remember is being a plaything for these perverts…"');
   scene.text('There is a short period of silence, but despite the unexpected situation, you keep kneeling with your back straight and breasts jutting forward, as you have been trained to do.');
   scene.img('images/locations/shared/abduction/sex/slavewhorekneel2.jpg');
   // TODO-QSP: dynamic text: The look on <<$bName>>'s face then changes from surprised to something else.
-  scene.text(`The look on ${((s as any).bName ?? 0)}'s face then changes from surprised to something else.`);
+  scene.text(`The look on ${((s as any).bName || '')}'s face then changes from surprised to something else.`);
   scene.text('He approaches you and gently caresses your face. "Plaything, you say? And do you like it?"');
   scene.text('Surprised by such a question, you consider how to reply:');
   qspCall(s, 'willpower', 'misc', 'self', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Admit you like to be dominated, but this is too much [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Admit you like to be dominated, but this is too much', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Admit you like to be dominated, but this is too much [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Admit you like to be dominated, but this is too much', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['abductionCustomer', 'abdCustomer-buyout2'] },
@@ -276,7 +276,7 @@ function enterAbdCustomerBuyout2(s: GameState, scene: SceneBuilder): void {
   scene.text('"This establishment really gets the job done. I must commend the owner."');
   scene.text('He leaves the room and you can hear the echo of a discussion between him and your master.');
   // TODO-QSP: dynamic text: After a while, <<$bName>> returns. "Let's go <<$pcs_firstname>>." He grabs your ...
-  scene.text(`After a while, ${((s as any).bName ?? 0)} returns. "Let's go ${((s as any).pcs_firstname ?? 0)}." He grabs your leash and leads you outside the room into the hallway.`);
+  scene.text(`After a while, ${((s as any).bName || '')} returns. "Let's go ${((s as any).pcs_firstname || '')}." He grabs your leash and leads you outside the room into the hallway.`);
   scene.text('"B-but… where are you taking me? I\'ve never been in this part of the house before."');
   scene.text('"You still don\'t understand, do you slut? I own you now. I\'ve just bought you and you are now my property. You are… my slave."');
   scene.text('You\'re still naked and collared as he leads you outside to his car. You are forced to get into the trunk.');
@@ -294,20 +294,20 @@ function enterAbdCustomerBuyout3(s: GameState, scene: SceneBuilder): void {
   scene.text('He slaps your face so hard that you lose your balance and fall face first onto the floor.');
   scene.text('You are taken by surprise by the blow - you thought you were finally about to be saved from all of this.');
   // TODO-QSP: dynamic text: However, <<$bName>> seems to be as perverted as all the other men that have used...
-  scene.text(`However, ${((s as any).bName ?? 0)} seems to be as perverted as all the other men that have used you previously.`);
+  scene.text(`However, ${((s as any).bName || '')} seems to be as perverted as all the other men that have used you previously.`);
   scene.text('Stepping above you as you helplessly lie on the floor, he opens his zipper to pull out his dick.');
   // TODO-QSP: dynamic text: You can clearly see his <<dick>> cm long <<$dick_girth>> dick swing above you in...
-  scene.text(`You can clearly see his ${((s as any).dick ?? 0)} cm long ${((s as any).dick_girth ?? 0)} dick swing above you in the air.`);
+  scene.text(`You can clearly see his ${((s as any).dick || '')} cm long ${((s as any).dick_girth || '')} dick swing above you in the air.`);
   qspCall(s, 'willpower', 'bj', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Do nothing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Do nothing', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Do nothing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Do nothing', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['abductionCustomer', 'abdCustomer-fuckAnalRough'] },
@@ -324,10 +324,10 @@ function enterAbdCustomerBuyout4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/abduction/sex/slavewhorefuckanalroughleonid2.jpg');
   // TODO-QSP: dynamic text: You are left lying on the floor with <<$bName>>'s cum still flowing out of your ...
-  scene.text(`You are left lying on the floor with ${((s as any).bName ?? 0)}'s cum still flowing out of your gaping asshole.`);
+  scene.text(`You are left lying on the floor with ${((s as any).bName || '')}'s cum still flowing out of your gaping asshole.`);
   scene.text('You can hear the echo of his and your master\'s voices discussing something you can\'t make out.');
   // TODO-QSP: dynamic text: A few minutes later, <<$bName>> comes back into the room. "I really like you <<$...
-  scene.text(`A few minutes later, ${((s as any).bName ?? 0)} comes back into the room. "I really like you ${((s as any).pcs_firstname ?? 0)}."`);
+  scene.text(`A few minutes later, ${((s as any).bName || '')} comes back into the room. "I really like you ${((s as any).pcs_firstname || '')}."`);
   scene.text('He grabs your leash and leads you outside the room into the hallway.');
   scene.text('"B-but… where are you taking me? I\'ve never been in this part of the house before."');
   scene.text('"You still don\'t understand, do you slut? I own you now. I\'ve just bought you and you are now my property. You are… my slave."');
@@ -345,7 +345,7 @@ function enterAbdCustomerBuyoutLeave(s: GameState, scene: SceneBuilder): void {
   scene.text('Stuffed inside the trunk, you can only hear the sound of the engine and the pavement below as he drives you somewhere unknown.');
   scene.text('After an unknown amount of time, the engine shuts off, leaving only silence.');
   // TODO-QSP: dynamic text: <<$bName>> opens the trunk. Your eyes blink to adjust to the dimly lit area, and...
-  scene.text(`${((s as any).bName ?? 0)} opens the trunk. Your eyes blink to adjust to the dimly lit area, and you realize that you're in an underground parking garage.`);
+  scene.text(`${((s as any).bName || '')} opens the trunk. Your eyes blink to adjust to the dimly lit area, and you realize that you're in an underground parking garage.`);
   scene.text('You climb out, still naked and collared like a dog. It seems he doesn\'t care about your feelings at all.');
   scene.text('He takes your leash and leads you on all fours up the stairs. You exit through the stairwell door into a room that appears to be an office.');
   // TODO-QSP: end
@@ -380,7 +380,7 @@ function enterAbdCustomerVirgin2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/slavewhorevirgin2.mp4');
   scene.text('He starts to slowly undress, his back turned to you to enhance your terror. You hear a loud clink as his pants, holding a belt, hit the concrete floor. He slowly turns around to face you, and you can finally see his naked body. His cock sways for a moment before stopping in front of your face.');
   // TODO-QSP: dynamic text: "With renewed terror, you start to cry at the sight of his <<dick>> cm thick <<$...
-  scene.text(`"With renewed terror, you start to cry at the sight of his ${((s as any).dick ?? 0)} cm thick ${((s as any).dick_girth ?? 0)} cock."`);
+  scene.text(`"With renewed terror, you start to cry at the sight of his ${((s as any).dick || '')} cm thick ${((s as any).dick_girth || '')} cock."`);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -407,7 +407,7 @@ function enterAbdCustomerVirgin4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/slavewhorevirgin4.jpg');
   scene.text('He finally reaches for you and brings the tip of his dick to the entrance of your virgin pussy.');
   // TODO-QSP: dynamic text: He covers his <<$dick_girth>> member in a thick layer of lube and starts to slow...
-  scene.text(`He covers his ${((s as any).dick_girth ?? 0)} member in a thick layer of lube and starts to slowly press against the opening of your pussy.`);
+  scene.text(`He covers his ${((s as any).dick_girth || '')} member in a thick layer of lube and starts to slowly press against the opening of your pussy.`);
   scene.text('With his hands, he spreads your pussy lips apart to help ease the entry for his member.');
   scene.text('"Now behold girl. You are about to become a woman!" he exclaims.');
   scene.text('He pushes it in with a single long thrust that almost hits the bottom of your virgin cunt.');
@@ -429,7 +429,7 @@ function enterAbdCustomerVirgin5(s: GameState, scene: SceneBuilder): void {
   scene.text('He pulls his cock back out and shows it to you, enjoying the expression you make seeing your blood coating it.');
   scene.text('He then slams his cock back into you. The pain you feel is renewed while he grunts in pleasure.');
   // TODO-QSP: dynamic text: He feels accomplishment in his handiwork and sneers at you as he brutally thrust...
-  scene.text(`He feels accomplishment in his handiwork and sneers at you as he brutally thrusts into your pussy over and over again. He often hits your cervix with his ${((s as any).dick ?? 0)} cm long thick ${((s as any).dick_girth ?? 0)} dick.`);
+  scene.text(`He feels accomplishment in his handiwork and sneers at you as he brutally thrusts into your pussy over and over again. He often hits your cervix with his ${((s as any).dick || '')} cm long thick ${((s as any).dick_girth || '')} dick.`);
   if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (10);
   if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (10);
   if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (10);
@@ -447,7 +447,7 @@ function enterAbdCustomerVirgin6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/slavewhorevirgin6.mp4');
   scene.text('"And now you will receive your first load of cum, whore. You will become the breeder you were always supposed to be!"');
   // TODO-QSP: dynamic text: As renewed tears stream down your cheeks, he spurts his <<$cumType>> amount of s...
-  scene.text(`As renewed tears stream down your cheeks, he spurts his ${((s as any).cumType ?? 0)} amount of sperm ${((s as any).dick ?? 0)} cm deep inside your pussy. You can feel it hit your cervix, and you shudder at the thought of getting pregnant from this monster.`);
+  scene.text(`As renewed tears stream down your cheeks, he spurts his ${((s as any).cumType || '')} amount of sperm ${((s as any).dick || '')} cm deep inside your pussy. You can feel it hit your cervix, and you shudder at the thought of getting pregnant from this monster.`);
   (s as any).cumnostd = 1;
   qspCall(s, 'cum_call', 'pussy', 'deflowering pervert');
   qspCall(s, 'stat', '');
@@ -462,7 +462,7 @@ function enterAbdCustomerVirgin7(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/slavewhorevirgin7.jpg');
   scene.text('He rests with his dick deep inside you for a while. He is enjoying the sight of your cries and the despair of your situation.');
   // TODO-QSP: dynamic text: "As his <<$dick_girth>> member becomes flaccid, it slides free of your abused pu...
-  scene.text(`"As his ${((s as any).dick_girth ?? 0)} member becomes flaccid, it slides free of your abused pussy. He reaches out of sight and brings into view a dildo that looks almost exactly like his own dick. You think that it has probably been modeled from it."`);
+  scene.text(`"As his ${((s as any).dick_girth || '')} member becomes flaccid, it slides free of your abused pussy. He reaches out of sight and brings into view a dildo that looks almost exactly like his own dick. You think that it has probably been modeled from it."`);
   scene.text('"The cum that I just gave you is not meant to just drip out of you. You will receive another gift from me, one that will keep my present inside you."');
   scene.text('He proceeds to lift your ass in the air so the cum doesn\'t flow out, then brutally shoves the dildo all the way inside you. The dildo is pushed so deep into you that only its brightly coloured base peeks out of your abused hole.');
   scene.text('He then takes some pieces of duct tape and wraps them over your pussy to cover your lips and keep the dildo firmly stuck inside.');
@@ -484,11 +484,11 @@ function enterAbdCustomerVirgin8(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/locations/shared/abduction/sex/slavewhorevirgin8.jpg');
   // TODO-QSP: dynamic text: Your master comes in and finds you struggling on the ground. You are trying to s...
-  scene.text(`Your master comes in and finds you struggling on the ground. You are trying to shake the ${((s as any).dick_girth ?? 0)} dildo out of you.`);
+  scene.text(`Your master comes in and finds you struggling on the ground. You are trying to shake the ${((s as any).dick_girth || '')} dildo out of you.`);
   scene.text('"Stop it girl. You\'ll just make it worse."');
   scene.text('He grabs your leash and leads you back down to your cell.');
   // TODO-QSP: dynamic text: As you follow your master, the plugged <<$dick_girth>> dildo moves inside you, c...
-  scene.text(`As you follow your master, the plugged ${((s as any).dick_girth ?? 0)} dildo moves inside you, causing you further unpleasant sensations and pain.`);
+  scene.text(`As you follow your master, the plugged ${((s as any).dick_girth || '')} dildo moves inside you, causing you further unpleasant sensations and pain.`);
   scene.text('Finally, you are back at your bed.');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -503,7 +503,7 @@ function enterAbdCustomerVirgin9(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/abduction/sex/slavewhorevirgin9.jpg');
   scene.text('Your hands still bound, you are thrown on your bed and are once again chained to the wall.');
   // TODO-QSP: dynamic text: Your master leaves and you are left lying on the bed, your pussy still plugged b...
-  scene.text(`Your master leaves and you are left lying on the bed, your pussy still plugged by the ${((s as any).dick ?? 0)} cm long ${((s as any).dick_girth ?? 0)} dildo.`);
+  scene.text(`Your master leaves and you are left lying on the bed, your pussy still plugged by the ${((s as any).dick || '')} cm long ${((s as any).dick_girth || '')} dildo.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Try to rest', goto: ['abductionCustomer', 'abdCustomer-virgin10'] },
@@ -536,37 +536,37 @@ function enterAbdCustomerUnzip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('You reach towards his crotch and slowly start to unzip his trousers.');
   // TODO-QSP: dynamic text: Pressing your face underneath his crotch, you pull down his pants and a <<$dick_...
-  scene.text(`Pressing your face underneath his crotch, you pull down his pants and a ${((s as any).dick_girth ?? 0)} member falls out. It lands directly on your face with a loud slap.`);
+  scene.text(`Pressing your face underneath his crotch, you pull down his pants and a ${((s as any).dick_girth || '')} member falls out. It lands directly on your face with a loud slap.`);
   if (((s as any).dick ?? 0) > 15  &&  ((s as any).dick ?? 0) < 25) {
     scene.img('images/locations/shared/abduction/sex/unzip1.mp4');
     // TODO-QSP: dynamic text: You admire his <<$dick_girth>> cock.
-    scene.text(`You admire his ${((s as any).dick_girth ?? 0)} cock.`);
+    scene.text(`You admire his ${((s as any).dick_girth || '')} cock.`);
   } else {
     if (((s as any).dick ?? 0) >= 25) {
       scene.img('images/locations/shared/abduction/sex/unzip2.mp4');
       // TODO-QSP: dynamic text: You stare at his <<$dick_girth>> cock in horror. You imagine what terrible thing...
-      scene.text(`You stare at his ${((s as any).dick_girth ?? 0)} cock in horror. You imagine what terrible things it will do to your tender body.`);
+      scene.text(`You stare at his ${((s as any).dick_girth || '')} cock in horror. You imagine what terrible things it will do to your tender body.`);
     } else {
       if (((s as any).dick ?? 0) < 15  &&  ((s as any).pcs_throat ?? 0) > ((s as any).dick ?? 0)) {
         scene.img('images/locations/shared/abduction/sex/unzip3.mp4');
         // TODO-QSP: dynamic text: You look at his <<$dick_girth>> cock in relief, thinking that it's nothing you c...
-        scene.text(`You look at his ${((s as any).dick_girth ?? 0)} cock in relief, thinking that it's nothing you can't handle.`);
+        scene.text(`You look at his ${((s as any).dick_girth || '')} cock in relief, thinking that it's nothing you can't handle.`);
       }
     }
   }
   if (((s as any).pcs_throat ?? 0) < ((s as any).dick ?? 0)) {
     // TODO-QSP: dynamic text: It's obvious that his <<$dick_girth>> dick is above your skill level and you kno...
-    scene.text(`It's obvious that his ${((s as any).dick_girth ?? 0)} dick is above your skill level and you know you can't safely swallow it whole.`);
+    scene.text(`It's obvious that his ${((s as any).dick_girth || '')} dick is above your skill level and you know you can't safely swallow it whole.`);
     qspCall(s, 'willpower', 'bj', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Force yourself on his cock [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Force yourself on his cock', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Force yourself on his cock [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Force yourself on his cock', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -578,17 +578,17 @@ function enterAbdCustomerUnzip(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: Even though his dick is <<$dick_girth>>, you know you could take it all the way ...
-    scene.text(`Even though his dick is ${((s as any).dick_girth ?? 0)}, you know you could take it all the way to the base.`);
+    scene.text(`Even though his dick is ${((s as any).dick_girth || '')}, you know you could take it all the way to the base.`);
     qspCall(s, 'willpower', 'bj', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Deepthroat his cock [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Deepthroat his cock', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Deepthroat his cock [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Deepthroat his cock', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -606,7 +606,7 @@ function enterAbdCustomerUnzip(s: GameState, scene: SceneBuilder): void {
 function enterAbdCustomerShow(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhoretease${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhoretease${((s as any).i || '')}.mp4`);
   scene.text('You decide to tease the customer by jiggling and squeezing your breasts.');
   scene.text('After a few minutes, it\'s obvious that he wants something more.');
   // TODO-QSP: end
@@ -620,28 +620,28 @@ function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 15, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobtip${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobtip${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: You try your best to suck the head of his <<dick>> cm sized <<$dick_girth>> dick...
-  scene.text(`You try your best to suck the head of his ${((s as any).dick ?? 0)} cm sized ${((s as any).dick_girth ?? 0)} dick.`);
+  scene.text(`You try your best to suck the head of his ${((s as any).dick || '')} cm sized ${((s as any).dick_girth || '')} dick.`);
   if (((s as any).pcs_throat ?? 0) < ((s as any).dick ?? 0)) {
     // TODO-QSP: dynamic text: It's obvious that his <<$dick_girth>> dick is above your skill level and you kno...
-    scene.text(`It's obvious that his ${((s as any).dick_girth ?? 0)} dick is above your skill level and you know you can't safely swallow it whole.`);
+    scene.text(`It's obvious that his ${((s as any).dick_girth || '')} dick is above your skill level and you know you can't safely swallow it whole.`);
   } else {
     // TODO-QSP: dynamic text: Even though his dick is <<$dick_girth>>, you know you could take it all the way ...
-    scene.text(`Even though his dick is ${((s as any).dick_girth ?? 0)}, you know you could take it all the way to the base.`);
+    scene.text(`Even though his dick is ${((s as any).dick_girth || '')}, you know you could take it all the way to the base.`);
   }
   if (((s as any).charType ?? 0) === 'sadistic') {
     if (((s as any).buyout ?? 0) === 1) {
       // TODO-QSP: dynamic text: <<$bName>> is starting to get annoyed. He's obviously not happy that all you can...
-      scene.text(`${((s as any).bName ?? 0)} is starting to get annoyed. He's obviously not happy that all you can do is suck the tip of his cock.`);
+      scene.text(`${((s as any).bName || '')} is starting to get annoyed. He's obviously not happy that all you can do is suck the tip of his cock.`);
     } else {
       scene.text('Your customer is starting to get annoyed. He\'s obviously not happy that all you can do is suck the tip of his cock.');
     }
     // TODO-QSP: dynamic text: Suddenly, without any warning, he takes a step back, which pulls his <<$dick_gir...
-    scene.text(`Suddenly, without any warning, he takes a step back, which pulls his ${((s as any).dick_girth ?? 0)} member out of your mouth.`);
+    scene.text(`Suddenly, without any warning, he takes a step back, which pulls his ${((s as any).dick_girth || '')} member out of your mouth.`);
     scene.text('With an angry look in his eyes, he slaps your face very hard, which knocks you to the cold floor. He then jumps on top of you and ties you up with some rope.');
     // TODO-QSP: dynamic text: "Even here, one must train the slaves himself!" he shouts at you. He forces his ...
-    scene.text(`"Even here, one must train the slaves himself!" he shouts at you. He forces his ${((s as any).dick_girth ?? 0)} dick all the way down your throat.`);
+    scene.text(`"Even here, one must train the slaves himself!" he shouts at you. He forces his ${((s as any).dick_girth || '')} dick all the way down your throat.`);
     scene.text('With your hands tied, you\'re unable to resist. All you can do is struggle to avoid suffocating as best you can.');
     scene.actions([
       { label: 'Endure', goto: ['abductionCustomer', 'abdCustomer-suckForced'] },
@@ -663,13 +663,13 @@ function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'bj', 'self');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Force yourself on his cock [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Force yourself on his cock', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Force yourself on his cock [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Force yourself on his cock', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -680,13 +680,13 @@ function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'bj', 'self');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Deepthroat his cock [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Deepthroat his cock', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Deepthroat his cock [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Deepthroat his cock', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -697,7 +697,7 @@ function enterAbdCustomerSuckTip(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).charType ?? 0) === 'kind') {
         // TODO-QSP: dynamic text: Your customer seems pleased with your skill, so you continue to tease the tip of...
-        scene.text(`Your customer seems pleased with your skill, so you continue to tease the tip of his ${((s as any).dick_girth ?? 0)} cock. You look at him with as much sensual abandon as you can muster under the present conditions.`);
+        scene.text(`Your customer seems pleased with your skill, so you continue to tease the tip of his ${((s as any).dick_girth || '')} cock. You look at him with as much sensual abandon as you can muster under the present conditions.`);
         scene.actions([
           { label: 'Continue sucking the tip', goto: ['abductionCustomer', 'abdCustomer-fuck'] },
         ]);
@@ -713,9 +713,9 @@ function enterAbdCustomerSuckForceself(s: GameState, scene: SceneBuilder): void 
   if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (((s as any).throatDMG ?? 0));
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 3) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobselfforced${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobselfforced${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: Despite knowing you will probably hurt yourself, you force yourself on his <<dic...
-  scene.text(`Despite knowing you will probably hurt yourself, you force yourself on his ${((s as any).dick ?? 0)} cm long cock all the way down to the base.`);
+  scene.text(`Despite knowing you will probably hurt yourself, you force yourself on his ${((s as any).dick || '')} cm long cock all the way down to the base.`);
   scene.text('You start gagging, and saliva freely flows from your stuffed mouth. Your customer seems more content now.');
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'rough', 'deepthroat');
   // TODO-QSP: end
@@ -732,10 +732,10 @@ function enterAbdCustomerSuckForced(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).endPunishment = 1;
   (s as any).i = Math.floor(Math.random() * 6) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobforced${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjobforced${((s as any).i || '')}.mp4`);
   if (((s as any).buyout ?? 0) === 1) {
     // TODO-QSP: dynamic text: <<$bName>> growls and suddenly pulls his cock out of your mouth.
-    scene.text(`${((s as any).bName ?? 0)} growls and suddenly pulls his cock out of your mouth.`);
+    scene.text(`${((s as any).bName || '')} growls and suddenly pulls his cock out of your mouth.`);
   } else {
     scene.text('Your customer growls and suddenly pulls his cock out of your mouth.');
   }
@@ -767,9 +767,9 @@ function enterAbdCustomerSuckDeep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 6) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjob${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhoreblowjob${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: You swallow his <<$dick_girth>> cock all the way down to his balls.
-  scene.text(`You swallow his ${((s as any).dick_girth ?? 0)} cock all the way down to his balls.`);
+  scene.text(`You swallow his ${((s as any).dick_girth || '')} cock all the way down to his balls.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['abductionCustomer', 'abdCustomer-fuck'] },
@@ -784,7 +784,7 @@ function enterAbdCustomerFuck(s: GameState, scene: SceneBuilder): void {
   (s as any).endPunishment = 0;
   scene.img('images/locations/shared/abduction/sex/slavewhorecockremoved.jpg');
   // TODO-QSP: dynamic text: It seems the customer is done with fucking your mouth as he removes his dick and...
-  scene.text(`It seems the customer is done with fucking your mouth as he removes his dick and steps back. He looks at you with a ${((s as any).charType ?? 0)} appetite in his eyes.`);
+  scene.text(`It seems the customer is done with fucking your mouth as he removes his dick and steps back. He looks at you with a ${((s as any).charType || '')} appetite in his eyes.`);
   if (((s as any).charType ?? 0) === 'sadistic') {
     scene.text('"What should I do to you next, bitch?"');
   } else {
@@ -810,13 +810,13 @@ function enterAbdCustomerFuck(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Beg him to be kind [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Beg him to be kind', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Beg him to be kind [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Beg him to be kind', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -923,9 +923,9 @@ function enterAbdCustomerFuckAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckanal${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckanal${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: The customer puts some lubricant on his <<$dick_girth>> cock and penetrates your...
-  scene.text(`The customer puts some lubricant on his ${((s as any).dick_girth ?? 0)} cock and penetrates your ass.`);
+  scene.text(`The customer puts some lubricant on his ${((s as any).dick_girth || '')} cock and penetrates your ass.`);
   scene.text('He doesn\'t care much about your feelings, but he\'s also not exactly hurting you on purpose.');
   if (((s as any).dick ?? 0) > ((s as any).pcs_ass ?? 0)) {
     if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
@@ -937,7 +937,7 @@ function enterAbdCustomerFuckAnal(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     // TODO-QSP: dynamic text: You have no problems accommodating his <<$dick_girth>> member.
-    scene.text(`You have no problems accommodating his ${((s as any).dick_girth ?? 0)} member.`);
+    scene.text(`You have no problems accommodating his ${((s as any).dick_girth || '')} member.`);
     qspCall(s, 'arousal', 'anal', 30, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -953,18 +953,18 @@ function enterAbdCustomerFuckAnalRough(s: GameState, scene: SceneBuilder): void 
   qspCall(s, 'arousal', 'anal', 30, 'sub', 'rough', 'bound');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckanalrough${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckanalrough${((s as any).i || '')}.mp4`);
   if (((s as any).buyout ?? 0) === 1) {
     scene.img('images/locations/shared/abduction/sex/slavewhorefuckanalroughleonid1.jpg');
     // TODO-QSP: dynamic text: <<$bName>> takes you by your leash and positions your body as if it's just meat ...
-    scene.text(`${((s as any).bName ?? 0)} takes you by your leash and positions your body as if it's just meat to be used.`);
+    scene.text(`${((s as any).bName || '')} takes you by your leash and positions your body as if it's just meat to be used.`);
   } else {
     scene.text('The man takes you by your leash and positions your body as if it\'s just meat to be used.');
   }
   scene.text('What comes next is an excruciatingly rough ass fucking that clearly shows he has no regard for all the pain you have to endure.');
   if (((s as any).assDMG ?? 0) <= 0) {
     // TODO-QSP: dynamic text: Fortunately, his <<$dick_girth>> dick is not enough to cause you much pain. No m...
-    scene.text(`Fortunately, his ${((s as any).dick_girth ?? 0)} dick is not enough to cause you much pain. No more than usual, anyway.`);
+    scene.text(`Fortunately, his ${((s as any).dick_girth || '')} dick is not enough to cause you much pain. No more than usual, anyway.`);
     if (((s as any).buyout ?? 0) === 1) {
       scene.actions([
         { label: 'Be silent', goto: ['abductionCustomer', 'abdCustomer-cumAss'] },
@@ -983,7 +983,7 @@ function enterAbdCustomerFuckAnalRough(s: GameState, scene: SceneBuilder): void 
   } else {
     if (((s as any).assDMG ?? 0) <= 2) {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is too big for you and you suffer a lot of stretching p...
-      scene.text(`His ${((s as any).dick_girth ?? 0)} dick is too big for you and you suffer a lot of stretching pain as it slams against your intestinal walls.`);
+      scene.text(`His ${((s as any).dick_girth || '')} dick is too big for you and you suffer a lot of stretching pain as it slams against your intestinal walls.`);
       if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
       qspCall(s, 'stat', '');
       scene.actions([
@@ -991,7 +991,7 @@ function enterAbdCustomerFuckAnalRough(s: GameState, scene: SceneBuilder): void 
       ]);
     } else {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is insanely big for you.
-      scene.text(`His ${((s as any).dick_girth ?? 0)} dick is insanely big for you.`);
+      scene.text(`His ${((s as any).dick_girth || '')} dick is insanely big for you.`);
       scene.text('The tip of his cock repeatedly hits your intestinal walls and stretches your anus wide.');
       if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
       if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['tummy'] = ((s as any).pain['tummy'] ?? 0) + (((s as any).assDMG ?? 0));
@@ -1010,19 +1010,19 @@ function enterAbdCustomerFuckAnalDeep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 1) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckanaldeep${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckanaldeep${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: His member is <<$dick_girth>> and your ass is unable to accommodate it.
-  scene.text(`His member is ${((s as any).dick_girth ?? 0)} and your ass is unable to accommodate it.`);
+  scene.text(`His member is ${((s as any).dick_girth || '')} and your ass is unable to accommodate it.`);
   if (((s as any).charType ?? 0) === 'sadistic') {
     scene.text('He doesn\'t care, even though he\'s obviously aware, and fucks you furiously hard.');
     // TODO-QSP: dynamic text: "How do like my <<$dick_girth>> cock inside you bitch? Is it deep enough for you...
-    scene.text(`"How do like my ${((s as any).dick_girth ?? 0)} cock inside you bitch? Is it deep enough for you, or should I push a bit more?"`);
+    scene.text(`"How do like my ${((s as any).dick_girth || '')} cock inside you bitch? Is it deep enough for you, or should I push a bit more?"`);
     scene.text('He\'s obviously enjoying this a lot.');
   }
   scene.text('With every thrust of his dick deep inside your intestines, you feel as if it\'s your very stomach being poked by it.');
   if (((s as any).buyout ?? 0) === 1) {
     // TODO-QSP: dynamic text: After about a half an hour of deep anal banging, <<$bName>> is about to cum.
-    scene.text(`After about a half an hour of deep anal banging, ${((s as any).bName ?? 0)} is about to cum.`);
+    scene.text(`After about a half an hour of deep anal banging, ${((s as any).bName || '')} is about to cum.`);
   } else {
     scene.text('After about a half an hour of deep anal banging, the man is about to cum.');
   }
@@ -1050,12 +1050,12 @@ function enterAbdCustomerFuckNormal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorefucknormal${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorefucknormal${((s as any).i || '')}.mp4`);
   scene.text('The customer penetrates your pussy and fucks you.');
   if (((s as any).vagDMG ?? 0) <= 0) {
     scene.text('He\'s not gentle, but it isn\'t very rough either.');
     // TODO-QSP: dynamic text: You have no problems accommodating his <<$dick_girth>> dick. You almost seem to ...
-    scene.text(`You have no problems accommodating his ${((s as any).dick_girth ?? 0)} dick. You almost seem to enjoy it.`);
+    scene.text(`You have no problems accommodating his ${((s as any).dick_girth || '')} dick. You almost seem to enjoy it.`);
     qspCall(s, 'arousal', 'vaginal', 30, 'sub');
     scene.actions([
       { label: 'Be silent', goto: ['abductionCustomer', 'abdCustomer-cumGate'] },
@@ -1063,7 +1063,7 @@ function enterAbdCustomerFuckNormal(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).vagDMG ?? 0) <= 2) {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is too big for you, and you suffer a lot of stretching ...
-      scene.text(`His ${((s as any).dick_girth ?? 0)} dick is too big for you, and you suffer a lot of stretching pain as it slams against your vaginal walls.`);
+      scene.text(`His ${((s as any).dick_girth || '')} dick is too big for you, and you suffer a lot of stretching pain as it slams against your vaginal walls.`);
       if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0));
       qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'rough');
       qspCall(s, 'stat', '');
@@ -1072,7 +1072,7 @@ function enterAbdCustomerFuckNormal(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is insanely big for you.
-      scene.text(`His ${((s as any).dick_girth ?? 0)} dick is insanely big for you.`);
+      scene.text(`His ${((s as any).dick_girth || '')} dick is insanely big for you.`);
       scene.text('The tip of his cock even penetrates your cervix, or at least it seems like it to you. The pain is almost unbearable!');
       if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0));
       if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (((s as any).vagDMG ?? 0));
@@ -1091,12 +1091,12 @@ function enterAbdCustomerFuckRough(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'vaginal', 2);
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckrough${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckrough${((s as any).i || '')}.mp4`);
   scene.text('The man takes you by your leash and positions your body as if it\'s just meat to be used.');
   scene.text('What comes next is an excruciatingly rough fuck that clearly shows he has no regard for all the pain you have to endure.');
   if (((s as any).vagDMG ?? 0) <= 0) {
     // TODO-QSP: dynamic text: Fortunately, his <<$dick_girth>> dick is not enough to cause you much pain. No m...
-    scene.text(`Fortunately, his ${((s as any).dick_girth ?? 0)} dick is not enough to cause you much pain. No more than usual, anyway.`);
+    scene.text(`Fortunately, his ${((s as any).dick_girth || '')} dick is not enough to cause you much pain. No more than usual, anyway.`);
     qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'bound');
     if (((s as any).charType ?? 0) === 'sadistic') {
       scene.actions([
@@ -1110,7 +1110,7 @@ function enterAbdCustomerFuckRough(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).vagDMG ?? 0) <= 2) {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is too big for you, and you suffer a lot of stretching ...
-      scene.text(`His ${((s as any).dick_girth ?? 0)} dick is too big for you, and you suffer a lot of stretching pain as it slams against your vaginal walls.`);
+      scene.text(`His ${((s as any).dick_girth || '')} dick is too big for you, and you suffer a lot of stretching pain as it slams against your vaginal walls.`);
       if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0));
       qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'bound', 'rough');
       qspCall(s, 'stat', '');
@@ -1119,7 +1119,7 @@ function enterAbdCustomerFuckRough(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: His <<$dick_girth>> dick is insanely big for you.
-      scene.text(`His ${((s as any).dick_girth ?? 0)} dick is insanely big for you.`);
+      scene.text(`His ${((s as any).dick_girth || '')} dick is insanely big for you.`);
       scene.text('The tip of his cock even penetrates your cervix, or at least it seems like it to you. The pain is almost unbearable!');
       scene.text('He notices this too, realizing it\'s why you\'re groaning so loudly. Enjoying your suffering, he pushes his dick even deeper inside, and you squeal like a pig.');
       if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['vaginal'] = ((s as any).pain['vaginal'] ?? 0) + (((s as any).vagDMG ?? 0) * 2);
@@ -1140,13 +1140,13 @@ function enterAbdCustomerFuckDeep(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckdeep${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorefuckdeep${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: His member is <<$dick_girth>> and your vagina is unable to accommodate it.
-  scene.text(`His member is ${((s as any).dick_girth ?? 0)} and your vagina is unable to accommodate it.`);
+  scene.text(`His member is ${((s as any).dick_girth || '')} and your vagina is unable to accommodate it.`);
   if (((s as any).charType ?? 0) === 'sadistic') {
     scene.text('He doesn\'t care about that, even though he is obviously aware of it, and fucks you furiously hard.');
     // TODO-QSP: dynamic text: "How do like my <<$dick_girth>> cock inside you bitch? Is it deep enough for you...
-    scene.text(`"How do like my ${((s as any).dick_girth ?? 0)} cock inside you bitch? Is it deep enough for you, or should I push a bit more? Do you feel me entering your cervix?"`);
+    scene.text(`"How do like my ${((s as any).dick_girth || '')} cock inside you bitch? Is it deep enough for you, or should I push a bit more? Do you feel me entering your cervix?"`);
     scene.text('He\'s obviously enjoying this a lot.');
   }
   scene.text('With every thrust of his dick deep inside your vagina, you feel as if it\'s your very cervix being penetrated.');
@@ -1182,13 +1182,13 @@ function enterAbdCustomerCumGate(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'cum_inside', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Inside your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Inside your pussy', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Inside your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Inside your pussy', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cum_inside', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -1198,13 +1198,13 @@ function enterAbdCustomerCumGate(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'cum_inside_anal', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Inside your ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Inside your ass', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Inside your ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Inside your ass', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cum_inside_anal', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -1214,13 +1214,13 @@ function enterAbdCustomerCumGate(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'swallow', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'In your mouth [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'In your mouth', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'In your mouth [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'In your mouth', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'swallow', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -1270,27 +1270,27 @@ function enterAbdCustomerCum(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdCustomerCumPussy(s: GameState, scene: SceneBuilder): void {
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorecumpussy${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorecumpussy${((s as any).i || '')}.mp4`);
   if (((s as any).vagDMG ?? 0) > 0) {
     // TODO-QSP: dynamic text: As he pumps his cum into your vagina, you feel the tip of his <<$dick_girth>> co...
-    scene.text(`As he pumps his cum into your vagina, you feel the tip of his ${((s as any).dick_girth ?? 0)} cock at your cervix and even inside it.`);
+    scene.text(`As he pumps his cum into your vagina, you feel the tip of his ${((s as any).dick_girth || '')} cock at your cervix and even inside it.`);
     scene.text('His cum penetrates through the cervix directly into your womb, which causes a warm, yet painful sensation to flow through you.');
     if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (((s as any).vagDMG ?? 0));
     qspCall(s, 'stat', '');
   }
   if (((s as any).cumVol ?? 0) === 3) {
     // TODO-QSP: dynamic text: With his <<$dick_girth>> dick buried inside your pussy, the customer pumps his c...
-    scene.text(`With his ${((s as any).dick_girth ?? 0)} dick buried inside your pussy, the customer pumps his cum inside you.`);
+    scene.text(`With his ${((s as any).dick_girth || '')} dick buried inside your pussy, the customer pumps his cum inside you.`);
     scene.text('When he pulls out, some of it drips out of you.');
   } else {
     if (((s as any).cumVol ?? 0) === 4) {
       // TODO-QSP: dynamic text: With his <<$dick_girth>> dick buried deep inside your pussy, his tip touches you...
-      scene.text(`With his ${((s as any).dick_girth ?? 0)} dick buried deep inside your pussy, his tip touches your cervix as he pumps your pussy full of his cum.`);
+      scene.text(`With his ${((s as any).dick_girth || '')} dick buried deep inside your pussy, his tip touches your cervix as he pumps your pussy full of his cum.`);
       scene.text('As he pulls his cock out, a large amount of the cum forcefully squirts out of you.');
     } else {
       if (((s as any).cumVol ?? 0) >= 5) {
         // TODO-QSP: dynamic text: With his <<$dick_girth>> dick buried very deep inside your pussy, his tip pushes...
-        scene.text(`With his ${((s as any).dick_girth ?? 0)} dick buried very deep inside your pussy, his tip pushes against your cervix and even slides inside a little.`);
+        scene.text(`With his ${((s as any).dick_girth || '')} dick buried very deep inside your pussy, his tip pushes against your cervix and even slides inside a little.`);
         scene.text('As he pumps his cum inside you, a lot of it shoots directly into your womb. It feels painful, but the warm sensation is nothing like what you\'ve felt before.');
         scene.text('When he pulls his cock out, his cum squirts out of your pussy.');
         if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['cervix'] = ((s as any).pain['cervix'] ?? 0) + (20);
@@ -1314,20 +1314,20 @@ function enterAbdCustomerCumPussy(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorecumass${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorecumass${((s as any).i || '')}.mp4`);
   if (((s as any).assDMG ?? 0) > 0) {
     // TODO-QSP: dynamic text: You can feel his <<$dick_girth>> cock slamming against your intestinal wall as h...
-    scene.text(`You can feel his ${((s as any).dick_girth ?? 0)} cock slamming against your intestinal wall as he cums inside your ass.`);
+    scene.text(`You can feel his ${((s as any).dick_girth || '')} cock slamming against your intestinal wall as he cums inside your ass.`);
     scene.text('His cum fills you, and feels as if it\'s flowed right up to your stomach.');
     if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['asshole'] = ((s as any).pain['asshole'] ?? 0) + (((s as any).assDMG ?? 0));
     qspCall(s, 'stat', '');
   }
   if (((s as any).cumVol ?? 0) === 3) {
     // TODO-QSP: dynamic text: His <<$dick_girth>> member is buried in your intestines.
-    scene.text(`His ${((s as any).dick_girth ?? 0)} member is buried in your intestines.`);
+    scene.text(`His ${((s as any).dick_girth || '')} member is buried in your intestines.`);
     if (((s as any).buyout ?? 0) === 1) {
       // TODO-QSP: dynamic text: As <<$bName>> shoots his load, you can feel the warmth spreading inside you…
-      scene.text(`As ${((s as any).bName ?? 0)} shoots his load, you can feel the warmth spreading inside you…`);
+      scene.text(`As ${((s as any).bName || '')} shoots his load, you can feel the warmth spreading inside you…`);
     } else {
       scene.text('As he shoots his load, you can feel the warmth spreading inside you…');
     }
@@ -1335,10 +1335,10 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).cumVol ?? 0) === 4) {
       // TODO-QSP: dynamic text: His <<$dick_girth>> member is buried <<dick>> centimeters deep inside your intes...
-      scene.text(`His ${((s as any).dick_girth ?? 0)} member is buried ${((s as any).dick ?? 0)} centimeters deep inside your intestines, sometimes even hitting your intestinal walls.`);
+      scene.text(`His ${((s as any).dick_girth || '')} member is buried ${((s as any).dick || '')} centimeters deep inside your intestines, sometimes even hitting your intestinal walls.`);
       if (((s as any).buyout ?? 0) === 1) {
         // TODO-QSP: dynamic text: As <<$bName>> shoots his load, you can feel a warmth spread inside you…
-        scene.text(`As ${((s as any).bName ?? 0)} shoots his load, you can feel a warmth spread inside you…`);
+        scene.text(`As ${((s as any).bName || '')} shoots his load, you can feel a warmth spread inside you…`);
       } else {
         scene.text('As he shoots his load, you can feel a warmth spread inside you…');
       }
@@ -1347,10 +1347,10 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
       if (((s as any).cumVol ?? 0) >= 5) {
         if (((s as any).buyout ?? 0) === 1) {
           // TODO-QSP: dynamic text: <<$bName>>'s <<$dick_girth>> member is buried <<dick>> centimeters deep inside y...
-          scene.text(`${((s as any).bName ?? 0)}'s ${((s as any).dick_girth ?? 0)} member is buried ${((s as any).dick ?? 0)} centimeters deep inside your intestines, with each thrust forcefully hitting your intestinal walls.`);
+          scene.text(`${((s as any).bName || '')}'s ${((s as any).dick_girth || '')} member is buried ${((s as any).dick || '')} centimeters deep inside your intestines, with each thrust forcefully hitting your intestinal walls.`);
         } else {
           // TODO-QSP: dynamic text: The customer's <<$dick_girth>> member is buried <<dick>> centimeters deep inside...
-          scene.text(`The customer's ${((s as any).dick_girth ?? 0)} member is buried ${((s as any).dick ?? 0)} centimeters deep inside your intestines, with each thrust forcefully hitting your intestinal walls.`);
+          scene.text(`The customer's ${((s as any).dick_girth || '')} member is buried ${((s as any).dick || '')} centimeters deep inside your intestines, with each thrust forcefully hitting your intestinal walls.`);
         }
         scene.text('You feel an increasing amount of pressure and stretching pain as he pumps your intestines full of cum.');
         scene.text('When he pulls his cock out, cum squirts out of your ravaged anus.');
@@ -1359,7 +1359,7 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).buyout ?? 0) === 1) {
           // TODO-QSP: dynamic text: <<$bName>> cums inside you. When he pulls his cock out, his cum slowly leaks out...
-          scene.text(`${((s as any).bName ?? 0)} cums inside you. When he pulls his cock out, his cum slowly leaks out of your gaping anus.`);
+          scene.text(`${((s as any).bName || '')} cums inside you. When he pulls his cock out, his cum slowly leaks out of your gaping anus.`);
         } else {
           scene.text('The customer cums inside you. When he pulls his cock out, his cum slowly leaks out of your gaping anus.');
         }
@@ -1393,10 +1393,10 @@ function enterAbdCustomerCumAss(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdCustomerCumMouth(s: GameState, scene: SceneBuilder): void {
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorecummouth${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorecummouth${((s as any).i || '')}.mp4`);
   if (((s as any).throatDMG ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your aching throat is penetrated again as he buries his <<$dick_girth>> cock to ...
-    scene.text(`Your aching throat is penetrated again as he buries his ${((s as any).dick_girth ?? 0)} cock to the hilt inside you.`);
+    scene.text(`Your aching throat is penetrated again as he buries his ${((s as any).dick_girth || '')} cock to the hilt inside you.`);
     scene.text('When he shoots his load, you feel his member painfully stretching your already sore throat.');
     if (!(s as any).pain) (s as any).pain = {}; (s as any).pain['throat'] = ((s as any).pain['throat'] ?? 0) + (((s as any).throatDMG ?? 0));
     qspCall(s, 'stat', '');
@@ -1434,24 +1434,24 @@ function enterAbdCustomerCumMouth(s: GameState, scene: SceneBuilder): void {
 
 function enterAbdCustomerCumFace(s: GameState, scene: SceneBuilder): void {
   (s as any).i = Math.floor(Math.random() * 5) + 1;
-  scene.img(`images/locations/shared/abduction/sex/slavewhorecumface${((s as any).i ?? 0)}.mp4`);
+  scene.img(`images/locations/shared/abduction/sex/slavewhorecumface${((s as any).i || '')}.mp4`);
   // TODO-QSP: dynamic text: He takes his <<$dick_girth>> dick and points it towards your face.
-  scene.text(`He takes his ${((s as any).dick_girth ?? 0)} dick and points it towards your face.`);
+  scene.text(`He takes his ${((s as any).dick_girth || '')} dick and points it towards your face.`);
   if (((s as any).cumVol ?? 0) === 3) {
     // TODO-QSP: dynamic text: A <<$cumType>> amount of cum lands all over your face.
-    scene.text(`A ${((s as any).cumType ?? 0)} amount of cum lands all over your face.`);
+    scene.text(`A ${((s as any).cumType || '')} amount of cum lands all over your face.`);
   } else {
     if (((s as any).cumVol ?? 0) === 4) {
       // TODO-QSP: dynamic text: A <<$cumType>> amount of cum lands all over your face. Some even lands in your h...
-      scene.text(`A ${((s as any).cumType ?? 0)} amount of cum lands all over your face. Some even lands in your hair.`);
+      scene.text(`A ${((s as any).cumType || '')} amount of cum lands all over your face. Some even lands in your hair.`);
     } else {
       if (((s as any).cumVol ?? 0) >= 5) {
         // TODO-QSP: dynamic text: A <<$cumType>> amount of cum lands all over your face and hair.
-        scene.text(`A ${((s as any).cumType ?? 0)} amount of cum lands all over your face and hair.`);
+        scene.text(`A ${((s as any).cumType || '')} amount of cum lands all over your face and hair.`);
         scene.text('There\'s so much that you have a solid layer covering your face.');
       } else {
         // TODO-QSP: dynamic text: A <<$cumType>> amount of cum is splattered across your face and in your mouth.
-        scene.text(`A ${((s as any).cumType ?? 0)} amount of cum is splattered across your face and in your mouth.`);
+        scene.text(`A ${((s as any).cumType || '')} amount of cum is splattered across your face and in your mouth.`);
       }
     }
   }
@@ -1477,7 +1477,7 @@ function enterAbdCustomerEnd(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).buyout ?? 0) === 1) {
       // TODO-QSP: dynamic text: <<$bName>> leaves you lying on the ground, his cum still dripping out of your as...
-      scene.text(`${((s as any).bName ?? 0)} leaves you lying on the ground, his cum still dripping out of your ass, and calls for your master.`);
+      scene.text(`${((s as any).bName || '')} leaves you lying on the ground, his cum still dripping out of your ass, and calls for your master.`);
       scene.actions([
         { label: 'Continue', goto: ['abductionCustomer', 'abdCustomer-endPunishment'] },
       ]);

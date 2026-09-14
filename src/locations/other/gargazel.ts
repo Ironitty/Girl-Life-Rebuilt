@@ -25,14 +25,14 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).YouCanGar ?? 0) > 0) {
     // TODO-QSP: dynamic text: You have stored <<mc_inventory['trinkets_garage']>> trinkets in the garage curre...
-    scene.text(`You have stored ${((s as any).mc_inventory ?? 0)?.['trinkets_garage']} trinkets in the garage currently. Your stepfather allowed you to store some things in his garage but doesn't want you taking up all his space, he has allowed you to store up to 100 trinkets here. The garage is not very easily accessible; if you want to sell the trinkets at the station, you will have to bring them back home first.`);
+    scene.text(`You have stored ${((s as any).mc_inventory ?? 0)?.['trinkets_garage'] ?? ''} trinkets in the garage currently. Your stepfather allowed you to store some things in his garage but doesn't want you taking up all his space, he has allowed you to store up to 100 trinkets here. The garage is not very easily accessible; if you want to sell the trinkets at the station, you will have to bring them back home first.`);
     if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] >= 30) {
       scene.text('You already have too much stored at home and do not have any more space.');
     } else {
       if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] < 30) {
-        (s as any).trinkets_can_take = 30 - ((s as any).mc_inventory ?? {})?.['trinkets_home'];
+        (s as any).trinkets_can_take = 30 - (((s as any).mc_inventory ?? {})?.['trinkets_home'] ?? 0);
         // TODO-QSP: dynamic text: You can bring <<trinkets_can_take>> trinkets home and store them somewhere, unti...
-        scene.text(`You can bring ${((s as any).trinkets_can_take ?? 0)} trinkets home and store them somewhere, until you have time to collect and sell them at the train station.`);
+        scene.text(`You can bring ${((s as any).trinkets_can_take || '')} trinkets home and store them somewhere, until you have time to collect and sell them at the train station.`);
         if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] > 0) {
           if (((s as any).mc_inventory ?? 0)?.['trinkets_garage'] >= ((s as any).trinkets_can_take ?? 0)) {
             scene.actions([

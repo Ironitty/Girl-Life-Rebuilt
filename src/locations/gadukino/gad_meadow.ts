@@ -36,7 +36,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', goto: ['gad_meadow', 'mira_lesb'] }]);
     }
     if (((s as any).MiraVars ?? 0)?.['meadow'] !== 2  &&  ((s as any).MiraVars ?? 0)?.['meadow'] !== 5) {
-      qspCall(s, 'gad_meadow', 'Mira_free_and_here');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraFreeAndHere(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       (s as any).temp_md = Math.floor(Math.random() * 21) + 0;
       if (((s as any).MiraVars ?? 0)?.['Mitka_fucks'] < 15  &&  ((s as any).temper ?? 0) >= 12  &&  (!((s as any).temp_md ?? 0))) {
@@ -69,7 +69,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
                         if (((s as any).MiraVars ?? 0)?.['QW'] >= 20  &&  ((s as any).temper ?? 0) >= 25  &&  ((s as any).temp_md ?? 0) === 9) {
                           scene.text('In a clearing you see <a href="exec: gt \'gad_meadow\', \'9\'">Mira</a>.');
                         } else {
-                          qspCall(s, 'gad_meadow', 'Mira_free_and_here');
+                          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiraFreeAndHere(s, scene); (s as any).locArgs = __savedLocArgs; }
                         }
                       }
                     }
@@ -106,7 +106,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'willpower', 'skill', 'inhib', 'resist', 'medium');
               if (((s as any).will_cost ?? 0) > ((s as any).pcs_willpwr ?? 0)) {
                 scene.actions([
-                  { label: 'Exercise nude [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                  { label: 'Exercise nude', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                 ]);
@@ -817,7 +817,7 @@ function enterMiraLesb(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/gadukino/mira/mirakiss4.jpg');
   scene.text('In the meadow, Mira walks up to you, smiling mischievously.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, let me see your pussy", she whispered in your ear while pinn...
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}, let me see your pussy", she whispered in your ear while pinning you to the tree and kissing your lips.`);
+  scene.text(`"${((s as any).pcs_nickname || '')}, let me see your pussy", she whispered in your ear while pinning you to the tree and kissing your lips.`);
   qspCall(s, 'arousal', 'kiss', 5, 'lesbian');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) < 20) {
@@ -868,7 +868,7 @@ function enterLesbTalkMira1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Don\'t worry, I won\'t be mean or rough like Mitka", you continue to push her. "We can lick each other, or I can leave, and you can go back to the village boys instead and forget about me."');
   scene.text('Mira thought for a second, but it was an easy choice. She didn\'t want to lose your friendship.');
   // TODO-QSP: dynamic text: "Well, <<$pcs_nickname>>, I'll do it, " she said, falling to her knees.
-  scene.text(`"Well, ${((s as any).pcs_nickname ?? 0)}, I'll do it, " she said, falling to her knees.`);
+  scene.text(`"Well, ${((s as any).pcs_nickname || '')}, I'll do it, " she said, falling to her knees.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Let Mira lick you', goto: ['mirasex', 'miralick_first'] },
@@ -925,7 +925,7 @@ function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
     scene.text('In the clearing, you met Mira. Seeing you, she immediately came up with a sly smile on her lips.');
   }
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you fucked all the boys in the village now.
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}, you fucked all the boys in the village now.`);
+  scene.text(`"${((s as any).pcs_nickname || '')}, you fucked all the boys in the village now.`);
   scene.text('You tried to keep silent, but Mira wouldn\'t let it go.');
   scene.text('"So did they or didn\'t they?" - she insisted on your answer.');
   scene.text('"Well, yeah, so?"');
@@ -936,7 +936,7 @@ function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You already guessed where she was going with this but still hesitated.');
     // TODO-QSP: dynamic text: "Come on, don't sulk, <<$pcs_nickname>>, it doesn't suit you," she continued to ...
-    scene.text(`"Come on, don't sulk, ${((s as any).pcs_nickname ?? 0)}, it doesn't suit you," she continued to get comfortable on the nearest stone.`);
+    scene.text(`"Come on, don't sulk, ${((s as any).pcs_nickname || '')}, it doesn't suit you," she continued to get comfortable on the nearest stone.`);
     scene.text('"Well, Mira, I\'ll do it, " you said, falling on your knees.');
     scene.text('"In the end, why not please your friend?" you thought.');
   }
@@ -957,7 +957,7 @@ function enterMiraLesbTalk1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/gadukino/mira/mira_lesb_talk3.jpg');
     scene.text('You still hoped that you could change Mira\'s mind.');
     // TODO-QSP: dynamic text: "Come on, don't be a prude now, <<$pcs_nickname>>," said Mira, taking you by the...
-    scene.text(`"Come on, don't be a prude now, ${((s as any).pcs_nickname ?? 0)}," said Mira, taking you by the shirt and pulling you to the nearest stone. "Sluts should always pleasure their friends first."`);
+    scene.text(`"Come on, don't be a prude now, ${((s as any).pcs_nickname || '')}," said Mira, taking you by the shirt and pulling you to the nearest stone. "Sluts should always pleasure their friends first."`);
     scene.text('Sitting on the stone, she looked eagerly at you.');
     scene.text('"Well, what are you waiting for? I\'m ready."');
     scene.text('"Well, Mira, I\'ll do it, " you finally gave in, sinking to your knees. "In the end, why not help Mira out?" thinking to yourself.');
@@ -986,7 +986,7 @@ function enterMiraLesbTalk2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/gadukino/mira/mira_lesb_talk2.jpg');
   scene.text('Mira walks up to you with a malicious smile on her face.');
   // TODO-QSP: dynamic text: "Well, <<$pcs_nickname>>," congratulations, she said. "You are now the same whor...
-  scene.text(`"Well, ${((s as any).pcs_nickname ?? 0)}," congratulations, she said. "You are now the same whore as me. All the boys fucked you too."`);
+  scene.text(`"Well, ${((s as any).pcs_nickname || '')}," congratulations, she said. "You are now the same whore as me. All the boys fucked you too."`);
   scene.text('You tried to keep silent, but she was not satisfied.');
   scene.text('"So, did they or didn\'t they?" she insists on an answer.');
   scene.text('"Well, yes", you acknowledged.');
@@ -1011,11 +1011,11 @@ function enterMiraLesbTalk3(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'miroslava_schedule', 'is_here')) {
     scene.text('When you came into the clearing, Mira immediately turned to you with an excited face.');
     // TODO-QSP: dynamic text: "Come help me out, <<$pcs_nickname>>," she said and started to get comfortable.
-    scene.text(`"Come help me out, ${((s as any).pcs_nickname ?? 0)}," she said and started to get comfortable.`);
+    scene.text(`"Come help me out, ${((s as any).pcs_nickname || '')}," she said and started to get comfortable.`);
   } else {
     scene.text('In the clearing, you meet Mira. Seeing you, she immediately approached you with an excited face.');
     // TODO-QSP: dynamic text: "Where were you, <<$pcs_nickname>>? I was looking for you," she said. So get ove...
-    scene.text(`"Where were you, ${((s as any).pcs_nickname ?? 0)}? I was looking for you," she said. So get over here and help me out.`);
+    scene.text(`"Where were you, ${((s as any).pcs_nickname || '')}? I was looking for you," she said. So get over here and help me out.`);
   }
   scene.text('You are already familiar with this and get on your knees before her.');
   // TODO-QSP: end
@@ -1034,11 +1034,11 @@ function enterMiraLesbTalk4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'miroslava', 'miraclothes');
   scene.text('Walking through the village, you meet Mira. Seeing you, she immediately approaches you with an excited face.');
   // TODO-QSP: dynamic text: "Where were you, <<$pcs_nickname>>? I was looking for you," she said. "Let's go ...
-  scene.text(`"Where were you, ${((s as any).pcs_nickname ?? 0)}? I was looking for you," she said. "Let's go take a walk in our meadow."`);
+  scene.text(`"Where were you, ${((s as any).pcs_nickname || '')}? I was looking for you," she said. "Let's go take a walk in our meadow."`);
   scene.text('She grabs you by the hand and literally drags you behind her. You can hear Mira\'s excited breath and know fully why she is taking you to the meadow.');
   scene.text('When you came into the clearing, Mira immediately turned to you with an excited face.');
   // TODO-QSP: dynamic text: "Come help me out, <<$pcs_nickname>>," she said and started to get comfortable.
-  scene.text(`"Come help me out, ${((s as any).pcs_nickname ?? 0)}," she said and started to get comfortable.`);
+  scene.text(`"Come help me out, ${((s as any).pcs_nickname || '')}," she said and started to get comfortable.`);
   scene.text('You are already familiar with this and get on your knees before her.');
   // TODO-QSP: end
   scene.actions([

@@ -47,13 +47,13 @@ function enterBrit1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Scream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Scream', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Scream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Scream', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.text('You yell so loud that you are probably heard out on the street. "Don\'t cry, I just wanted to help! Lock the door next time." He tries to reassure you, but you just keep yelling at him. He has no choice but to flee the bathroom.');
     scene.text('You quickly finish shaving.');
@@ -103,13 +103,13 @@ function enterBrit1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'cuni', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No thanks', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No thanks', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['vann', 'start'] },
       ]);
@@ -146,13 +146,13 @@ function enterV1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'foreplay', 'resist', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.text('"Ehm… No, thank you… Not really," you reply.');
     scene.text('"Your loss," she says with a wink, and after a while, she finally finishes and leaves.');
@@ -183,13 +183,13 @@ function enterV2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'hj', 'self');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Offer help [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Offer help', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Offer help [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Offer help', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npcgeneratec', '', 0, 'guy from the uni dorm bathroom', Math.floor(Math.random() * 27) + 19);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
@@ -232,13 +232,13 @@ function enterV3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'bj', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Bite [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Bite', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Bite [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Bite', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.text('You clamp your teeth down on his fleshy tip, and he starts screaming and swearing, shouting words that are incredibly vulgar. You bite even harder, and he screams even louder, thinking you\'re about to bite his dick off. You release him from your grip, and he runs out into the hallway nude, screaming even more vulgar curses at you.');
     scene.actions([
@@ -298,13 +298,13 @@ function enterV4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'self');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Scream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Scream', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Scream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Scream', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).pcs_horny = 0;
     scene.img('images/locations/city/island/university/dorm/sex/bathroom/v10.jpg');
@@ -324,13 +324,13 @@ function enterV4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'foreplay', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.img('images/locations/city/island/university/dorm/sex/bathroom/v10.jpg');
     scene.text('"No, thank you." you reply.');

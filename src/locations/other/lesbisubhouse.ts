@@ -478,7 +478,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/natalya/sex/dom12.jpg');
     // TODO-QSP: dynamic text: Your slave has earned <<$func('money', 'string_profit', 300*cocsuckedonday)>> fo...
-    scene.text(`Your slave has earned ${qspFunc(s, 'money', 'string_profit', 300*((s as any).cocsuckedonday ?? 0))} for you at the gloryholes.`);
+    scene.text(`Your slave has earned ${qspFunc(s, 'money', 'string_profit', 300*((s as any).cocsuckedonday ?? ''))} for you at the gloryholes.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).slavepay = ((st as any).daystart ?? 0);
@@ -499,7 +499,7 @@ function enterEvent4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/natalya/sex/dom12.jpg');
     // TODO-QSP: dynamic text: Your slave has earned <<$func('money', 'string_profit', 900*cocsuckedonday)>> fo...
-    scene.text(`Your slave has earned ${qspFunc(s, 'money', 'string_profit', 900*((s as any).cocsuckedonday ?? 0))} for you while whoring herself out.`);
+    scene.text(`Your slave has earned ${qspFunc(s, 'money', 'string_profit', 900*((s as any).cocsuckedonday ?? ''))} for you while whoring herself out.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (st as any).slavepay = ((st as any).daystart ?? 0);

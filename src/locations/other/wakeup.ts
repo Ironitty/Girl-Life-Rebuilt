@@ -30,27 +30,27 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).sleepVars) (s as any).sleepVars = {}; (s as any).sleepVars['time_now'] = ((s as any).daystart ?? 0) * 1440 + ((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0);
   if (((s as any).sleepVars ?? 0)?.['slept_in'] === 1) {
     // TODO-QSP: dynamic text: You wake up at <b><<func('time', 'get_time_string', hour, minut, cheatVars['time...
-    scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), ((s as any).cheatVars ?? 0)?.['time_format'])}</b>, after sleeping-in a little longer than planned, but at least you've had plenty of sleep.`);
+    scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}</b>, after sleeping-in a little longer than planned, but at least you've had plenty of sleep.`);
   } else {
     if (((s as any).pcs_sleep ?? 0) >= 100) {
       if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1) {
         if (((s as any).sleepVars ?? 0)?.['time_now'] < ((s as any).sleepVars ?? 0)?.['alarm_time'] - 15) {
           // TODO-QSP: dynamic text: You wake up at <b><<func('time', 'get_time_string', hour, minut, cheatVars['time...
-          scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), ((s as any).cheatVars ?? 0)?.['time_format'])}</b>, well before your alarm goes off. You've had plenty of sleep.`);
+          scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}</b>, well before your alarm goes off. You've had plenty of sleep.`);
         } else {
           // TODO-QSP: dynamic text: You wake up at <b><<func('time', 'get_time_string', hour, minut, cheatVars['time...
-          scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), ((s as any).cheatVars ?? 0)?.['time_format'])}</b>, just before your alarm goes off. You've had plenty of sleep.`);
+          scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}</b>, just before your alarm goes off. You've had plenty of sleep.`);
         }
       } else {
         // TODO-QSP: dynamic text: You wake up at <b><<func('time', 'get_time_string', hour, minut, cheatVars['time...
-        scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), ((s as any).cheatVars ?? 0)?.['time_format'])}</b> no longer tired and ready to start the day with plenty of sleep.`);
+        scene.text(`You wake up at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}</b> no longer tired and ready to start the day with plenty of sleep.`);
       }
     } else {
       if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1  &&  ((s as any).sleepVars ?? 0)?.['time_now'] === ((s as any).sleepVars ?? 0)?.['alarm_time']) {
         qspCall(s, 'mood', 'lower', 'tiny');
         // TODO-QSP: dynamic text: Your alarm goes off at <b><<func('time', 'get_time_string', hour, minut, cheatVa...
-        scene.text(`Your alarm goes off at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour ?? 0), ((s as any).minut ?? 0), ((s as any).cheatVars ?? 0)?.['time_format'])}</b>, '+iif(pcs_sleep < 90, 'but you could do with some extra sleep.', 'and you've had plenty of sleep.')+'`);
-        qspCall(s, 'wakeup', 'snooze_alarm');
+        scene.text(`Your alarm goes off at <b>${qspFunc(s, 'time', 'get_time_string', ((s as any).hour || ''), ((s as any).minut || ''), ((s as any).cheatVars ?? 0)?.['time_format'] ?? '')}</b>, '+iif(pcs_sleep < 90, 'but you could do with some extra sleep.', 'and you've had plenty of sleep.')+`);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSnoozeAlarm(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         scene.text('');
       }
@@ -68,13 +68,13 @@ function enterGetOut(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Get out of bed and get dressed (0:10)', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
-    qspCall(s, 'wakeup', 'wear_bed_clothes');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWearBedClothes(s, scene); (s as any).locArgs = __savedLocArgs; }
   }, goto: ['bed_get_out', 'start'] },
     ]);
   }
   if (((s as any).alarmVars ?? 0)?.['alarmOn'] === 1  &&  ((s as any).sleepVars ?? 0)?.['time_now'] < ((s as any).sleepVars ?? 0)?.['alarm_time']) {
-    (s as any).temp_hour = (((s as any).sleepVars ?? {})?.['alarm_time'] - ((s as any).sleepVars ?? {})?.['time_now']) / 60;
-    (s as any).temp_minut = (((s as any).sleepVars ?? {})?.['alarm_time'] - ((s as any).sleepVars ?? {})?.['time_now']) % 60;
+    (s as any).temp_hour = ((((s as any).sleepVars ?? {})?.['alarm_time'] ?? 0) - (((s as any).sleepVars ?? {})?.['time_now'] ?? 0)) / 60;
+    (s as any).temp_minut = ((((s as any).sleepVars ?? {})?.['alarm_time'] ?? 0) - (((s as any).sleepVars ?? {})?.['time_now'] ?? 0)) % 60;
     scene.actions([
       { label: 'Nap until your alarm rings (<<temp_hour>>:<<$mid(100+temp_minut, 2)>>)', handler: (st: GameState) => {
     scene.text('You turn around on your bed and close your eyes.');

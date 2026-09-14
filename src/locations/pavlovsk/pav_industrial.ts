@@ -33,11 +33,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Opening hours are Monday through Friday:');
   // TODO-QSP: dynamic text: First shift - '+func('time', 'get_time_string', 8, 0)+' to '+func('time', 'get_t...
-  scene.text('First shift - \'+func(\'time\', \'get_time_string\', 8, 0)+\' to \'+func(\'time\', \'get_time_string\', 16, 0)+\'');
+  scene.text('First shift - 8:00 to 16:00');
   // TODO-QSP: dynamic text: Second shift - '+func('time', 'get_time_string', 16, 0)+' to '+func('time', 'get...
-  scene.text('Second shift - \'+func(\'time\', \'get_time_string\', 16, 0)+\' to \'+func(\'time\', \'get_time_string\', 20, 0)+\'');
+  scene.text('Second shift - 16:00 to 20:00');
   // TODO-QSP: dynamic text: In a smaller building right next to the factory is the local '+iif(week < 7 and ...
-  scene.text('In a smaller building right next to the factory is the local \'+iif(week < 7 and hour >= 8 and hour < 18, \'<a href="exec: gt \'pav_factory\', \'tailor\'">tailor</a>\', \'tailor\')+\' shop, a service offered by the factory. Opening hours are Monday to Saturday, between \'+func(\'time\', \'get_time_string\', 8, 0)+\' to \'+func(\'time\', \'get_time_string\', 17, 0)+\'.');
+  scene.text('In a smaller building right next to the factory is the local \'+iif(week < 7 and hour >= 8 and hour < 18, \'<a href="exec: gt \'pav_factory\', \'tailor\'">tailor</a>\', \'tailor\')+\' shop, a service offered by the factory. Opening hours are Monday to Saturday, between 8:00 to 17:00.');
   if (((((s as any).month ?? 0) === 9  &&  ((s as any).day ?? 0) > 16)  ||  ((s as any).month ?? 0) >= 10)  &&  (((s as any).AlbinaQW ?? 0)?.['StarletsShutDown'] === 0  ||  ((s as any).AlbinaQW ?? 0)?.['Chernov'] === 0)) {
     scene.text('You can see election posters on the walls all over town. They say: "Vote for Boris Barlovsky!" Wait a minute… isn\'t that Albina\'s father?');
   }
@@ -57,7 +57,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked in the str...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked in the street.`);
+    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked in the street.`);
   }
   if (((s as any).week ?? 0) < 7  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 20) {
   }

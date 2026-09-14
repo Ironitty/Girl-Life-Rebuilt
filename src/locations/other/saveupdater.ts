@@ -1793,11 +1793,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt_gen'] = 20;
     }
     if (((s as any).salo ?? 0) !== 0) {
-      (s as any).temp_totmass = ((s as any).salo ?? 0) + ((s as any).pcs_mass ?? {})?.['bust'];
-      (s as any).temp_totgenmass = 60 + ((s as any).pcs_mass ?? {})?.['bust_gen'] + ((s as any).pcs_mass ?? {})?.['butt_gen'];
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = (((s as any).temp_totmass ?? 0) * ((s as any).pcs_mass ?? {})?.['bust_gen']) / ((s as any).temp_totgenmass ?? 0);
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = (((s as any).temp_totmass ?? 0) * ((s as any).pcs_mass ?? {})?.['butt_gen']) / ((s as any).temp_totgenmass ?? 0);
-      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).temp_totmass ?? 0) - ((s as any).pcs_mass ?? {})?.['bust'] - ((s as any).pcs_mass ?? {})?.['butt'];
+      (s as any).temp_totmass = ((s as any).salo ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0);
+      (s as any).temp_totgenmass = 60 + (((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0);
+      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['bust'] = (((s as any).temp_totmass ?? 0) * (((s as any).pcs_mass ?? {})?.['bust_gen'] ?? 0)) / ((s as any).temp_totgenmass ?? 0);
+      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['butt'] = (((s as any).temp_totmass ?? 0) * (((s as any).pcs_mass ?? {})?.['butt_gen'] ?? 0)) / ((s as any).temp_totgenmass ?? 0);
+      if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body'] = ((s as any).temp_totmass ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) - (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
     }
     if (((s as any).vofat ?? 0)      !== 0) {
       if (!(s as any).bodyVars) (s as any).bodyVars = {}; (s as any).bodyVars['vofat'] = ((s as any).vofat ?? 0);
@@ -2817,7 +2817,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: killvar 'pants_out_full_hairy'
     }
     if (((s as any).lact_ev ?? 0)?.['poli_totaldonatemoney'] <= 0  &&  ((s as any).lact_ev ?? 0)?.['poli_totalmilkdonated'] >= 5) {
-      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_totaldonatemoney'] = (((s as any).lact_ev ?? {})?.['poli_totalmilkdonated'] / 5) * 10;
+      if (!(s as any).lact_ev) (s as any).lact_ev = {}; (s as any).lact_ev['poli_totaldonatemoney'] = ((((s as any).lact_ev ?? {})?.['poli_totalmilkdonated'] ?? 0) / 5) * 10;
     }
     if (((s as any).soniaQW ?? 0)?.[String((s as any).soniafall_block ?? 0)] > 1  &&  ((s as any).soniaQW ?? 0)?.[String((s as any).soniafall_block ?? 0)] !== ((s as any).soniaQW ?? 0)?.['soniafall_block']) {
       if (!(s as any).soniaQW) (s as any).soniaQW = {}; (s as any).soniaQW['soniafall_block'] = ((s as any).soniaQW ?? 0)?.[String((s as any).soniafall_block ?? 0)];
@@ -2885,7 +2885,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['total_material'] = 1;
     }
     if (((s as any).blackmailQW ?? 0)?.['init_flashimage'] !== ''  &&  (String(((s as any).blackmailQW ?? 0)?.['init_flashimage']).indexOf(String('.jpg'))) + 1 === 0) {
-      if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['init_flashimage'] = ((s as any).blackmailQW ?? {})?.['init_flashimage'] + '.jpg';
+      if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['init_flashimage'] = (((s as any).blackmailQW ?? {})?.['init_flashimage'] ?? 0) + '.jpg';
     }
     if (((s as any).blackmailQW ?? 0)?.['blackmail_image_chosen'] === ''  &&  ((s as any).blackmailQW ?? 0)?.['next_payment'] > 0) {
       if (!(s as any).blackmailQW) (s as any).blackmailQW = {}; (s as any).blackmailQW['blackmail_image_chosen'] = ((s as any).blackmailQW ?? 0)?.['init_flashimage'];
@@ -3411,8 +3411,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).healthV ?? 0)    !== 0) {
       if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['npc_health'] = ((s as any).healthV ?? 0);
-      if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['npc_max_health'] = ((s as any).temp_kickboxVars ?? {})?.['npc_vital'] * 10 + ((s as any).temp_kickboxVars ?? {})?.['npc_stren'] * 5;
-      if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['npc_stam'] = (30 * (2 * ((s as any).temp_kickboxVars ?? {})?.['npc_vital'] + ((s as any).temp_kickboxVars ?? {})?.['npc_agil'] + ((s as any).temp_kickboxVars ?? {})?.['npc_stren']) + 1000) / 13;
+      if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['npc_max_health'] = (((s as any).temp_kickboxVars ?? {})?.['npc_vital'] ?? 0) * 10 + (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0) * 5;
+      if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['npc_stam'] = (30 * (2 * (((s as any).temp_kickboxVars ?? {})?.['npc_vital'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_agil'] ?? 0) + (((s as any).temp_kickboxVars ?? {})?.['npc_stren'] ?? 0)) + 1000) / 13;
     }
     if (((s as any).init ?? 0)      !== 0) {
       if (!(s as any).temp_kickboxVars) (s as any).temp_kickboxVars = {}; (s as any).temp_kickboxVars['pcs_init'] = ((s as any).init ?? 0);
@@ -4063,7 +4063,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: killvar 'ivanko_sanw'
     }
     qspCall(s, 'cheatmenu_din', '');
-    (s as any).temp_total_mass = ((s as any).pcs_mass ?? {})?.['body'] + ((s as any).pcs_mass ?? {})?.['bust'] + ((s as any).pcs_mass ?? {})?.['butt'];
+    (s as any).temp_total_mass = (((s as any).pcs_mass ?? {})?.['body'] ?? 0) + (((s as any).pcs_mass ?? {})?.['bust'] ?? 0) + (((s as any).pcs_mass ?? {})?.['butt'] ?? 0);
     if (((s as any).pcs_mass ?? 0)?.['body_message'] < ((s as any).temp_total_mass ?? 0) - 10) {
       if (!(s as any).pcs_mass) (s as any).pcs_mass = {}; (s as any).pcs_mass['body_message'] = ((s as any).temp_total_mass ?? 0);
     }
@@ -4225,35 +4225,35 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).su_i = 0;
     // TODO-QSP: :piercing_owned_update_loop
     // TODO-QSP: dynamic "
-    if (((s as any).pirsC ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
+    if (((s as any).pirsC ?? 0)?.[String((s as any).su_i ?? 0)]((s as any)._owned ?? 0) === 1) {
       if (!(s as any).pcs_piercings) (s as any).pcs_piercings = {}; (s as any).pcs_piercings['ears_' + String((s as any).su_i || '') + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsC<<su_i>>_owned'
     }
-    if (((s as any).pirsD ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
+    if (((s as any).pirsD ?? 0)?.[String((s as any).su_i ?? 0)]((s as any)._owned ?? 0) === 1) {
       if (!(s as any).pcs_piercings) (s as any).pcs_piercings = {}; (s as any).pcs_piercings['nose_' + String((s as any).su_i || '') + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsD<<su_i>>_owned'
     }
-    if (((s as any).pirsE ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
+    if (((s as any).pirsE ?? 0)?.[String((s as any).su_i ?? 0)]((s as any)._owned ?? 0) === 1) {
       if (!(s as any).pcs_piercings) (s as any).pcs_piercings = {}; (s as any).pcs_piercings['brow_' + String((s as any).su_i || '') + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsE<<su_i>>_owned'
     }
-    if (((s as any).pirsB ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
+    if (((s as any).pirsB ?? 0)?.[String((s as any).su_i ?? 0)]((s as any)._owned ?? 0) === 1) {
       if (!(s as any).pcs_piercings) (s as any).pcs_piercings = {}; (s as any).pcs_piercings['lip_' + String((s as any).su_i || '') + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsB<<su_i>>_owned'
     }
-    if (((s as any).pirsA ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
+    if (((s as any).pirsA ?? 0)?.[String((s as any).su_i ?? 0)]((s as any)._owned ?? 0) === 1) {
       if (!(s as any).pcs_piercings) (s as any).pcs_piercings = {}; (s as any).pcs_piercings['tongue_' + String((s as any).su_i || '') + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsA<<su_i>>_owned'
     }
-    if (((s as any).pirsN ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
+    if (((s as any).pirsN ?? 0)?.[String((s as any).su_i ?? 0)]((s as any)._owned ?? 0) === 1) {
       if (!(s as any).pcs_piercings) (s as any).pcs_piercings = {}; (s as any).pcs_piercings['navel_' + String((s as any).su_i || '') + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsN<<su_i>>_owned'
     }
-    if (((s as any).pirsF ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
+    if (((s as any).pirsF ?? 0)?.[String((s as any).su_i ?? 0)]((s as any)._owned ?? 0) === 1) {
       if (!(s as any).pcs_piercings) (s as any).pcs_piercings = {}; (s as any).pcs_piercings['nipples_' + String((s as any).su_i || '') + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsF<<su_i>>_owned'
     }
-    if (((s as any).pirsG ?? 0)((s as any).su_i ?? 0)((s as any)._owned ?? 0) === 1) {
+    if (((s as any).pirsG ?? 0)?.[String((s as any).su_i ?? 0)]((s as any)._owned ?? 0) === 1) {
       if (!(s as any).pcs_piercings) (s as any).pcs_piercings = {}; (s as any).pcs_piercings['pussy_' + String((s as any).su_i || '') + '_owned'] = 1;
       // TODO-QSP: killvar 'pirsG<<su_i>>_owned'
     }
@@ -4908,7 +4908,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           }
         }
       }
-      if (!(s as any).npc_weight) (s as any).npc_weight = {}; (s as any).npc_weight[String((s as any).husID ?? 0)] = ((s as any).saveupdaterVars ?? {})?.['bmi'] * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] / 10000;
+      if (!(s as any).npc_weight) (s as any).npc_weight = {}; (s as any).npc_weight[String((s as any).husID ?? 0)] = (((s as any).saveupdaterVars ?? {})?.['bmi'] ?? 0) * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] * ((s as any).npc_height ?? 0)?.[String((s as any).husID ?? 0)] / 10000;
       if (!(s as any).npc_dick) (s as any).npc_dick = {}; (s as any).npc_dick[String((s as any).husID ?? 0)] = ((s as any).husDick ?? 0);
       if (!(s as any).npc_gentle) (s as any).npc_gentle = {}; (s as any).npc_gentle[String((s as any).husID ?? 0)] = 0;
       if (!(s as any).npc_rough) (s as any).npc_rough = {}; (s as any).npc_rough[String((s as any).husID ?? 0)] = 0;
@@ -5055,7 +5055,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         }
       }
       if (((s as any).npc_weight_desc ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === '') {
-        if (!(s as any).saveupdaterVars) (s as any).saveupdaterVars = {}; (s as any).saveupdaterVars['bmi'] = 100000 * ((s as any).npc_weight ?? 0)[((s as any).saveupdaterVars ?? {})?.['npcID']] / (((s as any).npc_height ?? 0)[((s as any).saveupdaterVars ?? {})?.['npcID']] * ((s as any).npc_height ?? 0)[((s as any).saveupdaterVars ?? {})?.['npcID']]);
+        if (!(s as any).saveupdaterVars) (s as any).saveupdaterVars = {}; (s as any).saveupdaterVars['bmi'] = 100000 * ((s as any).npc_weight ?? 0)[(((s as any).saveupdaterVars ?? {})?.['npcID'] ?? 0)] / (((s as any).npc_height ?? 0)[(((s as any).saveupdaterVars ?? {})?.['npcID'] ?? 0)] * ((s as any).npc_height ?? 0)[(((s as any).saveupdaterVars ?? {})?.['npcID'] ?? 0)]);
         if (((s as any).npcgeneratecVars ?? 0)?.['gender'] === 0) {
           if (((s as any).saveupdaterVars ?? 0)?.['bmi'] < 190) {
             // TODO-QSP: $npc_build_desc[$saveupdaterVars['npcID']] = 'thin'
@@ -5294,11 +5294,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).shared_apt ?? 0)?.['enabled'] === 1  &&  (!((s as any).dothisonlyonce ?? 0))) {
       if (((s as any).daystart ?? 0) - ((s as any).shared_apt ?? 0)?.['intro_daystart'] > 6) {
-        if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = (((s as any).daystart ?? 0) - ((s as any).shared_apt ?? {})?.['intro_daystart']) / 7;
+        if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = (((s as any).daystart ?? 0) - (((s as any).shared_apt ?? {})?.['intro_daystart'] ?? 0)) / 7;
       } else {
         if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['weekNum'] = 0;
       }
-      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = ((s as any).shared_apt ?? {})?.['weekNum'] + 1;
+      if (!(s as any).shared_apt) (s as any).shared_apt = {}; (s as any).shared_apt['rentWeekNum'] = (((s as any).shared_apt ?? {})?.['weekNum'] ?? 0) + 1;
       (s as any).dothisonlyonce = 1;
     }
     if (!(s as any).saveupdaterVars) (s as any).saveupdaterVars = {}; (s as any).saveupdaterVars['max_i'] = 0;
@@ -5347,7 +5347,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_girth ?? 0)?.['A1'] === 0) {
       if (!(s as any).saveupdaterVars) (s as any).saveupdaterVars = {}; (s as any).saveupdaterVars['i'] = 1;
       // TODO-QSP: :fix_Aarray_loop_9043
-      if (!(s as any).saveupdaterVars) (s as any).saveupdaterVars = {}; (s as any).saveupdaterVars['npcID'] = 'A' + ((s as any).saveupdaterVars ?? {})?.['i'];
+      if (!(s as any).saveupdaterVars) (s as any).saveupdaterVars = {}; (s as any).saveupdaterVars['npcID'] = 'A' + (((s as any).saveupdaterVars ?? {})?.['i'] ?? 0);
       if (((s as any).npc_girth ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 0) {
         if (((s as any).npc_thdick ?? 0)[((s as any).saveupdaterVars ?? 0)?.['npcID']] === 'skinny') {
           // TODO-QSP: npc_girth[$saveupdaterVars['npcID']] = 9
@@ -6667,7 +6667,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       (s as any).npcupdate09070 = 1;
       if (!(s as any).saveupdaterVars) (s as any).saveupdaterVars = {}; (s as any).saveupdaterVars['i'] = 1;
       // TODO-QSP: :anpc_update09070
-      if (!(s as any).saveupdaterVars) (s as any).saveupdaterVars = {}; (s as any).saveupdaterVars['ID'] = 'A' + ((s as any).saveupdaterVars ?? {})?.['i'];
+      if (!(s as any).saveupdaterVars) (s as any).saveupdaterVars = {}; (s as any).saveupdaterVars['ID'] = 'A' + (((s as any).saveupdaterVars ?? {})?.['i'] ?? 0);
       if (((s as any).npc_gender ?? 0)[((s as any).saveupdaterVars ?? 0)?.['ID']] === 0) {
         // TODO-QSP: npc_spermvol[$saveupdaterVars['ID']] = 40
       } else {
@@ -7085,7 +7085,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'jobs', 'set_employed', 'city_diner_floor_washer');
       }
       if (((s as any).BurgerQW ?? 0)?.['WashDishesCount'] > 1) {
-        if (!(s as any).job_shifts_total) (s as any).job_shifts_total = {}; (s as any).job_shifts_total['city_diner_dishwasher'] = ((s as any).BurgerQW ?? {})?.['WashDishesCount'] - 1;
+        if (!(s as any).job_shifts_total) (s as any).job_shifts_total = {}; (s as any).job_shifts_total['city_diner_dishwasher'] = (((s as any).BurgerQW ?? {})?.['WashDishesCount'] ?? 0) - 1;
       }
       if (((s as any).BurgerQW ?? 0)?.['WorkBlocked'] === 1) {
         if (((s as any).job_status ?? 0)?.['city_diner_dishwasher'] === 'employed') {
@@ -7546,7 +7546,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 3;
               } else {
                 if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 99;
-                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_custom'] = 100 + ((s as any).cheatVars ?? {})?.['deg_speed'];
+                if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_custom'] = 100 + (((s as any).cheatVars ?? {})?.['deg_speed'] ?? 0);
               }
             }
           }
@@ -8022,7 +8022,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_saveupdater_guard ?? 0)?.['traits_and_archetypes_migrated'] === 0) {
       if (!(s as any).temp_saveupdater_guard) (s as any).temp_saveupdater_guard = {}; (s as any).temp_saveupdater_guard['traits_and_archetypes_migrated'] = 1;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumeater'] = ((s as any).pcs_traits ?? 0)?.['cumeater'];
-      (s as any).temp_su_cumeater_known = ((s as any).stat ?? {})?.['swallow'] - ((s as any).stat ?? {})?.['swallow_unaware'];
+      (s as any).temp_su_cumeater_known = (((s as any).stat ?? {})?.['swallow'] ?? 0) - (((s as any).stat ?? {})?.['swallow_unaware'] ?? 0);
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumeater_prev'] = ((s as any).temp_su_cumeater_known ?? 0);
       if (((s as any).trait_vars ?? 0)?.['cumeater'] === 0) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['cumeater_exp'] = 0;
@@ -8032,22 +8032,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish'] = ((s as any).pcs_traits ?? 0)?.['creampie_fetish'];
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp'] = ((((s as any).trait_vars ?? 0)?.['creampie_fetish'] >= 2) ? (200) : (((((s as any).trait_vars ?? 0)?.['creampie_fetish'] === 1) ? (150) : (0))));
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_risky'] = ((((s as any).trait_vars ?? 0)?.['creampie_fetish'] >= 2) ? (100) : (0));
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_prev'] = ((s as any).stat ?? {})?.['creampies_safe_known'] + (((s as any).stat ?? {})?.['creampies_notsafe_known'] + ((s as any).stat ?? {})?.['creampies_risky_known'] * 2) * 2;
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_risky_prev'] = ((s as any).stat ?? {})?.['creampies_notsafe_known'] + ((s as any).stat ?? {})?.['creampies_risky_known'] * 2;
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_prev'] = (((s as any).stat ?? {})?.['creampies_safe_known'] ?? 0) + ((((s as any).stat ?? {})?.['creampies_notsafe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_risky_known'] ?? 0) * 2) * 2;
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['creampie_fetish_exp_risky_prev'] = (((s as any).stat ?? {})?.['creampies_notsafe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_risky_known'] ?? 0) * 2;
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['fertility'] = ((s as any).pcs_traits ?? 0)?.['hyper_fertile'];
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['sensitivity'] = qspUntranslated(s, "min(pcs_traits['easy_orgasms'], 1)", { location: "saveupdater" });
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['new_again_exp'] = ((s as any).pcs_traits ?? 0)?.['new_again'];
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['new_again'] = ((((s as any).trait_vars ?? 0)?.['new_again_exp'] > 0) ? (1) : (0));
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality'] = ((s as any).traits ?? 0)?.['addictive_personality'];
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality_exp'] = ((((s as any).trait_vars ?? 0)?.['addictive_personality'] >= 3) ? (4) : (((((s as any).trait_vars ?? 0)?.['addictive_personality'] === 2) ? (3) : (((((s as any).trait_vars ?? 0)?.['addictive_personality'] === 1) ? (2) : (0))))));
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality_prev'] = ((s as any).drugVars ?? {})?.['cigarettes_exp'] + ((s as any).drugVars ?? {})?.['weed_exp'] + ((s as any).drugVars ?? {})?.['heroin_exp'] + ((s as any).drugVars ?? {})?.['cocaine_exp'] + ((s as any).drugVars ?? {})?.['alcohol_exp'] + ((s as any).drugVars ?? {})?.['amphetamine_exp'] + ((s as any).drugVars ?? {})?.['painkiller_exp'];
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['addictive_personality_prev'] = (((s as any).drugVars ?? {})?.['cigarettes_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['weed_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['heroin_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['cocaine_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['alcohol_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['amphetamine_exp'] ?? 0) + (((s as any).drugVars ?? {})?.['painkiller_exp'] ?? 0);
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['buttslut'] = ((s as any).pcs_traits ?? 0)?.['buttslut_lvl'];
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['buttslut_exp'] = ((s as any).pcs_traits ?? 0)?.['buttslut_exp'];
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['buttslut_prev_anal'] = ((s as any).orgasm_anal ?? 0);
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['exhibitionist'] = ((s as any).exhibitionist_lvl ?? 0);
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['exhibitionist_exp'] = ((s as any).pcs_exhib ?? 0);
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['panty_preference'] = ((s as any).pcs_traits ?? 0)?.['commando_lvl'];
-      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['panty_preference_exp'] = ((s as any).pcs_traits ?? {})?.['commando_exp'] * 15 + (15000 * ((s as any).trait_vars ?? {})?.['panty_preference']);
+      if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['panty_preference_exp'] = (((s as any).pcs_traits ?? {})?.['commando_exp'] ?? 0) * 15 + (15000 * (((s as any).trait_vars ?? {})?.['panty_preference'] ?? 0));
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking'] = ((s as any).pcs_traits ?? 0)?.['alko_status'];
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_exp'] = ((s as any).pcs_traits ?? 0)?.['alko_points'];
       if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['drinking_days_sober'] = ((s as any).pcs_traits ?? 0)?.['alko_days_not_drunk'];
@@ -8062,7 +8062,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).trait_vars ?? 0)?.['academic'] === 3) {
             if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = 500;
           } else {
-            if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = ((s as any).pcs_traits ?? {})?.['nerd_points'] * 5;
+            if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['academic_exp'] = (((s as any).pcs_traits ?? {})?.['nerd_points'] ?? 0) * 5;
           }
         }
       }
@@ -8078,8 +8078,8 @@ function enter(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).pcs_traits ?? 0)?.['bambis_first_steps'] > 0) {
         if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference'] = (-1);
-        if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = -(((s as any).pcs_traits ?? {})?.['bambis_first_steps_time'] * 120);
-        if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_daily_limit'] = ((s as any).pcs_traits ?? {})?.['bambis_first_steps_counter'] * 60;
+        if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_exp'] = -((((s as any).pcs_traits ?? {})?.['bambis_first_steps_time'] ?? 0) * 120);
+        if (!(s as any).trait_vars) (s as any).trait_vars = {}; (s as any).trait_vars['heel_preference_daily_limit'] = (((s as any).pcs_traits ?? {})?.['bambis_first_steps_counter'] ?? 0) * 60;
       }
       if (((s as any).hypnoHair ?? 0) > 0) {
         qspCall(s, 'traits', 'body_hair_attitude', 'hypno_grant');
@@ -8102,35 +8102,35 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'archetypes', 'init');
       qspCall(s, 'archetypes', 'seed_snapshots');
       if (((s as any).pcs_traits ?? 0)?.['bimbo_lvl'] === 1) {
-        if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['bimbo_points'] = ((s as any).arch_const ?? {})?.['points_full_effect'] / 8;
+        if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['bimbo_points'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) / 8;
       } else {
         if (((s as any).pcs_traits ?? 0)?.['bimbo_lvl'] === 2) {
-          if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['bimbo_points'] = ((s as any).arch_const ?? {})?.['points_full_effect'] / 4;
+          if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['bimbo_points'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) / 4;
         } else {
           if (((s as any).pcs_traits ?? 0)?.['bimbo_lvl'] === 3) {
-            if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['bimbo_points'] = ((s as any).arch_const ?? {})?.['points_full_effect'] / 3;
+            if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['bimbo_points'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) / 3;
           }
         }
       }
       if (((s as any).pcs_traits ?? 0)?.['punk_lvl'] === 1) {
-        if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['punk_points'] = ((s as any).arch_const ?? {})?.['points_full_effect'] / 8;
+        if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['punk_points'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) / 8;
       } else {
         if (((s as any).pcs_traits ?? 0)?.['punk_lvl'] === 2) {
-          if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['punk_points'] = ((s as any).arch_const ?? {})?.['points_full_effect'] / 4;
+          if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['punk_points'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) / 4;
         } else {
           if (((s as any).pcs_traits ?? 0)?.['punk_lvl'] === 3) {
-            if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['punk_points'] = ((s as any).arch_const ?? {})?.['points_full_effect'] / 3;
+            if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['punk_points'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) / 3;
           }
         }
       }
       if (((s as any).pcs_traits ?? 0)?.['goth_lvl'] === 1) {
-        if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['goth_points'] = ((s as any).arch_const ?? {})?.['points_full_effect'] / 8;
+        if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['goth_points'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) / 8;
       } else {
         if (((s as any).pcs_traits ?? 0)?.['goth_lvl'] === 2) {
-          if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['goth_points'] = ((s as any).arch_const ?? {})?.['points_full_effect'] / 4;
+          if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['goth_points'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) / 4;
         } else {
           if (((s as any).pcs_traits ?? 0)?.['goth_lvl'] === 3) {
-            if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['goth_points'] = ((s as any).arch_const ?? {})?.['points_full_effect'] / 3;
+            if (!(s as any).arch_vars) (s as any).arch_vars = {}; (s as any).arch_vars['goth_points'] = (((s as any).arch_const ?? {})?.['points_full_effect'] ?? 0) / 3;
           }
         }
       }
@@ -8309,7 +8309,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['salon_state'] = 'fired';
             if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['last_rank'] = 6;
           } else {
-            if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['last_rank'] = ((((s as any).masseuse ?? 0)?.['jobtype'] >= 0) ? (((s as any).masseuse ?? 0)?.['jobtype']) : (-((s as any).masseuse ?? {})?.['jobtype']));
+            if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['last_rank'] = ((((s as any).masseuse ?? 0)?.['jobtype'] >= 0) ? (((s as any).masseuse ?? 0)?.['jobtype']) : (-(((s as any).masseuse ?? {})?.['jobtype'] ?? 0)));
             if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['salon_state'] = 'resigned';
             if (((s as any).masseuse ?? 0)?.['last_rank'] === 2) {
               if (!(s as any).masseuse) (s as any).masseuse = {}; (s as any).masseuse['hourly'] = 125;

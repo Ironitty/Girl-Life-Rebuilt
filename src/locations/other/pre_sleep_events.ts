@@ -111,7 +111,7 @@ function enterNichServentSleepEventsHandler(s: GameState, scene: SceneBuilder): 
     scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', 'sleepEvents', '100'] }]);
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 2) {
-      qspCall(s, 'pre_sleep_events', 'exit');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExit(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.actions([{ label: 'Continue', goto: ['nichBedroomServant', 'sleepEvents', '1000'] }]);
     }
   }
@@ -159,7 +159,7 @@ function enterSucchoiceNO(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Go to sleep', handler: (st: GameState) => {
-    qspCall(s, 'pre_sleep_events', 'event_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -220,7 +220,7 @@ function enterSuccubinit(s: GameState, scene: SceneBuilder): void {
 
 function enterMagbstchoice(s: GameState, scene: SceneBuilder): void {
   (s as any).tittmp = ((s as any).tits ?? 0) + 1;
-  scene.img(`images/pc/body/tits/t${((s as any).tittmp ?? 0)}.jpg`);
+  scene.img(`images/pc/body/tits/t${((s as any).tittmp || '')}.jpg`);
   scene.text('You have an odd dream where you are looking at your naked chest in a mirror and your breasts seem larger…');
   scene.text('As the dream starts to drift away, you find yourself gazing at the reflection of your breasts and think:');
   // TODO-QSP: end
@@ -228,12 +228,12 @@ function enterMagbstchoice(s: GameState, scene: SceneBuilder): void {
     { label: 'Nice, I wish my breasts really would grow.', handler: (st: GameState) => {
     (s as any).magf2bdo = 1;
     (s as any).magtarcup = ((s as any).magtarcup ?? 0) + (1);
-    qspCall(s, 'pre_sleep_events', 'event_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Eh, I don\'t like them like that.', handler: (st: GameState) => {
     (s as any).magf2bdo = 0;
     (s as any).mgf2bnocnt = ((s as any).mgf2bnocnt ?? 0) + (1);
-    qspCall(s, 'pre_sleep_events', 'event_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

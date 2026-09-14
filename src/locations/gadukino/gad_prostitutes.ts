@@ -57,13 +57,13 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'force', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Make Mira your prostitute [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make Mira your prostitute', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Make Mira your prostitute [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make Mira your prostitute', handler: (st: GameState) => {
     if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['pimp'] = 1;
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'misc', 'force', 'hard');
@@ -71,7 +71,7 @@ function enterPimpMira(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     qspCall(s, 'miroslava', 'miraclothes');
     // TODO-QSP: dynamic text: You call her over to you. Mira hurries over and looks at you with downcast eyes....
-    scene.text(`You call her over to you. Mira hurries over and looks at you with downcast eyes. "Hi, ${((s as any).pcs_nickname ?? 0)}. Are you having a good night?"`);
+    scene.text(`You call her over to you. Mira hurries over and looks at you with downcast eyes. "Hi, ${((s as any).pcs_nickname || '')}. Are you having a good night?"`);
     // TODO-QSP: dynamic text: You look at her angrily. "A better question, my lovely whore, is 'Are you having...
     scene.text(`You look at her angrily. "A better question, my lovely whore, is 'Are you having a good night'? I want ${qspFunc(s, 'money', 'string_profit', 200)} per customer you have each night." You tell her earnestly.`);
     scene.text('Mira looks up in shock and with a hurt look on her face. "What are you talking about? Do you think I am a hooker?"');
@@ -113,7 +113,7 @@ function enterMiraRebels(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('After Mira is done with her preaching, you try to think of something witty to say or raise your hand to slap her back, but you just can\'t bring yourself to do it.');
   // TODO-QSP: dynamic text: Mira sees the defeated look in your eyes and knows that she has won. She pulls y...
-  scene.text(`Mira sees the defeated look in your eyes and knows that she has won. She pulls you into an embrace and whispers, "It's alright, ${((s as any).pcs_nickname ?? 0)}. We can just be friends again. And if you want to, maybe you can come work with me instead?"`);
+  scene.text(`Mira sees the defeated look in your eyes and knows that she has won. She pulls you into an embrace and whispers, "It's alright, ${((s as any).pcs_nickname || '')}. We can just be friends again. And if you want to, maybe you can come work with me instead?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['gad_prostitutes', 'start'] },
@@ -269,18 +269,18 @@ function enterWorkAlone(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You have earned <<$func(''money'', ''string_profit'', prostitute[''earnings_day''])>> today.'+iif(p...
   }
   if (((s as any).prostitute ?? 0)?.['payment_method'] === 0) {
-    qspCall(s, 'gad_prostitutes', 'event_check');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'willpower', 'prostitution', 'self', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Look for a client (0:30)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Look for a client (0:30)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['prostitution_car_negotiation', 'look_client'] },
     ]);

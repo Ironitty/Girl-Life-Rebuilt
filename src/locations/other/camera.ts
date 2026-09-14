@@ -80,7 +80,7 @@ function enterCheckLocation(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       if (((s as any).camera_event ?? 0) === 'pav_lake'  &&  ((s as any).camera_found ?? 0)?.['sonia'] !== 1  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).soniaQW ?? 0)?.['slut'] > 0) {
-        qspCall(s, 'camera', 'pav_lake_sonia', 'describe');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'describe']; enterPavLakeSonia(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -120,7 +120,7 @@ function enterEugene(s: GameState, scene: SceneBuilder): void {
 function enterMother(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
   // TODO-QSP: dynamic text: You take out your camera. "Hey, <<$npc_nickname['A29']>>, do you mind if I take ...
-  scene.text(`You take out your camera. "Hey, ${((s as any).npc_nickname ?? 0)?.['A29']}, do you mind if I take your photograph for my portfolio?"`);
+  scene.text(`You take out your camera. "Hey, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, do you mind if I take your photograph for my portfolio?"`);
   scene.text('She frowns at you. "Where did you get that camera?"');
   scene.text('You shrug a little. "I saved up and bought it. Please? I need the practice, and I think you would make a great subject."');
   scene.text('She shakes her head. "Seems like a waste of money to me."');
@@ -143,7 +143,7 @@ function enterMother(s: GameState, scene: SceneBuilder): void {
     scene.text('You show her your photos and the one you finally decided on. "Here, look, this is the one I will use for my portfolio."');
     scene.text('She smiles. "They do look nice… I still say it\'s a waste of time, though."');
     // TODO-QSP: dynamic text: You roll your eyes. "I know, <<$npc_nickname['A29']>>," you reply as she walks b...
-    scene.text(`You roll your eyes. "I know, ${((s as any).npc_nickname ?? 0)?.['A29']}," you reply as she walks back inside.`);
+    scene.text(`You roll your eyes. "I know, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}," you reply as she walks back inside.`);
     scene.actions([
       { label: 'Put your camera away', handler: (st: GameState) => {
     if (((s as any).region ?? 0) === 'pav') {
@@ -361,7 +361,7 @@ function enterPavLake(s: GameState, scene: SceneBuilder): void {
   scene.text('As you look out over the lake, you realize what a wonderful photo this place would make. You walk around the shore several times until you find the perfect spot and take several pictures before pausing and checking them. Finally, you\'re happy with the results, knowing you have something to add to your portfolio.');
   if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).sunWeather ?? 0) === 1  &&  ((s as any).temp ?? 0) > 15  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) < 20) {
     scene.text('Just as you\'re about to put your camera away, you notice a girl sunbathing topless. It takes you a minute to realize that it\'s Sonia, and she appears alone. You wonder if she would make a good subject, a take on how innocence can be lost in a cruel world.');
-    qspCall(s, 'camera', 'pav_lake_sonia');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPavLakeSonia(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.actions([
@@ -392,7 +392,7 @@ function enterPavLakeSonia(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/sonia/lake/photography/photo2.jpg');
     // TODO-QSP: dynamic text: She covers herself up and looks at you in surprise. "What the fuck, <<$pcs_nickn...
-    scene.text(`She covers herself up and looks at you in surprise. "What the fuck, ${((s as any).pcs_nickname ?? 0)}?! What are you doing?!"`);
+    scene.text(`She covers herself up and looks at you in surprise. "What the fuck, ${((s as any).pcs_nickname || '')}?! What are you doing?!"`);
     scene.text('"Sorry," you smile. "I was just taking your photo. You\'re just so beautiful and I couldn\'t help myself…"');
     scene.text('She smiles at the compliment. "Really?"');
     scene.text('You nod as you take another photo. "Yes. Now why don\'t you stop covering up?"');

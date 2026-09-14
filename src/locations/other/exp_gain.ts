@@ -37,7 +37,7 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['statName'] = ((s as any).locArgs?.[0] ?? 0);
         if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['attrArray'] = '';
       } else {
-        scene.text(`Error in gs 'exp_gain': ${((s as any).locArgs?.[0] ?? 0)} is neither a skill nor an attribute`);
+        scene.text(`Error in gs 'exp_gain': ${((s as any).locArgs?.[0] ?? '')} is neither a skill nor an attribute`);
         return;
       }
     }
@@ -47,7 +47,7 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :trait_loop
   if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['trait'] = qspUntranslated(s, "traitattskl[expgainVars['trait_index']]", { location: "exp_gain" });
   if (((s as any).expgainVars ?? 0)?.['trait'] !== '') {
-    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[((s as any).expgainVars ?? {})?.['trait'] + '-' + ((s as any).expgainVars ?? {})?.['statName'] + '-exp_gain']);
+    if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[(((s as any).expgainVars ?? {})?.['trait'] ?? 0) + '-' + (((s as any).expgainVars ?? {})?.['statName'] ?? 0) + '-exp_gain']);
     if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars['exp_gain_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-\' + $expgainVars[\'statName\'] + \'-exp_gain']);
   }
   if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['trait_index'] = ((s as any).expgainVars['trait_index'] ?? 0) + (1);
@@ -56,18 +56,18 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_stam ?? 0) <= 0) {
     if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
-      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 50 / 400;
+      if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 50 / 400;
     } else {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 100 / 400;
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 100 / 400;
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
-          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 150 / 400;
+          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 150 / 400;
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
-            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 180 / 400;
+            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 180 / 400;
           } else {
-            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 200 / 400;
+            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 200 / 400;
           }
         }
       }
@@ -75,36 +75,36 @@ function enterInhib(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_stam ?? 0) < ((s as any).stammax ?? 0) / 5) {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 75 / 400;
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 75 / 400;
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
-          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 150 / 400;
+          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 150 / 400;
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
-            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 225 / 400;
+            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 225 / 400;
           } else {
             if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
-              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 270 / 400;
+              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 270 / 400;
             } else {
-              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 300 / 400;
+              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 300 / 400;
             }
           }
         }
       }
     } else {
       if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 20) {
-        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 100 / 400;
+        if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 100 / 400;
       } else {
         if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 10) {
-          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 200 / 400;
+          if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 200 / 400;
         } else {
           if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 5) {
-            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 300 / 400;
+            if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 300 / 400;
           } else {
             if (((s as any).pcs_condition ?? 0)?.['lack_of_sleep'] >= 2) {
-              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 360 / 400;
+              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 360 / 400;
             } else {
-              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = ((s as any).expgainVars ?? {})?.['exp_gain_mult'] * 400 / 400;
+              if (!(s as any).expgainVars) (s as any).expgainVars = {}; (s as any).expgainVars['exp_gain_mult'] = (((s as any).expgainVars ?? {})?.['exp_gain_mult'] ?? 0) * 400 / 400;
             }
           }
         }

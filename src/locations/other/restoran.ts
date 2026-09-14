@@ -40,7 +40,7 @@ function enterMaitred(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/expensiverest/maitredseat.jpg');
     scene.text('The well-dressed maître d\' politely asks whether you would prefer the VIP section or the common room.');
     scene.actions([
-      { label: 'Go to the VIP room [+$func(\'money\', \'get_cost_string\', 5000)]', handler: (st: GameState) => {
+      { label: 'Go to the VIP room', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 5000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -97,13 +97,13 @@ function enterZal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Smile at her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Smile at her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Smile at her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Smile at her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['nastja', 'pos1'] },

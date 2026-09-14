@@ -133,7 +133,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['rel_hotcat'] = ((s as any).pcs_hotcat ?? 0);
   }
   if (((s as any).npcStatVars ?? 0)?.['inanimate']) {
-    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['sexskill'] = ((s as any).stat ?? {})?.['mast'] / 3;
+    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['sexskill'] = (((s as any).stat ?? {})?.['mast'] ?? 0) / 3;
     if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['spermpot'] = (-1);
     if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['spermvol'] = (-1);
   }
@@ -165,10 +165,10 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).npcStatVars ?? 0)?.['dob'] !== 0) {
-    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['bday'] = (((s as any).npcStatVars ?? {})?.['dob'] % 100);
-    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['bmonth'] = (((s as any).npcStatVars ?? {})?.['dob'] / 100) % 100;
-    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['byear'] = ((s as any).npcStatVars ?? {})?.['dob'] / 10000;
-    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['age'] = ((s as any).npcStatVars ?? {})?.['byear'] - ((s as any).year ?? 0);
+    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['bday'] = ((((s as any).npcStatVars ?? {})?.['dob'] ?? 0) % 100);
+    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['bmonth'] = ((((s as any).npcStatVars ?? {})?.['dob'] ?? 0) / 100) % 100;
+    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['byear'] = (((s as any).npcStatVars ?? {})?.['dob'] ?? 0) / 10000;
+    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['age'] = (((s as any).npcStatVars ?? {})?.['byear'] ?? 0) - ((s as any).year ?? 0);
     if (((s as any).npcStatVars ?? 0)?.['bmonth'] < ((s as any).month ?? 0)) {
       if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['age'] = ((s as any).npcStatVars['age'] ?? 0) + (1);
     } else {
@@ -323,7 +323,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).npcStatVars ?? 0)?.['height'] === 0) {
     if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['bmi'] = 200;
   } else {
-    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['bmi'] = 100000 * ((s as any).npcStatVars ?? {})?.['weight'] / (((s as any).npcStatVars ?? {})?.['height'] * ((s as any).npcStatVars ?? {})?.['height']);
+    if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['bmi'] = 100000 * (((s as any).npcStatVars ?? {})?.['weight'] ?? 0) / ((((s as any).npcStatVars ?? {})?.['height'] ?? 0) * (((s as any).npcStatVars ?? {})?.['height'] ?? 0));
   }
   if (((s as any).npcStatVars ?? 0)?.['gender'] === 0) {
     if (!(s as any).npcStatVars) (s as any).npcStatVars = {}; (s as any).npcStatVars['av_height'] = 175;
@@ -620,7 +620,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $boy<<npcStat_i>>        = $npcID<<npcStat_i>>
     // TODO-QSP: $boydesc<<npcStat_i>>      = $npcdesc<<npcStat_i>>
     // TODO-QSP: dick<<npcStat_i>>        =  dick_length<<npcStat_i>>
-    if (((s as any).npcSexskill ?? 0)((s as any).npcStat_i ?? 0) > 2) {
+    if (((s as any).npcSexskill ?? 0)?.[String((s as any).npcStat_i ?? 0)] > 2) {
       // TODO-QSP: silavag<<npcStat_i>>    =  max(0, min(npcSexskill<<npcStat_i>> / 34, 2))
     } else {
       // TODO-QSP: silavag<<npcStat_i>>    =  npcSexskill<<npcStat_i>>

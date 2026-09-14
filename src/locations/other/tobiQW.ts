@@ -16,7 +16,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hi Mikhail, how\'s it going?"');
   } else {
     // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>, how's it going?"
-    scene.text(`"Hi ${((s as any).pcs_nickname ?? 0)}, how's it going?"`);
+    scene.text(`"Hi ${((s as any).pcs_nickname || '')}, how's it going?"`);
   }
   scene.text('You are just dumbfounded by surprise. In your bedroom is Reinhold, and he obviously knows who you are.');
   // TODO-QSP: end
@@ -53,7 +53,7 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/lab/lab.jpg');
   scene.text('"Just let yourself in. It\'s not like this is a laboratory with sensitive equipment in it," Tatiana sarcastically lambastes Reinhold.');
   // TODO-QSP: dynamic text: "Well maybe if you hadn't been playing games, we would have both talked to <<$pc...
-  scene.text(`"Well maybe if you hadn't been playing games, we would have both talked to ${((s as any).pcs_firstname ?? 0)} and sorted this out already."`);
+  scene.text(`"Well maybe if you hadn't been playing games, we would have both talked to ${((s as any).pcs_firstname || '')} and sorted this out already."`);
   scene.text('Gustav puts his arm around you and makes sure you\'re OK while Tatiana and Reinhold bicker like an old married couple.');
   scene.text('Eventually, they stop long enough to see you and remember what they are here for.');
   scene.text('Reinhold addresses you, "Firstly, I have to ask how much you know about the world of magic."');

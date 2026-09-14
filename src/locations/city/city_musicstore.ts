@@ -20,7 +20,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'schedule', 'A154');
   (s as any).musicrand = Math.floor(Math.random() * 2) + 1;
   if (((s as any).musicrand ?? 0) === 1  &&  ((s as any).locat ?? 0)?.['A154'] === 9) {
-    qspCall(s, 'city_musicstore', 'set_radomir_counter_text');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetRadomirCounterText(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.text('Jimmy just nods at you, then returns his attention to the guitar laying on the counter in front of him.');
   }
@@ -112,12 +112,12 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
         scene.text('The guitar isn\'t the best sounding. However, looking at the price tags on the others, you\'re not sure if you should spend so much money on a better one until you\'re better at playing.');
       }
       scene.actions([
-        { label: 'Buy a cheap acoustic guitar ( [+$func(\'money\', \'string_price\', 3400) + \'...]', goto: ['city_musicstore', 'buycheapacoustic'] },
+        { label: 'Buy a cheap acoustic guitar ( [3400₽]...]', goto: ['city_musicstore', 'buycheapacoustic'] },
         { label: 'You have to think about it', handler: (st: GameState) => {
     (s as any).ml_didntbuyguitarthefirstvisit = 1;
     scene.text('You hesitate before deciding not to buy it, at least not for now. "I\'ll have to talk to think about it first," you tell Jimmy.');
     // TODO-QSP: dynamic text: He nods. "You know what? I'll put it aside for you in case you change your mind,...
-    scene.text('He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, \' + $func(\'money\', \'string_price\', 3400) + \'."');
+    scene.text('He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, 3400₽."');
     scene.actions([
       { label: 'Leave', goto: ['city_mall', ''] },
     ]);
@@ -127,7 +127,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
       (s as any).ml_didntbuyguitarthefirstvisit = 1;
       scene.text('While the guitar isn\'t the best sounding, it is comfortable. Unfortunately, while it\'s cheaper than the rest, it still costs more than you have. You hand it back to Jimmy with a sigh. "Sorry, but I can\'t buy it right now."');
       // TODO-QSP: dynamic text: He nods. "You know what? I'll put it aside for you in case you change your mind,...
-      scene.text('He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, \' + $func(\'money\', \'string_price\', 3400) + \'."');
+      scene.text('He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, 3400₽."');
       scene.actions([
         { label: 'Leave', goto: ['city_mall', ''] },
       ]);
@@ -150,7 +150,7 @@ function enterCameback(s: GameState, scene: SceneBuilder): void {
   scene.text('You enter the store, passing the door to be submerged in a loud, cacophony environment.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Ask Jimmy about the guitar [+$func(\'money\', \'get_cost_string\', 3400)]', handler: (st: GameState) => {
+    { label: 'Ask Jimmy about the guitar', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3400) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -160,11 +160,11 @@ function enterCameback(s: GameState, scene: SceneBuilder): void {
       scene.text('He looks up from the guitar. "Oh hey. Sure, I have it. Let me get it for you."');
       scene.text('He disappears for a while before he brings the guitar out. "See, all in good shape. Properly set up and everything."');
       scene.actions([
-        { label: 'Buy a cheap acoustic guitar ( [+$func(\'money\', \'string_price\', 3400) + \'...]', goto: ['city_musicstore', 'buycheapacoustic'] },
+        { label: 'Buy a cheap acoustic guitar ( [3400₽]...]', goto: ['city_musicstore', 'buycheapacoustic'] },
         { label: 'You have to think about it', handler: (st: GameState) => {
     scene.text('You hesitate before deciding not to buy it, at least not for now. "I\'ll have to talk to think about it first," you tell Jimmy.');
     // TODO-QSP: dynamic text: He nods. "You know what? I'll put it aside for you in case you change your mind,...
-    scene.text('He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, \' + $func(\'money\', \'string_price\', 3400) + \'."');
+    scene.text('He nods. "You know what? I\'ll put it aside for you in case you change your mind, but be quick before someone else beats you to it!" He scribbles something on a post-it note and sticks it on the guitar. "I\'ll try to keep the price the same, 3400₽."');
     scene.actions([
       { label: 'Leave', goto: ['city_mall', ''] },
     ]);
@@ -198,7 +198,7 @@ function enterBuycheapacoustic(s: GameState, scene: SceneBuilder): void {
     scene.text('Jimmy puts the guitar in a gigbag and drops a set of strings and picks in the pocket. "A proper starter kit," he states and rings up the purchase.');
   }
   scene.text('He looks at you thoughtfully, then drops a thick, slightly worn booklet in the bag. "Some stuff to learn from," he says while handing your purchase to you. "Congratulations, welcome to the starving musician community."');
-  qspCall(s, 'city_musicstore', 'first_setup');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFirstSetup(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'money', 'pay', 3400);
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -217,7 +217,7 @@ function enterPayandtakestuff(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).ml_guitar) (s as any).ml_guitar = {}; (s as any).ml_guitar['carried'] = 1;
     scene.text('Jimmy disappears into the back of the shop with your guitar before returning 10 minutes later. "That\'s it all set up, but if you need to tweak anything, just bring it in and we\'ll do it for you, free of charge."');
     // TODO-QSP: dynamic text: He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', ') + iif(ml_hardcase = ...
-    scene.text(`He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', ') + iif(ml_hardcase = 1, 'its case', ') + ' and hands it to you. "All the best, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`He puts the guitar in ' + iif(ml_gigbag = 1, 'a gigbag', ') + iif(ml_hardcase = 1, 'its case', ') + ' and hands it to you. "All the best, ${((s as any).pcs_nickname || '')}."`);
   }
   // TODO-QSP: end
   scene.actions([

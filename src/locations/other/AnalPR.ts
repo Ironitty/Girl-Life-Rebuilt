@@ -24,9 +24,9 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/sex/anal/doggy/anal30.jpg');
   // TODO-QSP: dynamic text: You immediately feel the man's hands on your ass cheeks when you get on your han...
-  scene.text(`You immediately feel the man's hands on your ass cheeks when you get on your hands and knees in the back seat. The man confidently guides his condom-covered cock to your sphincter and slowly thrusts all of his ${((s as any).dick ?? 0)} centimeters inside you.`);
+  scene.text(`You immediately feel the man's hands on your ass cheeks when you get on your hands and knees in the back seat. The man confidently guides his condom-covered cock to your sphincter and slowly thrusts all of his ${((s as any).dick || '')} centimeters inside you.`);
   // TODO-QSP: dynamic text: <<$analsex>>
-  scene.text(`${((s as any).analsex ?? 0)}`);
+  scene.text(`${((s as any).analsex || '')}`);
   scene.text('After a few minutes of fucking your ass, the man groans, and you feel his hips spasming against your ass. He pulls out of you then takes the filled condom off his slowly shrinking cock.');
   scene.text('The man ties a knot at the open end of the condom and carelessly tosses it out of the window.');
   (s as any).spafinloc = 3;

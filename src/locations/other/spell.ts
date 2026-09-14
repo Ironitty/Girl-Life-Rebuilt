@@ -334,7 +334,7 @@ function enterPenisenvy(s: GameState, scene: SceneBuilder): void {
 function enterFog(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A Fog materializes around, obscuring <<dynev...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A Fog materializes around, obscuring ${0} from enemies.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A Fog materializes around, obscuring ${0} from enemies.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -345,11 +345,11 @@ function enterFog(s: GameState, scene: SceneBuilder): void {
 function enterClone(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>><<SuccessValue>> clone<<iif(SuccessValue>1,"...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>${((s as any).SuccessValue ?? 0)} clone${((((s as any).SuccessValue ?? 0)>1) ? ('s') : (''))} springs from ${0} confusing enemies.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>${((s as any).SuccessValue || '')} clone${((((s as any).SuccessValue ?? 0)>1) ? ('s') : (''))} springs from ${0} confusing enemies.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0  &&  (0 as any) > 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! A <<dyneval($spellFunc["...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! A ${0} clone disappears.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! A ${0} clone disappears.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -362,7 +362,7 @@ function enterStun(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     (s as any).stunner = 1;
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>><<dyneval($spellFunc["GetCombatantName"], $T...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>${0} is stunned.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>${0} is stunned.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -379,15 +379,15 @@ function enterWeapon(s: GameState, scene: SceneBuilder): void {
 function enterWind(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) === 2) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A wind blows through the area, eliminating t...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A wind blows through the area, eliminating the fog around ${0} from the battlefield.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A wind blows through the area, eliminating the fog around ${0} from the battlefield.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) === 1) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A wind blows through the area, eliminating a...
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A wind blows through the area, eliminating all fog on the battlefield.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A wind blows through the area, eliminating all fog on the battlefield.</font></b>`);
     } else {
       if (((s as any).SuccessValue ?? 0) === -1) {
         // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>A wind blows through the area, eliminating th...
-        scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>A wind blows through the area, eliminating the fog around ${0} from the battlefield.</font></b>`);
+        scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>A wind blows through the area, eliminating the fog around ${0} from the battlefield.</font></b>`);
       } else {
         scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
       }
@@ -400,13 +400,13 @@ function enterWind(s: GameState, scene: SceneBuilder): void {
 function enterMulticlone(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>><<SuccessValue * 3>> clones of <<dyneval($sp...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>${((s as any).SuccessValue ?? 0) * 3} clones of ${0} spring forth, confusing the enemy.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>${((s as any).SuccessValue ?? '') * 3} clones of ${0} spring forth, confusing the enemy.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0  &&  ((s as any).klon ?? 0) > 0) {
       if ((0 as any) < 3) {
       }
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! Some clones of <<dyneval...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! Some clones of ${0} disappear.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! Some clones of ${0} disappear.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -418,7 +418,7 @@ function enterMulticlone(s: GameState, scene: SceneBuilder): void {
 function enterEnergo(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>An energy shield materializes around <<dynev...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>An energy shield materializes around ${0}, granting protection from enemies.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>An energy shield materializes around ${0}, granting protection from enemies.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -429,7 +429,7 @@ function enterEnergo(s: GameState, scene: SceneBuilder): void {
 function enterHaste(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>><<dyneval($spellFunc["GetCombatantName"], $T...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>${0} feel mind and body race though a sluggish world.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>${0} feel mind and body race though a sluggish world.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -442,7 +442,7 @@ function enterHeal(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).menu_off ?? 0))) {
     } else {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>><<dyneval($spellFunc["GetCombatantName"], $T...
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>${0} surge with life, feeling much stronger.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>${0} surge with life, feeling much stronger.</font></b>`);
     }
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
@@ -457,7 +457,7 @@ function enterHand(s: GameState, scene: SceneBuilder): void {
     (s as any).TargetStrenDelta = ((s as any).TargetStren ?? 0)*20*((s as any).SuccessValue ?? 0)/100;
     (s as any).TargetStrenBase = ((s as any).TargetStren ?? 0)*10;
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Power flows from the hands of <<dyneval($spe...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Power flows from the hands of ${0}.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Power flows from the hands of ${0}.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -469,7 +469,7 @@ function enterScaldingtouch(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 100 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Flames spring from your hands.</font></b>
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Flames spring from your hands.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Flames spring from your hands.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -481,7 +481,7 @@ function enterBurninghands(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 250 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A torrent of flames jets from your hands.</f...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A torrent of flames jets from your hands.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A torrent of flames jets from your hands.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -492,7 +492,7 @@ function enterBurninghands(s: GameState, scene: SceneBuilder): void {
 function enterFirebarrier(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A flaming barrier springs up between you and...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A flaming barrier springs up between you and your opponents.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A flaming barrier springs up between you and your opponents.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -503,11 +503,11 @@ function enterFirebarrier(s: GameState, scene: SceneBuilder): void {
 function enterFirestorm(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Uncountable glowing embers streak down upon ...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Uncountable glowing embers streak down upon the foes of ${0}.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Uncountable glowing embers streak down upon the foes of ${0}.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! Uncountable glowing embe...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! Uncountable glowing embers streak down upon the battlefield, burning everyone.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! Uncountable glowing embers streak down upon the battlefield, burning everyone.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -519,7 +519,7 @@ function enterFirestorm(s: GameState, scene: SceneBuilder): void {
 function enterFlameshield(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A Shield made of flames interposes itself be...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A Shield made of flames interposes itself between ${0} and the enemy.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A Shield made of flames interposes itself between ${0} and the enemy.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -531,12 +531,12 @@ function enterShock(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 100 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>You build a static electric charge in your h...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>You build a static electric charge in your hand and zap your opponent.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>You build a static electric charge in your hand and zap your opponent.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
       qspCall(s, 'fight', 'applyDamage', ((s as any).CasterType ?? 0), ((s as any).CasterNumber ?? 0), 50);
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! You manage to zap yourse...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! You manage to zap yourself with a static charge.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! You manage to zap yourself with a static charge.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -549,12 +549,12 @@ function enterLightning(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 200 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>You shoot a lightning bolt from your hand, z...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>You shoot a lightning bolt from your hand, zapping your opponent.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>You shoot a lightning bolt from your hand, zapping your opponent.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
       qspCall(s, 'fight', 'applyDamage', ((s as any).CasterType ?? 0), ((s as any).CasterNumber ?? 0), 100);
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! You manage to zap yourse...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! You manage to zap yourself with lightning.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! You manage to zap yourself with lightning.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -566,7 +566,7 @@ function enterLightning(s: GameState, scene: SceneBuilder): void {
 function enterElectricbarrier(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A wall of dancing lightning springs up aroun...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A wall of dancing lightning springs up around yourself.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A wall of dancing lightning springs up around yourself.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -578,11 +578,11 @@ function enter1000birds(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, (100 * SuccessValue)
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>You shoot hundreds of small lightning bolts ...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>You shoot hundreds of small lightning bolts toward your enemy.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>You shoot hundreds of small lightning bolts toward your enemy.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! Hundreds of small lightn...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! Hundreds of small lightning bolts curl toward the battlefield, shocking everyone.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! Hundreds of small lightning bolts curl toward the battlefield, shocking everyone.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -594,7 +594,7 @@ function enter1000birds(s: GameState, scene: SceneBuilder): void {
 function enterDancingsphere(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A large field of lightning dances around you...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A large field of lightning dances around you, blocking attacks.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A large field of lightning dances around you, blocking attacks.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -606,13 +606,13 @@ function enterQuicksand(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 100 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>You trap your opponent in quicksand.</font><...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>You trap your opponent in quicksand.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>You trap your opponent in quicksand.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
       qspCall(s, 'fight', 'applyDamage', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), 100);
       qspCall(s, 'fight', 'applyDamage', ((s as any).CasterType ?? 0), ((s as any).CasterNumber ?? 0), 50);
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! You are both trapped in ...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! You are both trapped in quicksand.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! You are both trapped in quicksand.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -624,7 +624,7 @@ function enterQuicksand(s: GameState, scene: SceneBuilder): void {
 function enterEarthshield(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Tendrils of earth rise to defend you.</font>...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Tendrils of earth rise to defend you.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Tendrils of earth rise to defend you.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -636,13 +636,13 @@ function enterAbyss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 250 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>The Earth opens up beneath your opponent's f...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>The Earth opens up beneath your opponent's feet, slamming shut damaging him and depriving him of the ability to move.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>The Earth opens up beneath your opponent's feet, slamming shut damaging him and depriving him of the ability to move.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
       qspCall(s, 'fight', 'applyDamage', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), 250);
       qspCall(s, 'fight', 'applyDamage', ((s as any).CasterType ?? 0), ((s as any).CasterNumber ?? 0), 200);
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! The Earth opens up benea...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! The Earth opens up beneath your opponent's feet, slamming shut damaging him and depriving him of the ability to move. You are also caught.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! The Earth opens up beneath your opponent's feet, slamming shut damaging him and depriving him of the ability to move. You are also caught.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -654,7 +654,7 @@ function enterAbyss(s: GameState, scene: SceneBuilder): void {
 function enterEarthguardian(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>The Earth itself comes alive defending you f...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>The Earth itself comes alive defending you from attacks. It draws from the power of the land to regenerate itself every round. You now have ${((s as any).defence ?? 0)} protection units.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>The Earth itself comes alive defending you from attacks. It draws from the power of the land to regenerate itself every round. You now have ${((s as any).defence || '')} protection units.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -666,12 +666,12 @@ function enterSando(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, (250 * SuccessValue)
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Two huge plates of earth collapse together, ...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Two huge plates of earth collapse together, crushing the enemy and depriving him of the ability to move.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Two huge plates of earth collapse together, crushing the enemy and depriving him of the ability to move.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
       qspCall(s, 'fight', 'applyDamage', ((s as any).CasterType ?? 0), ((s as any).CasterNumber ?? 0), 50);
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! Two huge plates of earth...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! Two huge plates of earth collapse together with crushing force, but the enemy is missed and you are instead caught.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! Two huge plates of earth collapse together with crushing force, but the enemy is missed and you are instead caught.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -684,14 +684,14 @@ function enterWindgust(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 100 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>You create a gust of wind.</font></b>
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>You create a gust of wind.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>You create a gust of wind.</font></b>`);
     if ((0 as any) > 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Enemy clones are vaporized.</font></b>
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Enemy clones are vaporized.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Enemy clones are vaporized.</font></b>`);
     }
     if ((0 as any) > 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Enemy fog is torn to shreds by the wind.</fo...
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Enemy fog is torn to shreds by the wind.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Enemy fog is torn to shreds by the wind.</font></b>`);
     }
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
@@ -704,14 +704,14 @@ function enterPressure(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 200 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>You dramatically raise the air pressure.</fo...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>You dramatically raise the air pressure.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>You dramatically raise the air pressure.</font></b>`);
     if ((0 as any) > 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Enemy clones are vaporized.</font></b>
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Enemy clones are vaporized.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Enemy clones are vaporized.</font></b>`);
     }
     if ((0 as any) > 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Enemy fog is torn to shreds by the wind.</fo...
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Enemy fog is torn to shreds by the wind.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Enemy fog is torn to shreds by the wind.</font></b>`);
     }
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
@@ -723,7 +723,7 @@ function enterPressure(s: GameState, scene: SceneBuilder): void {
 function enterVacuum(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A turbulent sphere of vacuum surrounds you, ...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A turbulent sphere of vacuum surrounds you, blocking incoming attacks. You now have ${((s as any).defence ?? 0)} protection units.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A turbulent sphere of vacuum surrounds you, blocking incoming attacks. You now have ${((s as any).defence || '')} protection units.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -735,14 +735,14 @@ function enterVacuumshells(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 250 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Turbulent spheres of vacuum bombard your ene...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Turbulent spheres of vacuum bombard your enemy. The air is full of whistling sounds as the spheres fly by at high speeds over the battlefield.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Turbulent spheres of vacuum bombard your enemy. The air is full of whistling sounds as the spheres fly by at high speeds over the battlefield.</font></b>`);
     if ((0 as any) > 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Enemy clones are vaporized.</font></b>
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Enemy clones are vaporized.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Enemy clones are vaporized.</font></b>`);
     }
     if ((0 as any) > 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Enemy fog is torn to shreds by the wind.</fo...
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Enemy fog is torn to shreds by the wind.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Enemy fog is torn to shreds by the wind.</font></b>`);
     }
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
@@ -754,7 +754,7 @@ function enterVacuumshells(s: GameState, scene: SceneBuilder): void {
 function enterDevouringvacuum(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A devouring vacuum sucks away your enemy's d...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A devouring vacuum sucks away your enemy's defenses.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A devouring vacuum sucks away your enemy's defenses.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -767,12 +767,12 @@ function enterLeechmana(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'fight', 'applyDamage', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), 100);
     (s as any).damTipM = 1000;
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>You leech mana from your enemy.</font></b>
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>You leech mana from your enemy.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>You leech mana from your enemy.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
       qspCall(s, 'fight', 'applyDamage', ((s as any).CasterType ?? 0), ((s as any).CasterNumber ?? 0), 50);
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! Ouch!</font></b>
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! Ouch!</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! Ouch!</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -785,12 +785,12 @@ function enterFlood(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 200 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A surge of water rises towards your enemy.</...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A surge of water rises towards your enemy.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A surge of water rises towards your enemy.</font></b>`);
   } else {
     if (((s as any).SuccessValue ?? 0) < 0) {
       qspCall(s, 'fight', 'applyDamage', ((s as any).CasterType ?? 0), ((s as any).CasterNumber ?? 0), 100);
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColBad>>>The spell backfires! A surge of water rises t...
-      scene.text(`<b><font color = ${((s as any).SplTxtColBad ?? 0)}>The spell backfires! A surge of water rises towards your enemy, but misses and hits you.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColBad || '')}>The spell backfires! A surge of water rises towards your enemy, but misses and hits you.</font></b>`);
     } else {
       scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
     }
@@ -802,7 +802,7 @@ function enterFlood(s: GameState, scene: SceneBuilder): void {
 function enterBlister(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>A protective sphere of water surrounds you.<...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>A protective sphere of water surrounds you.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>A protective sphere of water surrounds you.</font></b>`);
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
   }
@@ -814,10 +814,10 @@ function enterSharkrockets(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: gs 'fight', 'applyDamage', $TargetType, TargetNumber, 150 * SuccessValue
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Blobs of water shaped like sharks fly toward...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Blobs of water shaped like sharks fly towards your enemy, striking them.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Blobs of water shaped like sharks fly towards your enemy, striking them.</font></b>`);
     if ((0 as any) > 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Enemy clones are vaporized.</font></b>
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Enemy clones are vaporized.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Enemy clones are vaporized.</font></b>`);
     }
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');
@@ -829,10 +829,10 @@ function enterSharkrockets(s: GameState, scene: SceneBuilder): void {
 function enterGreatflood(s: GameState, scene: SceneBuilder): void {
   if (((s as any).SuccessValue ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>You have filled the whole neighborhood with ...
-    scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>You have filled the whole neighborhood with water, protecting you and devouring enemy mana.</font></b>`);
+    scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>You have filled the whole neighborhood with water, protecting you and devouring enemy mana.</font></b>`);
     if ((0 as any) > 0) {
       // TODO-QSP: dynamic text: <b><font color = <<$SplTxtColGood>>>Enemy clones are vaporized.</font></b>
-      scene.text(`<b><font color = ${((s as any).SplTxtColGood ?? 0)}>Enemy clones are vaporized.</font></b>`);
+      scene.text(`<b><font color = ${((s as any).SplTxtColGood || '')}>Enemy clones are vaporized.</font></b>`);
     }
   } else {
     scene.text('<b>The spell fizzles. Nothing seems to happen.</b>');

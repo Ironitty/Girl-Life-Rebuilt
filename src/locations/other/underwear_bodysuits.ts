@@ -273,7 +273,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_bodysuits_h[<<ARGS[2]>>] = 0
   // TODO-QSP: "
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).bodysuitworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).bodysuitwornnumber ?? 0)) {
-    qspCall(s, 'underwear_bodysuits', 'strip_code');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'outfit', 'set_derived_vars');
     (s as any).lastwornbodysuitnumber = 0;
   }
@@ -294,7 +294,7 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'panties', 'dispose');
     return;
   }
-  qspCall(s, 'underwear_bodysuits', 'remove_item', ((s as any).bodysuitworntype ?? 0), ((s as any).bodysuitwornnumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bodysuitworntype ?? 0), ((s as any).bodysuitwornnumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -346,7 +346,7 @@ function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'underwear_bodysuits', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -362,7 +362,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).lastwornunderwear = 2;
   (s as any).lastwornbodysuitnumber = ((s as any).bodysuitwornnumber ?? 0);
-  qspCall(s, 'underwear_bodysuits', 'strip_code');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -373,8 +373,8 @@ function enterStripCode(s: GameState, scene: SceneBuilder): void {
   (s as any).brawornnumber = 0;
   if (!(s as any).underwear) (s as any).underwear = {}; (s as any).underwear['type'] = 0;
   (s as any).isprokp = 0;
-  qspCall(s, 'underwear_bodysuits', 'reset_UndVars');
-  qspCall(s, 'underwear_bodysuits', 'reset_PUndVars');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_UndVars(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PUndVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'outfit', 'set_derived_vars');
   // TODO-QSP: end
   scene.build();
@@ -409,7 +409,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
-  qspCall(s, 'underwear_bodysuits', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_bodysuits', ARGS[2]
   if ((!((s as any).BraQuality ?? 0))) {
     return;
@@ -476,7 +476,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
 function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lastwornbodysuittype ?? 0) === '') {
   }
-  qspCall(s, 'underwear_bodysuits', 'wear', ((s as any).lastwornbodysuittype ?? 0), ((s as any).lastwornbodysuitnumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).lastwornbodysuittype ?? 0), ((s as any).lastwornbodysuitnumber ?? 0)]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

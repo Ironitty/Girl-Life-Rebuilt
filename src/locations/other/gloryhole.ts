@@ -23,7 +23,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       scene.text('You walk down to the last stall. The large almost perfectly round hole is still there. You wonder how many women have used that hole. You feel a little excited as you contemplate your next move.');
     }
   }
-  qspCall(s, 'gloryhole', 'start_options');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStartOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -42,7 +42,7 @@ function enterReturn(s: GameState, scene: SceneBuilder): void {
       scene.text('You are still in the last stall. The large almost perfectly round hole is still there. You wonder how many women have used that hole. You feel a little excited as you contemplate your next move.');
     }
   }
-  qspCall(s, 'gloryhole', 'start_options');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStartOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -52,13 +52,13 @@ function enterStartOptions(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Caress Yourself [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Caress Yourself', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Caress Yourself [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Caress Yourself', handler: (st: GameState) => {
     if (((s as any).pcs_inhib ?? 0) < 40) {
       (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     }
@@ -108,13 +108,13 @@ function enterMast(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'mast', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Stop', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'mast', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
@@ -174,13 +174,13 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Suck it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suck it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Suck it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suck it', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['gloryhole', 'blowjob'] },
@@ -190,13 +190,13 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'hj', 'self', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Touch the shaft [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Touch the shaft', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Touch the shaft [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Touch the shaft', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'hj', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['gloryhole', 'virgin'] },
@@ -226,13 +226,13 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'bj', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Stick your finger in the hole [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stick your finger in the hole', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Stick your finger in the hole [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stick your finger in the hole', handler: (st: GameState) => {
     qspCall(s, 'money', 'earn', 100);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'willpower', 'bj', 'self');
@@ -254,13 +254,13 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Stop', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -268,13 +268,13 @@ function enterHole(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Take his money and Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take his money and Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Take his money and Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take his money and Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -348,13 +348,13 @@ function enterVirgin(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'hj', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Stop', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'hj', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
@@ -403,7 +403,7 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
   (s as any).temp = Math.floor(Math.random() * 5) + 1;
   scene.img(`images/locations/shared/gloryhole/sex/dressed/bj${Math.floor(Math.random() * 5) + 1}.mp4`);
   // TODO-QSP: dynamic text: You wrap your lips around his dick and take his <<npc_dick[$npclastgenerated]>>c...
-  scene.text(`You wrap your lips around his dick and take his ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)]}cm long ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)]} cock in your mouth and start to suck it, you suck the cock enthusiastically.`);
+  scene.text(`You wrap your lips around his dick and take his ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''}cm long ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''} cock in your mouth and start to suck it, you suck the cock enthusiastically.`);
   qspCall(s, 'arousal', 'bj', 5, 'unknown', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['vaginal'] > 0  ||  ((s as any).stat ?? 0)?.['anal'] > 0) {
@@ -421,13 +421,13 @@ function enterBlowjob(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'swallow', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Step back [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Step back', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Step back [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Step back', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'swallow', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'cum_call', 'face', 'an unknown guy from the gloryhole');
@@ -488,13 +488,13 @@ function enterGhsex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pussy', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pussy', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).sexcontra = 0;
   }, goto: ['gloryhole', 'pussy'] },
@@ -531,16 +531,16 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   (s as any).temp = Math.floor(Math.random() * 5) + 1;
   if ((Math.floor(Math.random() * 3) + 0) > 0) {
-    scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp ?? 0)}.mp4`);
+    scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp || '')}.mp4`);
   } else {
     if (((s as any).protect ?? 0) === 1) {
-      scene.img(`images/locations/shared/gloryhole/sex/vagcon${((s as any).temp ?? 0)}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/vagcon${((s as any).temp || '')}.mp4`);
     } else {
-      scene.img(`images/locations/shared/gloryhole/sex/vag${((s as any).temp ?? 0)}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/vag${((s as any).temp || '')}.mp4`);
     }
   }
   // TODO-QSP: dynamic text: You turn around and back up to the hole, you use one hand to guide his dick into...
-  scene.text(`You turn around and back up to the hole, you use one hand to guide his dick into your pussy. The ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)]}cm long ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)]} cock slides easily into your wet pussy, causing you to moan in pleasure as you move your hips back and forth. You start humping his dick with fast movements, taking the full length of him balls deep into you, which causes him to moan loudly. After several minutes, you hear him on the other side of the wall yell out, "I'm gonna cum."`);
+  scene.text(`You turn around and back up to the hole, you use one hand to guide his dick into your pussy. The ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''}cm long ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''} cock slides easily into your wet pussy, causing you to moan in pleasure as you move your hips back and forth. You start humping his dick with fast movements, taking the full length of him balls deep into you, which causes him to moan loudly. After several minutes, you hear him on the other side of the wall yell out, "I'm gonna cum."`);
   qspCall(s, 'arousal', 'vaginal', 10, 'unknown', 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).protect ?? 0) !== 1) {
@@ -549,13 +549,13 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'cum_inside', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Allow him to cum inside [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Allow him to cum inside', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Allow him to cum inside [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Allow him to cum inside', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'cum_call', '', '', 'an unknown guy from the gloryhole');
@@ -618,14 +618,14 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).sexcontra ?? 0) === 4) {
       // TODO-QSP: dynamic text: You pull off of <<$boydesc>> and look at his dick and think, "Oh shit! The condo...
-      scene.text(`You pull off of ${((s as any).boydesc ?? 0)} and look at his dick and think, "Oh shit! The condom burst."`);
+      scene.text(`You pull off of ${((s as any).boydesc || '')} and look at his dick and think, "Oh shit! The condom burst."`);
     } else {
       if (((s as any).sexcontra ?? 0) === 5) {
         // TODO-QSP: dynamic text: You pull off of <<$boydesc>> and look at his dick and think, "Oh shit! The condo...
-        scene.text(`You pull off of ${((s as any).boydesc ?? 0)} and look at his dick and think, "Oh shit! The condom is missing!"`);
+        scene.text(`You pull off of ${((s as any).boydesc || '')} and look at his dick and think, "Oh shit! The condom is missing!"`);
       } else {
         // TODO-QSP: dynamic text: <<$boydesc>> groaned and you realized that he came in the condom.
-        scene.text(`${((s as any).boydesc ?? 0)} groaned and you realized that he came in the condom.`);
+        scene.text(`${((s as any).boydesc || '')} groaned and you realized that he came in the condom.`);
       }
     }
     (s as any).sexcontra = 0;
@@ -641,7 +641,7 @@ function enterPussy(s: GameState, scene: SceneBuilder): void {
 function enterAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/gloryhole/sex/ghintoass.mp4');
   // TODO-QSP: dynamic text: You rub your wet pussy and get your fingers nice and wet and then rub it on your...
-  scene.text(`You rub your wet pussy and get your fingers nice and wet and then rub it on your asshole, you do the same to his dick, then you guide his ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)]}cm ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)]} cock into your ass. You feel his dick enter your tight ass, feelings of pain and pleasure rush through you.`);
+  scene.text(`You rub your wet pussy and get your fingers nice and wet and then rub it on your asshole, you do the same to his dick, then you guide his ${((s as any).npc_dick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''}cm ${((s as any).npc_thdick ?? 0)?.[String((s as any).npclastgenerated ?? 0)] ?? ''} cock into your ass. You feel his dick enter your tight ass, feelings of pain and pleasure rush through you.`);
   (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (4);
   qspCall(s, 'arousal', 'clit_finger', 5, 'unknown', 'sub');
   qspCall(s, 'arousal', 'anal', (-5), 'unknown', 'sub');
@@ -652,9 +652,9 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     (s as any).temp = Math.floor(Math.random() * 5) + 1;
     if ((Math.floor(Math.random() * 3) + 0) > 0) {
-      scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp ?? 0)}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/sex${((s as any).temp || '')}.mp4`);
     } else {
-      scene.img(`images/locations/shared/gloryhole/sex/anal${((s as any).temp ?? 0)}.mp4`);
+      scene.img(`images/locations/shared/gloryhole/sex/anal${((s as any).temp || '')}.mp4`);
     }
     if (((s as any).pcs_ass ?? 0) < 10) {
       scene.text('The pain doesn\'t fade and instead it starts to hurt worse after a while and the pleasure starts to fade. You fuck his dick with your ass, at first taking him deeper and deeper, as you get faster and faster. As the pleasure fades and the pain gets worse you slow down and don\'t take him as deep. You start to rub your clit to help with the sensation of pleasure. You consider stopping as the pain gets worse, but you can tell by the throbbing of his dick and ragged breathing he is about to cum and decided to keep it up so he can finish.');
@@ -670,13 +670,13 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_ass ?? 0) < 10) {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stop', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'anal', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
@@ -695,13 +695,13 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'swallow', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Turn around, kneel and let him cum in your mouth [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Turn around, kneel and let him cum in your mouth', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Turn around, kneel and let him cum in your mouth [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Turn around, kneel and let him cum in your mouth', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
     qspCall(s, 'willpower', 'swallow', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');

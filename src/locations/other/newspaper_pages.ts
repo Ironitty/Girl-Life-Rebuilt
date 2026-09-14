@@ -9,9 +9,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'newspaper_pages', 'add_event_pages');
-  qspCall(s, 'newspaper_pages', 'fill_arrays');
-  qspCall(s, 'newspaper_pages', 'add_advert_pages');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAddEventPages(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFillArrays(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAddAdvertPages(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -63,7 +63,7 @@ function enterAddEventPages(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_counter'] = ((s as any).daystart ?? 0) / 35;
     }
     if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_counter'] = ((s as any).NewspaperVars['gad_missing_counter'] ?? 0) + (1);
-    if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_day'] = ((s as any).daystart ?? 0) + 15 + (Math.floor(Math.random() * (((s as any).NewspaperVars ?? {})?.['gad_missing_counter'] / 2 - 0 + 1)) + (0));
+    if (!(s as any).NewspaperVars) (s as any).NewspaperVars = {}; (s as any).NewspaperVars['gad_missing_day'] = ((s as any).daystart ?? 0) + 15 + (Math.floor(Math.random() * ((((s as any).NewspaperVars ?? {})?.['gad_missing_counter'] ?? 0) / 2 - 0 + 1)) + (0));
     // TODO-QSP: $np_pages[] = "gs 'newspaper_pages', 'gad_missing'"
   }
   // TODO-QSP: end
@@ -78,11 +78,11 @@ function enterAddAdvertPages(s: GameState, scene: SceneBuilder): void {
 
 function enterFillArrays(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).np_front_pages ?? {}).length === 0) {
-    qspCall(s, 'newspaper_pages', 'add_generic_frontpage');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAddGenericFrontpage(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: :fill_newspaper_loop
   if (Object.keys((s as any).np_pages ?? {}).length < 3) {
-    qspCall(s, 'newspaper_pages', 'add_generic_page');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAddGenericPage(s, scene); (s as any).locArgs = __savedLocArgs; }
     // TODO-QSP: jump 'fill_newspaper_loop'
   }
   // TODO-QSP: end
@@ -441,7 +441,7 @@ function enterAdvert_(s: GameState, scene: SceneBuilder): void {
 function enterGadMissing(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>More missing people in Gadukino</center>');
   // TODO-QSP: dynamic text: <<$NewspaperVars['gad_missing_name']>>, <<NewspaperVars['gad_missing_age']>>, ha...
-  scene.text(`${((s as any).NewspaperVars ?? 0)?.['gad_missing_name']}, ${((s as any).NewspaperVars ?? 0)?.['gad_missing_age']}, has been reported missing in Gadukino. Last seen four days ago while foraging in the forest, they are the ${((s as any).NewspaperVars ?? 0)?.['gad_missing_counter']} person who has disappeared from the village in recent months and authorities are at a loss in trying to locate them.`);
+  scene.text(`${((s as any).NewspaperVars ?? 0)?.['gad_missing_name'] ?? ''}, ${((s as any).NewspaperVars ?? 0)?.['gad_missing_age'] ?? ''}, has been reported missing in Gadukino. Last seen four days ago while foraging in the forest, they are the ${((s as any).NewspaperVars ?? 0)?.['gad_missing_counter'] ?? ''} person who has disappeared from the village in recent months and authorities are at a loss in trying to locate them.`);
   // TODO-QSP: end
   scene.build();
 }
@@ -512,9 +512,9 @@ function enterStarletsReport_4(s: GameState, scene: SceneBuilder): void {
 
 function enterBalletPass(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center>Ballerina <<$pcs_firstname>> <<$pcs_lastname>> aiming for stardom?</cent...
-  scene.text(`<center>Ballerina ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)} aiming for stardom?</center>`);
+  scene.text(`<center>Ballerina ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} aiming for stardom?</center>`);
   // TODO-QSP: dynamic text: Pushkin Ballet school has announced this years intake with Pavlovks's own <<$pcs...
-  scene.text(`Pushkin Ballet school has announced this years intake with Pavlovks's own ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)} being selected as one of the regions up and coming ballerinas.`);
+  scene.text(`Pushkin Ballet school has announced this years intake with Pavlovks's own ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} being selected as one of the regions up and coming ballerinas.`);
   scene.text('Read the full article on page 9.');
   // TODO-QSP: end
   scene.build();
@@ -522,9 +522,9 @@ function enterBalletPass(s: GameState, scene: SceneBuilder): void {
 
 function enterBalletFirst(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><<$pcs_firstname>> <<$pcs_lastname>> first performance</center>
-  scene.text(`<center>${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)} first performance</center>`);
+  scene.text(`<center>${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} first performance</center>`);
   // TODO-QSP: dynamic text: Pushkin Ballet school has announced this years performance of Nutcracker at the ...
-  scene.text(`Pushkin Ballet school has announced this years performance of Nutcracker at the prestigious Mariinksy Theatre in St Petersburg. Our local ballerina ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)} performing as part of the shows Coryphée.`);
+  scene.text(`Pushkin Ballet school has announced this years performance of Nutcracker at the prestigious Mariinksy Theatre in St Petersburg. Our local ballerina ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} performing as part of the shows Coryphée.`);
   scene.text('Read the editorial on page 5.');
   // TODO-QSP: end
   scene.build();

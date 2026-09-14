@@ -131,12 +131,12 @@ function enterDrinkingInvite(s: GameState, scene: SceneBuilder): void {
   scene.text('You quickly catch up to the boys who have already started drinking.');
   if (((s as any).GadBoy ?? 0)?.['first_drink'] === 1) {
     // TODO-QSP: dynamic text: Mitka is the first to greet you, "Hey <<$pcs_nickname>>, glad you decided to joi...
-    scene.text(`Mitka is the first to greet you, "Hey ${((s as any).pcs_nickname ?? 0)}, glad you decided to join us today!"`);
+    scene.text(`Mitka is the first to greet you, "Hey ${((s as any).pcs_nickname || '')}, glad you decided to join us today!"`);
     scene.text('Kolyamba and Vasyan nod in agreement as they look you over.');
     scene.text('"We know this great spot in the woods to hang out. No one ever bothers us there."');
   } else {
     // TODO-QSP: dynamic text: Mitka is the first to greet you, "Hey <<$pcs_nickname>>, glad you decided to joi...
-    scene.text(`Mitka is the first to greet you, "Hey ${((s as any).pcs_nickname ?? 0)}, glad you decided to join us today!"`);
+    scene.text(`Mitka is the first to greet you, "Hey ${((s as any).pcs_nickname || '')}, glad you decided to join us today!"`);
     scene.text('Kolyamba and Vasyan nod in agreement as they look you over.');
   }
   scene.text('Mitka asks, "Are you ready to go?"');
@@ -144,13 +144,13 @@ function enterDrinkingInvite(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No thanks, not tonight. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No thanks, not tonight.', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No thanks, not tonight. [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No thanks, not tonight.', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -161,7 +161,7 @@ function enterDrinkingInvite(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'mitkabuh_group'  &&  ((s as any).locat ?? 0)?.['A60_loc_prev'] !== 'mitkabuh_group'  &&  ((s as any).MiraVars ?? 0)?.['follow_time'] === 0) {
     scene.text('Just as the words leave Mitka\'s mouth, Mira comes bounding around the corner.');
     // TODO-QSP: dynamic text: "Hey guys, thanks for the invite! <<$pcs_nickname>> is here, too, awesome! Let's...
-    scene.text(`"Hey guys, thanks for the invite! ${((s as any).pcs_nickname ?? 0)} is here, too, awesome! Let's go!"`);
+    scene.text(`"Hey guys, thanks for the invite! ${((s as any).pcs_nickname || '')} is here, too, awesome! Let's go!"`);
   }
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'mitkabuh_group') {
     if (((s as any).MiraVars ?? 0)?.['QW'] >= 16  &&  ((s as any).GadBoy ?? 0)?.['river_gang'] === 2) {

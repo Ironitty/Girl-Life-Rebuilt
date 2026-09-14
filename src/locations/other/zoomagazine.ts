@@ -20,7 +20,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).krolik ?? 0))) {
     // TODO-QSP: 'Rabbit - ' + $func('money', 'string_price', 2000)
     scene.actions([
-      { label: 'Buy a rabbit [+$func(\'money\', \'get_cost_string\', 2000)]', handler: (st: GameState) => {
+      { label: 'Buy a rabbit', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 2000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -45,7 +45,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rex ?? 0)?.['owned'] === 0  &&  ((s as any).home ?? 0)?.['current'] !== 'parents_home') {
     // TODO-QSP: 'Dog - ' + $func('money', 'string_price', 3000)
     scene.actions([
-      { label: 'Buy a dog [+$func(\'money\', \'get_cost_string\', 3000)]', handler: (st: GameState) => {
+      { label: 'Buy a dog', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -72,7 +72,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ParrotQW ?? 0)?.['Owned1'] === 0  &&  ((s as any).home ?? 0)?.['current'] !== 'parents_home') {
     // TODO-QSP: 'Parrot - ' + $func('money', 'string_price', 3000)
     scene.actions([
-      { label: 'Buy a parrot [+$func(\'money\', \'get_cost_string\', 3000)]', handler: (st: GameState) => {
+      { label: 'Buy a parrot', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -99,7 +99,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).ParrotQW ?? 0)?.['Owned2'] === 0  &&  ((s as any).home ?? 0)?.['current'] === 'parents_home') {
     // TODO-QSP: 'Parrot - ' + $func('money', 'string_price', 3000)
     scene.actions([
-      { label: 'Buy a parrot for your parent\'s apartment [+$func(\'money\', \'get_cost_string\', 3000)]', handler: (st: GameState) => {
+      { label: 'Buy a parrot for your parent\'s apartment', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -168,7 +168,7 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/mall/pet shop/pet1.jpg');
     // TODO-QSP: dynamic text: You slide up your top and show off your <a href="exec:gs 'obj_din', 'show_tits'"...
-    scene.text(`You slide up your top and show off your <a href="exec:gs 'obj_din', 'show_tits'">${((s as any).titsize ?? 0)}</a> breasts.`);
+    scene.text(`You slide up your top and show off your <a href="exec:gs 'obj_din', 'show_tits'">${((s as any).titsize || '')}</a> breasts.`);
     scene.text('The owner licks his lips, "Hmm, he was definitely not lying about your top half. Ok, show me the rest."');
     scene.img('images/locations/city/citycenter/mall/pet shop/pet9.jpg');
     scene.text('You take off your pants and show your fully nude body to the owner.');
@@ -191,7 +191,7 @@ function enterEvent_1(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/pet shop/pet5.jpg');
     // TODO-QSP: dynamic text: The man unbuttons his pants and takes out his erect <<dick>> cm penis, "Now, I n...
-    scene.text(`The man unbuttons his pants and takes out his erect ${((s as any).dick ?? 0)} cm penis, "Now, I need you to sit on your knees and suck this cock if you want to get to the last ingredient."`);
+    scene.text(`The man unbuttons his pants and takes out his erect ${((s as any).dick || '')} cm penis, "Now, I need you to sit on your knees and suck this cock if you want to get to the last ingredient."`);
     scene.text('You are almost certain you are being conned now, but the pussy licking you received just moments ago made you so horny that you couldn\'t stop now, even if you wanted.');
     scene.text('You do as you are told and take the dick in your mouth');
     scene.text('You start pleasuring him to the best of your abilities.');

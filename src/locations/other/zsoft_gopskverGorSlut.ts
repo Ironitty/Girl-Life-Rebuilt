@@ -186,25 +186,25 @@ function enter1(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 8) {
   }
   // TODO-QSP: dynamic text: <<$shultextrand3>> <<$shultextrand6>> says: "Hey <<$shultextrand2>>, <<$shultext...
-  scene.text(`${((s as any).shultextrand3 ?? 0)} ${((s as any).shultextrand6 ?? 0)} says: "Hey ${((s as any).shultextrand2 ?? 0)}, ${((s as any).shultextrand ?? 0)}" ${((s as any).shultextrand4 ?? 0)}`);
+  scene.text(`${((s as any).shultextrand3 || '')} ${((s as any).shultextrand6 || '')} says: "Hey ${((s as any).shultextrand2 || '')}, ${((s as any).shultextrand || '')}" ${((s as any).shultextrand4 || '')}`);
   // TODO-QSP: dynamic text: <<$shultextrand5>>
-  scene.text(`${((s as any).shultextrand5 ?? 0)}`);
+  scene.text(`${((s as any).shultextrand5 || '')}`);
   // TODO-QSP: dynamic text: You just want a nice, cold beer and decide to take the initiative. You ask them:...
-  scene.text(`You just want a nice, cold beer and decide to take the initiative. You ask them: "Come on boys, why so rude? Surely you'll give a nice lady a beer?" in a playful tone, taking a seductive pose and giving them your most ${((s as any).text_sveta_obol ?? 0)} smile. The guys look and whisper some things, but ${((s as any).shultextrand33 ?? 0)} quickly grins and beckons you to come closer.`);
+  scene.text(`You just want a nice, cold beer and decide to take the initiative. You ask them: "Come on boys, why so rude? Surely you'll give a nice lady a beer?" in a playful tone, taking a seductive pose and giving them your most ${((s as any).text_sveta_obol || '')} smile. The guys look and whisper some things, but ${((s as any).shultextrand33 || '')} quickly grins and beckons you to come closer.`);
   // TODO-QSP: dynamic text: You shake your hips and teasingly lick your parched <<$pc_desc['lips']>> lips, a...
-  scene.text(`You shake your hips and teasingly lick your parched ${((s as any).pc_desc ?? 0)?.['lips']} lips, and for a second you wonder if you're laying it on too thick as you approach the three guys. You can feel your mouth water when you see the cold beer they're reaching out to you though.`);
+  scene.text(`You shake your hips and teasingly lick your parched ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, and for a second you wonder if you're laying it on too thick as you approach the three guys. You can feel your mouth water when you see the cold beer they're reaching out to you though.`);
   // TODO-QSP: dynamic text: <<$shultextrand33>> says <<$shultextrand6>>: "<<$shul_text_byh>>"
-  scene.text(`${((s as any).shultextrand33 ?? 0)} says ${((s as any).shultextrand6 ?? 0)}: "${((s as any).shul_text_byh ?? 0)}"`);
+  scene.text(`${((s as any).shultextrand33 || '')} says ${((s as any).shultextrand6 || '')}: "${((s as any).shul_text_byh || '')}"`);
   qspCall(s, 'willpower', 'misc', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['pav_park', 'start'] },
@@ -293,10 +293,10 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/gop/drova\'+rand(1, 8)+\'.jpg');
   }
   // TODO-QSP: dynamic text: <<$beer_text>>
-  scene.text(`${((s as any).beer_text ?? 0)}`);
+  scene.text(`${((s as any).beer_text || '')}`);
   scene.text('');
   // TODO-QSP: dynamic text: <<$beer_text_bazar>>
-  scene.text(`${((s as any).beer_text_bazar ?? 0)}`);
+  scene.text(`${((s as any).beer_text_bazar || '')}`);
   scene.text('');
   if (((s as any).alko ?? 0)<6) {
     scene.text('Go into the bushes for a <a href="exec:gt \'zsoft_gopskverGorSlut\',\'piss\'">pee break</a>.');
@@ -304,18 +304,18 @@ function enter2(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = Math.floor(Math.random() * 100) + 1;
   if (((s as any).temp_rand ?? 0) <= 15  &&  ((s as any).alko ?? 0) < 6) {
     // TODO-QSP: dynamic text: The guys suggest: "Hey <<$pcs_nickname>>, show us your tits!" (<a href="exec:gt ...
-    scene.text(`The guys suggest: "Hey ${((s as any).pcs_nickname ?? 0)}, show us your tits!" (<a href="exec:gt 'zsoft_gopskverGorSlut','siski'">Show them.</a>)`);
+    scene.text(`The guys suggest: "Hey ${((s as any).pcs_nickname || '')}, show us your tits!" (<a href="exec:gt 'zsoft_gopskverGorSlut','siski'">Show them.</a>)`);
   }
   qspCall(s, 'willpower', 'drink', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pav_park', 'start'] },
     ]);
@@ -387,13 +387,13 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/locations/pavlovsk/park/gop/p\'+rand(1, 34)+\'.jpg');
     // TODO-QSP: dynamic text: <<$poza_text>>
-    scene.text(`${((s as any).poza_text ?? 0)}`);
+    scene.text(`${((s as any).poza_text || '')}`);
     // TODO-QSP: dynamic text: <<$shultextrand3>> <<$shultextrand6>> says "<<$poza_gop_text2>>"
-    scene.text(`${((s as any).shultextrand3 ?? 0)} ${((s as any).shultextrand6 ?? 0)} says "${((s as any).poza_gop_text2 ?? 0)}"`);
+    scene.text(`${((s as any).shultextrand3 || '')} ${((s as any).shultextrand6 || '')} says "${((s as any).poza_gop_text2 || '')}"`);
     // TODO-QSP: dynamic text: <<$shultextrand4>>.
-    scene.text(`${((s as any).shultextrand4 ?? 0)}.`);
+    scene.text(`${((s as any).shultextrand4 || '')}.`);
     // TODO-QSP: dynamic text: <<$shultextrand33>> speaks "<<$poza_gop_text>>"
-    scene.text(`${((s as any).shultextrand33 ?? 0)} speaks "${((s as any).poza_gop_text ?? 0)}"`);
+    scene.text(`${((s as any).shultextrand33 || '')} speaks "${((s as any).poza_gop_text || '')}"`);
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
     }
@@ -458,12 +458,12 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/gop/sex/oral/1/o\'+rand(1, 25)+\'.jpg');
     qspCall(s, 'dinSex', 'bj_random');
     // TODO-QSP: dynamic text: <<$oral_den_text>>
-    scene.text(`${((s as any).oral_den_text ?? 0)}`);
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumface');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cummouth');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumbody');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'vaginalsex');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'analsex');
+    scene.text(`${((s as any).oral_den_text || '')}`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumface(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCummouth(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumbody(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVaginalsex(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnalsex(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Suck Vasily\'s cock', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A11');
@@ -478,12 +478,12 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/gop/sex/oral/2/o\'+rand(1, 28)+\'.jpg');
     qspCall(s, 'dinSex', 'bj_random');
     // TODO-QSP: dynamic text: <<$oral_den_text>>
-    scene.text(`${((s as any).oral_den_text ?? 0)}`);
+    scene.text(`${((s as any).oral_den_text || '')}`);
     qspCall(s, 'zsoft_gopskverGorSlut', 'gopcumface');
     qspCall(s, 'zsoft_gopskverGorSlut', 'gopcummouth');
     qspCall(s, 'zsoft_gopskverGorSlut', 'gopcumbody');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'vaginalsex');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'analsex');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVaginalsex(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnalsex(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Suck Vitek\'s cock', handler: (st: GameState) => {
     qspCall(s, 'boyStat', 'A9');
@@ -498,12 +498,12 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/park/gop/sex/oral/3/o\'+rand(1, 28)+\'.jpg');
     qspCall(s, 'dinSex', 'bj_random');
     // TODO-QSP: dynamic text: <<$oral_den_text>>
-    scene.text(`${((s as any).oral_den_text ?? 0)}`);
+    scene.text(`${((s as any).oral_den_text || '')}`);
     qspCall(s, 'zsoft_gopskverGorSlut', 'gopcumface');
     qspCall(s, 'zsoft_gopskverGorSlut', 'gopcummouth');
     qspCall(s, 'zsoft_gopskverGorSlut', 'gopcumbody');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'vaginalsex');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'analsex');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVaginalsex(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnalsex(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Serve all of them at once', handler: (st: GameState) => {
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['bj'] = ((s as any).stat['bj'] ?? 0) + (3);
@@ -515,9 +515,9 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 100) + 1) <= 15) {
       (s as any).temp_randB = Math.floor(Math.random() * 3) + 0;
       if ((!((s as any).temp_randB ?? 0))) {
-        scene.img(`images/locations/pavlovsk/park/sex/gop/bjbeer${((s as any).DoubleRand ?? 0)}.jpg`);
+        scene.img(`images/locations/pavlovsk/park/sex/gop/bjbeer${((s as any).DoubleRand || '')}.jpg`);
         // TODO-QSP: dynamic text: By now you know what they want, and humbly open your mouth as wide as possible. ...
-        scene.text(`By now you know what they want, and humbly open your mouth as wide as possible. Vitek immediately guides his cock towards your mouth, and impatiently pushes it down your ${((s as any).throattipe ?? 0)} throat.`);
+        scene.text(`By now you know what they want, and humbly open your mouth as wide as possible. Vitek immediately guides his cock towards your mouth, and impatiently pushes it down your ${((s as any).throattipe || '')} throat.`);
         scene.text('At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit.');
         scene.text('You know protesting would be pointless and don\'t resist, allowing the boys to use your mouth as they please. With some grunts they try to force their cocks further down your throat, and eventually they manage to get both about two thirds of the way in.');
         scene.text('The Gopniks continue to stare you down, as if you are nothing to them. Vasily jokes from the side: "I see she\'s already used to two cocks in that whore mouth of hers… I wonder if she can take a third?"');
@@ -532,28 +532,28 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         if (((s as any).temp_randB ?? 0) === 1) {
           scene.img('images/locations/pavlovsk/park/sex/gop/bjbeerphone.jpg');
           // TODO-QSP: dynamic text: You spread your <<$pc_desc['lips']>> lips and wrap them around Vitek's cock. At ...
-          scene.text(`You spread your ${((s as any).pc_desc ?? 0)?.['lips']} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
+          scene.text(`You spread your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
           // TODO-QSP: dynamic text: Suddenly Vasily pulls out his phone and begins to record a video, while he comme...
-          scene.text(`Suddenly Vasily pulls out his phone and begins to record a video, while he comments on what is happening: "Hello everyone, and welcome to Pavlovsk News! Our special guest today is the one and only ${((s as any).gnikname ?? 0)}, ${((s as any).pcs_nickname ?? 0)}! Say hi to our viewers, ${((s as any).pcs_nickname ?? 0)}!"`);
+          scene.text(`Suddenly Vasily pulls out his phone and begins to record a video, while he comments on what is happening: "Hello everyone, and welcome to Pavlovsk News! Our special guest today is the one and only ${((s as any).gnikname || '')}, ${((s as any).pcs_nickname || '')}! Say hi to our viewers, ${((s as any).pcs_nickname || '')}!"`);
           scene.text('"Mvhr… mflm…" you try to say something, but the cocks in your mouth prevent you from talking. The boys firmly hold your head in place, and continue to fuck your mouth with their two cocks.');
           // TODO-QSP: dynamic text: Vasily continues: "<<$pcs_nickname>>, I've been told that you're doing this, for...
-          scene.text(`Vasily continues: "${((s as any).pcs_nickname ?? 0)}, I've been told that you're doing this, for a beer! Do you really like beer, or do you just like sucking cocks so much?"`);
+          scene.text(`Vasily continues: "${((s as any).pcs_nickname || '')}, I've been told that you're doing this, for a beer! Do you really like beer, or do you just like sucking cocks so much?"`);
           // TODO-QSP: dynamic text: Dan grabs your <<$pcs_haircolor>> <<$curly_txt>> hair in his fist, and moves you...
-          scene.text(`Dan grabs your ${((s as any).pcs_haircolor ?? 0)} ${((s as any).curly_txt ?? 0)} hair in his fist, and moves your head so it looks like you're nodding yes.`);
+          scene.text(`Dan grabs your ${((s as any).pcs_haircolor || '')} ${((s as any).curly_txt || '')} hair in his fist, and moves your head so it looks like you're nodding yes.`);
           // TODO-QSP: dynamic text: Vasily piles it on some more: "There you have it, dear viewers! <<$pcs_nickname>...
-          scene.text(`Vasily piles it on some more: "There you have it, dear viewers! ${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} is happily sucking three cocks, for the low low price of one beer! Where else can you find such a cheap slut?"`);
+          scene.text(`Vasily piles it on some more: "There you have it, dear viewers! ${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} is happily sucking three cocks, for the low low price of one beer! Where else can you find such a cheap slut?"`);
           scene.text('You try to protest and turn away from the camera, but Dan\'s firm grip on your hair makes it so you cannot move.');
           // TODO-QSP: dynamic text: You can only imagine how incredibly foolish and humiliating you must look in the...
-          scene.text(`You can only imagine how incredibly foolish and humiliating you must look in the video: on your knees, with two thick cocks in your cute little mouth wedged in so tightly that they make your cheeks bulge. "Open wider, ${((s as any).shultextrand2 ?? 0)}" Dan tells you once more before unceremoniously cramming himself further down your throat, stretching your mouth to the limit.`);
+          scene.text(`You can only imagine how incredibly foolish and humiliating you must look in the video: on your knees, with two thick cocks in your cute little mouth wedged in so tightly that they make your cheeks bulge. "Open wider, ${((s as any).shultextrand2 || '')}" Dan tells you once more before unceremoniously cramming himself further down your throat, stretching your mouth to the limit.`);
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             scene.text('Your cosmetics have gotten smeared from the tears in your eyes, now running all the way down your cheeks. You have strands of saliva hanging out of your mouth, attaching your chin to your boobs.');
           } else {
             scene.text('Your eyes have gotten all teary from the rough treatment, and there are strands of saliva hanging out of your mouth, attaching your chin to your boobs.');
           }
           // TODO-QSP: dynamic text: Luckily the guys don't last long, and finish fairly quickly. They both pull out ...
-          scene.text(`Luckily the guys don't last long, and finish fairly quickly. They both pull out and drop their loads on your face, and wipe their dicks on your ${((s as any).pcs_haircolor ?? 0)} ${((s as any).curly_txt ?? 0)} hair. They make you lick their cocks clean, but don't let go of your hair just yet.`);
+          scene.text(`Luckily the guys don't last long, and finish fairly quickly. They both pull out and drop their loads on your face, and wipe their dicks on your ${((s as any).pcs_haircolor || '')} ${((s as any).curly_txt || '')} hair. They make you lick their cocks clean, but don't let go of your hair just yet.`);
           // TODO-QSP: dynamic text: Vasily grins as he tells the camera: "And that was the premiere presentation of ...
-          scene.text(`Vasily grins as he tells the camera: "And that was the premiere presentation of ${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} in her very first production called "Gagging Whore"! You delivered an excellent performance ${((s as any).pcs_nickname ?? 0)}, say hi to your mother!" He zooms in on your face, and continues to film.`);
+          scene.text(`Vasily grins as he tells the camera: "And that was the premiere presentation of ${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} in her very first production called "Gagging Whore"! You delivered an excellent performance ${((s as any).pcs_nickname || '')}, say hi to your mother!" He zooms in on your face, and continues to film.`);
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             scene.text('By now you would rather just disappear in a large hole in the ground and never come back, but that\'s not an option. You hesitantly look at the camera, wiping the tears and cum from your eyes as you softly mutter: "Hi mother…"');
             scene.text('You desperately hope Vasily was just having a bit of fun with you, and that he\'ll delete the recording before anyone else sees it.');
@@ -569,7 +569,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
           scene.text('Tears stream from your eyes now, and your earlier protests have turned into little more than quiet whimpers when Dan\'s hand strikes your ass again. Vasily grins: "I think she\'s ready to cooperate now. Aren\'t you, little slut of ours?"');
           scene.text('You just want the torture to stop, and nod meekly. The guys pull you towards the bench, and pull you over it so your knees rest on the seat. Vasily moves behind the bench and pulls the gag from your mouth, replacing it with his cock.');
           // TODO-QSP: dynamic text: With your spirit broken from the rough treatment, you just open your mouth and l...
-          scene.text(`With your spirit broken from the rough treatment, you just open your mouth and let him in. Vasily gladly accepts your unspoken invitation, and immediately shoves his cock deeper down your throat and begins to fuck your mouth. It's a little hard to breathe at first, but after a while you get into the rhythm and just let him fuck your throat while your saliva runs down your chin. Then he pulls his cock from your mouth and sits down on the bench, next to his friends and tells you: "Alright… that was fun, but there's no reason why we should do all the work. Your turn now, ${((s as any).pcs_nickname ?? 0)}. Make it good."`);
+          scene.text(`With your spirit broken from the rough treatment, you just open your mouth and let him in. Vasily gladly accepts your unspoken invitation, and immediately shoves his cock deeper down your throat and begins to fuck your mouth. It's a little hard to breathe at first, but after a while you get into the rhythm and just let him fuck your throat while your saliva runs down your chin. Then he pulls his cock from your mouth and sits down on the bench, next to his friends and tells you: "Alright… that was fun, but there's no reason why we should do all the work. Your turn now, ${((s as any).pcs_nickname || '')}. Make it good."`);
         }
       }
       scene.actions([
@@ -580,7 +580,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_randC = Math.floor(Math.random() * 4) + 0;
       if ((!((s as any).temp_randC ?? 0))) {
         // TODO-QSP: dynamic text: You spread your <<$pc_desc['lips']>> lips and wrap them around Vitek's cock. At ...
-        scene.text(`You spread your ${((s as any).pc_desc ?? 0)?.['lips']} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
+        scene.text(`You spread your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips and wrap them around Vitek's cock. At that moment, Dan grunts: "Open wider, slut" and begins to unceremoniously cram his dick into your mouth as well, stretching it to the limit. You try to protest, but the guys just laugh at the comical sounds you make with two cocks in your mouth.`);
         if ((Math.floor(Math.random() * 2) + 0)) {
           scene.text('Even though it\'s difficult, you manage to take both of their erections deep inside your mouth. You sometimes tease them with your tongue.');
         } else {
@@ -593,7 +593,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).temp_randC ?? 0) === 2) {
             // TODO-QSP: dynamic text: The boys are whispering amongst themselves, thinking you can't hear them. You pi...
-            scene.text(`The boys are whispering amongst themselves, thinking you can't hear them. You pick up a few snippets of the conversation: "${((s as any).pcs_nickname ?? 0)}? My dad told me her mother was a huge whore in her day… he said she has a mouth like a vacuum cleaner! I guess the apple doesn't fall far from the tree eh? I should thank him for that tip…" The boys laugh, and you hide your face from them so they don't see your red cheeks. You can't believe they just said that about your mother!`);
+            scene.text(`The boys are whispering amongst themselves, thinking you can't hear them. You pick up a few snippets of the conversation: "${((s as any).pcs_nickname || '')}? My dad told me her mother was a huge whore in her day… he said she has a mouth like a vacuum cleaner! I guess the apple doesn't fall far from the tree eh? I should thank him for that tip…" The boys laugh, and you hide your face from them so they don't see your red cheeks. You can't believe they just said that about your mother!`);
           } else {
             scene.text('The boys are whispering amongst themselves: "She\'s got a good mouth on her, sure. But what about her other holes? Next time, we have to give that a try…"');
           }
@@ -602,13 +602,13 @@ function enter2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Run away from them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Run away from them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Run away from them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['pav_park', 'start'] },
@@ -640,11 +640,11 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: You look at him apologetically and massage his prick with your fingers for a while, before guiding i...
     scene.img('images/locations/pavlovsk/park/gop/sex/group/sex/s\'+rand(1, 55)+\'.jpg');
     // TODO-QSP: dynamic text: <<$gop_grup_eba>>
-    scene.text(`${((s as any).gop_grup_eba ?? 0)}`);
-    qspCall(s, 'zsoft_gopskverGorSlut', 'hornyparksex');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumface_group');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cummouth_group');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumass_group');
+    scene.text(`${((s as any).gop_grup_eba || '')}`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHornyparksex(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumfaceGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCummouthGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumassGroup(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -713,10 +713,10 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_rand ?? 0) === 3) {
   }
   // TODO-QSP: dynamic text: <<$r_piss_text>> Nothing interesting happens.
-  scene.text(`${((s as any).r_piss_text ?? 0)} Nothing interesting happens.`);
+  scene.text(`${((s as any).r_piss_text || '')} Nothing interesting happens.`);
   // TODO-QSP: end
   scene.actions([
-    { label: 'Pay the fine [+$func(\'money\', \'get_cost_string\', 500)]', handler: (st: GameState) => {
+    { label: 'Pay the fine', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -747,13 +747,13 @@ function enterPiss(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t want that! Everyone in your family would know what you did if they called home! There\'s probably something you could do, to get them to forget about your infraction…');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Persuade the policemen with a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Persuade the policemen with a blowjob', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Persuade the policemen with a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Persuade the policemen with a blowjob', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npcgeneratec', '', 0, 'Policeman', Math.floor(Math.random() * 21) + 18);
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
@@ -896,7 +896,7 @@ function enterSiski(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/park/gop/tits\'+rand(1, 7)+\'.mp4');
   scene.text('You smile at the request, and quietly pull your clothes aside to expose your breasts to the boys with a lewd grin. The guys watch you eagerly, and you slowly rub your boobs and squeeze your nipples lightly. After a little while, they\'re so hard you could cut glass with them.');
   // TODO-QSP: dynamic text: <<$shultextrand3>> says <<$shultextrand6>>: "<<$sis_gop_text>>"
-  scene.text(`${((s as any).shultextrand3 ?? 0)} says ${((s as any).shultextrand6 ?? 0)}: "${((s as any).sis_gop_text ?? 0)}"`);
+  scene.text(`${((s as any).shultextrand3 || '')} says ${((s as any).shultextrand6 || '')}: "${((s as any).sis_gop_text || '')}"`);
   scene.text('The guys laugh nervously, unable to keep their eyes from you.');
   if (((s as any).pcs_horny ?? 0) >= 50) {
     scene.actions([
@@ -912,7 +912,7 @@ function enterSiski(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_randB ?? 0) === 3) {
     }
     // TODO-QSP: dynamic text: <<$rnd_droch_text>>
-    scene.text(`${((s as any).rnd_droch_text ?? 0)}`);
+    scene.text(`${((s as any).rnd_droch_text || '')}`);
     qspCall(s, 'arousal', 'clit_finger', 4, 'masturbate', 'exhibitionism');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'stat', '');
@@ -933,13 +933,13 @@ function enterHornyparksex(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + 10;
     // TODO-QSP: dynamic text: <<$horny_orgazm_text2>> <<$horny_orgazm_text3>>.
-    scene.text(`${((s as any).horny_orgazm_text2 ?? 0)} ${((s as any).horny_orgazm_text3 ?? 0)}.`);
+    scene.text(`${((s as any).horny_orgazm_text2 || '')} ${((s as any).horny_orgazm_text3 || '')}.`);
   }
   if (((s as any).horand ?? 0) <= ((s as any).pcs_horny ?? 0)) {
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'raise', 'tiny');
     // TODO-QSP: dynamic text: <<$horny_orgazm_text2>> <<$horny_orgazm_text4>>
-    scene.text(`${((s as any).horny_orgazm_text2 ?? 0)} ${((s as any).horny_orgazm_text4 ?? 0)}`);
+    scene.text(`${((s as any).horny_orgazm_text2 || '')} ${((s as any).horny_orgazm_text4 || '')}`);
   }
   // TODO-QSP: end
   scene.build();
@@ -949,13 +949,13 @@ function enterHornyparksexanal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).horand ?? 0) > ((s as any).pcs_horny ?? 0)) {
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + 10;
     // TODO-QSP: dynamic text: <<$horny_orgazm_text2>> <<$horny_orgazm_text3>>.
-    scene.text(`${((s as any).horny_orgazm_text2 ?? 0)} ${((s as any).horny_orgazm_text3 ?? 0)}.`);
+    scene.text(`${((s as any).horny_orgazm_text2 || '')} ${((s as any).horny_orgazm_text3 || '')}.`);
   }
   if (((s as any).horand ?? 0) <= ((s as any).pcs_horny ?? 0)) {
     (s as any).pcs_horny = 0;
     qspCall(s, 'mood', 'raise', 'tiny');
     // TODO-QSP: dynamic text: <<$horny_orgazm_text2>> <<$horny_orgazm_text4>>
-    scene.text(`${((s as any).horny_orgazm_text2 ?? 0)} ${((s as any).horny_orgazm_text4 ?? 0)}`);
+    scene.text(`${((s as any).horny_orgazm_text2 || '')} ${((s as any).horny_orgazm_text4 || '')}`);
   }
   // TODO-QSP: end
   scene.build();
@@ -971,11 +971,11 @@ function enterCumface(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rand = Math.floor(Math.random() * 100) + 1;
     if (((s as any).temp_rand ?? 0) > 20) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum/...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumf'+rand(1, 22)+'.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumf'+rand(1, 22)+'.jpg"></center>`);
     }
     if (((s as any).temp_rand ?? 0) <= 20) {
       // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/g...
-      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumf'+rand(1, 6)+'.mp4"></video></center>`);
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumf'+rand(1, 6)+'.mp4"></video></center>`);
     }
     (s as any).temp_rand = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
@@ -985,7 +985,7 @@ function enterCumface(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 2) {
     }
     // TODO-QSP: dynamic text: <<$cum_face_text>>
-    scene.text(`${((s as any).cum_face_text ?? 0)}`);
+    scene.text(`${((s as any).cum_face_text || '')}`);
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'start'] },
       { label: 'Return to drinking beer with the guys', goto: ['zsoft_gopskverGorSlut', '2'] },
@@ -1004,11 +1004,11 @@ function enterCumfaceGroup(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rand = Math.floor(Math.random() * 100) + 1;
     if (((s as any).temp_rand ?? 0) > 20) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/group/cum...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/group/cum/cumf'+rand(1, 14)+'.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/group/cum/cumf'+rand(1, 14)+'.jpg"></center>`);
     }
     if (((s as any).temp_rand ?? 0) <= 20) {
       // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/g...
-      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumf'+rand(1, 6)+'.mp4"></video></center>`);
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumf'+rand(1, 6)+'.mp4"></video></center>`);
     }
     (s as any).temp_rand = Math.floor(Math.random() * 5) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
@@ -1023,7 +1023,7 @@ function enterCumfaceGroup(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 4) {
     }
     // TODO-QSP: dynamic text: <<$cum_face_textgr>>
-    scene.text(`${((s as any).cum_face_textgr ?? 0)}`);
+    scene.text(`${((s as any).cum_face_textgr || '')}`);
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'start'] },
       { label: 'Return to the guys', goto: ['zsoft_gopskverGorSlut', '2'] },
@@ -1042,11 +1042,11 @@ function enterCummouth(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rand = Math.floor(Math.random() * 100) + 1;
     if (((s as any).temp_rand ?? 0) > 40) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum/...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumm'+rand(1, 12)+'.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumm'+rand(1, 12)+'.jpg"></center>`);
     }
     if (((s as any).temp_rand ?? 0) <= 40) {
       // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/g...
-      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumm'+rand(1, 8)+'.mp4"></video></center>`);
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumm'+rand(1, 8)+'.mp4"></video></center>`);
     }
     (s as any).temp_rand = Math.floor(Math.random() * 6) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
@@ -1062,7 +1062,7 @@ function enterCummouth(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 5) {
     }
     // TODO-QSP: dynamic text: <<$cum_mouth_text>>
-    scene.text(`${((s as any).cum_mouth_text ?? 0)}`);
+    scene.text(`${((s as any).cum_mouth_text || '')}`);
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'start'] },
       { label: 'Return to the guys', goto: ['zsoft_gopskverGorSlut', '2'] },
@@ -1081,11 +1081,11 @@ function enterCummouthGroup(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rand = Math.floor(Math.random() * 100) + 1;
     if (((s as any).temp_rand ?? 0) > 40) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/group/cum...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/group/cum/cumm'+rand(1, 4)+'.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/group/cum/cumm'+rand(1, 4)+'.jpg"></center>`);
     }
     if (((s as any).temp_rand ?? 0) <= 40) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum/...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumm'+rand(6, 10)+'.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumm'+rand(6, 10)+'.jpg"></center>`);
     }
     (s as any).temp_rand = Math.floor(Math.random() * 4) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
@@ -1097,7 +1097,7 @@ function enterCummouthGroup(s: GameState, scene: SceneBuilder): void {
     if (((s as any).temp_rand ?? 0) === 3) {
     }
     // TODO-QSP: dynamic text: <<$cum_mouth_textgr>>
-    scene.text(`${((s as any).cum_mouth_textgr ?? 0)}`);
+    scene.text(`${((s as any).cum_mouth_textgr || '')}`);
     scene.actions([
       { label: 'Leave', goto: ['pav_park', 'start'] },
       { label: 'Return to the guys', goto: ['zsoft_gopskverGorSlut', '2'] },
@@ -1117,11 +1117,11 @@ function enterCumbody(s: GameState, scene: SceneBuilder): void {
     (s as any).temp_rand = Math.floor(Math.random() * 100) + 1;
     if (((s as any).temp_rand ?? 0) > 50) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/park/gop/sex/oral/cum/...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumb'+rand(1, 9)+'.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/cumb'+rand(1, 9)+'.jpg"></center>`);
     }
     if (((s as any).temp_rand ?? 0) <= 50) {
       // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/park/g...
-      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumb'+rand(1, 2)+'.mp4"></video></center>`);
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumb'+rand(1, 2)+'.mp4"></video></center>`);
     }
     scene.text('A fountain of cum erupts over your body as he furiously strokes his cock, coating your boobs and stomach with his sperm.');
     scene.actions([
@@ -1149,7 +1149,7 @@ function enterCumass(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumass\'+rand(1, 2)+\'.mp4');
     // TODO-QSP: dynamic text: <<$cumass_text>>
-    scene.text(`${((s as any).cumass_text ?? 0)}`);
+    scene.text(`${((s as any).cumass_text || '')}`);
     if (((s as any).agape ?? 0) === 3) {
       scene.text('Your anus tore a little from the treatment today, and there is some blood mixed with the sperm leaking from it.');
     }
@@ -1174,7 +1174,7 @@ function enterCumassGroup(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/park/gop/sex/oral/cum/gif/cumass\'+rand(1, 2)+\'.mp4');
     // TODO-QSP: dynamic text: When all the guys are satisfied, you tiredly lie down on the grass for a moment....
-    scene.text(`When all the guys are satisfied, you tiredly lie down on the grass for a moment. One of the guys comes over with a grin on his face and asks: "Well, ${((s as any).pcs_nickname ?? 0)}, would you say you know how to get fucked in the ass now?"`);
+    scene.text(`When all the guys are satisfied, you tiredly lie down on the grass for a moment. One of the guys comes over with a grin on his face and asks: "Well, ${((s as any).pcs_nickname || '')}, would you say you know how to get fucked in the ass now?"`);
     scene.text('You quietly answer: "Yes, I do", blushing and hiding your face. He happily nods, and continues: "I\'d say so too. So, you\'ll be offering us your ass more often from now on, understood?"');
     scene.text('You obediently nod and mechanically respond: "I will, you guys can fuck my ass more often if you want."');
     scene.text('He grins while the other boys laugh: "Excellent… just what we wanted to hear!"');
@@ -1244,7 +1244,7 @@ function enterCumpussywanted(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Let him cum in your pussy', handler: (st: GameState) => {
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumpussy', 'wanted');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wanted']; enterCumpussy(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1254,7 +1254,7 @@ function enterCumpussyunwanted(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Tell him not to come in your pussy', handler: (st: GameState) => {
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumpussy', 'unwanted');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'unwanted']; enterCumpussy(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1285,13 +1285,13 @@ function enterVaginalsex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: It feels great and you moan silently, begging for him to not stop fucking you. Then you hear a hoars...
     // TODO-QSP: Oh crap, did you just say that out loud!? He redoubles his efforts and fucks you even harder, while ...
     // TODO-QSP: dynamic text: <<$vag_gop_text>>
-    scene.text(`${((s as any).vag_gop_text ?? 0)}`);
-    qspCall(s, 'zsoft_gopskverGorSlut', 'hornyparksex');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumface');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cummouth');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumbody');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumpussywanted');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumpussyunwanted');
+    scene.text(`${((s as any).vag_gop_text || '')}`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHornyparksex(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumface(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCummouth(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumbody(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumpussywanted(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumpussyunwanted(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1316,7 +1316,7 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).temp_rand ?? 0))) {
       scene.text('You bend down, holding on to the edge of the bench while you expose your bare ass. He puts one hand onto your thigh pulling you closer to him, while his other hand guides his cock towards your puckered anus. Your body involuntarily tenses, and you tighten your sphincter at the touch.');
       // TODO-QSP: dynamic text: He slaps your ass cheeks playfully and reminds you: "You should really relax, <<...
-      scene.text(`He slaps your ass cheeks playfully and reminds you: "You should really relax, ${((s as any).pcs_nickname ?? 0)}. This will hurt a lot more if you resist."`);
+      scene.text(`He slaps your ass cheeks playfully and reminds you: "You should really relax, ${((s as any).pcs_nickname || '')}. This will hurt a lot more if you resist."`);
       scene.text('You know he\'s right, and nod while you try to do as he says. Your sphincter tenses up again when he pushes the head of his cock in though; it probably would\'ve been easier for you if he used lube. Nevertheless, at least he takes it slow and holds still for a while, and only continues to push his cock into your ass when he feels you relax a bit.');
       scene.text('It hurts a little, but in a way it\'s a good kind of pain. You close your eyes and close yourself off from your surroundings, focusing on the sensations he\'s giving you. He keeps going slow, and holds still again for a while when his dick is all the way in. When he eventually begins to move his hips, you\'re relaxed enough to enjoy it.');
     } else {
@@ -1327,7 +1327,7 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
           scene.text('He spits on your asshole a few times, and rubs his cock against it for a while. Once he\'s satisfied his cock is coated in saliva well enough he begins to shove it in, and you groan and try to pull away from him. It\'s no use, his hands hold you in place and soon his cock is all the way inside you. You beg him to take it slow for a bit, and to your surprise he complies and holds still, letting you get used to his size. After a while the pain subsides, and when he begins to move his hips it actually feels rather good!');
         } else {
           // TODO-QSP: dynamic text: He silently slides his cock inside your ass, and asks with a lewd grin on his fa...
-          scene.text(`He silently slides his cock inside your ass, and asks with a lewd grin on his face: "You want this… don't you, ${((s as any).pcs_nickname ?? 0)}?"`);
+          scene.text(`He silently slides his cock inside your ass, and asks with a lewd grin on his face: "You want this… don't you, ${((s as any).pcs_nickname || '')}?"`);
           scene.text('You know what he wants to hear, and meekly nod and whisper: "Yes…"');
           scene.text('"Louder, slut! I can\'t hear you!" He firmly grabs you by the hair and pulls your head backwards, rougher than you had anticipated. You let out an involuntary cry and feel tears forming in your eyes, but he ignores it and asks: "Why are you with us?"');
           scene.text('You don\'t want him to pull your hair again, and quickly blurt out: "I love the way you fuck my ass! All of you! You take such good care of me… I\'m an anal slut… please keep fucking me!"');
@@ -1339,11 +1339,11 @@ function enterAnalsex(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pcs_tattoos ?? 0)?.['tramp'] > 0) {
       scene.text('When he sees the tattoo on your lower back, he pats your ass approvingly: "Nice tramp stamp, whore."');
     }
-    qspCall(s, 'zsoft_gopskverGorSlut', 'hornyparksexanal');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumface');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cummouth');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumbody');
-    qspCall(s, 'zsoft_gopskverGorSlut', 'cumass');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHornyparksexanal(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumface(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCummouth(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumbody(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumass(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

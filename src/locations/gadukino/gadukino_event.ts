@@ -24,10 +24,10 @@ function enterMiraApologise(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'miroslava', 'miraclothes');
     scene.text('Mira immediately ran up to you and started gossiping.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I heard what happened," She gasped for breath. "I overheard ...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, I heard what happened," She gasped for breath. "I overheard Mitka and Kolyamba."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, I heard what happened," She gasped for breath. "I overheard Mitka and Kolyamba."`);
     scene.text('You stood there in silence, waiting for her to catch her breath and see what she\'d say.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, could you ever forgive me for acting like a fool? I treated ...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, could you ever forgive me for acting like a fool? I treated you like shit," she continued. "I had an epiphany and realized you're my only true friend here."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, could you ever forgive me for acting like a fool? I treated you like shit," she continued. "I had an epiphany and realized you're my only true friend here."`);
     scene.text('"So what now?" you asked, looking at her.');
     scene.text('"Well, if you want, I can make it up to you?" she answered, a bit embarrassed.');
     scene.text('While you ponder what to answer, Mira stares at you, biting her lip impatiently.');
@@ -83,7 +83,7 @@ function enterMitkaApologise(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big63.jpg');
     scene.text('Mitka catches up to you and strikes up a conversation.');
     // TODO-QSP: dynamic text: "Listen, <<$pcs_nickname>>. I beat up the other guys," he said with a smirk, see...
-    scene.text(`"Listen, ${((s as any).pcs_nickname ?? 0)}. I beat up the other guys," he said with a smirk, seeing the fear on your face. "I told them not to touch you anymore, and if they want anything to do with you, they have to come and speak to me first."`);
+    scene.text(`"Listen, ${((s as any).pcs_nickname || '')}. I beat up the other guys," he said with a smirk, seeing the fear on your face. "I told them not to touch you anymore, and if they want anything to do with you, they have to come and speak to me first."`);
     scene.text('You stood silently and waited to see what more he had to say.');
     scene.text('"In short, I remember you as one of my best childhood friends, so I don\'t want to argue anymore about Mira," he said with a grin. "Friends?"');
     if (((s as any).MiraVars ?? 0)?.['QW'] >= 12) {
@@ -114,7 +114,7 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/village/turn_back.jpg');
   scene.text('Walking through the village, you suddenly hear someone calling out to you. Turning back, you see that it is Stepan coming your way. Remembering his recent participation in the village gangbang makes you pick up your pace. There is no way you want to deal with it right now.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, wait, I need to speak with you," Stepan yelled from afar, se...
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}, wait, I need to speak with you," Stepan yelled from afar, seeing that you were getting ready to run away.`);
+  scene.text(`"${((s as any).pcs_nickname || '')}, wait, I need to speak with you," Stepan yelled from afar, seeing that you were getting ready to run away.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Run away', handler: (st: GameState) => {
@@ -134,7 +134,7 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big171.jpg');
     scene.text('For a moment, you hesitate, wondering what he wants. Then, while contemplating whether to stay or run away, he catches up with you. He shifts nervously from foot to foot, clearly not knowing how to begin the conversation. You look puzzled at him, thinking he would be prepared, when he finally speaks up.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, -uh," he began but immediately faltered. "I'm truly sorry fo...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, -uh," he began but immediately faltered. "I'm truly sorry for what happened the other day… I don't know what came over us. It was like a demon possessed me. I got aroused by Mitka's drunken tales of you."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, -uh," he began but immediately faltered. "I'm truly sorry for what happened the other day… I don't know what came over us. It was like a demon possessed me. I got aroused by Mitka's drunken tales of you."`);
     scene.text('He looked at you with sorrow in his eyes. But, of course, you did not expect anyone to be sorry.');
     scene.text('"I had a talk with the other men in the morning, and, uh," Stepan lost his composure. "Well, I decided I wanted to talk to you. So I apologize and ask if you could forget about yesterday… But, again, I\'m sorry and worried we might have damaged you physically."');
     scene.text('You look sceptically at your "uncle", not knowing if he\'s joking.');
@@ -152,13 +152,13 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'prostitution', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     if (!(s as any).GadBoy) (s as any).GadBoy = {}; (s as any).GadBoy['river_gang'] = 3;
     qspCall(s, 'willpower', 'prostitution', 'resist', 'hard');
@@ -170,7 +170,7 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s a relief…" Stepan says. "I\'ll be on my way."');
     scene.text('Just as you were leaving, Stepan added:');
     // TODO-QSP: dynamic text: "One last thing <<$pcs_nickname>>. None of the men will try to fuck you like tha...
-    scene.text(`"One last thing ${((s as any).pcs_nickname ?? 0)}. None of the men will try to fuck you like that anymore. Mitka warned everyone that if it happens again, their cannon would be shooting blanks for the rest of their life… So if anyone approaches you, you come to me, and I'll sort it out."`);
+    scene.text(`"One last thing ${((s as any).pcs_nickname || '')}. None of the men will try to fuck you like that anymore. Mitka warned everyone that if it happens again, their cannon would be shooting blanks for the rest of their life… So if anyone approaches you, you come to me, and I'll sort it out."`);
     scene.text('"I understand…" you answer, turning away and walking away from him.');
     scene.text('"There is no way I can really trust them, is there?" you think to yourself gloomily and wonder which area of the village you should try to avoid…');
     scene.actions([
@@ -192,7 +192,7 @@ function enterGangApologise(s: GameState, scene: SceneBuilder): void {
     scene.text('"That\'s a relief…" Stepan says. "I\'ll be on my way."');
     scene.text('You were about to turn and leave when Stepan added:');
     // TODO-QSP: dynamic text: "And yeah… <<$pcs_nickname>>, none of the men will fuck you like that again. So ...
-    scene.text(`"And yeah… ${((s as any).pcs_nickname ?? 0)}, none of the men will fuck you like that again. So there's no need to be afraid."`);
+    scene.text(`"And yeah… ${((s as any).pcs_nickname || '')}, none of the men will fuck you like that again. So there's no need to be afraid."`);
     scene.text('"I understand…" you answer, turning away and walking away from him.');
     scene.text('"So village men will continue to fuck me, they just won\'t outright rape me." you think to yourself gloomily and wonder why you allowed things to become like this…');
     scene.text('What will your life in Gadukino be like now?');
@@ -253,7 +253,7 @@ function enterGadriverGang(s: GameState, scene: SceneBuilder): void {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_oral3.jpg');
     // TODO-QSP: dynamic text: The drunk and horny men continue to line up, one after another. Finally, some me...
-    scene.text(`The drunk and horny men continue to line up, one after another. Finally, some men are impossibly horny that you are stuffed with two cocks in your mouth at once. You eventually suck each of them off, embracing and welcoming their hard penis with your ${((s as any).pc_desc ?? 0)?.['lips']} lips, pleasuring them all.`);
+    scene.text(`The drunk and horny men continue to line up, one after another. Finally, some men are impossibly horny that you are stuffed with two cocks in your mouth at once. You eventually suck each of them off, embracing and welcoming their hard penis with your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, pleasuring them all.`);
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang', 'deepthroat');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -318,7 +318,7 @@ function enterGadriverGang2(s: GameState, scene: SceneBuilder): void {
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     scene.img('images/locations/gadukino/sex/river/gadriver_gang_dog3.jpg');
     // TODO-QSP: dynamic text: The third man was in no hurry to to start pounding your pussy, instead you felt ...
-    scene.text(`The third man was in no hurry to to start pounding your pussy, instead you felt his index finger probing and exploring your ${((s as any).anustipe ?? 0)} anus.`);
+    scene.text(`The third man was in no hurry to to start pounding your pussy, instead you felt his index finger probing and exploring your ${((s as any).anustipe || '')} anus.`);
     if (((s as any).pcs_ass ?? 0) <= 5) {
       scene.text('"Well, well, what a tight hole you have here…" you hear a male voice from behind you. "Let me help you stretch it out."');
     }
@@ -614,7 +614,7 @@ function enterGadriverGang4(s: GameState, scene: SceneBuilder): void {
     scene.text('Bouncing on the cock of another guy, you suddenly hear the voice of Kolyamba.');
     scene.text('"Fuck yeah, finally. I was fucking getting tired of waiting. It is worth it, though." He winks as you blush.');
     // TODO-QSP: dynamic text: He immediately grabs and shoves his cock in your <<$anustipe>> anus.
-    scene.text(`He immediately grabs and shoves his cock in your ${((s as any).anustipe ?? 0)} anus.`);
+    scene.text(`He immediately grabs and shoves his cock in your ${((s as any).anustipe || '')} anus.`);
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'gangbang', 'deepthroat');
     qspCall(s, 'arousal', 'vaginal', (-5), 'sub', 'gangbang');
     qspCall(s, 'stat', '');
@@ -736,17 +736,17 @@ function enterGadukinoMitka(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big63.jpg');
   scene.text('Walking through the village, you meet Mitka. Seeing you, he started rubbing his crotch and said with a grin.');
   // TODO-QSP: dynamic text: "Hey, <<$pcs_nickname>>, let's have some fun getting rid of this boner you gave ...
-  scene.text(`"Hey, ${((s as any).pcs_nickname ?? 0)}, let's have some fun getting rid of this boner you gave me."`);
+  scene.text(`"Hey, ${((s as any).pcs_nickname || '')}, let's have some fun getting rid of this boner you gave me."`);
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -775,13 +775,13 @@ function enterGadukinoKolyamba(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -810,13 +810,13 @@ function enterGadukinoVasyan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -863,13 +863,13 @@ function enterGadukino_2boys(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     if (Math.max(parseFloat(((s as any).locArgs?.[1] ?? 0)), qspUntranslated(s, "ARGS[1]", { location: "gadukino_event" })) === 1) {
       qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
       qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
@@ -912,13 +912,13 @@ function enterMiraMitka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -947,13 +947,13 @@ function enterMiraKolyamba(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -982,13 +982,13 @@ function enterMiraVasyan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -1035,13 +1035,13 @@ function enterMira_2boys(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     if (((s as any).locArgs?.[1] ?? 0) === 1) {
       qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
       qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));
@@ -1090,13 +1090,13 @@ function enterMira_3boys(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A63', (-3));
     qspCall(s, 'npc_relationship', 'modify', 'A62', (-3));
     qspCall(s, 'npc_relationship', 'modify', 'A61', (-3));

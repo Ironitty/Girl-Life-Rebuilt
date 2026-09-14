@@ -783,7 +783,7 @@ function enterAnnaBdsmSession(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNerdGameNightEvent(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + ((s as any).nerd_game ?? {})?.['fixed_uni_day'];
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + (((s as any).nerd_game ?? {})?.['fixed_uni_day'] ?? 0);
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'nerd_game_night_event';
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['title'] = 'Game Night';
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['loc'] = 'Coffee Hole';
@@ -804,7 +804,7 @@ function enterNerdGameNightEvent(s: GameState, scene: SceneBuilder): void {
 function enterGopnikFightNightEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'time', 'to_daystart', 2016, 9, 1);
   // TODO-QSP: gs 'time', 'to_date', dateVars['daystart']
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = ((s as any).dateVars ?? {})?.['daystart'] + ((6 - ((s as any).dateVars ?? {})?.['week'] + 7) % 7) + 14;
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = (((s as any).dateVars ?? {})?.['daystart'] ?? 0) + ((6 - (((s as any).dateVars ?? {})?.['week'] ?? 0) + 7) % 7) + 14;
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'gopnik_fight_night_event';
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['title'] = 'Gopnik Fight Night';
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['loc'] = 'Old Pavlovsk School';
@@ -1037,12 +1037,12 @@ function enterVolleyballTournament(s: GameState, scene: SceneBuilder): void {
 
 function enterGuitarLesson(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = ((s as any).ml_guitarlesson ?? 0)?.['nextlesson'];
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'guitar_lessons_' + ((s as any).ml_guitarlesson ?? {})?.['nextlesson'] + '_' + ((s as any).ml_guitarlesson ?? {})?.['lessonhour'];
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'guitar_lessons_' + (((s as any).ml_guitarlesson ?? {})?.['nextlesson'] ?? 0) + '_' + (((s as any).ml_guitarlesson ?? {})?.['lessonhour'] ?? 0);
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['title'] = 'Guitar Lesson';
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['loc'] = 'Pavlovsk Community Center';
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['flex_type'] = 1;
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_start_ts'] = (((s as any).ml_guitarlesson ?? {})?.['lessonhour'] * 4) + (0 / 15);
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_end_ts'] = ((((s as any).ml_guitarlesson ?? {})?.['lessonhour'] + 1) * 4) + (0 / 15);
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_start_ts'] = ((((s as any).ml_guitarlesson ?? {})?.['lessonhour'] ?? 0) * 4) + (0 / 15);
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['window_end_ts'] = (((((s as any).ml_guitarlesson ?? {})?.['lessonhour'] ?? 0) + 1) * 4) + (0 / 15);
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['duration_ts'] = (45 / 15);
   return;
   // TODO-QSP: end
@@ -1068,8 +1068,8 @@ function enterMitkaDrinkingInvite(s: GameState, scene: SceneBuilder): void {
 
 function enterFineDeadline(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['daystart'] = ((s as any).policeQW ?? 0)?.['fine_deadline'];
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'fine_deadline_' + ((s as any).policeQW ?? {})?.['fine_deadline'];
-  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['title'] = ((s as any).policeQW ?? {})?.['legal_fine'] + ' Fine Due';
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['id'] = 'fine_deadline_' + (((s as any).policeQW ?? {})?.['fine_deadline'] ?? 0);
+  if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['title'] = (((s as any).policeQW ?? {})?.['legal_fine'] ?? 0) + ' Fine Due';
   if (!(s as any).event_vars) (s as any).event_vars = {}; (s as any).event_vars['all_day'] = 1;
   return;
   // TODO-QSP: end

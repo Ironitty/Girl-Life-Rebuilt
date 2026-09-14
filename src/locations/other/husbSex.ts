@@ -26,13 +26,13 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You go with your husband into the bedroom.');
   // TODO-QSP: dynamic text: <<$npcdesc>> grabs you and roughly pushes you on the bed and starts to passionat...
-  scene.text(`${((s as any).npcdesc ?? 0)} grabs you and roughly pushes you on the bed and starts to passionately kiss you while trying to get rid of your clothes.`);
+  scene.text(`${((s as any).npcdesc || '')} grabs you and roughly pushes you on the bed and starts to passionately kiss you while trying to get rid of your clothes.`);
   // TODO-QSP: dynamic text: Finally, <<$npcdesc>> wins his unequal battle with the straps of your bra.
-  scene.text(`Finally, ${((s as any).npcdesc ?? 0)} wins his unequal battle with the straps of your bra.`);
+  scene.text(`Finally, ${((s as any).npcdesc || '')} wins his unequal battle with the straps of your bra.`);
   (s as any).sexrand = Math.floor(Math.random() * 4) + 0;
   if ((!((s as any).sexrand ?? 0))) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, wrap your lips around my cock."
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, wrap your lips around my cock."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, wrap your lips around my cock."`);
     scene.actions([
       { label: 'Give him a blowjob', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 1);
@@ -44,7 +44,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).sexrand ?? 0) === 1) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want your ass."
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, I want your ass."`);
+      scene.text(`"${((s as any).pcs_nickname || '')}, I want your ass."`);
       scene.actions([
         { label: 'Anal', handler: (st: GameState) => {
     qspCall(st, 'npc_relationship', 'modify', ((st as any).npcID ?? 0), 2);
@@ -56,7 +56,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).sexrand ?? 0) === 2) {
         // TODO-QSP: dynamic text: "Lie down <<$pcs_nickname>> and open your legs for me."
-        scene.text(`"Lie down ${((s as any).pcs_nickname ?? 0)} and open your legs for me."`);
+        scene.text(`"Lie down ${((s as any).pcs_nickname || '')} and open your legs for me."`);
         scene.actions([
           { label: 'Open your legs', goto: ['husbsex', 'miss'] },
           { label: 'Let\'s do another position.', handler: (st: GameState) => {
@@ -66,7 +66,7 @@ function enterRoom(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).sexrand ?? 0) === 3) {
           // TODO-QSP: dynamic text: "I want to take you from behind <<$pcs_nickname>>."
-          scene.text(`"I want to take you from behind ${((s as any).pcs_nickname ?? 0)}."`);
+          scene.text(`"I want to take you from behind ${((s as any).pcs_nickname || '')}."`);
           scene.actions([
             { label: 'Doggy style', goto: ['husbsex', 'dog'] },
             { label: 'Let\'s do another position.', handler: (st: GameState) => {
@@ -85,22 +85,22 @@ function enterHusbDebtEvent(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['husb_debt_event'] = 1;
   scene.img('images/characters/city/husband/sex/d0.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> is about to enter you as he gets pulled back and you spot two other...
-  scene.text(`${((s as any).npcdesc ?? 0)} is about to enter you as he gets pulled back and you spot two other men in the room. One is standing by the bed holding your husband's hair, the second one is holding a gun in his hand.`);
+  scene.text(`${((s as any).npcdesc || '')} is about to enter you as he gets pulled back and you spot two other men in the room. One is standing by the bed holding your husband's hair, the second one is holding a gun in his hand.`);
   scene.text('"Do you have the money, moron?" Asks the one holding your husband.');
   // TODO-QSP: dynamic text: "I told, I will pay you. I have no money now, but in a month I can give it to yo...
-  scene.text(`"I told, I will pay you. I have no money now, but in a month I can give it to you" Says ${((s as any).npcdesc ?? 0)}.`);
+  scene.text(`"I told, I will pay you. I have no money now, but in a month I can give it to you" Says ${((s as any).npcdesc || '')}.`);
   scene.text('"You should have thought about this earlier. We need the money now!" Continues the bandit.');
   // TODO-QSP: dynamic text: "But I don't have the money. I need more time." Pleads <<$npcdesc>>.
-  scene.text(`"But I don't have the money. I need more time." Pleads ${((s as any).npcdesc ?? 0)}.`);
+  scene.text(`"But I don't have the money. I need more time." Pleads ${((s as any).npcdesc || '')}.`);
   // TODO-QSP: dynamic text: "Stop whining. We have your fine bitch and all her holes and you already owe us ...
   scene.text(`"Stop whining. We have your fine bitch and all her holes and you already owe us ${qspFunc(s, 'money', 'string_price', 100000)}" Says the bandit.`);
   if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID ?? 0)] === 0) {
     // TODO-QSP: dynamic text: "Don't touch her! I'll get you the money. You will have it tomorrow." Says <<$np...
-    scene.text(`"Don't touch her! I'll get you the money. You will have it tomorrow." Says ${((s as any).npcdesc ?? 0)}.`);
+    scene.text(`"Don't touch her! I'll get you the money. You will have it tomorrow." Says ${((s as any).npcdesc || '')}.`);
     scene.text('"Maybe, but we are here today. And we will get something out of this." Addressing you, the bandit says "Yes Beauty, open your mouth as wide as you can. You will need to fit both of us in there."');
   } else {
     // TODO-QSP: dynamic text: "Alright you can have her. But this is part of my payment, Kral." Says <<$npcdes...
-    scene.text(`"Alright you can have her. But this is part of my payment, Kral." Says ${((s as any).npcdesc ?? 0)}.`);
+    scene.text(`"Alright you can have her. But this is part of my payment, Kral." Says ${((s as any).npcdesc || '')}.`);
     if (((s as any).pcs_apprnc ?? 0) < 60) {
       scene.text('"No! Look at her Kral. She looks like she has just washed the floors in a public toilet" Says one of the bandits.');
     } else {
@@ -116,7 +116,7 @@ function enterHusbDebtEvent(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: end
   scene.actions([
-    { label: 'Suggest you pay the money [+$func(\'money\', \'get_cost_string\', 100000...]', handler: (st: GameState) => {
+    { label: 'Suggest you pay the money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -239,7 +239,7 @@ function enterDolgend(s: GameState, scene: SceneBuilder): void {
 function enterVariant(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', '', ((s as any).husID ?? 0));
   // TODO-QSP: dynamic text: <<$npcdesc>> He is looking at you and waiting for what you say
-  scene.text(`${((s as any).npcdesc ?? 0)} He is looking at you and waiting for what you say`);
+  scene.text(`${((s as any).npcdesc || '')} He is looking at you and waiting for what you say`);
   if (((s as any).kundayH ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Ask him to lick you', goto: ['husbsex', 'kuni'] },
@@ -264,7 +264,7 @@ function enterVariant(s: GameState, scene: SceneBuilder): void {
 function enterMinet(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/bj24.jpg');
   // TODO-QSP: dynamic text: Your husband's <<dick>> centimeter member enters your mouth.
-  scene.text(`Your husband's ${((s as any).dick ?? 0)} centimeter member enters your mouth.`);
+  scene.text(`Your husband's ${((s as any).dick || '')} centimeter member enters your mouth.`);
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'stat', '');
   if (((s as any).stat ?? 0)?.['bj'] === 1) {
@@ -278,7 +278,7 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
     scene.img('images/shared/sex/cum/mouth/cum30.jpg');
     // TODO-QSP: dynamic text: A jet of hot sperm hits you in the mouth. You begin to swallow his sperm as <<$n...
-    scene.text(`A jet of hot sperm hits you in the mouth. You begin to swallow his sperm as ${((s as any).npcdesc ?? 0)} continues to cum in your mouth. Finally, the flow of hot, pungent tasting liquid stops.`);
+    scene.text(`A jet of hot sperm hits you in the mouth. You begin to swallow his sperm as ${((s as any).npcdesc || '')} continues to cum in your mouth. Finally, the flow of hot, pungent tasting liquid stops.`);
     scene.actions([
       { label: 'Leave', goto: ['vanr', ''] },
     ]);
@@ -293,12 +293,12 @@ function enterMinet(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
       scene.img('images/shared/sex/cum/facial/facial16.jpg');
       // TODO-QSP: dynamic text: You take his member out and at this point <<$npcdesc>> discharges directly on yo...
-      scene.text(`You take his member out and at this point ${((s as any).npcdesc ?? 0)} discharges directly on your face, covering it with warm and sticky sperm.`);
+      scene.text(`You take his member out and at this point ${((s as any).npcdesc || '')} discharges directly on your face, covering it with warm and sticky sperm.`);
     } else {
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
       scene.img('images/shared/sex/handjob/hand.jpg');
       // TODO-QSP: dynamic text: You take his member out of your mouth and <<$npcdesc>> finishes onto the palm of...
-      scene.text(`You take his member out of your mouth and ${((s as any).npcdesc ?? 0)} finishes onto the palm of your hand.`);
+      scene.text(`You take his member out of your mouth and ${((s as any).npcdesc || '')} finishes onto the palm of your hand.`);
     }
     scene.actions([
       { label: 'Leave', goto: ['vanr', ''] },
@@ -314,7 +314,7 @@ function enterHand(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'cum_manage', '');
   scene.img('images/shared/sex/cum/handjob/hand1.jpg');
   // TODO-QSP: dynamic text: You take the <<$dick_desc>> cock and begin to caress it with your hands, moving ...
-  scene.text(`You take the ${((s as any).dick_desc ?? 0)} cock and begin to caress it with your hands, moving the skin of the purple head.`);
+  scene.text(`You take the ${((s as any).dick_desc || '')} cock and begin to caress it with your hands, moving the skin of the purple head.`);
   scene.text('Soon your skillful movements bring your husband to orgasm and he finishes onto the palms of you hands, covering them with warm and sticky sperm.');
   qspCall(s, 'arousal', 'hj', 20);
   qspCall(s, 'arousal', 'end');
@@ -330,7 +330,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/kuni/kuni.jpg');
   scene.text('You undres and lie down on the bed, telling your husband to caress you with his tongue.');
   // TODO-QSP: dynamic text: <<$npcdesc>> lies down between your legs and begins to lick your clit and pussy.
-  scene.text(`${((s as any).npcdesc ?? 0)} lies down between your legs and begins to lick your clit and pussy.`);
+  scene.text(`${((s as any).npcdesc || '')} lies down between your legs and begins to lick your clit and pussy.`);
   qspCall(s, 'arousal', 'cuni', 20, 'dom');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 90) {
@@ -349,7 +349,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
 function enterStrapon(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/dom/pegging.mp4');
   // TODO-QSP: dynamic text: You get the strap-on from the box and put it on. <<$npcdesc>> kneels in the dogg...
-  scene.text(`You get the strap-on from the box and put it on. ${((s as any).npcdesc ?? 0)} kneels in the doggy position on the bed.`);
+  scene.text(`You get the strap-on from the box and put it on. ${((s as any).npcdesc || '')} kneels in the doggy position on the bed.`);
   scene.text('You lubricate his anus and enter him with the strap-on. While you fuck his ass, he groans and finally finishes. You pull the strap-on out and go to the bathroom.');
   qspCall(s, 'arousal', 'anal_strap_give', 20, 'dom');
   qspCall(s, 'arousal', 'end');
@@ -375,22 +375,22 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/vag/doggy/dog2.jpg');
     if (((s as any).pcs_ass ?? 0) < 16) {
       // TODO-QSP: dynamic text: <<$npcdesc>> pulls the anal plug out of your narrow and tight ass.
-      scene.text(`${((s as any).npcdesc ?? 0)} pulls the anal plug out of your narrow and tight ass.`);
+      scene.text(`${((s as any).npcdesc || '')} pulls the anal plug out of your narrow and tight ass.`);
     } else {
       // TODO-QSP: dynamic text: <<$npcdesc>> pulls out the anal plug and oozes flush out of your ass. Soon you f...
-      scene.text(`${((s as any).npcdesc ?? 0)} pulls out the anal plug and oozes flush out of your ass. Soon you feel his hard cock enter your hole.`);
+      scene.text(`${((s as any).npcdesc || '')} pulls out the anal plug and oozes flush out of your ass. Soon you feel his hard cock enter your hole.`);
     }
     qspCall(s, 'arousal', 'anal_dildo', 3, 'sub');
     qspCall(s, 'stat', '');
     if (((s as any).pcs_ass ?? 0) + ((s as any).analPlugInbonus ?? 0) < ((s as any).dick_length ?? 0)) {
       // TODO-QSP: dynamic text: You scream and bite your lip from the sharp pain when <<$dick_desc>> member inch...
-      scene.text(`You scream and bite your lip from the sharp pain when ${((s as any).dick_desc ?? 0)} member inches apart your ass as he enters you.`);
+      scene.text(`You scream and bite your lip from the sharp pain when ${((s as any).dick_desc || '')} member inches apart your ass as he enters you.`);
     } else {
       // TODO-QSP: dynamic text: You groan when his full <<$dick_desc>> member inches apart your ass as he enters...
-      scene.text(`You groan when his full ${((s as any).dick_desc ?? 0)} member inches apart your ass as he enters you.`);
+      scene.text(`You groan when his full ${((s as any).dick_desc || '')} member inches apart your ass as he enters you.`);
     }
     // TODO-QSP: dynamic text: <<$npcdesc>> tightly grabs your buttcheeks as he drives is cock deep into your a...
-    scene.text(`${((s as any).npcdesc ?? 0)} tightly grabs your buttcheeks as he drives is cock deep into your aching ass one last time, releasing the contents of his balls.`);
+    scene.text(`${((s as any).npcdesc || '')} tightly grabs your buttcheeks as he drives is cock deep into your aching ass one last time, releasing the contents of his balls.`);
     qspCall(s, 'arousal', 'anal', 20, 'sub');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -404,7 +404,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['lubricant'] === 0) {
     (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (2);
     // TODO-QSP: dynamic text: You don't have an lubricants, so <<$npcdesc>> spits on his fingers and uses the ...
-    scene.text(`You don't have an lubricants, so ${((s as any).npcdesc ?? 0)} spits on his fingers and uses the saliva to lubricate your ass.`);
+    scene.text(`You don't have an lubricants, so ${((s as any).npcdesc || '')} spits on his fingers and uses the saliva to lubricate your ass.`);
   } else {
     if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['lubricant'] = ((s as any).mc_inventory['lubricant'] ?? 0) - (1);
     (s as any).anal_slip = ((s as any).anal_slip ?? 0) + (8);
@@ -413,7 +413,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal_finger', 3, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <<$npcdesc>> puts you on you stomach and parts your buttocks, massaging your anu...
-  scene.text(`${((s as any).npcdesc ?? 0)} puts you on you stomach and parts your buttocks, massaging your anus with his fingers, first one, then two.`);
+  scene.text(`${((s as any).npcdesc || '')} puts you on you stomach and parts your buttocks, massaging your anus with his fingers, first one, then two.`);
   if (((s as any).pcs_ass ?? 0) < 10) {
     scene.text('When he enters your ass with three fingers you involuntarily groan in pain.');
   } else {
@@ -422,7 +422,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'anal_finger', 3, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <<$npcdesc>> Pulls his fingers out of your ass, and you feel his hard cock slide...
-  scene.text(`${((s as any).npcdesc ?? 0)} Pulls his fingers out of your ass, and you feel his hard cock slide into your hole.`);
+  scene.text(`${((s as any).npcdesc || '')} Pulls his fingers out of your ass, and you feel his hard cock slide into your hole.`);
   qspCall(s, 'arousal', 'anal', 10, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_ass ?? 0) + ((s as any).anal_slip ?? 0) < ((s as any).dick_length ?? 0)) {
@@ -431,7 +431,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
     scene.text('You groan at the feeling of fullness when his penis parts your ass as he enters.');
   }
   // TODO-QSP: dynamic text: <<$npcdesc>> freezes for a moment giving your ass time to adapt to his member. T...
-  scene.text(`${((s as any).npcdesc ?? 0)} freezes for a moment giving your ass time to adapt to his member. Then he begins to drive it in, all the more insistent.`);
+  scene.text(`${((s as any).npcdesc || '')} freezes for a moment giving your ass time to adapt to his member. Then he begins to drive it in, all the more insistent.`);
   qspCall(s, 'arousal', 'anal', 10, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).pcs_ass ?? 0) + ((s as any).anal_slip ?? 0) + 2 < ((s as any).dick_length ?? 0)) {
@@ -439,22 +439,22 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_makeup = 0;
     }
     // TODO-QSP: dynamic text: You cry and sink your teeth into the pillow when his <<$dick_desc>> cock begins ...
-    scene.text(`You cry and sink your teeth into the pillow when his ${((s as any).dick_desc ?? 0)} cock begins to fuck your ass at full power.`);
+    scene.text(`You cry and sink your teeth into the pillow when his ${((s as any).dick_desc || '')} cock begins to fuck your ass at full power.`);
   } else {
     scene.text('You start moaning rhythmically to the beat of the movements inside you.');
   }
   // TODO-QSP: dynamic text: <<$npcdesc>> tightly grabs your buttcheeks as he drives is cock deep into your a...
-  scene.text(`${((s as any).npcdesc ?? 0)} tightly grabs your buttcheeks as he drives is cock deep into your aching ass one last time, releasing the contents of his balls.`);
+  scene.text(`${((s as any).npcdesc || '')} tightly grabs your buttcheeks as he drives is cock deep into your aching ass one last time, releasing the contents of his balls.`);
   qspCall(s, 'arousal', 'anal', 10, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), (-1));
     // TODO-QSP: dynamic text: <<$npcdesc>> takes his member out of your ass and seeing shit on his dick tells ...
-    scene.text(`${((s as any).npcdesc ?? 0)} takes his member out of your ass and seeing shit on his dick tells you, "Damn. ${((s as any).pcs_nickname ?? 0)} clean your ass before sex."`);
+    scene.text(`${((s as any).npcdesc || '')} takes his member out of your ass and seeing shit on his dick tells you, "Damn. ${((s as any).pcs_nickname || '')} clean your ass before sex."`);
   } else {
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 5);
     // TODO-QSP: dynamic text: <<$npcdesc>> takes his member out of you, kisses you and goes to the bathroom.
-    scene.text(`${((s as any).npcdesc ?? 0)} takes his member out of you, kisses you and goes to the bathroom.`);
+    scene.text(`${((s as any).npcdesc || '')} takes his member out of you, kisses you and goes to the bathroom.`);
   }
   if (((s as any).pcs_ass ?? 0) < ((s as any).dick_length ?? 0)) {
     qspCall(s, 'arousal_funcs', 'stretch', 'anal', 1);
@@ -472,7 +472,7 @@ function enterMiss(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 0;
   scene.img('images/shared/sex/vag/miss/vag.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> spreads your legs and uses his fingers to caress your pussy.
-  scene.text(`${((s as any).npcdesc ?? 0)} spreads your legs and uses his fingers to caress your pussy.`);
+  scene.text(`${((s as any).npcdesc || '')} spreads your legs and uses his fingers to caress your pussy.`);
   scene.text('After a few minutes you are practically begging him to take you and he is more than willing, it is slow and gentle making you feel full and satisfied.');
   qspCall(s, 'arousal', 'vaginal_finger', (-15));
   qspCall(s, 'dinsex', 'boy_puts_condom');
@@ -491,7 +491,7 @@ function enterDog(s: GameState, scene: SceneBuilder): void {
   (s as any).pose = 1;
   scene.img('images/shared/sex/vag/doggy/dog1.jpg');
   // TODO-QSP: dynamic text: <<$npcdesc>> turns you around into the doggy style position and spreads your but...
-  scene.text(`${((s as any).npcdesc ?? 0)} turns you around into the doggy style position and spreads your buttcheeks before he enters you.`);
+  scene.text(`${((s as any).npcdesc || '')} turns you around into the doggy style position and spreads your buttcheeks before he enters you.`);
   qspCall(s, 'dinsex', 'boy_puts_condom');
   qspCall(s, 'dinsex', 'vaginal_sex', 15, 'sub');
   qspCall(s, 'dinsex', 'sexcum');
@@ -513,10 +513,10 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).hour ?? 0) > 22  ||  ((s as any).hour ?? 0) < 7) {
     // TODO-QSP: dynamic text: <<$npcdesc>> looks at you, obviously a little dumbfounded.
-    scene.text(`${((s as any).npcdesc ?? 0)} looks at you, obviously a little dumbfounded.`);
+    scene.text(`${((s as any).npcdesc || '')} looks at you, obviously a little dumbfounded.`);
   } else {
     // TODO-QSP: dynamic text: Just as you start getting into it, <<$npcdesc>> walks in.
-    scene.text(`Just as you start getting into it, ${((s as any).npcdesc ?? 0)} walks in.`);
+    scene.text(`Just as you start getting into it, ${((s as any).npcdesc || '')} walks in.`);
   }
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID ?? 0)] === 1) {
     scene.text('"What are you doing honey?" he asks.');
@@ -539,7 +539,7 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
         { label: 'Give him a Show', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/m22.jpg');
     // TODO-QSP: dynamic text: You pull the dildo out of your pussy and, winking at your husband, insert it int...
-    scene.text(`You pull the dildo out of your pussy and, winking at your husband, insert it into your anus. ${((s as any).npcdesc ?? 0)} closely watches as the dildo disappears in your ass and then reappears. You see a swelling in his pants.`);
+    scene.text(`You pull the dildo out of your pussy and, winking at your husband, insert it into your anus. ${((s as any).npcdesc || '')} closely watches as the dildo disappears in your ass and then reappears. You see a swelling in his pants.`);
     scene.text('"Is there anything else you want, dear?" You ask with a smile.');
     scene.text('"Can I join you?" He asks a little sheepishly.');
     qspCall(s, 'arousal', 'anal_dildo', 5, 'masturbate');
@@ -548,7 +548,7 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
       { label: 'Of course', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/m23.jpg');
     // TODO-QSP: dynamic text: <<$npcdesc>> takes out his member and begins to masturbate. This is not what you...
-    scene.text(`${((s as any).npcdesc ?? 0)} takes out his member and begins to masturbate. This is not what you expected and at first you even feel a little sorry that he did not enter you, but then you start to masturbate again. You look at your husband, who masturbates looking at you, as you drive the dildo in your ass. Soon you feel yourself coming and you cry out in delight as you fall on the table, orgasming, the dildo still sticking out of your ass. ${((s as any).npcdesc ?? 0)} furiously masturbates looking at you stretched out on the table. You remov the dildo from your ass and start licking it in front of your husband's eyes. Clearly excited from such a spectacle he soon starts cumming, spraying his sperm on the floor. You reach out to him sticking out your lips. A moment later he passionately kisses you.`);
+    scene.text(`${((s as any).npcdesc || '')} takes out his member and begins to masturbate. This is not what you expected and at first you even feel a little sorry that he did not enter you, but then you start to masturbate again. You look at your husband, who masturbates looking at you, as you drive the dildo in your ass. Soon you feel yourself coming and you cry out in delight as you fall on the table, orgasming, the dildo still sticking out of your ass. ${((s as any).npcdesc || '')} furiously masturbates looking at you stretched out on the table. You remov the dildo from your ass and start licking it in front of your husband's eyes. Clearly excited from such a spectacle he soon starts cumming, spraying his sperm on the floor. You reach out to him sticking out your lips. A moment later he passionately kisses you.`);
     qspCall(s, 'arousal', 'anal_dildo', 5, 'masturbate');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -573,9 +573,9 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 1);
         if (!(s as any).spouseVars) (s as any).spouseVars = {}; (s as any).spouseVars['pervert_add'] = ((s as any).spouseVars['pervert_add'] ?? 0) + (1);
         // TODO-QSP: dynamic text: "No, don't. This is enough" He says, and sits down on a chair watching you. You ...
-        scene.text(`"No, don't. This is enough" He says, and sits down on a chair watching you. You continue to satisfy yourself rapidly, and soon finish in front of husband. ${((s as any).npcdesc ?? 0)} stands up and begins to applaud. "Bravo, can I have an encore?" He says laughing.`);
+        scene.text(`"No, don't. This is enough" He says, and sits down on a chair watching you. You continue to satisfy yourself rapidly, and soon finish in front of husband. ${((s as any).npcdesc || '')} stands up and begins to applaud. "Bravo, can I have an encore?" He says laughing.`);
         // TODO-QSP: dynamic text: "For such a wonderful audience I will do anything, but only after the intermissi...
-        scene.text(`"For such a wonderful audience I will do anything, but only after the intermission," You laugh. ${((s as any).npcdesc ?? 0)} helps you getting off the table.`);
+        scene.text(`"For such a wonderful audience I will do anything, but only after the intermission," You laugh. ${((s as any).npcdesc || '')} helps you getting off the table.`);
         qspCall(s, 'arousal', 'end');
         scene.actions([
           { label: 'Finish', handler: (st: GameState) => {
@@ -590,7 +590,7 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
           { label: 'Show', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/m22.jpg');
     // TODO-QSP: dynamic text: You pull the dildo out of your pussy and, winking at your husband, insert it int...
-    scene.text(`You pull the dildo out of your pussy and, winking at your husband, insert it into your anus. ${((s as any).npcdesc ?? 0)} watches closely as the dildo disappears in your ass and then reappears. You see a swelling in his pants.`);
+    scene.text(`You pull the dildo out of your pussy and, winking at your husband, insert it into your anus. ${((s as any).npcdesc || '')} watches closely as the dildo disappears in your ass and then reappears. You see a swelling in his pants.`);
     scene.text('"Is there anything else you want, dear?" You ask with a smile.');
     scene.text('"I would like to join" He says, unbuttoning his pants and exposing his member to your face.');
     qspCall(s, 'arousal', 'anal_dildo', 10, 'masturbate');
@@ -599,7 +599,7 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
       { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/m24.jpg');
     // TODO-QSP: dynamic text: You take his slightly flaccid penis and start sucking, continuing to drive the d...
-    scene.text(`You take his slightly flaccid penis and start sucking, continuing to drive the dildo in your anus. You quickly get him hard and ${((s as any).npcdesc ?? 0)} stops you. "Wait, I think I'll take another hole."`);
+    scene.text(`You take his slightly flaccid penis and start sucking, continuing to drive the dildo in your anus. You quickly get him hard and ${((s as any).npcdesc || '')} stops you. "Wait, I think I'll take another hole."`);
     qspCall(s, 'arousal', 'bj', 10, 'sub');
     qspCall(s, 'arousal', 'anal_dildo', (-10), 'sub');
     qspCall(s, 'stat', '');
@@ -639,7 +639,7 @@ function enterHusbMastrVtor(s: GameState, scene: SceneBuilder): void {
           { label: 'Use your mouth', handler: (st: GameState) => {
     scene.img('images/characters/city/husband/sex/m24.jpg');
     // TODO-QSP: dynamic text: You take his slightly flaccid penis and start sucking, continuing to drive the d...
-    scene.text(`You take his slightly flaccid penis and start sucking, continuing to drive the dildo in your anus. You quickly get him hard and ${((s as any).npcdesc ?? 0)} stops you. "Take the dildo out. It is time for me to fuck your ass."`);
+    scene.text(`You take his slightly flaccid penis and start sucking, continuing to drive the dildo in your anus. You quickly get him hard and ${((s as any).npcdesc || '')} stops you. "Take the dildo out. It is time for me to fuck your ass."`);
     qspCall(s, 'arousal', 'bj', 10, 'sub');
     qspCall(s, 'arousal', 'anal_dildo', (-10), 'sub');
     qspCall(s, 'stat', '');

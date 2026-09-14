@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :looplocations
   if (((s as any).portfolio_locations ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-    scene.img(`images/pc/activities/photography/foto/locations/${((s as any).i ?? 0)}.jpg`);
+    scene.img(`images/pc/activities/photography/foto/locations/${((s as any).i || '')}.jpg`);
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (((s as any).i ?? 0) < Object.keys((s as any).portfolio_locations ?? {}).length) {
@@ -20,7 +20,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 0;
   // TODO-QSP: :looppeople
   if (((s as any).portfolio_people ?? 0)?.[String((s as any).i ?? 0)] === 1) {
-    scene.img(`images/pc/activities/photography/foto/people/${((s as any).i ?? 0)}.jpg`);
+    scene.img(`images/pc/activities/photography/foto/people/${((s as any).i || '')}.jpg`);
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
   if (((s as any).i ?? 0) < Object.keys((s as any).portfolio_people ?? {}).length) {
@@ -37,7 +37,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterImageView(s: GameState, scene: SceneBuilder): void {
-  scene.img(`images/pc/activities/photography/foto/${((s as any).locArgs?.[1] ?? 0)}/${qspUntranslated(s, "ARGS[2]", { location: "journal_portfolio" })}.jpg`);
+  scene.img(`images/pc/activities/photography/foto/${((s as any).locArgs?.[1] ?? '')}/${qspUntranslated(s, "ARGS[2]", { location: "journal_portfolio" })}.jpg`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return', goto: ['journal_portfolio', ''] },

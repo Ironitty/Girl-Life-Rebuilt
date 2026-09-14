@@ -81,7 +81,7 @@ function enterWorld(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: dynamic text: $map_nav
   scene.text('$map_nav');
-  scene.img(`images/system/map/${((s as any).map_img ?? 0)}`);
+  scene.img(`images/system/map/${((s as any).map_img || '')}`);
   scene.build();
 }
 

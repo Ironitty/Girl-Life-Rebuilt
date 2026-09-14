@@ -12,7 +12,7 @@ function enterRapistGenerate(s: GameState, scene: SceneBuilder): void {
   (s as any).re_i = 0;
   if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['rapist_age'] = Math.floor(Math.random() * 27) + 19;
   // TODO-QSP: :rape_gangbang_loop
-  qspCall(s, 'npcgeneratec', '', 0, 'rapist', ((s as any).rand ?? 0)(((s as any).temp ?? {})?.['rapist_age'], (((s as any).temp ?? {})?.['rapist_age'] + 8)));
+  qspCall(s, 'npcgeneratec', '', 0, 'rapist', ((s as any).rand ?? 0)((((s as any).temp ?? {})?.['rapist_age'] ?? 0), ((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8)));
   // TODO-QSP: $rapist[re_i] = $npclastgenerated
   (s as any).re_i = ((s as any).re_i ?? 0) + (1);
   if (((s as any).re_i ?? 0) < 3  &&  ((s as any).fight ?? 0)?.['rape_type'] === 'gang') {
@@ -28,7 +28,7 @@ function enterFightInit(s: GameState, scene: SceneBuilder): void {
   (s as any).re_i = 0;
   if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['rapist_age'] = Math.floor(Math.random() * 27) + 19;
   // TODO-QSP: :rape_gang_fight_loop
-  qspCall(s, 'npcgeneratec', '', 0, 'rapist', ((s as any).rand ?? 0)(((s as any).temp ?? {})?.['rapist_age'], (((s as any).temp ?? {})?.['rapist_age'] + 8)));
+  qspCall(s, 'npcgeneratec', '', 0, 'rapist', ((s as any).rand ?? 0)((((s as any).temp ?? {})?.['rapist_age'] ?? 0), ((((s as any).temp ?? {})?.['rapist_age'] ?? 0) + 8)));
   // TODO-QSP: $rapist[re_i] = $npclastgenerated
   qspCall(s, 'fight_npcdata', 'rapist');
   (s as any).re_i = ((s as any).re_i ?? 0) + (1);
@@ -68,7 +68,7 @@ function enterFightWin(s: GameState, scene: SceneBuilder): void {
 
 function enterUrbanFightRape(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp ?? 0)?.['skip'] !== 1) {
-    qspCall(s, 'rape_events', 'rapist_generate');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRapistGenerate(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skip'] = 0;
   }
@@ -76,14 +76,14 @@ function enterUrbanFightRape(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/street/alleynight.jpg');
   scene.text('Try as you might, you just can\'t win and you\'re violently knocked to the ground, breath driven from your body as your back slams into the concrete. Your vision swims and you roll over onto your stomach, trying to get your hands and feet underneath you, simultaneously trying to crawl away.');
   scene.text('"Fucking bitch! You\'re going to pay for that!" A muted clinking rings in the alley and some part of your brain registers that it sounds like a belt buckle.');
-  qspCall(s, 'rape_events', 'urban_rape_struggle');
-  qspCall(s, 'rape_events', 'urban_rape_limp');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeStruggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeLimp(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterUrbanRape(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'rape_events', 'rapist_generate');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRapistGenerate(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skip'] = 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/shared/street/sex/rape1.jpg');
@@ -99,8 +99,8 @@ function enterUrbanRape(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/street/sex/rape2.jpg');
     scene.text('You meekly don\'t move or cry out. In the corner of your eye, you can see him grin as you obey him. "That\'s right be a good little bitch, and I\'ll take it easy on you as long as you do what I say."');
-    qspCall(s, 'rape_events', 'urban_rape_struggle');
-    qspCall(s, 'rape_events', 'urban_rape_limp');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeStruggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeLimp(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Scream', handler: (st: GameState) => {
     if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['skip'] = 0;
@@ -112,8 +112,8 @@ function enterUrbanRape(s: GameState, scene: SceneBuilder): void {
     scene.text('Your scream is immediately cut off as he bashes your head into the wall. Your legs buckle underneath you and your vision goes fuzzy.');
     scene.text('"Fucking bitch. I guess we do it the hard way then." A muted clinking rings in the alley and some part of your brain registers that it sounds like a belt buckle. You groan and roll onto your stomach, trying to get your hands and feet underneath you.');
     (s as any).temp_rape_angry = 1;
-    qspCall(s, 'rape_events', 'urban_rape_struggle');
-    qspCall(s, 'rape_events', 'urban_rape_limp');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeStruggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeLimp(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Fight back', handler: (st: GameState) => {
     scene.img('images/locations/shared/street/alleynight.jpg');
@@ -168,7 +168,7 @@ function enterUrbanRapeStruggle(s: GameState, scene: SceneBuilder): void {
     scene.text('After what feels like an eternity, the man thrusts into you several times, much harder than before before completely burying his cock inside you.');
     scene.text('"Mmmmph-!" You feel him pulsing inside you and you groan uselessly into his hand. The stranger climbs off of you and his cock withdraws from inside you, eliciting a whimper from your lips. With that final act, you\'re left shivering on the ground, completely spent, not even enough strength left to belatedly cry out for help. You hear the clinking of metal behind you again and you feel something leak from your pussy.');
     scene.text('"You\'re a pretty good fuck girlie. Maybe we can have another \'date\' like this again some time." Even though you can\'t see his face, you can hear the smile in his voice. Moments later, you hear footsteps sound in the alley, slowly fading away until you\'re left in silence.');
-    qspCall(s, 'rape_events', 'urban_rape_struggle_after', 'vaginal');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vaginal']; enterUrbanRapeStruggleAfter(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -190,7 +190,7 @@ function enterUrbanRapeStruggle(s: GameState, scene: SceneBuilder): void {
     scene.text('After what feels like an eternity, the man thrusts into you several times, much harder than before before completely burying his cock inside you.');
     scene.text('"Mmmmph-!" You feel him pulsing inside you and you groan uselessly into his hand. The stranger climbs off of you and his cock withdraws from your ass, eliciting a whimper from your lips. With that final act, you\'re left shivering on the ground, completely spent, not even enough strength left to belatedly cry out for help. You hear the clinking of metal behind you again and you feel something trickle out of your ravaged asshole.');
     scene.text('"You\'re a real buttslut, girlie. Maybe we can have another \'date\' like this again some time." Even though you can\'t see his face, you can hear the smile in his voice. Moments later, you hear footsteps sound in the alley, slowly fading away until you\'re left in silence.');
-    qspCall(s, 'rape_events', 'urban_rape_struggle_after', 'anal');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'anal']; enterUrbanRapeStruggleAfter(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -261,14 +261,14 @@ function enterUrbanRapeLimp(s: GameState, scene: SceneBuilder): void {
     scene.text('Blinking, you look around, finding yourself naked and alone in the alley.');
     if (((s as any).temp ?? 0)?.['rape'] === 'vaginal') {
       scene.text('Something warm trickles from between your legs…');
-      qspCall(s, 'rape_events', 'urban_vaginal_cry');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanVaginalCry(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).temp ?? 0)?.['rape'] === 'anal') {
         scene.text('Something warm trickles from your ass…');
-        qspCall(s, 'rape_events', 'urban_anal_cry');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanAnalCry(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
-    qspCall(s, 'rape_events', 'urban_repress');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRepress(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -286,14 +286,14 @@ function enterUrbanVaginalCry(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     scene.img('images/locations/shared/street/sex/rape_after1.mp4');
     if (((s as any).pantyworntype ?? 0) !== 'none') {
-      qspCall(s, 'rape_events', 'urban_panties_after');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanPantiesAfter(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).PCloSkirt ?? 0) > 0) {
         scene.text('Once you realize you\'re alone, your emotions completely break through. Sobs rack your body and you writhe on the ground, shuddering as you grit your teeth. Slowly… very slowly… you pull yourself together, tugging your clothes back into place and stumbling to your feet, trying not to think about the thick liquid dribbling down your leg.');
       } else {
         scene.text('Once you realize you\'re alone, your emotions completely break through. Sobs rack your body and you writhe on the ground, shuddering as you grit your teeth. Slowly… very slowly… you pull yourself together, tugging your clothes back into place and stumbling to your feet, trying not to think about the wet spot spreading through your pants.');
       }
-      qspCall(s, 'rape_events', 'urban_rape_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -308,14 +308,14 @@ function enterUrbanAnalCry(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     scene.img('images/locations/shared/street/sex/rape_after1.mp4');
     if (((s as any).pantyworntype ?? 0) !== 'none') {
-      qspCall(s, 'rape_events', 'urban_panties_after');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanPantiesAfter(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).PCloSkirt ?? 0) > 0) {
         scene.text('Once you realize you\'re alone, your emotions completely break through. Sobs rack your body and you writhe on the ground, shuddering as you grit your teeth. Slowly… very slowly… you pull yourself together, tugging your clothes back into place and stumbling to your feet, trying not to think about the thick liquid dribbling out the back of your ass.');
       } else {
         scene.text('Once you realize you\'re alone, your emotions completely break through. Sobs rack your body and you writhe on the ground, shuddering as you grit your teeth. Slowly… very slowly… you pull yourself together, tugging your clothes back into place and stumbling to your feet, trying not to think about the wet spot spreading through your pants.');
       }
-      qspCall(s, 'rape_events', 'urban_rape_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -332,7 +332,7 @@ function enterUrbanRepress(s: GameState, scene: SceneBuilder): void {
     scene.text('That\'s as far as the thought gets before you forcibly shut it down, refusing to confront the events that just transpired.');
     scene.text('Instead you drag yourself to your feet, dully stumbling around looking for your clothes.');
     if (((s as any).pantyworntype ?? 0) !== 'none') {
-      qspCall(s, 'rape_events', 'urban_panties_after');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanPantiesAfter(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).PCloSkirt ?? 0) > 0) {
         if (((s as any).temp ?? 0)?.['rape'] === 'vaginal') {
@@ -343,7 +343,7 @@ function enterUrbanRepress(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('It takes a bit of searching, but you manage to find everything you lost, tugging it back on and ignoring the wet spot slowly seeping into your pants.');
       }
-      qspCall(s, 'rape_events', 'urban_repress_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRepressEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -366,7 +366,7 @@ function enterUrbanPantiesAfter(s: GameState, scene: SceneBuilder): void {
         scene.text('You stare at them a moment while you disassociate before you slip your feet through and tug them up your legs with no more emotion than you would have getting dressed in the morning.');
         scene.text('You don\'t feel the chill water being squeezed as they stretch around your thighs. You don\'t feel the grit of infused dirt scrubbing against your skin. You don\'t feel the dampening of the bottoms you pull up over the panties. You certainly do not feel the thick liquid inside you being stoppered by the drenched pulled up tight underwear between your legs.');
       }
-      qspCall(s, 'rape_events', 'urban_repress_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRepressEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('Staring down at your ruined panties, you nearly burst into tears again, barely holding back sobs as you put your feet through the holes and pull them up.');
       if (((s as any).PCloSkirt ?? 0) > 0) {
@@ -382,7 +382,7 @@ function enterUrbanPantiesAfter(s: GameState, scene: SceneBuilder): void {
           scene.text('You pull them up under your skirt, cringing in disgust at the cold wet fabric sliding up your legs and the gritty grains of dirt that rubs against your privates. The chill of your damp underwear contrasted with the warm liquid leaking from your sore asshole causes you to shudder in revulsion, as does the feeling of it soaking a panty-shaped wet spot through your bottoms.');
         }
       }
-      qspCall(s, 'rape_events', 'urban_rape_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
       { label: 'Discard them', handler: (st: GameState) => {
@@ -399,7 +399,7 @@ function enterUrbanPantiesAfter(s: GameState, scene: SceneBuilder): void {
           scene.text('You pull up your trousers, ignoring the rubbing of its fabric against your bare crotch and the wet spot forming at the back.');
         }
       }
-      qspCall(s, 'rape_events', 'urban_repress_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRepressEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).PCloSkirt ?? 0) > 0) {
         if (((s as any).temp ?? 0)?.['rape'] === 'vaginal') {
@@ -415,7 +415,7 @@ function enterUrbanPantiesAfter(s: GameState, scene: SceneBuilder): void {
           scene.text('Staring down at your ruined panties, you nearly burst into tears again, barely holding back sobs as you toss them aside. Instead you pull up your bottoms without them, shuddering at the feeling of bare privates on fabric and the wet spot forming at the back.');
         }
       }
-      qspCall(s, 'rape_events', 'urban_rape_end');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanRapeEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -426,7 +426,7 @@ function enterUrbanPantiesAfter(s: GameState, scene: SceneBuilder): void {
 
 function enterUrbanRapeEnd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'rape_events', 'urban_police_after');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUrbanPoliceAfter(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Go home', handler: (st: GameState) => {
@@ -549,8 +549,8 @@ function enterParkImage(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterParkRapeFightStart(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'rape_events', 'rapist_generate');
-  qspCall(s, 'rape_events', 'park_image');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRapistGenerate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Try as you might, you just can\'t win and you\'re violently knocked to the ground, breath driven from your body as you\'re slammed into the mud. Your vision swims and you roll over onto your stomach, struggling to crawl away.');
   scene.text('"Fucking bitch! You\'re going to pay for that!" A multitude of hands grab you and drag you back into the bushes.');
   // TODO-QSP: end
@@ -559,12 +559,12 @@ function enterParkRapeFightStart(s: GameState, scene: SceneBuilder): void {
 
 function enterParkRapeStruggleStart(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).fight) (s as any).fight = {}; (s as any).fight['rape_type'] = 'gang';
-  qspCall(s, 'rape_events', 'rapist_generate');
-  qspCall(s, 'rape_events', 'park_image');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRapistGenerate(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You try to scream but the hand clamped over your mouth reduces it to nothing more than a muffled groan as you are dragged into the bushes.');
   scene.text('"Lookie here!" another voice chuckles. "We got ourselves a pretty little play thing to have fun with!"');
   scene.text('Multiple pairs of hands swarm your body, tugging at your clothes.');
-  qspCall(s, 'rape_events', 'park_gangrape_struggle1');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeStruggle1(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -718,12 +718,12 @@ function enterParkRapeSolo(s: GameState, scene: SceneBuilder): void {
 
 function enterParkGangrapeStart(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).fight) (s as any).fight = {}; (s as any).fight['rape_type'] = 'gang';
-  qspCall(s, 'rape_events', 'rapist_generate');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRapistGenerate(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'npcStat', $rapist[0]
   scene.img('images/shared/sex/rape/park_gangrape_undress1.mp4');
   scene.text('The men haul you off into the bushes and you try to scream, but the hand clamped over your mouth prevents anything from coming out but muffled sobs. They tear the clothes from your body as you struggle but it\'s no use.');
   scene.text('You can\'t escape.');
-  qspCall(s, 'rape_events', 'park_gangrape_struggle1');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeStruggle1(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -746,7 +746,7 @@ function enterParkGangrapeFightLoss(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('Then you scream as a cock is shoved into your pussy.');
     }
-    qspCall(s, 'rape_events', 'park_gangrape_struggle2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeStruggle2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -771,7 +771,7 @@ function enterParkGangrapeFightSurrender(s: GameState, scene: SceneBuilder): voi
     } else {
       scene.text('Then you scream as a cock is shoved into your pussy.');
     }
-    qspCall(s, 'rape_events', 'park_gangrape_struggle2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeStruggle2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -790,7 +790,7 @@ function enterParkGangrapeStruggle1(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You scream as the first man begins to rape you.');
     }
-    qspCall(s, 'rape_events', 'park_gangrape_struggle2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeStruggle2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -809,7 +809,7 @@ function enterParkGangrapeStruggle2(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You keep squirming, keep screaming, as the man keeps fucking you, desperately trying to break free.');
     scene.text('But the multitude of men holding you down is too much and soon, they grow impatient, deciding not to wait their turn.');
-    qspCall(s, 'rape_events', 'park_gangrape_tp');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeTp(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -826,7 +826,7 @@ function enterParkGangrapeTp(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('The men violate you, roughly fucking you with no regard for your pain or your pleasure. With one cock choking your mouth, it\'s all you can do to breathe, let alone make any noise other than the occasional groan as the others ravage your ass and pussy.');
     scene.text('There\'s nothing for you to do except hold on for dear life until it ends.');
-    qspCall(s, 'rape_events', 'park_gangrape_end1');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeEnd1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -854,17 +854,17 @@ function enterParkGangrapeEnd1(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Endure', handler: (st: GameState) => {
-    qspCall(s, 'rape_events', 'park_gangrape_cum');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.img('images/shared/sex/rape/park_gangrape_fuck3.mp4');
     scene.text('Time passes in a blur. You feel like your rape has been going on for hours. You\'re not sure how much longer you can-');
     scene.text('<b><i>"MMMMPH-!"</i></b>');
     scene.text('Just as you are near the breaking point, a hot glob fills your ass causing you to shriek a muffled scream around the cock in your mouth.');
     scene.text('Seconds later, the man in your pussy grunts, blasting his load into your uterus.');
     scene.text('Even as you try to scream, hot bitter sperm fills your mouth and your rapist jams his entire cock down your throat. Tears fill your eyes as you are forced to swallow or drown.');
-    qspCall(s, 'rape_events', 'park_gangrape_end2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeEnd2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Pass out', handler: (st: GameState) => {
-    qspCall(s, 'rape_events', 'park_gangrape_cum');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkGangrapeCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.img('images/shared/sex/rape/park_rape5.jpg');
     scene.text('In the end, it\'s too much to bear.');
     scene.text('With your body being pummelled in every hole and your mind overwhelmed, everything just shuts down, and unconsciousness takes you.');
@@ -893,7 +893,7 @@ function enterParkGangrapeEnd1(s: GameState, scene: SceneBuilder): void {
     if ((Math.floor(Math.random() * 40) + 1) <= ((s as any).temp_thresh ?? 0)) {
       qspCall(s, 'abduction', 'abdCarTrunk');
     } else {
-      qspCall(s, 'rape_events', 'park_wakeup');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkWakeup(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
     ]);
@@ -909,7 +909,7 @@ function enterParkGangrapeEnd2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/rape/park_after_nude2.jpg');
     scene.text('Their lust satisfied, your rapists toss you aside into the mud where you retch, hacking up the remnants of the cum you were unable to swallow.');
     scene.text('You writhe on the ground, trembling as they walk away laughing, as casual as if they had just finished getting drunk at the cinema. By the time you manage to struggle to your knees, they\'re already gone.');
-    qspCall(s, 'rape_events', 'park_walkaway1');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkWalkaway1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Pass out', handler: (st: GameState) => {
     scene.img('images/shared/sex/rape/park_rape5.jpg');
@@ -919,7 +919,7 @@ function enterParkGangrapeEnd2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/system/1_openings/4_csb/11.jpg');
-    qspCall(s, 'rape_events', 'park_wakeup');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkWakeup(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -945,7 +945,7 @@ function enterParkWakeup(s: GameState, scene: SceneBuilder): void {
     scene.text('Shakily, you pull haul yourself out of the mud, stumbling to your feet.');
     scene.text('There are no signs of your attackers except for the muddy ground where bodies wrestled.');
     scene.text('You are alone.');
-    qspCall(s, 'rape_events', 'park_walkaway1');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkWalkaway1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -978,7 +978,7 @@ function enterParkWalkaway1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) !== 'none') {
       scene.text('Your panties have been snapped, now nothing more than a randomly shaped string of fabric.');
     }
-    qspCall(s, 'rape_events', 'park_walkaway2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterParkWalkaway2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

@@ -267,13 +267,13 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     if (((s as any).will_cost ?? 0) > ((s as any).pcs_willpwr ?? 0)) {
       scene.actions([
-        { label: 'Agree [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Agree', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Agree [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Agree', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     (s as any).divorce_party = 2;
@@ -283,18 +283,18 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     scene.text('You look behind her and see Eva blushing, trying to hide behind the rim of her cup as she takes a drink. She\'s actually really pretty and younger than you thought. You\'re not sure why her husband would cheat on her, but you\'re not going to pass up the opportunity to have some fun with her. "You\'re right, she does deserve the <i>best</i>, and I can give her just that," you purr with a knowing smile.');
     scene.text('In an instant, the other women are cheering and giggling as they lead Eva to the window. She tries to reluctantly argue against this, but she makes no real effort to stop them. "Uhm… hi?" she says sheepishly, her eyes avoiding yours as she bites her lip nervously. "My name is Eva…"');
     // TODO-QSP: dynamic text: "Oh, I know…" Your hand cups her cheek gently, and you guide her head back, her ...
-    scene.text(`"Oh, I know…" Your hand cups her cheek gently, and you guide her head back, her gaze now meeting yours. "I'm ${((s as any).pcs_nickname ?? 0)}," you say before leaning in to kiss her. As soon as your lips meet, any resistance she had before melts away. Her lips part, and your tongues intertwine. You can taste the sweet alcohol she had been drinking as she eagerly presses against you with a soft moan. When you finally pull away, Eva is breathless with a dazed yet satisfied look.`);
+    scene.text(`"Oh, I know…" Your hand cups her cheek gently, and you guide her head back, her gaze now meeting yours. "I'm ${((s as any).pcs_nickname || '')}," you say before leaning in to kiss her. As soon as your lips meet, any resistance she had before melts away. Her lips part, and your tongues intertwine. You can taste the sweet alcohol she had been drinking as she eagerly presses against you with a soft moan. When you finally pull away, Eva is breathless with a dazed yet satisfied look.`);
     scene.text('"Holy shit that was <i>amazing</i>!" Marta laughs as Eva collapses back into the car seat. Marta is back at the window with a wide grin, "Look, I even caught it on camera!" She holds up her phone and you see a shaky but still rather clear video of the two of you making out. "Hey, you know what, why don\'t you come out with us? I know Eva would love to have you come!" Marta winks again, obviously hinting at the double meaning there.');
     qspCall(s, 'willpower', 'drink', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     qspCall(s, 'arousal', 'end');
@@ -326,7 +326,7 @@ function enterDivorceParty(s: GameState, scene: SceneBuilder): void {
     scene.text('"Why not give him a <i>hand</i>, Eva!"');
     scene.text('"Don\'t just leave him like that!"');
     // TODO-QSP: dynamic text: You end up so distracted by your thoughts that you almost don't feel Marta nudgi...
-    scene.text(`You end up so distracted by your thoughts that you almost don't feel Marta nudging you. "We gotta get her in the mood, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`You end up so distracted by your thoughts that you almost don't feel Marta nudging you. "We gotta get her in the mood, ${((s as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Help Eva relax', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -433,7 +433,7 @@ function enterMinorGuitarMan(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
-      { label: 'Give him money [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
+      { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -478,7 +478,7 @@ function enterMinorGuitarGirl(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
-      { label: 'Give her money [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
+      { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -525,7 +525,7 @@ function enterMinorViolinMan(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
-      { label: 'Give him money [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
+      { label: 'Give him money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -572,7 +572,7 @@ function enterMinorViolinGirl(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
-      { label: 'Give her money [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
+      { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -601,14 +601,14 @@ function enterMinorPortraits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $streetev_title
   scene.img('images/locations/shared/street/artist.jpg');
   // TODO-QSP: dynamic text: As you walk down the street, you see a man sitting in a chair with a sign saying...
-  scene.text('As you walk down the street, you see a man sitting in a chair with a sign saying "Will draw portrait for \' + $func(\'money\', \'string_price\', 50) + \'."');
+  scene.text('As you walk down the street, you see a man sitting in a chair with a sign saying "Will draw portrait for 50₽."');
   return;
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
-    { label: 'Get your portrait done [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
+    { label: 'Get your portrait done', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -1266,7 +1266,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
     { label: 'Ignore her', handler: (st: GameState) => {
     dynamicGoto(st, 'loc');
   } },
-    { label: 'Give her money [+$func(\'money\', \'get_cost_string\', 50, \'c...]', handler: (st: GameState) => {
+    { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -1283,7 +1283,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Give her money [+$func(\'money\', \'get_cost_string\', 100, \'...]', handler: (st: GameState) => {
+    { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -1300,7 +1300,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Give her money [+$func(\'money\', \'get_cost_string\', 250, \'...]', handler: (st: GameState) => {
+    { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 250, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -1317,7 +1317,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Give her money [+$func(\'money\', \'get_cost_string\', 500, \'...]', handler: (st: GameState) => {
+    { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -1334,7 +1334,7 @@ function enterMinorGirlBeggar(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Give her money [+$func(\'money\', \'get_cost_string\', 1000, ...]', handler: (st: GameState) => {
+    { label: 'Give her money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

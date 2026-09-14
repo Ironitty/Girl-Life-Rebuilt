@@ -99,7 +99,7 @@ function enterLogin(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
   (s as any).temp_locationCnt = 0;
   // TODO-QSP: :LocationLoop
-  qspCall(s, 'komp_assbook', 'showlocation', ((s as any).temp_locationCnt ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_locationCnt ?? 0)]; enterShowlocation(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).temp_locationCnt = ((s as any).temp_locationCnt ?? 0) + (1);
   if (((s as any).temp_locationCnt ?? 0) < Object.keys((s as any).selfieLoc ?? {}).length) {
     // TODO-QSP: jump 'LocationLoop'
@@ -188,7 +188,7 @@ function enterUploadPhoto(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'phone_selfies', 'Phone_selfie_totals');
   (s as any).temp_locationCnt = 0;
   // TODO-QSP: :LocationLoop_upload
-  qspCall(s, 'komp_assbook', 'showlocation2', ((s as any).temp_locationCnt ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_locationCnt ?? 0)]; enterShowlocation2(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).temp_locationCnt = ((s as any).temp_locationCnt ?? 0) + (1);
   if (((s as any).temp_locationCnt ?? 0) < Object.keys((s as any).selfieLoc ?? {}).length) {
     // TODO-QSP: jump 'LocationLoop_upload'

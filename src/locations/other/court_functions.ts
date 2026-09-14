@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetTotalArrests(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = ((s as any).policeQW ?? {})?.['shoplift_booked'] + ((s as any).policeQW ?? {})?.['prostitution_booked'];
+  (s as any).result = (((s as any).policeQW ?? {})?.['shoplift_booked'] ?? 0) + (((s as any).policeQW ?? {})?.['prostitution_booked'] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -23,8 +23,8 @@ function enterArrestFor(s: GameState, scene: SceneBuilder): void {
 
 function enterAddFine(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'money', 'debt_add', 'policeQW[''legal_fine'']', ARGS[1]
-  (s as any).temp_tot_missed = Math.max(0, ((s as any).policeQW ?? {})?.['tot_court_dates_missed'] + ((s as any).policeQW ?? {})?.['tot_fines_deadlines_missed']);
-  (s as any).temp_current_missed = Math.max(0, ((s as any).policeQW ?? {})?.['missed_fine_deadlines'] + ((s as any).policeQW ?? {})?.['missed_court_dates'] - 1);
+  (s as any).temp_tot_missed = Math.max(0, (((s as any).policeQW ?? {})?.['tot_court_dates_missed'] ?? 0) + (((s as any).policeQW ?? {})?.['tot_fines_deadlines_missed'] ?? 0));
+  (s as any).temp_current_missed = Math.max(0, (((s as any).policeQW ?? {})?.['missed_fine_deadlines'] ?? 0) + (((s as any).policeQW ?? {})?.['missed_court_dates'] ?? 0) - 1);
   if (((s as any).policeQW ?? 0)?.['fine_deadline'] === 0) {
     if (!(s as any).policeQW) (s as any).policeQW = {}; (s as any).policeQW['fine_deadline'] = ((s as any).daystart ?? 0) + 28 - Math.min(14, ((s as any).temp_tot_missed ?? 0) / 4);
   } else {

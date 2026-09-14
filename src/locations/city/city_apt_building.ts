@@ -37,7 +37,7 @@ function enterHousemates(s: GameState, scene: SceneBuilder): void {
 function enterFloor_1(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 6) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor1_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor1_event_time ?? 0) - 1440)) {
     (s as any).floor1_event_time = ((s as any).totminut ?? 0);
-    qspCall(s, 'city_apt_building', 'floor1_events', ((s as any).locArgs?.[1] ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterFloor1Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).sound_settings ?? 0)?.['environment_off'] === 0) {
   }
@@ -63,7 +63,7 @@ function enterFloor_1(s: GameState, scene: SceneBuilder): void {
 function enterFloor_2(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 4) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor2_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor2_event_time ?? 0) - 1440)) {
     (s as any).floor2_event_time = ((s as any).totminut ?? 0);
-    qspCall(s, 'city_apt_building', 'floor2_events');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor2Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'floor_2');
   qspCall(s, 'stat', '');
@@ -87,7 +87,7 @@ function enterFloor_2(s: GameState, scene: SceneBuilder): void {
 function enterFloor_3(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 4) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor3_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor3_event_time ?? 0) - 1440)) {
     (s as any).floor3_event_time = ((s as any).totminut ?? 0);
-    qspCall(s, 'city_apt_building', 'floor3_events', '' + qspUntranslated(s, "ARGS[1]>", { location: "city_apt_building" }) + '');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '' + qspUntranslated(s, "ARGS[1]>", { location: "city_apt_building" }) + '']; enterFloor3Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'floor_3');
   qspCall(s, 'stat', '');
@@ -118,7 +118,7 @@ function enterFloor_3(s: GameState, scene: SceneBuilder): void {
 function enterFloor_4(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 4) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor4_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor4_event_time ?? 0) - 1440)) {
     (s as any).floor4_event_time = ((s as any).totminut ?? 0);
-    qspCall(s, 'city_apt_building', 'floor4_events');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor4Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'floor_4');
   qspCall(s, 'stat', '');
@@ -142,7 +142,7 @@ function enterFloor_4(s: GameState, scene: SceneBuilder): void {
 function enterFloor_5(s: GameState, scene: SceneBuilder): void {
   if ((Math.floor(Math.random() * 4) + 0) === 0  &&  (((s as any).totminut ?? 0) > 60 + ((s as any).floor5_event_time ?? 0))  ||  (((s as any).totminut ?? 0) < ((s as any).floor5_event_time ?? 0) - 1440)) {
     (s as any).floor5_event_time = ((s as any).totminut ?? 0);
-    qspCall(s, 'city_apt_building', 'floor5_events');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFloor5Events(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'core_library', 'setloc', 'city_apt_building', 'floor_5');
   qspCall(s, 'stat', '');
@@ -276,7 +276,7 @@ function enterRoof(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLift(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'city_apt_building', 'check_lift_events', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterCheckLiftEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/apartment/stairs/lift.jpg');
@@ -943,7 +943,7 @@ function enterFloor3Event_12(s: GameState, scene: SceneBuilder): void {
     scene.text('As you get to the stairwell landing, the door of one of the apartments suddenly opens and you see a naked girl standing there, her perky breasts and neatly trimmed bush on full display.');
     scene.text('"Oh hey there. Sorry, I thought you were someone else. I\'m Alli," she smiles as she casually reaches out to shake your hand. "Are you one of my neighbours?"');
     // TODO-QSP: dynamic text: "Yeah, I'm <<$pcs_nickname>>. I live up on the fifth floor."
-    scene.text(`"Yeah, I'm ${((s as any).pcs_nickname ?? 0)}. I live up on the fifth floor."`);
+    scene.text(`"Yeah, I'm ${((s as any).pcs_nickname || '')}. I live up on the fifth floor."`);
     scene.text('"Cool," she replies. "I\'d say I live here, but I spend most of my time working at the porn studio and doing other stuff, so I only come here to crash," she smiles.');
     scene.text('"You\'re a porn star?" you ask and she smiles.');
     scene.text('"I wouldn\'t say a star since I only just started, but yes, I do work in porn and I don\'t care what anyone thinks. I signed up at the local studio on my 18th birthday and never looked back."');
@@ -1207,7 +1207,7 @@ function enterFloor4Event_13(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big77.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply.
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}," you reply.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}," you reply.`);
     scene.text('He nods his head and turns towards a nearby door. The door has number 37 on it. Digging in his pocket, he pulls out a set of keys and unlocks the door. "That\'s a pretty name. I live in this apartment here. I need to get going, but I hope to see you around." As he opens the door, an elderly woman looks out at him, and then at you, giving you a disapproving look. "Mother, stop hanging around the front door!" he says in an annoyed tone before he closes the door.');
     scene.actions([
       { label: 'Continue', goto: ['city_apt_building', 'floor_4'] },

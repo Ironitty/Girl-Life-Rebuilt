@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterInitFight(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'fight', 'clearPCSArrayPlayer');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClearPCSArrayPlayer(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).temp_clear_check = 0;
   // TODO-QSP: :ClearAllyLoop
   if (((s as any).temp_clear_check ?? 0) > 1) {
@@ -210,8 +210,8 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).pcs_shield) (s as any).pcs_shield = {}; (s as any).pcs_shield[0] = 500;
     }
   }
-  qspCall(s, 'fight', 'result_check');
-  qspCall(s, 'fight', 'findActiveTimer');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterResultCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFindActiveTimer(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gt 'fight', $fightTimType, fightTimNum
   // TODO-QSP: end
   scene.build();
@@ -370,13 +370,13 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['MaxDamage'] = ((s as any).AttackMax ?? 0)?.[String((s as any).fightAtk_Type ?? 0)];
   if (((s as any).fightAtk_TargetType ?? 0) === 'opp'  &&  (!((s as any).fightAtk_AttackerNumber ?? 0))) {
     // TODO-QSP: dynamic text: You attempt to <<$fightAtk_Type_str>> <<$fightAtk["DefenderName"]>>!
-    scene.text(`You attempt to ${((s as any).fightAtk_Type_str ?? 0)} ${((s as any).fightAtk ?? 0)?.['DefenderName']}!`);
+    scene.text(`You attempt to ${((s as any).fightAtk_Type_str || '')} ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''}!`);
   } else {
     // TODO-QSP: dynamic text: <<$fightAtk["AttackerName"]>> attempts to <<$fightAtk_Type_str>> <<$fightAtk["De...
-    scene.text(`${((s as any).fightAtk ?? 0)?.['AttackerName']} attempts to ${((s as any).fightAtk_Type_str ?? 0)} ${((s as any).fightAtk ?? 0)?.['DefenderName']}!`);
+    scene.text(`${((s as any).fightAtk ?? 0)?.['AttackerName'] ?? ''} attempts to ${((s as any).fightAtk_Type_str || '')} ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''}!`);
   }
   if ((0 as any) > 0) {
-    (s as any).rand_fogRedDmgMax = (Math.floor(Math.random() * (((s as any).fightAtk ?? {})?.['MaxDamage']-((s as any).fightAtk ?? {})?.['MinDamage'] - 0 + 1)) + (0)) + ((s as any).fightAtk ?? {})?.['MinDamage'];
+    (s as any).rand_fogRedDmgMax = (Math.floor(Math.random() * ((((s as any).fightAtk ?? {})?.['MaxDamage'] ?? 0)-(((s as any).fightAtk ?? {})?.['MinDamage'] ?? 0) - 0 + 1)) + (0)) + (((s as any).fightAtk ?? {})?.['MinDamage'] ?? 0);
     (s as any).rand_fogRedDmgMin = qspUntranslated(s, "rand(0, fightAtk['MinDamage'])", { location: "fight" });
     if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['MaxDamage'] = ((s as any).fightAtk['MaxDamage'] ?? 0) - (((s as any).rand_fogRedDmgMax ?? 0));
     if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['MinDamage'] = ((s as any).fightAtk['MinDamage'] ?? 0) - (((s as any).rand_fogRedDmgMin ?? 0));
@@ -398,7 +398,7 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
         scene.text('You avoid the blow.');
       } else {
         // TODO-QSP: dynamic text: <<$fightAtk["DefenderName"]>> avoids the blow.
-        scene.text(`${((s as any).fightAtk ?? 0)?.['DefenderName']} avoids the blow.`);
+        scene.text(`${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''} avoids the blow.`);
       }
     } else {
       // TODO-QSP: gs 'fight', 'applyDamage', $fightAtk_TargetType, fightAtk_TargetNumber, fightAtk['Damage']
@@ -406,13 +406,13 @@ function enterAttack(s: GameState, scene: SceneBuilder): void {
   }
   if (!(s as any).fightAtk) (s as any).fightAtk = {}; (s as any).fightAtk['TargetHealthLoss'] = 0;
   if (((s as any).fightAtk ?? 0)?.['TargetHealthLoss']*2 > ((s as any).fightAtk ?? 0)?.['TargetHealthBefore']) {
-    qspCall(s, 'fight', 'devastating');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDevastating(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).fightAtk ?? 0)?.['TargetHealthLoss'] > 50) {
-      qspCall(s, 'fight', 'hard');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHard(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).fightAtk ?? 0)?.['TargetHealthLoss'] > 0) {
-        qspCall(s, 'fight', 'light');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLight(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
           scene.text('You avoid their attack.');
@@ -436,7 +436,7 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
       // TODO-QSP: dynamic text: They land a devastating kick to your <<$bodypart>>. You are stunned.
-      scene.text(`They land a devastating kick to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+      scene.text(`They land a devastating kick to your ${((s as any).bodypart || '')}. You are stunned.`);
       if (((s as any).bodypart ?? 0) === 'head') {
         qspCall(s, 'pain', '', 7, 'head', 'kick');
       } else {
@@ -444,7 +444,7 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       // TODO-QSP: dynamic text: You deliver a devastating kick to their <<$bodypart>>. <<$fightAtk["DefenderName...
-      scene.text(`You deliver a devastating kick to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+      scene.text(`You deliver a devastating kick to their ${((s as any).bodypart || '')}. ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''} is stunned.`);
     }
   } else {
     if (((s as any).fightAtk_Type ?? 0) === 1) {
@@ -458,7 +458,7 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
         // TODO-QSP: dynamic text: They land a devastating punch to your <<$bodypart>>. You are stunned.
-        scene.text(`They land a devastating punch to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+        scene.text(`They land a devastating punch to your ${((s as any).bodypart || '')}. You are stunned.`);
         if (((s as any).bodypart ?? 0) === 'head') {
           qspCall(s, 'pain', '', 7, 'head', 'hit');
         } else {
@@ -475,7 +475,7 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         // TODO-QSP: dynamic text: You deliver a devastating punch to their <<$bodypart>>. <<$fightAtk["DefenderNam...
-        scene.text(`You deliver a devastating punch to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+        scene.text(`You deliver a devastating punch to their ${((s as any).bodypart || '')}. ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''} is stunned.`);
       }
     } else {
       if (((s as any).fightAtk_Type ?? 0) === 2) {
@@ -489,7 +489,7 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
           // TODO-QSP: dynamic text: They land a devastating jab to your <<$bodypart>>. You are stunned.
-          scene.text(`They land a devastating jab to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+          scene.text(`They land a devastating jab to your ${((s as any).bodypart || '')}. You are stunned.`);
           if (((s as any).bodypart ?? 0) === 'head') {
             qspCall(s, 'pain', '', 7, 'head', 'hit');
           } else {
@@ -506,7 +506,7 @@ function enterDevastating(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           // TODO-QSP: dynamic text: You deliver a devastating jab to their <<$bodypart>>. <<$fightAtk["DefenderName"...
-          scene.text(`You deliver a devastating jab to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+          scene.text(`You deliver a devastating jab to their ${((s as any).bodypart || '')}. ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''} is stunned.`);
         }
       }
     }
@@ -523,7 +523,7 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
       // TODO-QSP: dynamic text: They land a hard kick to your <<$bodypart>>. You are stunned.
-      scene.text(`They land a hard kick to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+      scene.text(`They land a hard kick to your ${((s as any).bodypart || '')}. You are stunned.`);
       if (((s as any).bodypart ?? 0) === 'head') {
         qspCall(s, 'pain', '', 4, 'head', 'kick');
       } else {
@@ -531,7 +531,7 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       // TODO-QSP: dynamic text: You deliver a hard kick to their <<$bodypart>>. <<$fightAtk["DefenderName"]>> is...
-      scene.text(`You deliver a hard kick to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+      scene.text(`You deliver a hard kick to their ${((s as any).bodypart || '')}. ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''} is stunned.`);
     }
   } else {
     if (((s as any).fightAtk_Type ?? 0) === 1) {
@@ -554,7 +554,7 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
         // TODO-QSP: dynamic text: They land a hard punch to your <<$bodypart>>. You are stunned.
-        scene.text(`They land a hard punch to your ${((s as any).bodypart ?? 0)}. You are stunned.`);
+        scene.text(`They land a hard punch to your ${((s as any).bodypart || '')}. You are stunned.`);
         if (((s as any).bodypart ?? 0) === 'head') {
           qspCall(s, 'pain', '', 4, 'head', 'hit');
         } else {
@@ -587,7 +587,7 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         // TODO-QSP: dynamic text: You deliver a hard punch to their <<$bodypart>>. <<$fightAtk["DefenderName"]>> i...
-        scene.text(`You deliver a hard punch to their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+        scene.text(`You deliver a hard punch to their ${((s as any).bodypart || '')}. ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''} is stunned.`);
       }
     } else {
       if (((s as any).fightAtk_Type ?? 0) === 2) {
@@ -610,7 +610,7 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
           // TODO-QSP: dynamic text: They land a hard jab to your <<$bodypart>>.
-          scene.text(`They land a hard jab to your ${((s as any).bodypart ?? 0)}.`);
+          scene.text(`They land a hard jab to your ${((s as any).bodypart || '')}.`);
           if (((s as any).bodypart ?? 0) === 'head') {
             qspCall(s, 'pain', '', 4, 'head', 'hit');
           } else {
@@ -643,7 +643,7 @@ function enterHard(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           // TODO-QSP: dynamic text: You deliver a hard jab to their <<$bodypart>>.
-          scene.text(`You deliver a hard jab to their ${((s as any).bodypart ?? 0)}.`);
+          scene.text(`You deliver a hard jab to their ${((s as any).bodypart || '')}.`);
         }
       }
     }
@@ -658,7 +658,7 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
       // TODO-QSP: dynamic text: They only manage a glancing kick to your <<$bodypart>>.
-      scene.text(`They only manage a glancing kick to your ${((s as any).bodypart ?? 0)}.`);
+      scene.text(`They only manage a glancing kick to your ${((s as any).bodypart || '')}.`);
       if (((s as any).bodypart ?? 0) === 'leg') {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
           qspCall(s, 'pain', '', 1, 'legL', 'kick');
@@ -674,7 +674,7 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
       }
     } else {
       // TODO-QSP: dynamic text: Your kick just glances their <<$bodypart>>.
-      scene.text(`Your kick just glances their ${((s as any).bodypart ?? 0)}.`);
+      scene.text(`Your kick just glances their ${((s as any).bodypart || '')}.`);
     }
   } else {
     if (((s as any).fightAtk_Type ?? 0) === 1) {
@@ -694,7 +694,7 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
         // TODO-QSP: dynamic text: They punch you but it just glances your <<$bodypart>>.
-        scene.text(`They punch you but it just glances your ${((s as any).bodypart ?? 0)}.`);
+        scene.text(`They punch you but it just glances your ${((s as any).bodypart || '')}.`);
         if (((s as any).bodypart ?? 0) === 'leg') {
           if ((!(Math.floor(Math.random() * 2) + 0))) {
             qspCall(s, 'pain', '', 1, 'legL', 'kick');
@@ -727,7 +727,7 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         // TODO-QSP: dynamic text: You hard punch just glaces their <<$bodypart>>. <<$fightAtk["DefenderName"]>> is...
-        scene.text(`You hard punch just glaces their ${((s as any).bodypart ?? 0)}. ${((s as any).fightAtk ?? 0)?.['DefenderName']} is stunned.`);
+        scene.text(`You hard punch just glaces their ${((s as any).bodypart || '')}. ${((s as any).fightAtk ?? 0)?.['DefenderName'] ?? ''} is stunned.`);
       }
     } else {
       if (((s as any).fightAtk_Type ?? 0) === 2) {
@@ -750,7 +750,7 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).fightAtk_TargetType ?? 0) === 'pcs'  &&  (!((s as any).fightAtk_TargetNumber ?? 0))) {
           // TODO-QSP: dynamic text: They jab you but it just glances your <<$bodypart>>.
-          scene.text(`They jab you but it just glances your ${((s as any).bodypart ?? 0)}.`);
+          scene.text(`They jab you but it just glances your ${((s as any).bodypart || '')}.`);
           if (((s as any).bodypart ?? 0) === 'head') {
             qspCall(s, 'pain', '', 1, 'head', 'hit');
           } else {
@@ -779,7 +779,7 @@ function enterLight(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           // TODO-QSP: dynamic text: Your jab just glaces their <<$bodypart>>.
-          scene.text(`Your jab just glaces their ${((s as any).bodypart ?? 0)}.`);
+          scene.text(`Your jab just glaces their ${((s as any).bodypart || '')}.`);
         }
       }
     }
@@ -845,12 +845,12 @@ function enterFightAlgorithm(s: GameState, scene: SceneBuilder): void {
     }
     if ((!((s as any).ActionMade ?? 0))) {
       if ((Math.floor(Math.random() * ((0 as any) - 0 + 1)) + (0)) > 40) {
-        qspCall(s, 'fight', 'Attack', 'Kick', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerNumber ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Kick', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerNumber ?? 0)]; enterAttack(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if ((Math.floor(Math.random() * ((0 as any) - 0 + 1)) + (0)) > 40) {
-          qspCall(s, 'fight', 'Attack', 'Hard Punch', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerNumber ?? 0));
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Hard Punch', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerNumber ?? 0)]; enterAttack(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
-          qspCall(s, 'fight', 'Attack', 'Jab', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerNumber ?? 0));
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Jab', ((s as any).TargetType ?? 0), ((s as any).TargetNumber ?? 0), ((s as any).AttackerNumber ?? 0)]; enterAttack(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     } else {
@@ -864,14 +864,14 @@ function enterFightAlgorithm(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOpponent(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'fight', 'statDisplay');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStatDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'fight', 'fightAlgorithm', 'opp', ARGS[1]
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPlayer(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'fight', 'statDisplay');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStatDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((!((s as any).locArgs?.[2] ?? 0))) {
     if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
       scene.actions([

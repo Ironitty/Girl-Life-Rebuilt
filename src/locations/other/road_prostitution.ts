@@ -21,7 +21,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     }
   }
   scene.img('images/shared/prostitution/car/normal/negotiation/search.mp4');
-  qspCall(s, 'road_prostitution', 'road_segment');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRoadSegment(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.text('<br>Almost no men will like dirty anal sex, even with a condom, and it\'s probably a safe bet that they won\'t pay a lot for it. You should start giving yourself an enema before going to work.');
   }
@@ -35,18 +35,18 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: 'You have earned <<$func(''money'', ''string_profit'', prostitute[''earnings_day''])>> today.'+iif(p...
   }
   if (((s as any).prostitute ?? 0)?.['payment_method'] === 0) {
-    qspCall(s, 'road_prostitution', 'event_check');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEventCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'willpower', 'prostitution', 'self', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Look for a client (0:30)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Look for a client (0:30) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Look for a client (0:30)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['prostitution_car_negotiation', 'look_client'] },
     ]);

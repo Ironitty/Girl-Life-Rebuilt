@@ -77,7 +77,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
         scene.text('The two of you are going on a shopping spree on the weekend next week.');
       } else {
         // TODO-QSP: dynamic text: The two of you are going on a shopping spree on the weekend. You need 2.000 <b>₽...
-        scene.text('The two of you are going on a shopping spree on the weekend. You need 2.000 <b>₽</b> and meet her before \' + $func(\'time\', \'get_time_string\', 15, 0) + \'.');
+        scene.text('The two of you are going on a shopping spree on the weekend. You need 2.000 <b>₽</b> and meet her before 15:00.');
       }
     } else {
       if (((s as any).NatbelQW ?? 0)?.['disco_invite'] === 3  &&  ((s as any).NatbelQW ?? 0)?.['shopping'] === 2  &&  (((s as any).NatbelQW ?? 0)?.['FriendLover'] === 7  ||  ((s as any).NatbelQW ?? 0)?.['FriendLover'] === 8)) {
@@ -85,7 +85,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).NatbelQW ?? 0)?.['shopping'] === 3  &&  (((s as any).NatbelQW ?? 0)?.['FriendLover'] === 7  ||  ((s as any).NatbelQW ?? 0)?.['FriendLover'] === 8)) {
           // TODO-QSP: dynamic text: You've promised Natasha to take her to St. Petersburg ' + iif(daystart < NatbelQ...
-          scene.text(`You've promised Natasha to take her to St. Petersburg ' + iif(daystart < NatbelQW['StP_trip_daystart'], 'in ${((s as any).NatbelQW ?? {})?.['StP_trip_daystart']-((s as any).daystart ?? 0)} days', iif((week=6 and hour < 14), 'today', 'next saturday')) + ', picking her up at her place between '+func('time', 'get_time_string', 12, 0)+' and '+func('time', 'get_time_string', 14, 0)+'.`);
+          scene.text(`You've promised Natasha to take her to St. Petersburg ' + iif(daystart < NatbelQW['StP_trip_daystart'], 'in ${(((s as any).NatbelQW ?? {})?.['StP_trip_daystart'] ?? 0)-((s as any).daystart ?? '')} days', iif((week=6 and hour < 14), 'today', 'next saturday')) + ', picking her up at her place between 12:00 and 14:00.`);
         }
       }
     }
@@ -109,7 +109,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).NatbelQW ?? 0)?.['Isabella'] === 0) {
           // TODO-QSP: dynamic text: Maybe you should be at home between '+func('time', 'get_time_string', 19, 0)+' a...
-          scene.text('Maybe you should be at home between \'+func(\'time\', \'get_time_string\', 19, 0)+\' and \'+func(\'time\', \'get_time_string\', 23, 0)+\'.');
+          scene.text('Maybe you should be at home between 19:00 and 23:00.');
         } else {
           if (((s as any).NatbelQW ?? 0)?.['Isabella'] === 1) {
             scene.text('You\'ve helped Natasha find her mother, maybe you should visit her.');
@@ -128,7 +128,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
         if (((s as any).NatbelQW ?? 0)?.['bday_invite'] === 1) {
           if (((s as any).daystart ?? 0) < ((s as any).NatbelQW ?? 0)?.['bday_day'] - 1) {
             // TODO-QSP: dynamic text: You have been invited to Natasha's birthday party at cafe Del Parco in <<NatbelQ...
-            scene.text(`You have been invited to Natasha's birthday party at cafe Del Parco in ${((s as any).NatbelQW ?? {})?.['bday_day'] - ((s as any).daystart ?? 0)} days.`);
+            scene.text(`You have been invited to Natasha's birthday party at cafe Del Parco in ${(((s as any).NatbelQW ?? {})?.['bday_day'] ?? 0) - ((s as any).daystart ?? '')} days.`);
           } else {
             if (((s as any).daystart ?? 0) === ((s as any).NatbelQW ?? 0)?.['bday_day'] - 1) {
               scene.text('You have been invited to Natasha\'s birthday party at cafe Del Parco tomorrow.');
@@ -136,7 +136,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
               if (((s as any).daystart ?? 0) === ((s as any).NatbelQW ?? 0)?.['bday_day']) {
                 scene.text('Natasha\'s birthday party at Del Parco is today!');
                 // TODO-QSP: dynamic text: You should meet them there between '+func('time', 'get_time_string', 18, 30)+' a...
-                scene.text('You should meet them there between \'+func(\'time\', \'get_time_string\', 18, 30)+\' and \'+func(\'time\', \'get_time_string\', 20, 0)+\'.');
+                scene.text('You should meet them there between 18:30 and 20:00.');
               } else {
                 scene.text('You have missed Natasha\'s birthday party, maybe you should talk to Natasha.');
               }
@@ -179,7 +179,7 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).daystart ?? 0) >= 579) {
         // TODO-QSP: dynamic text: She spends time at The Coffee Hole on Vasilyevsky Island after her classes (betw...
-        scene.text('She spends time at The Coffee Hole on Vasilyevsky Island after her classes (between \' + $func(\'time\', \'get_time_string\', 15, 0) + \' and \' + $func(\'time\', \'get_time_string\', 18, 0) + \', weekdays).');
+        scene.text('She spends time at The Coffee Hole on Vasilyevsky Island after her classes (between 15:00 and 18:00, weekdays).');
       }
     } else {
       if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
@@ -283,10 +283,10 @@ function enterJournalQuests(s: GameState, scene: SceneBuilder): void {
 
 function enterNatDebtTimer(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] >= 2  &&  ((s as any).NatbelQW ?? 0)?.['Debt'] > 0) {
-    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtTimeLeft'] = ((s as any).NatbelQW ?? {})?.['DebtDay'] - ((s as any).daystart ?? 0);
+    if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['DebtTimeLeft'] = (((s as any).NatbelQW ?? {})?.['DebtDay'] ?? 0) - ((s as any).daystart ?? 0);
     if (((s as any).NatbelQW ?? 0)?.['DebtTimeLeft'] > 0) {
       // TODO-QSP: dynamic text: Natasha has promised to pay you back in <<NatbelQW['DebtTimeLeft']>> day(s).
-      scene.text(`Natasha has promised to pay you back in ${((s as any).NatbelQW ?? 0)?.['DebtTimeLeft']} day(s).`);
+      scene.text(`Natasha has promised to pay you back in ${((s as any).NatbelQW ?? 0)?.['DebtTimeLeft'] ?? ''} day(s).`);
     } else {
       scene.text('Natasha promised to pay you back by now, maybe you should talk to her about it.');
     }
@@ -332,7 +332,7 @@ function enterMakeHerDoHomework(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('You relax on her bed and start daydreaming for a while.');
       // TODO-QSP: dynamic text: You are woken out of your daydream by Natasha saying: "It's done <<$pcs_nickname...
-      scene.text(`You are woken out of your daydream by Natasha saying: "It's done ${((s as any).pcs_nickname ?? 0)}."`);
+      scene.text(`You are woken out of your daydream by Natasha saying: "It's done ${((s as any).pcs_nickname || '')}."`);
       scene.text('"Good, let me have a look at it."');
       scene.actions([
         { label: 'Take your finished homework', goto: ['natbelapt', 'natroom'] },
@@ -354,10 +354,10 @@ function enterMakeHerDoHomework(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/natasha/study.jpg');
     scene.text('Natasha sighs with a resigned look as she nods meekly.');
     // TODO-QSP: dynamic text: "I should make you do my homework but I've already done it, so instead you can w...
-    scene.text(`"I should make you do my homework but I've already done it, so instead you can write out some lines for me. Write 'I will do as ${((s as any).pcs_firstname ?? 0)} tells me' one thousand times."`);
+    scene.text(`"I should make you do my homework but I've already done it, so instead you can write out some lines for me. Write 'I will do as ${((s as any).pcs_firstname || '')} tells me' one thousand times."`);
     scene.text('You relax on her bed and start daydreaming for a while.');
     // TODO-QSP: dynamic text: You are woken out of your daydream by Natasha saying: "It's done <<$pcs_nickname...
-    scene.text(`You are woken out of your daydream by Natasha saying: "It's done ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`You are woken out of your daydream by Natasha saying: "It's done ${((s as any).pcs_nickname || '')}."`);
     scene.text('"Good, let me have a look at it."');
     scene.text('You tear the paper up and throw the pieces in the bin.');
     scene.actions([
@@ -385,19 +385,19 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'force', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Lift her skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Lift her skirt', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Lift her skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Lift her skirt', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/natasha/skirt.jpg');
     scene.text('You can\'t stop yourself from pulling up her skirt as she turns to grab your bag. "Cute panties Natasha, they match the stockings."');
     // TODO-QSP: dynamic text: Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm...
-    scene.text(`Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm… Thank you ${((s as any).pcs_nickname ?? 0)}." She says, blushing at you prettily.`);
+    scene.text(`Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm… Thank you ${((s as any).pcs_nickname || '')}." She says, blushing at you prettily.`);
     scene.text('"We have some time before school." You tell her while you start pulling off her skirt and panties.');
     scene.text('"Today you\'ll be wearing them a little differently." You say, pushing her back on the couch. "Open your legs."');
     scene.text('Natasha obediently opens her legs for you. Showing off her pretty pussy. Not wasting any time you start playing with her, first rubbing her lips, then focussing more on her clit as you watch closely while Natasha\'s pussy gets wetter and wetter.');
@@ -409,7 +409,7 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
     scene.text('You stop playing with her pussy and grab her panties, handing them over to her. "Put them inside your pussy."');
     scene.text('Natasha looks at you in confusion for a second but then starts to slowly push them into her pussy.');
     // TODO-QSP: dynamic text: When there's only enough left to easily grab on in case you'd want to pull them ...
-    scene.text(`When there's only enough left to easily grab on in case you'd want to pull them out she stops and looks at you expectantly. "Like this ${((s as any).pcs_nickname ?? 0)}?"`);
+    scene.text(`When there's only enough left to easily grab on in case you'd want to pull them out she stops and looks at you expectantly. "Like this ${((s as any).pcs_nickname || '')}?"`);
     scene.text('You reach down and push the last bit inside as well, holding them in with your finger for a bit before pulling your finger out again.');
     scene.text('"This is how you\'ll wear your panties for me at school today Natasha." You tell her. "Now put your skirt back on or we\'ll be late.');
     (s as any).minut = ((s as any).minut ?? 0) + 3;
@@ -427,19 +427,19 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'force', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Lift her skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Lift her skirt', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Lift her skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Lift her skirt', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/natasha/skirt.jpg');
     scene.text('You can\'t stop yourself from pulling up her skirt as she turns to grab your bag. "Cute panties Natasha, they match the stockings."');
     // TODO-QSP: dynamic text: Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm...
-    scene.text(`Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm… Thank you ${((s as any).pcs_nickname ?? 0)}." She lets out in a whisper.`);
+    scene.text(`Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm… Thank you ${((s as any).pcs_nickname || '')}." She lets out in a whisper.`);
     scene.text('Not wanting to lose your mule to school you let her skirt fall down again and head to school.');
     scene.actions([
       { label: 'Go to school', goto: ['gschool_grounds', 'main'] },
@@ -489,13 +489,13 @@ function enterHwundress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'exhib', 'force', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Tell her to strip [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Tell her to strip', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Tell her to strip [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Tell her to strip', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['doingHW'] = 1;
     scene.text('"You know, I\'m not feeling properly entertained over here." You say, feeling a bit bored. "I think you should lose some clothes, so I have something to look at."');
@@ -538,7 +538,7 @@ function enterHwundress(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Just wait until she\'s done', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: You are woken out of your daydream by Natasha saying: "It's done <<$pcs_nickname...
-    scene.text(`You are woken out of your daydream by Natasha saying: "It's done ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`You are woken out of your daydream by Natasha saying: "It's done ${((s as any).pcs_nickname || '')}."`);
     scene.text('"Good, let me have a look at it."');
     scene.actions([
       { label: 'Take your finished homework', goto: ['natbelapt', 'natroom'] },
@@ -562,7 +562,7 @@ function enterUndressedhw(s: GameState, scene: SceneBuilder): void {
       scene.text('"It can\'t be very comfortable for her, but I sure don\'t mind the show." You think to yourself as you start to play with your pussy while you watch her work.');
     }
     // TODO-QSP: dynamic text: After a while, Natasha gets up saying: "It's done <<$pcs_nickname>>, can I pleas...
-    scene.text(`After a while, Natasha gets up saying: "It's done ${((s as any).pcs_nickname ?? 0)}, can I please get dressed now?"`);
+    scene.text(`After a while, Natasha gets up saying: "It's done ${((s as any).pcs_nickname || '')}, can I please get dressed now?"`);
     qspCall(s, 'arousal', 'erotic', 10);
     qspCall(s, 'arousal', 'foreplay', (-10), 'lesbian');
     qspCall(s, 'arousal', 'end');
@@ -592,7 +592,7 @@ function enterUndressedhw(s: GameState, scene: SceneBuilder): void {
       scene.text('As she keeps working on your homework, you occasionally break Natasha\'s concentration with more comments on her body. Each time you do so, she visibly loses her concentration.');
     }
     // TODO-QSP: dynamic text: After a while, Natasha gets up saying: "It's done <<$pcs_nickname>>, can I pleas...
-    scene.text(`After a while, Natasha gets up saying: "It's done ${((s as any).pcs_nickname ?? 0)}, can I please get dressed now?"`);
+    scene.text(`After a while, Natasha gets up saying: "It's done ${((s as any).pcs_nickname || '')}, can I please get dressed now?"`);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Continue', goto: ['natbel_cp_1', 'afterhomework'] },
@@ -612,13 +612,13 @@ function enterAfterhomework(s: GameState, scene: SceneBuilder): void {
   if (((s as any).NatbelQW ?? 0)?.['QWstage'] >= 8) {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Take off your own clothes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take off your own clothes', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Take off your own clothes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take off your own clothes', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.text('You smile at Natasha and start taking off your own clothes slowly, she tries not to pay attention to you. Yet you can see her sneaking peeks.');
     scene.actions([
@@ -633,13 +633,13 @@ function enterAfterhomework(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'force', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Make her wear the lingerie [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Make her wear the lingerie', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Make her wear the lingerie [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Make her wear the lingerie', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/natasha/seethrough00.jpg');
     if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['seethroughwearing'] = 1;
@@ -727,13 +727,13 @@ function enterCorruptChoices(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'humiliation', 'force', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Make her lick your feet [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make her lick your feet', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Make her lick your feet [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make her lick your feet', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'humiliation', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
   }, goto: ['natbel_cp_1', 'lick_feet'] },
@@ -745,13 +745,13 @@ function enterCorruptChoices(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'humiliation', 'force', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Spit in face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Spit in face', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Spit in face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Spit in face', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'humiliation', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
   }, goto: ['natbel_cp_1', 'spit_face'] },
@@ -763,13 +763,13 @@ function enterCorruptChoices(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cuni', 'force', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Make her lick your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make her lick your pussy', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Make her lick your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make her lick your pussy', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'cuni', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
   }, goto: ['natbel_cp_1', 'lick_pussy'] },
@@ -782,13 +782,13 @@ function enterCorruptChoices(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'force', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Make her fuck Kolka [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Make her fuck Kolka', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Make her fuck Kolka [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Make her fuck Kolka', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
   }, goto: ['natkolev', 'kolkabj'] },
@@ -802,13 +802,13 @@ function enterCorruptChoices(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'anal', 'force', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Take her to see Olu [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take her to see Olu', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Take her to see Olu [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Take her to see Olu', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'anal', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
   }, goto: ['natpimp', 'go_see_olu'] },
@@ -917,13 +917,13 @@ function enterLickPussy(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'pee', 'force');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Piss in her mouth [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Piss in her mouth', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Piss in her mouth [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Piss in her mouth', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'arousal', 'pee_give', 5, 'dom', 'lesbian');
     qspCall(s, 'arousal', 'end');
@@ -1003,7 +1003,7 @@ function enterStraddleface(s: GameState, scene: SceneBuilder): void {
 function enterNatAfterShower(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
   // TODO-QSP: dynamic text: With a sparkle in her eyes she says: "Oh, hi <<$pcs_nickname>>, I didn't know yo...
-  scene.text(`With a sparkle in her eyes she says: "Oh, hi ${((s as any).pcs_nickname ?? 0)}, I didn't know you were coming over."`);
+  scene.text(`With a sparkle in her eyes she says: "Oh, hi ${((s as any).pcs_nickname || '')}, I didn't know you were coming over."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Watch her get dressed', handler: (st: GameState) => {
@@ -1033,7 +1033,7 @@ function enterNatAfterShower(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natbedroomsex02.jpg');
     scene.text('You let go of Natasha\'s hair and roll on top of her. While she\'s catching her breath from the steamy kissing, you pull down her top and start licking her nipple.');
     // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>… That feels… Oooh… So nice." She moans softly.
-    scene.text(`"Oh ${((s as any).pcs_nickname ?? 0)}… That feels… Oooh… So nice." She moans softly.`);
+    scene.text(`"Oh ${((s as any).pcs_nickname || '')}… That feels… Oooh… So nice." She moans softly.`);
     scene.text('You increase the intensity by taking hold of her nipple with your teeth and gently pulling. This makes her moan even louder, and in response, you feel yourself getting wetter and wetter.');
     qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
     qspCall(s, 'stat', '');
@@ -1053,7 +1053,7 @@ function enterNatAfterShower(s: GameState, scene: SceneBuilder): void {
     scene.text('Not wanting this to end just yet you roll her onto her back and spread her legs wide. Her pussy is soaking wet as well. "Your turn." You say, still out of breath.');
     scene.text('You start to dart your tongue around her pussy. Licking up the juices, slowly working your way towards her wet slit.');
     // TODO-QSP: dynamic text: "Please <<$pcs_nickname>>, I really need it." She begs in between her moans of p...
-    scene.text(`"Please ${((s as any).pcs_nickname ?? 0)}, I really need it." She begs in between her moans of pleasure. Hearing this you part her pussy lips with your hand and start licking her furiously, occasionally switching from sucking her clit to tongue fucking her pussy.`);
+    scene.text(`"Please ${((s as any).pcs_nickname || '')}, I really need it." She begs in between her moans of pleasure. Hearing this you part her pussy lips with your hand and start licking her furiously, occasionally switching from sucking her clit to tongue fucking her pussy.`);
     scene.text('The growing volume of her moans is rekindling the fire inside yourself. "A few touches and I might go over the edge again." You think to yourself.');
     qspCall(s, 'arousal', 'cuni_give', 5, 'lesbian');
     qspCall(s, 'stat', '');
@@ -1061,7 +1061,7 @@ function enterNatAfterShower(s: GameState, scene: SceneBuilder): void {
       { label: 'Rub your pussy on hers', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natbedroomsex05.jpg');
     // TODO-QSP: dynamic text: You quickly get up from between her legs and straddle her, pressing your soaked ...
-    scene.text(`You quickly get up from between her legs and straddle her, pressing your soaked pussies together, grinding them together quickly. Natasha grabs your breasts and starts moaning "Yes ${((s as any).pcs_nickname ?? 0)}… Please… Pleaaaaaah."`);
+    scene.text(`You quickly get up from between her legs and straddle her, pressing your soaked pussies together, grinding them together quickly. Natasha grabs your breasts and starts moaning "Yes ${((s as any).pcs_nickname || '')}… Please… Pleaaaaaah."`);
     qspCall(s, 'arousal', 'trib', 5, 'lesbian');
     qspCall(s, 'arousal', 'end');
     scene.text('Finally you fall down on top of Natasha, exhausted.');
@@ -1089,7 +1089,7 @@ function enterNatAfterShower(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natbedroomsex05.jpg');
     scene.text('As you feel your orgasm near, you quickly get up from the bed and press Natasha down on her back, opening her legs wide. Her pussy is soaking wet as well. There are wet streaks on her inner thighs where her juices have been running down her legs.');
     // TODO-QSP: dynamic text: After a moment of teasing her with your fingers, you straddle her, pressing your...
-    scene.text(`After a moment of teasing her with your fingers, you straddle her, pressing your pussies wetly together as you begin quickly grinding against her. Natasha grabs your breasts and starts moaning "Yes ${((s as any).pcs_nickname ?? 0)}… Please… Pleaaaaaah."`);
+    scene.text(`After a moment of teasing her with your fingers, you straddle her, pressing your pussies wetly together as you begin quickly grinding against her. Natasha grabs your breasts and starts moaning "Yes ${((s as any).pcs_nickname || '')}… Please… Pleaaaaaah."`);
     qspCall(s, 'arousal', 'trib', 5, 'lesbian');
     scene.text('Finally you fall down on top of Natasha, exhausted.');
     if (((s as any).succubusflag ?? 0) === 1) {
@@ -1138,19 +1138,19 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk in and see Natasha just turning on the machine. She turns around and sees you in the doorway.');
   if (((s as any).NatbelQW ?? 0)?.['cucumber'] === 0  ||  ((s as any).NatbelQW ?? 0)?.['QWstage'] < 10) {
     // TODO-QSP: dynamic text: "Oh hey <<$pcs_nickname>>, let's go to my room"
-    scene.text(`"Oh hey ${((s as any).pcs_nickname ?? 0)}, let's go to my room"`);
+    scene.text(`"Oh hey ${((s as any).pcs_nickname || '')}, let's go to my room"`);
     return;
   }
   qspCall(s, 'willpower', 'mast', 'force', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Make her play with a cucumber [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make her play with a cucumber', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Make her play with a cucumber [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make her play with a cucumber', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 10) {
       if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 11;

@@ -44,15 +44,15 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/kakuzu/kakuzu.jpg');
   if (((s as any).tobiQW ?? 0) === 1) {
     // TODO-QSP: dynamic text: I know who you are and what you need. Pay ' + $func('money', 'string_price', 100...
-    scene.text('I know who you are and what you need. Pay \' + $func(\'money\', \'string_price\', 100) + \'k and then I will teach you how to achieve affinity with the elements.');
+    scene.text('I know who you are and what you need. Pay 100₽k and then I will teach you how to achieve affinity with the elements.');
   }
   if (((s as any).tobiQW ?? 0) === 2) {
     // TODO-QSP: dynamic text: You have <<srodpaper>> sheets of paper to determine the affinity of the elements...
-    scene.text(`You have ${((s as any).srodpaper ?? 0)} sheets of paper to determine the affinity of the elements. If you run out of paper, you have to buy more at Kakuzu ' + $func('money', 'string_price', 10000) + ' a sheet.`);
+    scene.text(`You have ${((s as any).srodpaper || '')} sheets of paper to determine the affinity of the elements. If you run out of paper, you have to buy more at Kakuzu 10000₽ a sheet.`);
   }
   if (((s as any).tobiQW ?? 0) === 1) {
     scene.actions([
-      { label: 'Here\'s the money [+$func(\'money\', \'get_cost_string\', 100000...]', handler: (st: GameState) => {
+      { label: 'Here\'s the money', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -68,7 +68,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
       scene.text('earth - defensive school, but the attacks are very dangerous. If the enemy attack misses, they will get stuck in the ground and unable to move. Earth protection is the most powerful of all protection, protection of land and regenerate itself absolute defense to attack the enemy.');
       scene.text('Water - Damage of this school is weak, but all spells steal mana from the enemy, the same high level of water protection is very dangerous, it consumes mana from an enemy and regenerates, although it is weaker than earth protection.');
       // TODO-QSP: dynamic text: Affinity with the elements means that you can learn this particular element. You...
-      scene.text('Affinity with the elements means that you can learn this particular element. You can not explore another element after selecting affinity until izuchish element completely. I\'ll give you 10 sheets of paper magic. Each sheet cost me \' + $func(\'money\', \'string_price\', 5000) + \'. Concentrate the energy on a piece of paper until you succeed, then you can either start over and hope for another element, or proceed with the element that appeared to you.');
+      scene.text('Affinity with the elements means that you can learn this particular element. You can not explore another element after selecting affinity until izuchish element completely. I\'ll give you 10 sheets of paper magic. Each sheet cost me 5000₽. Concentrate the energy on a piece of paper until you succeed, then you can either start over and hope for another element, or proceed with the element that appeared to you.');
       scene.actions([
         { label: 'Mark sheets', goto: ['kakuzu', 'mansion1'] },
       ]);
@@ -78,7 +78,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).tobiQW ?? 0) === 2  &&  ((s as any).srodpaper ?? 0) <= 0) {
       scene.actions([
-        { label: 'I need another paper [+$func(\'money\', \'get_cost_string\', 10000)]', handler: (st: GameState) => {
+        { label: 'I need another paper', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 10000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -103,7 +103,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
     scene.text('earth - defensive school, but the attacks are very dangerous. If the enemy attack misses, they will get stuck in the ground and unable to move. Earth protection is the most powerful of all protection, protection of land and regenerate itself absolute defense to attack the enemy.');
     scene.text('Water - Damage of this school is weak, but all spells steal mana from the enemy, the same high level of water protection is very dangerous, it consumes mana from an enemy and regenerates, although it is weaker than earth protection.');
     // TODO-QSP: dynamic text: Affinity with the elements means that you can learn this particular element. You...
-    scene.text('Affinity with the elements means that you can learn this particular element. You can not explore another element after selecting affinity until izuchish element completely. I\'ll give you 10 sheets of paper magic. Each sheet cost me \' + $func(\'money\', \'string_price\', 5000) + \'. Concentrate the energy on a piece of paper until you succeed, then you can either start over and hope for another element, or proceed with the element that appeared to you.');
+    scene.text('Affinity with the elements means that you can learn this particular element. You can not explore another element after selecting affinity until izuchish element completely. I\'ll give you 10 sheets of paper magic. Each sheet cost me 5000₽. Concentrate the energy on a piece of paper until you succeed, then you can either start over and hope for another element, or proceed with the element that appeared to you.');
     scene.actions([
       { label: 'Move away', goto: ['kakuzu', 'mansion1'] },
     ]);
@@ -123,7 +123,7 @@ function enterMansion1(s: GameState, scene: SceneBuilder): void {
       (s as any).srodrand = Math.floor(Math.random() * 5) + 1;
     }
     scene.text('You concentrate energy in the sheet of paper. You feel that you are spending a huge amount of mana for this action.');
-    (s as any).srodstvo = ((s as any).srodstvo ?? 0) + ((Math.floor(Math.random() * (10 - 9 - 2 * ((s as any).cheatVars ?? {})?.['skill_gain'] + 1)) + (9 - 2 * ((s as any).cheatVars ?? {})?.['skill_gain'])));
+    (s as any).srodstvo = ((s as any).srodstvo ?? 0) + ((Math.floor(Math.random() * (10 - 9 - 2 * (((s as any).cheatVars ?? {})?.['skill_gain'] ?? 0) + 1)) + (9 - 2 * (((s as any).cheatVars ?? {})?.['skill_gain'] ?? 0))));
     if (((s as any).srodstvo ?? 0) < 100) {
       scene.text('You get tired and sweat like a horse, but your effort was not enough.');
       scene.actions([

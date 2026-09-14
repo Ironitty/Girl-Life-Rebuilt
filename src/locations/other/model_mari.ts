@@ -19,7 +19,7 @@ function enterMariAge(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMari_1(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'model_mari', 'mari_age');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariAge(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).mari ?? 0)?.['status'] === 2) {
     scene.actions([{ label: 'Continue', goto: ['model_mari', 'mari_2'] }]);
   }
@@ -38,7 +38,7 @@ function enterMari_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/meeting/2.jpg');
     scene.text('"Hi, I hope I\'m not bothering you. I don\'t think we\'ve met and I wanted to introduce myself," you say as you step up to her.');
     // TODO-QSP: dynamic text: "I'm <<$model['firstname']>>."
-    scene.text(`"I'm ${((s as any).model ?? 0)?.['firstname']}."`);
+    scene.text(`"I'm ${((s as any).model ?? 0)?.['firstname'] ?? ''}."`);
     scene.text('Mari looks your way and smiles, "Hello, it\'s always nice meeting a new model. I\'m Mari." She runs her hand through her hair absentmindedly and you can\'t help but notice her breasts becoming even more visible now that her curly brown hair has been moved out of the way.');
     scene.actions([
       { label: '"Your nipples are showing"', handler: (st: GameState) => {
@@ -52,7 +52,7 @@ function enterMari_1(s: GameState, scene: SceneBuilder): void {
     if (((s as any).pantyworntype ?? 0) === 'none') {
       scene.text('"Good point," you reply, looking down at your naked body.');
       scene.text('"I\'m gonna to sit down if you don\'t mind," she says, stretching her legs out on the bench. "Long hours standing up and all, no use standing when you don\'t have to."');
-      qspCall(s, 'model_mari', 'mari_1.1');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMari_1_1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       scene.text('"Good point," you reply, looking down at your tits, nipples hard in the cold air of the studio.');
       scene.text('"I\'m gonna to sit down if you don\'t mind," she says, stretching her legs out on the bench. "Long hours standing up and all, no use standing when you don\'t have to! By the way, did you just come from a topless shoot or something?"');
@@ -119,7 +119,7 @@ function enterMari_1(s: GameState, scene: SceneBuilder): void {
     scene.text('You decide not to say anything, she seems comfortable as is.');
     scene.text('"I\'m gonna to sit down if you don\'t mind," she says, stretching her legs out on the bench. "Long hours standing up and all, no use standing when you don\'t have to!"');
     scene.text('Mari doesn\'t appear to be bothered in the slightest that her breasts are completely on display while talking to you. She seems very comfortable with her body.');
-    qspCall(s, 'model_mari', 'mari_1.1');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMari_1_1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -132,7 +132,7 @@ function enterMari_1_1(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'ve been working for this agency for about a year. Ever since I moved to the city really."');
   scene.text('Something piques an interest in you as Mari mentions she\'s from out of town. "You\'re not from St. Petersburg?"');
   scene.text('"Nope, moved here from a place called Gadukino. You\'ve probably never heard of it. It\'s a small village outside the city. Too small to be honest, same boring ins and outs every day. I wanted more excitement in my life! More than a simple farm girl would ever have. So I moved here."');
-  qspCall(s, 'model_mari', 'mari_1.2');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMari_1_2(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -151,7 +151,7 @@ function enterMari_1_2(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend the next few minutes talking about your home towns until a photographer comes up and says, "Alright Mari, it\'s time to start."');
     scene.text('"Okay Vasin."');
     // TODO-QSP: dynamic text: She hurriedly gets up and starts double checking her clothing and hair before gi...
-    scene.text(`She hurriedly gets up and starts double checking her clothing and hair before giving you a quick wave and smile, whispering to you, "It was nice to meet you ${((s as any).model ?? 0)?.['firstname']}! I hope we'll get to talk more later!"`);
+    scene.text(`She hurriedly gets up and starts double checking her clothing and hair before giving you a quick wave and smile, whispering to you, "It was nice to meet you ${((s as any).model ?? 0)?.['firstname'] ?? ''}! I hope we'll get to talk more later!"`);
     scene.text('You wave your farewells back and get off the set.');
     if (!(s as any).mari) (s as any).mari = {}; (s as any).mari['status'] = 2;
     scene.actions([
@@ -198,7 +198,7 @@ function enterMari_1_2(s: GameState, scene: SceneBuilder): void {
       { label: '"Thanks Mari, that helps a lot."', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/meeting/1.jpg');
     // TODO-QSP: dynamic text: You barely get to thank her for the advice before she's suddenly being called up...
-    scene.text(`You barely get to thank her for the advice before she's suddenly being called up to get ready. She hurriedly gets up and starts double checking her clothing and hair before giving you a quick smile and whispering, "It was nice meeting you ${((s as any).model ?? 0)?.['firstname']}! I hope we can talk more later!"`);
+    scene.text(`You barely get to thank her for the advice before she's suddenly being called up to get ready. She hurriedly gets up and starts double checking her clothing and hair before giving you a quick smile and whispering, "It was nice meeting you ${((s as any).model ?? 0)?.['firstname'] ?? ''}! I hope we can talk more later!"`);
     if (!(s as any).mari) (s as any).mari = {}; (s as any).mari['status'] = 2;
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
@@ -236,7 +236,7 @@ function enterMari_1_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMari_2(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'model_mari', 'mari_age');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariAge(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.img('images/characters/city/models/mari/talking/reading1.jpg');
   scene.text('On your way to a shoot, you see Mari on a break, sitting in the chair of an unused set. At least you think she\'s on break because she\'s reading a book. But you\'re not totally sure since she\'s also completely naked.');
   // TODO-QSP: end
@@ -244,7 +244,7 @@ function enterMari_2(s: GameState, scene: SceneBuilder): void {
     { label: '"Hey Mari! What\'re you doing here? Aren\'t you on break?"', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     // TODO-QSP: dynamic text: "Oh hi, <<$model['nickname']>>," she says as she hears your voice and looks up. ...
-    scene.text(`"Oh hi, ${((s as any).model ?? 0)?.['nickname']}," she says as she hears your voice and looks up. "I am! But it's boring to spend it the break rooms. I spend most of my breaks lounging around on the sets. No one's using them and it's just more fun that way. Besides, this chair is really comfy!" she says with a laugh. You can't help but smile and laugh with her. She's just so cheerful.`);
+    scene.text(`"Oh hi, ${((s as any).model ?? 0)?.['nickname'] ?? ''}," she says as she hears your voice and looks up. "I am! But it's boring to spend it the break rooms. I spend most of my breaks lounging around on the sets. No one's using them and it's just more fun that way. Besides, this chair is really comfy!" she says with a laugh. You can't help but smile and laugh with her. She's just so cheerful.`);
     scene.text('As you continue to look at her, you also notice how relaxed she is. Other models and staff continue to mill about the studio and despite her nudity, she sits there reading as normally as if she were in a park on a sunny day.');
     scene.actions([
       { label: 'You\'re not bothered about nudity are you?', handler: (st: GameState) => {
@@ -256,7 +256,7 @@ function enterMari_2(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading4.jpg');
     // TODO-QSP: dynamic text: "<<$model['nickname']>>," she says, giving you a look. "Come on."
-    scene.text(`"${((s as any).model ?? 0)?.['nickname']}," she says, giving you a look. "Come on."`);
+    scene.text(`"${((s as any).model ?? 0)?.['nickname'] ?? ''}," she says, giving you a look. "Come on."`);
     scene.text('"Come on, what?"');
     scene.text('A slight smirk turns up on her lips. "What do you mean, \'what?\' You\'ve been working here for long enough, surely you\'ve noticed."');
     scene.actions([
@@ -293,7 +293,7 @@ function enterMari_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"What is it?"');
     scene.text('Before you know it, she throws her arms around you and wraps you in a big warm hug. You feel her soft breasts smushing into yours, the smoothness of her body rubbing against you, her nipples two gentle points of pressure on your skin, your own nipples pressing back into her… It\'s all strangely calming. Mari\'s right. It is relaxing to be naked together.');
     // TODO-QSP: dynamic text: "If you ever need help with anything, you can always come talk to me <<$model['n...
-    scene.text(`"If you ever need help with anything, you can always come talk to me ${((s as any).model ?? 0)?.['nickname']}." She pulls back and smiles wide at you. "Girls have to stick together, you know!"`);
+    scene.text(`"If you ever need help with anything, you can always come talk to me ${((s as any).model ?? 0)?.['nickname'] ?? ''}." She pulls back and smiles wide at you. "Girls have to stick together, you know!"`);
     scene.text('"Thanks Mari, I really appreciate it."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -325,7 +325,7 @@ function enterMari_2(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMari_3(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'model_mari', 'mari_age');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariAge(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).mari ?? 0)?.['used_firstname'] === '') {
     if (!(s as any).mari) (s as any).mari = {}; (s as any).mari['used_firstname'] = ((s as any).model ?? 0)?.['firstname'];
     if (!(s as any).mari) (s as any).mari = {}; (s as any).mari['used_nickname'] = ((s as any).model ?? 0)?.['nickname'];
@@ -340,7 +340,7 @@ function enterMari_3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('She looks up and smiles as she hears your greeting.');
     // TODO-QSP: dynamic text: "Hi <<$mari['used_nickname']>>! What's up? Did you want to talk?
-    scene.text(`"Hi ${((s as any).mari ?? 0)?.['used_nickname']}! What's up? Did you want to talk?`);
+    scene.text(`"Hi ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}! What's up? Did you want to talk?`);
     scene.actions([
       { label: 'Just passing by', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading13.jpg');
@@ -353,8 +353,8 @@ function enterMari_3(s: GameState, scene: SceneBuilder): void {
       { label: '"Yeah!', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     // TODO-QSP: dynamic text: "What's up <<$mari['used_nickname']>>?"
-    scene.text(`"What's up ${((s as any).mari ?? 0)?.['used_nickname']}?"`);
-    qspCall(s, 'model_mari', 'mari_chat');
+    scene.text(`"What's up ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}?"`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -363,7 +363,7 @@ function enterMari_3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMari_4(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'model_mari', 'mari_age');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariAge(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).mari) (s as any).mari = {}; (s as any).mari['busy'] = Math.floor(Math.random() * 3) + 1;
   if (!(s as any).mari) (s as any).mari = {}; (s as any).mari['status'] = Math.floor(Math.random() * 2) + 3;
   if (!(s as any).mari) (s as any).mari = {}; (s as any).mari['busy_cooldown'] = ((s as any).hour ?? 0) + 2;
@@ -426,19 +426,19 @@ function enterMari_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMariChat(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'model_mari', 'mari_age');
-  qspCall(s, 'model_mari', 'mari_small_talk');
-  qspCall(s, 'model_mari', 'mari_book_chat');
-  qspCall(s, 'model_mari', 'mari_food_chat');
-  qspCall(s, 'model_mari', 'mari_fitness_chat');
-  qspCall(s, 'model_mari', 'mari_sex_talk');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariAge(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariSmallTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariBookChat(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFoodChat(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFitnessChat(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariSexTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading13.jpg');
     scene.text('"I\'ve got to get going Mari, I\'ll see you later!"');
     // TODO-QSP: dynamic text: "Okay, bye <<$mari['used_name']>>!"
-    scene.text(`"Okay, bye ${((s as any).mari ?? 0)?.['used_name']}!"`);
+    scene.text(`"Okay, bye ${((s as any).mari ?? 0)?.['used_name'] ?? ''}!"`);
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
     ]);
@@ -469,13 +469,13 @@ function enterMariSmallTalk(s: GameState, scene: SceneBuilder): void {
         scene.text('"Right???"');
         scene.text('The two of you laugh together over your agreement in pubic hair fashion.');
       }
-      qspCall(s, 'model_mari', 'mari_chat');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).mari ?? 0)?.['convo'] === 2) {
         scene.img('images/characters/city/models/mari/talking/reading7.jpg');
         scene.text('"Seen any good movies lately Mari?"');
         scene.text('"No, not really. I don\'t go to the movies much. I prefer reading. Besides, half the time there\'s someone getting head in the back row. It\'s really distracting!"');
-        qspCall(s, 'model_mari', 'mari_chat');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).mari ?? 0)?.['convo'] === 3) {
           if (!(s as any).mari) (s as any).mari = {}; (s as any).mari['nudity'] = 1;
@@ -488,27 +488,27 @@ function enterMariSmallTalk(s: GameState, scene: SceneBuilder): void {
             { label: 'Laugh with her', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading6.jpg');
     scene.text('"Don\'t get me wrong, it\'s not like I would hang around my parents house like this or anything like that, but since coming here, I think I\'ve learned how much I enjoy being naked."');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           ]);
         } else {
           if (((s as any).mari ?? 0)?.['convo'] === 4) {
-            qspCall(s, 'model_mari', 'mari_family_chat');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFamilyChat(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).mari ?? 0)?.['convo'] === 5) {
-              qspCall(s, 'model_mari', 'mari_underwear_chat');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariUnderwearChat(s, scene); (s as any).locArgs = __savedLocArgs; }
             } else {
               if (((s as any).mari ?? 0)?.['convo'] === 6  &&  ((s as any).mari ?? 0)?.['model_ask'] === 1) {
-                qspCall(s, 'model_mari', 'mari_model_ask');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariModelAsk(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 if (((s as any).mari ?? 0)?.['convo'] === 7) {
                   scene.img('images/characters/city/models/mari/talking/reading5.jpg');
                   scene.text('"Sooooo Mariiiii! Any luck finding a boyfriend yet?"');
                   // TODO-QSP: dynamic text: "<<$mari['used_nickname']>>!"
-                  scene.text(`"${((s as any).mari ?? 0)?.['used_nickname']}!"`);
+                  scene.text(`"${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}!"`);
                   scene.text('"Hey girl! I\'m just concerned for you! I want you to get that opportunity for that special someone to pop your cherry while we\'re both still young! It\'s like you say, us girls have to stick together don\'t we?"');
                   scene.text('She smiles back at you. "Yeah. We do."');
-                  qspCall(s, 'model_mari', 'mari_chat');
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
               }
             }
@@ -582,10 +582,10 @@ function enterMariFamilyChat(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.text('"No, there\'s just me."');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -594,7 +594,7 @@ function enterMariFamilyChat(s: GameState, scene: SceneBuilder): void {
 function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/models/mari/talking/reading3.jpg');
   // TODO-QSP: dynamic text: "Hey <<$mari['used_nickname']>>, where do you buy your underwear? I never got ou...
-  scene.text(`"Hey ${((s as any).mari ?? 0)?.['used_nickname']}, where do you buy your underwear? I never got out of the habit of buying cheap stuff from G&M from when I was barely scraping by. But I guess since this modelling thing has worked out for me, I should consider getting some nicer pairs. Any suggestions?"`);
+  scene.text(`"Hey ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}, where do you buy your underwear? I never got out of the habit of buying cheap stuff from G&M from when I was barely scraping by. But I guess since this modelling thing has worked out for me, I should consider getting some nicer pairs. Any suggestions?"`);
   if (((s as any).trait_vars ?? 0)?.['panty_preference'] === 3) {
     scene.actions([
       { label: 'I don\'t wear underwear', handler: (st: GameState) => {
@@ -606,7 +606,7 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading6.jpg');
     // TODO-QSP: dynamic text: "<<$mari['used_nickname']>>! Isn't that kind of slutty?"
-    scene.text(`"${((s as any).mari ?? 0)?.['used_nickname']}! Isn't that kind of slutty?"`);
+    scene.text(`"${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}! Isn't that kind of slutty?"`);
     if (((s as any).mari ?? 0)?.['nudity'] === 1) {
       scene.text('"This coming from the girl who strips down whenever she gets home?" you scoff.');
       scene.text('"Yeah! Inside my home!" Mari laughs back. "Not outside! I\'m comfortable being naked, I\'m not an exhibitionist!"');
@@ -616,7 +616,7 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
       scene.text('"Mari!"');
       scene.text('"It <i>is</i> kind of slutty!"');
     }
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -633,13 +633,13 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"You\'re right," you shrug. "They\'re cheap and affordable. I don\'t have the money to spend on nicer stuff right now."');
     scene.text('"That\'s fair," Mari smiles. "It\'s not like there\'s anything wrong with buying from G&M I guess."');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I like them', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"I just like them," you shrug. "They\'re cheap and comfortable and have simple designs that I like."');
     scene.text('"They are pretty classic," Mari agrees with you.');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -652,13 +652,13 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('"They\'re really comfy!" you answer. "Nice soft cotton, elastic that doesn\'t rub or itch. I just feel better when I\'m wearing them."');
     scene.text('"Really? Maybe I should check it out after work," Mari smiles.');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'They\'re cute', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading6.jpg');
     scene.text('"They\'re really cute!" you answer. "Cute colors, cute designs, cute cuts-"');
     scene.text('"I get it! They\'re cute!" Mari laughs. "Maybe I\'ll check it out after work."');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -668,7 +668,7 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"Oh yeah? I\'ve never shopped there before. What kind of stuff do they have?"');
     scene.text('"Super stylish and fancy. Very lacy. I really like it."');
     scene.text('"Oh. I\'m not really into lace. A bit uncomfortable for me. Maybe I\'ll try something else. Thanks for the suggestion though!"');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I mostly wear sports underwear', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
@@ -681,13 +681,13 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"Whaa-? Really?"');
     scene.text('"Yeah! Made of good material and form fitting. Honestly, sometimes I forget I\'m even wearing them!"');
     scene.text('"Well that sounds pretty cool. Maybe I\'ll check it out after work," she says thoughtfully.');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Because I exercise?', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"Uhh… Cause I do a lot of exercise?" you answer with a sort of "no duh" expression.');
     scene.text('"Oh." Mari laughs. "Of course! Sorry, I thought you had some kind of special reason, but that\'s the most obvious answer isn\'t it?"');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -698,7 +698,7 @@ function enterMariUnderwearChat(s: GameState, scene: SceneBuilder): void {
 function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/models/mari/talking/reading4.jpg');
   // TODO-QSP: dynamic text: "By the way <<$mari['used_firstname']>>, I just realized something," she says, g...
-  scene.text(`"By the way ${((s as any).mari ?? 0)?.['used_firstname']}, I just realized something," she says, giving you a suspicious look.`);
+  scene.text(`"By the way ${((s as any).mari ?? 0)?.['used_firstname'] ?? ''}, I just realized something," she says, giving you a suspicious look.`);
   scene.text('You look back at her quizzically.');
   scene.text('"I told you about how I got started as a model here and why, but it\'s not fair if only <i>I</i> share something like that. What about you? Why did you decide to become a model?"');
   if (((s as any).pcs_inhib ?? 0) < 20  ||  ((s as any).studio_inhib ?? 0) > 0) {
@@ -714,7 +714,7 @@ function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/city/models/mari/talking/reading6.jpg');
         scene.text('"I first started here because I wanted to build up my confidence," you tell her. "I was pretty shy about my body when I first started working here and to be honest, I\'m still not totally comfortable being naked all the time. But it\'s really helped me to come out of my shell! I wasn\'t expecting that, but I won\'t complain about it anymore."');
         // TODO-QSP: dynamic text: "Wow! That's great <<$mari['used_nickname']>>! And don't worry. You'll get compl...
-        scene.text(`"Wow! That's great ${((s as any).mari ?? 0)?.['used_nickname']}! And don't worry. You'll get completely used to the nudity soon. Everyone who works here for more than a couple months does."`);
+        scene.text(`"Wow! That's great ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}! And don't worry. You'll get completely used to the nudity soon. Everyone who works here for more than a couple months does."`);
         scene.text('"As comfortable as you are?" you tease.');
         scene.text('"Well, not even <i>I\'m</i> comfortable with how cold the A/C gets in here!" Mari replies, throwing both of you into a fit of laughter.');
       } else {
@@ -727,12 +727,12 @@ function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
           scene.img('images/characters/city/models/mari/talking/reading3.jpg');
           scene.text('"I was hoping to build up my confidence," you admit hesitantly. "I\'m actually really shy about my body. Putting my clothes in my locker puts me on edge and even just the idea of wearing certain kinds of clothes is too much for me. But everyone around me seems like they\'re having fun and I want to experience new things and I don\'t want to be held back by my own inhibitions."');
           // TODO-QSP: dynamic text: "Wow! It was really brave of you to pick a nude modelling studio to do that, but...
-          scene.text(`"Wow! It was really brave of you to pick a nude modelling studio to do that, but I guess it gets the job done. Don't you worry ${((s as any).mari ?? 0)?.['used_nickname']}, keep coming here and you'll definitely start to see some changes in your life. I don't even wear clothes around the house anymore!"`);
+          scene.text(`"Wow! It was really brave of you to pick a nude modelling studio to do that, but I guess it gets the job done. Don't you worry ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}, keep coming here and you'll definitely start to see some changes in your life. I don't even wear clothes around the house anymore!"`);
           scene.text('You both laugh and you feel somewhat comforted by what she said.');
         }
       }
     }
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -747,13 +747,13 @@ function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"Who says I\'m not being serious? Being a model is fucking hot! Knowing that all those men are out there looking at pictures of me, probably whacking it, fantasizing about sleeping with me, it just really turns my crank, know what I\'m saying?"');
     // TODO-QSP: dynamic text: Mari looks away, smiling but also blushing in embarrassment. "Oh my goodness <<$...
-    scene.text(`Mari looks away, smiling but also blushing in embarrassment. "Oh my goodness ${((s as any).mari ?? 0)?.['used_nickname']}! I had no idea you were such a pervert!"`);
+    scene.text(`Mari looks away, smiling but also blushing in embarrassment. "Oh my goodness ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}! I had no idea you were such a pervert!"`);
     scene.text('"Come on Mari, don\'t tell me you don\'t get off on this at least a little?"');
     scene.text('"No!" she laughs. "I\'m not judging you for it or anything, but that definitely wasn\'t the answer I was expecting."');
     scene.text('"Hey Mari, you think that your old boss is jerking off to pictures of you right now?"');
     scene.text('She blushes even harder going, "Oh no, I do NOT even want to consider that!"');
     scene.text('"Well maybe he\'s jerking off to pictures of me instead? Would you prefer that?" You continue to tease her for a minute, both of you relentlessly giggling before you run out of good ammo to keep it going.');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -765,13 +765,13 @@ function enterMariModelAsk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     scene.text('"I just really wanted the extra cash so I could buy more stuff. Clothes, makeup, whatever. It\'s not like I really <i>need</i> to be doing this. I\'m just in it for the money."');
     scene.text('"Oh well, I suppose that\'s a fair a reason as any," she says. "I like being able to afford nice things too."');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'To make money because I needed it', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     scene.text('"Oh, I just needed the money. Things to buy, bills to pay, you know."');
     scene.text('"Oh yeah, I definitely couldn\'t afford my apartment if I didn\'t work here. But it\'s not a bad job is it?"');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -788,7 +788,7 @@ function enterMariBookChat(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading7.jpg');
     scene.text('She says her last sentence with a smile. No sadness. No regret. Just happy to be living her life the way she is and happy she had parents who let her strike out on her own at such a young age.');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -804,7 +804,7 @@ function enterMariFoodChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hey Mari, do you know any good places to eat around here?"');
     scene.text('"Hmm… There\'s a place near by here that sells really great burgers! But the photographers specifically ask us not to eat there too often or we\'ll get fat and they\'ll fire us."');
     scene.text('You laugh about it together.');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -818,7 +818,7 @@ function enterMariFitnessChat(s: GameState, scene: SceneBuilder): void {
     scene.text('"How do you stay in such good shape Mari? I\'m struggling to keep this figure."');
     scene.text('"I know right? It\'s so hard!" The nice thing though is that there\'s a fitness center nearby so I can always work out there on my way home from work. Good prices <i>and</i> conveniently placed! There\'s a few perverts there though, so watch out!"');
     scene.text('"Haha, okay Mari!"');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -827,14 +827,14 @@ function enterMariFitnessChat(s: GameState, scene: SceneBuilder): void {
 function enterMariModellingChat(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/models/mari/talking/reading2.jpg');
   scene.text('"You want to talk about modelling? What about it?"');
-  qspCall(s, 'model_mari', 'mari_model_advice');
-  qspCall(s, 'model_mari', 'mari_origin');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariModelAdvice(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariOrigin(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).mari ?? 0)?.['name_chat'] === 0) {
-    qspCall(s, 'model_mari', 'mari_nametalk');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'model_mari', 'mari_parents');
-  qspCall(s, 'model_mari', 'mari_fakepassport_talk');
-  qspCall(s, 'model_mari', 'mari_first_nude');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariParents(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFakepassportTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Talk about something else', handler: (st: GameState) => {
@@ -939,13 +939,13 @@ function enterMariNametalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"It suits you," you smile. "\'Mari\', I mean."');
     scene.text('"Yeah? I think so too," she smiles back at you. "Ever since I started this job, I think of myself more as \'Mari\'. I introduce myself that way to everyone now. What about you?"');
-    qspCall(s, 'model_mari', 'mari_nametalk2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'You look like a Mariya', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"Now that you mention it, you do look like a \'Mariya\'," you remark.');
     scene.text('"What\'s <i>that</i> supposed to mean?" she says, blushing. "Only my family members still call me Mariya. Even Mitka calls me Mari when he sees me. But enough about me. What about you?"');
-    qspCall(s, 'model_mari', 'mari_nametalk2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -962,15 +962,15 @@ function enterMariNametalk2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/face.jpg');
     scene.text('"What <i>about</i> me?" You quizzically tilt your head at Mari.');
     // TODO-QSP: dynamic text: "Your name!" she says, laughing. "Is <<$model['firstname']>> your real name?"
-    scene.text(`"Your name!" she says, laughing. "Is ${((s as any).model ?? 0)?.['firstname']} your real name?"`);
-    qspCall(s, 'model_mari', 'mari_nametalk3');
+    scene.text(`"Your name!" she says, laughing. "Is ${((s as any).model ?? 0)?.['firstname'] ?? ''} your real name?"`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'My name?', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/face.jpg');
     scene.text('"<i>My</i> name?" you say, taken aback.');
     // TODO-QSP: dynamic text: "Yes! Your name!" she says, laughing. "Is <<$model['firstname']>> your real name...
-    scene.text(`"Yes! Your name!" she says, laughing. "Is ${((s as any).model ?? 0)?.['firstname']} your real name?"`);
-    qspCall(s, 'model_mari', 'mari_nametalk3');
+    scene.text(`"Yes! Your name!" she says, laughing. "Is ${((s as any).model ?? 0)?.['firstname'] ?? ''} your real name?"`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -982,7 +982,7 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
       { label: 'It is actually', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('"It is, actually," you nod.');
-    qspCall(s, 'model_mari', 'mari_same_nametalk');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariSameNametalk(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -991,7 +991,7 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
         { label: 'It\'s my nickname', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     scene.text('"It is, actually," you nod. "Well, sort of. It\'s a nickname for me, like you."');
-    qspCall(s, 'model_mari', 'mari_same_nametalk');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariSameNametalk(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -1000,12 +1000,12 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     if (((s as any).pcs_nickname ?? 0) !== ((s as any).pcs_firstname ?? 0)) {
       // TODO-QSP: dynamic text: "It's not," you shake your head. "My real name is <<$pcs_firstname>>. My friends...
-      scene.text(`"It's not," you shake your head. "My real name is ${((s as any).pcs_firstname ?? 0)}. My friends call me ${((s as any).pcs_nickname ?? 0)}."`);
+      scene.text(`"It's not," you shake your head. "My real name is ${((s as any).pcs_firstname || '')}. My friends call me ${((s as any).pcs_nickname || '')}."`);
     } else {
       // TODO-QSP: dynamic text: "It's not," you shake your head. "My real name is <<$pcs_firstname>>."
-      scene.text(`"It's not," you shake your head. "My real name is ${((s as any).pcs_firstname ?? 0)}."`);
+      scene.text(`"It's not," you shake your head. "My real name is ${((s as any).pcs_firstname || '')}."`);
     }
-    qspCall(s, 'model_mari', 'mari_nametalk5');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk5(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -1015,12 +1015,12 @@ function enterMariNametalk3(s: GameState, scene: SceneBuilder): void {
     { label: 'I\'d rather not say', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading4.jpg');
     scene.text('"I\'d… rather not say," you say hesitantly.');
-    qspCall(s, 'model_mari', 'mari_nametalk4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'That\'s a secret', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading4.jpg');
     scene.text('"That\'s a secret," you say, giving her a smug smirk and a wink.');
-    qspCall(s, 'model_mari', 'mari_nametalk4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1043,22 +1043,22 @@ function enterMariNametalk4(s: GameState, scene: SceneBuilder): void {
     scene.text('You feel bad leaving her in the dark. She\'s right. It\'s only fair after all.');
     if (((s as any).model ?? 0)?.['firstname'] === ((s as any).pcs_firstname ?? 0)) {
       // TODO-QSP: dynamic text: "<<$pcs_firstname>> is my real name," you admit.
-      scene.text(`"${((s as any).pcs_firstname ?? 0)} is my real name," you admit.`);
-      qspCall(s, 'model_mari', 'mari_same_nametalk');
+      scene.text(`"${((s as any).pcs_firstname || '')} is my real name," you admit.`);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariSameNametalk(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).model ?? 0)?.['firstname'] === ((s as any).pcs_nickname ?? 0)) {
         // TODO-QSP: dynamic text: "<<$pcs_nickname>> is my real name," you admit. "Sort of. It's my nickname."
-        scene.text(`"${((s as any).pcs_nickname ?? 0)} is my real name," you admit. "Sort of. It's my nickname."`);
-        qspCall(s, 'model_mari', 'mari_same_nametalk');
+        scene.text(`"${((s as any).pcs_nickname || '')} is my real name," you admit. "Sort of. It's my nickname."`);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariSameNametalk(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).pcs_nickname ?? 0) !== ((s as any).pcs_firstname ?? 0)) {
           // TODO-QSP: dynamic text: "My real name is <<$pcs_firstname>>," you admit. "My friends call me <<$pcs_nick...
-          scene.text(`"My real name is ${((s as any).pcs_firstname ?? 0)}," you admit. "My friends call me ${((s as any).pcs_nickname ?? 0)}."`);
-          qspCall(s, 'model_mari', 'mari_nametalk5');
+          scene.text(`"My real name is ${((s as any).pcs_firstname || '')}," you admit. "My friends call me ${((s as any).pcs_nickname || '')}."`);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk5(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           // TODO-QSP: dynamic text: "My real name is <<$pcs_firstname>>," you admit.
-          scene.text(`"My real name is ${((s as any).pcs_firstname ?? 0)}," you admit.`);
-          qspCall(s, 'model_mari', 'mari_nametalk5');
+          scene.text(`"My real name is ${((s as any).pcs_firstname || '')}," you admit.`);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariNametalk5(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -1069,7 +1069,7 @@ function enterMariNametalk4(s: GameState, scene: SceneBuilder): void {
 
 function enterMariNametalk5(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>…" Mari says, smiling to herself as if seeing how your name fe...
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}…" Mari says, smiling to herself as if seeing how your name feels in her mouth. "I like it. Do… do you mind if I call you that?"`);
+  scene.text(`"${((s as any).pcs_nickname || '')}…" Mari says, smiling to herself as if seeing how your name feels in her mouth. "I like it. Do… do you mind if I call you that?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'I\'d rather you not', handler: (st: GameState) => {
@@ -1091,7 +1091,7 @@ function enterMariNametalk5(s: GameState, scene: SceneBuilder): void {
     scene.text('"Really?"');
     scene.text('"Why do you look so surprised?" you laugh. "You asked."');
     // TODO-QSP: dynamic text: "No! It's not that! I-" Mari stops, blushing. "I'm really grateful <<$mari['used...
-    scene.text(`"No! It's not that! I-" Mari stops, blushing. "I'm really grateful ${((s as any).mari ?? 0)?.['used_firstname']}`);
+    scene.text(`"No! It's not that! I-" Mari stops, blushing. "I'm really grateful ${((s as any).mari ?? 0)?.['used_firstname'] ?? ''}`);
     scene.actions([
       { label: 'Keep chatting', goto: ['model_mari', 'mari_modelling_chat'] },
     ]);
@@ -1146,7 +1146,7 @@ function enterMariParents(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading6.jpg');
     scene.text('"Oh, come here silly," she says as she stands up and wraps you in a big hug. Just like the first time she hugged you, you can feel the wonderful softness of her breasts, the warmth of her body and the smoothness of her skin pressing against yours. It\'s… nice… There\'s no other way to describe it.');
     // TODO-QSP: dynamic text: "If you need anything, I'm here for you <<$mari['used_firstname']>>." She pulls ...
-    scene.text(`"If you need anything, I'm here for you ${((s as any).mari ?? 0)?.['used_firstname']}." She pulls back and smiles wide at you.`);
+    scene.text(`"If you need anything, I'm here for you ${((s as any).mari ?? 0)?.['used_firstname'] ?? ''}." She pulls back and smiles wide at you.`);
     scene.text('You smile back, saying, "Thanks for the talk Mari, I\'ll keep it in mind when I decide on how to deal with things."');
     scene.text('"So, was there anything else you wanted to talk about?"');
     scene.actions([
@@ -1197,7 +1197,7 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Tell her shyly', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: "I'm <<age>>… You're not going to tell anyone are you?"
-    scene.text(`"I'm ${((s as any).age ?? 0)}… You're not going to tell anyone are you?"`);
+    scene.text(`"I'm ${((s as any).age || '')}… You're not going to tell anyone are you?"`);
     scene.text('"Are you kidding? How could I? You basically did the same thing I did. We\'d both get in trouble!" she laughs.');
     scene.actions([
       { label: '"Hey…"', handler: (st: GameState) => {
@@ -1206,7 +1206,7 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('Mari jumps up out of her seat to finish your sentence, "And then told you that he liked your naked body so you should go to the red light district and buy a fake passport??"');
     scene.text('"Yeah he did!" you cry out. "What a perv! Going out of his way to make excuses to take pictures of underage girls like us!"');
     // TODO-QSP: dynamic text: You laugh about it together and then try to quiet down a bit, remembering you sh...
-    scene.text(`You laugh about it together and then try to quiet down a bit, remembering you should probably not spread it around that you're only ${((s as any).age ?? 0)}…`);
+    scene.text(`You laugh about it together and then try to quiet down a bit, remembering you should probably not spread it around that you're only ${((s as any).age || '')}…`);
     scene.actions([
       { label: 'Keep chatting', goto: ['model_mari', 'mari_modelling_chat'] },
     ]);
@@ -1216,7 +1216,7 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Tell her excitedly', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading6.jpg');
     // TODO-QSP: dynamic text: "I'm <<age>>!"
-    scene.text(`"I'm ${((s as any).age ?? 0)}!"`);
+    scene.text(`"I'm ${((s as any).age || '')}!"`);
     scene.text('"What??" she cries, jumping up excitedly. "That\'s crazy!"');
     scene.text('"I know right? What are the odds that two girls like us from outside the city would both buy fake passports to end up here?"');
     scene.text('"You said you visit your grandparents in Gadukino sometimes right? Maybe it\'s something in the water!" she laughs.');
@@ -1225,7 +1225,7 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
     scene.text('"And then told you that he liked your naked body so you should go to the red light district and buy a fake passport??"');
     scene.text('"Yeah he did! What a perv! Going out of his way to make excuses to take pictures of underage girls like us!"');
     // TODO-QSP: dynamic text: You both burst into fits of laughter before clapping your hands over your mouths...
-    scene.text(`You both burst into fits of laughter before clapping your hands over your mouths and trying to stifle your hysterics. You probably shouldn't spread it around that you're only ${((s as any).age ?? 0)}…`);
+    scene.text(`You both burst into fits of laughter before clapping your hands over your mouths and trying to stifle your hysterics. You probably shouldn't spread it around that you're only ${((s as any).age || '')}…`);
     scene.actions([
       { label: 'Keep chatting', goto: ['model_mari', 'mari_modelling_chat'] },
     ]);
@@ -1246,7 +1246,7 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
         { label: 'I\'m <<age>>.', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     // TODO-QSP: dynamic text: "I'm <<age>>. I didn't work here when I was still underage, but I still needed t...
-    scene.text(`"I'm ${((s as any).age ?? 0)}. I didn't work here when I was still underage, but I still needed the fake to buy booze and stuff," you grin.`);
+    scene.text(`"I'm ${((s as any).age || '')}. I didn't work here when I was still underage, but I still needed the fake to buy booze and stuff," you grin.`);
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
       scene.text('"That\'s fair enough I guess. Not everyone has a neighbor like Misha brewing moonshine vodka in his barn," she laughs.');
     } else {
@@ -1262,7 +1262,7 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
         { label: 'I\'m <<age>>.', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     // TODO-QSP: dynamic text: "Oh, I'm <<age>>. But just like you, I still needed a fake one when I first star...
-    scene.text(`"Oh, I'm ${((s as any).age ?? 0)}. But just like you, I still needed a fake one when I first started here. This reminds me for some reason, did the guy who auditioned you also make you strip down before telling you how old you needed to be to work here?"`);
+    scene.text(`"Oh, I'm ${((s as any).age || '')}. But just like you, I still needed a fake one when I first started here. This reminds me for some reason, did the guy who auditioned you also make you strip down before telling you how old you needed to be to work here?"`);
     scene.text('Mari jumps up out of her seat to finish your sentence, "And then told you that he liked your naked body so you should go to the red light district and buy a fake passport??"');
     scene.text('"Yeah he did!" you cry out. "What a perv! Going out of his way to make excuses to take pictures of underage girls like us!"');
     scene.text('You laugh about it together and then try to quiet down a bit, remembering you should probably not spread it around that the studio uses underage models. Wouldn\'t be very good for your careers…');
@@ -1285,7 +1285,7 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
       { label: '"I\'m <<age>>, I never used a fake passport."', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     // TODO-QSP: dynamic text: "Oh no, I've never bought a fake passport. I'm <<age>> and I've always been work...
-    scene.text(`"Oh no, I've never bought a fake passport. I'm ${((s as any).age ?? 0)} and I've always been working here legally, I just know about the guy. It was where the Gopniks in my school would go to get their fakes so they could buy booze," you say with a laugh.`);
+    scene.text(`"Oh no, I've never bought a fake passport. I'm ${((s as any).age || '')} and I've always been working here legally, I just know about the guy. It was where the Gopniks in my school would go to get their fakes so they could buy booze," you say with a laugh.`);
     scene.text('"Oh! I didn\'t realize he was that well known."');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1313,7 +1313,7 @@ function enterMariFakepassportTalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"I can\'t believe you went through so much to start nude modelling while you were underage!" you say in astonishment. "Couldn\'t you have just waited a year?"');
     // TODO-QSP: dynamic text: She looks down in embarrassment. "Well… I guess… But I <i>really</i> love this j...
-    scene.text(`She looks down in embarrassment. "Well… I guess… But I <i>really</i> love this job ${((s as any).mari ?? 0)?.['used_nickname']}. Wasn't it all worth it?"`);
+    scene.text(`She looks down in embarrassment. "Well… I guess… But I <i>really</i> love this job ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}. Wasn't it all worth it?"`);
     scene.text('As you look at her, you relent a bit. You can\'t really fault her for chasing so hard after something she loves doing.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1343,9 +1343,9 @@ function enterMariFirstNude(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Ask about her nude debut', handler: (st: GameState) => {
     if (((s as any).modelfoto ?? 0)?.['fullnude'] === 0) {
-      qspCall(s, 'model_mari', 'mari_first_nude2');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude2(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'model_mari', 'pc_nude_debut_talk');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPcNudeDebutTalk(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -1363,25 +1363,25 @@ function enterMariFirstNude2(s: GameState, scene: SceneBuilder): void {
     scene.text('You shake your head.');
     scene.text('"I\'m just curious to know what it was like for you."');
     scene.text('"If you\'re so curious, you haven\'t looked through my portfolio at the front have you?"');
-    qspCall(s, 'model_mari', 'mari_first_nude3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Been thinking about it (experience)', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"I\'ve been thinking about it," you admit. "I think it might be a good experience for me."');
     scene.text('"You should do it!" Mari says. "I think you\'re right. It was a great experience for me anyways. I had a lot of fun doing it. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. I just remember laughing a lot and feeling strangely energized. And since I did my debut early on in my career, the majority of my portfolio is filled with nudes now."');
-    qspCall(s, 'model_mari', 'mari_first_nude2.shave');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude2_shave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Been thinking about it (career)', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading2.jpg');
     scene.text('"I\'ve been thinking about it," you admit. "I can\'t help but feel like it would be good for my career."');
     scene.text('"That\'s fair," Mari nods. "It was good for mine. Let me get a jump on nude shoots early on so now my portfolio is full of them. It was good exposure and got me a lot more jobs. But more than that, it was just a great experience for me. I had a lot of fun doing it. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. I just remember laughing a lot and feeling strangely energized. Maybe my nerves just make me laugh," she smiles shyly.');
-    qspCall(s, 'model_mari', 'mari_first_nude2.shave');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude2_shave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Been thinking about it (money)', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading15.jpg');
     scene.text('"I\'ve been thinking about it," you admit. "I heard you get double rate for your debut. I could really use the money."');
     scene.text('"That\'s fair," Mari nods. "It gave me enough money for the first deposit to move into my own place. But more than that, it was just a great experience for me. I had a lot of fun doing it. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. I just remember laughing a lot and feeling strangely energized. Maybe my nerves just make me laugh," she smiles shyly.');
-    qspCall(s, 'model_mari', 'mari_first_nude2.shave');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude2_shave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -1389,7 +1389,7 @@ function enterMariFirstNude2(s: GameState, scene: SceneBuilder): void {
     scene.text('"But sorry, you wanted to talk about my debut, not yours," she says looking mildly chagrined.');
     scene.text('"It\'s okay," you shake your head.');
     scene.text('"You haven\'t seen the cover photo from the portfolio folders have you?"');
-    qspCall(s, 'model_mari', 'mari_first_nude3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude3(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -1398,7 +1398,7 @@ function enterMariFirstNude2(s: GameState, scene: SceneBuilder): void {
 function enterMariFirstNude2_shave(s: GameState, scene: SceneBuilder): void {
   scene.text('"They made you shave for it?" you ask.');
   scene.text('"Yeah. The studio has this policy that every model\'s first full frontal has to shave her… yeah… I\'d done it once before, but it\'s not like I showed anybody, let alone had photographs taken of it. It made me feel… naked? Like being more naked than naked if that makes any sense. It\'s a good thing I like being naked!" she laughs.');
-  qspCall(s, 'model_mari', 'mari_first_nude4');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude4(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -1410,13 +1410,13 @@ function enterMariFirstNude3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"No," you shake your head. "I haven\'t seen yours."');
     scene.text('"Well, that\'s probably for the best," Mari replies, a faint blush coloring her cheeks. "You\'d probably tease me for looking too cheerful. Honestly? It was a great experience for me. I had a lot of fun doing it. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. It mostly felt… breezy? Like being more naked than naked if that makes any sense. It\'s a good thing I like being naked!" she laughs. "But since I did my debut early on in my career, the majority of my portfolio is filled with nudes now."');
-    qspCall(s, 'model_mari', 'mari_first_nude4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Yes', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('"Yeah I\'ve gone through yours."');
     scene.text('"Oh dear!" Mari blushes hard. "Well then you could probably tell I might have been having too much fun. I\'ve never really been embarrassed about my body so when they asked me if I wanted to pose nude I just figured why not? It was a little embarrassing to shave everything, uhm, down there… but even that wasn\'t too bad. It mostly felt… breezy? Like being more naked than naked if that makes any sense. It\'s a good thing I like being naked!" she laughs. "But honestly? It was a great experience for me. And since I did it early on in my career the majority of my portfolio is filled with nudes now."');
-    qspCall(s, 'model_mari', 'mari_first_nude4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -1647,16 +1647,16 @@ function enterPcNudeDebutTalk(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).modelfoto ?? 0)?.['nude_after_reaction'] === 'mortified'  ||  ((s as any).modelfoto ?? 0)?.['nude_after_reaction'] === 'empty'  ||  ((s as any).modelfoto ?? 0)?.['nude_after_reaction'] === 'regret') {
       // TODO-QSP: dynamic text: Mari's smile fades. "I'm so sorry <<$mari['used_nickname']>>. Well, now I feel g...
-      scene.text(`Mari's smile fades. "I'm so sorry ${((s as any).mari ?? 0)?.['used_nickname']}. Well, now I feel guilty that my experience was so different…"`);
+      scene.text(`Mari's smile fades. "I'm so sorry ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}. Well, now I feel guilty that my experience was so different…"`);
       scene.text('"Don\'t be," you reassure her. "I would hate to find out that everyone\'s first nude shoot was like mine."');
       scene.text('You give her a small smile and her own smile begins to peek back out again.');
       scene.text('"I suppose that\'s true. If you\'re asking about my debut, that doesn\'t mean you\'ve seen the cover photo in my portfolio, does it?"');
-      qspCall(s, 'model_mari', 'mari_first_nude3');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariFirstNude3(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).modelfoto ?? 0)?.['nude_after_reaction'] === 'amazed'  ||  ((s as any).modelfoto ?? 0)?.['nude_after_reaction'] === 'proud') {
         scene.text('Mari smiles brightly back at you.');
         // TODO-QSP: dynamic text: "That's great <<$mari['used_nickname']>>! I'm glad you had such a great experien...
-        scene.text(`"That's great ${((s as any).mari ?? 0)?.['used_nickname']}! I'm glad you had such a great experience. First times varies a lot between girls here. I've seen some who really regret it and some who don't."`);
+        scene.text(`"That's great ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}! I'm glad you had such a great experience. First times varies a lot between girls here. I've seen some who really regret it and some who don't."`);
         scene.actions([
           { label: 'Continue', goto: ['model_mari', 'mari_first_nude2'] },
         ]);
@@ -1716,7 +1716,7 @@ function enterWeekendPlans(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (!(s as any).mari) (s as any).mari = {}; (s as any).mari['weekend_ask'] = ((s as any).daystart ?? 0);
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1736,7 +1736,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     // TODO-QSP: dynamic text: "Well… That's… I…" Mari is blushing heavily, her face turning dramatically red. ...
-    scene.text(`"Well… That's… I…" Mari is blushing heavily, her face turning dramatically red. You think this is the first time you've ever seen her embarrassed about something. "I don't have a lot to talk about in that department ${((s as any).mari ?? 0)?.['used_nickname']}…"`);
+    scene.text(`"Well… That's… I…" Mari is blushing heavily, her face turning dramatically red. You think this is the first time you've ever seen her embarrassed about something. "I don't have a lot to talk about in that department ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}…"`);
     scene.actions([
       { label: '"Wait… don\'t tell me you…"', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading4.jpg');
@@ -1747,7 +1747,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     scene.text('Your mouth is agape as she wriggles in embarrassment. She doesn\'t seem upset by any means, she\'s still clearly smiling. It kind of reminds you of when you were younger and when girls asked each other if they had ever kissed a boy.');
     // TODO-QSP: dynamic text: "You're a virgin?! You're a nude model who's <<mari['age']>> and living in St. P...
-    scene.text(`"You're a virgin?! You're a nude model who's ${((s as any).mari ?? 0)?.['age']} and living in St. Petersburg and you're a virgin?!"`);
+    scene.text(`"You're a virgin?! You're a nude model who's ${((s as any).mari ?? 0)?.['age'] ?? ''} and living in St. Petersburg and you're a virgin?!"`);
     scene.text('Your exclamations are met with hushes, "Shh! Shh! Shh shh shh! Not so loud!" as Mari tries to quiet you down while holding back her own nervous laughter.');
     scene.actions([
       { label: '"But how?!"', handler: (st: GameState) => {
@@ -1780,7 +1780,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
       { label: '"No, that was all"', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading3.jpg');
     // TODO-QSP: dynamic text: "Alright <<$mari['used_nickname']>>. I'll see you later okay?"
-    scene.text(`"Alright ${((s as any).mari ?? 0)?.['used_nickname']}. I'll see you later okay?"`);
+    scene.text(`"Alright ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}. I'll see you later okay?"`);
     scene.text('"For sure Mari!"');
     scene.actions([
       { label: 'Leave', goto: ['foto', 'studio'] },
@@ -1788,7 +1788,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
   } },
       { label: '"Yeah, I wanted to talk about…"', handler: (st: GameState) => {
     scene.text('"Yeah, actually I wanted to talk about…"');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1814,12 +1814,12 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading17.jpg');
     scene.text('"No!" you say hurriedly. "I mean, I was being rude. I was just reading too far into things. I didn\'t mean to… You know."');
     // TODO-QSP: dynamic text: "It's okay <<$mari['used_nickname']>>," Mari says, instantly breaking back into ...
-    scene.text(`"It's okay ${((s as any).mari ?? 0)?.['used_nickname']}," Mari says, instantly breaking back into her usual smile. "You're probably right. No harm done."`);
+    scene.text(`"It's okay ${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}," Mari says, instantly breaking back into her usual smile. "You're probably right. No harm done."`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading19.jpg');
     scene.text('"No harm done…" she mutters to herself again with a far-off look.');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1827,7 +1827,7 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/models/mari/talking/reading19.jpg');
     scene.text('"Maybe?" you shrug. "The way you act, how kind you are to the other girls here, the way you\'re always hugging me… It might be more affectionate than you realize. But I can\'t be the judge of that. Only you can say if it\'s something more."');
     scene.text('"I guess this is something I\'ll have to think about…" she mumbles with a far-off look.');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -1854,10 +1854,10 @@ function enterMariSexTalk(s: GameState, scene: SceneBuilder): void {
       { label: 'Ask for sex advice', handler: (st: GameState) => {
     scene.img('images/characters/city/models/mari/talking/reading5.jpg');
     // TODO-QSP: dynamic text: "<<$mari['used_nickname']>>, we already talked about this! I'm a virgin remember...
-    scene.text(`"${((s as any).mari ?? 0)?.['used_nickname']}, we already talked about this! I'm a virgin remember?"`);
+    scene.text(`"${((s as any).mari ?? 0)?.['used_nickname'] ?? ''}, we already talked about this! I'm a virgin remember?"`);
     scene.text('"Well… you never know if something… <i>popped</i> up!" you say with a wink.');
     scene.text('She blushes at the inference.');
-    qspCall(s, 'model_mari', 'mari_chat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMariChat(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

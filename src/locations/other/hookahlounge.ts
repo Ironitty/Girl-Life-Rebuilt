@@ -35,15 +35,15 @@ function enterHookah_Aliyyah(s: GameState, scene: SceneBuilder): void {
   scene.text('At the counter, you see a young Muslim woman. She appears quite timid. Nonetheless, she greets you with a smile as you walk up. She squeaks "What do you need, ma\'am?"');
   scene.text('I\'d like to buy a seat at a hookah, please.');
   // TODO-QSP: dynamic text: Okay, that will be ' + $func('money', 'string_price', 100) + ' please.
-  scene.text('Okay, that will be \' + $func(\'money\', \'string_price\', 100) + \' please.');
+  scene.text('Okay, that will be 100₽ please.');
   if ((!((s as any).smoketab ?? 0))) {
     scene.actions([
-      { label: 'Pay for an hour and leave the counter [+$func(\'money\', \'get_cost_string\', 100, \'...]', handler: (st: GameState) => {
+      { label: 'Pay for an hour and leave the counter', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       // TODO-QSP: dynamic text: You glance at her name badge, before looking back at her. Smiling, you hand over...
-      scene.text(`You glance at her name badge, before looking back at her. Smiling, you hand over the required amount and say "Here you go, ${((s as any).npc_firstname ?? 0)?.['A262']}!"`);
+      scene.text(`You glance at her name badge, before looking back at her. Smiling, you hand over the required amount and say "Here you go, ${((s as any).npc_firstname ?? 0)?.['A262'] ?? ''}!"`);
       qspCall(s, 'money', 'pay', 100, 'cash');
       (s as any).smoketab = 1;
       scene.actions([{ label: 'Continue', goto: ['hookahlounge', 'start'] }]);

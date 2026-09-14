@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   (s as any).n = 1;
   (s as any).o = 10;
-  qspCall(s, 'NPCChanger', 'NPCLoop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNPCLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -33,7 +33,7 @@ function enterNPCLoop(s: GameState, scene: SceneBuilder): void {
     (s as any).o = ((s as any).aarraynumber ?? 0);
   }
   if (((s as any).n ?? 0) <= ((s as any).o ?? 0)) {
-    qspCall(s, 'NPCChanger', 'npcdisplay');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNpcdisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).n = ((s as any).n ?? 0) + (1);
     // TODO-QSP: jump 'LoopNPC'
   }
@@ -54,7 +54,7 @@ function enterNPCLoop(s: GameState, scene: SceneBuilder): void {
 function enterNext10(s: GameState, scene: SceneBuilder): void {
   (s as any).o = ((s as any).o ?? 0) + (10);
   (s as any).n = (((s as any).o ?? 0) - 10);
-  qspCall(s, 'NPCChanger', 'NPCLoop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNPCLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -62,7 +62,7 @@ function enterNext10(s: GameState, scene: SceneBuilder): void {
 function enterNext50(s: GameState, scene: SceneBuilder): void {
   (s as any).o = ((s as any).o ?? 0) + (50);
   (s as any).n = (((s as any).o ?? 0) - 10);
-  qspCall(s, 'NPCChanger', 'NPCLoop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNPCLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -73,7 +73,7 @@ function enterBack10(s: GameState, scene: SceneBuilder): void {
     (s as any).o = 10;
   }
   (s as any).n = (((s as any).o ?? 0) - 10);
-  qspCall(s, 'NPCChanger', 'NPCLoop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNPCLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -84,7 +84,7 @@ function enterBack50(s: GameState, scene: SceneBuilder): void {
     (s as any).o = 10;
   }
   (s as any).n = (((s as any).o ?? 0) - 10);
-  qspCall(s, 'NPCChanger', 'NPCLoop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNPCLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -94,7 +94,7 @@ function enterNpcdisplay(s: GameState, scene: SceneBuilder): void {
     scene.text('');
   } else {
     // TODO-QSP: dynamic text: $npc_firstname['A<<n>>']
-    scene.text(`$npc_firstname['A${((s as any).n ?? 0)}']`);
+    scene.text(`$npc_firstname['A${((s as any).n || '')}']`);
   }
   if (((s as any).npc_firstname ?? 0)['A' + ((s as any).n ?? 0)] === ((s as any).npc_nickname ?? 0)['A' + ((s as any).n ?? 0)]  ||  !isNaN(qspUntranslated(s, "npc_nickname[\u00002\u0000]", { location: "NPCChanger" })) && qspUntranslated(s, "npc_nickname[\u00002\u0000]", { location: "NPCChanger" }) !== '') {
     scene.text('');

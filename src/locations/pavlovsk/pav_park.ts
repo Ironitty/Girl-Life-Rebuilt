@@ -65,7 +65,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'pav_park', 'pav_park_image');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPavParkImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).month ?? 0) === 3  ||  ((s as any).month ?? 0) === 4  ||  ((s as any).month ?? 0) === 5) {
     if (((s as any).daystage ?? 0) === 2  ||  ((s as any).daystage ?? 0) === 3) {
       scene.text('The main square of Pavlovsk Park. Spring has come, melting the worst of the snow. As a result, the trees are sprouting new leaves.');
@@ -184,11 +184,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).PCloInhibit ?? 0) >= 40) {
     qspCall(s, 'mood', 'lower', 'medium');
     // TODO-QSP: dynamic text: You notice passers-by in the park pointing at you as you walk and overhear one o...
-    scene.text(`You notice passers-by in the park pointing at you as you walk and overhear one older lady telling her friend: "There's that ${((s as any).pcs_lastname ?? 0)} girl. Youth these days, they have no shame at all!"`);
+    scene.text(`You notice passers-by in the park pointing at you as you walk and overhear one older lady telling her friend: "There's that ${((s as any).pcs_lastname || '')} girl. Youth these days, they have no shame at all!"`);
   }
   if (((s as any).GvstreBoy ?? 0) === 1) {
     // TODO-QSP: dynamic text: You see <a href="exec:numnpc = SkverBoy & gt 'Gnpc'"><<$nameBoyfrend[SkverBoy]>>...
-    scene.text(`You see <a href="exec:numnpc = SkverBoy & gt 'Gnpc'">${((s as any).nameBoyfrend ?? 0)?.[String((s as any).SkverBoy ?? 0)]}</a> walking across the main square of the park. He doesn't look like he's going anywhere in particular, and seems to just be enjoying his walk.`);
+    scene.text(`You see <a href="exec:numnpc = SkverBoy & gt 'Gnpc'">${((s as any).nameBoyfrend ?? 0)?.[String((s as any).SkverBoy ?? 0)] ?? ''}</a> walking across the main square of the park. He doesn't look like he's going anywhere in particular, and seems to just be enjoying his walk.`);
   }
   if (((s as any).week ?? 0) <= 5  &&  ((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 20  &&  ((s as any).strelaQW ?? 0) === -2  &&  ((s as any).fedorKozlovQW ?? 0) <= -10  &&  (!((s as any).FedorOutcast ?? 0))) {
     scene.text('You can see the <a href="exec:gt \'FedorMisc\', \'Outcast Intro\'">train tracks</a> from here.');
@@ -262,8 +262,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'kseniyaQW', 'events');
   qspCall(s, 'flash', 'park');
-  qspCall(s, 'pav_park', 'set_run_act');
-  qspCall(s, 'pav_park', 'set_sleep_act');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetRunAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSleepAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
     scene.actions([
       { label: 'Smoke a joint', handler: (st: GameState) => {
@@ -515,8 +515,8 @@ function enterDeeperPark(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'treeCircEntry', 'PavlovskPark');
   qspCall(s, 'kseniyaQW', 'events');
   qspCall(s, 'flash', 'park');
-  qspCall(s, 'pav_park', 'set_run_act');
-  qspCall(s, 'pav_park', 'set_sleep_act');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetRunAct(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSleepAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).mc_inventory ?? 0)?.['joints'] > 0  &&  ((s as any).drugVars ?? 0)?.['weed_high'] === 0) {
     scene.actions([
       { label: 'Smoke a joint', handler: (st: GameState) => {
@@ -614,7 +614,7 @@ function enterRun(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('Halfway through your run, you pull up your top and expose your breasts. The cool air against your warm skin causes you to shiver.');
     scene.text('Almost immediately, your nipples start to harden, a mixed reaction from the air hitting them and your growing excitement.');
-    qspCall(s, 'pav_park', 'run_reactions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRunReactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }

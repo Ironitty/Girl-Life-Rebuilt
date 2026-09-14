@@ -15,13 +15,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ignore him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -60,13 +60,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ignore him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -98,13 +98,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Ignore him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -135,13 +135,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Ignore him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -214,7 +214,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).locArgs?.[0] ?? 0) === 85) {
               // TODO-QSP: dynamic text: One of the viewers, noticing how drunk you are, asks in chat: "Hey, <<$pcs_nickn...
-              scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname ?? 0)}! Show us something unusual! Anything!"`);
+              scene.text(`One of the viewers, noticing how drunk you are, asks in chat: "Hey, ${((s as any).pcs_nickname || '')}! Show us something unusual! Anything!"`);
               (s as any).temp = qspUntranslated(s, "arrpos('sparrloc', 0)", { location: "komp_cam_MFC_requests_two" });
               if (((s as any).sparrvol ?? 0)?.[String((s as any).temp ?? 0)] > 0  &&  ((s as any).temp ?? 0) >= 0) {
                 if (!(s as any).temp) (s as any).temp = {}; (s as any).temp[1] = 1;
@@ -409,13 +409,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                     scene.actions([
-                      { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                      { label: 'Ignore him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                     ]);
                   } else {
                     scene.actions([
-                      { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                      { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -446,13 +446,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
                     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                       scene.actions([
-                        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                        { label: 'Ignore him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                       ]);
                     } else {
                       scene.actions([
-                        { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                        { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },
@@ -486,13 +486,13 @@ function enter(s: GameState, scene: SceneBuilder): void {
                       qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
                       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                         scene.actions([
-                          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                          { label: 'Ignore him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                         ]);
                       } else {
                         scene.actions([
-                          { label: 'Ignore him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                          { label: 'Ignore him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['komp_cam_MFC_main', 'waitclients'] },

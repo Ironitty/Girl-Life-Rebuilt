@@ -35,7 +35,7 @@ function enterDoor(s: GameState, scene: SceneBuilder): void {
         scene.text('You walk up to the Meynolds\' residence and ring the doorbell…');
         scene.text('After a short wait, you hear the lock click, and you see Katja\'s mother, Tamara and sister, Vicky standing by the door');
         // TODO-QSP: dynamic text: "Oh, hi, <<$pcs_nickname>>, welcome! Come in, make yourself at home."
-        scene.text(`"Oh, hi, ${((s as any).pcs_nickname ?? 0)}, welcome! Come in, make yourself at home."`);
+        scene.text(`"Oh, hi, ${((s as any).pcs_nickname || '')}, welcome! Come in, make yourself at home."`);
         if (((s as any).frost ?? 0) > 0) {
           (s as any).frost = 0;
         }
@@ -230,7 +230,7 @@ function enterKey(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).mey_vika) (s as any).mey_vika = {}; (s as any).mey_vika['key'] = 1;
   if (!(s as any).mey_vika) (s as any).mey_vika = {}; (s as any).mey_vika['mey_vika_qw'] = 32;
   // TODO-QSP: dynamic text: <<$pcs_nickname>>,
-  scene.text(`${((s as any).pcs_nickname ?? 0)},`);
+  scene.text(`${((s as any).pcs_nickname || '')},`);
   scene.text('  Here is the key to the house, Our home is your home. You can also clean out what remains in the guest bedroom and make it all yours. just put all of Roma\'s things in some boxes and I\'ll put them in storage.');
   scene.text('~Tamara Meynold');
   // TODO-QSP: end
@@ -556,7 +556,7 @@ function enterMeyMorningVomit(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/hotel.room.best1.jpg');
   scene.text('At that moment, a sharp knocking sounds on the door and Tamara\'s muffled voice comes through the fine wood.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>? Are you all right? I thought I heard you throwing up. Is eve...
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}? Are you all right? I thought I heard you throwing up. Is everything okay?"`);
+  scene.text(`"${((s as any).pcs_nickname || '')}? Are you all right? I thought I heard you throwing up. Is everything okay?"`);
   if (((s as any).vomit ?? 0)?.['hangover'] === 1) {
     scene.actions([
       { label: 'Hungover', handler: (st: GameState) => {
@@ -598,7 +598,7 @@ function enterMeyPregScare(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/hotel/hotel.room.best1.jpg');
   scene.text('At that moment, a sharp knocking sounds on the door, and you jump in place, shocked by the sudden intrusion. Tamara\'s muffled voice comes through the fine wood.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>? Are you all right? I thought I heard you throwing up. Is eve...
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}? Are you all right? I thought I heard you throwing up. Is everything okay?"`);
+  scene.text(`"${((s as any).pcs_nickname || '')}? Are you all right? I thought I heard you throwing up. Is everything okay?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Everything is fine!', handler: (st: GameState) => {

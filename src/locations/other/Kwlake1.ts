@@ -34,13 +34,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Break it off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Break it off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Break it off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Break it off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['Nudelake', ''] },
@@ -66,7 +66,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/lake/sex/kwlake1/kwlake6.jpg');
     scene.text('Then the guy groans for Kat to get on all fours, which she does without a doubt. Your eyes bulge when you see her take his cock in her ass without a complaint.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>!" Katja says intently.
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}!" Katja says intently.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}!" Katja says intently.`);
     scene.text('"Wa… what?" you mutter, lost in your own thoughts for a moment.');
     scene.text('"Get your ass over here and give me that piece of rock already!" Kat orders you, between moans. "I want you to feel what I feel…"');
     scene.text('You hand her the rock without a second thought, and wince slightly when she spits onto your anus and begins to rub the stone cock against your anus forcefully.');

@@ -29,18 +29,18 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       { label: '"I\'d like to practice fashion shoots"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Alright, we can do that. What would you like to do?"');
-    qspCall(s, 'foto_practice', 'fashion');
-    qspCall(s, 'foto_practice', 'bikini');
-    qspCall(s, 'foto_practice', 'lingerie');
-    qspCall(s, 'foto_practice', 'sexy');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFashion(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBikini(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLingerie(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexy(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: '"I\'d like to practice glamour shoots"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Alright, we can do that. What would you like to do?"');
-    qspCall(s, 'foto_practice', 'transparent');
-    qspCall(s, 'foto_practice', 'trans_ling');
-    qspCall(s, 'foto_practice', 'topless');
-    qspCall(s, 'foto_practice', 'nude');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTransparent(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTransLing(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTopless(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNude(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -62,11 +62,11 @@ function enterFashion(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).fashionshoot ?? 0) <= 2) {
       // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/city/citycenter...
-      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? 0)} src="images/locations/city/citycenter/photo/fashion/${Math.floor(Math.random() * 5) + 1}.mp4"></video></center>`);
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh || '')} src="images/locations/city/citycenter/photo/fashion/${Math.floor(Math.random() * 5) + 1}.mp4"></video></center>`);
     }
     if (((s as any).fashionshoot ?? 0) >= 3  &&  ((s as any).fashionshoot ?? 0) < 5) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/city/citycenter/photo/fashion/<...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/city/citycenter/photo/fashion/${Math.floor(Math.random() * 14) + 1}.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/city/citycenter/photo/fashion/${Math.floor(Math.random() * 14) + 1}.jpg"></center>`);
     }
     if (((s as any).fashionshoot ?? 0) < 5) {
       scene.text('You dress up in the latest in fashion wear and spend the next two hours sexily posing for the photographer.');

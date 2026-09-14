@@ -67,7 +67,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
       { label: 'Permanently disable the therapist', handler: (st: GameState) => {
     if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['met'] = (-1);
     (s as any).minut = ((s as any).minut ?? 0) + 2;
-    qspCall(s, 'therapist', 'leave', 'pav_clinic');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_clinic']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -75,7 +75,7 @@ function enterIntro(s: GameState, scene: SceneBuilder): void {
   } },
     { label: 'Give up and try again later', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
-    qspCall(s, 'therapist', 'leave', 'pav_clinic');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pav_clinic']; enterLeave(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -93,10 +93,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('When you look around the room, you are greeted by a warm and inviting atmosphere. The room is illuminated by large windows that overlook the forest beyond. At one end of the room there is a desk with a chair stacked with folders and books pertaining to hypnotherapy and other therapy materials. This includes a laptop that is closed and appears clean, as if it has been seldom used. You see an older <a href="exec: VIEW \'images/locations/pavlovsk/clinic/therapist/pavlovfamily.jpg\'">photograph of Dr. Pavlov\'s family</a> in which he appears to be about two decades younger.');
   qspCall(s, 'stat', '');
   if (((s as any).therapist_weekly_block ?? 0) === 0  ||  ((s as any).cheatVars ?? 0)?.['therapist_schedule'] > 0) {
-    qspCall(s, 'therapist', 'hypnoGreet');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHypnoGreet(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, too much treatment without time for your brain to proce...
-    scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, too much treatment without time for your brain to process could be harmful.`);
+    scene.text(`"Miss ${((s as any).pcs_lastname || '')}, too much treatment without time for your brain to process could be harmful.`);
     scene.text('Come next week, we can talk about your problems then."');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -113,24 +113,24 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
   (s as any).therapist_weekly_block = 1;
   if (((s as any).succubusflag ?? 0) === 1) {
     // TODO-QSP: dynamic text: "Come in, Miss <<$pcs_lastname>>! Please, tell me what can I help you with today...
-    scene.text(`"Come in, Miss ${((s as any).pcs_lastname ?? 0)}! Please, tell me what can I help you with today?"`);
-    qspCall(s, 'therapist', 'therapyOptions');
+    scene.text(`"Come in, Miss ${((s as any).pcs_lastname || '')}! Please, tell me what can I help you with today?"`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).hypnoFlashGreet ?? 0) === 0  &&  (!((s as any).hypnoCheckPanties ?? 0))) {
       // TODO-QSP: dynamic text: "Come in, Miss <<$pcs_lastname>>! Please, tell me what can I help you with today...
-      scene.text(`"Come in, Miss ${((s as any).pcs_lastname ?? 0)}! Please, tell me what can I help you with today?"`);
-      qspCall(s, 'therapist', 'therapyOptions');
+      scene.text(`"Come in, Miss ${((s as any).pcs_lastname || '')}! Please, tell me what can I help you with today?"`);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if ((!((s as any).hypnoFlashGreet ?? 0))) {
         // TODO-QSP: dynamic text: "Come in! Miss <<$pcs_lastname>>, as you know, I'm going to inspect you now."
-        scene.text(`"Come in! Miss ${((s as any).pcs_lastname ?? 0)}, as you know, I'm going to inspect you now."`);
+        scene.text(`"Come in! Miss ${((s as any).pcs_lastname || '')}, as you know, I'm going to inspect you now."`);
         scene.actions([
           { label: 'Wait for him to inspect you', handler: (st: GameState) => {
     if (((s as any).underwear ?? 0)?.['type'] === 2) {
       (s as any).wornPanties = ((s as any).wornPanties ?? 0) + (1);
       scene.img('images/locations/pavlovsk/clinic/therapist/pavlov.jpg');
       // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, a bodysuit?"
-      scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, a bodysuit?"`);
+      scene.text(`"Miss ${((s as any).pcs_lastname || '')}, a bodysuit?"`);
       scene.text('You remain silent.');
       scene.text('"That\'s cheating and I will count it as panties."');
       scene.text('"I\'m sorry Dr. Pavlov… I don\'t know what I was thinking. I-"');
@@ -142,12 +142,12 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear_bodysuits', 'dispose');
     if (((s as any).wornPanties ?? 0) < 5) {
       // TODO-QSP: dynamic text: He throws your bodysuit in the garbage. "Just don't let it happen again. What di...
-      scene.text(`He throws your bodysuit in the garbage. "Just don't let it happen again. What did you need help with today, Miss ${((s as any).pcs_lastname ?? 0)}?"`);
+      scene.text(`He throws your bodysuit in the garbage. "Just don't let it happen again. What did you need help with today, Miss ${((s as any).pcs_lastname || '')}?"`);
     } else {
       // TODO-QSP: dynamic text: You are still resisting ha? We need to fix that. Anyway, What did you need help ...
-      scene.text(`You are still resisting ha? We need to fix that. Anyway, What did you need help with today Miss ${((s as any).pcs_lastname ?? 0)}?`);
+      scene.text(`You are still resisting ha? We need to fix that. Anyway, What did you need help with today Miss ${((s as any).pcs_lastname || '')}?`);
     }
-    qspCall(s, 'therapist', 'therapyOptions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -155,7 +155,7 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
         (s as any).wornPanties = ((s as any).wornPanties ?? 0) + (1);
         scene.img('images/locations/pavlovsk/clinic/therapist/checkPanties2.mp4');
         // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, what is this?"
-        scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, what is this?"`);
+        scene.text(`"Miss ${((s as any).pcs_lastname || '')}, what is this?"`);
         scene.text('"I\'m sorry Dr. Pavlov… I don\'t know what I was thinking. I-"');
         scene.text('He interrupts you and commands you to strip off your panties and hand them to him.');
         qspCall(s, 'mood', 'lower', 'large');
@@ -165,31 +165,31 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'panties', 'dispose');
     if (((s as any).wornPanties ?? 0) < 5) {
       // TODO-QSP: dynamic text: He throws your panties in the garbage. "Just don't let it happen again. What did...
-      scene.text(`He throws your panties in the garbage. "Just don't let it happen again. What did you need help with today, Miss ${((s as any).pcs_lastname ?? 0)}?"`);
+      scene.text(`He throws your panties in the garbage. "Just don't let it happen again. What did you need help with today, Miss ${((s as any).pcs_lastname || '')}?"`);
     } else {
       // TODO-QSP: dynamic text: You are still resisting ha? We need to fix that. Anyway, What did you need help ...
-      scene.text(`You are still resisting ha? We need to fix that. Anyway, What did you need help with today Miss ${((s as any).pcs_lastname ?? 0)}?`);
+      scene.text(`You are still resisting ha? We need to fix that. Anyway, What did you need help with today Miss ${((s as any).pcs_lastname || '')}?`);
     }
-    qspCall(s, 'therapist', 'therapyOptions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       } else {
         scene.img('images/locations/pavlovsk/clinic/therapist/checkPanties.mp4');
         // TODO-QSP: dynamic text: "Very good Miss <<$pcs_lastname>>. I see you are very well mannered."
-        scene.text(`"Very good Miss ${((s as any).pcs_lastname ?? 0)}. I see you are very well mannered."`);
+        scene.text(`"Very good Miss ${((s as any).pcs_lastname || '')}. I see you are very well mannered."`);
         scene.text('"Thank you Dr. Pavlov."');
         if (((s as any).hypnoTouchWhenever ?? 0) === 1  &&  (Math.floor(Math.random() * 2) + 1) === 1) {
           scene.actions([
             { label: 'Get groped', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/clinic/therapist/gropePussy.jpg');
     // TODO-QSP: dynamic text: "Very good Miss <<$pcs_lastname>>. What was it you needed help with today?"
-    scene.text(`"Very good Miss ${((s as any).pcs_lastname ?? 0)}. What was it you needed help with today?"`);
-    qspCall(s, 'therapist', 'therapyOptions');
+    scene.text(`"Very good Miss ${((s as any).pcs_lastname || '')}. What was it you needed help with today?"`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           ]);
         } else {
           scene.text('"Now what was it you needed help with today?"');
-          qspCall(s, 'therapist', 'therapyOptions');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -197,14 +197,14 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: dynamic text: "Come in! Miss <<$pcs_lastname>>, you remember your manners yes?"
-        scene.text(`"Come in! Miss ${((s as any).pcs_lastname ?? 0)}, you remember your manners yes?"`);
+        scene.text(`"Come in! Miss ${((s as any).pcs_lastname || '')}, you remember your manners yes?"`);
         if (((s as any).pantyworntype ?? 0) !== 'none') {
           (s as any).wornPanties = ((s as any).wornPanties ?? 0) + (1);
           scene.actions([
             { label: 'Lift your skirt for Dr. Pavlov', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/clinic/therapist/showPanties.mp4');
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, what is this?"
-    scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, what is this?"`);
+    scene.text(`"Miss ${((s as any).pcs_lastname || '')}, what is this?"`);
     scene.text('"I\'m sorry Dr. Pavlov… I don\'t know what I was thinking. I-"');
     scene.text('He interrupts you and commands you to strip off your panties and hand them to him.');
     qspCall(s, 'mood', 'lower', 'large');
@@ -214,12 +214,12 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'panties', 'dispose');
     if (((s as any).wornPanties ?? 0) < 5) {
       // TODO-QSP: dynamic text: He throws your panties in the garbage. "Just don't let it happen again. What did...
-      scene.text(`He throws your panties in the garbage. "Just don't let it happen again. What did you need help with today, Miss ${((s as any).pcs_lastname ?? 0)}?"`);
+      scene.text(`He throws your panties in the garbage. "Just don't let it happen again. What did you need help with today, Miss ${((s as any).pcs_lastname || '')}?"`);
     } else {
       // TODO-QSP: dynamic text: You are still resisting ha? We need to fix that. Anyway, What did you need help ...
-      scene.text(`You are still resisting ha? We need to fix that. Anyway, What did you need help with today Miss ${((s as any).pcs_lastname ?? 0)}?`);
+      scene.text(`You are still resisting ha? We need to fix that. Anyway, What did you need help with today Miss ${((s as any).pcs_lastname || '')}?`);
     }
-    qspCall(s, 'therapist', 'therapyOptions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -232,33 +232,33 @@ function enterHypnoGreet(s: GameState, scene: SceneBuilder): void {
     scene.text('…');
     if (((s as any).pcs_horny ?? 0) >= 75  &&  ((s as any).pcs_horny ?? 0) <=89) {
       // TODO-QSP: dynamic text: Miss <<$pcs_lastname>>, your pussy is very wet… How can I help you today?
-      scene.text(`Miss ${((s as any).pcs_lastname ?? 0)}, your pussy is very wet… How can I help you today?`);
+      scene.text(`Miss ${((s as any).pcs_lastname || '')}, your pussy is very wet… How can I help you today?`);
     } else {
       if (((s as any).pcs_horny ?? 0) >= 90) {
         // TODO-QSP: dynamic text: Miss <<$pcs_lastname>>, your pussy is soaking wet… How can I help you today?
-        scene.text(`Miss ${((s as any).pcs_lastname ?? 0)}, your pussy is soaking wet… How can I help you today?`);
+        scene.text(`Miss ${((s as any).pcs_lastname || '')}, your pussy is soaking wet… How can I help you today?`);
       } else {
         (s as any).randomFlashGreetResponse = Math.floor(Math.random() * 3) + 1;
         if (((s as any).randomFlashGreetResponse ?? 0) === 1) {
           // TODO-QSP: dynamic text: "Ah, very nice pussy Miss <<$pcs_lastname>>. What was it you wanted help with to...
-          scene.text(`"Ah, very nice pussy Miss ${((s as any).pcs_lastname ?? 0)}. What was it you wanted help with today?"`);
+          scene.text(`"Ah, very nice pussy Miss ${((s as any).pcs_lastname || '')}. What was it you wanted help with today?"`);
         } else {
           if (((s as any).randomFlashGreetResponse ?? 0) === 2  &&  ((s as any).pantyworntype ?? 0) !== 'none') {
             // TODO-QSP: dynamic text: "I see you didn't wear panties today Miss <<$pcs_lastname>>. Very good. What was...
-            scene.text(`"I see you didn't wear panties today Miss ${((s as any).pcs_lastname ?? 0)}. Very good. What was it you wanted help with today?"`);
+            scene.text(`"I see you didn't wear panties today Miss ${((s as any).pcs_lastname || '')}. Very good. What was it you wanted help with today?"`);
           } else {
             if (((s as any).randomFlashGreetResponse ?? 0) === 3) {
               // TODO-QSP: dynamic text: "Well done Miss <<$pcs_lastname>>, your pussy looks great. What was it you wante...
-              scene.text(`"Well done Miss ${((s as any).pcs_lastname ?? 0)}, your pussy looks great. What was it you wanted help with today?"`);
+              scene.text(`"Well done Miss ${((s as any).pcs_lastname || '')}, your pussy looks great. What was it you wanted help with today?"`);
             } else {
               // TODO-QSP: dynamic text: "You are well mannered Miss <<$pcs_lastname>>. What can I help you with?"
-              scene.text(`"You are well mannered Miss ${((s as any).pcs_lastname ?? 0)}. What can I help you with?"`);
+              scene.text(`"You are well mannered Miss ${((s as any).pcs_lastname || '')}. What can I help you with?"`);
             }
           }
         }
       }
     }
-    qspCall(s, 'therapist', 'therapyOptions');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyOptions(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -358,9 +358,9 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/therapist/room.jpg');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: "I would like some help with my <<$therapy>>," you say.
-    scene.text(`"I would like some help with my ${((s as any).therapy ?? 0)}," you say.`);
+    scene.text(`"I would like some help with my ${((s as any).therapy || '')}," you say.`);
     // TODO-QSP: dynamic text: "There are two ways to do that, Miss <<$pcs_lastname>>. I can offer you traditio...
-    scene.text(`"There are two ways to do that, Miss ${((s as any).pcs_lastname ?? 0)}. I can offer you traditional therapy. This one is slow, but just as effective as my second offer, hypnotherapy. I would recommend the hypnosis, but some people don't like the thought of me inside their head that much. The choice is yours."`);
+    scene.text(`"There are two ways to do that, Miss ${((s as any).pcs_lastname || '')}. I can offer you traditional therapy. This one is slow, but just as effective as my second offer, hypnotherapy. I would recommend the hypnosis, but some people don't like the thought of me inside their head that much. The choice is yours."`);
     scene.actions([
       { label: 'Just talk', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/clinic/therapist/therapy1.jpg');
@@ -382,7 +382,7 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Help with school troubles', handler: (st: GameState) => {
     // TODO-QSP: $therapyTalkMessage[1] = '"I''ve been having some trouble fitting in at school. I would like some he...
-    qspCall(s, 'therapist', 'therapyMethod');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -390,15 +390,15 @@ function enterTherapyOptions(s: GameState, scene: SceneBuilder): void {
   scene.actions([
     { label: 'Raise your mood and disposition', handler: (st: GameState) => {
     // TODO-QSP: $therapyTalkMessage[1] = '"I''ve been feeling a little down lately. I would like some help in raisin...
-    qspCall(s, 'therapist', 'therapyMethod');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Raise your confidence', handler: (st: GameState) => {
     // TODO-QSP: $therapyTalkMessage[1] = '"I''ve not been very confident lately. Can you help?"'
-    qspCall(s, 'therapist', 'therapyMethod');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'d like to be more charming, likable and sociable', handler: (st: GameState) => {
     // TODO-QSP: $therapyTalkMessage[1] = '"I would like some help being more sociable," you say.'
-    qspCall(s, 'therapist', 'therapyMethod');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapyMethod(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -410,7 +410,7 @@ function enterTherapyMethod(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   // TODO-QSP: $therapyTalkMessage[1]
   // TODO-QSP: dynamic text: "There are two ways to do that, Miss <<$pcs_lastname>>. I can offer you traditio...
-  scene.text(`"There are two ways to do that, Miss ${((s as any).pcs_lastname ?? 0)}. I can offer you traditional therapy. This one is slow and reliable, but more effective is my second offer, hypnotherapy. I would recommend the hypnosis, but some people don't like the thought of me inside their head that much and it doesn't work for everybody. The choice is yours."`);
+  scene.text(`"There are two ways to do that, Miss ${((s as any).pcs_lastname || '')}. I can offer you traditional therapy. This one is slow and reliable, but more effective is my second offer, hypnotherapy. I would recommend the hypnosis, but some people don't like the thought of me inside their head that much and it doesn't work for everybody. The choice is yours."`);
   if (((s as any).hypnoStage ?? 0) < 2  ||  ((s as any).succubusflag ?? 0)?.['therapist'] === 1) {
     scene.actions([
       { label: 'Just talk', handler: (st: GameState) => {
@@ -432,7 +432,7 @@ function enterTherapyMethod(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <<$therapyTalkMessage>>, and Dr. Pavlov makes some suggestions and asks some poi...
-    scene.text(`${((s as any).therapyTalkMessage ?? 0)}, and Dr. Pavlov makes some suggestions and asks some pointed questions. Although he makes you look at your own actions and desires closely, making you aware of your own issues, it somehow makes you feel better about yourself.`);
+    scene.text(`${((s as any).therapyTalkMessage || '')}, and Dr. Pavlov makes some suggestions and asks some pointed questions. Although he makes you look at your own actions and desires closely, making you aware of your own issues, it somehow makes you feel better about yourself.`);
     scene.text('"Please, visit me again if you have any further problems, I will be glad to help!" he says as he escorts you out the door.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -450,13 +450,13 @@ function enterTherapyMethod(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Just talk [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Just talk', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Just talk [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Just talk', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/clinic/therapist/therapy1.jpg');
@@ -477,7 +477,7 @@ function enterTherapyMethod(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <<$therapyTalkMessage>>, and Dr. Pavlov makes some suggestions and asks some poi...
-    scene.text(`${((s as any).therapyTalkMessage ?? 0)}, and Dr. Pavlov makes some suggestions and asks some pointed questions. Although he makes you look at your own actions and desires closely, making you aware of your own issues, it somehow makes you feel better about yourself.`);
+    scene.text(`${((s as any).therapyTalkMessage || '')}, and Dr. Pavlov makes some suggestions and asks some pointed questions. Although he makes you look at your own actions and desires closely, making you aware of your own issues, it somehow makes you feel better about yourself.`);
     scene.text('"Please, visit me again if you have any further problems, I will be glad to help!" he says as he escorts you out the door.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -515,7 +515,7 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
   scene.text('He waits a little. The only sound in the room is the clock ticking and the sound of rain.');
   scene.text('"You are standing in front of a house. This house has three rooms, but each of them can only be reached through the one before. The first room is the green room, then the blue room, and at last the black room…"');
   if (((s as any).succubusflag ?? 0) === 1) {
-    qspCall(s, 'therapist', 'succubus');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuccubus(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     scene.text('Your mind tries to imagine the things the doctor tells you, and this is your last conscious memory.');
     scene.actions([
@@ -698,7 +698,7 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    qspCall(s, 'therapist', 'hypno3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHypno3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           ]);
         }
@@ -713,7 +713,7 @@ function enterHypno(s: GameState, scene: SceneBuilder): void {
 
 function enterHypno2(s: GameState, scene: SceneBuilder): void {
   scene.img(`images/locations/pavlovsk/clinic/therapist/waiting${Math.floor(Math.random() * 2) + 1}.jpg`);
-  qspCall(s, 'therapist', 'hypno3');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHypno3(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -824,11 +824,11 @@ function enterHypno3(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSuccubus(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'therapist', 'restTherapyVariables');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestTherapyVariables(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).succubusflag) (s as any).succubusflag = {}; (s as any).succubusflag['therapist'] = 1;
   scene.text('This is all kind of boring and you don\'t really listen; the hypnosis is doing nothing to you despite your effort to make it work. You are about to tell him it\'s not working when he says something interesting:');
   // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, While you are in the black room, you will not remember ...
-  scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, While you are in the black room, you will not remember anything that happens, Do you understand?"`);
+  scene.text(`"Miss ${((s as any).pcs_lastname || '')}, While you are in the black room, you will not remember anything that happens, Do you understand?"`);
   scene.text('"Sure, doc."');
   scene.text('"Good. While you are under, I will call you Cunt and in turn, you will call me Master, Do you understand?"');
   scene.text('Time to teach this fucker a lesson. You suddenly open your eyes and project yourself inside his brain.');
@@ -856,13 +856,13 @@ function enterFirstHypnoStage(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Resist', handler: (st: GameState) => {
     (s as any).hypnoStripped = 0;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -886,13 +886,13 @@ function enterFirstHypnoStage(s: GameState, scene: SceneBuilder): void {
     (s as any).hypnoStage = 1;
     scene.img(`images/locations/pavlovsk/clinic/therapist/waiting${Math.floor(Math.random() * 2) + 1}.jpg`);
     // TODO-QSP: dynamic text: When you finish, Dr. Pavlov tells you to sit back on the couch. ' + $func('wrap'...
-    scene.text('When you finish, Dr. Pavlov tells you to sit back on the couch. \' + $func(\'wrap\', \'hypno\', \'"Now I\'m going to ask you a series of questions and you will answer them with complete honesty. You will give your answer first and finish by addressing me as <i>Master</i>.\') + \' First question. How old are you?"');
+    scene.text('When you finish, Dr. Pavlov tells you to sit back on the couch. "Now I\'m going to ask you a series of questions and you will answer them with complete honesty. You will give your answer first and finish by addressing me as <i>Master</i>. First question. How old are you?"');
     scene.actions([
       { label: 'I\'m <<$func(\'shortgs\', \'num2txt\', age)>> years old, <i>Master</i>', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/waiting${Math.floor(Math.random() * 2) + 1}.jpg`);
     if (((s as any).age ?? 0) < 18) {
       // TODO-QSP: dynamic text: "<<$func('shortgs', 'num2txt', age)>>? Great! I love them young. Are you a virgi...
-      scene.text(`"${qspFunc(s, 'shortgs', 'num2txt', ((s as any).age ?? 0))}? Great! I love them young. Are you a virgin?"`);
+      scene.text(`"${qspFunc(s, 'shortgs', 'num2txt', ((s as any).age || ''))}? Great! I love them young. Are you a virgin?"`);
       if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
         scene.actions([
           { label: 'Yes, <i>Master</i>', handler: (st: GameState) => {
@@ -903,7 +903,7 @@ function enterFirstHypnoStage(s: GameState, scene: SceneBuilder): void {
         { label: 'Yes, <i>Master</i>', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/waiting${Math.floor(Math.random() * 2) + 1}.jpg`);
     // TODO-QSP: dynamic text: "A virgin school girl, very rare these days. I'm going to enjoy you, <i>Cunt</i>...
-    scene.text('"A virgin school girl, very rare these days. I\'m going to enjoy you, <i>Cunt</i>. I will fill every hole you have, every day. \' + $func(\'wrap\', \'hypno\', \'You will bear my children and you won\'t even know how it happened. You will think they belong to your boyfriend, if you have one."\') + \' He caresses your leg as he says this.');
+    scene.text('"A virgin school girl, very rare these days. I\'m going to enjoy you, <i>Cunt</i>. I will fill every hole you have, every day. You will bear my children and you won\'t even know how it happened. You will think they belong to your boyfriend He caresses your leg as he says this.');
     scene.text('This will be all for today, <i>Cunt</i>. You may dress now."');
     scene.actions([
       { label: 'Dress', goto: ['therapist', 'hypnoDress'] },
@@ -963,7 +963,7 @@ function enterFirstHypnoStage(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).age ?? 0) === 18) {
         // TODO-QSP: dynamic text: <<age>>? Good. And are you a virgin?
-        scene.text(`${((s as any).age ?? 0)}? Good. And are you a virgin?`);
+        scene.text(`${((s as any).age || '')}? Good. And are you a virgin?`);
         if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
           scene.actions([
             { label: 'Yes, <i>Master</i>', handler: (st: GameState) => {
@@ -1114,13 +1114,13 @@ function enterSecondHypnoStage(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.actions([{ label: 'Continue', goto: ['therapist', 'hypnoResist', '\'kiss him\''] }]);
@@ -1194,13 +1194,13 @@ function enterThirdHypnoStage(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.actions([{ label: 'Continue', goto: ['therapist', 'hypnoResist', '\'suck his cock\''] }]);
@@ -1359,12 +1359,12 @@ function enterHypnoResist(s: GameState, scene: SceneBuilder): void {
   }
   if ((!((s as any).hypnoTimesResistedStage ?? 0))) {
     // TODO-QSP: dynamic text: Your body tenses, and you shake your head as you reject Dr. Pavlov's suggestion ...
-    scene.text(`Your body tenses, and you shake your head as you reject Dr. Pavlov's suggestion to ${((s as any).locArgs?.[1] ?? 0)}. Seeing that you might awaken, he quickly tells you to forget the command he gave you. As the suggestion fades from your memory, you once again relax.`);
+    scene.text(`Your body tenses, and you shake your head as you reject Dr. Pavlov's suggestion to ${((s as any).locArgs?.[1] ?? '')}. Seeing that you might awaken, he quickly tells you to forget the command he gave you. As the suggestion fades from your memory, you once again relax.`);
     scene.text('"Hmmm," Dr. Pavlov muses. "Your will is quite strong. It may take some time to break you, but you will break."');
   } else {
     if (((s as any).hypnoTimesResistedStage ?? 0) === 1) {
       // TODO-QSP: dynamic text: Your body tenses, and you frown as you resist Dr. Pavlov's suggestion to <<$ARGS...
-      scene.text(`Your body tenses, and you frown as you resist Dr. Pavlov's suggestion to ${((s as any).locArgs?.[1] ?? 0)}. The doctor frowns but orders you to forget the idea, for now. You relax as you comply with his order to forget.`);
+      scene.text(`Your body tenses, and you frown as you resist Dr. Pavlov's suggestion to ${((s as any).locArgs?.[1] ?? '')}. The doctor frowns but orders you to forget the idea, for now. You relax as you comply with his order to forget.`);
       scene.text('"Soon you will be unable to resist me, my dear," he murmurs as he lightly runs his fingers across your breasts, "Then we will have some fun."');
     } else {
       if (((s as any).hypnoTimesResistedStage ?? 0) === 2) {
@@ -1583,7 +1583,7 @@ function enterFuck(s: GameState, scene: SceneBuilder): void {
   scene.text('<b>The moment you see his massive dick, your mind enters the black room.</b>');
   scene.text('');
   // TODO-QSP: dynamic text: <<$hypnofuck>> As soon as he is inside your pussy, he starts to fuck you.
-  scene.text(`${((s as any).hypnofuck ?? 0)} As soon as he is inside your pussy, he starts to fuck you.`);
+  scene.text(`${((s as any).hypnofuck || '')} As soon as he is inside your pussy, he starts to fuck you.`);
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin')) {
     qspCall(s, 'pain', '', 5, 'vaginal', 'stretch');
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
@@ -1630,9 +1630,9 @@ function enterFuck(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/sex/creampie${Math.floor(Math.random() * 3) + 1}.mp4`);
     // TODO-QSP: dynamic text: "Miss <<$pcs_lastname>>, I am so close! I will blow a huge wad of sperm in your ...
-    scene.text(`"Miss ${((s as any).pcs_lastname ?? 0)}, I am so close! I will blow a huge wad of sperm in your tight pussy!"<br>${((s as any).therapistDoneFuckingDesc0 ?? 0)} ${((s as any).therapistDoneFuckingDesc1 ?? 0)} ${((s as any).therapistDoneCumDesc1 ?? 0)}`);
+    scene.text(`"Miss ${((s as any).pcs_lastname || '')}, I am so close! I will blow a huge wad of sperm in your tight pussy!"<br>${((s as any).therapistDoneFuckingDesc0 || '')} ${((s as any).therapistDoneFuckingDesc1 || '')} ${((s as any).therapistDoneCumDesc1 || '')}`);
     // TODO-QSP: dynamic text: Finally he is done, and he pulls out of you. <<$therapistDoneFuckingDesc3>>
-    scene.text(`Finally he is done, and he pulls out of you. ${((s as any).therapistDoneFuckingDesc3 ?? 0)}`);
+    scene.text(`Finally he is done, and he pulls out of you. ${((s as any).therapistDoneFuckingDesc3 || '')}`);
     (s as any).therapistFuckedPussy = 1;
     (s as any).therapistFuckedPussyScene = 1;
     (s as any).hypnoRandomCounter = ((s as any).hypnoRandomCounter ?? 0) + (1);
@@ -1730,9 +1730,9 @@ function enterHypnoFuck(s: GameState, scene: SceneBuilder): void {
     { label: 'Continue', handler: (st: GameState) => {
     scene.img(`images/locations/pavlovsk/clinic/therapist/sex/creampie${Math.floor(Math.random() * 3) + 1}.mp4`);
     // TODO-QSP: dynamic text: "Oh yes, my little <i>Cunt</i>, I am so close! I will blow a huge wad of sperm i...
-    scene.text(`"Oh yes, my little <i>Cunt</i>, I am so close! I will blow a huge wad of sperm in your tight pussy! And you won't even know about it!"<br>${((s as any).therapistDoneFuckingDesc0 ?? 0)} ${((s as any).therapistDoneFuckingDesc1 ?? 0)} ${((s as any).therapistDoneCumDesc1 ?? 0)}`);
+    scene.text(`"Oh yes, my little <i>Cunt</i>, I am so close! I will blow a huge wad of sperm in your tight pussy! And you won't even know about it!"<br>${((s as any).therapistDoneFuckingDesc0 || '')} ${((s as any).therapistDoneFuckingDesc1 || '')} ${((s as any).therapistDoneCumDesc1 || '')}`);
     // TODO-QSP: dynamic text: Finally he is done, and he pulls out of you. <<$therapistDoneFuckingDesc3>>
-    scene.text(`Finally he is done, and he pulls out of you. ${((s as any).therapistDoneFuckingDesc3 ?? 0)}`);
+    scene.text(`Finally he is done, and he pulls out of you. ${((s as any).therapistDoneFuckingDesc3 || '')}`);
     (s as any).therapistFuckedPussy = 1;
     (s as any).therapistFuckedPussyScene = 1;
     if (((s as any).therapistFuckedPussyStage ?? 0) < 1) {
@@ -2034,11 +2034,11 @@ function enterHypnoRandom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/clinic/therapist/sittingClothed.jpg');
     if (!(s as any).therapistQW) (s as any).therapistQW = {}; (s as any).therapistQW['hotel_key'] = 1;
     // TODO-QSP: dynamic text: You finish getting dressed and the doctor hands you something. It's a keychain w...
-    scene.text('You finish getting dressed and the doctor hands you something. It\'s a keychain with a single key, a tiny bunny plush, and a tag for the Hotel by Pavlovsk market with a room number on it. "I want you to show up to this room every Saturday night from \'+func(\'time\', \'get_time_string\', 20, 0)+\'. There you will find me, waiting for you. Once a week, you will be my wife. You will do whatever I ask of you and you will do it without question. This will all be automatic for you. You will not be under hypnosis for this and you will do it because you WANT to do it" he says. "Soon, you will be my wife for real and when that day comes, you must know what is expected of you, Understand?" he states.');
+    scene.text('You finish getting dressed and the doctor hands you something. It\'s a keychain with a single key, a tiny bunny plush, and a tag for the Hotel by Pavlovsk market with a room number on it. "I want you to show up to this room every Saturday night from 20:00. There you will find me, waiting for you. Once a week, you will be my wife. You will do whatever I ask of you and you will do it without question. This will all be automatic for you. You will not be under hypnosis for this and you will do it because you WANT to do it" he says. "Soon, you will be my wife for real and when that day comes, you must know what is expected of you, Understand?" he states.');
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No, master [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No, master', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
@@ -2074,7 +2074,7 @@ function enterHypnoRandom(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'misc', 'resist', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'No, master [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'No, master', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
@@ -2332,7 +2332,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
       scene.text('"With my family, <i>Master</i>."');
       scene.text('"Who lives with you?" he says.');
       // TODO-QSP: dynamic text: "My <<$npc_nickname['A29']>>, stepfather, my sister and my brother, <i>Master</i...
-      scene.text(`"My ${((s as any).npc_nickname ?? 0)?.['A29']}, stepfather, my sister and my brother, <i>Master</i>"`);
+      scene.text(`"My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, stepfather, my sister and my brother, <i>Master</i>"`);
       // TODO-QSP: dynamic text: "So we need to come up with a way for you to get kicked out. There would be too ...
       scene.text(`"So we need to come up with a way for you to get kicked out. There would be too much suspicion if you simply disappeared. ${qspFunc(s, 'wrap', 'hypno', 'You will tell your mother that your stepfather got you pregnant. After you do this, you will return here.')} Understand, <i>Cunt</i>?"`);
       scene.text('"Yes, <i>Master</i>."');
@@ -2343,7 +2343,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
     scene.text('You dress yourself.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
-    scene.text(`<center><b>Your ${((s as any).npc_nickname ?? 0)?.['A29']}, Natasha ${((s as any).pcs_lastname ?? 0)}</b></center>`);
+    scene.text(`<center><b>Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, Natasha ${((s as any).pcs_lastname || '')}</b></center>`);
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('You seem to lose consciousness and before you know it you are standing in a familiar place, in front of your mother.');
     scene.actions([
@@ -2351,7 +2351,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
     qspCall(st, 'therapist', 'leave', 'mother', 'hypnoPregReact');
   } },
       { label: 'Resist!', handler: (st: GameState) => {
-    scene.text(`<center><b>Your ${((s as any).npc_nickname ?? 0)?.['A29']}, Natasha ${((s as any).pcs_lastname ?? 0)}</b></center>`);
+    scene.text(`<center><b>Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, Natasha ${((s as any).pcs_lastname || '')}</b></center>`);
     scene.img('images/characters/pavlovsk/resident/mom/mother.jpg');
     scene.text('You feel like something is off, but you can\'t quite put your finger on it. But you know for a fact that you have to do what <i>Master</i> instructed you to do. Your pussy moistens simply at the thought of him.');
     scene.actions([
@@ -2375,7 +2375,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
           scene.text('You have a cottage?"');
           scene.text('"Yes, <i>Master</i>."');
           // TODO-QSP: dynamic text: "Okay then… ' + $func('wrap', 'hypno', 'You will sell your cottage to me for a s...
-          scene.text('"Okay then… \' + $func(\'wrap\', \'hypno\', \'You will sell your cottage to me for a single ruble. I will take you to an agency and they will officiate the sale. You will agree with everything I say while we are there. Understand, <i>Cunt</i>?\') + \'"');
+          scene.text('"Okay then… You will sell your cottage to me for a single ruble. I will take you to an agency and they will officiate the sale. You will agree with everything I say while we are there. Understand"');
           scene.text('"Yes, <i>Master</i>."');
           scene.text('"Good, put on your clothes and come with me."');
         } else {
@@ -2385,7 +2385,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
             scene.text('"Pick up the pen and write what I say."');
             scene.text('You pick up the pen, then wait for him to speak.');
             // TODO-QSP: dynamic text: "Hello, I will no longer be staying in the apartment. Thank you, <<$pcs_firstnam...
-            scene.text(`"Hello, I will no longer be staying in the apartment. Thank you, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}"`);
+            scene.text(`"Hello, I will no longer be staying in the apartment. Thank you, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}"`);
             scene.text('He takes the paper from you and looks it over. "Good. I will send this to Nicholas\' home. Now dress and come with me."');
             scene.text('"Yes, <i>Master</i>."');
           } else {
@@ -2407,7 +2407,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
                   scene.text('"Pick up the pen and write what I say."');
                   scene.text('You pick up the pen, then wait for him to speak.');
                   // TODO-QSP: dynamic text: "Nicolas, thank you for letting me stay at your place. I've found employment in ...
-                  scene.text(`"Nicolas, thank you for letting me stay at your place. I've found employment in the city and my own apartment! I'll come visit when I can. Sincerely yours, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}"`);
+                  scene.text(`"Nicolas, thank you for letting me stay at your place. I've found employment in the city and my own apartment! I'll come visit when I can. Sincerely yours, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}"`);
                   scene.text('He takes the paper from you and looks it over… "Good. I will send this to Nicholas\' home. Now dress and come with me."');
                 } else {
                   if (((s as any).home ?? 0)?.['current'] === 'niko_apartment') {
@@ -2416,7 +2416,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
                     scene.text('"Pick up the pen and write what I say."');
                     scene.text('You pick up the pen, then wait for him to speak.');
                     // TODO-QSP: dynamic text: "Niko, thank you for letting me stay at your place. I've found employment in the...
-                    scene.text(`"Niko, thank you for letting me stay at your place. I've found employment in the city and my own apartment! I'll come visit when I can. Sincerely yours, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}"`);
+                    scene.text(`"Niko, thank you for letting me stay at your place. I've found employment in the city and my own apartment! I'll come visit when I can. Sincerely yours, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}"`);
                     scene.text('He takes the paper from you and looks it over… "Good. I will send this to your Niko\'s home. Now dress and come with me."');
                   } else {
                     if (((s as any).home ?? 0)?.['current'] === 'shulga_apartment') {
@@ -2425,7 +2425,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
                       scene.text('"Pick up the pen and write what I say."');
                       scene.text('You pick up the pen, then wait for him to speak.');
                       // TODO-QSP: dynamic text: "Uncle Sergey, thank you for letting me stay at your place. I've found employmen...
-                      scene.text(`"Uncle Sergey, thank you for letting me stay at your place. I've found employment in the city and my own apartment! I'll come visit when I can. Sincerely yours, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}"`);
+                      scene.text(`"Uncle Sergey, thank you for letting me stay at your place. I've found employment in the city and my own apartment! I'll come visit when I can. Sincerely yours, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}"`);
                       scene.text('He takes the paper from you and looks it over… "Good. I will send this to your Uncle Sergey. Now dress and come with me."');
                     } else {
                       if (((s as any).home ?? 0)?.['current'] === 'lyceum_dorm') {
@@ -2436,7 +2436,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
                         scene.text('"Pick up the pen and write what I say."');
                         scene.text('You pick up the pen, then wait for him to speak.');
                         // TODO-QSP: dynamic text: "Hello, I am writing this letter to inform you that I will no longer be living a...
-                        scene.text(`"Hello, I am writing this letter to inform you that I will no longer be living at the Lyceum School. I have found a place of my own. Thank you, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}"`);
+                        scene.text(`"Hello, I am writing this letter to inform you that I will no longer be living at the Lyceum School. I have found a place of my own. Thank you, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}"`);
                         scene.text('He takes the paper from you and looks it over… "Good. I will send this to the school. Now dress and come with me."');
                       } else {
                         if (((s as any).home ?? 0)?.['current'] === 'university_dorm') {
@@ -2445,7 +2445,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
                           scene.text('"Pick up the pen and write what I say."');
                           scene.text('You pick up the pen, then wait for him to speak.');
                           // TODO-QSP: dynamic text: "Hello, I will no longer be using the halls as my residence. Thank you, <<$pcs_f...
-                          scene.text(`"Hello, I will no longer be using the halls as my residence. Thank you, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}"`);
+                          scene.text(`"Hello, I will no longer be using the halls as my residence. Thank you, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}"`);
                           scene.text('He takes the paper from you and looks it over… "Good. I will send this to the university. Now dress and come with me."');
                         } else {
                           if (((s as any).home ?? 0)?.['current'] === 'hunters_lodge') {
@@ -2460,7 +2460,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
                               scene.text('"Pick up the pen and write what I say."');
                               scene.text('You pick up the pen, then wait for him to speak.');
                               // TODO-QSP: dynamic text: "Hello, I have found elsewhere to live and will no longer be residing with you a...
-                              scene.text(`"Hello, I have found elsewhere to live and will no longer be residing with you all. Sincerely yours, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}"`);
+                              scene.text(`"Hello, I have found elsewhere to live and will no longer be residing with you all. Sincerely yours, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}"`);
                               scene.text('He takes the paper from you and looks it over… "Good. I will send this to the apartment you are staying in. Now dress and come with me."');
                             } else {
                               if (((s as any).home ?? 0)?.['current'] === 'grandparents_house') {
@@ -2469,7 +2469,7 @@ function enterHypnoPerv(s: GameState, scene: SceneBuilder): void {
                                 scene.text('"Pick up the pen and write what I say."');
                                 scene.text('You pick up the pen, then wait for him to speak.');
                                 // TODO-QSP: dynamic text: "Dear Grandparents, I have found employment in the city. I have purchased an apa...
-                                scene.text(`"Dear Grandparents, I have found employment in the city. I have purchased an apartment and I am so excited to start soon. I will most surely visit as soon as I can! I love you. Sincerely yours, ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}"`);
+                                scene.text(`"Dear Grandparents, I have found employment in the city. I have purchased an apartment and I am so excited to start soon. I will most surely visit as soon as I can! I love you. Sincerely yours, ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}"`);
                                 scene.text('He takes the paper from you and looks it over… "Good. I will send this to your Grandparents. Now dress and come with me."');
                               }
                             }
@@ -2539,7 +2539,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
           scene.text('"Would you like to fuck me?" you repeat.');
           scene.text('"I heard you, I was just surprised. You look kind of young to be a prostitute. How old are you?"');
           // TODO-QSP: dynamic text: "I'm <<age>> years old. Would you like to fuck me?"
-          scene.text(`"I'm ${((s as any).age ?? 0)} years old. Would you like to fuck me?"`);
+          scene.text(`"I'm ${((s as any).age || '')} years old. Would you like to fuck me?"`);
           scene.text('"…Damn. Yea I wanna fuck you. How much?"');
           scene.text('"How much would you pay me?"');
           scene.text('He looks in his wallet, then looks at you. "I\'d pay you 3000 rubles."');
@@ -2665,10 +2665,10 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     if (((s as any).vidage ?? 0) < 18) {
       scene.text('How old are you?');
       // TODO-QSP: dynamic text: "I'm <<age>> years old."
-      scene.text(`"I'm ${((s as any).age ?? 0)} years old."`);
+      scene.text(`"I'm ${((s as any).age || '')} years old."`);
       if (((s as any).age ?? 0) < 18) {
         // TODO-QSP: dynamic text: "<<age>>? Why is an <<age>> year old asking a stranger for sex at a gas station?...
-        scene.text(`"${((s as any).age ?? 0)}? Why is an ${((s as any).age ?? 0)} year old asking a stranger for sex at a gas station? Shouldn't you be in school?"`);
+        scene.text(`"${((s as any).age || '')}? Why is an ${((s as any).age || '')} year old asking a stranger for sex at a gas station? Shouldn't you be in school?"`);
         scene.text('"How much would you pay?"');
         scene.text('"Oh, I see. Then, how is 2000 rubles?"');
         if (!(s as any).hypnoProstRubles) (s as any).hypnoProstRubles = {}; (s as any).hypnoProstRubles[2] = 2000;
@@ -2707,7 +2707,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     scene.text('');
     (s as any).hypnoProstTimes = ((s as any).hypnoProstTimes ?? 0) + (1);
     // TODO-QSP: dynamic text: He fucks your pussy hard and fast. The car fills with the sound of his hips slap...
-    scene.text(`He fucks your pussy hard and fast. The car fills with the sound of his hips slapping against your ${((s as any).pc_desc ?? 0)?.['butt']} and the squelching of your wet pussy.`);
+    scene.text(`He fucks your pussy hard and fast. The car fills with the sound of his hips slapping against your ${((s as any).pc_desc ?? 0)?.['butt'] ?? ''} and the squelching of your wet pussy.`);
     scene.text('He uses your pussy for his own pleasure for some time until you start to feel his cock bulge inside of you and he lets out a moan.');
     scene.actions([
       { label: 'Take his cum', handler: (st: GameState) => {
@@ -2818,7 +2818,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     scene.text('');
     (s as any).hypnoProstTimes = ((s as any).hypnoProstTimes ?? 0) + (1);
     // TODO-QSP: dynamic text: He fucks your pussy hard and fast. The car fills with the sound of his hips slap...
-    scene.text(`He fucks your pussy hard and fast. The car fills with the sound of his hips slapping against your ${((s as any).pc_desc ?? 0)?.['butt']} and the squelching of your wet pussy.`);
+    scene.text(`He fucks your pussy hard and fast. The car fills with the sound of his hips slapping against your ${((s as any).pc_desc ?? 0)?.['butt'] ?? ''} and the squelching of your wet pussy.`);
     scene.text('He uses your pussy for his own pleasure for some time until you start to feel his cock bulge inside of you and he lets out a moan.');
     scene.actions([
       { label: 'Take his cum', handler: (st: GameState) => {
@@ -2935,11 +2935,11 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ahhhh yeeees, take all of my cum you whore…"');
     scene.text('He pulls out of you and tucks his cock away before he pulls out his wallet and starts counting bills. "How old are you anyways"');
     // TODO-QSP: dynamic text: "I'm <<age>> years old."
-    scene.text(`"I'm ${((s as any).age ?? 0)} years old."`);
+    scene.text(`"I'm ${((s as any).age || '')} years old."`);
     if (((s as any).age ?? 0) < 18) {
       if (!(s as any).hypnoProstGuyFlag) (s as any).hypnoProstGuyFlag = {}; (s as any).hypnoProstGuyFlag[5] = 3;
       // TODO-QSP: dynamic text: He stops counting bills and looks up at you. "<<age>>? Holy shit. You're young e...
-      scene.text(`He stops counting bills and looks up at you. "${((s as any).age ?? 0)}? Holy shit. You're young enough to be my granddaughter." He reaches down to his crotch and you can visibly see it getting hard again.`);
+      scene.text(`He stops counting bills and looks up at you. "${((s as any).age || '')}? Holy shit. You're young enough to be my granddaughter." He reaches down to his crotch and you can visibly see it getting hard again.`);
       scene.text('"What\'s your name?"');
       scene.text('"My name is <i>Cunt</i>, sir"');
       scene.text('"<i>Cunt</i>? HA ha ha ha!" He grabs you by the ass and pulls you closer. "Well, <i>Cunt</i>, I want you to call me Grandpa." The old man looks you over again and you can see the outline of his cock through his trousers. "Bend over <i>Cunt</i>, I\'m going to fuck you again."');
@@ -3074,7 +3074,7 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
                     }
                     if (!(s as any).hypnoProstRubles) (s as any).hypnoProstRubles = {}; (s as any).hypnoProstRubles[7] = Math.floor(Math.random() * 1201) + 800;
                     // TODO-QSP: dynamic text: As you are waiting, a man who parked his <<$vehicleName>> nearby approaches you.
-                    scene.text(`As you are waiting, a man who parked his ${((s as any).vehicleName ?? 0)} nearby approaches you.`);
+                    scene.text(`As you are waiting, a man who parked his ${((s as any).vehicleName || '')} nearby approaches you.`);
                     (s as any).randomResponse = Math.floor(Math.random() * 5) + 1;
                     if (((s as any).randomResponse ?? 0) === 1) {
                       scene.text('"What\'s up? Do you need a ride or something? You\'ve been waiting around here for a while."');
@@ -3098,14 +3098,14 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
                     (s as any).randomResponse = Math.floor(Math.random() * 3) + 1;
                     if (((s as any).randomResponse ?? 0) === 1) {
                       // TODO-QSP: dynamic text: "Fuck you ..? Yeah, yeah I do." He grabs you by the arm and pulls you to his <<$...
-                      scene.text(`"Fuck you ..? Yeah, yeah I do." He grabs you by the arm and pulls you to his ${((s as any).vehicleName ?? 0)}.`);
+                      scene.text(`"Fuck you ..? Yeah, yeah I do." He grabs you by the arm and pulls you to his ${((s as any).vehicleName || '')}.`);
                     } else {
                       if (((s as any).randomResponse ?? 0) === 2) {
                         // TODO-QSP: dynamic text: You can see the surprise on his face but then it's quickly replaced by lust. He ...
-                        scene.text(`You can see the surprise on his face but then it's quickly replaced by lust. He doesn't even say anything. He grabs you by the arm and pulls you to his ${((s as any).vehicleName ?? 0)}.`);
+                        scene.text(`You can see the surprise on his face but then it's quickly replaced by lust. He doesn't even say anything. He grabs you by the arm and pulls you to his ${((s as any).vehicleName || '')}.`);
                       } else {
                         // TODO-QSP: dynamic text: "Ha. Yeah, I wanna fuck you. Didn't think you'd be so forward." He grabs you by ...
-                        scene.text(`"Ha. Yeah, I wanna fuck you. Didn't think you'd be so forward." He grabs you by the arm and pulls you to his ${((s as any).vehicleName ?? 0)}.`);
+                        scene.text(`"Ha. Yeah, I wanna fuck you. Didn't think you'd be so forward." He grabs you by the arm and pulls you to his ${((s as any).vehicleName || '')}.`);
                       }
                     }
                     scene.actions([
@@ -3128,15 +3128,15 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     (s as any).randomResponse = Math.floor(Math.random() * 3) + 1;
     if (((s as any).randomResponse ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Fuck you ..? Yeah, yeah I do." He grabs you by the arm and pulls you to his <<$...
-      scene.text(`"Fuck you ..? Yeah, yeah I do." He grabs you by the arm and pulls you to his ${((s as any).vehicleName ?? 0)}.`);
+      scene.text(`"Fuck you ..? Yeah, yeah I do." He grabs you by the arm and pulls you to his ${((s as any).vehicleName || '')}.`);
     } else {
       if (((s as any).randomResponse ?? 0) === 2) {
         // TODO-QSP: dynamic text: You can see the surprise on his face but then it's quickly replaced by lust. He ...
-        scene.text(`You can see the surprise on his face but then it's quickly replaced by lust. He doesn't even say anything. He grabs you by the arm and pulls you to his ${((s as any).vehicleName ?? 0)}.`);
+        scene.text(`You can see the surprise on his face but then it's quickly replaced by lust. He doesn't even say anything. He grabs you by the arm and pulls you to his ${((s as any).vehicleName || '')}.`);
       } else {
         if (((s as any).randomResponse ?? 0) === 3) {
           // TODO-QSP: dynamic text: "Ha. Yea I wanna fuck you. Didn't think you'd be so forward." He grabs you by th...
-          scene.text(`"Ha. Yea I wanna fuck you. Didn't think you'd be so forward." He grabs you by the arm and pulls you to his ${((s as any).vehicleName ?? 0)}.`);
+          scene.text(`"Ha. Yea I wanna fuck you. Didn't think you'd be so forward." He grabs you by the arm and pulls you to his ${((s as any).vehicleName || '')}.`);
         }
       }
     }
@@ -3205,15 +3205,15 @@ function enterHypnoProstitute(s: GameState, scene: SceneBuilder): void {
     (s as any).randomResponse = Math.floor(Math.random() * 3) + 1;
     if (((s as any).randomResponse ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Fuck you..? Yeah, yeah I do." He grabs you by the arm and pulls you to his <<$v...
-      scene.text(`"Fuck you..? Yeah, yeah I do." He grabs you by the arm and pulls you to his ${((s as any).vehicleName ?? 0)}.`);
+      scene.text(`"Fuck you..? Yeah, yeah I do." He grabs you by the arm and pulls you to his ${((s as any).vehicleName || '')}.`);
     } else {
       if (((s as any).randomResponse ?? 0) === 2) {
         // TODO-QSP: dynamic text: You can see the surprise on his face but then it's quickly replaced by lust. He ...
-        scene.text(`You can see the surprise on his face but then it's quickly replaced by lust. He doesn't even say anything. He grabs you by the arm and pulls you to his ${((s as any).vehicleName ?? 0)}.`);
+        scene.text(`You can see the surprise on his face but then it's quickly replaced by lust. He doesn't even say anything. He grabs you by the arm and pulls you to his ${((s as any).vehicleName || '')}.`);
       } else {
         if (((s as any).randomResponse ?? 0) === 3) {
           // TODO-QSP: dynamic text: "Ha. Yea I wanna fuck you. Didn't think you'd be so forward." He grabs you by th...
-          scene.text(`"Ha. Yea I wanna fuck you. Didn't think you'd be so forward." He grabs you by the arm and pulls you to his ${((s as any).vehicleName ?? 0)}.`);
+          scene.text(`"Ha. Yea I wanna fuck you. Didn't think you'd be so forward." He grabs you by the arm and pulls you to his ${((s as any).vehicleName || '')}.`);
         }
       }
     }

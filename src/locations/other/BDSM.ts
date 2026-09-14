@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/redlight/studio_porn/dvd-disx.jpg');
     scene.text('You spent 9 hours for the filming');
     // TODO-QSP: dynamic text: and received <<$func('money', 'string_profit', pcs_apprnc * 125)>> in cash
-    scene.text(`and received ${qspFunc(s, 'money', 'string_profit', ((s as any).pcs_apprnc ?? 0) * 125)} in cash`);
+    scene.text(`and received ${qspFunc(s, 'money', 'string_profit', ((s as any).pcs_apprnc ?? '') * 125)} in cash`);
     scene.actions([
       { label: 'Leave the studio', goto: ['city_center', ''] },
     ]);

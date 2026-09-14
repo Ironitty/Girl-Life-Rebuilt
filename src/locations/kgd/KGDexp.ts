@@ -3,8 +3,8 @@ import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enter(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['needExpNextLvl'] = (((s as any).KGD ?? {})?.['lvl'] * 10) * ((s as any).KGD ?? {})?.['lvl'];
-  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['needExp'] = ((s as any).KGD ?? {})?.['needExpNextLvl'] - ((s as any).KGD ?? {})?.['exp'];
+  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['needExpNextLvl'] = ((((s as any).KGD ?? {})?.['lvl'] ?? 0) * 10) * (((s as any).KGD ?? {})?.['lvl'] ?? 0);
+  if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['needExp'] = (((s as any).KGD ?? {})?.['needExpNextLvl'] ?? 0) - (((s as any).KGD ?? {})?.['exp'] ?? 0);
   if (((s as any).KGD ?? 0)?.['needExp'] <= 0  &&  ((s as any).KGD ?? 0)?.['lvl'] > ((s as any).KGD ?? 0)?.['lvlr']) {
     if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['lvlr'] = ((s as any).KGD ?? 0)?.['lvl'];
     if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['lvl'] = ((s as any).KGD['lvl'] ?? 0) + (1);

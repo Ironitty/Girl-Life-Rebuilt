@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/pc/items/pet_emporium/parrot_home.jpg');
   // TODO-QSP: dynamic text: <center><<$ParrotQW['Name1']>> sitting in his cage.</center>
-  scene.text(`<center>${((s as any).ParrotQW ?? 0)?.['Name1']} sitting in his cage.</center>`);
+  scene.text(`<center>${((s as any).ParrotQW ?? 0)?.['Name1'] ?? ''} sitting in his cage.</center>`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['dina', 'brodila'] },
@@ -32,7 +32,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/pc/items/pet_emporium/parrot_home.jpg');
   // TODO-QSP: dynamic text: <center><<$ParrotQW['Name2']>> sitting in his cage.</center>
-  scene.text(`<center>${((s as any).ParrotQW ?? 0)?.['Name2']} sitting in his cage.</center>`);
+  scene.text(`<center>${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sitting in his cage.</center>`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -41,10 +41,10 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
     { label: 'Open a window and release your parrot', handler: (st: GameState) => {
     if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] > 30) {
       // TODO-QSP: dynamic text: You have become too attached to <<$ParrotQW['Name2']>>. You can't bring yourself...
-      scene.text(`You have become too attached to ${((s as any).ParrotQW ?? 0)?.['Name2']}. You can't bring yourself to release him`);
+      scene.text(`You have become too attached to ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''}. You can't bring yourself to release him`);
     } else {
       // TODO-QSP: dynamic text: You say goodbye to <<$ParrotQW['Name2']>> and release him
-      scene.text(`You say goodbye to ${((s as any).ParrotQW ?? 0)?.['Name2']} and release him`);
+      scene.text(`You say goodbye to ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} and release him`);
       if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Owned2'] = 0;
       (s as any).minut = ((s as any).minut ?? 0) + 10;
     }

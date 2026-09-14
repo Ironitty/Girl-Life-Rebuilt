@@ -36,7 +36,7 @@ function enterPickFromDelimitedString(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['i'] = qspUntranslated(s, "instr(temp_randomVars['string'], temp_randomVars['delimiter'])", { location: "random" });
   if (((s as any).temp_randomVars ?? 0)?.['i'] > 0) {
     // TODO-QSP: $temp_pick_from_delimited_string_array[] = $mid($temp_randomVars['string'], 1, temp_randomVars['i'] ...
-    if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['string'] = (String(((s as any).temp_randomVars ?? 0)?.['string']).slice((((s as any).temp_randomVars ?? {})?.['i'] + 1)-1));
+    if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['string'] = (String(((s as any).temp_randomVars ?? 0)?.['string']).slice(((((s as any).temp_randomVars ?? {})?.['i'] ?? 0) + 1)-1));
     // TODO-QSP: jump 'pick_from_delimited_string_loop'
   }
   if (!(s as any).temp_randomVars) (s as any).temp_randomVars = {}; (s as any).temp_randomVars['result'] = qspFunc(s, 'random', 'pick_from_array', '$temp_pick_from_delimited_string_array');

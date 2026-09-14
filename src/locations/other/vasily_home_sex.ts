@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterVasilyHomeMomgg1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/smroom/momgg/ev1_1.jpg');
   // TODO-QSP: dynamic text: Oops, uncle Sergey has a woman over! Just as you're about to leave them alone, y...
-  scene.text(`Oops, uncle Sergey has a woman over! Just as you're about to leave them alone, you're shocked by the realization. "Wait a minute… ${((s as any).npc_nickname ?? 0)?.['A29']}?!"`);
+  scene.text(`Oops, uncle Sergey has a woman over! Just as you're about to leave them alone, you're shocked by the realization. "Wait a minute… ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}?!"`);
   scene.text('Sergey\'s hands are roving over your mother\'s body, fondling her breasts and caressing her ass while she moans like a wanton whore. Sergey runs his hands over her pussy, rubbing her clit until your mother tries to scoot away from him.');
   scene.text('He smirks at her and moves his head to her inner thighs. He\'s placing kisses all over the place, carefully avoiding her pussy.');
   scene.text('"Just lick me already, you bastard!" your mother groans, and moans happily as Sergey thrusts his tongue inside her. Your mother lets out a satisfied sigh and closes her eyes, thoroughly enjoying his mouth on her wet cunt.');
@@ -132,7 +132,7 @@ function enterVasilyHomeMomggbang(s: GameState, scene: SceneBuilder): void {
   scene.text('She\'s almost naked, while the men still have their clothes on. They pulled their cocks out through their zippers and your mother is sucking them both off greedily, taking them in her mouth in turns. She\'s doing her best to please them both, jerking off whoever she\'s not pleasing with her mouth.');
   scene.text('"Just like good old times, eh Misha?" Sergey grins. Misha laughs and nods. "Indeed… I don\'t think we\'ve ever had a better slut to share than our Natasha!"');
   // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> blushes, but keeps servicing them as if she didn't...
-  scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} blushes, but keeps servicing them as if she didn't hear them.`);
+  scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} blushes, but keeps servicing them as if she didn't hear them.`);
   qspCall(s, 'arousal', 'voyeur_sex', 5);
   qspCall(s, 'gopsex', 'masturb_gg');
   qspCall(s, 'stat', '');
@@ -217,7 +217,7 @@ function enterGangSexEv1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('When you enter the kitchen, you see Vasily and his friends sitting at the table. They\'ve clearly been drinking.');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, how nice of you to join us! We were just talking about you,"...
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}, how nice of you to join us! We were just talking about you," Vitek grins as he pulls you onto the table. The other boys immediately surround you, and the three of them begin to paw at your clothes.`);
+  scene.text(`"${((s as any).pcs_nickname || '')}, how nice of you to join us! We were just talking about you," Vitek grins as he pulls you onto the table. The other boys immediately surround you, and the three of them begin to paw at your clothes.`);
   scene.text('"Guys, what are you doing!?" you protest as you weakly try to get away from them. They\'re too strong though, and your struggling just encourages them.');
   // TODO-QSP: end & !! --- gang_sex_ev1 ---
   scene.actions([
@@ -228,7 +228,7 @@ function enterGangSexEv1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: You stop protesting when Vitek firmly grabs you by the hair as '+func('gopsex', ...
     scene.text('You stop protesting when Vitek firmly grabs you by the hair as \'+func(\'gopsex\', \'hide\', \'Shulga_var_name\')+\' slides his hand underneath your clothes, attempting to thrust a finger inside your pussy.');
     // TODO-QSP: dynamic text: "Stop squeezing your legs together, <<$pcs_nickname>>," Dan grins as he keeps tu...
-    scene.text(`"Stop squeezing your legs together, ${((s as any).pcs_nickname ?? 0)}," Dan grins as he keeps tugging at your top. "It's a bit late for you to start being a prude now. We all know what you've been up to."`);
+    scene.text(`"Stop squeezing your legs together, ${((s as any).pcs_nickname || '')}," Dan grins as he keeps tugging at your top. "It's a bit late for you to start being a prude now. We all know what you've been up to."`);
     scene.text('When you spread your legs a little, Vasily immediately snakes his finger inside your pussy and confirms their suspicions. "She\'s dripping. I knew it!"');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -237,7 +237,7 @@ function enterGangSexEv1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('The guys force you to squat and surround you. They all pull their cocks out of their pants, and Dan slaps his cock against your cheek impatiently.');
     // TODO-QSP: dynamic text: When you don't open your mouth, the boys grow impatient. "<<$pcs_nickname>>, dro...
-    scene.text(`When you don't open your mouth, the boys grow impatient. "${((s as any).pcs_nickname ?? 0)}, drop the act, seriously!" Dan commands. "You know what we want from you! Don't worry, we won't tell anyone…"`);
+    scene.text(`When you don't open your mouth, the boys grow impatient. "${((s as any).pcs_nickname || '')}, drop the act, seriously!" Dan commands. "You know what we want from you! Don't worry, we won't tell anyone…"`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/event/gang4.jpg');
@@ -275,7 +275,7 @@ function enterGangSexEv1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/kuh/event/gang7.jpg');
     scene.text('"Alright guys, let\'s change holes. Vasily needs one too," Vitek grins as he picks you up like a rag doll.');
     // TODO-QSP: dynamic text: When he sees the concerned look on your face, he smirks. "Do the math, <<$pcs_ni...
-    scene.text(`When he sees the concerned look on your face, he smirks. "Do the math, ${((s as any).pcs_nickname ?? 0)}. There are three guys here, and you have three holes… Did you expect one of us to just jerk off the whole time? Not gonna happen. Let's take her to the couch, guys."`);
+    scene.text(`When he sees the concerned look on your face, he smirks. "Do the math, ${((s as any).pcs_nickname || '')}. There are three guys here, and you have three holes… Did you expect one of us to just jerk off the whole time? Not gonna happen. Let's take her to the couch, guys."`);
     scene.text('Vitek carries you to the couch in his arms as if you weigh nothing and positions you over his cock before he lowers you. The other guys then join in, Dan sliding his cock into your already warmed up asshole while Vasily takes your mouth again.');
     scene.text('For the next twenty minutes, the guys take turns fucking all of your holes, swapping every now and then.');
     // TODO-QSP: gs 'arousal', 'vaginal', 3, $npcID[3], 'gangbang'
@@ -304,11 +304,11 @@ function enterGangSexEv1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('When the guys are getting close, Dan suggests they all stand around you and shoot their loads over your face. The guys happily agree and move in front of you, all pointing their cocks at your face.');
     // TODO-QSP: dynamic text: "What are you waiting for, <<$pcs_nickname>>? Finish us off!" Dan impatiently de...
-    scene.text(`"What are you waiting for, ${((s as any).pcs_nickname ?? 0)}? Finish us off!" Dan impatiently demands.`);
+    scene.text(`"What are you waiting for, ${((s as any).pcs_nickname || '')}? Finish us off!" Dan impatiently demands.`);
     scene.text('You bite your lip and begin to jerk two of them off with your hands while sucking on the third. It doesn\'t take long for the first jets of cum to fly through the air; Vasily shoots his hot load all over your face, groaning loudly.');
     scene.text('Then Dan\'s cock begins to pulse, and you feel his load being squirted into your mouth. You swallow it obediently and immediately turn your head to Vitek, who shoots his sperm all over your face and breasts.');
     // TODO-QSP: dynamic text: Dan grins at your cum covered face. "That wasn't so bad was it, <<$pcs_nickname>...
-    scene.text(`Dan grins at your cum covered face. "That wasn't so bad was it, ${((s as any).pcs_nickname ?? 0)}? Next time, how about you drop the good girl charade and just let us fuck you when we want? You know you love it as much as we do!"`);
+    scene.text(`Dan grins at your cum covered face. "That wasn't so bad was it, ${((s as any).pcs_nickname || '')}? Next time, how about you drop the good girl charade and just let us fuck you when we want? You know you love it as much as we do!"`);
     // TODO-QSP: gs 'dinsex', 'after_anal', 'boy', $boydesc[2]
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -375,7 +375,7 @@ function enterSoniaLesBathroom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'cuni', 5, 'lesbian');
     qspCall(s, 'arousal', 'vaginal_finger', (-5), 'lesbian');
     // TODO-QSP: dynamic text: Sonia grins at you. "Did you like my tongue on your pussy, <<$pcs_nickname>>?" s...
-    scene.text(`Sonia grins at you. "Did you like my tongue on your pussy, ${((s as any).pcs_nickname ?? 0)}?" she asks playfully.`);
+    scene.text(`Sonia grins at you. "Did you like my tongue on your pussy, ${((s as any).pcs_nickname || '')}?" she asks playfully.`);
     scene.text('"Absolutely!" you nod. "Come on, let me do the same for you! I want to taste you too!"');
     scene.text('"I can\'t right now, my mother is waiting for me at home," Sonia says wistfully. "Maybe next time?"');
     scene.text('Sonia kisses you again, and you taste yourself on her lips.');
@@ -478,12 +478,12 @@ function enterVasily_3someSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/vanna/gr/ev1_1_\'+rand(1, 5)+\'.jpg');
   scene.text('"Sure, I bet Vasily would love having an extra girl around when he fucks me!" she grins. "Come on!"');
   // TODO-QSP: dynamic text: You follow her into his room, and she was right; Vasily loves the idea! Sonia ea...
-  scene.text(`You follow her into his room, and she was right; Vasily loves the idea! Sonia eagerly begins to suck his cock and then offers it to you after a while. "Come on, ${((s as any).pcs_nickname ?? 0)}! Get to work!"`);
+  scene.text(`You follow her into his room, and she was right; Vasily loves the idea! Sonia eagerly begins to suck his cock and then offers it to you after a while. "Come on, ${((s as any).pcs_nickname || '')}! Get to work!"`);
   scene.text('Sonia notices your hesitance and puts her hand behind your head, gently but firmly guiding it to his cock. "Go on, you\'ll love it! I\'ll help!"');
   scene.text('You lick the shaft first and then take the head of his cock in your mouth. Sonia gently strokes your hair, whispering encouraging words into your ear while you try to take more and more of his length inside your mouth. From time to time, she assists you quite actively, sucking the head of his cock while you lick his balls or licking one side of the shaft while you lick the other. At one point, you\'re even trying to kiss one another with Vasily\'s cock between your mouths!');
   scene.text('You manage to take most of him in, but you have to pull away before your gag reflex takes over. Sonia and Vasily both smile at you proudly, that was great!');
   // TODO-QSP: dynamic text: "Wow, <<$pcs_nickname>>," Sonia says with some admiration in her voice. "I thoug...
-  scene.text(`"Wow, ${((s as any).pcs_nickname ?? 0)}," Sonia says with some admiration in her voice. "I thought I was good with my mouth, but you sure look like you could teach me a thing or two!"`);
+  scene.text(`"Wow, ${((s as any).pcs_nickname || '')}," Sonia says with some admiration in her voice. "I thought I was good with my mouth, but you sure look like you could teach me a thing or two!"`);
   qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID ?? 0), 'sub', 'deepthroat', 'group');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -523,7 +523,7 @@ function enterVasily_3someSex(s: GameState, scene: SceneBuilder): void {
     scene.text('When Vasily is close, he stops fucking Sonia and orders both of you to get on your knees before him. Vasily readily puts his cock into Sonia\'s mouth and roars loudly as he drops his hot load of sperm onto her tongue.');
     scene.text('Sonia swallows some of it, while you lick the sperm that she didn\'t manage to swallow from Vasily\'s cock and balls after he pulls out of her mouth.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you horny minx!" Sonia exclaims. "I didn't know you were suc...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, you horny minx!" Sonia exclaims. "I didn't know you were such a cum slut!"`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, you horny minx!" Sonia exclaims. "I didn't know you were such a cum slut!"`);
     scene.text('You take Vasily\'s cock in your hand and gently rub it, trying to milk the last bits of sperm out of him. Sonia kisses you greedily, and you taste Vasily\'s sperm on her tongue when she does. When she breaks off the kiss, you lick her cheek. "You had a little something on your face there," you wink at her.');
     qspCall(s, 'cum_call', 'mouth', ((s as any).npcID ?? 0), 1, '', '', 7);
     qspCall(s, 'arousal', 'end');
@@ -719,7 +719,7 @@ function enterGangSexRoomEv1_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('The boys look on with anticipation as you drink deeply from the bottle.');
     // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>, we didn't expect you to sit there and down the entir...
-    scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)}, we didn't expect you to sit there and down the entire bottle!" Vasily complains.`);
+    scene.text(`"Come on ${((s as any).pcs_nickname || '')}, we didn't expect you to sit there and down the entire bottle!" Vasily complains.`);
     scene.text('You answer with a loud belch, and continue to drink.');
     scene.actions([
       { label: 'Get well and truly fucked', handler: (st: GameState) => {
@@ -760,9 +760,9 @@ function enterGangSexRoomEv1_2(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'arousal', 'vaginal', -10, $npcID[2], 'group', 'gangbang'
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: Eventually, Dan decides to take the initiative, or rather take your head in his ...
-    scene.text(`Eventually, Dan decides to take the initiative, or rather take your head in his hands. He forces his cock into the side of your mouth, stretching it to it's limits, before he sinks halfway down your throat and slowly pulls back out. He orders you to stick out your tongue and begins to slap his rock-hard cock against your face. "${((s as any).pcs_nickname ?? 0)}, you've become such a good little cocksucker. It wasn't so long ago that you couldn't even give a decent hand-job. I think you might even deserve a reward," he says with a groan of appreciation.`);
+    scene.text(`Eventually, Dan decides to take the initiative, or rather take your head in his hands. He forces his cock into the side of your mouth, stretching it to it's limits, before he sinks halfway down your throat and slowly pulls back out. He orders you to stick out your tongue and begins to slap his rock-hard cock against your face. "${((s as any).pcs_nickname || '')}, you've become such a good little cocksucker. It wasn't so long ago that you couldn't even give a decent hand-job. I think you might even deserve a reward," he says with a groan of appreciation.`);
     // TODO-QSP: dynamic text: Before you can respond, Dan rewards you by violently shoving his cock down your ...
-    scene.text(`Before you can respond, Dan rewards you by violently shoving his cock down your throat until your ${((s as any).pc_desc ?? 0)?.['lips']} lips are wrapped around the base.`);
+    scene.text(`Before you can respond, Dan rewards you by violently shoving his cock down your throat until your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips are wrapped around the base.`);
     scene.actions([
       { label: 'Work it', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/sex/1_15.jpg');
@@ -905,7 +905,7 @@ function enterDrunkenSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/sex/cum\'+rand(1, 9)+\'.jpg');
     (s as any).shulga_whore = ((s as any).daystart ?? 0) + 7;
     // TODO-QSP: dynamic text: Head spinning, you find yourself back on your knees, and quickly realize the boy...
-    scene.text(`Head spinning, you find yourself back on your knees, and quickly realize the boys aren't finished. Hot cum and laughter rains down on you as you make a final effort to finish what you started. You open wide and smile up at them, seeking approval. After you've milked the last drop from each of them, Dan pats you on the head and says "What a good little slut you are, ${((s as any).pcs_nickname ?? 0)}. From now on, you get to be our personal whore. You're going to have so much fun with us. Now, what do you say? Or we will tell the whole school what a whore you are?"`);
+    scene.text(`Head spinning, you find yourself back on your knees, and quickly realize the boys aren't finished. Hot cum and laughter rains down on you as you make a final effort to finish what you started. You open wide and smile up at them, seeking approval. After you've milked the last drop from each of them, Dan pats you on the head and says "What a good little slut you are, ${((s as any).pcs_nickname || '')}. From now on, you get to be our personal whore. You're going to have so much fun with us. Now, what do you say? Or we will tell the whole school what a whore you are?"`);
     scene.text('You gaze up at him and whisper "Thank you."');
     scene.text('Dan continues. "For your first official duty, you will lick me clean."');
     scene.text('With some hesitation and maybe a little excitement, you bend down and lick Dan\'s cock clean, occasionally moving to gently suckle on the tip.');
@@ -1007,13 +1007,13 @@ function enterViewPornotvEvgr(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'bj', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Flee the scene [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Flee the scene', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Flee the scene [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Flee the scene', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['vasilyhome', 'hallway'] },
         ]);
@@ -1036,19 +1036,19 @@ function enterViewPornotvEvgr(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/tv_ev/sex_group/bj\'+rand(1, 13)+\'.jpg');
     scene.text('When you nod, the boys start laughing, get their dicks out and gather around you as you roll your eyes and smile. "One at a time, boys. I would tell you to settle down, but I think we\'re well past that."');
     // TODO-QSP: dynamic text: You decide to reward Vitek for his patience by slowly licking him from base to t...
-    scene.text(`You decide to reward Vitek for his patience by slowly licking him from base to tip before wrapping your ${((s as any).pc_desc ?? 0)?.['lips']} lips around him. You then slowly suck, savoring the taste of his hard cock.`);
+    scene.text(`You decide to reward Vitek for his patience by slowly licking him from base to tip before wrapping your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around him. You then slowly suck, savoring the taste of his hard cock.`);
     scene.text('Eventually, Dan and Vasily get their turns too. While dutifully sucking away at one boy, you work your hands on whoever is waiting, doing your best to make sure nobody feels left out.');
     scene.text('The guys then start talking to each other about who gets to fuck you first.');
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Tempt them to blow their loads on your face instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tempt them to blow their loads on your face instead', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Tempt them to blow their loads on your face instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Tempt them to blow their loads on your face instead', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
@@ -1079,11 +1079,11 @@ function enterViewPornotvEvgr(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/sex/kaif\'+rand(1, 7)+\'.jpg');
     // TODO-QSP: dynamic text: The boys gather around to praise you for being such a dutiful little whore. "I s...
-    scene.text(`The boys gather around to praise you for being such a dutiful little whore. "I swear your pussy is like a fucking drug, ${((s as any).pcs_nickname ?? 0)}," Vasily says. "I just can't get enough of it!"`);
+    scene.text(`The boys gather around to praise you for being such a dutiful little whore. "I swear your pussy is like a fucking drug, ${((s as any).pcs_nickname || '')}," Vasily says. "I just can't get enough of it!"`);
     // TODO-QSP: dynamic text: Dan chimes in. "Girl, those <<$pc_desc['lips']>> lips of yours are the best thin...
-    scene.text(`Dan chimes in. "Girl, those ${((s as any).pc_desc ?? 0)?.['lips']} lips of yours are the best thing I've ever had wrapped around my dick!"`);
+    scene.text(`Dan chimes in. "Girl, those ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips of yours are the best thing I've ever had wrapped around my dick!"`);
     // TODO-QSP: dynamic text: Vitek comes over and sweetly kisses you on the forehead. "You're something speci...
-    scene.text(`Vitek comes over and sweetly kisses you on the forehead. "You're something special, kitten. ${((s as any).titsize ?? 0)} breasts and ${((s as any).pcs_haircolor ?? 0)} hair have always been my thing. Those combined with the rest of your charms, and well, you're the total package!"`);
+    scene.text(`Vitek comes over and sweetly kisses you on the forehead. "You're something special, kitten. ${((s as any).titsize || '')} breasts and ${((s as any).pcs_haircolor || '')} hair have always been my thing. Those combined with the rest of your charms, and well, you're the total package!"`);
     scene.text('While receiving all this unexpected praise, you play with your still quivering pussy. The thought of your sweet boys taking time just to tell you what a good girl you are is so hot.');
     scene.text('You finally speak up and sheepishly say "Guys can we, I mean, can you please finish?"');
     scene.actions([
@@ -1145,7 +1145,7 @@ function enterViewPornotvVasily(s: GameState, scene: SceneBuilder): void {
     } else {
       if (qspFunc(s, 'cardgame_durak', 'get_mod_fame') < 200) {
         // TODO-QSP: dynamic text: Vasily opens his pants and starts stroking his cock right in front of you. "<<$p...
-        scene.text(`Vasily opens his pants and starts stroking his cock right in front of you. "${((s as any).pcs_nickname ?? 0)}, would you please lend me a hand?" he asks.`);
+        scene.text(`Vasily opens his pants and starts stroking his cock right in front of you. "${((s as any).pcs_nickname || '')}, would you please lend me a hand?" he asks.`);
         qspCall(s, 'willpower', 'hj', 'resist', 'easy');
       } else {
         if (qspFunc(s, 'cardgame_durak', 'get_mod_fame') < 300) {
@@ -1164,13 +1164,13 @@ function enterViewPornotvVasily(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Chicken out [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Chicken out', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Chicken out [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Chicken out', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pod_ezd', 'etaj_3'] },
         ]);
@@ -1185,7 +1185,7 @@ function enterViewPornotvVasily(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/tv/bj\'+rand(1, 11)+\'.jpg');
     // TODO-QSP: dynamic text: Vasily smiles down at you as you tentatively part your <<$pc_desc['lips']>> lips...
-    scene.text(`Vasily smiles down at you as you tentatively part your ${((s as any).pc_desc ?? 0)?.['lips']} lips and gently suckle on the head of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock. The salty taste of his pre-cum sends a little chill through your body. Remembering how the girls on the porn channel do it, you take as much of him in your mouth as you can while still trying to keep a good pace. You must have done a good job, because it isn't long before Vasily stops you. He grabs hold of his cock and jerks it furiously while pointing right at your face.`);
+    scene.text(`Vasily smiles down at you as you tentatively part your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips and gently suckle on the head of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock. The salty taste of his pre-cum sends a little chill through your body. Remembering how the girls on the porn channel do it, you take as much of him in your mouth as you can while still trying to keep a good pace. You must have done a good job, because it isn't long before Vasily stops you. He grabs hold of his cock and jerks it furiously while pointing right at your face.`);
     scene.actions([
       { label: 'Open your mouth', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -1212,7 +1212,7 @@ function enterViewPornotvVasily(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/tv/bj\'+rand(1, 11)+\'.jpg');
     // TODO-QSP: dynamic text: Vasily imperiously looks down as you work your tongue and <<$pc_desc['lips']>> l...
-    scene.text(`Vasily imperiously looks down as you work your tongue and ${((s as any).pc_desc ?? 0)?.['lips']} lips around his shaft and head. When he's rock-hard, you swallow him fully, and actively begin to suck. You work a hand inside your panties, and manage to stroke your pussy while never breaking the rhythm of your head bobbing on his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock.`);
+    scene.text(`Vasily imperiously looks down as you work your tongue and ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around his shaft and head. When he's rock-hard, you swallow him fully, and actively begin to suck. You work a hand inside your panties, and manage to stroke your pussy while never breaking the rhythm of your head bobbing on his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock.`);
     scene.actions([
       { label: 'Doggystyle', handler: (st: GameState) => {
     qspCall(s, 'gopsex', 'gg_devst_deflor');
@@ -1221,9 +1221,9 @@ function enterViewPornotvVasily(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/tv/sex\'+rand(1, 10)+\'.jpg');
     scene.text('Laughing, you raise your backside and wiggle it with anticipation.');
     // TODO-QSP: dynamic text: "Doggystyle suits you, <<$pcs_nickname>>. You're already begging for it!" Vasily...
-    scene.text(`"Doggystyle suits you, ${((s as any).pcs_nickname ?? 0)}. You're already begging for it!" Vasily chuckles.`);
+    scene.text(`"Doggystyle suits you, ${((s as any).pcs_nickname || '')}. You're already begging for it!" Vasily chuckles.`);
     // TODO-QSP: dynamic text: You give him a moan of affirmation as he easily sinks his <<dick>>cm <<$dick_gir...
-    scene.text(`You give him a moan of affirmation as he easily sinks his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock into your wet pussy. Roughly thrusting into you from behind, Vasily leans forward and grabs a handful of your hair. He forces your head back with a light, but insistent pull before he leans in close to your ear and whispers "Giddy-up." He then yanks your hair hard.`);
+    scene.text(`You give him a moan of affirmation as he easily sinks his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into your wet pussy. Roughly thrusting into you from behind, Vasily leans forward and grabs a handful of your hair. He forces your head back with a light, but insistent pull before he leans in close to your ear and whispers "Giddy-up." He then yanks your hair hard.`);
     qspCall(s, 'gopsex', 'gg_sex_orgasm');
     scene.actions([
       { label: 'Whimper', handler: (st: GameState) => {
@@ -1251,7 +1251,7 @@ function enterViewPornotvVasily(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/tv/hj\'+rand(1, 7)+\'.jpg');
     // TODO-QSP: dynamic text: Vasily guides your hand around the shaft of his <<dick>>cm <<$dick_girth>> penis...
-    scene.text(`Vasily guides your hand around the shaft of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} penis, and slowly starts moving your hand up and down his length. When he removes his hand, your hand continues to tentatively pump. Vasily voices a small grunt of encouragement, and you pick up the pace. He slowly relaxes as you build a steady rhythm.`);
+    scene.text(`Vasily guides your hand around the shaft of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} penis, and slowly starts moving your hand up and down his length. When he removes his hand, your hand continues to tentatively pump. Vasily voices a small grunt of encouragement, and you pick up the pace. He slowly relaxes as you build a steady rhythm.`);
     scene.text('He lets out a sharp grunt, and your hand is covered in sticky warmth. Without a word, he quickly tucks himself back in his pants and goes back to watching TV. Before looking for a tissue, you examine the white mess on your hand. Curious, you give it a lick with the tip of your tongue.');
     scene.actions([
       { label: 'Stand', goto: ['vasilyhome', 'livingroom'] },
@@ -1272,12 +1272,12 @@ function enterVasilyLernSexYes(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'cuni', 5);
   qspCall(s, 'fame', 'pav', 'sex', 3);
   qspCall(s, 'stat', '');
-  scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset ?? 0)}_2.jpg`);
+  scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset || '')}_2.jpg`);
   scene.text('You whimper softy and whisper "Please Vasily, please teach me."');
   // TODO-QSP: dynamic text: He smiles at you. "Okay <<$pcs_nickname>>, open your mouth." He pulls out his di...
-  scene.text(`He smiles at you. "Okay ${((s as any).pcs_nickname ?? 0)}, open your mouth." He pulls out his dick and begins stroking it.`);
+  scene.text(`He smiles at you. "Okay ${((s as any).pcs_nickname || '')}, open your mouth." He pulls out his dick and begins stroking it.`);
   // TODO-QSP: dynamic text: His first lesson involves oral sex. You don't know if you're a straight A studen...
-  scene.text(`His first lesson involves oral sex. You don't know if you're a straight A student, but from the way he groans in pleasure as you work your mouth on his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} penis, you think you earned a passing grade.`);
+  scene.text(`His first lesson involves oral sex. You don't know if you're a straight A student, but from the way he groans in pleasure as you work your mouth on his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} penis, you think you earned a passing grade.`);
   scene.text('When he eventually lays you on your back and gently licks at your labia, you no longer know what to think. Eventually, he parts your lips with one hand as his tongue finds your clit. It\'s almost too much. You let out a desperate cry and buck you hips, burying his face deep between your thighs.');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1305,16 +1305,16 @@ function enterVasilyLernSexYes(s: GameState, scene: SceneBuilder): void {
     if (((s as any).lern_imgset ?? 0) === 1  ||  ((s as any).lern_imgset ?? 0) === 2  ||  ((s as any).lern_imgset ?? 0) === 4  ||  ((s as any).lern_imgset ?? 0) === 5) {
       qspCall(s, 'gopsex', 'gg_devst_deflor');
       qspCall(s, 'arousal', 'vaginal', 10);
-      scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset ?? 0)}_3.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset || '')}_3.jpg`);
       // TODO-QSP: dynamic text: Once your pussy is good and wet, he stops eating you out and slips his <<dick>>c...
-      scene.text(`Once your pussy is good and wet, he stops eating you out and slips his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick into your warm wet hole. "This is pussy 101."`);
+      scene.text(`Once your pussy is good and wet, he stops eating you out and slips his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick into your warm wet hole. "This is pussy 101."`);
       scene.text('He\'s slow and gentle at first, letting you get wetter and stretch to accommodate him easily. Once he\'s sliding in and out of you easily, he keeps putting you in new positions from which he can pound you.');
       scene.text('Many minutes go by before he stops and pulls out of you. You\'re not sure how long it\'s been since you lost track of anything but Vasily\'s cock stuffed inside you.');
     } else {
       qspCall(s, 'arousal', 'anal', 10);
-      scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset ?? 0)}_3.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset || '')}_3.jpg`);
       // TODO-QSP: dynamic text: He rubs his fingers over your anus before he slides a finger into your ass and f...
-      scene.text(`He rubs his fingers over your anus before he slides a finger into your ass and fucks you with it, soon adding a second finger. You moan in pleasure as he fingers your ass. When he pulls out his fingers, you immediately feel the head of his cock rubbing against your asshole. With a slight grunt, he forces his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock into your ass. You wince and cry out a little in a mix of pleasure and pain as he says "I call this one, 'how to be a good little buttslut'."`);
+      scene.text(`He rubs his fingers over your anus before he slides a finger into your ass and fucks you with it, soon adding a second finger. You moan in pleasure as he fingers your ass. When he pulls out his fingers, you immediately feel the head of his cock rubbing against your asshole. With a slight grunt, he forces his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into your ass. You wince and cry out a little in a mix of pleasure and pain as he says "I call this one, 'how to be a good little buttslut'."`);
       scene.text('He starts slowly fucking your ass, giving you time to adjust to the feeling. The pain soon fades and is replaced solely by pleasure.');
     }
     qspCall(s, 'stat', '');
@@ -1322,16 +1322,16 @@ function enterVasilyLernSexYes(s: GameState, scene: SceneBuilder): void {
       { label: 'Further', handler: (st: GameState) => {
     if (((s as any).lern_imgset ?? 0) === 1  ||  ((s as any).lern_imgset ?? 0) === 5) {
       qspCall(s, 'arousal', 'vaginal', 5);
-      scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset ?? 0)}_4.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset || '')}_4.jpg`);
       // TODO-QSP: dynamic text: He lifts you up and manhandles you into a new position. Just as you're getting s...
-      scene.text(`He lifts you up and manhandles you into a new position. Just as you're getting settled in your new position, he plunges his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick back into your pussy and begins to furiously fuck you. "I call this one, 'how to rip a cunt up'."`);
+      scene.text(`He lifts you up and manhandles you into a new position. Just as you're getting settled in your new position, he plunges his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick back into your pussy and begins to furiously fuck you. "I call this one, 'how to rip a cunt up'."`);
       scene.text('The slow and gentle sex is now replaced by hard brutal fucking as he pounds into you, seemingly uncaring if you\'re still enjoying yourself or not.');
       scene.text('It doesn\'t take too long until your body spasms as you orgasm hard. Your breath coming in short gasps, you think you might even have been screaming at one point as you come down off your orgasmic high. He starts grunting hard himself now and you can tell he won\'t last much longer either.');
     } else {
       qspCall(s, 'arousal', 'anal', 5);
-      scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset ?? 0)}_4.jpg`);
+      scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset || '')}_4.jpg`);
       // TODO-QSP: dynamic text: He lifts you up and manhandles you into a new position. Just as you're getting s...
-      scene.text(`He lifts you up and manhandles you into a new position. Just as you're getting settled in your new position, he plunges his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick into your ass and begins to furiously fuck you. "I call this one, 'how to be an anal whore'."`);
+      scene.text(`He lifts you up and manhandles you into a new position. Just as you're getting settled in your new position, he plunges his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick into your ass and begins to furiously fuck you. "I call this one, 'how to be an anal whore'."`);
       scene.text('The slow and gentle sex is now replaced by hard brutal fucking as he pounds into you, seemingly uncaring if you\'re still enjoying yourself or not.');
       scene.text('Despite the pain of the ferocious anal fucking you\'re getting, it still doesn\'t take too long until your body spasms as you orgasm hard. Your breath coming in short gasps, you think you might even have been screaming at one point as you come down off your orgasmic high. He starts grunting hard himself now and you can tell he won\'t last much longer either.');
     }
@@ -1344,7 +1344,7 @@ function enterVasilyLernSexYes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'face', ((s as any).boy ?? 0), 1);
     qspCall(s, 'cum_call', 'mouth', ((s as any).boy ?? 0), 1);
     qspCall(s, 'arousal', 'end');
-    scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset ?? 0)}_5.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset || '')}_5.jpg`);
     scene.text('His grunts and breathing getting louder, he suddenly pulls out of you and grabs you by the hair, pulling you round so your face is in front of his cock.');
     scene.text('Hot spurts of cum start landing on your face, in your mouth and even in your hair. With a final spasm from his body and a moan, he slows his breath. "That one is called \'how to be a good little cum slut\'. Time for clean up." Before you can even consider what he has planned, he forces his dick back in your mouth and makes you suck him clean.');
     qspCall(s, 'dinsex', 'after_anal', 'boy', ((s as any).boydesc ?? 0));
@@ -1370,7 +1370,7 @@ function enterVasilyVodkaBj(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/vodka/vodkabj1.jpg');
   scene.text('You\'re about to what he\'s doing, but you never get to finish what you were about to say. Almost as soon as you open your mouth, Vasily sticks his dick in it. In your drunken state, you start to instinctively suck it.');
   // TODO-QSP: dynamic text: He moans. "That's right slut, suck my cock." You don't like how he's talking to ...
-  scene.text(`He moans. "That's right slut, suck my cock." You don't like how he's talking to you and start to pull away, but he grabs you by the hair so you can't move and shoves his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick all the way down your throat until you start choking.`);
+  scene.text(`He moans. "That's right slut, suck my cock." You don't like how he's talking to you and start to pull away, but he grabs you by the hair so you can't move and shoves his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick all the way down your throat until you start choking.`);
   qspCall(s, 'arousal', 'bj', 2, 'sub', 'rough', 'deepthroat');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1473,7 +1473,7 @@ function enterVodkaRevenge1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'D<<strapNumber>>');
   scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/revenge/vodka12.jpg');
   // TODO-QSP: dynamic text: You're having trouble going as deep as you want, so you change position. You rol...
-  scene.text(`You're having trouble going as deep as you want, so you change position. You roll his legs off to the side and move your legs off the couch until you can more easily thrust your hips forward. You encourage him to keep drinking and he does just that, taking swigs of vodka as you ram your ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dildo balls deep up his ass and start to really fucking him.`);
+  scene.text(`You're having trouble going as deep as you want, so you change position. You roll his legs off to the side and move your legs off the couch until you can more easily thrust your hips forward. You encourage him to keep drinking and he does just that, taking swigs of vodka as you ram your ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dildo balls deep up his ass and start to really fucking him.`);
   qspCall(s, 'arousal', 'anal_strap_give', 3, 'dom');
   qspCall(s, 'stat', '');
   // TODO-QSP: end

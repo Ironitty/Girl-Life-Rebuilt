@@ -32,7 +32,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Enter changing room (strip to underwear)', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/fashionista/underwear.jpg');
     qspCall(s, 'clothing', 'strip');
-    qspCall(s, 'shop_moncheri', 'changingroom', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterChangingroom(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -60,7 +60,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
     qspCall(s, 'clothing', 'strip');
     qspCall(s, 'underwear', 'strip');
-    qspCall(s, 'shop_moncheri', 'changingroom', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterChangingroom(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();

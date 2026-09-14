@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterScheduler(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'booty_call', 'booty_call_scheduler');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBootyCallScheduler(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -22,18 +22,18 @@ function enterBootyCallScheduler(s: GameState, scene: SceneBuilder): void {
   if (((s as any).temp_bc_i ?? 0) < Object.keys((s as any).lover ?? {}).length) {
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'fuckbuddy') {
       qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).temp_bc_id ?? 0));
-      qspCall(s, 'booty_call', 'bc_npc_stat_update', ((s as any).temp_bc_id ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_bc_id ?? 0)]; enterBcNpcStatUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).daystart ?? 0) > ((s as any).npc_no_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)]  &&  (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === ((s as any).daystart ?? 0)  ||  (Math.floor(Math.random() * 300) + 0) < (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] + 20 * ((s as any).npc_sexdrive ?? 0)?.[String((s as any).temp_bc_id ?? 0)]))) {
-        qspCall(s, 'booty_call', 'schedule_sms', ((s as any).temp_bc_id ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_bc_id ?? 0)]; enterScheduleSms(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === 'sugar_daddy') {
         qspCall(s, 'telefon', 'ClearInSMSSchedule', ((s as any).temp_bc_id ?? 0));
-        qspCall(s, 'booty_call', 'bc_npc_stat_update', ((s as any).temp_bc_id ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_bc_id ?? 0)]; enterBcNpcStatUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (((s as any).daystart ?? 0) > ((s as any).npc_no_booty_call ?? 0)?.[String((s as any).temp_bc_id ?? 0)]  &&  (((s as any).npc_booty_call_date ?? 0)?.[String((s as any).temp_bc_id ?? 0)] === ((s as any).daystart ?? 0)  ||  (Math.floor(Math.random() * 300) + 0) < (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] + 20 * ((s as any).npc_sexdrive ?? 0)?.[String((s as any).temp_bc_id ?? 0)]))) {
           if (((s as any).daystart ?? 0) >= (((s as any).npc_sugar_daddy_timer ?? 0)?.[String((s as any).temp_bc_id ?? 0)] - (((s as any).npc_rel ?? 0)?.[String((s as any).temp_bc_id ?? 0)] - 40) / 6)) {
             if (!(s as any).sugar_daddy_call) (s as any).sugar_daddy_call = {}; (s as any).sugar_daddy_call[String((s as any).temp_bc_id ?? 0)] = 1;
-            qspCall(s, 'booty_call', 'schedule_sms', ((s as any).temp_bc_id ?? 0));
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_bc_id ?? 0)]; enterScheduleSms(s, scene); (s as any).locArgs = __savedLocArgs; }
           }
         }
       }
@@ -258,7 +258,7 @@ function enterText1(s: GameState, scene: SceneBuilder): void {
         }
       }
     }
-    qspCall(s, 'booty_call', 'text2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterText2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Me too', handler: (st: GameState) => {
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'i was thinking about you today')
@@ -315,11 +315,11 @@ function enterText2(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).npc_meethour) (s as any).npc_meethour = {}; (s as any).npc_meethour[String((s as any).boy ?? 0)] = 20;
     }
     // TODO-QSP: dynamic text: <b><font color="pink">maybe around <<npc_meethour[$boy]>>:00?</font></b>
-    scene.text(`<b><font color="pink">maybe around ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)]}:00?</font></b>`);
+    scene.text(`<b><font color="pink">maybe around ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:00?</font></b>`);
     // TODO-QSP: dynamic text: "How about <<npc_meethour[$boy]>>:00?."
-    scene.text(`"How about ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)]}:00?."`);
+    scene.text(`"How about ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:00?."`);
     // TODO-QSP: dynamic text: <<$call4Date["CallerName"]>>, "Okay <<$call4Date["SvetaName"]>>, see you at <<np...
-    scene.text(`${((s as any).call4Date ?? 0)?.['CallerName']}, "Okay ${((s as any).call4Date ?? 0)?.['SvetaName']}, see you at ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)]}:00."`);
+    scene.text(`${((s as any).call4Date ?? 0)?.['CallerName'] ?? ''}, "Okay ${((s as any).call4Date ?? 0)?.['SvetaName'] ?? ''}, see you at ${((s as any).npc_meethour ?? 0)?.[String((s as any).boy ?? 0)] ?? ''}:00."`);
     scene.actions([
       { label: 'Put away your phone', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -364,14 +364,14 @@ function enterInviteYourself1(s: GameState, scene: SceneBuilder): void {
     scene.text('<b><font color="pink">this is a booty call</font></b>');
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'ill probably be free at ' + func('time', 'get_time_string', 19, 0)...
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'wanna come then?')
-    qspCall(s, 'booty_call', 'invite_yourself2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInviteYourself2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         { label: 'I wanna fuck', handler: (st: GameState) => {
     scene.text('<b><font color="pink">i wanna fuck</font></b>');
     scene.text('<b><font color="pink">when do you get off?</font></b>');
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'ill probably be free at ' + func('time', 'get_time_string', 19, 0)...
     // TODO-QSP: '  ' + $func('wrap', 'accent b', 'wanna come then?')
-    qspCall(s, 'booty_call', 'invite_yourself2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterInviteYourself2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {

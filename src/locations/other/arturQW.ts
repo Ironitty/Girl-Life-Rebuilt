@@ -14,7 +14,7 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you are the most beautiful girl I have ever laid eyes on and...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, you are the most beautiful girl I have ever laid eyes on and fully deserve my respect." Arthur says, bowing his head to you in an act of humility.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, you are the most beautiful girl I have ever laid eyes on and fully deserve my respect." Arthur says, bowing his head to you in an act of humility.`);
     scene.text('"Oh, thanks Arturik, that is very kind of you to say." You respond, blushing slightly at the compliment.');
     scene.text('"Why don\'t you work for me at my stall on the weekends? You do a good job and I will pay you enough to live like a queen!" Arthur offers, looking at you intently.');
     scene.actions([
@@ -31,13 +31,13 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -57,13 +57,13 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -81,13 +81,13 @@ function enterArturQW_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -108,7 +108,7 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/resident/arthur/artur.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you are my treasure! Because of you our profits have doubled...
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}, you are my treasure! Because of you our profits have doubled. I always said what we need is a sexy girl behind the counter, and I was right!" Arthur declares proudly.`);
+  scene.text(`"${((s as any).pcs_nickname || '')}, you are my treasure! Because of you our profits have doubled. I always said what we need is a sexy girl behind the counter, and I was right!" Arthur declares proudly.`);
   scene.text('"Thanks Arturik, but I\'m tired of working behind the counter. I think I need to find something else. I\'m sorry." You say regretfully, hoping he won\'t be upset with you.');
   scene.text('"What? Damn it! I thought you liked it. It is fine, it is fine, a girl like you should have a decent place to work."');
   scene.text('He appears to be thinking to himself before his eyes light up and he quickly adds. "Look, I fired my bookkeeper, the old hag. Now you can take over her job! You will enjoy it much more, I promise. You will receive twice the money and won\'t have to deal with asshole customers. Just come every day by 16.00, otherwise I will have to fire you, despite your fine ass." Arthur says.');
@@ -127,13 +127,13 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -153,13 +153,13 @@ function enterArturQW_2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');

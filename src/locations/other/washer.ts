@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetWasherActs(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'washer', 'set_wash_all_act');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetWashAllAct(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -25,13 +25,13 @@ function enterSetWashOtherAct(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'washer', 'check_total_cost');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckTotalCost(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).washer_total_wash_cost ?? 0) <= 100) {
     scene.text('You do not have any clothes that need washing currently,');
   } else {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).washer_total_wash_cost ?? 0)) === 0) {
       // TODO-QSP: dynamic text: You do not have enough money to wash all of your clothing. The total cost would ...
-      scene.text(`You do not have enough money to wash all of your clothing. The total cost would be ${qspFunc(s, 'money', 'string_price', ((s as any).washer_total_wash_cost ?? 0))}.`);
+      scene.text(`You do not have enough money to wash all of your clothing. The total cost would be ${qspFunc(s, 'money', 'string_price', ((s as any).washer_total_wash_cost || ''))}.`);
     } else {
       (s as any).temp_washer_cost = qspFunc(s, 'money', 'price', ((s as any).washer_total_wash_cost ?? 0));
       // TODO-QSP: dynamic "
@@ -41,8 +41,8 @@ function enterSetWashAllAct(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     // TODO-QSP: gs 'money', 'pay', <<washer_total_wash_cost>>
     // TODO-QSP: dynamic text: You wash all clothing for <<temp_washer_cost>> <b>₽</b>.
-    scene.text(`You wash all clothing for ${((s as any).temp_washer_cost ?? 0)} <b>₽</b>.`);
-    qspCall(s, 'washer', 'wash_all');
+    scene.text(`You wash all clothing for ${((s as any).temp_washer_cost || '')} <b>₽</b>.`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWashAll(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     dynamicGoto(st, 'loc', 'loc_arg');
@@ -90,13 +90,13 @@ function enterResizeAll(s: GameState, scene: SceneBuilder): void {
 function enterCheckTotalItems(s: GameState, scene: SceneBuilder): void {
   (s as any).washer_total_wash_count = 0;
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '';
-  qspCall(s, 'washer', 'clothing_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bras';
-  qspCall(s, 'washer', 'bras_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrasLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_panties';
-  qspCall(s, 'washer', 'panties_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPantiesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bodysuits';
-  qspCall(s, 'washer', 'bodysuits_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBodysuitsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -104,26 +104,26 @@ function enterCheckTotalItems(s: GameState, scene: SceneBuilder): void {
 function enterCheckTotalCost(s: GameState, scene: SceneBuilder): void {
   (s as any).washer_total_wash_cost = 100;
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '';
-  qspCall(s, 'washer', 'clothing_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bras';
-  qspCall(s, 'washer', 'bras_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrasLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_panties';
-  qspCall(s, 'washer', 'panties_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPantiesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bodysuits';
-  qspCall(s, 'washer', 'bodysuits_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBodysuitsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterWashAll(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '';
-  qspCall(s, 'washer', 'clothing_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClothingLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bras';
-  qspCall(s, 'washer', 'bras_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBrasLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_panties';
-  qspCall(s, 'washer', 'panties_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPantiesLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['array_postfix'] = '_bodysuits';
-  qspCall(s, 'washer', 'bodysuits_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBodysuitsLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.build();
@@ -136,7 +136,7 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
   }
   if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['j'] = 0;
   // TODO-QSP: :core_loop_outer
-  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['type'] = ((s as any).shop_display_types ?? 0)[((s as any).temp_washerVars ?? {})?.['j']] + ((s as any).temp_washerVars ?? {})?.['array_postfix'];
+  if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['type'] = ((s as any).shop_display_types ?? 0)[(((s as any).temp_washerVars ?? {})?.['j'] ?? 0)] + (((s as any).temp_washerVars ?? {})?.['array_postfix'] ?? 0);
   if (((s as any).temp_washerVars ?? 0)?.['type'] !== ((s as any).temp_washerVars ?? 0)?.['array_postfix']) {
     if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['total'] = 0;
     if (!(s as any).temp_washerVars) (s as any).temp_washerVars = {}; (s as any).temp_washerVars['number'] = 1;
@@ -157,7 +157,7 @@ function enterCoreLoop(s: GameState, scene: SceneBuilder): void {
 
 function enterClothingLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'clothing_view', 'init', 'add_types', 'all');
-  qspCall(s, 'washer', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -165,7 +165,7 @@ function enterClothingLoop(s: GameState, scene: SceneBuilder): void {
 
 function enterBrasLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'bra_view', 'init', 'add_types', 'all');
-  qspCall(s, 'washer', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -173,7 +173,7 @@ function enterBrasLoop(s: GameState, scene: SceneBuilder): void {
 
 function enterPantiesLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'panty_view', 'init', 'add_types', 'all');
-  qspCall(s, 'washer', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -181,7 +181,7 @@ function enterPantiesLoop(s: GameState, scene: SceneBuilder): void {
 
 function enterBodysuitsLoop(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'underwear_bodysuit_view', 'init', 'add_types', 'all');
-  qspCall(s, 'washer', 'core_loop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCoreLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();

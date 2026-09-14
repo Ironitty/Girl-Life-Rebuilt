@@ -19,13 +19,13 @@ function enter3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'drink', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse to drink', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse to drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -64,13 +64,13 @@ function enter4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'drink', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse to drink', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse to drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -109,13 +109,13 @@ function enter5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'drink', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse to drink', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse to drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -154,13 +154,13 @@ function enter6(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'drink', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse to drink', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse to drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse to drink', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -269,13 +269,13 @@ function enter7(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'drink', 'resist');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['pav_residential', ''] },
             ]);
@@ -342,13 +342,13 @@ function enter9(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'I have to go now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'I have to go now', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'I have to go now [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'I have to go now', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -410,7 +410,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     { label: 'wait', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/dimkahome/newyear/sex/pett2.jpg');
     // TODO-QSP: dynamic text: After he rubs your clit, you start moaning. You feel your pussy getting wet, and...
-    scene.text(`After he rubs your clit, you start moaning. You feel your pussy getting wet, and he can feel your wetness through your panties after several minutes of this. He gets up and pulls you around to the front of the couch, turning you to face the couch with your back to him. He'+ iif($pantyworntype ! 'none', ' pulls down your panties and ', ')+'pushes you down on your knees, bending you over till your body is resting on the couch. He slips his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock into your wet pussy and starts fucking you slow and gentle.`);
+    scene.text(`After he rubs your clit, you start moaning. You feel your pussy getting wet, and he can feel your wetness through your panties after several minutes of this. He gets up and pulls you around to the front of the couch, turning you to face the couch with your back to him. He'+ iif($pantyworntype ! 'none', ' pulls down your panties and ', ')+'pushes you down on your knees, bending you over till your body is resting on the couch. He slips his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock into your wet pussy and starts fucking you slow and gentle.`);
     qspCall(s, 'arousal', 'vaginal', 5);
     qspCall(s, 'arousal', 'foreplay', (-5));
     qspCall(s, 'stat', '');
@@ -434,7 +434,7 @@ function enterKiss(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['gangbang_count'] = ((s as any).stat['gangbang_count'] ?? 0) + (1);
     scene.img('images/shared/sex/group/gang23.jpg');
     // TODO-QSP: dynamic text: You wrap your lips around Gosha's <<dick1>>cm <<$dick_girth1>> dick and start su...
-    scene.text(`You wrap your lips around Gosha's ${((s as any).dick1 ?? 0)}cm ${((s as any).dick_girth1 ?? 0)} dick and start sucking it.`);
+    scene.text(`You wrap your lips around Gosha's ${((s as any).dick1 || '')}cm ${((s as any).dick_girth1 || '')} dick and start sucking it.`);
     qspCall(s, 'arousal', 'bj', 5, ((s as any).npcID1 ?? 0), 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -490,13 +490,13 @@ function enterNo(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'kiss', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Push him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push him away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Push him away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push him away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('You push yourself from Dimka. "Hey! Beat it! Are you crazy or something?"');

@@ -100,7 +100,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
       if (((s as any).outfitfilter ?? 0)?.['include'] === 1  &&  ((s as any).outfitfilter ?? 0)?.['sport'] >= 0) {
         if (qspFunc(s, 'clothing', 'can_wear', 'danilovich', ((s as any).i ?? 0))) {
           // TODO-QSP: dynamic text: <a href="exec:gt 'clothing_QV', 'change', 'danilovich_outfits', <<i>>"><img heig...
-          scene.text(`<a href="exec:gt 'clothing_QV', 'change', 'danilovich_outfits', ${((s as any).i ?? 0)}"><img height="250" src="images/pc/items/danilovich/outfits/${((s as any).i ?? 0)}.jpg"/></a>`);
+          scene.text(`<a href="exec:gt 'clothing_QV', 'change', 'danilovich_outfits', ${((s as any).i || '')}"><img height="250" src="images/pc/items/danilovich/outfits/${((s as any).i || '')}.jpg"/></a>`);
         }
       }
     }
@@ -118,7 +118,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).clothingworntype ?? 0) !== ((s as any).regularwornclothingtype ?? 0)) {
-    qspCall(s, 'clothing_QV', 'gym2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGym2(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).clothingworntype ?? 0) !== 'nude') {
     scene.actions([
@@ -150,7 +150,7 @@ function enterCloak(s: GameState, scene: SceneBuilder): void {
   if (((s as any).coat ?? 0)?.[String((s as any).i ?? 0)] === 1) {
     if (((s as any).coat_h ?? 0)?.[String((s as any).i ?? 0)] > 0) {
       // TODO-QSP: dynamic text: <a href="exec:gt 'clothing_QV', 'change', 'coat', <<i>>"><img height="250" src="...
-      scene.text(`<a href="exec:gt 'clothing_QV', 'change', 'coat', ${((s as any).i ?? 0)}"><img height="250" src="images/pc/clothing/11coat/${((s as any).i ?? 0)}.jpg"/></a>`);
+      scene.text(`<a href="exec:gt 'clothing_QV', 'change', 'coat', ${((s as any).i || '')}"><img height="250" src="images/pc/clothing/11coat/${((s as any).i || '')}.jpg"/></a>`);
     }
   }
   (s as any).i = ((s as any).i ?? 0) + (1);
@@ -195,7 +195,7 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     if (((s as any).swimwear_description ?? 0) === '') {
       qspCall(s, 'clothing_descriptions', '');
       // TODO-QSP: dynamic text: <<$description>>
-      scene.text(`${((s as any).description ?? 0)}`);
+      scene.text(`${((s as any).description || '')}`);
     } else {
       // TODO-QSP: $swimwear_description
     }
@@ -269,13 +269,13 @@ function enterChange(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Put them on anyways', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Put them on anyways [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Put them on anyways', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     // TODO-QSP: gs 'clothing', 'wear', $ARGS[1], ARGS[2]

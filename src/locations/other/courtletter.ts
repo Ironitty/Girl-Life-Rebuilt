@@ -171,7 +171,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
           }
           scene.text('<i>Failing to appear in court will have dire consequences for the accused.</i> Your heart drops as you read that line…');
           // TODO-QSP: dynamic text: <i>The court is located in the city center. You should arrive at '+func('time', ...
-          scene.text('<i>The court is located in the city center. You should arrive at \'+func(\'time\', \'get_time_string\', 9, 0)+\' as there are a lot of cases and we can\'t say when your turn might come up.</i>');
+          scene.text('<i>The court is located in the city center. You should arrive at 9:00 as there are a lot of cases and we can\'t say when your turn might come up.</i>');
           scene.text('You put the letter back in the envelope and let out a loud sigh…');
         } else {
           (s as any).temp_fine = 500 * (Math.floor(Math.random() * 11) + 10);
@@ -203,7 +203,7 @@ function enterLetter(s: GameState, scene: SceneBuilder): void {
           }
           scene.text('<i>Failing to appear in court will have dire consequences for the accused.</i> Your heart drops as you read that line…');
           // TODO-QSP: dynamic text: <i>The court is located in the city center. You should arrive at '+func('time', ...
-          scene.text('<i>The court is located in the city center. You should arrive at \'+func(\'time\', \'get_time_string\', 9, 0)+\' as there are a lot of cases and we can\'t say when your turn might come up.</i>');
+          scene.text('<i>The court is located in the city center. You should arrive at 9:00 as there are a lot of cases and we can\'t say when your turn might come up.</i>');
           scene.text('You put the letter back in the envelope and let out a loud sigh…');
         } else {
           scene.text('As you come home you see the familiar envelope from the court. You already know the gist of it, <i>failure to show up will have dire consequences,</i> yadda yadda…');

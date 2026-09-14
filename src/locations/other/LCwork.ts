@@ -42,7 +42,7 @@ function enterStart1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/industrial/bbq/sex/1b.jpg');
     scene.text('By the end, the guys tell you to kneel down in the center of the room and to bring them all to orgasm. You kneel down in the middle of them, sucking one off while your jerk off two more, it takes you a bit to work your way around and get them all off, by the time the last one cums on you, your entire body is covered in cum.');
     // TODO-QSP: dynamic text: Fortunately, they allow you to take a shower and one of them even drives you hom...
-    scene.text(`Fortunately, they allow you to take a shower and one of them even drives you home. He pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay ?? 0))}, and says he hopes you'll be their waitress again some day.`);
+    scene.text(`Fortunately, they allow you to take a shower and one of them even drives you home. He pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))}, and says he hopes you'll be their waitress again some day.`);
     if (((s as any).deodorant_on ?? 0) === 1) {
       qspCall(s, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');
@@ -87,7 +87,7 @@ function enterStart2(s: GameState, scene: SceneBuilder): void {
     scene.text('He says kindly: "You were great! Get back in the van, I\'ll give you a ride back."');
     scene.text('With a wink he adds: "As long as you don\'t get any cum on the seats, my wife would kill me!"');
     // TODO-QSP: dynamic text: You have the man pull over when you're in the residential district, and he happi...
-    scene.text(`You have the man pull over when you're in the residential district, and he happily pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay ?? 0))} for your time.`);
+    scene.text(`You have the man pull over when you're in the residential district, and he happily pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))} for your time.`);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Get out of his van', handler: (st: GameState) => {
@@ -126,7 +126,7 @@ function enterStart3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/industrial/bbq/sex/3b.jpg');
     // TODO-QSP: dynamic text: Finally, in a moment of mercy they both pull out of you and put you on your knee...
-    scene.text(`Finally, in a moment of mercy they both pull out of you and put you on your knees where they jerk off, covering your face and tits with their sperm. As soon as they finish, before you even have a chance to do anything, one of them grabs you roughly by the hair and drags you out of the apartment naked, while the other throws your clothes out into the hallway. With that done, they toss ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay ?? 0))} out and slam the door. Leaving you standing naked, with your clothes and money scattered around the hall floor and your ass and pussy aching from the rough fucking.`);
+    scene.text(`Finally, in a moment of mercy they both pull out of you and put you on your knees where they jerk off, covering your face and tits with their sperm. As soon as they finish, before you even have a chance to do anything, one of them grabs you roughly by the hair and drags you out of the apartment naked, while the other throws your clothes out into the hallway. With that done, they toss ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))} out and slam the door. Leaving you standing naked, with your clothes and money scattered around the hall floor and your ass and pussy aching from the rough fucking.`);
     scene.text('Wincing you gather up the money and put on your clothes, then you head down the stairs out of the apartment.');
     qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID ?? 0), 'sub', 'group', 'prostitution', 'rough');
     qspCall(s, 'arousal', 'bj', 10, ((s as any).npcID1 ?? 0), 'sub', 'group', 'prostitution', 'rough');
@@ -175,7 +175,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
     scene.text('After some time the guy pulls out of your ass and shoots his hot load all over your stomach. The girl laps some of it up, but leaves most of it on you and politely thanks you for a lovely evening. She\'s adorable!');
     scene.text('As you get up, the guy is very happy. He grins and says: "Thanks, you were great! She\'s still a bit shy, but at this rate it won\'t be long before I can properly introduce her to my buddies, if you know what I mean."');
     // TODO-QSP: dynamic text: He walks you out of the bedroom, after you get dressed, leaving her behind. "May...
-    scene.text(`He walks you out of the bedroom, after you get dressed, leaving her behind. "Maybe we can do it again next week and you can help me talk her into trying anal." He gives you a dirty wink and gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay ?? 0))} as he walks you out.`);
+    scene.text(`He walks you out of the bedroom, after you get dressed, leaving her behind. "Maybe we can do it again next week and you can help me talk her into trying anal." He gives you a dirty wink and gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))} as he walks you out.`);
     qspCall(s, 'arousal', 'anal', 20, 'sub', 'prostitution');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -207,7 +207,7 @@ function enterStart4(s: GameState, scene: SceneBuilder): void {
     scene.text('After an extended period of fucking your ass, she watches obviously a bit envious by how easily you are taking his anal fucking.');
     scene.text('Sometime later the guy shoots his load deep in your ass, pulling his dick out, she catches a few drops of sperm from his dick with her tongue.');
     // TODO-QSP: dynamic text: After you get dressed and he walks you to the door, he grins and says: "Thanks, ...
-    scene.text(`After you get dressed and he walks you to the door, he grins and says: "Thanks, you were great! She's still a bit shy, but at this rate it won't be long before I can properly introduce her to my buddies, if you know what I mean. Maybe we can do it again next week and you can help her get used to anal." He gives you a dirty wink and gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay ?? 0))} as he walks you out.`);
+    scene.text(`After you get dressed and he walks you to the door, he grins and says: "Thanks, you were great! She's still a bit shy, but at this rate it won't be long before I can properly introduce her to my buddies, if you know what I mean. Maybe we can do it again next week and you can help her get used to anal." He gives you a dirty wink and gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))} as he walks you out.`);
     qspCall(s, 'arousal', 'anal', 20, 'sub', 'prostitution');
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'cum_call', 'anus', ((s as any).boy ?? 0));
@@ -250,7 +250,7 @@ function enterStart5(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('When you\'re finished and get dressed again, the girl reverts to being her old, shy self. Nevertheless, she gives you a peck on the cheek and thanks you for the lovely lesson. She does seem a bit more confident now.');
   // TODO-QSP: dynamic text: She walks you out, giving you <<$func('money', 'string_profit', randLCpay)>>.
-  scene.text(`She walks you out, giving you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay ?? 0))}.`);
+  scene.text(`She walks you out, giving you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))}.`);
   qspCall(s, 'arousal', 'end');
   // TODO-QSP: end
   scene.actions([
@@ -283,7 +283,7 @@ function enterStart6(s: GameState, scene: SceneBuilder): void {
     scene.text('Finally, the man\'s cock erupts in your mouth, and he doesn\'t explain when you take his cock out of your mouth after a few spurts and release the rest onto your boobies.');
     scene.text('He gives you a satisfied grin and lets you use his shower to clean yourself up before you go. He peeks into the shower once or twice while you\'re washing yourself, but you don\'t care, it\'s not like he hasn\'t seen you naked before!');
     // TODO-QSP: dynamic text: He gives you <<$func('money', 'string_profit', randLCpay)>>, and walks you to th...
-    scene.text(`He gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay ?? 0))}, and walks you to the door when you're all freshened up.`);
+    scene.text(`He gives you ${qspFunc(s, 'money', 'string_profit', ((s as any).randLCpay || ''))}, and walks you to the door when you're all freshened up.`);
     if (((s as any).deodorant_on ?? 0) === 1) {
       qspCall(s, 'sweat', 'remove_deo');
       scene.text('<br>Your deodorant gets washed away in the shower.');

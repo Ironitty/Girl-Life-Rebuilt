@@ -13,8 +13,8 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'get_job_definition', 'city_diner_secretary');
   }
   if (((s as any).hour ?? 0) * 60 + ((s as any).minut ?? 0) < ((s as any).job_start_time ?? 0)?.['city_diner_secretary']) {
-    (s as any).hour = ((s as any).job_start_time ?? {})?.['city_diner_secretary'] / 60;
-    (s as any).minut = ((s as any).job_start_time ?? {})?.['city_diner_secretary'] % 60;
+    (s as any).hour = (((s as any).job_start_time ?? {})?.['city_diner_secretary'] ?? 0) / 60;
+    (s as any).minut = (((s as any).job_start_time ?? {})?.['city_diner_secretary'] ?? 0) % 60;
   }
   qspCall(s, 'jobs', 'clock', 'city_diner_secretary');
   qspCall(s, 'BurgerTip', '');
@@ -56,7 +56,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'set_fired', 'city_diner_secretary');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You write a statement of resignation and quickly get it signed by your boss. He ...
-    scene.text(`You write a statement of resignation and quickly get it signed by your boss. He writes out a paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay ?? 0))} to you says, "It's over ${((s as any).pcs_nickname ?? 0)}, get out of here."`);
+    scene.text(`You write a statement of resignation and quickly get it signed by your boss. He writes out a paycheck of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay || ''))} to you says, "It's over ${((s as any).pcs_nickname || '')}, get out of here."`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -103,13 +103,13 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'bj', 'resist', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'work4'] },
@@ -136,13 +136,13 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'bj', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'work4'] },
@@ -156,7 +156,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjcar.jpg');
     // TODO-QSP: dynamic text: Ilyushkin takes you to his car standing in the alley. He gets behind the wheel a...
-    scene.text(`Ilyushkin takes you to his car standing in the alley. He gets behind the wheel and you sit next to him. Ilyushkin gets his dick out of his pants and grabs you by the hair pulling your face to his groin until his cock is buried in your ${((s as any).pc_desc ?? 0)?.['lips']} lips. You open your mouth and allow the member to enter between your lips. You are trying to suck hard, using your ${((s as any).pc_desc ?? 0)?.['lips']} lips on the penis so Ilyushkin would be finished quickly. Ilyushkin's body finally jerks and he finishes in your mouth. You continue to suck his dick swallowing the sperm without spilling a drop. Ilyushkin tucks his dick back in his pants and says, "Okay cocksucker, get out."`);
+    scene.text(`Ilyushkin takes you to his car standing in the alley. He gets behind the wheel and you sit next to him. Ilyushkin gets his dick out of his pants and grabs you by the hair pulling your face to his groin until his cock is buried in your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. You open your mouth and allow the member to enter between your lips. You are trying to suck hard, using your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips on the penis so Ilyushkin would be finished quickly. Ilyushkin's body finally jerks and he finishes in your mouth. You continue to suck his dick swallowing the sperm without spilling a drop. Ilyushkin tucks his dick back in his pants and says, "Okay cocksucker, get out."`);
     qspCall(s, 'arousal', 'bj', 5, 'sub');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -170,13 +170,13 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'bj', 'resist', 'medium');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'work4'] },
@@ -192,13 +192,13 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['BurgerTip', 'work4'] },
@@ -211,7 +211,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjfilm.jpg');
     // TODO-QSP: dynamic text: You get down on your knees in front of Ilyushkin and clasp his member with your ...
-    scene.text(`You get down on your knees in front of Ilyushkin and clasp his member with your ${((s as any).pc_desc ?? 0)?.['lips']} lips. Ilyushkin films you using his camera to get a closeup of you sucking his cock. After a while he lies you down on his couch and sits on your chest to make sure his cock is right in front of your face.`);
+    scene.text(`You get down on your knees in front of Ilyushkin and clasp his member with your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. Ilyushkin films you using his camera to get a closeup of you sucking his cock. After a while he lies you down on his couch and sits on your chest to make sure his cock is right in front of your face.`);
     scene.actions([
       { label: 'Suck', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
@@ -227,7 +227,7 @@ function enterWork2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/ilyushkin/sex/ilybjfilm3.jpg');
     // TODO-QSP: dynamic text: Ilyushkin begins to finish on your <<$pc_desc['lips']>> lips. Cum drips from you...
-    scene.text(`Ilyushkin begins to finish on your ${((s as any).pc_desc ?? 0)?.['lips']} lips. Cum drips from your lips on your chin and chest. Ilyushkin finally turns the camera off and puts it away in a drawer. "Not bad. You did what you were required. Wash up and then get out."`);
+    scene.text(`Ilyushkin begins to finish on your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. Cum drips from your lips on your chin and chest. Ilyushkin finally turns the camera off and puts it away in a drawer. "Not bad. You did what you were required. Wash up and then get out."`);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

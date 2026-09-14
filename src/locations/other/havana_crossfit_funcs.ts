@@ -1,5 +1,3 @@
-import { qspCall } from '../_shared/qspBridge';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -9,12 +7,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetupWod(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Fran', 120, 600, 'for_time', 'pullup');
-  qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Nancy', 600, 1200, 'for_time', 'ohs');
-  qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Isabel', 90, 600, 'for_time', 'snatch');
-  qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Open 17.1', 600, 1200, 'for_time', 'dumbbell_snatch');
-  qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Open 16.1', 1300, 100, 'for_rounds', 'overhead_lunge');
-  qspCall(s, 'havana_crossfit_funcs', 'add_wod', 'Karen', 300, 720, 'for_time', 'wallball');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Fran', 120, 600, 'for_time', 'pullup']; enterAddWod(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Nancy', 600, 1200, 'for_time', 'ohs']; enterAddWod(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Isabel', 90, 600, 'for_time', 'snatch']; enterAddWod(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Open 17.1', 600, 1200, 'for_time', 'dumbbell_snatch']; enterAddWod(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Open 16.1', 1300, 100, 'for_rounds', 'overhead_lunge']; enterAddWod(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Karen', 300, 720, 'for_time', 'wallball']; enterAddWod(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -108,7 +106,7 @@ function enterUpdateBoxRecords(s: GameState, scene: SceneBuilder): void {
   (s as any).current_record_update_count = 0;
   // TODO-QSP: :recordupdateloop
   if (((s as any).current_record_update_count ?? 0) < ((s as any).number_of_box_record_updates ?? 0)) {
-    qspCall(s, 'havana_crossfit_funcs', 'box_records');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBoxRecords(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).current_record_update_count = ((s as any).current_record_update_count ?? 0) + (1);
     // TODO-QSP: jump 'recordupdateloop'
   }

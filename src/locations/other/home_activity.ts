@@ -21,7 +21,7 @@ function enterWashSheets(s: GameState, scene: SceneBuilder): void {
 
 function enterVomitingCheck(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'homes_properties', 'is_at_a_home')) {
-    qspCall(s, 'home_activity', 'vomiting_images');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVomitingImages(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([{ label: 'Continue', goto: ['home_activity', 'morning_vomit'] }]);
   } else {
     if (!(s as any).vomit) (s as any).vomit = {}; (s as any).vomit['morning_sick'] = 0;
@@ -172,11 +172,11 @@ function enterMorningVomit(s: GameState, scene: SceneBuilder): void {
           }
         } else {
           if (((s as any).thinkpreg ?? 0) === 1) {
-            qspCall(s, 'home_activity', 'think_preg_react');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterThinkPregReact(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if ((!((s as any).knowpreg ?? 0))) {
               if (((s as any).daystart ?? 0) - ((s as any).daylastperiod ?? 0) > 35  &&  (Math.floor(Math.random() * 100) + 1) < ((s as any).pcs_intel ?? 0)) {
-                qspCall(s, 'home_activity', 'preg_scare');
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPregScare(s, scene); (s as any).locArgs = __savedLocArgs; }
               } else {
                 scene.text('<i>Ugh, I feel awful! I wonder if I should see a doctor?</i> you think to yourself as you lay there on the floor.');
               }
@@ -269,7 +269,7 @@ function enterPregScare(s: GameState, scene: SceneBuilder): void {
       { label: 'Continue', goto: ['mey_home', 'mey_preg_scare'] },
     ]);
   } else {
-    qspCall(s, 'home_activity', 'preg_scare_react');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPregScareReact(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();

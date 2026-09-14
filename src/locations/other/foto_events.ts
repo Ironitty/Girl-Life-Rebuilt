@@ -106,13 +106,13 @@ function enterStudioStripTalk1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Plead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Plead', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Plead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Plead', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -155,18 +155,18 @@ function enterStudioStripTalk2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('You step out into the studio and you hear someone calling your name.');
   // TODO-QSP: dynamic text: "Hey! <<$model['firstname']>>! It's been two weeks, what are you still doing in ...
-  scene.text(`"Hey! ${((s as any).model ?? 0)?.['firstname']}! It's been two weeks, what are you still doing in your underwear? We had a deal, now take that off. Right now!"`);
+  scene.text(`"Hey! ${((s as any).model ?? 0)?.['firstname'] ?? ''}! It's been two weeks, what are you still doing in your underwear? We had a deal, now take that off. Right now!"`);
   if (((s as any).pcs_inhib ?? 0) < 30  &&  ((s as any).underwear ?? 0)?.['type'] !== 2) {
     qspCall(s, 'willpower', 'exhib', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Try to bargain again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Try to bargain again', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Try to bargain again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Try to bargain again', handler: (st: GameState) => {
     (s as any).studio_strip_talk = 2;
     (s as any).studio_underwear = ((s as any).daystart ?? 0) + 7;
     if (((s as any).braworntype ?? 0) !== 'none') {
@@ -204,7 +204,7 @@ function enterStudioStripTalk3(s: GameState, scene: SceneBuilder): void {
   scene.text('"What the fuck! It\'s been another week and you\'re still wearing panties!"');
   scene.text('Turning apprehensively, you see the same floor manager again stomping towards you.');
   // TODO-QSP: dynamic text: "I've had enough of this bullshit <<$model['firstname']>>. Now bend down and tak...
-  scene.text(`"I've had enough of this bullshit ${((s as any).model ?? 0)?.['firstname']}. Now bend down and take those panties off right this second!"`);
+  scene.text(`"I've had enough of this bullshit ${((s as any).model ?? 0)?.['firstname'] ?? ''}. Now bend down and take those panties off right this second!"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Do as he says and strip', goto: ['foto_events', 'underwear_steal'] },
@@ -382,7 +382,7 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   scene.text('As you wrap the shoot, a staffer at the studio walks up to you and grabs your attention.');
   // TODO-QSP: dynamic text: "Hey, <<$model['firstname']>>, I'm glad I caught you. Listen, we have a special ...
-  scene.text(`"Hey, ${((s as any).model ?? 0)?.['firstname']}, I'm glad I caught you. Listen, we have a special opportunity for you if you'd like to hear about it."`);
+  scene.text(`"Hey, ${((s as any).model ?? 0)?.['firstname'] ?? ''}, I'm glad I caught you. Listen, we have a special opportunity for you if you'd like to hear about it."`);
   // TODO-QSP: end
   scene.actions([
     { label: '"Special opportunity?"', handler: (st: GameState) => {
@@ -408,7 +408,7 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     if (((s as any).week ?? 0) >= 6) {
       (s as any).SMTV_commercial = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 13;
       // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
-      scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be there next Saturday at \'+func(\'time\', \'get_time_string\', 10, 0)+\', this is where they said they were going to set up the shoot."');
+      scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be there next Saturday at 10:00, this is where they said they were going to set up the shoot."');
       scene.actions([
         { label: 'Thank him and go', goto: ['foto', 'studio'] },
       ]);
@@ -416,13 +416,13 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
       (s as any).SMTV_commercial = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 6;
       if (((s as any).week ?? 0) === 5) {
         // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
-        scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here tomorrow at \'+func(\'time\', \'get_time_string\', 10, 0)+\', this is where they said they were going to set up the shoot."');
+        scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here tomorrow at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
-        scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here on Saturday at \'+func(\'time\', \'get_time_string\', 10, 0)+\', this is where they said they were going to set up the shoot."');
+        scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here on Saturday at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
         ]);
@@ -443,7 +443,7 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     if (((s as any).week ?? 0) >= 6) {
       (s as any).SMTV_commercial = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 13;
       // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
-      scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here next Saturday at \'+func(\'time\', \'get_time_string\', 10, 0)+\', this is where they said they were going to set up the shoot."');
+      scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here next Saturday at 10:00, this is where they said they were going to set up the shoot."');
       scene.actions([
         { label: 'Thank him and go', goto: ['foto', 'studio'] },
       ]);
@@ -451,13 +451,13 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
       (s as any).SMTV_commercial = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 6;
       if (((s as any).week ?? 0) === 5) {
         // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
-        scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here tomorrow at \'+func(\'time\', \'get_time_string\', 10, 0)+\', this is where they said they were going to set up the shoot."');
+        scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here tomorrow at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: He hands you a business card for the <b>Aurora Talent Agency</b> in the city cen...
-        scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here on Saturday at \'+func(\'time\', \'get_time_string\', 10, 0)+\', this is where they said they were going to set up the shoot."');
+        scene.text('He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here on Saturday at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
         ]);
@@ -481,7 +481,7 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
     if (((s as any).week ?? 0) >= 6) {
       (s as any).SMTV_commercial = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 13;
       // TODO-QSP: dynamic text: "If it means anything to you, I think you're making the right choice for your ca...
-      scene.text('"If it means anything to you, I think you\'re making the right choice for your career." He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here next Saturday at \'+func(\'time\', \'get_time_string\', 10, 0)+\', this is where they said they were going to set up the shoot."');
+      scene.text('"If it means anything to you, I think you\'re making the right choice for your career." He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here next Saturday at 10:00, this is where they said they were going to set up the shoot."');
       scene.actions([
         { label: 'Thank him and go', goto: ['foto', 'studio'] },
       ]);
@@ -489,13 +489,13 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
       (s as any).SMTV_commercial = ((s as any).daystart ?? 0) - ((s as any).week ?? 0) + 6;
       if (((s as any).week ?? 0) === 5) {
         // TODO-QSP: dynamic text: "If it means anything to you, I think you're making the right choice for your ca...
-        scene.text('"If it means anything to you, I think you\'re making the right choice for your career." He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here tomorrow at \'+func(\'time\', \'get_time_string\', 10, 0)+\', this is where they said they were going to set up the shoot."');
+        scene.text('"If it means anything to you, I think you\'re making the right choice for your career." He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here tomorrow at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: "If it means anything to you, I think you're making the right choice for your ca...
-        scene.text('"If it means anything to you, I think you\'re making the right choice for your career." He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here on Saturday at \'+func(\'time\', \'get_time_string\', 10, 0)+\', this is where they said they were going to set up the shoot."');
+        scene.text('"If it means anything to you, I think you\'re making the right choice for your career." He hands you a business card for the <b>Aurora Talent Agency</b> in the city center. "Be here on Saturday at 10:00, this is where they said they were going to set up the shoot."');
         scene.actions([
           { label: 'Thank him and go', goto: ['foto', 'studio'] },
         ]);
@@ -505,7 +505,7 @@ function enterCommercial(s: GameState, scene: SceneBuilder): void {
       { label: '"No, it\'s too much for me"', handler: (st: GameState) => {
     scene.text('"No," you say with some regret. "Even with all that money, that\'s not the kind of model or actress I want to be known for."');
     // TODO-QSP: dynamic text: "Ahh, well that's a shame. Anyways, I'll let you go now. See you later <<$model[...
-    scene.text(`"Ahh, well that's a shame. Anyways, I'll let you go now. See you later ${((s as any).model ?? 0)?.['firstname']}"`);
+    scene.text(`"Ahh, well that's a shame. Anyways, I'll let you go now. See you later ${((s as any).model ?? 0)?.['firstname'] ?? ''}"`);
     scene.actions([
       { label: 'Go back to modelling', goto: ['foto', 'studio'] },
     ]);
@@ -538,7 +538,7 @@ function enterFashionPersuasion(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).foto_persuade ?? 0))) {
     scene.text('The manager twists his mouth as he considers.');
     // TODO-QSP: dynamic text: "Listen, <<$model['firstname']>>, you've been here a while, you've done quite a ...
-    scene.text(`"Listen, ${((s as any).model ?? 0)?.['firstname']}, you've been here a while, you've done quite a few catalogue jobs for us and your skills have really improved since you first started."`);
+    scene.text(`"Listen, ${((s as any).model ?? 0)?.['firstname'] ?? ''}, you've been here a while, you've done quite a few catalogue jobs for us and your skills have really improved since you first started."`);
     scene.text('"Oh. Uhh, thanks."');
     scene.text('"Some of the staff around here have been talking and we really think that you\'re ready to up your game. How about we do a full fashion shoot instead of cataloguing swimsuits or dresses? You can make a bit more money doing a fashion shoot instead of a catalogue one."');
   } else {
@@ -561,13 +561,13 @@ function enterFashionPersuasion(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     (s as any).foto_persuade = 1;
@@ -630,13 +630,13 @@ function enterLingeriePersuasion(s: GameState, scene: SceneBuilder): void {
   scene.text('"I\'d like to do a fashion shoot," you say.');
   if ((!((s as any).foto_persuade ?? 0))) {
     // TODO-QSP: dynamic text: "By the way <<$model['firstname']>>, you've been here a while, you've done quite...
-    scene.text(`"By the way ${((s as any).model ?? 0)?.['firstname']}, you've been here a while, you've done quite a few fashion jobs for us and your work for us has been great!"`);
+    scene.text(`"By the way ${((s as any).model ?? 0)?.['firstname'] ?? ''}, you've been here a while, you've done quite a few fashion jobs for us and your work for us has been great!"`);
     scene.text('"Oh! Thanks!"');
     scene.text('"But we also think that you could take it a step farther, show off more of your beautiful body. How would you feel about doing a lingerie shoot? The exposure is about the same but the pay is a little bit better. What do you say?"');
   } else {
     if (((s as any).foto_persuade ?? 0) === 2) {
       // TODO-QSP: dynamic text: "By the way <<$model['firstname']>>, the staff have been talking again. You reme...
-      scene.text(`"By the way ${((s as any).model ?? 0)?.['firstname']}, the staff have been talking again. You remember how we originally had to ask you to give fashion shoots a try? We were thinking that it might be time for you to take another step and try out a lingerie shoot? The exposure is about the same but lingerie shoots pay a little bit more than fashion. What do you say? Give it a try?"`);
+      scene.text(`"By the way ${((s as any).model ?? 0)?.['firstname'] ?? ''}, the staff have been talking again. You remember how we originally had to ask you to give fashion shoots a try? We were thinking that it might be time for you to take another step and try out a lingerie shoot? The exposure is about the same but lingerie shoots pay a little bit more than fashion. What do you say? Give it a try?"`);
     } else {
       if (((s as any).foto_persuade ?? 0) === 1) {
         scene.text('"We can do a fashion shoot today if you like, but the studio would still really love to see you do that lingerie shoot. What do you say?"');
@@ -658,13 +658,13 @@ function enterLingeriePersuasion(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
     if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
@@ -711,7 +711,7 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).foto_persuade ?? 0))) {
     scene.text('The manager twists his mouth as he considers.');
     // TODO-QSP: dynamic text: "Listen, <<$model['firstname']>>, you've been here a while, you've done really g...
-    scene.text(`"Listen, ${((s as any).model ?? 0)?.['firstname']}, you've been here a while, you've done really great fashion work for us while modelling here."`);
+    scene.text(`"Listen, ${((s as any).model ?? 0)?.['firstname'] ?? ''}, you've been here a while, you've done really great fashion work for us while modelling here."`);
     scene.text('"Oh! Thanks!"');
     scene.text('"But we also think that you could take it a step farther, show off more of your beautiful body. You\'ve never done a glamour shoot yet, what do you say to giving that a try?"');
   } else {
@@ -720,7 +720,7 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).foto_persuade ?? 0) === 2) {
         // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, the staff have been talking again. We love your li...
-        scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, the staff have been talking again. We love your lingerie stuff but we were wondering if you'd consider trying a glamour shoot today?"`);
+        scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, the staff have been talking again. We love your lingerie stuff but we were wondering if you'd consider trying a glamour shoot today?"`);
       } else {
         if (((s as any).foto_persuade ?? 0) === 3) {
           scene.text('"Hey I\'m sorry to bother you like this again, but we would still really love to see you do that glamour shoot. What do you say? Willing to give it a try today?"');
@@ -744,13 +744,13 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No thanks', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No thanks', handler: (st: GameState) => {
     if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Thanks for the offer, but I think I\'ll stick to the lingerie shoot today."');
@@ -768,7 +768,7 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"I guess I could try it…"');
     // TODO-QSP: dynamic text: "Great! Thank you so much <<$model['firstname']>>! Just go to this set and we'll...
-    scene.text(`"Great! Thank you so much ${((s as any).model ?? 0)?.['firstname']}! Just go to this set and we'll set somebody up for you."`);
+    scene.text(`"Great! Thank you so much ${((s as any).model ?? 0)?.['firstname'] ?? ''}! Just go to this set and we'll set somebody up for you."`);
     scene.actions([
       { label: 'Do the transparent clothing shoot', goto: ['foto_shoot', 'transparent'] },
     ]);
@@ -803,13 +803,13 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No thanks', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No thanks', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
     if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
@@ -829,31 +829,31 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'skill', 'pcs_inhib', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No way! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No way!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No way! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No way!', handler: (st: GameState) => {
     scene.text('"What?! No way! I\'m not showing my breasts on camera!"');
     scene.text('"Oh, well, maybe that is actually a step too far right now. Well, what about just some sexy clothing? Something a little skimpy but not totally revealing? How does that sound?"');
     qspCall(s, 'willpower', 'skill', 'inhib', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No', handler: (st: GameState) => {
     (s as any).foto_persuade = 3;
     if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"No, I\'m not doing anything like that. I\'m just going to stick to my lingerie shoot today."');
     // TODO-QSP: dynamic text: "Oh, okay. That's fine <<$model['firstname']>>. Maybe another time."
-    scene.text(`"Oh, okay. That's fine ${((s as any).model ?? 0)?.['firstname']}. Maybe another time."`);
+    scene.text(`"Oh, okay. That's fine ${((s as any).model ?? 0)?.['firstname'] ?? ''}. Maybe another time."`);
     scene.actions([
       { label: 'Do the lingerie shoot', goto: ['foto_shoot', 'lingerie'] },
     ]);
@@ -866,7 +866,7 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"That\'s not so bad I guess… I\'m already doing lingerie so that\'s not much of a difference."');
     // TODO-QSP: dynamic text: "Yes, exactly! Think of it just like that. Thanks for this <<$model['firstname']...
-    scene.text(`"Yes, exactly! Think of it just like that. Thanks for this ${((s as any).model ?? 0)?.['firstname']}. Just go to this set and we'll set somebody up for you."`);
+    scene.text(`"Yes, exactly! Think of it just like that. Thanks for this ${((s as any).model ?? 0)?.['firstname'] ?? ''}. Just go to this set and we'll set somebody up for you."`);
     scene.actions([
       { label: 'Do the glamour shoot', goto: ['foto_shoot', 'sexy'] },
     ]);
@@ -895,7 +895,7 @@ function enterGlamourPersuasion(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"I guess I could try it…"');
     // TODO-QSP: dynamic text: "Great! Thank you so much <<$model['firstname']>>! Just go to this set and we'll...
-    scene.text(`"Great! Thank you so much ${((s as any).model ?? 0)?.['firstname']}! Just go to this set and we'll set somebody up for you."`);
+    scene.text(`"Great! Thank you so much ${((s as any).model ?? 0)?.['firstname'] ?? ''}! Just go to this set and we'll set somebody up for you."`);
     scene.actions([
       { label: 'Do the transparent clothing shoot', goto: ['foto_shoot', 'transparent'] },
     ]);
@@ -926,7 +926,7 @@ function enterTransPersuasion(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   if ((!((s as any).foto_persuade ?? 0))) {
     // TODO-QSP: dynamic text: "Hey, <<$model['firstname']>>, I just wanted to say, the studio has really been ...
-    scene.text(`"Hey, ${((s as any).model ?? 0)?.['firstname']}, I just wanted to say, the studio has really been loving your work lately."`);
+    scene.text(`"Hey, ${((s as any).model ?? 0)?.['firstname'] ?? ''}, I just wanted to say, the studio has really been loving your work lately."`);
     scene.text('"Oh! Thanks!"');
     scene.text('"But we also think that you could take it a step farther, be a bit bolder. You\'ve never done a transparent top shoot yet, what do you say to giving that a try?"');
   } else {
@@ -935,14 +935,14 @@ function enterTransPersuasion(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).foto_persuade ?? 0) === 2) {
         // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, the staff have been talking again. You remember ho...
-        scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, the staff have been talking again. You remember how we got you to upgrade from catalogue shoots to fashion shoots? We were thinking that it might be time for you to take another step and try doing some lingerie shoots? The exposure is about the same but lingerie shoots pay a little bit more than fashion. What do you say? Give it a try?"`);
+        scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, the staff have been talking again. You remember how we got you to upgrade from catalogue shoots to fashion shoots? We were thinking that it might be time for you to take another step and try doing some lingerie shoots? The exposure is about the same but lingerie shoots pay a little bit more than fashion. What do you say? Give it a try?"`);
       } else {
         if (((s as any).foto_persuade ?? 0) === 3) {
           scene.text('"Hey I\'m sorry to bother you like this again, but we would still really love to see you do a basic glamour shoot. What do you say? Willing to give it a try today?"');
         } else {
           if (((s as any).foto_persuade ?? 0) === 4) {
             // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, the staff have been talking again. I know I asked ...
-            scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, the staff have been talking again. I know I asked before, but I was wondering if you might be more comfortable now. Is it possible that you might consider doing a transparent clothing shoot today instead of a basic glamour one? No pressure if not, but I just wanted to check and see if you're ready."`);
+            scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, the staff have been talking again. I know I asked before, but I was wondering if you might be more comfortable now. Is it possible that you might consider doing a transparent clothing shoot today instead of a basic glamour one? No pressure if not, but I just wanted to check and see if you're ready."`);
           }
         }
       }
@@ -963,13 +963,13 @@ function enterTransPersuasion(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
     if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
@@ -1041,7 +1041,7 @@ function enterToplessPersuasion(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   if ((!((s as any).foto_persuade ?? 0))) {
     // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, I just wanted to say, the studio has really been l...
-    scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, I just wanted to say, the studio has really been loving your work lately."`);
+    scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, I just wanted to say, the studio has really been loving your work lately."`);
     scene.text('"Oh! Thanks!"');
     scene.text('"But we also think that with your looks and your talent, you could take it a step farther, be a bit bolder. You\'ve never done a topless shoot before, have you? You\'ve already been doing the transparent stuff, what do you say to taking the whole thing off today?"');
   } else {
@@ -1050,7 +1050,7 @@ function enterToplessPersuasion(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).foto_persuade ?? 0) === 2) {
         // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, you seem to be doing really well with the transpar...
-        scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, you seem to be doing really well with the transparent shoots, just like we thought. I know that initially took some convincing, but we got here didn't we? Now, I was wondering if you'd like to try go a step further just like before and take the whole top off? You've never done a topless shoot and it isn't much different from what we're doing now. Our rates for topless shoots are better and you'll get a lot more exposure than what you're doing now. Want to try it?"`);
+        scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, you seem to be doing really well with the transparent shoots, just like we thought. I know that initially took some convincing, but we got here didn't we? Now, I was wondering if you'd like to try go a step further just like before and take the whole top off? You've never done a topless shoot and it isn't much different from what we're doing now. Our rates for topless shoots are better and you'll get a lot more exposure than what you're doing now. Want to try it?"`);
       }
     }
   }
@@ -1069,13 +1069,13 @@ function enterToplessPersuasion(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
     if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
@@ -1143,17 +1143,17 @@ function enterNudePersuasion(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   if ((!((s as any).foto_persuade ?? 0))) {
     // TODO-QSP: dynamic text: "Hey, <<$model['firstname']>>, I just wanted to say, your work has been stunning...
-    scene.text(`"Hey, ${((s as any).model ?? 0)?.['firstname']}, I just wanted to say, your work has been stunning lately! Really fantastic!"`);
+    scene.text(`"Hey, ${((s as any).model ?? 0)?.['firstname'] ?? ''}, I just wanted to say, your work has been stunning lately! Really fantastic!"`);
     scene.text('"Oh! Uhh, thanks!"');
     scene.text('"Your work is so great, we would love to show everything you\'ve got to offer. Now, feel free to say no, but what do you say to a full frontal nude shoot? I know it might be a little explicit, but the studio and our readers would love it. We\'re even willing to throw in a bonus and double your pay for your full nude debut. What do you say?"');
   } else {
     if (((s as any).foto_persuade ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Hey, that's cool <<$model['firstname']>>. But I just want you to know that the ...
-      scene.text(`"Hey, that's cool ${((s as any).model ?? 0)?.['firstname']}. But I just want you to know that the studio's nude offer with bonus pay is still on the table if you want to do that instead."`);
+      scene.text(`"Hey, that's cool ${((s as any).model ?? 0)?.['firstname'] ?? ''}. But I just want you to know that the studio's nude offer with bonus pay is still on the table if you want to do that instead."`);
     } else {
       if (((s as any).foto_persuade ?? 0) === 2) {
         // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, I've got a new offer from the studio for you. They...
-        scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, I've got a new offer from the studio for you. They've really loved your willingness to try new things like with the past shoots and all and they wanted to know if you would like to step it up to the final level. Would you be willing to do a full frontal nude shoot with us? As a special bonus, the studio said they're willing to double your pay for your full debut. I have to say, this is a great offer. What do you think of it?"`);
+        scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, I've got a new offer from the studio for you. They've really loved your willingness to try new things like with the past shoots and all and they wanted to know if you would like to step it up to the final level. Would you be willing to do a full frontal nude shoot with us? As a special bonus, the studio said they're willing to double your pay for your full debut. I have to say, this is a great offer. What do you think of it?"`);
       }
     }
   }
@@ -1172,13 +1172,13 @@ function enterNudePersuasion(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'No thanks [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'No thanks', handler: (st: GameState) => {
     (s as any).foto_persuade = 1;
     if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['suborn'] = ((s as any).foto['suborn'] ?? 0) + (1);
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
@@ -1223,7 +1223,7 @@ function enterNudePersuasion(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Well…" You mull it over a little bit more, still unsure of yourself. "I mean, I… I guess I can give it a try."');
     // TODO-QSP: dynamic text: The manager smiles wide at you. "Thank you so much for your courage <<$model['fi...
-    scene.text(`The manager smiles wide at you. "Thank you so much for your courage ${((s as any).model ?? 0)?.['firstname']}."`);
+    scene.text(`The manager smiles wide at you. "Thank you so much for your courage ${((s as any).model ?? 0)?.['firstname'] ?? ''}."`);
     scene.text('"The special bonus doesn\'t hurt either," you smile back shyly.');
     scene.text('The manager laughs showing you his clipboard. "Go to this set here and everything is already set up for you."');
     (s as any).foto_persuade = 5;
@@ -1281,10 +1281,10 @@ function enterSpecial(s: GameState, scene: SceneBuilder): void {
   } else {
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       // TODO-QSP: dynamic text: "Sorry <<$model['firstname']>>, we don't have anything today. Check in again tom...
-      scene.text(`"Sorry ${((s as any).model ?? 0)?.['firstname']}, we don't have anything today. Check in again tomorrow, maybe there'll be something for you."`);
+      scene.text(`"Sorry ${((s as any).model ?? 0)?.['firstname'] ?? ''}, we don't have anything today. Check in again tomorrow, maybe there'll be something for you."`);
     } else {
       // TODO-QSP: dynamic text: "Sorry <<$model['firstname']>>, we already assigned all the requests we had toda...
-      scene.text(`"Sorry ${((s as any).model ?? 0)?.['firstname']}, we already assigned all the requests we had today to other girls. Got none left for you. Check in again tomorrow, maybe there'll be something for you."`);
+      scene.text(`"Sorry ${((s as any).model ?? 0)?.['firstname'] ?? ''}, we already assigned all the requests we had today to other girls. Got none left for you. Check in again tomorrow, maybe there'll be something for you."`);
     }
   }
   // TODO-QSP: end
@@ -1325,7 +1325,7 @@ function enterList(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Hmm. Sorry, I don\'t think I want to do any of these today."');
     // TODO-QSP: dynamic text: "Alright, no problem <<$model['firstname']>>. See you later."
-    scene.text(`"Alright, no problem ${((s as any).model ?? 0)?.['firstname']}. See you later."`);
+    scene.text(`"Alright, no problem ${((s as any).model ?? 0)?.['firstname'] ?? ''}. See you later."`);
     scene.text('You wave goodbye as you walk back to the main floor.');
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
@@ -1365,7 +1365,7 @@ function enterHighFashion(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend the duration of the shoot changing in and out of designer bodices, corsets, and other tops, all of which conspicuously lack any kind of bottom, leaving your pussy exposed.');
     scene.text('Your manager was right. <i>Definitely</i> not suited for every day use.');
     // TODO-QSP: dynamic text: Two hours later, you've modelled and been photographed in every item of clothing...
-    scene.text(`Two hours later, you've modelled and been photographed in every item of clothing requested by the client and are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in payment for the job.`);
+    scene.text(`Two hours later, you've modelled and been photographed in every item of clothing requested by the client and are handed ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} in payment for the job.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -1394,7 +1394,7 @@ function enterFineArt(s: GameState, scene: SceneBuilder): void {
     scene.text('You go to set 32 and find a short woman wearing a black turtleneck and a soft flat-crowned hat. Standing next to him is lean but muscular young man, who is naked like you and is the owner a large flaccid cock hanging between his legs.');
     scene.text('<i>Really? A beret? Talk about cliché.</i>');
     // TODO-QSP: dynamic text: Walking up to the woman, you introduce yourself. "Hello ma'am, I'm <<$model['fir...
-    scene.text(`Walking up to the woman, you introduce yourself. "Hello ma'am, I'm ${((s as any).model ?? 0)?.['firstname']}. I'll be your model for today."`);
+    scene.text(`Walking up to the woman, you introduce yourself. "Hello ma'am, I'm ${((s as any).model ?? 0)?.['firstname'] ?? ''}. I'll be your model for today."`);
     scene.text('"Ahh! Zer yu are! I haff been waiting for almost five minutes! Zis is almost unacceptable!" You\'re immediately taken aback by her words, both because of the clearly foreign accent and the rudeness that accompanies it.');
     scene.text('"I\'m sorry, I only jus-"');
     scene.text('"Enough talk! We vazte time! Quickly! Get on zis and kneel down!"');
@@ -1409,13 +1409,13 @@ function enterFineArt(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'What?! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'What?!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'What?! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'What?!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -1442,13 +1442,13 @@ function enterFineArt(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Yell at her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Yell at her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Yell at her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Yell at her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -1463,13 +1463,13 @@ function enterFineArt(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'No, I\'m not losing my virginity [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No, I\'m not losing my virginity', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'No, I\'m not losing my virginity [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'No, I\'m not losing my virginity', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -1599,11 +1599,11 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think I shall make zis into a sculpture. This piece must be chiseled from marble to truly encapsulate ze glory of zis zubject!" She snaps her fingers twice and staff come out to begin collecting the equipment and putting it away. The woman herself walks over and reaches into her purse.');
     if (((s as any).fine_art_deal ?? 0) === 1) {
       // TODO-QSP: dynamic text: "Zis is for ze job," she says, placing wad of <<$func('money', 'string_profit', ...
-      scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} into your hand. "And zis, is for your contribution to art!" she says, placing in your other hand a large stack of bills equaling to ${qspFunc(s, 'money', 'string_profit', 30000)}. "Zis vill be a famous piece to go down in the history of ze world! Do not forget and take pride in your part of what began here today!"`);
+      scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} into your hand. "And zis, is for your contribution to art!" she says, placing in your other hand a large stack of bills equaling to ${qspFunc(s, 'money', 'string_profit', 30000)}. "Zis vill be a famous piece to go down in the history of ze world! Do not forget and take pride in your part of what began here today!"`);
     }
     if (((s as any).fine_art_deal ?? 0) === 2) {
       // TODO-QSP: dynamic text: "Zis is for ze job," she says, placing wad of <<$func('money', 'string_profit', ...
-      scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} into your hand. "And be proud," she says, placing her other hand on your shoulder. "Zis vill be a famous piece to go down in the history of ze world! One day, vhen you see ze statue, remember and be proud of ze young woman whose loss of virtue vas immortalized in stone. Remember and <i>be proud.</i>"`);
+      scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} into your hand. "And be proud," she says, placing her other hand on your shoulder. "Zis vill be a famous piece to go down in the history of ze world! One day, vhen you see ze statue, remember and be proud of ze young woman whose loss of virtue vas immortalized in stone. Remember and <i>be proud.</i>"`);
     }
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -1629,7 +1629,7 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
       scene.text('You hold the position with Alexander, feeling his thick cock extending out under you, brushing against your thighs and stomach. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.');
       scene.text('90 minutes pass before she is finished sketching. When she is finished, she compares her sketch to a nearby computer screen, still trying to decide which form she wants her art to take. Shaking her head, she calls an end to the shoot and you are allowed to break from your position, stretching your stiff muscles.');
       // TODO-QSP: dynamic text: The woman steps forward, reaching into her purse to pull out <<$func('money', 's...
-      scene.text(`The woman steps forward, reaching into her purse to pull out ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))}, which she places in your hand.`);
+      scene.text(`The woman steps forward, reaching into her purse to pull out ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))}, which she places in your hand.`);
       scene.text('"I am disappointed with your commitment," she says. "Great people should be willing to sacrifice for the sake of great art. I vish you vere one of those people." She shakes her head and walks away, snapping her fingers twice and causing her crew to start packing up equipment.');
       // TODO-QSP: dynamic text: You watch them leave, the money from the job in hand and your ' + iif(stat['thin...
       scene.text('You watch them leave, the money from the job in hand and your \' + iif(stat[\'think_virgin\'] = 1, \'virginity\', \'dignity\') + \' still intact.');
@@ -1649,27 +1649,27 @@ function enterFineArt2(s: GameState, scene: SceneBuilder): void {
         scene.img('images/locations/city/citycenter/photo/special/art1.jpg');
         if (((s as any).pcs_vag ?? 0) <= 10) {
           // TODO-QSP: dynamic text: Alexander pushes himself inside you. You can't help but release a small grunt of...
-          scene.text(`Alexander pushes himself inside you. You can't help but release a small grunt of discomfort as his 34 cm cock stretches your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy. It takes a few tries to get his exceptional length and girth all the way inside before settling back into the exact posture you were instructed to hold. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.`);
+          scene.text(`Alexander pushes himself inside you. You can't help but release a small grunt of discomfort as his 34 cm cock stretches your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy. It takes a few tries to get his exceptional length and girth all the way inside before settling back into the exact posture you were instructed to hold. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.`);
           scene.text('90 minutes pass before she is finished sketching, your pussy more than a little bit uncomfortable from being overstuffed with Alexander\'s enormous cock. When she is finished, she compares her sketch to a nearby computer screen, still trying to decide which form she wants her art to take. Clapping her hands, she calls an end to the shoot and you are allowed to break from your position, stretching your stiff muscles and sliding off of Alexander\'s cock. Its absence leaves you feeling quite empty.');
         } else {
           if (((s as any).pcs_vag ?? 0) > 10  &&  ((s as any).pcs_vag ?? 0) <= 15) {
             // TODO-QSP: dynamic text: Alexander pushes himself inside you. You exhale slowly, relaxing to accommodate ...
-            scene.text(`Alexander pushes himself inside you. You exhale slowly, relaxing to accommodate the enormous 34 cm cock sliding your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy. You give yourself a moment to adjust to his sizable length and girth before settling back into the exact posture you were instructed to hold. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.`);
+            scene.text(`Alexander pushes himself inside you. You exhale slowly, relaxing to accommodate the enormous 34 cm cock sliding your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy. You give yourself a moment to adjust to his sizable length and girth before settling back into the exact posture you were instructed to hold. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.`);
             scene.text('90 minutes pass before she is finished sketching, your pussy snuggly filled by Alexander\'s cock for the duration. When she is finished, she compares her sketch to a nearby computer screen, still trying to decide which form she wants her art to take. Clapping her hands, she calls an end to the shoot and you are allowed to break from your position, stretching your stiff muscles and sliding off of Alexander\'s cock. Its absence leaves you feeling quite empty.');
           } else {
             if (((s as any).pcs_vag ?? 0) > 15  &&  ((s as any).pcs_vag ?? 0) <= 25) {
               // TODO-QSP: dynamic text: Alexander pushes himself inside you. You relax, letting the enormous 34 cm cock ...
-              scene.text(`Alexander pushes himself inside you. You relax, letting the enormous 34 cm cock slide into your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy with relative ease. You check your position, making sure you can feel his balls against your clit and that he's all the way inside before settling back into the exact posture you were instructed to hold. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.`);
+              scene.text(`Alexander pushes himself inside you. You relax, letting the enormous 34 cm cock slide into your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy with relative ease. You check your position, making sure you can feel his balls against your clit and that he's all the way inside before settling back into the exact posture you were instructed to hold. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.`);
               scene.text('90 minutes pass before she is finished sketching, your pussy comfortably filled by Alexander\'s cock for the duration. When she is finished, she compares her sketch to a nearby computer screen, still trying to decide which form she wants her art to take. Clapping her hands, she calls an end to the shoot and you are allowed to break from your position, stretching your stiff muscles and sliding off of Alexander\'s cock. Its absence leaves you feeling quite empty.');
             } else {
               // TODO-QSP: dynamic text: Alexander pushes himself inside you. His enormous 34 cm cock slides into you eas...
-              scene.text(`Alexander pushes himself inside you. His enormous 34 cm cock slides into you easily, your ${((s as any).pc_desc ?? 0)?.['pussy']} pussy readily stretching to accommodate his sizable length and girth. You check your position, making sure you can feel his balls against your clit and that he's all the way inside before settling back into the exact posture you were instructed to hold. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.`);
+              scene.text(`Alexander pushes himself inside you. His enormous 34 cm cock slides into you easily, your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} pussy readily stretching to accommodate his sizable length and girth. You check your position, making sure you can feel his balls against your clit and that he's all the way inside before settling back into the exact posture you were instructed to hold. The woman clicks a button and cameras flash all around you and the red line of scanners begin to slowly ascend your body from bottom to top. As the scanner moves, you see her sit down in front of an easel from the corner of your eye and begin to draw.`);
               scene.text('90 minutes pass before she is finished sketching, your pussy satisfyingly filled by Alexander\'s cock for the duration. When she is finished, she compares her sketch to a nearby computer screen, still trying to decide which form she wants her art to take. Clapping her hands, she calls an end to the shoot and you are allowed to break from your position, stretching your stiff muscles and sliding off of Alexander\'s cock. Its absence leaves you feeling quite empty.');
             }
           }
         }
         // TODO-QSP: dynamic text: "Zis is for ze job," she says, placing wad of <<$func('money', 'string_profit', ...
-        scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} into your hand. "And zis, is for your contribution to art!," she says, placing another ${qspFunc(s, 'money', 'string_profit', 2000)} on top. "It iz always so much better to be able to work with models who do as instructed. Zo many do not understand ze nature of art. Take zis with my compliments." With that, she snaps her fingers twice and her crew immediately starts packing up equipment.`);
+        scene.text(`"Zis is for ze job," she says, placing wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} into your hand. "And zis, is for your contribution to art!," she says, placing another ${qspFunc(s, 'money', 'string_profit', 2000)} on top. "It iz always so much better to be able to work with models who do as instructed. Zo many do not understand ze nature of art. Take zis with my compliments." With that, she snaps her fingers twice and her crew immediately starts packing up equipment.`);
         if (((s as any).pcs_vag ?? 0) <= 10) {
           scene.text('You watch them leave, the money from the job in hand, feeling good about the day\'s work. Though your pussy is a bit sore.');
         } else {
@@ -1738,7 +1738,7 @@ function enterModernArt(s: GameState, scene: SceneBuilder): void {
     scene.text('The shoot finally ends and you and the other model untangle each other from one another, stretching to ease your cramped muscles. The two of you briefly share a look together, before blushing hard and both looking away.');
     scene.text('"Thanks guys! You two were great! I\'m like, totally gonna get an A from my professor for this." The shoot over, the client departs and you collect your money from the manager with the other model. Holding your cash, you glance at each other one more time before blushing again and both making excuses about needing to be elsewhere in the studio. This isn\'t something that\'s going to be forgotten any time soon…');
     // TODO-QSP: dynamic text: You earned <<$func('money', 'string_profit', modelpayfin)>> for this job.
-    scene.text(`You earned ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} for this job.`);
+    scene.text(`You earned ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for this job.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -1783,7 +1783,7 @@ function enterAphroditeAdvert(s: GameState, scene: SceneBuilder): void {
     scene.text('The next two hours are spent being posed, positioned, and re-positioned into various arrangements and groupings, ensuring that the advertising department has a diverse set of options to work with.');
     scene.text('When the shoot ends, a manager calls for all you girls to line up, handing each of you an envelope of cash as you walk by him.');
     // TODO-QSP: dynamic text: You are paid <<$func('money', 'string_profit', modelpayfin)>> for the job today,...
-    scene.text(`You are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} for the job today, which isn't very much as far as the usual payment goes at the studio. But the manager did tell you up front, this job doesn't pay out so much in money for you as it does for publicity.`);
+    scene.text(`You are paid ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for the job today, which isn't very much as far as the usual payment goes at the studio. But the manager did tell you up front, this job doesn't pay out so much in money for you as it does for publicity.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -1825,7 +1825,7 @@ function enterIndependentArt(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/special/art3.jpg');
     scene.text('You go to the designated set where you find several other girls dressed in graceful and sophisticated clothing that is also completely sheer. At your approach, you are directed to put on one of these outfits yourself and get your hair done by the team of the makeup artists present.');
     // TODO-QSP: dynamic text: The next two hours after that are spent being posed quite elegantly, as promised...
-    scene.text(`The next two hours after that are spent being posed quite elegantly, as promised by the request. The shoot ends and you go back to the manager who pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} for the job.`);
+    scene.text(`The next two hours after that are spent being posed quite elegantly, as promised by the request. The shoot ends and you go back to the manager who pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for the job.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -1865,7 +1865,7 @@ function enterDesignerWedding(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/special/wedding.jpg');
     scene.text('You go to set 12 where you put on the "dress" which really <i>is</i> just stockings, gloves, and a veil. You and the photographer spend about an hour in a few poses, including a few that have pulled back the bra and panties before wrapping up.');
     // TODO-QSP: dynamic text: The shoot ends and you go back to the manager who pays you <<$func('money', 'str...
-    scene.text(`The shoot ends and you go back to the manager who pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} for the job.`);
+    scene.text(`The shoot ends and you go back to the manager who pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for the job.`);
     scene.actions([
       { label: 'Go back to the main floor', goto: ['foto', 'studio'] },
     ]);
@@ -1879,7 +1879,7 @@ function enterDesignerWedding(s: GameState, scene: SceneBuilder): void {
 function enterTopless1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -1892,7 +1892,7 @@ function enterTopless1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"What\'s up?"');
     // TODO-QSP: dynamic text: "You're starting to make a name for yourself around here <<$model['firstname']>>...
-    scene.text(`"You're starting to make a name for yourself around here ${((s as any).model ?? 0)?.['firstname']}. I'm here to talk to you about a special offer."`);
+    scene.text(`"You're starting to make a name for yourself around here ${((s as any).model ?? 0)?.['firstname'] ?? ''}. I'm here to talk to you about a special offer."`);
     if (((s as any).casting ?? 0) > 0  &&  (!((s as any).first_fame_event ?? 0))) {
       scene.text('"Special offer? Like another commercial?"');
       scene.text('"No, no. Not quite like that. We\'ve been getting a lot of positive feedback about your work. One of the higher ups in the studio asked us to put out a special issue that features exclusively you if you\'re up for it. We wanted to do something special so the plan is to do it outside the studio in a place with more natural light. It\'ll just be a topless shoot and will take a bit longer than usual to get there and set up, but we\'ll pay you for it in addition to your normal once a week contract. What do you say? Are you in?"');
@@ -1902,13 +1902,13 @@ function enterTopless1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: '"No thanks"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: '"No thanks"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -1938,13 +1938,13 @@ function enterTopless1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: '"No thanks"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: '"No thanks"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2031,7 +2031,7 @@ function enterTopless1_1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/down.jpg');
     // TODO-QSP: dynamic text: You get dressed again while they load everything back into the van and then you ...
-    scene.text(`You get dressed again while they load everything back into the van and then you all drive back to the studio. They drop you on the curb with your pay of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} for today's work. You can see there's even a little extra!`);
+    scene.text(`You get dressed again while they load everything back into the van and then you all drive back to the studio. They drop you on the curb with your pay of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for today's work. You can see there's even a little extra!`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -2055,7 +2055,7 @@ function enterTopless1_1(s: GameState, scene: SceneBuilder): void {
 function enterPool1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -2090,13 +2090,13 @@ function enterPool1(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: '"I\'m not interested in getting famous" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: '"I\'m not interested in getting famous"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: '"I\'m not interested in getting famous" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: '"I\'m not interested in getting famous"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2113,13 +2113,13 @@ function enterPool1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"Sorry, I had other plans" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"Sorry, I had other plans"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"Sorry, I had other plans" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"Sorry, I had other plans"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2170,7 +2170,7 @@ function enterPool1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/down.jpg');
     // TODO-QSP: dynamic text: When it's all over, the shuttle takes you and the other models back to the studi...
-    scene.text(`When it's all over, the shuttle takes you and the other models back to the studio and drop you on the curb with your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} earnings.`);
+    scene.text(`When it's all over, the shuttle takes you and the other models back to the studio and drop you on the curb with your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} earnings.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -2192,7 +2192,7 @@ function enterPool1(s: GameState, scene: SceneBuilder): void {
 function enterTennis(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -2217,13 +2217,13 @@ function enterTennis(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: '"I\'m not actually that into tennis…" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: '"I\'m not actually that into tennis…"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: '"I\'m not actually that into tennis…" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: '"I\'m not actually that into tennis…"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2241,13 +2241,13 @@ function enterTennis(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"I\'m not interested in getting famous" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"I\'m not interested in getting famous"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"Not today" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"Not today"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2299,7 +2299,7 @@ function enterTennis(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'fame', 'city', 'modelling', 'small');
     }
     // TODO-QSP: dynamic text: Eventually the shoot is over and they thank you for agreeing to do the shoot for...
-    scene.text(`Eventually the shoot is over and they thank you for agreeing to do the shoot for them. They thank you even more when they play it back in slow motion. After they're done time warp ogling your bouncing breasts, they pay you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} and thank you one more time when they play the recordings back again.`);
+    scene.text(`Eventually the shoot is over and they thank you for agreeing to do the shoot for them. They thank you even more when they play it back in slow motion. After they're done time warp ogling your bouncing breasts, they pay you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} and thank you one more time when they play the recordings back again.`);
     scene.actions([
       { label: 'Back to the studio', goto: ['foto', 'studio'] },
     ]);
@@ -2321,7 +2321,7 @@ function enterTennis(s: GameState, scene: SceneBuilder): void {
 function enterTopless2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -2336,20 +2336,20 @@ function enterTopless2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"No thanks"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"No thanks"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     scene.text('"Thanks for the offer but I\'m happy with my schedule for today. You can ask one of the other girls."');
     // TODO-QSP: dynamic text: "Alright, I'll see you around <<$model['firstname']>>."
-    scene.text(`"Alright, I'll see you around ${((s as any).model ?? 0)?.['firstname']}."`);
+    scene.text(`"Alright, I'll see you around ${((s as any).model ?? 0)?.['firstname'] ?? ''}."`);
     scene.text('You wave goodbye as he goes off to find another girl.');
     scene.actions([
       { label: 'Back to the studio', goto: ['foto', 'studio'] },
@@ -2392,7 +2392,7 @@ function enterTopless2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/down.jpg');
     scene.text('The shoot is over and you get dressed while the rest of the crew packs up. Since it looks like they\'ll be a while, you tell them you can just find you way back from here and you\'ll see them later.');
     // TODO-QSP: dynamic text: Just before you leave, a staff member comes over and pays you <<$func('money', '...
-    scene.text(`Just before you leave, a staff member comes over and pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} for the day's work.`);
+    scene.text(`Just before you leave, a staff member comes over and pays you ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} for the day's work.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -2414,7 +2414,7 @@ function enterTopless2(s: GameState, scene: SceneBuilder): void {
 function enterBeach2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -2425,17 +2425,17 @@ function enterBeach2(s: GameState, scene: SceneBuilder): void {
       { label: '"What\'s up?"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, we're looking for girls to do a topless beach shoo...
-    scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, we're looking for girls to do a topless beach shoot today. It's a five hour job if you include the travel time but we'll pay you extra on top of what you'd normally get as a bit of compensation. So, do you want it?"`);
+    scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, we're looking for girls to do a topless beach shoot today. It's a five hour job if you include the travel time but we'll pay you extra on top of what you'd normally get as a bit of compensation. So, do you want it?"`);
     qspCall(s, 'willpower', 'exhib', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"No thanks"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"No thanks"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2496,7 +2496,7 @@ function enterBeach2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/down.jpg');
     scene.text('It\'s an hour later by the time you get back to the studio. The rest of the crew still has to unload but you\'re free to go as soon as you get paid.');
     // TODO-QSP: dynamic text: The one of the staff counts out your <<$func('money', 'string_profit', modelpayf...
-    scene.text(`The one of the staff counts out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} and you happily pocket it along with the additional ${qspFunc(s, 'money', 'string_profit', 1000)} you got as a bonus.`);
+    scene.text(`The one of the staff counts out your ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} and you happily pocket it along with the additional ${qspFunc(s, 'money', 'string_profit', 1000)} you got as a bonus.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -2520,7 +2520,7 @@ function enterBeach2(s: GameState, scene: SceneBuilder): void {
 function enterPool2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -2531,17 +2531,17 @@ function enterPool2(s: GameState, scene: SceneBuilder): void {
       { label: '"What\'s up?"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, we were thinking about doing a topless pool shoot....
-    scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, we were thinking about doing a topless pool shoot. It's offsite so it'll be an extra hour or two but it's also an extra payday if you want it. So? Do you want it?"`);
+    scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, we were thinking about doing a topless pool shoot. It's offsite so it'll be an extra hour or two but it's also an extra payday if you want it. So? Do you want it?"`);
     qspCall(s, 'willpower', 'exhib', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"No thanks"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"No thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"No thanks"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2585,7 +2585,7 @@ function enterPool2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/down.jpg');
     scene.text('After the shoot, they drop you back outside the studio while they unload.');
     // TODO-QSP: dynamic text: The photographer pays you out <<$func('money', 'string_profit', modelpayfin)>> a...
-    scene.text(`The photographer pays you out ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} and once the money is in your hand, you're free to go.`);
+    scene.text(`The photographer pays you out ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} and once the money is in your hand, you're free to go.`);
     scene.actions([
       { label: 'Leave', goto: ['city_center', ''] },
     ]);
@@ -2605,7 +2605,7 @@ function enterPool2(s: GameState, scene: SceneBuilder): void {
 function enterRunway1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -2623,7 +2623,7 @@ function enterRunway1(s: GameState, scene: SceneBuilder): void {
 function enterRunway2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -2634,26 +2634,26 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
       { label: '"What\'s up?"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     // TODO-QSP: dynamic text: Hey <<$model['firstname']>>, listen. We have an emergency situation and we're lo...
-    scene.text(`Hey ${((s as any).model ?? 0)?.['firstname']}, listen. We have an emergency situation and we're looking for whoever is available. A clothing studio we sometimes shoot for is having a fashion show tonight but for some reason something's gone wrong and they're missing models."`);
+    scene.text(`Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, listen. We have an emergency situation and we're looking for whoever is available. A clothing studio we sometimes shoot for is having a fashion show tonight but for some reason something's gone wrong and they're missing models."`);
     scene.text('"Missing models?" you gasp. "You mean like they\'ve disappeared or something?"');
     // TODO-QSP: dynamic text: He looks confused for a second and says, "What? No! Just for whatever reason, th...
-    scene.text('He looks confused for a second and says, "What? No! Just for whatever reason, they don\'t have enough models for tonight. I don\'t know if it\'s because some of them got sick or had an accident or if they just planned poorly and were supposed to have more than they hired. In any case, we need people to jump in tonight. It\'s going to be an all day thing though. We can\'t have anymore hiccups so if you agree you\'ll have to stay here until the show starts and then the show itself runs until \'+func(\'time\', \'get_time_string\', 22, 0)+\' tonight. We know it\'s a big commitment so if you do we\'re willing to shell out a ton of money to make this work. We\'re talking a three grand bonus on top of your normal variety shoot rate. Can we count on you for tonight?"');
+    scene.text('He looks confused for a second and says, "What? No! Just for whatever reason, they don\'t have enough models for tonight. I don\'t know if it\'s because some of them got sick or had an accident or if they just planned poorly and were supposed to have more than they hired. In any case, we need people to jump in tonight. It\'s going to be an all day thing though. We can\'t have anymore hiccups so if you agree you\'ll have to stay here until the show starts and then the show itself runs until 22:00 tonight. We know it\'s a big commitment so if you do we\'re willing to shell out a ton of money to make this work. We\'re talking a three grand bonus on top of your normal variety shoot rate. Can we count on you for tonight?"');
     qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"I\'m sorry, I can\'t be out that late" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"I\'m sorry, I can\'t be out that late"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"I\'m sorry, I can\'t be out that late" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"I\'m sorry, I can\'t be out that late"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     // TODO-QSP: dynamic text: "I'm really sorry but I have to say no. I can't be out that late or my <<$npc_ni...
-    scene.text(`"I'm really sorry but I have to say no. I can't be out that late or my ${((s as any).npc_nickname ?? 0)?.['A29']}- er, for, uhh… reasons…"`);
+    scene.text(`"I'm really sorry but I have to say no. I can't be out that late or my ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}- er, for, uhh… reasons…"`);
     scene.text('"Yeah, yeah, it\'s fine, whatever," he says a bit more harshly than he needed to but you understand he\'s under a lot of stress right now so you let it pass. At that moment, Anasasia passes by and the photographer\'s attention is immediately diverted. "Anastasia! We need you! It\'s an emergency!"');
     scene.text('"Of course darling! What do you need?" As they frantically chatter away, you leave them be and go back to the main studio.');
     scene.actions([
@@ -2665,13 +2665,13 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"I\'m sorry, I can\'t, I had plans for today" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"I\'m sorry, I can\'t, I had plans for today"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"I\'m sorry, I can\'t, I had plans for today" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"I\'m sorry, I can\'t, I had plans for today"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2707,7 +2707,7 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     (s as any).hour = ((s as any).hour ?? 0) + (1);
-    (s as any).modelpayfin = 500 + (((s as any).fame ?? {})?.['city_modelling'] * 10) + (((s as any).modelpay ?? 0) * 3) + (50*(Math.floor(Math.random() * 8) + 0));
+    (s as any).modelpayfin = 500 + ((((s as any).fame ?? {})?.['city_modelling'] ?? 0) * 10) + (((s as any).modelpay ?? 0) * 3) + (50*(Math.floor(Math.random() * 8) + 0));
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       qspCall(s, 'fame', 'city', 'modelling', 'medium');
     } else {
@@ -2762,13 +2762,13 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/foto.jpg');
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).age ?? 0) < 18) {
       // TODO-QSP: dynamic text: Another hour later, the show is over, the clothes are taken back, and you're lef...
-      scene.text(`Another hour later, the show is over, the clothes are taken back, and you're left naked in the studio, counting the ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} you've been paid and musing over the happenings of the night. Working the runway isn't too bad. But at the same time, this kind of thing has the tendency to circle around and you <i>really</i> hope nobody in Pavlovsk hears about this…`);
+      scene.text(`Another hour later, the show is over, the clothes are taken back, and you're left naked in the studio, counting the ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} you've been paid and musing over the happenings of the night. Working the runway isn't too bad. But at the same time, this kind of thing has the tendency to circle around and you <i>really</i> hope nobody in Pavlovsk hears about this…`);
       scene.actions([
         { label: 'Back in the studio', goto: ['foto', 'studio'] },
       ]);
     } else {
       // TODO-QSP: dynamic text: Another hour later, the show is over and you're left naked in the studio, counti...
-      scene.text(`Another hour later, the show is over and you're left naked in the studio, counting the ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} you've been paid and musing over the happenings of the night. Working the runway isn't too bad.`);
+      scene.text(`Another hour later, the show is over and you're left naked in the studio, counting the ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} you've been paid and musing over the happenings of the night. Working the runway isn't too bad.`);
       scene.actions([
         { label: 'Back in the studio', goto: ['foto', 'studio'] },
       ]);
@@ -2793,7 +2793,7 @@ function enterRunway2(s: GameState, scene: SceneBuilder): void {
 function enterWet1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   // TODO-QSP: dynamic text: "<<$model['firstname']>>!"
-  scene.text(`"${((s as any).model ?? 0)?.['firstname']}!"`);
+  scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''}!"`);
   scene.text('As you walk out of the room you hear someone call your name.');
   // TODO-QSP: end
   scene.actions([
@@ -2807,7 +2807,7 @@ function enterWet1(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
     // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, we were thinking about doing a special shoot and s...
-    scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, we were thinking about doing a special shoot and since you've shown you're willing to go the extra mile around here, we hoped you might like to do it."`);
+    scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, we were thinking about doing a special shoot and since you've shown you're willing to go the extra mile around here, we hoped you might like to do it."`);
     scene.text('You regard him somewhat suspiciously as he never actually says what the shoot is.');
     scene.actions([
       { label: '"And the shoot is…?"', handler: (st: GameState) => {
@@ -2816,13 +2816,13 @@ function enterWet1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: '"Thanks but no thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"Thanks but no thanks"', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: '"Thanks but no thanks" [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: '"Thanks but no thanks"', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2871,7 +2871,7 @@ function enterWet1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
     if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     // TODO-QSP: dynamic text: Eventually, the shoot is over and they leave you with chattering teeth, really h...
-    scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in your shiving hands. But you have to admit photos do look pretty nice.`);
+    scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} in your shiving hands. But you have to admit photos do look pretty nice.`);
     scene.actions([
       { label: 'Back to the studio', goto: ['foto', 'studio'] },
     ]);
@@ -2893,7 +2893,7 @@ function enterWet1(s: GameState, scene: SceneBuilder): void {
 function enterWet2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   // TODO-QSP: dynamic text: "Hey <<$model['firstname']>>, we wanted to do another full exposure wet shoot. S...
-  scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname']}, we wanted to do another full exposure wet shoot. Since you were so accommodating last time, I thought I'd ask you again"`);
+  scene.text(`"Hey ${((s as any).model ?? 0)?.['firstname'] ?? ''}, we wanted to do another full exposure wet shoot. Since you were so accommodating last time, I thought I'd ask you again"`);
   scene.text('You regard him somewhat suspiciously as he never actually says what the shoot is.');
   // TODO-QSP: end
   scene.actions([
@@ -2944,7 +2944,7 @@ function enterWet2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'money', 'earn', ((s as any).modelpayfin ?? 0));
     if (!(s as any).modelfoto) (s as any).modelfoto = {}; (s as any).modelfoto['earnings'] = ((s as any).modelfoto['earnings'] ?? 0) + (((s as any).modelpayfin ?? 0));
     // TODO-QSP: dynamic text: Eventually, the shoot is over and they leave you with chattering teeth, really h...
-    scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} in your shiving hands. But you have to admit photos do look pretty nice.`);
+    scene.text(`Eventually, the shoot is over and they leave you with chattering teeth, really hard nipples and a dry wad of ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} in your shiving hands. But you have to admit photos do look pretty nice.`);
     scene.actions([
       { label: 'Back to the studio', goto: ['foto', 'studio'] },
     ]);

@@ -91,19 +91,19 @@ function enterSexEndStats(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 0;
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'unsatisfied') {
-      if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 1 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
+      if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 1 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'okay') {
-        if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 2 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
+        if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 2 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'good') {
-          if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 3 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
+          if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 3 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
         } else {
           if (((s as any).locArgs?.[1] ?? 0) === 'great') {
-            if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 4 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
+            if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 4 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
           } else {
             if (((s as any).locArgs?.[1] ?? 0) === 'fucked_dry') {
-              if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 5 + ((s as any).sex_ev ?? {})?.['fav_npc_position'];
+              if (!(s as any).npc_last_sex_score) (s as any).npc_last_sex_score = {}; (s as any).npc_last_sex_score[String((s as any).npcID ?? 0)] = 5 + (((s as any).sex_ev ?? {})?.['fav_npc_position'] ?? 0);
             }
           }
         }
@@ -264,15 +264,15 @@ function enterProstitutionInit(s: GameState, scene: SceneBuilder): void {
 function enterProstitutionPayCalc(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_price'] = ((s as any).sex_ev['prostitution_price'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "sex_ev_stats" }));
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy') {
-    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_calc'] = ((s as any).npc_sugar_daddy_price ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).sex_ev ?? {})?.['prostitution_bonus'] + ((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)];
+    if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_calc'] = ((s as any).npc_sugar_daddy_price ?? 0)?.[String((s as any).npcID ?? 0)] + (((s as any).sex_ev ?? {})?.['prostitution_bonus'] ?? 0) + ((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)];
   } else {
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'p_customer') {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_calc'] = ((s as any).npc_prostitution_price ?? 0)?.[String((s as any).npcID ?? 0)] + ((s as any).sex_ev ?? {})?.['prostitution_bonus'] + ((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)];
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_calc'] = ((s as any).npc_prostitution_price ?? 0)?.[String((s as any).npcID ?? 0)] + (((s as any).sex_ev ?? {})?.['prostitution_bonus'] ?? 0) + ((s as any).npc_prostitution_tab ?? 0)?.[String((s as any).npcID ?? 0)];
     } else {
-      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_calc'] = ((s as any).sex_ev ?? {})?.['prostitution_price'] + ((s as any).sex_ev ?? {})?.['prostitution_bonus'];
+      if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_calc'] = (((s as any).sex_ev ?? {})?.['prostitution_price'] ?? 0) + (((s as any).sex_ev ?? {})?.['prostitution_bonus'] ?? 0);
     }
   }
-  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_owed'] = ((s as any).sex_ev ?? {})?.['prostitution_calc'] - ((s as any).sex_ev ?? {})?.['prostitution_paid'];
+  if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_owed'] = (((s as any).sex_ev ?? {})?.['prostitution_calc'] ?? 0) - (((s as any).sex_ev ?? {})?.['prostitution_paid'] ?? 0);
   // TODO-QSP: end
   scene.build();
 }
@@ -280,7 +280,7 @@ function enterProstitutionPayCalc(s: GameState, scene: SceneBuilder): void {
 function enterProstitutionPayCode(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) > 0) {
     if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['prostitution_owed'] = ((s as any).sex_ev['prostitution_owed'] ?? 0) + (qspUntranslated(s, "ARGS[1]", { location: "sex_ev_stats" }));
-    qspCall(s, 'sex_ev_stats', 'prostitution_pay_calc');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterProstitutionPayCalc(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] === 'sugar_daddy'  &&  ((s as any).sex_ev ?? 0)?.['sugar_daddy_paid'] === 0) {
     if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sugar_daddy_paid'] = 1;
@@ -419,7 +419,7 @@ function enterFuckbuddyAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterSugarDaddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_sugar_daddy', ((s as any).npcID ?? 0));
-  if (!(s as any).npc_sugar_daddy_price) (s as any).npc_sugar_daddy_price = {}; (s as any).npc_sugar_daddy_price[String((s as any).npcID ?? 0)] = ((s as any).sex_ev ?? {})?.['sugar_daddy_offer'] * 100;
+  if (!(s as any).npc_sugar_daddy_price) (s as any).npc_sugar_daddy_price = {}; (s as any).npc_sugar_daddy_price[String((s as any).npcID ?? 0)] = (((s as any).sex_ev ?? {})?.['sugar_daddy_offer'] ?? 0) * 100;
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'sugar_daddy') {
     // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
     if (!(s as any).sex_ev) (s as any).sex_ev = {}; (s as any).sex_ev['sugar_daddy_count'] = ((s as any).sex_ev['sugar_daddy_count'] ?? 0) + (1);

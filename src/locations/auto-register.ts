@@ -10,7 +10,6 @@ function isLocationDef(v: unknown): v is LocationDef {
   if (typeof v !== 'object' || v === null) return false;
   const o = v as Record<string, unknown>;
   return typeof o.name === 'string' &&
-    typeof o.title === 'string' &&
     (typeof o.enter === 'function' || typeof o.description === 'string' || Array.isArray(o.description) || typeof o.component === 'function' || typeof o.component === 'object');
 }
 

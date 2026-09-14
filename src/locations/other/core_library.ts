@@ -30,8 +30,8 @@ function enterSetloc(s: GameState, scene: SceneBuilder): void {
 
 function enterStageTitle(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <center><h2><<$setloc['StageTitle']>></h2></center>
-  scene.text(`<center><h2>${((s as any).setloc ?? 0)?.['StageTitle']}</h2></center>`);
-  scene.img(`images/${((s as any).setloc ?? 0)?.['StageImage']}`);
+  scene.text(`<center><h2>${((s as any).setloc ?? 0)?.['StageTitle'] ?? ''}</h2></center>`);
+  scene.img(`images/${((s as any).setloc ?? 0)?.['StageImage'] ?? ''}`);
   // TODO-QSP: end
   scene.build();
 }

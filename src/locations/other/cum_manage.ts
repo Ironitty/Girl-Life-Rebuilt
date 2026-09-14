@@ -355,7 +355,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           (s as any).pcs_cp_risk_daylastincest = ((s as any).daystart ?? 0);
         }
         // TODO-QSP: gs 'fetish', 'set_exp', 'creampie', stat['creampies_safe_known'] + stat['creampies_notsafe_known'] +...
-        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_creampies'] = ((s as any).stat ?? {})?.['creampies_safe_known'] + ((s as any).stat ?? {})?.['creampies_notsafe_known'] + ((s as any).stat ?? {})?.['creampies_risky_known'];
+        if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['total_creampies'] = (((s as any).stat ?? {})?.['creampies_safe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_notsafe_known'] ?? 0) + (((s as any).stat ?? {})?.['creampies_risky_known'] ?? 0);
         if (((s as any).trait_vars ?? 0)?.['creampie_fetish'] > 0  &&  (((s as any).trait_vars ?? 0)?.['sensitivity'] >= 0  ||  ((s as any).trait_vars ?? 0)?.['sensitivity_override'] === 1)) {
           if (((s as any).orgasm_txt ?? 0) === '') {
             if (((s as any).npcID ?? 0) === '') {
@@ -571,7 +571,7 @@ function enterCumCompute(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterComputeStatDisplay(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cum_manage', 'cum_compute');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCumCompute(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).stat_texts) (s as any).stat_texts = {}; (s as any).stat_texts['cum'] = '';
   if (Object.keys((s as any).cumvolume ?? {}).length === 0) {
     // TODO-QSP: exit
@@ -1001,7 +1001,7 @@ function enterCumgather(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['makeup_wipes'] = ((s as any).mc_inventory['makeup_wipes'] ?? 0) - (1);
       (s as any).minut = ((s as any).minut ?? 0) + 5;
       // TODO-QSP: dynamic text: You use a wipe to clean the sperm from your <<$part>>.
-      scene.text(`You use a wipe to clean the sperm from your ${((s as any).part ?? 0)}.`);
+      scene.text(`You use a wipe to clean the sperm from your ${((s as any).part || '')}.`);
       // TODO-QSP: gs 'cum_cleanup', 'cleanloc', ARGS[1]
       qspCall(s, 'stat', '');
     }
@@ -1017,7 +1017,7 @@ function enterCumeaterIcon(s: GameState, scene: SceneBuilder): void {
   if (((s as any).cumloc ?? 0)?.[String((s as any).temp_cum_manage_j ?? 0)] > 0  &&  ((s as any).temp_cum_manage_j ?? 0) !== 12) {
     if (qspFunc(s, 'cum_manage', 'check_private', ((s as any).temp_cum_manage_j ?? 0)) === 1) {
       if ((((s as any).temp_cum_manage_j ?? 0) !== 0  &&  ((s as any).temp_cum_manage_j ?? 0) !== 3)  ||  qspFunc(s, 'cum_manage', 'check_inner_overflow', ((s as any).temp_cum_manage_j ?? 0)) === 1  ||  ((s as any).cheatVars ?? 0)?.['enema'] === 1) {
-        qspCall(s, 'cum_manage', 'cumeater', ((s as any).temp_cum_manage_j ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).temp_cum_manage_j ?? 0)]; enterCumeater(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -1039,7 +1039,7 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
     (s as any).sexunaware = 0;
     (s as any).sexspecpot = (-1);
     (s as any).cumnostd = 0;
-    qspCall(s, 'cum_manage', '');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).locArgs?.[1] ?? 0) === 13) {
       // TODO-QSP: gs 'cum_cleanup', 'cleanloc', ARGS[1]
       scene.text('You carefully lick the sperm residue from your hands, enjoying the tart taste.');
@@ -1088,10 +1088,10 @@ function enterCumeater(s: GameState, scene: SceneBuilder): void {
       }
       if ((!(Math.floor(Math.random() * 2) + 0))) {
         // TODO-QSP: dynamic text: You collect a handful of sperm from your <<$part>> in your hand and lick it up, ...
-        scene.text(`You collect a handful of sperm from your ${((s as any).part ?? 0)} in your hand and lick it up, enjoying the tart taste.`);
+        scene.text(`You collect a handful of sperm from your ${((s as any).part || '')} in your hand and lick it up, enjoying the tart taste.`);
       } else {
         // TODO-QSP: dynamic text: You collect the sperm from your <<$part>> with your fingers and lick them, enjoy...
-        scene.text(`You collect the sperm from your ${((s as any).part ?? 0)} with your fingers and lick them, enjoying the tart taste.`);
+        scene.text(`You collect the sperm from your ${((s as any).part || '')} with your fingers and lick them, enjoying the tart taste.`);
       }
       if (qspFunc(s, 'cum_manage', 'check_inner_overflow', qspUntranslated(s, "ARGS[1]", { location: "cum_manage" })) === 1  &&  ((s as any).cheatVars ?? 0)?.['enema'] === 0) {
         (s as any).cumspclnt = 15;
@@ -1349,7 +1349,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
         (s as any).sexunaware = (((!((s as any).locArgs?.[2] ?? 0))) ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0))) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnostd = 1;
-        qspCall(s, 'cum_manage', '');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[1] = ((s as any).cumvol[1] ?? 0) + (((s as any).sexvolume ?? 0));
         if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[1] = 1;
       }
@@ -1361,7 +1361,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
             (s as any).sexunaware = (((Math.floor(Math.random() * 4) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
             (s as any).sexspecpot = (-1);
             (s as any).cumnostd = 1;
-            qspCall(s, 'cum_manage', '');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[2] = ((s as any).cumvol[2] ?? 0) + (((s as any).sexvolume ?? 0));
             if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[2] = 1;
           }
@@ -1373,7 +1373,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
               (s as any).sexunaware = (((Math.floor(Math.random() * 3) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
               (s as any).sexspecpot = (-1);
               (s as any).cumnostd = 1;
-              qspCall(s, 'cum_manage', '');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
               if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[9] = ((s as any).cumvol[9] ?? 0) + (((s as any).sexvolume ?? 0));
               if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[9] = 1;
             }
@@ -1386,7 +1386,7 @@ function enterCumDecayVagina(s: GameState, scene: SceneBuilder): void {
             (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
             (s as any).sexspecpot = (-1);
             (s as any).cumnostd = 1;
-            qspCall(s, 'cum_manage', '');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[6] = ((s as any).cumvol[6] ?? 0) + (((s as any).sexvolume ?? 0));
             if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[6] = 1;
           }
@@ -1422,7 +1422,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
         (s as any).sexunaware = (((!((s as any).locArgs?.[2] ?? 0))) ? ((((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0))) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnostd = 1;
-        qspCall(s, 'cum_manage', '');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[1] = ((s as any).cumvol[1] ?? 0) + (((s as any).sexvolume ?? 0));
         if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[1] = 1;
       }
@@ -1434,7 +1434,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
           (s as any).sexunaware = 0;
           (s as any).sexspecpot = (-1);
           (s as any).cumnostd = 1;
-          qspCall(s, 'cum_manage', '');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[4] = ((s as any).cumvol[4] ?? 0) + (((s as any).sexvolume ?? 0));
           if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[4] = 1;
         }
@@ -1446,7 +1446,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
             (s as any).sexunaware = (((Math.floor(Math.random() * 4) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
             (s as any).sexspecpot = (-1);
             (s as any).cumnostd = 1;
-            qspCall(s, 'cum_manage', '');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[5] = ((s as any).cumvol[5] ?? 0) + (((s as any).sexvolume ?? 0));
             if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[5] = 1;
           }
@@ -1458,7 +1458,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
               (s as any).sexunaware = (((Math.floor(Math.random() * 3) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
               (s as any).sexspecpot = (-1);
               (s as any).cumnostd = 1;
-              qspCall(s, 'cum_manage', '');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
               if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[9] = ((s as any).cumvol[9] ?? 0) + (((s as any).sexvolume ?? 0));
               if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[9] = 1;
             }
@@ -1471,7 +1471,7 @@ function enterCumDecayAnus(s: GameState, scene: SceneBuilder): void {
             (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
             (s as any).sexspecpot = (-1);
             (s as any).cumnostd = 1;
-            qspCall(s, 'cum_manage', '');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[6] = ((s as any).cumvol[6] ?? 0) + (((s as any).sexvolume ?? 0));
             if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[6] = 1;
           }
@@ -1502,7 +1502,7 @@ function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
       (s as any).sexunaware = 1;
       (s as any).sexspecpot = (-1);
       (s as any).cumnostd = 0;
-      qspCall(s, 'cum_manage', '');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[2] = ((s as any).cumvol[2] ?? 0) + (((s as any).sexvolume ?? 0));
       if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[2] = 1;
     }
@@ -1514,7 +1514,7 @@ function enterCumDecayLabia(s: GameState, scene: SceneBuilder): void {
         (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnostd = 0;
-        qspCall(s, 'cum_manage', '');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[6] = ((s as any).cumvol[6] ?? 0) + (((s as any).sexvolume ?? 0));
         if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[6] = 1;
       }
@@ -1543,7 +1543,7 @@ function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
       (s as any).sexunaware = 1;
       (s as any).sexspecpot = (-1);
       (s as any).cumnostd = 0;
-      qspCall(s, 'cum_manage', '');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[5] = ((s as any).cumvol[5] ?? 0) + (((s as any).sexvolume ?? 0));
       if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[5] = 1;
     }
@@ -1555,7 +1555,7 @@ function enterCumDecayButt(s: GameState, scene: SceneBuilder): void {
         (s as any).sexunaware = (((Math.floor(Math.random() * 5) + 0) === 1  ||  ((s as any).sparridt ?? 0)[((s as any).locArgs?.[1] ?? 0)] === -2) ? (1) : (0));
         (s as any).sexspecpot = (-1);
         (s as any).cumnostd = 0;
-        qspCall(s, 'cum_manage', '');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[6] = ((s as any).cumvol[6] ?? 0) + (((s as any).sexvolume ?? 0));
         if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[6] = 1;
       }
@@ -1584,7 +1584,7 @@ function enterCumDecayCondomVagina(s: GameState, scene: SceneBuilder): void {
     (s as any).sexunaware = 1;
     (s as any).sexspecpot = (-1);
     (s as any).cumnostd = 0;
-    qspCall(s, 'cum_manage', '');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[17] = ((s as any).cumvol[17] ?? 0) - (((s as any).sexvolume ?? 0));
     if (!(s as any).cumvol) (s as any).cumvol = {}; (s as any).cumvol[0] = ((s as any).cumvol[0] ?? 0) + (((s as any).sexvolume ?? 0));
     if (!(s as any).cumloc) (s as any).cumloc = {}; (s as any).cumloc[0] = 1;

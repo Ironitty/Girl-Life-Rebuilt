@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/\' + iif(DayStage < 4, \'dk.jpg\', \'dk_night.jpg\') + \'');
   if (((s as any).hour ?? 0) === 19  &&  ((s as any).minut ?? 0) >= 40  &&  ((s as any).week ?? 0) >= 5  &&  ((s as any).week ?? 0) < 7) {
     scene.actions([
-      { label: 'Wait in line for the disco to open (0:<<iif(60-minut < 10, "0<<60-minut>>", 60-minut)>>) [+$func(\'money\', \'get_cost_string\', 25)]', handler: (st: GameState) => {
+      { label: 'Wait in line for the disco to open (0:<<iif(60-minut < 10, "0<<60-minut>>", 60-minut)>>)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 25) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -37,14 +37,14 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         } else {
           if (qspFunc(s, 'money', 'can_afford', 25) === 1) {
             scene.actions([
-              { label: 'Go to the dance ( [+$func(\'money\', \'string_price\', 25) + \')\']', handler: (st: GameState) => {
+              { label: 'Go to the dance ( [25₽])\']', handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 25);
     (st as any).minut = ((st as any).minut ?? 0) + 1;
   }, goto: ['pav_disco', ''] },
             ]);
           } else {
             // TODO-QSP: dynamic text: The dance is on, but you don't have the ' + $func('money', 'string_price', 25) +...
-            scene.text('The dance is on, but you don\'t have the \' + $func(\'money\', \'string_price\', 25) + \' needed to pay the entrance fee.');
+            scene.text('The dance is on, but you don\'t have the 25₽ needed to pay the entrance fee.');
           }
         }
       } else {
@@ -63,13 +63,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('The community center has sports facilities and offers classes in the evening.');
       // TODO-QSP: dynamic text: It houses a small library which is open from ' + func('time', 'get_time_string',...
-      scene.text('It houses a small library which is open from \' + func(\'time\', \'get_time_string\', 8, 0) + \' until \' + func(\'time\', \'get_time_string\', 18, 0) + \'.');
+      scene.text('It houses a small library which is open from 8:00 until 18:00.');
       // TODO-QSP: dynamic text: Upstairs, there are some hobby clubs available from ' + func('time', 'get_time_s...
-      scene.text('Upstairs, there are some hobby clubs available from \' + func(\'time\', \'get_time_string\', 12, 0) + \' until \' + func(\'time\', \'get_time_string\', 20, 0) + \'.');
+      scene.text('Upstairs, there are some hobby clubs available from 12:00 until 20:00.');
       // TODO-QSP: dynamic text: The sports section is open from ' + func('time', 'get_time_string', 14, 0) + ' u...
-      scene.text('The sports section is open from \' + func(\'time\', \'get_time_string\', 14, 0) + \' until \' + func(\'time\', \'get_time_string\', 20, 0) + \' during the week and from \' + func(\'time\', \'get_time_string\', 9, 0) + \' until \' + func(\'time\', \'get_time_string\', 20, 0) + \' during the weekend.');
+      scene.text('The sports section is open from 14:00 until 20:00 during the week and from 9:00 until 20:00 during the weekend.');
       // TODO-QSP: dynamic text: On Friday and Saturday evenings, from ' + func('time', 'get_time_string', 20, 0)...
-      scene.text('On Friday and Saturday evenings, from \' + func(\'time\', \'get_time_string\', 20, 0) + \' to midnight, the main hall is used as a club with popular music and dancing. Entry fee is \' + $func(\'money\', \'string_price\', 25) + \'.');
+      scene.text('On Friday and Saturday evenings, from 20:00 to midnight, the main hall is used as a club with popular music and dancing. Entry fee is 25₽.');
     }
   }
   if ((((s as any).daystart ?? 0) % 365) !== 1) {

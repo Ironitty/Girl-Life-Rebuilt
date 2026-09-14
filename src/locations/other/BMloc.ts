@@ -25,39 +25,39 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).bmGANG ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
         }
         // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, <<$text2>>. I'm <<$boydesc>>."
-        scene.text(`${((s as any).niknameboy ?? 0)} tells you "Remember me, ${((s as any).text2 ?? 0)}. I'm ${((s as any).boydesc ?? 0)}."`);
+        scene.text(`${((s as any).niknameboy || '')} tells you "Remember me, ${((s as any).text2 || '')}. I'm ${((s as any).boydesc || '')}."`);
       } else {
         if (((s as any).bmKISS ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0  ||  ((s as any).bmTITS ?? 0)?.[String((s as any).Tboynum ?? 0)] > 0) {
           // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, we hung out and drank together beer. I'm...
-          scene.text(`${((s as any).niknameboy ?? 0)} tells you "Remember me, we hung out and drank together beer. I'm ${((s as any).boydesc ?? 0)}."`);
+          scene.text(`${((s as any).niknameboy || '')} tells you "Remember me, we hung out and drank together beer. I'm ${((s as any).boydesc || '')}."`);
         } else {
           // TODO-QSP: dynamic text: <<$niknameboy>> tells you "Remember me, we danced together. I'm <<$boydesc>>."
-          scene.text(`${((s as any).niknameboy ?? 0)} tells you "Remember me, we danced together. I'm ${((s as any).boydesc ?? 0)}."`);
+          scene.text(`${((s as any).niknameboy || '')} tells you "Remember me, we danced together. I'm ${((s as any).boydesc || '')}."`);
         }
       }
     }
     if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 0) {
       // TODO-QSP: dynamic text: After the Dance <<$boydesc>> offers to go out and drink beer.
-      scene.text(`After the Dance ${((s as any).boydesc ?? 0)} offers to go out and drink beer.`);
+      scene.text(`After the Dance ${((s as any).boydesc || '')} offers to go out and drink beer.`);
     }
     if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 1) {
       // TODO-QSP: dynamic text: After the Dance <<$boydesc>> offers to go hang out.
-      scene.text(`After the Dance ${((s as any).boydesc ?? 0)} offers to go hang out.`);
+      scene.text(`After the Dance ${((s as any).boydesc || '')} offers to go hang out.`);
     }
     if (((s as any).bmTip ?? 0)?.[String((s as any).Tboynum ?? 0)] === 2) {
       // TODO-QSP: dynamic text: After the Dance <<$boydesc>> offers to go to his hotel.
-      scene.text(`After the Dance ${((s as any).boydesc ?? 0)} offers to go to his hotel.`);
+      scene.text(`After the Dance ${((s as any).boydesc || '')} offers to go to his hotel.`);
     }
     qspCall(s, 'willpower', 'drink', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'exp_gain', 'sprt', Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay');

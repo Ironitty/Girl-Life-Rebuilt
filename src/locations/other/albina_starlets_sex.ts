@@ -196,7 +196,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('Laughing, the two Armenians shove you into their hotel room and you fall to the floor. "Get up. It\'s time to show us what you\'ve got little lamb!" one says.');
     // TODO-QSP: dynamic text: "I want to see what those <<$pc_desc['lips']>> lips of yours can do. They look l...
-    scene.text(`"I want to see what those ${((s as any).pc_desc ?? 0)?.['lips']} lips of yours can do. They look like they were made to suck cock!" the other man replies.`);
+    scene.text(`"I want to see what those ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips of yours can do. They look like they were made to suck cock!" the other man replies.`);
     scene.actions([
       { label: 'Please them', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (2);
@@ -276,7 +276,7 @@ function enterWhore2(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('Laughing, the two Armenians shove you into their hotel room and you fall to the floor. "Get up. It\'s time for another roasting, little lamb!" one says.');
     // TODO-QSP: dynamic text: "Yeah, I want to see those <<$pc_desc['lips']>> lips of yours wrapped around my ...
-    scene.text(`"Yeah, I want to see those ${((s as any).pc_desc ?? 0)?.['lips']} lips of yours wrapped around my cock again!" the other man replies.`);
+    scene.text(`"Yeah, I want to see those ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips of yours wrapped around my cock again!" the other man replies.`);
     scene.actions([
       { label: 'Please them', handler: (st: GameState) => {
     (s as any).guy = ((s as any).guy ?? 0) + (2);
@@ -704,9 +704,9 @@ function enterWhore7(s: GameState, scene: SceneBuilder): void {
   scene.text('They all look at you with lust in their eyes as the door closes loudly behind you and you jump in fright. You\'re now in a hotel room alone with a dozen older men. The man walks over to the group and sits down, taking the drink that\'s offered to him. He motions for you to come over and you sheepishly comply.');
   scene.text('"What\'s your name, girl?" he asks as he takes a swig of his drink.');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>…" you quietly reply and the men laugh.
-  scene.text(`"${((s as any).pcs_firstname ?? 0)}…" you quietly reply and the men laugh.`);
+  scene.text(`"${((s as any).pcs_firstname || '')}…" you quietly reply and the men laugh.`);
   // TODO-QSP: dynamic text: "Okay <<$pcs_firstname>>, here's the deal. These are my associates who are here ...
-  scene.text(`"Okay ${((s as any).pcs_firstname ?? 0)}, here's the deal. These are my associates who are here on business. All of us paid good money for you to show us a good time. So what you're going to do is give us a striptease, then we'll go from there. Got it?" he says rather sternly and you meekly nod.`);
+  scene.text(`"Okay ${((s as any).pcs_firstname || '')}, here's the deal. These are my associates who are here on business. All of us paid good money for you to show us a good time. So what you're going to do is give us a striptease, then we'll go from there. Got it?" he says rather sternly and you meekly nod.`);
   scene.text('One of the other men pours some vodka into a glass and offers it to you.');
   scene.text('"I can see you\'re a little nervous, so why don\'t you take this liquid courage first?"');
   (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -726,7 +726,7 @@ function enterWhore7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'drink', 'force');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     // TODO-QSP: msg $noWillpower
   } },
     ]);

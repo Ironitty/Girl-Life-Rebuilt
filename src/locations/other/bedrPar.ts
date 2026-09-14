@@ -38,7 +38,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).ParrotQW ?? 0)?.['Level'] === 2  &&  qspFunc(s, 'homes_properties', 'is_current_home')) {
       // TODO-QSP: dynamic text: As soon as you enter the room, you rush over to <<$ParrotQW['Name2']>>'s cage an...
-      scene.text(`As soon as you enter the room, you rush over to ${((s as any).ParrotQW ?? 0)?.['Name2']}'s cage and pour the contents of the vial into his water bowl. You hope this will work and keep him from spilling you and your sister's bedroom secrets.`);
+      scene.text(`As soon as you enter the room, you rush over to ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''}'s cage and pour the contents of the vial into his water bowl. You hope this will work and keep him from spilling you and your sister's bedroom secrets.`);
       if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Level'] = 3;
       if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Day'] = 3;
       scene.actions([
@@ -50,7 +50,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).ParrotQW ?? 0)?.['SisterReleaseParrotDay'] + 3 < ((s as any).daystart ?? 0)  &&  ((s as any).ParrotQW ?? 0)?.['Level'] === 1  &&  qspFunc(s, 'homes_properties', 'is_current_home')) {
         // TODO-QSP: dynamic text: When you enter the room, you notice <<$ParrotQW['Name2']>>'s cage is open and he...
-        scene.text(`When you enter the room, you notice ${((s as any).ParrotQW ?? 0)?.['Name2']}'s cage is open and he's gone.`);
+        scene.text(`When you enter the room, you notice ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''}'s cage is open and he's gone.`);
         scene.text('Anya must have released him since you weren\'t able to find a solution in time.');
         if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Owned2'] = 0;
         if (!(s as any).ParrotQW) (s as any).ParrotQW = {}; (s as any).ParrotQW['Level'] = 0;
@@ -73,7 +73,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).locat ?? 0)?.['Anya_inroom'] === 1  &&  ((s as any).ParrotQW ?? 0)?.['Owned2'] === 1  &&  ((s as any).ParrotQW ?? 0)?.['SisKeepParrot'] === 0  &&  qspFunc(s, 'homes_properties', 'is_current_home')) {
               scene.img('images/characters/pavlovsk/resident/anya/sister2.jpg');
               // TODO-QSP: dynamic text: "What is that?" Anya asks while pointing at <<$ParrotQW['Name2']>> in his cage.
-              scene.text(`"What is that?" Anya asks while pointing at ${((s as any).ParrotQW ?? 0)?.['Name2']} in his cage.`);
+              scene.text(`"What is that?" Anya asks while pointing at ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} in his cage.`);
               scene.text('"I went to the mall and bought this bird. Isn\'t he the cutest?"');
               if (((s as any).npc_rel ?? 0)?.['A33'] > 50) {
                 scene.text('"Not really, but I can see this is something you really want. As long as he doesn\'t make too much noise, I don\'t really care."');
@@ -110,79 +110,79 @@ function enter(s: GameState, scene: SceneBuilder): void {
               }
               if (((s as any).ParrotQW ?? 0)?.['Owned2'] === 1  &&  qspFunc(s, 'homes_properties', 'is_current_home')) {
                 // TODO-QSP: dynamic text: <a href="exec:gt 'popu','start2'"><<$ParrotQW['Name2']>></a> is sitting in his c...
-                scene.text(`<a href="exec:gt 'popu','start2'">${((s as any).ParrotQW ?? 0)?.['Name2']}</a> is sitting in his cage`);
+                scene.text(`<a href="exec:gt 'popu','start2'">${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''}</a> is sitting in his cage`);
                 if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 10) {
                   // TODO-QSP: dynamic text: <<$ParrotQW['Name2']>> starts squawking at you when you enter the room.
-                  scene.text(`${((s as any).ParrotQW ?? 0)?.['Name2']} starts squawking at you when you enter the room.`);
+                  scene.text(`${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} starts squawking at you when you enter the room.`);
                 } else {
                   if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 20) {
                     // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. It sounds almost lik...
-                    scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. It sounds almost like he is saying "<b>Hello ${((s as any).pcs_nickname ?? 0)}!</b>"`);
+                    scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. It sounds almost like he is saying "<b>Hello ${((s as any).pcs_nickname || '')}!</b>"`);
                   } else {
                     if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 30) {
                       // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is clearly saying...
-                      scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is clearly saying "<b>Hello ${((s as any).pcs_nickname ?? 0)}!</b>"`);
+                      scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is clearly saying "<b>Hello ${((s as any).pcs_nickname || '')}!</b>"`);
                     } else {
                       if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 35) {
                         // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b><<$...
-                        scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>${((s as any).pcs_nickname ?? 0)} very pretty!</b>"`);
+                        scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>${((s as any).pcs_nickname || '')} very pretty!</b>"`);
                       } else {
                         if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 40) {
                           // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Gre...
-                          scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>Great body, ${((s as any).pcs_nickname ?? 0)}!</b>"`);
+                          scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Great body, ${((s as any).pcs_nickname || '')}!</b>"`);
                         } else {
                           if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 50) {
                             // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>You...
-                            scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>You're the best, Anya!</b>"`);
+                            scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>You're the best, Anya!</b>"`);
                           } else {
                             if (((s as any).daystart ?? 0) - ((s as any).ParrotQW ?? 0)?.['BuyDate'] <= 55) {
                               // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Yea...
-                              scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>Yeah, that's it Anya! Swallow it all!</b>"`);
+                              scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Yeah, that's it Anya! Swallow it all!</b>"`);
                             } else {
                               if (((s as any).ParrotQW ?? 0)?.['Level'] < 3) {
                                 // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>You...
-                                scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>Your pussy tastes great, Anya!</b>"`);
+                                scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Your pussy tastes great, Anya!</b>"`);
                               } else {
                                 (s as any).parfixrand = Math.floor(Math.random() * 10) + 0;
                                 if ((!((s as any).parfixrand ?? 0))) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Wha...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>What did you say to me?</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>What did you say to me?</b>"`);
                                 }
                                 if (((s as any).parfixrand ?? 0) === 1) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>3.1...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>3.1415926535897932384…</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>3.1415926535897932384…</b>"`);
                                 }
                                 if (((s as any).parfixrand ?? 0) === 2) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Com...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>Come closer, my friend.</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Come closer, my friend.</b>"`);
                                 }
                                 if (((s as any).parfixrand ?? 0) === 3) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Her...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>Here kitty, kitty!</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Here kitty, kitty!</b>"`);
                                 }
                                 if (((s as any).parfixrand ?? 0) === 4) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>I j...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>I just met you, and this is crazy!</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>I just met you, and this is crazy!</b>"`);
                                 }
                                 if (((s as any).parfixrand ?? 0) === 5) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Bow...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>Bow before me!</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Bow before me!</b>"`);
                                 }
                                 if (((s as any).parfixrand ?? 0) === 6) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>He'...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>He's just a friend, honest!</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>He's just a friend, honest!</b>"`);
                                 }
                                 if (((s as any).parfixrand ?? 0) === 7) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Wha...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>What did you do to my socks?</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>What did you do to my socks?</b>"`);
                                 }
                                 if (((s as any).parfixrand ?? 0) === 8) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Tha...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>That's what she said!</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>That's what she said!</b>"`);
                                 }
                                 if (((s as any).parfixrand ?? 0) === 9) {
                                   // TODO-QSP: dynamic text: When <<$ParrotQW['Name2']>> sees you, he starts 'speaking'. He is saying "<b>Hel...
-                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2']} sees you, he starts 'speaking'. He is saying "<b>Help! They've turned me into a parrot!</b>"`);
+                                  scene.text(`When ${((s as any).ParrotQW ?? 0)?.['Name2'] ?? ''} sees you, he starts 'speaking'. He is saying "<b>Help! They've turned me into a parrot!</b>"`);
                                 }
                               }
                             }
@@ -302,7 +302,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'library_functions', 'set_home_read_acts');
                 if (((s as any).mc_inventory ?? 0)?.['trinkets_home'] > 0) {
                   // TODO-QSP: dynamic text: You currently have <<mc_inventory['trinkets_home']>> trinkets to sell at the sta...
-                  scene.text(`You currently have ${((s as any).mc_inventory ?? 0)?.['trinkets_home']} trinkets to sell at the station. The maximum you can carry is 30.`);
+                  scene.text(`You currently have ${((s as any).mc_inventory ?? 0)?.['trinkets_home'] ?? ''} trinkets to sell at the station. The maximum you can carry is 30.`);
                 }
                 if (((s as any).locat ?? 0)?.['Anya_inroom'] === 0) {
                   qspCall(s, 'din_van', 'palelady');
@@ -321,7 +321,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((s as any).newgobelen ?? 0) >= 1) {
                         // TODO-QSP: dynamic text: Your tapestry is <<newgobelen/10>> percent finished.
-                        scene.text(`Your tapestry is ${((s as any).newgobelen ?? 0)/10} percent finished.`);
+                        scene.text(`Your tapestry is ${((s as any).newgobelen ?? '')/10} percent finished.`);
                         scene.actions([
                           { label: 'Work on the tapestry', goto: ['sewing', 'tapestry'] },
                         ]);
@@ -330,7 +330,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                   }
                   if (((s as any).mc_inventory ?? 0)?.['tapestry'] > 0) {
                     // TODO-QSP: dynamic text: You have <<mc_inventory['tapestry']>> completed tapestries.
-                    scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['tapestry']} completed tapestries.`);
+                    scene.text(`You have ${((s as any).mc_inventory ?? 0)?.['tapestry'] ?? ''} completed tapestries.`);
                   }
                 }
                 qspCall(s, 'internet_mobile', 'get_access');

@@ -38,7 +38,7 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
   scene.text('The store clerk looks bored and doesn\'t even seem to notice you until you speak to him.');
   scene.text('"Do you have any swimsuits for sale?" you ask, but he just looks directly into your eyes without saying anything. The silence feels extremely intimidating, but he finally responds after what seems like an eternity.');
   // TODO-QSP: dynamic text: "I don't get much stock delivered here, so I only have this. It's yours for ' + ...
-  scene.text('"I don\'t get much stock delivered here, so I only have this. It\'s yours for \' + $func(\'money\', \'string_price\', 1200) + \'."');
+  scene.text('"I don\'t get much stock delivered here, so I only have this. It\'s yours for 1200₽."');
   scene.text('He shows you a skimpy polka dot bikini that barely covers anything. It isn\'t pretty, but there aren\'t any other options.');
   if (qspFunc(s, 'money', 'can_afford', 1200) === 1) {
     scene.actions([
@@ -53,7 +53,7 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
       scene.text('The cheap, flimsy bikini is cheap looks like it could fall apart at any moment, but with no other options available, you reluctantly purchase it.');
     }
     qspCall(s, 'money', 'pay', 1200);
-    qspCall(s, 'pav_pool_events', 'buy_cheap_swimsuit');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuyCheapSwimsuit(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool', 'entrance'] },
@@ -72,7 +72,7 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
     if (((s as any).money ?? 0) !== 0) {
       scene.text('You count your money.');
       // TODO-QSP: dynamic text: "I only have <<$func('money', 'format', money)>>. Do you have anything for that ...
-      scene.text(`"I only have ${qspFunc(s, 'money', 'format', ((s as any).money ?? 0))}. Do you have anything for that amount?"`);
+      scene.text(`"I only have ${qspFunc(s, 'money', 'format', ((s as any).money || ''))}. Do you have anything for that amount?"`);
     } else {
       scene.text('Your purse is empty.');
       scene.text('"Well, I don\'t have anything…" you mumble.');
@@ -82,13 +82,13 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'humiliation', 'self');
     if (((s as any).will_cost ?? 0) > ((s as any).pcs_willpwr ?? 0)) {
       scene.actions([
-        { label: 'Do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Do it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Do it', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
@@ -105,7 +105,7 @@ function enterStoreSwimsuitBuy(s: GameState, scene: SceneBuilder): void {
     scene.text('You quickly pull your clothes back on and leave with the bikini in hand, not looking back at him. You can feel his creepy stare on the back of your head and pick up your pace.');
     qspCall(s, 'money', 'set', 0, 'cash');
     if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['storeclerkvisit'] = 1;
-    qspCall(s, 'pav_pool_events', 'buy_cheap_swimsuit');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBuyCheapSwimsuit(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Leave', goto: ['pav_pool', 'entrance'] },
@@ -757,7 +757,7 @@ function enterFeetwater(s: GameState, scene: SceneBuilder): void {
 
 function enterWatertoplost(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
-  qspCall(s, 'pav_pool_events', 'timedesc');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimedesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You\'re topless in the water, a fact you\'re trying to hide.');
   if ((((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 12)  ||  (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 21)) {
     scene.text('You see the few people scattered around the pool looking at you from time to time.');
@@ -775,7 +775,7 @@ function enterWatertoplost(s: GameState, scene: SceneBuilder): void {
       (s as any).minut = ((s as any).minut ?? 0) + 3;
       qspCall(s, 'stat', '');
       scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
-      qspCall(s, 'pav_pool_events', 'timedesc');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimedesc(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.text('You reach the edge of the pool and manage to climb out unnoticed before running to the locker room. You can get rid of this bottom since it\'s useless now.');
       if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['toplost'] = 0;
       qspCall(s, 'clothing', 'strip');
@@ -808,7 +808,7 @@ function enterWTLNothinghappens(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
-  qspCall(s, 'pav_pool_events', 'timedesc');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimedesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You wait around topless in the water for a while. You notice several people staring at you and have to avoid others from time to time, but nobody disturbs you.');
   // TODO-QSP: end
   scene.actions([
@@ -821,18 +821,18 @@ function enterWTLMast(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/assgrab1.jpg');
-  qspCall(s, 'pav_pool_events', 'timedesc');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimedesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You\'re topless in the water with only your head poking out when you suddenly feel someone behind you start forcefully squeezing your ass.');
   qspCall(s, 'willpower', 'humiliation', 'self');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Stop it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Stop it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Stop it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Stop it', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     if ((Math.floor(Math.random() * 100) + 0) < 75) {
@@ -856,13 +856,13 @@ function enterWTLMast(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'humiliation', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Flee [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Flee', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Flee [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Flee', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/waterleave.jpg');
@@ -909,13 +909,13 @@ function enterWTLBoystole(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'humiliation', 'self');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
@@ -959,7 +959,7 @@ function enterTryreachedgenotop(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 3;
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/community/swim/losttop.jpg');
-  qspCall(s, 'pav_pool_events', 'timedesc');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimedesc(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You slowly move towards the edge of the pool while trying to avoid people. You manage for the most part, but do come into contact with someone who thankfully doesn\'t seem to notice anything.');
   scene.text('You reach the edge of the pool and manage to climb out unnoticed before running to the locker room. You can get rid of this bottom since it\'s useless now.');
   if (!(s as any).pav_swimpool) (s as any).pav_swimpool = {}; (s as any).pav_swimpool['toplost'] = 0;
@@ -1099,13 +1099,13 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'self', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Blow him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Blow him off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Blow him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Blow him off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/community/swim/flirtside.jpg');
     scene.text('"If you say so…" you answer in the most uninterested tone you can manage and look away from him.');
@@ -1145,13 +1145,13 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'kiss', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Pull away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Pull away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img(`images/locations/pavlovsk/community/swim/ladder${Math.floor(Math.random() * 2) + 1}.jpg`);
     scene.text('You slide out of his hands, climb out of the pool and make a dash for the locker room without looking back.');
@@ -1165,13 +1165,13 @@ function enterSideflirt(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'kiss', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Kiss him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Kiss him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/community/swim/kisswater.jpg');
     scene.text('You decide to accept the kiss. Your lips welcome each other and soon both your tongues entangle each other in a long deep kiss as he holds your face with both hands.');
@@ -1270,13 +1270,13 @@ function enterEdgeKiss(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Have sex with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Have sex with him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Have sex with him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Have sex with him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/locations/pavlovsk/community/swim/poolfuck.mp4');
     qspCall(s, 'arousal', 'vaginal', (-3), 'exhibitionism', 'sub');
@@ -1334,13 +1334,13 @@ function enterLateAssault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'humiliation', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Try to slip away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Try to slip away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Try to slip away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Try to slip away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'humiliation', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1357,13 +1357,13 @@ function enterLateAssault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'rape', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Elbow him in the face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Elbow him in the face', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Elbow him in the face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Elbow him in the face', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'rape', 'resist');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 2;

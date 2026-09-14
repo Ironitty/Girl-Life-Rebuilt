@@ -127,7 +127,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).tits ?? 0) < 4) {
       scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/5.jpg');
       // TODO-QSP: dynamic text: "What's the matter, slut? Jealous?" she says with a smirk, obviously lording the...
-      scene.text(`"What's the matter, slut? Jealous?" she says with a smirk, obviously lording the size and shape of her tits over you and your ${((s as any).titsize ?? 0)} breasts.`);
+      scene.text(`"What's the matter, slut? Jealous?" she says with a smirk, obviously lording the size and shape of her tits over you and your ${((s as any).titsize || '')} breasts.`);
       scene.actions([
         { label: 'Grind your teeth in jealousy', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/4.jpg');
@@ -188,7 +188,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
         if (((s as any).tits ?? 0) >= 5) {
           scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/1.jpg');
           // TODO-QSP: dynamic text: "What's the matter, whore? Wish you didn't have such fat cow tits?" she says wit...
-          scene.text(`"What's the matter, whore? Wish you didn't have such fat cow tits?" she says with fake concern and pushing out her chest, obviously trying to talk down your larger ${((s as any).titsize ?? 0)} breasts.`);
+          scene.text(`"What's the matter, whore? Wish you didn't have such fat cow tits?" she says with fake concern and pushing out her chest, obviously trying to talk down your larger ${((s as any).titsize || '')} breasts.`);
           scene.actions([
             { label: '"What\'s wrong with having big breasts?"', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/2.jpg');
@@ -220,7 +220,7 @@ function enterEmily_2(s: GameState, scene: SceneBuilder): void {
     scene.text('Walking through the studio, you round the corner of a set and nearly bump into Emily.');
     scene.text('"Oh. It\'s you," she says flatly.');
     // TODO-QSP: dynamic text: "Uhh, yeah… I never introduced myself the last time we saw each other. I'm <<$mo...
-    scene.text(`"Uhh, yeah… I never introduced myself the last time we saw each other. I'm ${((s as any).model ?? 0)?.['firstname']}, I'm a new model here at the agency."`);
+    scene.text(`"Uhh, yeah… I never introduced myself the last time we saw each other. I'm ${((s as any).model ?? 0)?.['firstname'] ?? ''}, I'm a new model here at the agency."`);
     scene.text('"Yeah, I know. Models are the only ones who walk around here naked, I\'m not retarded."');
     scene.text('"Right… So-" you start to say something, but she interrupts you.');
     scene.text('"Look, are you just here to waste my time?"');
@@ -273,7 +273,7 @@ function enterEmilyResolve(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).emily) (s as any).emily = {}; (s as any).emily['hate'] = ((s as any).emily['hate'] ?? 0) - (1);
   scene.img('images/locations/city/citycenter/photo/portraits/emily_r/talking/3.jpg');
   // TODO-QSP: dynamic text: You take a deep breath to calm down before saying, "Listen. Maybe we got off on ...
-  scene.text(`You take a deep breath to calm down before saying, "Listen. Maybe we got off on the wrong foot yesterday. I just started here and I don't want to be making enemies right out of the gate. I'm ${((s as any).model ?? 0)?.['firstname']} and I'm sorry for what happened yesterday. Can we just try to forget about it?"`);
+  scene.text(`You take a deep breath to calm down before saying, "Listen. Maybe we got off on the wrong foot yesterday. I just started here and I don't want to be making enemies right out of the gate. I'm ${((s as any).model ?? 0)?.['firstname'] ?? ''} and I'm sorry for what happened yesterday. Can we just try to forget about it?"`);
   scene.text('You hold out your hand as an apology.');
   scene.text('She seems genuinely caught off guard by your actions and takes an actual step back. She quickly composes herself and grabs your hand saying, "Fine. Just… Pay more attention next time," before hurridly walking out of the room.');
   scene.text('You release the breath you didn\'t realize you had been holding. You hope you made the right choice and have fixed things for the future.');

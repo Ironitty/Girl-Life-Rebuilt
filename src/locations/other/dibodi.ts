@@ -109,7 +109,7 @@ function enterSotusa(s: GameState, scene: SceneBuilder): void {
   if (((s as any).sttan ?? 0) === 0  &&  ((s as any).pantyworntype ?? 0) === 'none') {
     (s as any).sttan = 1;
     // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, what's with the no panties?" The crowd laughs out loud, ...
-    scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, what's with the no panties?" The crowd laughs out loud, noticing your lack of underwear.`);
+    scene.text(`"Hey ${((s as any).pcs_nickname || '')}, what's with the no panties?" The crowd laughs out loud, noticing your lack of underwear.`);
     scene.actions([
       { label: 'Continue', goto: ['pushkin_sq', ''] },
     ]);

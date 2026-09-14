@@ -14,7 +14,7 @@ function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
   scene.text('You step out of the room and almost run head first into one of the managers.');
   scene.text('"Woah!" you say, jumping back. "What are you doing?"');
   // TODO-QSP: dynamic text: "Oh <<$model['firstname']>>, glad I caught you before you wandered off somewhere...
-  scene.text(`"Oh ${((s as any).model ?? 0)?.['firstname']}, glad I caught you before you wandered off somewhere else in the studio. I was just going to see if anyone else showed up today. We're looking for volunteers to participate in some interviews for a documentary."`);
+  scene.text(`"Oh ${((s as any).model ?? 0)?.['firstname'] ?? ''}, glad I caught you before you wandered off somewhere else in the studio. I was just going to see if anyone else showed up today. We're looking for volunteers to participate in some interviews for a documentary."`);
   scene.text('"Documentary?" you ask. "What about?"');
   scene.text('"There\'s some people here today who are making a film about models, their lives, and about working here. They want to capture girls working here in their usual working environment so you wouldn\'t be dressing up or anything, just interviewed as in the studio approved dress code."');
   scene.text('<i>You mean naked…</i> you think to yourself.');
@@ -41,13 +41,13 @@ function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Still no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Still no', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Still no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Still no', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'resist');
     }
@@ -97,13 +97,13 @@ function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Still no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Still no', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Still no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Still no', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'resist');
     }
@@ -148,13 +148,13 @@ function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Still no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Still no', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Still no [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Still no', handler: (st: GameState) => {
     if (((s as any).will_cost ?? 0) > 0) {
       qspCall(s, 'willpower', 'pay', 'resist');
     }
@@ -195,7 +195,7 @@ function enter1stDocumentary(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDocumentary_1(s: GameState, scene: SceneBuilder): void {
-  if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['documentary_timer'] = ((s as any).modelfoto ?? {})?.['shoots'] + 10;
+  if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['documentary_timer'] = (((s as any).modelfoto ?? {})?.['shoots'] ?? 0) + 10;
   scene.img('images/locations/city/citycenter/photo/foto.jpg');
   scene.text('You head over to where you were directed and see a group of people standing around several video cameras set up with lights shining on an empty set.');
   scene.text('Walking over to them you say, "Hi, I\'m one of the models who volunteered to be interviewed. Is this the right place?"');
@@ -215,23 +215,23 @@ function enterDocumentary_1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     if (((s as any).foto_documentary ?? 0)?.['question_1'] === 'artistic nude'  ||  ((s as any).foto_documentary ?? 0)?.['question_1'] === 'erotic') {
       // TODO-QSP: dynamic text: "My name is <<$model['firstname']>>. I'm <<model['age']>> years old, and I'm an ...
-      scene.text(`"My name is ${((s as any).model ?? 0)?.['firstname']}. I'm ${((s as any).model ?? 0)?.['age']} years old, and I'm an ${((s as any).foto_documentary ?? 0)?.['question_1']} model at Aphrodite photography."`);
+      scene.text(`"My name is ${((s as any).model ?? 0)?.['firstname'] ?? ''}. I'm ${((s as any).model ?? 0)?.['age'] ?? ''} years old, and I'm an ${((s as any).foto_documentary ?? 0)?.['question_1'] ?? ''} model at Aphrodite photography."`);
     } else {
       // TODO-QSP: dynamic text: "My name is <<$model['firstname']>>. I'm <<model['age']>> years old, and I'm a '...
-      scene.text(`"My name is ${((s as any).model ?? 0)?.['firstname']}. I'm ${((s as any).model ?? 0)?.['age']} years old, and I'm a ' + iif($foto_documentary['question_1'] = ', ', '${((s as any).foto_documentary ?? 0)?.['question_1']} ') + 'model at Aphrodite photography."`);
+      scene.text(`"My name is ${((s as any).model ?? 0)?.['firstname'] ?? ''}. I'm ${((s as any).model ?? 0)?.['age'] ?? ''} years old, and I'm a ' + iif($foto_documentary['question_1'] = ', ', '${((s as any).foto_documentary ?? 0)?.['question_1'] ?? ''} ') + 'model at Aphrodite photography."`);
     }
-    qspCall(s, 'foto_model_documentary', 'documentary_2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I\'m <<$model[\'nickname\']>>', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     if (((s as any).foto_documentary ?? 0)?.['question_1'] === 'artistic nude'  ||  ((s as any).foto_documentary ?? 0)?.['question_1'] === 'erotic') {
       // TODO-QSP: dynamic text: "My name is <<$model['firstname']>>, but my friends call me <<$model['nickname']...
-      scene.text(`"My name is ${((s as any).model ?? 0)?.['firstname']}, but my friends call me ${((s as any).model ?? 0)?.['nickname']}. I'm ${((s as any).model ?? 0)?.['age']} years old, and I'm an ${((s as any).foto_documentary ?? 0)?.['question_1']} model at Aphrodite photography."`);
+      scene.text(`"My name is ${((s as any).model ?? 0)?.['firstname'] ?? ''}, but my friends call me ${((s as any).model ?? 0)?.['nickname'] ?? ''}. I'm ${((s as any).model ?? 0)?.['age'] ?? ''} years old, and I'm an ${((s as any).foto_documentary ?? 0)?.['question_1'] ?? ''} model at Aphrodite photography."`);
     } else {
       // TODO-QSP: dynamic text: "My name is <<$model['firstname']>>, but my friends call me <<$model['nickname']...
-      scene.text(`"My name is ${((s as any).model ?? 0)?.['firstname']}, but my friends call me ${((s as any).model ?? 0)?.['nickname']}. I'm ${((s as any).model ?? 0)?.['age']} years old, and I'm a ' + iif($foto_documentary['question_1'] = ', ', '${((s as any).foto_documentary ?? 0)?.['question_1']} ') + 'model at Aphrodite photography."`);
+      scene.text(`"My name is ${((s as any).model ?? 0)?.['firstname'] ?? ''}, but my friends call me ${((s as any).model ?? 0)?.['nickname'] ?? ''}. I'm ${((s as any).model ?? 0)?.['age'] ?? ''} years old, and I'm a ' + iif($foto_documentary['question_1'] = ', ', '${((s as any).foto_documentary ?? 0)?.['question_1'] ?? ''} ') + 'model at Aphrodite photography."`);
     }
-    qspCall(s, 'foto_model_documentary', 'documentary_2');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_2(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -255,7 +255,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"I wanted to build up my confidence," you explain. "When I started here, I wasn\'t very comfortable with showing off my body. I might even go so far to say I was shy about it. And I thought modelling might be a way to push myself and my limits."');
     }
-    qspCall(s, 'foto_model_documentary', 'documentary_3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -269,7 +269,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Because it… turns you on?" she asks, seemingly a little surprised at your response.');
     scene.text('"Yeah," you grin. "Knowing that other people are out there looking at my naked body is just… <i>exciting!</i> They could be jerking off to pictures of me right now. I get wet just thinking about it!"');
     scene.text('"Ahh. I see." She clears her throat.');
-    qspCall(s, 'foto_model_documentary', 'documentary_3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -281,7 +281,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I just thought it seemed like fun," you giggle. "You know, dressing up in clothes, striking poses, people taking pictures. It sounded interesting, so I thought I\'d give it a try."');
     scene.text('"No big special reason, just wanted to enjoy yourself?"');
     scene.text('"Pretty much, yeah."');
-    qspCall(s, 'foto_model_documentary', 'documentary_3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'ve always wanted to be a model', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_2'] = 'career';
@@ -289,7 +289,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think I actually always wanted to be a model," you say. "It seemed… glamorous. You see supermodels in the magazines you read when you\'re growing up and you see how beautiful they look and the clothes they\'re wearing and you just kinda naturally wish you were them. Then you grow up a little more and you see they\'re wealthy, and they\'re famous, and that they\'ve practically got it all! Who wouldn\'t want to be one?"');
     scene.text('"So you would say that this was sort of your dream job?"');
     scene.text('"Yeah, I\'d say that."');
-    qspCall(s, 'foto_model_documentary', 'documentary_3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I just wanted some extra cash', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_2'] = 'extra_cash';
@@ -298,7 +298,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ahh, so you aren\'t that passionate about modelling, it\'s just something you do to get by, is that right?"');
     scene.text('"Well, more like I wanted to be able to buy nice things."');
     scene.text('You laugh and the interviewer laughs with you.');
-    qspCall(s, 'foto_model_documentary', 'documentary_3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I was desperate and needed money', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_2'] = 'desperation';
@@ -306,7 +306,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"To be honest, I was really desperate and needed the money," you say. "I was seriously in need at the time so it didn\'t really matter what I did, I just needed fast cash. I heard about this place and that they paid well depending on the kind of work you did so I signed up."');
     scene.text('"Ahh, so you aren\'t that passionate about modelling, it\'s just something you do to get by, is that right?"');
     scene.text('"Yeah, pretty much that."');
-    qspCall(s, 'foto_model_documentary', 'documentary_3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I love attention', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_2'] = 'attention';
@@ -314,7 +314,7 @@ function enterDocumentary_2(s: GameState, scene: SceneBuilder): void {
     scene.text('"I love the attention!" you smile. "I like it when people notice me. Maybe I\'m a little narcissistic but it\'s thrilling for me to see my own face on the cover of a magazine or to hear people talking about me. I just like being seen."');
     scene.text('"So you became a model because you\'re an attention seeker?"');
     scene.text('"Exactly!"');
-    qspCall(s, 'foto_model_documentary', 'documentary_3');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_3(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -331,7 +331,7 @@ function enterDocumentary_3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/special/interview/11.mp4');
     scene.text('"I don\'t think so," you say. "It\'s been good working here but I don\'t think I could ever make a career out of it. It\'s just not what I want out of life, you know?"');
     scene.text('The interviewer nods understandingly.');
-    qspCall(s, 'foto_model_documentary', 'documentary_4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I want to be the number one model in the city', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_3'] = 'number_one_model';
@@ -345,14 +345,14 @@ function enterDocumentary_3(s: GameState, scene: SceneBuilder): void {
     scene.text('"Prestige. I want this to be the thing that I\'m known for decades from now."');
     scene.text('"You want your own Wankepidia page?" the interviewer smiles at you.');
     scene.text('"Yeah," you smile back. "That\'s exactly what I want."');
-    qspCall(s, 'foto_model_documentary', 'documentary_4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Personal reasons', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_3.2'] = 'personal_reasons';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"Personal I suppose. I guess I just want to prove it to myself that I can do it. If I can become the number one model in the city, maybe I can do anything."');
     scene.text('The interviewer nods understandingly.');
-    qspCall(s, 'foto_model_documentary', 'documentary_4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -366,7 +366,7 @@ function enterDocumentary_3(s: GameState, scene: SceneBuilder): void {
       { label: 'No!', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"No!" you laugh with her. "I don\'t know how some of these other girls do it. They work out regularly, eat only celery and yogurt to keep flat tummies, and all I can think about is the next time I can eat something with melted cheese on it!"');
-    qspCall(s, 'foto_model_documentary', 'documentary_4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -375,21 +375,21 @@ function enterDocumentary_3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/photo/special/interview/7.mp4');
     scene.text('"I wouldn\'t say no I suppose. I\'ll keep working here as long as it keeps paying the bills or I find something better I guess."');
     scene.text('The interviewer nods understandingly.');
-    qspCall(s, 'foto_model_documentary', 'documentary_4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Yes! I love this job!', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_3'] = 'love_modelling';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"Yes!" you say. "I love this job! I could do this for the rest of my life! Or as long as I\'m young and pretty and they\'ll let me stay," you laugh.');
     scene.text('The interviewer smiles at your genuine excitement.');
-    qspCall(s, 'foto_model_documentary', 'documentary_4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'m not sure yet', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_3'] = 'not_sure';
     scene.img('images/locations/city/citycenter/photo/special/interview/2.mp4');
     scene.text('"I don\'t know…" you say, rubbing your chin. "It\'s not bad working here, but I don\'t know if it\'s something I want to keep doing for the rest of my life. I guess I\'m still thinking about it."');
     scene.text('The interviewer nods understandingly.');
-    qspCall(s, 'foto_model_documentary', 'documentary_4');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -407,7 +407,7 @@ function enterDocumentary_4(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m actually really quite shy," you say. "I get easily embarrassed by showing my body off."');
     scene.text('"But you\'re a model! You\'re talking to us completely naked without any problems."');
     scene.text('"I wouldn\'t say without <i>any</i> problems," you giggle nervously, face turning red. "I\'m good at willpowering my way through things that are embarrassing. I can deal with it in the moment but it\'s still really embarrassing."');
-    qspCall(s, 'foto_model_documentary', 'documentary_5');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_5(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -417,31 +417,31 @@ function enterDocumentary_4(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_4'] = 'little_shy';
     scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
     scene.text('"It used to be a lot worse," you start off. "I\'m definitely not as shy about my body as I used to be but it can still be embarrassing from time to time. Working here has certainly changed the way I think about myself though."');
-    qspCall(s, 'foto_model_documentary', 'documentary_5');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_5(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I used to be shy but now I\'m not', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_4'] = 'formerly_shy';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"I used to be shy, but I\'ve moved past that now," you smile to yourself. "At the beginning I would cringe when the camera came out. And the idea of anybody seeing my boobs was hard to deal with. I used to put my hands over them when I came out of the locker rooms. It\'s almost weird to think back on those times. I can\'t imagine being embarrassed by somebody looking at me now."');
-    qspCall(s, 'foto_model_documentary', 'documentary_5');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_5(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I haven\'t been shy since I was little', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_4'] = 'childhood_shy';
     scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
     scene.text('"It\'s been a long time since I was shy," you say, thinking back. "I don\'t think I\'ve been embarrassed about the way that I look since I was a little girl, way before I started working here. By the time I was a teenager I was already comfortable in my own skin. Working here hasn\'t really changed that."');
-    qspCall(s, 'foto_model_documentary', 'documentary_5');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_5(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'ve never been shy', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_4'] = 'never_shy';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I\'ve never been shy," you laugh. "Never really cared what anyone else thought of my body or the way I looked. I am who I\'ve always been and I love that about myself."');
-    qspCall(s, 'foto_model_documentary', 'documentary_5');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_5(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'m fucking hot and I know it', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_4'] = 'fucking_hot';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"Look, I am fucking <i>hot</i> and I know it," you say. "I knew it before I was a model and I definitely know it now that I am one."');
-    qspCall(s, 'foto_model_documentary', 'documentary_5');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_5(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -457,13 +457,13 @@ function enterDocumentary_5(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_5'] = 'got_used_to_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I wasn\'t really comfortable with it when I first joined but I got used to it after a while," you say. "At this point it\'s just kind of automatic, I don\'t even really think about it anymore. I just come to work and get undressed."');
-    qspCall(s, 'foto_model_documentary', 'documentary_6');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_6(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'I think it really helped me', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_5'] = 'helpful_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"I think it actually really helped," you say. "I was so shy when I started working here. I was embarrassed by the idea of people seeing my body, of being naked in front of others. But after a while, you\'re kind of forced to become accustomed to it. When I started to realize that people weren\'t staring and girls weren\'t judging me, my inhibitions began to fade away. And based on how the other models acted, I started to see that confidence was sexy. The dress code was a big part of that. Wear nothing but your own skin for hours on end and you\'ll be surprised how quickly you get comfortable with it."');
-    qspCall(s, 'foto_model_documentary', 'documentary_6');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_6(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -473,37 +473,37 @@ function enterDocumentary_5(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_5'] = 'dislike_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"It sucks!" you complain. "Having to be naked all the time is uncomfortable and weird. Why can\'t we just wear clothes like normal and change in and out of the stuff they want us to? I don\'t think it helps at all, just makes being around the studio more awkward."');
-    qspCall(s, 'foto_model_documentary', 'documentary_6');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_6(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'It\'s really embarrassing', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_5'] = 'embarrassing_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"It\'s really embarrassing," you say. "As I said before, I can be kind of shy about my body, so having to be naked all the time except when you\'re doing a shoot is really uncomfortable for me. Everything is on display all the time and when people talk to me I just want to cover up."');
-    qspCall(s, 'foto_model_documentary', 'documentary_6');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_6(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'m not very comfortable with it', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_5'] = 'not_comfortable_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"I\'m not very comfortable with it," you start. "First of all, everything is just on display all the time except when you\'re doing clothing shoots. So that by itself is a little discomforting. But also it\'s not physically very comfortable either. If you haven\'t noticed they keep it pretty cold in here. They said it has something to do with balancing temperature because of all the heat from the lights, but when I\'m just walking around the studio my nipples are always freezing."');
-    qspCall(s, 'foto_model_documentary', 'documentary_6');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_6(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I don\'t really mind it', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_5'] = 'dont_mind_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"I don\'t really mind it," you say. "It is what it is. Other places have work uniforms, why not here?"');
-    qspCall(s, 'foto_model_documentary', 'documentary_6');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_6(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I love it!', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_5'] = 'love_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I love it! Society cares so much about being \'proper\' and not being \'indecent\', but I don\'t feel that way about myself. I like my body and I like being naked. So having that as a work uniform here is great!"');
-    qspCall(s, 'foto_model_documentary', 'documentary_6');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_6(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I think it promotes camaraderie', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_5'] = 'comrade_dresscode';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I think it actually helps build camaraderie between the models," you say. "You know, whatever our background, wherever we came from, whatever reason we have for being here, we\'re all women at the end of the day. And being forced to be yourself—completely yourself without even a scrap of clothing to hide behind—really causes you to be genuine with each other. It\'s a sort of intimacy, but not like a sexual one. In some ways I feel like it created a sisterhood here. Like that one movie, except we would have a different name. \'The Sisterhood Without Pants,\' maybe," you laugh.');
-    qspCall(s, 'foto_model_documentary', 'documentary_6');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_6(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -519,7 +519,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_6'] = 'reading';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"I like to read. There\'s nothing more relaxing to me than a good book."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Sports', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_6'] = 'sports';
@@ -527,19 +527,19 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     scene.text('"I love sports!"');
     scene.text('"So you\'re an athletic girl?"');
     scene.text('"Oh yeah! I always feel better when my body is in motion. Nothing like working up a good sweat."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Dancing', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_6'] = 'dancing';
     scene.img('images/locations/city/citycenter/photo/special/interview/5.mp4');
     scene.text('"I like to dance. It feels good when I let my body flow to music, whether choreographed or just on the spot."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Martial arts', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_6'] = 'martial_arts';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"I do some martial arts. Something about it calms me, gives me purpose. Plus, it\'s always good for a girl like me to be able to fight, if you know what I mean," you smile wryly.');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I\'m a foodie', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_6'] = 'foodie';
@@ -549,13 +549,13 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
       scene.text('"I guess this must be why you hate dieting so much," the interviewer laughs.');
       scene.text('"Seriously!"');
     }
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Going clubbing', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_6'] = 'clubbing';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I like going clubbing," you say. "Go out with the girls, maybe meet a guy, buy drinks and have good times! Best way to spend a Saturday night!"');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Having sex (clean answer)', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_6'] = 'sex_clean';
@@ -568,7 +568,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
         { label: 'With my husband', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"With my husband actually," you say. "I\'m married. Nothing is better than making love to him."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -577,7 +577,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
           { label: 'With my wife', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"With my wife actually," you say. "I\'m married. Nothing is better than making love to her."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -587,7 +587,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
         { label: 'With <b>my</b> boyfriend', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"With my boyfriend," you say. "He just knows my body so well! Spending the time investing in a relationship is the only way to get that." She nods at your sage advice.');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -595,23 +595,23 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
       { label: 'Hook ups', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Hook ups. I like meeting a guy and sleeping with him on the first date. It\'s fun seeing the differences between guys and what they\'re good at. Is that slutty?" you laugh.');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'With <b>a</b> boyfriend', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/9.mp4');
     scene.text('"I would say… with a boyfriend. I\'m single for the moment, but spending the time to let someone get to know you and what turns you on really is the best. You\'ll never get that kind of satisfaction randomly sleeping around." She nods at your sage advice.');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Why not girlfriends?', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Why not girlfriends?" you smile with a twinkle in your eye. "Who said I liked sleeping with men the most?"');
     scene.text('The interviewer meets your eyes and blushes deeply before clearing her throat and flipping to the next page of her clipboard.');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Group sex', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/4.mp4');
     scene.text('"My favorite is actually with multiple partners," you say shyly. The interviewer gives you a <i>very</i> interested look. "Let\'s just say that one set of body parts is not enough for me to feel satisfied…"');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -627,7 +627,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
         { label: 'With my husband', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"With my husband actually," you say. "I\'m married. I love getting fucked by him. He knows every centimeter of my body, nobody knows how to make me cum like he does."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     } else {
@@ -636,7 +636,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
           { label: 'With my wife', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"With my wife actually," you say. "I\'m married. I love getting fucked by her. She knows every centimeter of my body, nobody knows how to make me cum like she does."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -646,7 +646,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
         { label: 'With <b>my</b> boyfriend', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"With my boyfriend," you say. "He just knows my body so well! I never feel better than I do after he fucks me."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -654,26 +654,26 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
       { label: 'Hook ups', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     // TODO-QSP: dynamic text: "Hook ups. I <i>always</i> fuck on the first date and I like having sex with new...
-    scene.text(`"Hook ups. I <i>always</i> fuck on the first date and I like having sex with new people. It's almost like a game for me, seeing how many guys I can sleep with." you laugh. "Right now my record's at ${((s as any).guy ?? 0)+((s as any).temp ?? 0)}."`);
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    scene.text(`"Hook ups. I <i>always</i> fuck on the first date and I like having sex with new people. It's almost like a game for me, seeing how many guys I can sleep with." you laugh. "Right now my record's at ${((s as any).guy ?? '')+((s as any).temp ?? '')}."`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'With <b>a</b> boyfriend', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I would say… with a boyfriend. I\'m single for the moment, which is a bit of a problem, but there\'s nothing better than getting fucked by a guy who knows every part of your body. Unfortunately, most guys don\'t have that information instinctively. It takes time for them to really learn how to make you cum."');
     scene.text('She nods with eyebrows raised, as if surprised by your answer.');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Why not girlfriends?', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Why not girlfriends?" you smile with a twinkle in your eye. "I like eating pussy just as much as I like getting eaten."');
     scene.text('The interviewer blushes deeply, clearing her throat and flipping to the next page of her clipboard.');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Group sex', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"My favorite is actually group sex," you giggle. The interviewer\'s jaw drops.');
     scene.text('"It\'s more fun when I get to use more holes," you grin.');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -690,7 +690,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sorry…?" The interviewer asks, eyes wide.');
     scene.text('"Masturbating! Honestly, my interests are pretty all over the place so I don\'t know if any of those really classify as hobbies, but the one thing I do all the time is masturbate in my room. Just me, my fingers, and plenty of orgasms." Her jaw drops.');
     scene.text('"What can I say?" you shrug. "It\'s… relaxing…"');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: '… with my dildo', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
@@ -698,28 +698,28 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sorry…?" The interviewer asks, eyes wide.');
     scene.text('"Masturbating! Honestly, my interests are pretty all over the place so I don\'t know if any of those really classify as hobbies, but the one thing I do all the time is masturbate with my dildo. Just me, a rubber dick, and plenty of orgasms. Her jaw drops.');
     scene.text('"What can I say?" you shrug. "It\'s… relaxing…"');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: '… in the shower', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I actually really like masturbating," you giggle.');
     scene.text('"Sorry…?" The interviewer asks, eyes wide.');
     scene.text('"Masturbating! Honestly, my interests are pretty all over the place so I don\'t know if any of those really classify as hobbies, but the one thing I do all the time is masturbate in the shower. The combination of the steam and a good pulsing showerhead is a girl\'s best friend," you say with a smirk.');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: '… in the bath', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I actually really like masturbating," you giggle.');
     scene.text('"Sorry…?" The interviewer asks, eyes wide.');
     scene.text('"Masturbating! Honestly, my interests are pretty all over the place so I don\'t know if any of those really classify as hobbies, but the one thing I do all the time is masturbate in the tub. It can be hard to do but if you can get your hips underneath the faucet…" you bite your lip. "Well… let\'s just say it hits all the right spots…"');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: '… with my shower dildo', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I actually really like masturbating," you giggle.');
     scene.text('"Sorry…?" The interviewer asks, eyes wide.');
     scene.text('"Masturbating! Honestly, my interests are pretty all over the place so I don\'t know if any of those really classify as hobbies, but the one thing I do all the time is masturbate with my shower dildo. Nice steamy room, hot water, a showerhead to use for vibrations, a nice rubber dick to fill me up, oh man. I could spend hours in there."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -729,7 +729,7 @@ function enterDocumentary_6(s: GameState, scene: SceneBuilder): void {
     scene.text('"I… I don\'t actually have any hobbies in particular."');
     scene.text('"Really? No hobbies at all?"');
     scene.text('"Not really," you shrug. "I guess I just… get by at the moment."');
-    qspCall(s, 'foto_model_documentary', 'documentary_7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_7(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -745,31 +745,31 @@ function enterDocumentary_7(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_7'] = 'quiet_night';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"My ideal date is… a quiet night in. Nothing fancy, just a nice cooked meal or maybe some takeout, a bit of wine maybe, some cuddling on the couch, just time spent being comfortable and relaxed with another person. That kind of feeling, isn\'t that what romance is all about?"');
-    qspCall(s, 'foto_model_documentary', 'documentary_8');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_8(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Something fun with lots of activities', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_7'] = 'activity_based';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"My ideal date is something with a lot of activities involved. I really like having fun and having stuff to do, so… like playing games at a carnival, or a day at the beach, or going through a haunted house or an escape room type of thing. That\'s the kind of stuff I\'d want to do if somebody asked me out on a date."');
-    qspCall(s, 'foto_model_documentary', 'documentary_8');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_8(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Dinner and a movie', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_7'] = 'dinner_and_movie';
     scene.img('images/locations/city/citycenter/photo/special/interview/9.mp4');
     scene.text('"My ideal date is probably… dinner and a movie. It\'s a little cliche, but I like it. You know? A bit of time chatting and eating together and then some time to just hang out watching something, maybe holding hands during it. It gives us stuff to talk about too, you know?"');
-    qspCall(s, 'foto_model_documentary', 'documentary_8');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_8(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'A long walk with scenery', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_7'] = 'long_walk';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"My ideal date is basically just a long walk. Somewhere nice like the park or along a lake, just someplace peaceful with beautiful scenery. We could talk quietly, hold hands while we walk, just <i>be</i> with each other."');
-    qspCall(s, 'foto_model_documentary', 'documentary_8');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_8(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Something thrilling', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_7'] = 'thrilling_date';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I would love to do something thrilling on a date. Like roller coaster rides at an amusement park or jetskiing on the lake or even skydiving out of a plane! I love experiencing that rush and being able to share that with another person only makes it that much more special."');
-    qspCall(s, 'foto_model_documentary', 'documentary_8');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_8(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'A romantic evening that ends in sex', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_7'] = 'romantic_sex';
@@ -777,7 +777,7 @@ function enterDocumentary_7(s: GameState, scene: SceneBuilder): void {
     scene.text('"I think for me, my ideal date is a romantic evening that ends with great sex. The sex is a big part of it, sure, but without the build up it\'s nothing. A fancy restaurant in expensive clothing, wine and chocolates, starring at each other and taking in how beautiful the other person looks. All of these things just building, building, building our desire. And at the end of the night, when we\'re at our limit, that\'s when we let our inhibitions go. Hands get handsy, tongues get invasive, and every touch becomes passionate and expressive. And after we\'re done we can bask in the afterglow of the evening and in each other\'s presence," you smile.');
     scene.text('"<i>Just</i> those things?" the interviewer smiles back.');
     scene.text('"And… in the afterglow of our orgasms too," you admit.');
-    qspCall(s, 'foto_model_documentary', 'documentary_8');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_8(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -793,19 +793,19 @@ function enterDocumentary_8(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_8'] = 'junk_food';
     scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
     scene.text('"My guilty pleasure is eating things that I really shouldn\'t be. Whether that be excessive amounts of chocolate or an extra scoop of ice cream or an entire bag of crisps, sometimes it\'s so tempting I can\'t help but give in. And I feel really bad about it after because I know I need to maintain my figure but it\'s <i>so</i> satisfying in the moment."');
-    qspCall(s, 'foto_model_documentary', 'documentary_9');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_9(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Day drinking', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_8'] = 'day_drinking';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I have this bad habit where I like to drink during the day sometimes. Like, I know I shouldn\'t because it\'s probably messing up my liver and affecting the way I interact with people, but sometimes, I just need some alcohol to be able to kick back and relax. So I\'d say that\'s my guilty pleasure."');
-    qspCall(s, 'foto_model_documentary', 'documentary_9');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_9(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Binge watching', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_8'] = 'binge_watching';
     scene.img('images/locations/city/citycenter/photo/special/interview/5.mp4');
     scene.text('"I\'d have to say my guilty pleasure is binge watching TV series. It\'s so bad because I\'ll just lose hours and hours of time but when that \'play next\' button is right there, I need to know what happens next! I lose whole weekends doing that!"');
-    qspCall(s, 'foto_model_documentary', 'documentary_9');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_9(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Steamy romance novels', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_8'] = 'romance_novels';
@@ -813,12 +813,12 @@ function enterDocumentary_8(s: GameState, scene: SceneBuilder): void {
       { label: 'Embarrassed', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/4.mp4');
     scene.text('"I like reading romance novels," you confess. "The hot and steamy kind. They\'re distracting for me sometimes, but I find them very… exciting…"');
-    qspCall(s, 'foto_model_documentary', 'documentary_9');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_9(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Open', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I like reading sexy romance novels," you giggle. "I know they\'re not realistic and fantastical, but once I start I can\'t put it down until the climax." You add a wink to that last part.');
-    qspCall(s, 'foto_model_documentary', 'documentary_9');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_9(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -826,20 +826,20 @@ function enterDocumentary_8(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_8'] = 'bad_romcoms';
     scene.img('images/locations/city/citycenter/photo/special/interview/4.mp4');
     scene.text('"My guilty pleasure is bad romantic comedies. I know they\'re cheesy, I know that the problems could be solved if the characters just listened to each other, but I can\'t help myself. They\'re just so cute!"');
-    qspCall(s, 'foto_model_documentary', 'documentary_9');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_9(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Social media', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_8'] = 'social_media';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"My guilty pleasure has to be social media. One minute I\'m saying I\'m just going to take a quick scroll through Twatter, next thing I know I\'ve been reading the feeds for an hour. It\'s a huge time sink and a huge problem for productivity."');
-    qspCall(s, 'foto_model_documentary', 'documentary_9');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_9(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Sleeping in', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_8'] = 'sleeping_in';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     // TODO-QSP: dynamic text: "I'd say that my guilty pleasure is having a lie in. There's so much that needs ...
-    scene.text(`"I'd say that my guilty pleasure is having a lie in. There's so much that needs to get done during the day, but sometimes I can't help but whack the off button on my alarm clock and curl back up under my covers, wake up at noon instead of ${((s as any).alarmVars ?? 0)?.['timerH']}. It feels good to sleep in, but I always regret it when I realize how much stuff I could have gotten done if I had just gotten up when I was supposed to."`);
-    qspCall(s, 'foto_model_documentary', 'documentary_9');
+    scene.text(`"I'd say that my guilty pleasure is having a lie in. There's so much that needs to get done during the day, but sometimes I can't help but whack the off button on my alarm clock and curl back up under my covers, wake up at noon instead of ${((s as any).alarmVars ?? 0)?.['timerH'] ?? ''}. It feels good to sleep in, but I always regret it when I realize how much stuff I could have gotten done if I had just gotten up when I was supposed to."`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_9(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -855,31 +855,31 @@ function enterDocumentary_9(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_9'] = 'underwear_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"Just my usual underwear. Some panties and a bra. Maybe it\'s a little weird to wear a bra to bed, but it\'s just comfortable for me.');
-    qspCall(s, 'foto_model_documentary', 'documentary_10');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Panties', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_9'] = 'panties_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Just a pair of panties. I get hot at night so I don\'t wear PJ\'s but keeping my panties on keeps anything leaking out during the night and staining the sheets."');
-    qspCall(s, 'foto_model_documentary', 'documentary_10');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'I sleep naked', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_9'] = 'naked_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"I sleep naked," you say. "Au naturel. Is there any better way to sleep than just your skin and your covers?"');
-    qspCall(s, 'foto_model_documentary', 'documentary_10');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Negligee', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_9'] = 'negligee_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/12.mp4');
     scene.text('"I wear a negligee when I sleep. It\'s sexy, it\'s classy, and if I need to get up for anything (or anyone) I\'m still presentable."');
-    qspCall(s, 'foto_model_documentary', 'documentary_10');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'A big t-shirt and panties', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_9'] = 'shirt_panties_bed';
     scene.img('images/locations/city/citycenter/photo/special/interview/8.mp4');
     scene.text('"Oh, just a big t-shirt and a pair of panties. My boobs have get cold so having an extra layer on under the covers is nice."');
-    qspCall(s, 'foto_model_documentary', 'documentary_10');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Just a big t-shirt', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_9'] = 'big_shirt_bed';
@@ -887,13 +887,13 @@ function enterDocumentary_9(s: GameState, scene: SceneBuilder): void {
     scene.text('"Just an oversized t-shirt usually. I have a favorite night shirt that I wear, it\'s soft and roomy and it\'s comfortable to sleep in."');
     scene.text('"Just that?"');
     scene.text('"Just that. Panties are too hot for my hips. I like to feel the breeze," you smirk.');
-    qspCall(s, 'foto_model_documentary', 'documentary_10');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Pajamas', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_9'] = 'pajamas';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Pajamas!" you say. "They\'re warm and cozy, I love cuddling up in my bed with PJ\'s on."');
-    qspCall(s, 'foto_model_documentary', 'documentary_10');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -909,7 +909,7 @@ function enterDocumentary_10(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_10'] = 'exercise_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/10.mp4');
     scene.text('"I like to get up early," you say. "There\'s just something motivating about getting an early start to the day. After that I do some exercises. Some yoga, some body weight exercises, maybe go for a run or something like that. Just something that starts off my day active and right. Then a nice hot shower and I\'m ready for the day."');
-    qspCall(s, 'foto_model_documentary', 'documentary_11');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_11(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Early morning to do chores', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_10'] = 'chores_morning';
@@ -917,40 +917,40 @@ function enterDocumentary_10(s: GameState, scene: SceneBuilder): void {
     scene.text('"I like to get up early and do my chores."');
     scene.text('"Your ideal morning is doing chores?"');
     scene.text('"It\'s just a matter of maintaining structure and routine in my life. It keeps my life orderly. Making sure the laundry is pressed and my bed is made and the dishes are clean, it all puts my mind at ease. So I like doing it. And it gives me momentum to do everything else I need to accomplish later. By starting with chores, I make everything else a little easier."');
-    qspCall(s, 'foto_model_documentary', 'documentary_11');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_11(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Early morning with a light breakfast', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_10'] = 'breakfast_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"Getting an early start is important to me. Making sure my body is ready for the day you know? So I like to get up early and have a light breakfast, some scrambled eggs or maybe a salad. Nothing too heavy that will weigh me down, just give me energy for the rest of morning."');
-    qspCall(s, 'foto_model_documentary', 'documentary_11');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_11(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Anything involving coffee', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_10'] = 'coffee_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"My ideal morning is anything that involves coffee. You give me a cup of coffee when I wake up, I will marry you."');
     scene.text('The interviewer smiles as she writes something down in her notes and you get the feeling she\'s a kindred spirit in this regard.');
-    qspCall(s, 'foto_model_documentary', 'documentary_11');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_11(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Anything involving coffee (slightly crude/slutty)', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_10'] = 'crude_coffee_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/6.mp4');
     scene.text('"My ideal morning is anything that involves coffee. Seriously, I will suck you off if you bring me a cup of coffee in bed."');
     scene.text('The interviewer suppresses a smile as she writes something down with eyebrows upraised. You get the feeling she knows what you mean but is a bit surprised by your choice of words.');
-    qspCall(s, 'foto_model_documentary', 'documentary_11');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_11(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Sleeping in followed by brunch', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_10'] = 'brunch_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/3.mp4');
     scene.text('"My ideal morning is one where I get to sleep in late, have a nice lazy morning, and then have brunch at the end of it. Like pancakes with jam or maybe an omelette or smoked salmon and cream cheese, oh! Or french toast and an egg quiche. If I could start every day like that I would be <i>sooooo</i> happy."');
-    qspCall(s, 'foto_model_documentary', 'documentary_11');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_11(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Wakeup sex', handler: (st: GameState) => {
     if (!(s as any).foto_documentary) (s as any).foto_documentary = {}; (s as any).foto_documentary['question_10'] = 'wakeup_sex_morning';
     scene.img('images/locations/city/citycenter/photo/special/interview/1.mp4');
     scene.text('"My ideal morning starts with sex," you say. "Nothing to get your day going like a good orgasm right? If I wake up and somebody\'s balls deep in me, that day is already a good day."');
     scene.text('"Ahuh… Funny, someone else said something similar…" the interviewer says flipping back on her clipboard a few pages.');
-    qspCall(s, 'foto_model_documentary', 'documentary_11');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDocumentary_11(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -988,7 +988,7 @@ function enter1stDocumentaryEnd(s: GameState, scene: SceneBuilder): void {
   scene.text('"Well, that\'s the end of the interview. Thank you so much for your time and for answering our questions! I\'m sure the viewers will love what you had to say."');
   scene.text('"No problem! You were a very good interviewer."');
   // TODO-QSP: dynamic text: After exchanging a few more pleasantries, they hand you an envelope filled with ...
-  scene.text(`After exchanging a few more pleasantries, they hand you an envelope filled with bills that count out to ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin ?? 0))} and call the next girl in from the side.`);
+  scene.text(`After exchanging a few more pleasantries, they hand you an envelope filled with bills that count out to ${qspFunc(s, 'money', 'string_profit', ((s as any).modelpayfin || ''))} and call the next girl in from the side.`);
   if (!(s as any).foto) (s as any).foto = {}; (s as any).foto['1st_documentary'] = 1;
   // TODO-QSP: end
   scene.actions([

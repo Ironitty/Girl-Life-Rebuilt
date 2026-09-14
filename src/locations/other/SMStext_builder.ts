@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -219,7 +219,7 @@ function enterPrivateSetEndImg(s: GameState, scene: SceneBuilder): void {
 
 function enterAddSms(s: GameState, scene: SceneBuilder): void {
   if (Object.keys((s as any).SMSBuilderReplies ?? {}).length > 0) {
-    qspCall(s, 'SMStext_builder', 'private_set_replies');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrivateSetReplies(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['replies'] = '';
   }
@@ -238,7 +238,7 @@ function enterAddSms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUpdateSmsFromId(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'SMStext_builder', 'update_sms', qspFunc(s, 'SMStext_builder', 'get_index_from_id', qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" })), ((((s as any).locArgs?.[2] ?? 0) === '') ? (qspUntranslated(s, "ARGS[2]", { location: "SMStext_builder" })) : (((s as any).locArgs?.[2] ?? 0))));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', qspFunc(s, 'SMStext_builder', 'get_index_from_id', qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" })), ((((s as any).locArgs?.[2] ?? 0) === '') ? (qspUntranslated(s, "ARGS[2]", { location: "SMStext_builder" })) : (((s as any).locArgs?.[2] ?? 0)))]; enterUpdateSms(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -248,7 +248,7 @@ function enterUpdateSms(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (Object.keys((s as any).SMSBuilderReplies ?? {}).length > 0) {
-    qspCall(s, 'SMStext_builder', 'private_set_replies');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPrivateSetReplies(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).SMSBuilderVars) (s as any).SMSBuilderVars = {}; (s as any).SMSBuilderVars['replies'] = '';
   }
@@ -272,7 +272,7 @@ function enterUpdateSms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShowSmsFromId(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'SMStext_builder', 'show_sms', qspFunc(s, 'SMStext_builder', 'get_index_from_id', qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" })));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', qspFunc(s, 'SMStext_builder', 'get_index_from_id', qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" }))]; enterShowSms(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.build();
 }
 
@@ -288,7 +288,7 @@ function enterShowSms(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetUnreadFromId(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'SMStext_builder', 'set_unread', qspFunc(s, 'SMStext_builder', 'get_index_from_id', qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" })));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', qspFunc(s, 'SMStext_builder', 'get_index_from_id', qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" }))]; enterSetUnread(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   scene.build();
 }
@@ -307,7 +307,7 @@ function enterSetUnread(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterUpdateTimeFromId(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'SMStext_builder', 'update_time', qspFunc(s, 'SMStext_builder', 'get_index_from_id', qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" })));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', qspFunc(s, 'SMStext_builder', 'get_index_from_id', qspUntranslated(s, "ARGS[1]", { location: "SMStext_builder" }))]; enterUpdateTime(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   scene.build();
 }

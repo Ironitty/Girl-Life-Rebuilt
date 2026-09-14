@@ -19,7 +19,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'car_funcs', 'has_wreck')) {
       // TODO-QSP: 'The garage offers a towing service for damaged cars to bring them to this service center. The price...
       scene.actions([
-        { label: 'Pay for the towing service (1:00) [+$func(\'money\', \'get_cost_string\', 2500)]', handler: (st: GameState) => {
+        { label: 'Pay for the towing service (1:00)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 2500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -37,19 +37,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> is parked just insid...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> is parked just inside.`);
+    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked just inside.`);
     if (qspFunc(s, 'car_funcs', 'has_wreck')) {
       scene.text('The foreman looks at your car, if this wreckage even qualifies as one, with a professional boredom that tells you he\'s seen vehicles in similar or worse states a million times over.');
       // TODO-QSP: dynamic text: He quickly but thoroughly inspects it, murmuring all the while to take mental no...
       scene.text('He quickly but thoroughly inspects it, murmuring all the while to take mental notes on what needs to be done, and, when he returns to you, simply states that it would cost \' + $func(\'money\', \'string_price\', normrem) + \' to repair the damage.');
       scene.actions([
-        { label: 'Pay and wait while they repair the car [+$func(\'money\', \'get_cost_string\', normre...]', handler: (st: GameState) => {
+        { label: 'Pay and wait while they repair the car', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).normrem ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       (s as any).minut = ((s as any).minut ?? 0) + 60;
       qspCall(s, 'money', 'pay', ((s as any).normrem ?? 0));
-      if (!(s as any).car) (s as any).car = {}; (s as any).car['new_condition'] = ((s as any).car ?? {})?.['new_condition'] / 2;
+      if (!(s as any).car) (s as any).car = {}; (s as any).car['new_condition'] = (((s as any).car ?? {})?.['new_condition'] ?? 0) / 2;
       if (!(s as any).car) (s as any).car = {}; (s as any).car['current_condition'] = ((s as any).car ?? 0)?.['new_condition'];
       if (!(s as any).car) (s as any).car = {}; (s as any).car['wreck'] = 0;
       qspCall(s, 'stat', '');
@@ -76,7 +76,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: dynamic text: It would cost you ' + $func('money', 'string_price', normrem) + '.
         scene.text('It would cost you \' + $func(\'money\', \'string_price\', normrem) + \'.');
         scene.actions([
-          { label: 'Pay and wait while they repair the car [+$func(\'money\', \'get_cost_string\', normre...]', handler: (st: GameState) => {
+          { label: 'Pay and wait while they repair the car', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).normrem ?? 0)) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

@@ -23,19 +23,19 @@ function enterBuildBp(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterViewMilkBottles(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'lact_bp', 'reg_bottle_count');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRegBottleCount(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You check the bottles that you store here.<br>');
-  (s as any).temp_var = (((s as any).mc_inventory ?? {})?.['bottle_m'] + ((s as any).mc_inventory ?? {})?.['bottle_s']) - 1;
+  (s as any).temp_var = ((((s as any).mc_inventory ?? {})?.['bottle_m'] ?? 0) + (((s as any).mc_inventory ?? {})?.['bottle_s'] ?? 0)) - 1;
   (s as any).vmb_i = 0;
   (s as any).milkedvolume = 0;
   // TODO-QSP: :vmbloop
   if (((s as any).vmb_i ?? 0) <= ((s as any).temp_var ?? 0)) {
     if (((s as any).mbarrloca ?? 0)?.[String((s as any).vmb_i ?? 0)] === ((s as any).locArgs?.[1] ?? 0)) {
-      qspCall(s, 'lact_bp', 'update_mbottle', ((s as any).vmb_i ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).vmb_i ?? 0)]; enterUpdateMbottle(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)] <=0) {
         if (!(s as any).mbarrfill) (s as any).mbarrfill = {}; (s as any).mbarrfill[String((s as any).vmb_i ?? 0)] = 0;
         // TODO-QSP: dynamic text: <br><<vmb_i + 1>>. - An empty <<mbarrtype[vmb_i]/10>>ml bottle. You can use it t...
-        scene.text(`<br>${((s as any).vmb_i ?? 0) + 1}. - An empty ${((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)]/10}ml bottle. You can use it to store your breast milk.`);
+        scene.text(`<br>${((s as any).vmb_i ?? '') + 1}. - An empty ${((s as any).mbarrtype ?? 0)?.[String((s as any).vmb_i ?? 0)]/10}ml bottle. You can use it to store your breast milk.`);
       } else {
         // TODO-QSP: '<br><<vmb_i + 1>>. - A <<mbarrtype[vmb_i]/10>>ml bottle. There is <<mbarrfill[vmb_i]/10>>ml of milk...
         (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) + (((s as any).mbarrfill ?? 0)?.[String((s as any).vmb_i ?? 0)]);
@@ -72,7 +72,7 @@ function enterDrinkMilkBottles(s: GameState, scene: SceneBuilder): void {
     { label: 'Finish', handler: (st: GameState) => {
     // TODO-QSP: gs 'lact_bp', 'empty_milk_bottle', ARGS[1]
     qspCall(s, 'stat', '');
-    qspCall(s, 'lact_bp', 'view_milk_bottles', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterViewMilkBottles(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -96,7 +96,7 @@ function enterEmptyAllMilkBottles(s: GameState, scene: SceneBuilder): void {
   (s as any).emb_i = 0;
   // TODO-QSP: :emb_loop
   if (((s as any).emb_i ?? 0) <= ((s as any).temp_var ?? 0)) {
-    qspCall(s, 'lact_bp', 'empty_milk_bottle', ((s as any).emb_i ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).emb_i ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).emb_i = ((s as any).emb_i ?? 0) + (1);
     // TODO-QSP: jump 'emb_loop'
   }
@@ -276,7 +276,7 @@ function enterUseableMbottleCount(s: GameState, scene: SceneBuilder): void {
 function enterBpMilking(s: GameState, scene: SceneBuilder): void {
   (s as any).pumptime = 0;
   (s as any).pumptype = 0;
-  qspCall(s, 'lact_bp', 'reg_bottle_count');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRegBottleCount(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).pump_bottletype ?? 0) < 1500) {
     (s as any).pump_bottletype = 1500;
   }
@@ -328,11 +328,11 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
         } else {
           if ((((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s']) > 1) {
             // TODO-QSP: dynamic text: You have <<mc_inventory['bottle_m'] + mc_inventory['bottle_s']>> bottles. You ca...
-            scene.text(`You have ${((s as any).mc_inventory ?? {})?.['bottle_m'] + ((s as any).mc_inventory ?? {})?.['bottle_s']} bottles. You can check them <a href="exec:gs 'lact_bp','view_milk_bottles', 1">here</a>`);
+            scene.text(`You have ${(((s as any).mc_inventory ?? {})?.['bottle_m'] ?? 0) + (((s as any).mc_inventory ?? {})?.['bottle_s'] ?? 0)} bottles. You can check them <a href="exec:gs 'lact_bp','view_milk_bottles', 1">here</a>`);
           }
         }
         if (((s as any).lactation ?? 0)?.['breastmv'] > 0  &&  (qspFunc(s, 'lact_bp', 'useable_sbottle_count') > 0  ||  qspFunc(s, 'lact_bp', 'useable_mbottle_count') > 0)) {
-          (s as any).pumptime = qspFunc(s, 'lact_lib', '$get_breastmilk_time', 3, ((s as any).lactation ?? {})?.['breastmv'] / 1000);
+          (s as any).pumptime = qspFunc(s, 'lact_lib', '$get_breastmilk_time', 3, (((s as any).lactation ?? {})?.['breastmv'] ?? 0) / 1000);
           if (((s as any).pumptime ?? 0) <= 0) {
             scene.actions([
               { label: 'Pump until breasts are empty', handler: (st: GameState) => {
@@ -359,7 +359,7 @@ function enterBpMilking(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('As you prepare for pumping you weight your breasts in your hands. You feel that your breasts carry a large amount of milk and pumping will probably take a long time.');
     // TODO-QSP: dynamic text: Getting relieve for your breasts with the manual breast pump will probably take ...
-    scene.text(`Getting relieve for your breasts with the manual breast pump will probably take at least ${((s as any).pumptime ?? 0)} minutes.`);
+    scene.text(`Getting relieve for your breasts with the manual breast pump will probably take at least ${((s as any).pumptime || '')} minutes.`);
     if (((s as any).pcs_know_mward ?? 0) <= 0) {
       scene.text('You consider visiting a hospital to get help or buying a better breast pump.');
       (s as any).pcs_ask_mward_help = 1;
@@ -462,21 +462,21 @@ function enterMassage(s: GameState, scene: SceneBuilder): void {
 
 function enterManMilking(s: GameState, scene: SceneBuilder): void {
   (s as any).pumptime = 0;
-  qspCall(s, 'lact_bp', 'reg_bottle_count');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRegBottleCount(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).lactation ?? 0)?.['active'] > 0  &&  ((s as any).lactation ?? 0)?.['pc_aware'] > 0) {
     scene.text('How long do you want to milk your breasts?');
   } else {
     scene.text('How long do you want to massage your breasts?');
   }
   if (((s as any).lactation ?? 0)?.['breastmv'] > 0) {
-    (s as any).pumptime = (qspFunc(s, 'lact_lib', '$get_breastmilk_time', 5, (((s as any).lactation ?? {})?.['breastmv']/1000)));
+    (s as any).pumptime = (qspFunc(s, 'lact_lib', '$get_breastmilk_time', 5, ((((s as any).lactation ?? {})?.['breastmv'] ?? 0)/1000)));
     if (((s as any).pumptime ?? 0) > 60) {
       scene.actions([
         { label: 'Express until breasts are empty', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     scene.text('You prepare yourself and weight your breasts in your hands. You feel that your breasts carry a large amount of milk and manually expressing it will probably take a long time.');
     // TODO-QSP: dynamic text: Getting relieve for your breasts with manual expression will probably take at le...
-    scene.text(`Getting relieve for your breasts with manual expression will probably take at least ${((s as any).pumptime ?? 0)} minutes.`);
+    scene.text(`Getting relieve for your breasts with manual expression will probably take at least ${((s as any).pumptime || '')} minutes.`);
     if (((s as any).mc_inventory ?? 0)?.['breast_pump'] <= 0  &&  ((s as any).bp_unbox ?? 0) <= 1) {
       scene.text('You should consider buying a breast pump');
     } else {
@@ -514,7 +514,7 @@ function enterManMilking(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Express until breasts are empty', handler: (st: GameState) => {
-    (s as any).pumptime = qspFunc(s, 'lact_lib', '$get_breastmilk_time', 5, (((s as any).lactation ?? {})?.['breastmv']/1000));
+    (s as any).pumptime = qspFunc(s, 'lact_lib', '$get_breastmilk_time', 5, ((((s as any).lactation ?? {})?.['breastmv'] ?? 0)/1000));
   }, goto: ['lact_bp', 'hand_milking'] },
         ]);
       }
@@ -608,7 +608,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
       }
     }
     if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['bottle_s'] = ((s as any).mc_inventory['bottle_s'] ?? 0) + (1);
-    qspCall(s, 'lact_bp', 'reg_bottle_count');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRegBottleCount(s, scene); (s as any).locArgs = __savedLocArgs; }
     if ((((s as any).pcs_inhib ?? 0) > 40  &&  ((s as any).location_type ?? 0) === 'private')  ||  ((s as any).location_type ?? 0) === 'bathroom') {
       scene.actions([
         { label: 'Try out how it works', handler: (st: GameState) => {
@@ -617,7 +617,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
     (s as any).bp_unbox = 2;
     qspCall(s, 'stat', '');
     scene.text('You pull up your top to release your breasts');
-    scene.img(`images/pc/body/tits/t${((s as any).tits ?? 0)}.jpg`);
+    scene.img(`images/pc/body/tits/t${((s as any).tits || '')}.jpg`);
     scene.text('Your fingers glide around the suction cup of the breast pump, while your other hand holds the pump.');
     scene.text('Making sure that no one is around, you lift the breast pump to your left breast. The cold cone feels uncomfortable on your nipple.');
     if (((s as any).lactation ?? 0)?.['active'] <= 0) {
@@ -642,7 +642,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
             scene.text('You start to squeeze the bulb. Your nipple is sucked into the cone, getting elongated a bit. It feels weird at first and you release the lever, the suction on your nipple goes away and the nipple retracts.');
             scene.text('With your hand you squeeze down again, your nipple sucked in again. You go on, and start to rhythmically squeeze it. The pump starts to draw milk from your breast.');
             // TODO-QSP: dynamic text: You go on for a minute and then detach the pump. You collected <<milkedvolume/10...
-            scene.text(`You go on for a minute and then detach the pump. You collected ${((s as any).milkedvolume ?? 0)/10}ml of your breast milk.`);
+            scene.text(`You go on for a minute and then detach the pump. You collected ${((s as any).milkedvolume ?? '')/10}ml of your breast milk.`);
             scene.img('images/pc/body/tits/pump_half.jpg');
           } else {
             scene.text('You start to squeeze the bulb. Your nipple is sucked into the cone, getting elongated a bit. It feels weird at first and you release the lever, the suction on your nipple goes away and the nipple retracts.');
@@ -740,7 +740,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.text('You pull up your top to release your breasts');
-        scene.img(`images/pc/body/tits/t${((s as any).tits ?? 0)}.jpg`);
+        scene.img(`images/pc/body/tits/t${((s as any).tits || '')}.jpg`);
         scene.text('Your fingers glide around the suction cup of the breast pump, while your other hand holds the pump.');
         scene.text('Making sure that no one is around, you lift the breast pump to your left breast. The cold cone feels uncomfortable on your nipple.');
         (s as any).milkedvolume = (qspFunc(s, 'lact_lib', '$get_breastmilk', 3, 1))/100;
@@ -768,7 +768,7 @@ function enterBpUnboxEvent(s: GameState, scene: SceneBuilder): void {
                 scene.text('You start to squeeze the bulb. Your nipple is sucked into the cone, getting elongated a bit. It feels weird at first and you release the lever, the suction on your nipple goes away and the nipple retracts.');
                 scene.text('With your hand you squeeze down again, your nipple sucked in again. You go on, and start to rhythmically squeeze it. The pump starts to draw milk from your breast.');
                 // TODO-QSP: dynamic text: You go on for a minute and then detach the pump. You collected <<milkedvolume/10...
-                scene.text(`You go on for a minute and then detach the pump. You collected ${((s as any).milkedvolume ?? 0)/10}ml of your breast milk.`);
+                scene.text(`You go on for a minute and then detach the pump. You collected ${((s as any).milkedvolume ?? '')/10}ml of your breast milk.`);
                 scene.img('images/pc/body/tits/pump_half.jpg');
               } else {
                 scene.text('You start to squeeze the bulb. Your nipple is sucked into the cone, getting elongated a bit. It feels weird at first and you release the lever, the suction on your nipple goes away and the nipple retracts.');
@@ -836,7 +836,7 @@ function enterRegBottleCount(s: GameState, scene: SceneBuilder): void {
       (s as any).reg_bottles_count = ((s as any).reg_bottles_count ?? 0) + (1);
       (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
       if (!(s as any).mbarrtype) (s as any).mbarrtype = {}; (s as any).mbarrtype[String((s as any).rbc_index ?? 0)] = 1500;
-      qspCall(s, 'lact_bp', 'empty_milk_bottle', ((s as any).rbc_index ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).rbc_index ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).mbarrloca) (s as any).mbarrloca = {}; (s as any).mbarrloca[String((s as any).rbc_index ?? 0)] = 1;
       // TODO-QSP: jump 'rbc_loop'
     }
@@ -844,7 +844,7 @@ function enterRegBottleCount(s: GameState, scene: SceneBuilder): void {
       (s as any).reg_bottlem_count = ((s as any).reg_bottlem_count ?? 0) + (1);
       (s as any).rbc_index = (((s as any).reg_bottlem_count ?? 0) + ((s as any).reg_bottles_count ?? 0)) - 1;
       if (!(s as any).mbarrtype) (s as any).mbarrtype = {}; (s as any).mbarrtype[String((s as any).rbc_index ?? 0)] = 2500;
-      qspCall(s, 'lact_bp', 'empty_milk_bottle', ((s as any).rbc_index ?? 0));
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).rbc_index ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).mbarrloca) (s as any).mbarrloca = {}; (s as any).mbarrloca[String((s as any).rbc_index ?? 0)] = 1;
       // TODO-QSP: jump 'rbc_loop'
     }
@@ -854,7 +854,7 @@ function enterRegBottleCount(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMilking(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'lact_bp', 'reg_bottle_count');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRegBottleCount(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).pain ?? 0)?.['nipples'] >= 60) {
     scene.text('Your nipples feel too sore to use the pump right now.');
   } else {
@@ -864,7 +864,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
       (s as any).breastcounter = ((s as any).breastcounter ?? 0) + (1);
       (s as any).pcs_usedbreastpumponherself = ((s as any).pcs_usedbreastpumponherself ?? 0) + (1);
       qspCall(s, 'stat', '');
-      scene.img(`images/pc/body/tits/t${((s as any).tits ?? 0)}.jpg`);
+      scene.img(`images/pc/body/tits/t${((s as any).tits || '')}.jpg`);
       if (((s as any).breastaccommodation ?? 0) < 100) {
         scene.text('You attach the pump to your nipples and start squeezing the bulb. The vacuum feels uncomfortable on your nipples.');
       } else {
@@ -879,7 +879,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).pump_stop_brake ?? 0) === 1) {
         // TODO-QSP: dynamic text: During pumping your nipples start to hurt extremely. You have to stop after <<pu...
-        scene.text(`During pumping your nipples start to hurt extremely. You have to stop after ${((s as any).pumptime ?? 0)} minutes, because you couldn't go on.`);
+        scene.text(`During pumping your nipples start to hurt extremely. You have to stop after ${((s as any).pumptime || '')} minutes, because you couldn't go on.`);
       }
       if (((s as any).lactation ?? 0)?.['prolactinlvl'] > 100) {
         scene.text('After finishing, your breasts feel weirdly engorged.');
@@ -928,14 +928,14 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
         scene.img('images/pc/body/tits/pump_lactating.jpg');
         if (((s as any).pumptime ?? 0) > 1) {
           // TODO-QSP: dynamic text: You attach the pump to your breast and start rhythmically squeezing the bulb for...
-          scene.text(`You attach the pump to your breast and start rhythmically squeezing the bulb for ${((s as any).pumptime ?? 0)} minutes.`);
+          scene.text(`You attach the pump to your breast and start rhythmically squeezing the bulb for ${((s as any).pumptime || '')} minutes.`);
         } else {
           scene.text('You attach the pump to your breast and start rhythmically squeezing the bulb for one minute.');
         }
         if (((s as any).milkedvolume ?? 0) > ((s as any).pump_bottletype ?? 0)  &&  (((s as any).bp_useable_sbottle ?? 0)*1500 + ((s as any).bp_useable_mbottle ?? 0)*2500) === ((s as any).pump_bottletype ?? 0)) {
           scene.text('During pumping you have to empty the collecting bottle as it filled up with your milk.');
           // TODO-QSP: dynamic text: You give it a few more pumps and detach the pump.<br>You filled the bottle with ...
-          scene.text(`You give it a few more pumps and detach the pump.<br>You filled the bottle with ${((s as any).pump_bottletype ?? 0)/10}ml of your milk.`);
+          scene.text(`You give it a few more pumps and detach the pump.<br>You filled the bottle with ${((s as any).pump_bottletype ?? '')/10}ml of your milk.`);
           scene.text('To collect all your pumped milk you should probably check if the pharmacy has additional bottles for your breast pump.');
           if ((((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0) {
             (s as any).bottlecounter = 0;
@@ -945,7 +945,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                 (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                 // TODO-QSP: jump 'sbottle_loneloop'
               }
-              qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), 1500);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 1500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           } else {
             if ((((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) > 2500) {
@@ -956,23 +956,23 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                   (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                   // TODO-QSP: jump 'mbottle_loneloop'
                 }
-                qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), 2500);
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 2500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             } else {
               scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
               scene.text('first fork case');
               // TODO-QSP: dynamic text: bp_used_mbottle: <<bp_used_mbottle>>
-              scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? 0)}`);
+              scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle || '')}`);
               // TODO-QSP: dynamic text: bp_used_sbottle: <<bp_used_sbottle>>
-              scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? 0)}`);
+              scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle || '')}`);
               // TODO-QSP: dynamic text: milkedvolume: <<milkedvolume>>
-              scene.text(`milkedvolume: ${((s as any).milkedvolume ?? 0)}`);
+              scene.text(`milkedvolume: ${((s as any).milkedvolume || '')}`);
               // TODO-QSP: dynamic text: pump_bottletype: <<pump_bottletype>>
-              scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? 0)}`);
+              scene.text(`pump_bottletype: ${((s as any).pump_bottletype || '')}`);
               // TODO-QSP: dynamic text: bp_useable_sbottle: <<bp_useable_sbottle>>
-              scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle ?? 0)}`);
+              scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle || '')}`);
               // TODO-QSP: dynamic text: bp_useable_mbottle: <<bp_useable_mbottle>>
-              scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle ?? 0)}`);
+              scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle || '')}`);
             }
           }
         } else {
@@ -988,7 +988,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                   (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                   // TODO-QSP: jump 'sbottle_searchloop'
                 }
-                qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), 1500);
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 1500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
               // TODO-QSP: jump 'sbottleloop'
             }
@@ -1003,7 +1003,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                   (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                   // TODO-QSP: jump 'mbottle_searchloop'
                 }
-                qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), 2500);
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 2500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
               // TODO-QSP: jump 'mbottleloop'
             }
@@ -1019,7 +1019,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                     (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                     // TODO-QSP: jump 'sbottle_altsearchloop'
                   }
-                  qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), 2500);
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 2500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
                 // TODO-QSP: jump 'altfill01'
               }
@@ -1034,7 +1034,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                     (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                     // TODO-QSP: jump 'mbottle_altsearchloop'
                   }
-                  qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), 1500);
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), 1500]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
                 // TODO-QSP: jump 'altfill02'
               }
@@ -1042,7 +1042,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
             if (((s as any).milkedvolume ?? 0) > 0  &&  ((s as any).bp_useable_mbottle ?? 0) === ((s as any).bp_used_mbottle ?? 0)  &&  ((s as any).bp_useable_sbottle ?? 0) === ((s as any).bp_used_sbottle ?? 0)) {
               scene.text('During pumping you have to switch the collecting bottle as it filled up with your milk. Unfortunately you don\'t have enough bottles to collect all your milk.');
               // TODO-QSP: dynamic text: You had to pour <<milkedvolume/10>>ml of your breast milk into the sink.
-              scene.text(`You had to pour ${((s as any).milkedvolume ?? 0)/10}ml of your breast milk into the sink.`);
+              scene.text(`You had to pour ${((s as any).milkedvolume ?? '')/10}ml of your breast milk into the sink.`);
               (s as any).milkedvolume = ((((s as any).bp_used_mbottle ?? 0)*2500) + (((s as any).bp_used_sbottle ?? 0)*1500));
             } else {
               if (((s as any).milkedvolume ?? 0) > 0  &&  ((s as any).milkedvolume ?? 0) < 1500  &&  (((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0) {
@@ -1059,13 +1059,13 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
               scene.img('images/pc/body/tits/bottles_full.jpg');
               if (((s as any).milkedvolume ?? 0) === ((((s as any).bp_used_mbottle ?? 0)*2500) + (((s as any).bp_used_sbottle ?? 0)*1500))) {
                 // TODO-QSP: dynamic text: You pumped <<milkedvolume/10>>ml of milk from your breasts, collecting it in:
-                scene.text(`You pumped ${((s as any).milkedvolume ?? 0)/10}ml of milk from your breasts, collecting it in:`);
+                scene.text(`You pumped ${((s as any).milkedvolume ?? '')/10}ml of milk from your breasts, collecting it in:`);
                 if (((s as any).bp_useable_sbottle ?? 0) === 1) {
                   scene.text('One 150ml bottle');
                 } else {
                   if (((s as any).bp_used_sbottle ?? 0) > 1) {
                     // TODO-QSP: dynamic text: <<bp_used_sbottle>> x 150ml bottles
-                    scene.text(`${((s as any).bp_used_sbottle ?? 0)} x 150ml bottles`);
+                    scene.text(`${((s as any).bp_used_sbottle || '')} x 150ml bottles`);
                   }
                 }
                 if (((s as any).bp_used_mbottle ?? 0) === 1) {
@@ -1073,18 +1073,18 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).bp_used_mbottle ?? 0) > 1) {
                     // TODO-QSP: dynamic text: <<bp_used_mbottle>> x 250ml bottles
-                    scene.text(`${((s as any).bp_used_mbottle ?? 0)} x 250ml bottles`);
+                    scene.text(`${((s as any).bp_used_mbottle || '')} x 250ml bottles`);
                   }
                 }
               } else {
                 // TODO-QSP: dynamic text: You pumped <<((bp_used_mbottle*2500)+(bp_used_sbottle*1500)+milkedvolume)/10>>ml...
-                scene.text(`You pumped ${((((s as any).bp_used_mbottle ?? 0)*2500)+(((s as any).bp_used_sbottle ?? 0)*1500)+((s as any).milkedvolume ?? 0))/10}ml of milk from your breasts collecting it in:`);
+                scene.text(`You pumped ${((((s as any).bp_used_mbottle ?? '')*2500)+(((s as any).bp_used_sbottle ?? '')*1500)+((s as any).milkedvolume ?? ''))/10}ml of milk from your breasts collecting it in:`);
                 if (((s as any).bp_used_sbottle ?? 0) === 1) {
                   scene.text('One 150ml bottle');
                 } else {
                   if (((s as any).bp_used_sbottle ?? 0) > 1) {
                     // TODO-QSP: dynamic text: <<bp_used_sbottle>> x 150ml bottles
-                    scene.text(`${((s as any).bp_used_sbottle ?? 0)} x 150ml bottles`);
+                    scene.text(`${((s as any).bp_used_sbottle || '')} x 150ml bottles`);
                   }
                 }
                 if (((s as any).bp_used_mbottle ?? 0) === 1) {
@@ -1092,7 +1092,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                 } else {
                   if (((s as any).bp_used_mbottle ?? 0) > 1) {
                     // TODO-QSP: dynamic text: <<bp_used_mbottle>> x 250ml bottles
-                    scene.text(`${((s as any).bp_used_mbottle ?? 0)} x 250ml bottles`);
+                    scene.text(`${((s as any).bp_used_mbottle || '')} x 250ml bottles`);
                   }
                 }
                 if ((((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 1500) {
@@ -1103,10 +1103,10 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                       (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                       // TODO-QSP: jump 'sbottle_restsearchloop'
                     }
-                    qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0));
+                    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                   }
                   // TODO-QSP: dynamic text: You also stored <<milkedvolume/10>>ml of breast milk in a 150ml bottle.
-                  scene.text(`You also stored ${((s as any).milkedvolume ?? 0)/10}ml of breast milk in a 150ml bottle.`);
+                  scene.text(`You also stored ${((s as any).milkedvolume ?? '')/10}ml of breast milk in a 150ml bottle.`);
                 } else {
                   if ((((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 2500) {
                     (s as any).bottlecounter = 0;
@@ -1116,25 +1116,25 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                         (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                         // TODO-QSP: jump 'mbottle_restsearchloop'
                       }
-                      qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0));
+                      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                     }
                     // TODO-QSP: dynamic text: You also stored <<milkedvolume/10>>ml of breast milk in a 250ml bottle.
-                    scene.text(`You also stored ${((s as any).milkedvolume ?? 0)/10}ml of breast milk in a 250ml bottle.`);
+                    scene.text(`You also stored ${((s as any).milkedvolume ?? '')/10}ml of breast milk in a 250ml bottle.`);
                   } else {
                     scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
                     scene.text('second fork case');
                     // TODO-QSP: dynamic text: bp_used_mbottle: <<bp_used_mbottle>>
-                    scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? 0)}`);
+                    scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle || '')}`);
                     // TODO-QSP: dynamic text: bp_used_sbottle: <<bp_used_sbottle>>
-                    scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? 0)}`);
+                    scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle || '')}`);
                     // TODO-QSP: dynamic text: milkedvolume: <<milkedvolume>>
-                    scene.text(`milkedvolume: ${((s as any).milkedvolume ?? 0)}`);
+                    scene.text(`milkedvolume: ${((s as any).milkedvolume || '')}`);
                     // TODO-QSP: dynamic text: pump_bottletype: <<pump_bottletype>>
-                    scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? 0)}`);
+                    scene.text(`pump_bottletype: ${((s as any).pump_bottletype || '')}`);
                     // TODO-QSP: dynamic text: bp_useable_sbottle: <<bp_useable_sbottle>>
-                    scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle ?? 0)}`);
+                    scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle || '')}`);
                     // TODO-QSP: dynamic text: bp_useable_mbottle: <<bp_useable_mbottle>>
-                    scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle ?? 0)}`);
+                    scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle || '')}`);
                   }
                 }
                 (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) + (((s as any).bp_used_mbottle ?? 0)*2500 + ((s as any).bp_used_sbottle ?? 0)*1500);
@@ -1143,21 +1143,21 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
               scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
               scene.text('third fork case');
               // TODO-QSP: dynamic text: bp_used_mbottle: <<bp_used_mbottle>>
-              scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? 0)}`);
+              scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle || '')}`);
               // TODO-QSP: dynamic text: bp_used_sbottle: <<bp_used_sbottle>>
-              scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? 0)}`);
+              scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle || '')}`);
               // TODO-QSP: dynamic text: milkedvolume: <<milkedvolume>>
-              scene.text(`milkedvolume: ${((s as any).milkedvolume ?? 0)}`);
+              scene.text(`milkedvolume: ${((s as any).milkedvolume || '')}`);
               // TODO-QSP: dynamic text: pump_bottletype: <<pump_bottletype>>
-              scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? 0)}`);
+              scene.text(`pump_bottletype: ${((s as any).pump_bottletype || '')}`);
               // TODO-QSP: dynamic text: bpbottles: <<mc_inventory['bottle_s']>>
-              scene.text(`bpbottles: ${((s as any).mc_inventory ?? 0)?.['bottle_s']}`);
+              scene.text(`bpbottles: ${((s as any).mc_inventory ?? 0)?.['bottle_s'] ?? ''}`);
               // TODO-QSP: dynamic text: bpbottlem: <<mc_inventory['bottle_m']>>
-              scene.text(`bpbottlem: ${((s as any).mc_inventory ?? 0)?.['bottle_m']}`);
+              scene.text(`bpbottlem: ${((s as any).mc_inventory ?? 0)?.['bottle_m'] ?? ''}`);
             }
           } else {
             // TODO-QSP: dynamic text: You give it a few more pumps and detach the pump.<br>You filled the bottle with ...
-            scene.text(`You give it a few more pumps and detach the pump.<br>You filled the bottle with ${((s as any).milkedvolume ?? 0)/10}ml of your milk.`);
+            scene.text(`You give it a few more pumps and detach the pump.<br>You filled the bottle with ${((s as any).milkedvolume ?? '')/10}ml of your milk.`);
             if ((((s as any).bp_useable_sbottle ?? 0) - ((s as any).bp_used_sbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 1500) {
               (s as any).bottlecounter = 0;
               // TODO-QSP: :single_sbottle_searchloop
@@ -1166,7 +1166,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                   (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                   // TODO-QSP: jump 'single_sbottle_searchloop'
                 }
-                qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0));
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
               }
             } else {
               if ((((s as any).bp_useable_mbottle ?? 0) - ((s as any).bp_used_mbottle ?? 0)) > 0  &&  ((s as any).milkedvolume ?? 0) <= 2500) {
@@ -1177,23 +1177,23 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
                     (s as any).bottlecounter = ((s as any).bottlecounter ?? 0) + (1);
                     // TODO-QSP: jump 'single_mbottle_searchloop'
                   }
-                  qspCall(s, 'lact_bp', 'fill_milk_bottle', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0));
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bottlecounter ?? 0), ((s as any).milkedvolume ?? 0)]; enterFillMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
                 }
               } else {
                 scene.text('unhandled case - you shouldn\'t end up here. Please report this in the bug section of Girl Life in the tfg-forums.');
                 scene.text('second fork case');
                 // TODO-QSP: dynamic text: bp_used_mbottle: <<bp_used_mbottle>>
-                scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle ?? 0)}`);
+                scene.text(`bp_used_mbottle: ${((s as any).bp_used_mbottle || '')}`);
                 // TODO-QSP: dynamic text: bp_used_sbottle: <<bp_used_sbottle>>
-                scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle ?? 0)}`);
+                scene.text(`bp_used_sbottle: ${((s as any).bp_used_sbottle || '')}`);
                 // TODO-QSP: dynamic text: milkedvolume: <<milkedvolume>>
-                scene.text(`milkedvolume: ${((s as any).milkedvolume ?? 0)}`);
+                scene.text(`milkedvolume: ${((s as any).milkedvolume || '')}`);
                 // TODO-QSP: dynamic text: pump_bottletype: <<pump_bottletype>>
-                scene.text(`pump_bottletype: ${((s as any).pump_bottletype ?? 0)}`);
+                scene.text(`pump_bottletype: ${((s as any).pump_bottletype || '')}`);
                 // TODO-QSP: dynamic text: bp_useable_sbottle: <<bp_useable_sbottle>>
-                scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle ?? 0)}`);
+                scene.text(`bp_useable_sbottle: ${((s as any).bp_useable_sbottle || '')}`);
                 // TODO-QSP: dynamic text: bp_useable_mbottle: <<bp_useable_mbottle>>
-                scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle ?? 0)}`);
+                scene.text(`bp_useable_mbottle: ${((s as any).bp_useable_mbottle || '')}`);
               }
             }
             (s as any).milkedvolume = ((s as any).milkedvolume ?? 0) + (((s as any).bp_used_mbottle ?? 0)*2500 + ((s as any).bp_used_sbottle ?? 0)*1500);
@@ -1242,7 +1242,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :di_emptyloop
     if (((s as any).di_i ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
       if (((s as any).mbarrmage ?? 0)?.[String((s as any).di_i ?? 0)] >= ((s as any).pump_start_timestamp ?? 0)  &&  ((s as any).mbarrmage ?? 0)?.[String((s as any).di_i ?? 0)] <= ((s as any).pump_timestamp ?? 0)) {
-        qspCall(s, 'lact_bp', 'empty_milk_bottle', ((s as any).di_i ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).di_i ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       (s as any).di_i = ((s as any).di_i ?? 0) + (1);
       // TODO-QSP: jump 'di_emptyloop'
@@ -1264,7 +1264,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :piits_emptyloop
     if (((s as any).piits_i ?? 0) < (((s as any).mc_inventory ?? 0)?.['bottle_m'] + ((s as any).mc_inventory ?? 0)?.['bottle_s'])) {
       if (((s as any).mbarrmage ?? 0)?.[String((s as any).piits_i ?? 0)] >= ((s as any).pump_start_timestamp ?? 0)  &&  ((s as any).mbarrmage ?? 0)?.[String((s as any).piits_i ?? 0)] <= ((s as any).pump_timestamp ?? 0)) {
-        qspCall(s, 'lact_bp', 'empty_milk_bottle', ((s as any).piits_i ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).piits_i ?? 0)]; enterEmptyMilkBottle(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       (s as any).piits_i = ((s as any).piits_i ?? 0) + (1);
       // TODO-QSP: jump 'piits_emptyloop'
@@ -1275,7 +1275,7 @@ function enterMilking(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.img('images/pc/body/tits/milk_sink.jpg');
       // TODO-QSP: dynamic text: <center>You pour <<milkedvolume/10>>ml of your breast milk into the sink and cle...
-      scene.text(`<center>You pour ${((s as any).milkedvolume ?? 0)/10}ml of your breast milk into the sink and clean up your breast pump.</center>`);
+      scene.text(`<center>You pour ${((s as any).milkedvolume ?? '')/10}ml of your breast milk into the sink and clean up your breast pump.</center>`);
     }
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
@@ -1317,7 +1317,7 @@ function enterHandMilking(s: GameState, scene: SceneBuilder): void {
         scene.text('You start to massage your breasts, your fingers gliding down your breasts skin, over the areolas. Your fingers pressing down into the areola, stretching it forwards to your nipple.');
         scene.text('Several small streams of your milk start to jet out of your nipples.');
         // TODO-QSP: dynamic text: You go on for <<pumptime>> minutes until you stop. You clean yourself up and eve...
-        scene.text(`You go on for ${((s as any).pumptime ?? 0)} minutes until you stop. You clean yourself up and everything else that got wet from your milk.<br>`);
+        scene.text(`You go on for ${((s as any).pumptime || '')} minutes until you stop. You clean yourself up and everything else that got wet from your milk.<br>`);
         scene.img('images/pc/body/tits/bathroom_milking.mp4');
       } else {
         if (((s as any).lactation ?? 0)?.['pc_aware'] <= 0) {

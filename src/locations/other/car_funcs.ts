@@ -134,10 +134,10 @@ function enterAvtonorm(s: GameState, scene: SceneBuilder): void {
     }
   }
   if (((s as any).car ?? 0)?.['wreck'] === 0) {
-    (s as any).normneed = 0 - (((s as any).car ?? {})?.['current_condition'] - ((s as any).car ?? {})?.['new_condition']);
+    (s as any).normneed = 0 - ((((s as any).car ?? {})?.['current_condition'] ?? 0) - (((s as any).car ?? {})?.['new_condition'] ?? 0));
     (s as any).normrem = ((s as any).normneed ?? 0) * ((s as any).normhour ?? 0);
   } else {
-    (s as any).normneed = 0 - (((s as any).car ?? {})?.['current_condition'] - ((s as any).car ?? {})?.['new_condition']);
+    (s as any).normneed = 0 - ((((s as any).car ?? {})?.['current_condition'] ?? 0) - (((s as any).car ?? {})?.['new_condition'] ?? 0));
     (s as any).normrem = (((s as any).normneed ?? 0) * ((s as any).normhour ?? 0)) * 8;
   }
   // TODO-QSP: end

@@ -1,35 +1,35 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
 
 function enterDefault(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'body_desc', 'throat');
-  qspCall(s, 'body_desc', 'pussy');
-  qspCall(s, 'body_desc', 'anus');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterThroat(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPussy(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAnus(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((!((s as any).dounspell ?? 0))) {
-    qspCall(s, 'body_desc', 'butt');
-    qspCall(s, 'body_desc', 'breasts');
-    qspCall(s, 'body_desc', 'BMI');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterButt(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBreasts(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBMI(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'body_desc', 'lips');
-  qspCall(s, 'body_desc', 'hair');
-  qspCall(s, 'body_desc', 'tan');
-  qspCall(s, 'body_desc', 'skin');
-  qspCall(s, 'body_desc', 'eye_color');
-  qspCall(s, 'body_desc', 'eyelashes');
-  qspCall(s, 'body_desc', 'glasses');
-  qspCall(s, 'body_desc', 'eye_size');
-  qspCall(s, 'body_desc', 'makeup');
-  qspCall(s, 'body_desc', 'nipples');
-  qspCall(s, 'body_desc', 'clit');
-  qspCall(s, 'body_desc', 'pubes');
-  qspCall(s, 'body_desc', 'legs');
-  qspCall(s, 'body_desc', 'teeth');
-  qspCall(s, 'body_desc', 'appearance');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLips(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHair(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTan(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSkin(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEyeColor(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEyelashes(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGlasses(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEyeSize(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMakeup(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNipples(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterClit(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPubes(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLegs(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTeeth(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAppearance(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -208,7 +208,7 @@ function enterBreasts(s: GameState, scene: SceneBuilder): void {
   (s as any).tits = 0;
   if (!(s as any).pc_desc) (s as any).pc_desc = {}; (s as any).pc_desc['breast'] = '';
   if (!(s as any).pc_descWordy) (s as any).pc_descWordy = {}; (s as any).pc_descWordy['breast'] = '';
-  (s as any).pcs_bustdisparity = (((s as any).bodyVars ?? {})?.['bust_silicone'] - ((s as any).pcs_mass ?? {})?.['bust']) / 10;
+  (s as any).pcs_bustdisparity = ((((s as any).bodyVars ?? {})?.['bust_silicone'] ?? 0) - (((s as any).pcs_mass ?? {})?.['bust'] ?? 0)) / 10;
   if (((s as any).pcs_bustdisparity ?? 0) <= 0) {
     if (((s as any).pcs_cupsize ?? 0) <= 30) {
     }
@@ -1114,7 +1114,7 @@ function enterPubes(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'body_desc', 'pube_desc_update');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPubeDescUpdate(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();

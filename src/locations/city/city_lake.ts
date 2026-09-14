@@ -34,15 +34,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('There is a branch of the swimwear chain <a href="exec: minut += 3 & gt \'shop_allure\', \'start\'">Allure</a> here');
   } else {
     // TODO-QSP: dynamic text: There is a branch of the swimwear chain Allure here, but it is currently closed....
-    scene.text('There is a branch of the swimwear chain Allure here, but it is currently closed. It will reopen at \'+func(\'time\', \'get_time_string\', 8, 0)+\'.');
+    scene.text('There is a branch of the swimwear chain Allure here, but it is currently closed. It will reopen at 8:00.');
   }
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     if ((!((s as any).PSwim ?? 0))) {
       // TODO-QSP: dynamic text: <a href="exec:gs 'carF', 'start'">Your <<$car['name']>></a> is parked near the l...
-      scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name']}</a> is parked near the lake.`);
+      scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is parked near the lake.`);
     } else {
       // TODO-QSP: dynamic text: Your <<$car['name']>> is parked nearby. You should get dressed into your clothes...
-      scene.text(`Your ${((s as any).car ?? 0)?.['name']} is parked nearby. You should get dressed into your clothes if you want to drive away.`);
+      scene.text(`Your ${((s as any).car ?? 0)?.['name'] ?? ''} is parked nearby. You should get dressed into your clothes if you want to drive away.`);
     }
   }
   if (qspFunc(s, 'changingroom', 'count_swim_item') > 0  ||  ((s as any).clothingworntype ?? 0) === 'nude'  ||  ((s as any).PSwim ?? 0) === 1) {
@@ -249,10 +249,10 @@ function enterGidro(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
   // TODO-QSP: dynamic text: You go to the jet ski kiosk. It costs ' + $func('money', 'string_price', 100) + ...
-  scene.text('You go to the jet ski kiosk. It costs \' + $func(\'money\', \'string_price\', 100) + \' for 30 minutes.');
+  scene.text('You go to the jet ski kiosk. It costs 100₽ for 30 minutes.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go for a ride [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+    { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -284,10 +284,10 @@ function enterBanan(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
   // TODO-QSP: dynamic text: You go to the banana ride. It costs ' + $func('money', 'string_price', 100) + '.
-  scene.text('You go to the banana ride. It costs \' + $func(\'money\', \'string_price\', 100) + \'.');
+  scene.text('You go to the banana ride. It costs 100₽.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go for a ride [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+    { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -324,10 +324,10 @@ function enterGorka(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
   // TODO-QSP: dynamic text: You go to the water slide. It costs ' + $func('money', 'string_price', 50) + ' p...
-  scene.text('You go to the water slide. It costs \' + $func(\'money\', \'string_price\', 50) + \' per go.');
+  scene.text('You go to the water slide. It costs 50₽ per go.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Use the slide [+$func(\'money\', \'get_cost_string\', 50)]', handler: (st: GameState) => {
+    { label: 'Use the slide', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -360,10 +360,10 @@ function enterHorse(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/horse0.jpg');
   // TODO-QSP: dynamic text: You walk over to where the horses are gathered. It costs ' + $func('money', 'str...
-  scene.text('You walk over to where the horses are gathered. It costs \' + $func(\'money\', \'string_price\', 100) + \' to ride one.');
+  scene.text('You walk over to where the horses are gathered. It costs 100₽ to ride one.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go for a ride [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+    { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -396,10 +396,10 @@ function enterTourBoat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/aquapark.jpg');
   // TODO-QSP: dynamic text: You step up to the tour boat que and wait your turn the cost of a 2 hour tour is...
-  scene.text('You step up to the tour boat que and wait your turn the cost of a 2 hour tour is \' + $func(\'money\', \'string_price\', 100) + \'.');
+  scene.text('You step up to the tour boat que and wait your turn the cost of a 2 hour tour is 100₽.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Go for a ride [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+    { label: 'Go for a ride', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -520,21 +520,21 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You\'re taken aback by his comment, but he just grins widely. "Come on, don\'t worry. I love whores." He unbuttons his pants and pulls out his sizeable cock. "Come on baby, look what papa has for your goddamned mouth." The man beckons you with a finger.');
-    qspCall(s, 'city_lake', 'dinribak');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinribak(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'What?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You\'re surprised by such impudence, but he just grins widely. "You\'ll be even hungrier after seeing this!" He unbuttons his pants and pulls out his sizeable cock. "Come on baby, look what papa has for your goddamned mouth." The man beckons you with a finger.');
-    qspCall(s, 'city_lake', 'dinribak');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinribak(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Don\'t say anything', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/walk1/walk1.jpg');
     scene.text('You stand there, stunned in silence and grins widely. "Damn, I knew it just by looking at you! I have a nose for whores missing out on dick." He then unbuttons his pants and pulls out his sizeable cock. "Come on baby, look what papa has for your goddamned mouth." The man beckons you with a finger.');
-    qspCall(s, 'city_lake', 'dinribak');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinribak(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -548,7 +548,7 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).ribakSex ?? 0) > 0) {
       // TODO-QSP: dynamic text: You walk over to the man, who happily greets you. "Hey <<$ribakName>>, want more...
-      scene.text(`You walk over to the man, who happily greets you. "Hey ${((s as any).ribakName ?? 0)}, want more of my cock?"`);
+      scene.text(`You walk over to the man, who happily greets you. "Hey ${((s as any).ribakName || '')}, want more of my cock?"`);
       if (((s as any).ribakName ?? 0) === 'whore') {
         scene.actions([
           { label: 'Money first', handler: (st: GameState) => {
@@ -559,13 +559,13 @@ function enterWalklake1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -684,13 +684,13 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -706,13 +706,13 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Change your mind and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Change your mind and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Change your mind and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Change your mind and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -766,13 +766,13 @@ function enterDinribak(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Feign compliance then run [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Feign compliance then run', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Feign compliance then run [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Feign compliance then run', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -940,7 +940,7 @@ function enterStasValera(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/residential/lake/sex/stas/talk1.jpg');
   // TODO-QSP: dynamic text: "My name is <<$pcs_nickname>>." you reply and Stasik smiles. "Nice to meet you, ...
-  scene.text(`"My name is ${((s as any).pcs_nickname ?? 0)}." you reply and Stasik smiles. "Nice to meet you, ${((s as any).pcs_nickname ?? 0)}." Valera also comes over and greets you.`);
+  scene.text(`"My name is ${((s as any).pcs_nickname || '')}." you reply and Stasik smiles. "Nice to meet you, ${((s as any).pcs_nickname || '')}." Valera also comes over and greets you.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Chat with them', handler: (st: GameState) => {
@@ -965,13 +965,13 @@ function enterStasValera2a(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -1021,13 +1021,13 @@ function enterStasValera3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'What are you doing? [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'What are you doing?', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'What are you doing? [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'What are you doing?', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -1042,13 +1042,13 @@ function enterStasValera3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Feebly protest [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Feebly protest', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Feebly protest [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Feebly protest', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/residential/lake/sex/stas/talk5.jpg');
@@ -1116,7 +1116,7 @@ function enterStasValera4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/city/residential/lake/sex/stas/undress.jpg');
     // TODO-QSP: dynamic text: Once the men recover, they start getting dressed before Stasik helps you to your...
-    scene.text(`Once the men recover, they start getting dressed before Stasik helps you to your feet. "You're a cool girl ${((s as any).pcs_nickname ?? 0)}, let us walk you home."`);
+    scene.text(`Once the men recover, they start getting dressed before Stasik helps you to your feet. "You're a cool girl ${((s as any).pcs_nickname || '')}, let us walk you home."`);
     if (((s as any).home ?? 0)?.['current'] === 'city_apartment') {
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
@@ -1194,13 +1194,13 @@ function enterVlake1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -1214,13 +1214,13 @@ function enterVlake1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -1326,13 +1326,13 @@ function enterVlake2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Ignore them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Ignore them', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Ignore them [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Ignore them', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -1346,14 +1346,14 @@ function enterVlake2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Push them away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push them away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
       ]);
     } else {
       scene.actions([
-        { label: 'Push them away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push them away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
@@ -1431,13 +1431,13 @@ function enterAndrey1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -1515,13 +1515,13 @@ function enterKater1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Take the jet ski and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Take the jet ski and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Take the jet ski and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Take the jet ski and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -1629,13 +1629,13 @@ function enterKater2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Pretend to be asleep until docked [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Pretend to be asleep until docked', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Pretend to be asleep until docked [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Pretend to be asleep until docked', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -1722,13 +1722,13 @@ function enterKater3(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Take the jet ski and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Take the jet ski and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Take the jet ski and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Take the jet ski and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -1799,13 +1799,13 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['city_lake', 'start'] },
     ]);
@@ -1824,13 +1824,13 @@ function enterHorse1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'group', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Push them away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push them away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Push them away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push them away', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['city_lake', 'start'] },
       ]);
@@ -1923,13 +1923,13 @@ function enterHorse2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['city_lake', 'start'] },
@@ -2097,7 +2097,7 @@ function enterBonfire(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/residential/lake/bonfire.jpg');
     scene.text('As you follow your new friend over to the fire pit, he asks, "Hey what\'s your name? Mine is Gregor"');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you responded, as the two of you reach the party.
-    scene.text(`"${((s as any).pcs_firstname ?? 0)}." you responded, as the two of you reach the party.`);
+    scene.text(`"${((s as any).pcs_firstname || '')}." you responded, as the two of you reach the party.`);
     scene.text('You set down your things, and are handed a beer and a stick with a marshmallow on it.');
     scene.text('You enjoy the next couple of hours with Gregor and his friends, laughing, flirting and dancing.');
     scene.text('You finally succeed in roasting a marshmallow and enjoy a tasty smore as the party winds down.');
@@ -2134,26 +2134,26 @@ function enterAndreiIntro(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Run away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Run away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Run away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('You try to get up, but he pulls you in close to his chest.');
     qspCall(s, 'willpower', 'misc', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Knee him in the balls [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Knee him in the balls', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Knee him in the balls [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Knee him in the balls', handler: (st: GameState) => {
     (s as any).andrei = 1;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -2206,9 +2206,9 @@ function enterAndreiRape(s: GameState, scene: SceneBuilder): void {
     scene.text('"Who… who are you?" you ask feebly as you sit in the sand next to him.');
     scene.text('"My name is Andrew." he grins. "And yours?"');
     // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you answer and he smiles.
-    scene.text(`"${((s as any).pcs_firstname ?? 0)}." you answer and he smiles.`);
+    scene.text(`"${((s as any).pcs_firstname || '')}." you answer and he smiles.`);
     // TODO-QSP: dynamic text: "So did you like our little game, <<$pcs_firstname>>? Want to catch an even bigg...
-    scene.text(`"So did you like our little game, ${((s as any).pcs_firstname ?? 0)}? Want to catch an even bigger thrill? Then come back tomorrow." he says suavely while pulling his shorts back on.`);
+    scene.text(`"So did you like our little game, ${((s as any).pcs_firstname || '')}? Want to catch an even bigger thrill? Then come back tomorrow." he says suavely while pulling his shorts back on.`);
     scene.actions([
       { label: 'Leave the beach', goto: ['city_lake', 'start'] },
     ]);

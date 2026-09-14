@@ -19,7 +19,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       { label: 'Enter changing room (strip to underwear)', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/mall/fashionista/underwear.jpg');
     qspCall(s, 'clothing', 'strip');
-    qspCall(s, 'shop_fashionista', 'changingroom', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterChangingroom(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -36,7 +36,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
     qspCall(s, 'clothing', 'strip');
     qspCall(s, 'underwear', 'strip');
-    qspCall(s, 'shop_fashionista', 'changingroom', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterChangingroom(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -211,10 +211,10 @@ function enterNatbelBraEvent(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/fashionista/nude.jpg');
   scene.text('As you try on a particularly spicy set of see-through underwear, you notice that it doesn\'t quite fit you.');
   // TODO-QSP: dynamic text: "This should fit Natasha perfectly though. And it only costs ' + $func('money', ...
-  scene.text('"This should fit Natasha perfectly though. And it only costs \' + $func(\'money\', \'string_price\', 750) + \'." You think to yourself, imagining the look on her face if you make her wear it.');
+  scene.text('"This should fit Natasha perfectly though. And it only costs 750₽." You think to yourself, imagining the look on her face if you make her wear it.');
   // TODO-QSP: end
   scene.actions([
-    { label: 'Buy it [+$func(\'money\', \'get_cost_string\', 750)]', handler: (st: GameState) => {
+    { label: 'Buy it', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 750) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -261,7 +261,7 @@ function enterRima(s: GameState, scene: SceneBuilder): void {
     scene.text('"Stop, stop, - you\'re a person and not a stranger, first tell me what you would like me to call you" Your words make an impression on the girl, she is flattered by your words. ');
     scene.text('"Irina" she says, before correcting herself "Saleswoman Rima."');
     // TODO-QSP: dynamic text: "May I call you Rimma?" You ask."I'm <<$pcs_nickname>>".
-    scene.text(`"May I call you Rimma?" You ask."I'm ${((s as any).pcs_nickname ?? 0)}".`);
+    scene.text(`"May I call you Rimma?" You ask."I'm ${((s as any).pcs_nickname || '')}".`);
     scene.text('"Yes, of course, if you\'d like.", responds Rima, smiling shyly.');
     qspCall(s, 'arousal', 'erotic', 5);
     qspCall(s, 'stat', '');
@@ -321,7 +321,7 @@ function enterRima(s: GameState, scene: SceneBuilder): void {
     scene.text('"I guess…" you say, shaking your head.');
     scene.text('"That\'s fine, my name is Margaret" she says, looking at you expectantly.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>" you reply.
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}" you reply.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}" you reply.`);
     scene.text('"I\'m looking forward to our meeting." she says as she leaves.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -367,7 +367,7 @@ function enterRima(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('Rimma walked you to the door.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, did you like it?" Rimma asked, blushing.
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, did you like it?" Rimma asked, blushing.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, did you like it?" Rimma asked, blushing.`);
     scene.text('"What do you think? I want more, Do you want to continue?"');
     scene.text('"No, I can\'t, my parents are waiting at home" Rimma tells you, looking upset. ');
     scene.text('"Then how about next week?" you offer');
@@ -380,7 +380,7 @@ function enterRima(s: GameState, scene: SceneBuilder): void {
     scene.text('"But why did you wait?"');
     scene.text('"Now it\'s too late, Meet me next week so we can talk" She looks at you, waiting for your response');
     // TODO-QSP: dynamic text: "Let's meet then," You agree"By way I'm <<$pcs_nickname>>"
-    scene.text(`"Let's meet then," You agree"By way I'm ${((s as any).pcs_nickname ?? 0)}"`);
+    scene.text(`"Let's meet then," You agree"By way I'm ${((s as any).pcs_nickname || '')}"`);
     scene.text('"Margaret" She responds');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

@@ -175,7 +175,7 @@ function enterKsenyaIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('The cashier nods. "Yes, follow me," she says before leading you to the back of the store.');
   scene.text('"Miss Ksenya? You have a visitor," the cashier says and Ksenya stands up before walking over to give you a hug.');
   // TODO-QSP: dynamic text: "Hey <<$pcs_firstname>>, what can I do for you?"
-  scene.text(`"Hey ${((s as any).pcs_firstname ?? 0)}, what can I do for you?"`);
+  scene.text(`"Hey ${((s as any).pcs_firstname || '')}, what can I do for you?"`);
   scene.text('"I was wondering if you had school uniforms for sale? My therapist told me that you might have some in your shop."');
   scene.text('"The one in town?" she asks.');
   scene.text('"Yes? Do you know him?" you reply.');
@@ -184,13 +184,13 @@ function enterKsenyaIntro(s: GameState, scene: SceneBuilder): void {
   scene.text('You take a moment to think about things.');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Yes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Yes', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Yes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Yes', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'hard');
     qspCall(s, 'stat', '');
     scene.img('images/locations/shared/park/ksenya/ksenya8.jpg');
@@ -237,7 +237,7 @@ function enterKsenyaDate(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pushkin/exhibitshop/shop.jpg');
   scene.text('You walk into the exhibitionist store and see Ksenya behind the counter.');
   // TODO-QSP: dynamic text: She walks over to you and gives you a big hug. "<<$pcs_nickname>>! How are you, ...
-  scene.text(`She walks over to you and gives you a big hug. "${((s as any).pcs_nickname ?? 0)}! How are you, love?" she asks before giving you a quick kiss on the lips.`);
+  scene.text(`She walks over to you and gives you a big hug. "${((s as any).pcs_nickname || '')}! How are you, love?" she asks before giving you a quick kiss on the lips.`);
   scene.text('"I\'m okay," you say, returning the kiss.');
   scene.text('"What brings you here today? Looking for new clothes?" she asks.');
   // TODO-QSP: end
@@ -288,7 +288,7 @@ function enterKsenyaDate(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     scene.text('You lay under her for a while as the two of you relax in each other\'s arms.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, that was amazing! I hope we can do this again soon," she say...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, that was amazing! I hope we can do this again soon," she says without pulling back, not wanting to part from you as she kisses you sweetly.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, that was amazing! I hope we can do this again soon," she says without pulling back, not wanting to part from you as she kisses you sweetly.`);
     scene.text('"I\'d like that," you reply while running a hand through her hair.');
     scene.text('"I need to get back to the store. Is there any place you want me to drop you off?" she asks as she slowly gets up and starts to get dressed in the cramped space of the car.');
     scene.text('You pull your clothes back on before smiling at her. "I\'d like you to drop me off at…" ');
@@ -324,7 +324,7 @@ function enterKsenyaShop(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pushkin/ksenya/shop1.jpg');
   scene.text('You\'re taken to Ksenya\'s office. It\'s open a crack and you look inside. You see her sitting on a chair looking back at you.');
   // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>. Come in, come in. To what do I owe the pleasure?" she as...
-  scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}. Come in, come in. To what do I owe the pleasure?" she asks and closes the door behind you, after which she hugs you gently.`);
+  scene.text(`"Hey ${((s as any).pcs_nickname || '')}. Come in, come in. To what do I owe the pleasure?" she asks and closes the door behind you, after which she hugs you gently.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', handler: (st: GameState) => {

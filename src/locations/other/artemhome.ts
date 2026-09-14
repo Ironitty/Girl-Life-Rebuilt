@@ -83,7 +83,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               scene.text('You nod. "Yes, we go to school together."');
               scene.text('"I\'m Glinina, Artem\'s mother. Who are you?"');
               // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you answer, but don't elaborate further.
-              scene.text(`"${((s as any).pcs_nickname ?? 0)}," you answer, but don't elaborate further.`);
+              scene.text(`"${((s as any).pcs_nickname || '')}," you answer, but don't elaborate further.`);
               if (((s as any).artemQW ?? 0)?.['artlie'] === 2  ||  ((s as any).artemQW ?? 0)?.['artembrokenheart'] === 1  ||  ((s as any).artemQW ?? 0)?.['artemblok'] === 1) {
                 scene.text('When she hears your name, her demeanor swiftly changes. "Oh. It\'s you," she frowns. "I don\'t know what you did to my sweet Artem, but he says he never wants to see you again, so please leave."');
                 scene.text('She closes the door in your face without another word.');
@@ -92,7 +92,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                 scene.text('You smile. "Something like that. Is he here?"');
                 if (qspFunc(s, 'artem_chebotarev_schedule', 'is_home')) {
                   // TODO-QSP: dynamic text: Her face tightens ever so slightly. "Yes, he's in his room." She turns to face d...
-                  scene.text(`Her face tightens ever so slightly. "Yes, he's in his room." She turns to face down the hall. "Artem dear, ${((s as any).pcs_nickname ?? 0)} from school is here." She then turns back to you. "Go on in. He's in his room."`);
+                  scene.text(`Her face tightens ever so slightly. "Yes, he's in his room." She turns to face down the hall. "Artem dear, ${((s as any).pcs_nickname || '')} from school is here." She then turns back to you. "Go on in. He's in his room."`);
                   scene.actions([
                     { label: 'Enter', handler: (st: GameState) => {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
@@ -107,13 +107,13 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
               if (((s as any).artemQW ?? 0)?.['artlie'] === 2  ||  ((s as any).artemQW ?? 0)?.['artembrokenheart'] === 1  ||  ((s as any).artemQW ?? 0)?.['artemblok'] === 1) {
                 scene.text('"Who should I tell him is here?"');
                 // TODO-QSP: dynamic text: "I'm <<$pcs_nickname>>."
-                scene.text(`"I'm ${((s as any).pcs_nickname ?? 0)}."`);
+                scene.text(`"I'm ${((s as any).pcs_nickname || '')}."`);
                 scene.text('When she hears your name, her demeanor swiftly changes. "Oh. It\'s you," she frowns. "I don\'t know what you did to my sweet Artem, but he says he never wants to see you again, so please leave."');
                 scene.text('She closes the door in your face without another word.');
               } else {
                 scene.text('She seems pleased. "You must be one of Artem\'s little friends. I\'m Glinina, Artem\'s mother. What\'s your name, dear?"');
                 // TODO-QSP: dynamic text: "<<$pcs_nickname>>. We go to school together."
-                scene.text(`"${((s as any).pcs_nickname ?? 0)}. We go to school together."`);
+                scene.text(`"${((s as any).pcs_nickname || '')}. We go to school together."`);
                 if (qspFunc(s, 'artem_chebotarev_schedule', 'is_home')) {
                   scene.text('"Come in, come in." She turns to face down the hall. "Artem dear, one of your little friends is here." She then turns back to you. "Go on in. He\'s in his room."');
                   scene.actions([
@@ -132,7 +132,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).fame ?? 0)?.['pav_slut'] >= 200  ||  ((s as any).grupTipe ?? 0) === 4) {
                 // TODO-QSP: dynamic text: You stand outside the Chebotarev household and knock on the door, which is quick...
-                scene.text(`You stand outside the Chebotarev household and knock on the door, which is quickly answered by Artem's mother, who has a friendly smile on her face that falters when she sees you. "Oh. Hello again, ${((s as any).pcs_firstname ?? 0)}. Can I help you?"`);
+                scene.text(`You stand outside the Chebotarev household and knock on the door, which is quickly answered by Artem's mother, who has a friendly smile on her face that falters when she sees you. "Oh. Hello again, ${((s as any).pcs_firstname || '')}. Can I help you?"`);
                 scene.text('You return her smile. "Yes, I\'m here to see Artem."');
                 if (qspFunc(s, 'artem_chebotarev_schedule', 'is_home')) {
                   scene.text('She doesn\'t seem pleased. "Oh. Well come in then." She turns to face down the hall. "Artem dear, \'that girl\' is here to see you again." You can hear the judgment in her voice before she turns back to you. "Go on back. He\'s in his room."');
@@ -145,11 +145,11 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
                 }
               } else {
                 // TODO-QSP: dynamic text: You stand outside the Chebotarev household and knock on the door, which is quick...
-                scene.text(`You stand outside the Chebotarev household and knock on the door, which is quickly answered by Artem's mother, who has a friendly smile on her face. "Hello again, ${((s as any).pcs_nickname ?? 0)}. Are you here to see Artem?"`);
+                scene.text(`You stand outside the Chebotarev household and knock on the door, which is quickly answered by Artem's mother, who has a friendly smile on her face. "Hello again, ${((s as any).pcs_nickname || '')}. Are you here to see Artem?"`);
                 scene.text('You return her smile. "Yes."');
                 if (qspFunc(s, 'artem_chebotarev_schedule', 'is_home')) {
                   // TODO-QSP: dynamic text: She seems pleased to see you. "Come in, come in." She turns to face down the hal...
-                  scene.text(`She seems pleased to see you. "Come in, come in." She turns to face down the hall. "Artem dear, that nice girl ${((s as any).pcs_nickname ?? 0)} is here to see you." She then turns back to you. "Go on back. He's in his room."`);
+                  scene.text(`She seems pleased to see you. "Come in, come in." She turns to face down the hall. "Artem dear, that nice girl ${((s as any).pcs_nickname || '')} is here to see you." She then turns back to you. "Go on back. He's in his room."`);
                   scene.actions([
                     { label: 'Enter', goto: ['artemhome', 'hallway'] },
                   ]);
@@ -182,10 +182,10 @@ function enterHallway(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Entrance hall</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/hall.jpg');
   scene.text('The first thing you notice is how clean and organized everything is. Just inside the door is a coat rack with several attached shelves. All the coats and umbrellas are neatly hung up, several items are neatly placed on the shelves and several sets of shoes are neatly placed next to the rack. A small mirror is on the wall opposite the coat rack.');
-  qspCall(s, 'artemhome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).artemLoc ?? 0) === 1) {
     // TODO-QSP: dynamic text: Artem is standing nearby, looking at you expectantly. "What's up, <<$pcs_nicknam...
-    scene.text(`Artem is standing nearby, looking at you expectantly. "What's up, ${((s as any).pcs_nickname ?? 0)}?"`);
+    scene.text(`Artem is standing nearby, looking at you expectantly. "What's up, ${((s as any).pcs_nickname || '')}?"`);
     scene.actions([
       { label: '<b>Leave Artem\'s apartment</b>', goto: ['pod_ezd', 'etaj_1'] },
       { label: 'Let\'s go to your room', handler: (st: GameState) => {
@@ -216,7 +216,7 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Bathroom</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/bathroom.jpg');
   scene.text('The first thing you notice is the god awful green tiles with matching sink in the bathroom. You don\'t know who picked them, but they clearly don\'t have good taste. Other than that, it\'s a fairly typical bathroom.');
-  qspCall(s, 'artemhome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('You can do your hair and makeup in the <a href="exec:gt \'mirror\', \'start\'">mirror</a> above the sink.');
   qspCall(s, 'piercing_management', 'set_manage_string');
   qspCall(s, 'din_van', 'bath');
@@ -253,7 +253,7 @@ function enterBathroomOccupied(s: GameState, scene: SceneBuilder): void {
     { label: 'Knock on the door', handler: (st: GameState) => {
     scene.text('"Hey Artem, are you in there?"');
     // TODO-QSP: dynamic text: "Is that you, <<$pcs_nickname>>?" you hear him reply through the door.
-    scene.text(`"Is that you, ${((s as any).pcs_nickname ?? 0)}?" you hear him reply through the door.`);
+    scene.text(`"Is that you, ${((s as any).pcs_nickname || '')}?" you hear him reply through the door.`);
     scene.text('"Yeah, it\'s me. I hope it\'s okay that I dropped by?"');
     scene.text('"Of course. Give me a minute and I\'ll be out. You can wait in my room."');
     scene.actions([
@@ -287,7 +287,7 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
       { label: 'Leave Artem\'s room', goto: ['artemhome', 'hallway'] },
     ]);
   }
-  qspCall(s, 'artemhome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A2'] === 'home_bathroom') {
     qspCall(s, 'artem_chebotarev_schedule', 'force', 'home_bedroom');
     scene.text('You take a seat on his bed and wait for Artem to finish showering.');
@@ -315,13 +315,13 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'self', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Kiss him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Kiss him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Kiss him', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A2', 'love');
     if (((s as any).artkissing ?? 0) !== ((s as any).daystart ?? 0)) {
       if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['artfall'] = ((s as any).artemQW['artfall'] ?? 0) + (1);
@@ -355,7 +355,7 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/artem/makeout.jpg');
     if (((s as any).artemQW ?? 0)?.['dryhump'] === 0) {
       // TODO-QSP: dynamic text: Artem trips over his words when he tries to suggest something. "<<$pcs_nickname>...
-      scene.text(`Artem trips over his words when he tries to suggest something. "${((s as any).pcs_nickname ?? 0)}, maybe we could… Maybe I… I really want you… Can I touch your ass? Please?"`);
+      scene.text(`Artem trips over his words when he tries to suggest something. "${((s as any).pcs_nickname || '')}, maybe we could… Maybe I… I really want you… Can I touch your ass? Please?"`);
       scene.actions([
         { label: 'Let him caress your ass', goto: ['artem_events', 'artemdryhump'] },
       ]);
@@ -363,17 +363,17 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
       if (((s as any).artemQW ?? 0)?.['dryhump'] <= 1) {
         if (((s as any).pantyworntype ?? 0) !== 'none') {
           // TODO-QSP: dynamic text: Artem looks at you with embarrassment but gathers the courage. "<<$pcs_nickname>...
-          scene.text(`Artem looks at you with embarrassment but gathers the courage. "${((s as any).pcs_nickname ?? 0)}, you're the best thing that's ever happened to me. I enjoyed last time so much, but could you strip down to your underwear?"`);
+          scene.text(`Artem looks at you with embarrassment but gathers the courage. "${((s as any).pcs_nickname || '')}, you're the best thing that's ever happened to me. I enjoyed last time so much, but could you strip down to your underwear?"`);
           qspCall(s, 'willpower', 'exhib', 'resist');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Refuse to strip [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse to strip', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Refuse to strip [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse to strip', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['artem_events', 'artemdryhump'] },
             ]);
@@ -383,7 +383,7 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
           ]);
         } else {
           // TODO-QSP: dynamic text: Artem trips over his words when he tries to suggest something. "<<$pcs_nickname>...
-          scene.text(`Artem trips over his words when he tries to suggest something. "${((s as any).pcs_nickname ?? 0)}, maybe we could… I really want you… Can I touch your ass again? Please?"`);
+          scene.text(`Artem trips over his words when he tries to suggest something. "${((s as any).pcs_nickname || '')}, maybe we could… I really want you… Can I touch your ass again? Please?"`);
           scene.actions([
             { label: 'Let him caress your ass', goto: ['artem_events', 'artemdryhump'] },
           ]);
@@ -391,17 +391,17 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).artemQW ?? 0)?.['dryhump'] <= 2  &&  ((s as any).artemQW ?? 0)?.['stripsee'] === 1) {
           // TODO-QSP: dynamic text: Artem looks at you with embarrassment but gathers the courage. "<<$pcs_nickname>...
-          scene.text(`Artem looks at you with embarrassment but gathers the courage. "${((s as any).pcs_nickname ?? 0)}, last time you let me rub your ass was great, but now that I've seen you naked… Could you strip naked first?"`);
+          scene.text(`Artem looks at you with embarrassment but gathers the courage. "${((s as any).pcs_nickname || '')}, last time you let me rub your ass was great, but now that I've seen you naked… Could you strip naked first?"`);
           qspCall(s, 'willpower', 'exhib', 'resist');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Refuse to strip [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse to strip', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Refuse to strip [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse to strip', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['artem_events', 'artemdryhump'] },
             ]);
@@ -431,13 +431,13 @@ function enterArtemroom(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'bj', 'resist', 'medium');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Pull away and stop', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Pull away and stop [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Pull away and stop', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/shared/headshots_main/big2.jpg');
@@ -669,7 +669,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Living room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/living.jpg');
   scene.text('The living room is clean and neat. A couch rests against one wall, with a throw rug between it and the TV stand. A flat-screen TV sits atop the stand while a neatly stored PlayStation sits on the bottom. Along one side of the TV is a stand with several dozen movies.');
-  qspCall(s, 'artemhome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).artemLoc ?? 0) === 5) {
     if (((s as any).ArtemParentsLoc ?? 0) === 5  &&  ((s as any).metArtemDad ?? 0) === 0  &&  ((s as any).hour ?? 0) < 22) {
       (s as any).metArtemDad = 1;
@@ -678,7 +678,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/resident/apartment/artemhome/masharin.jpg');
       if (((s as any).fame ?? 0)?.['pav_slut'] >= 200  ||  ((s as any).grupTipe ?? 0) === 4) {
         // TODO-QSP: dynamic text: As the two of you walk into the living room, his father turns towards you lookin...
-        scene.text(`As the two of you walk into the living room, his father turns towards you looking a little appalled. "So ${((s as any).pcs_firstname ?? 0)}, how did you and my boy become friends?"`);
+        scene.text(`As the two of you walk into the living room, his father turns towards you looking a little appalled. "So ${((s as any).pcs_firstname || '')}, how did you and my boy become friends?"`);
         scene.text('You stretch out your clothes so they cover you up a little. "I don\'t really remember. We kind of just connected and started hanging out… It doesn\'t hurt that Artem is really hot. That made it much easier."');
         scene.text('Artem blushes at the comment as Masharin squirms and clears his throat. "My boy is very ambitious and we\'re very proud of him. We want him to succeed in school, so I really hope that he\'ll be able to continue to pursue that because, you know, he\'s not used to girls like you…"');
         scene.actions([
@@ -694,7 +694,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/masharin.jpg');
     scene.text('You start shaking your head. "Did you just assume that I\'m a slut because of the clothes I\'m wearing?!"');
     // TODO-QSP: dynamic text: "N-No, <<$pcs_firstname>>, I d-didn't assume anything…" You can see him sweating...
-    scene.text(`"N-No, ${((s as any).pcs_firstname ?? 0)}, I d-didn't assume anything…" You can see him sweating a little.`);
+    scene.text(`"N-No, ${((s as any).pcs_firstname || '')}, I d-didn't assume anything…" You can see him sweating a little.`);
     scene.text('You stand in silence for a few seconds before you finally start laughing. "Don\'t worry about Artem. I\'ll make sure he keeps his head on straight."');
     scene.text('Masharin sighs. "Well, I think Artem and I will have to have a talk later…" he says as he looks sternly at Artem.');
     scene.text('You smile. "You do that…"');
@@ -718,14 +718,14 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and give him a subtle smile. "You\'re making me blush! You\'re giving me way too much credit…"');
     scene.text('Masharin shakes his head. "Not at all. Artem talks about you quite a lot and gets really excited when he does. I\'m glad that he found someone nice to be friends with."');
     // TODO-QSP: dynamic text: "Dad, that was supposed to be a private thing between us!" Artem cries out in em...
-    scene.text(`"Dad, that was supposed to be a private thing between us!" Artem cries out in embarrassment and starts blushing. "You weren't supposed to say that to ${((s as any).pcs_nickname ?? 0)}…"`);
+    scene.text(`"Dad, that was supposed to be a private thing between us!" Artem cries out in embarrassment and starts blushing. "You weren't supposed to say that to ${((s as any).pcs_nickname || '')}…"`);
     scene.actions([
       { label: 'Smile', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/masharin.jpg');
     scene.text('Masharin looks worryingly at Artem, so you decide to ease the tension by playfully pushing Artem a little. "Ease up, your dad was just looking out for you is all."');
     scene.text('"Still, he shouldn\'t have talked about it. I said all of that in confidence…"');
     // TODO-QSP: dynamic text: Masharin starts to apologize, but is cut off by Artem. "Let's go <<$pcs_nickname...
-    scene.text(`Masharin starts to apologize, but is cut off by Artem. "Let's go ${((s as any).pcs_nickname ?? 0)}, that's enough embarrassment for one day."`);
+    scene.text(`Masharin starts to apologize, but is cut off by Artem. "Let's go ${((s as any).pcs_nickname || '')}, that's enough embarrassment for one day."`);
     scene.text('"Don\'t worry, Mr. Chebotarev. I\'m sure it\'s not a big deal and Artem will get over it soon," you say encouragingly before going to Artem\'s room.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
@@ -844,10 +844,10 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: You greet Masharin and he gives you a friendly nod back. "Hello <<$pcs_firstname...
-      scene.text(`You greet Masharin and he gives you a friendly nod back. "Hello ${((s as any).pcs_firstname ?? 0)}, welcome back. Are you and Artem studying?"`);
+      scene.text(`You greet Masharin and he gives you a friendly nod back. "Hello ${((s as any).pcs_firstname || '')}, welcome back. Are you and Artem studying?"`);
       scene.text('"Hello, Mr. Chebotarev. Yes, Artem suggested that we could study in his room," you politely reply.');
       // TODO-QSP: dynamic text: He chuckles. "There's no need to be so formal, <<$pcs_firstname>>. Call me Masha...
-      scene.text(`He chuckles. "There's no need to be so formal, ${((s as any).pcs_firstname ?? 0)}. Call me Masharin. So how is the studying going?"`);
+      scene.text(`He chuckles. "There's no need to be so formal, ${((s as any).pcs_firstname || '')}. Call me Masharin. So how is the studying going?"`);
       scene.actions([
         { label: 'It\'s going good', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/masharin.jpg');
@@ -911,7 +911,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       scene.text('Startled, they jump and turn their attention to you. "We\'re watching the news…" Masharin annoyingly replies.');
       scene.text('"The news is boring as hell and there\'s always something depressing on there," you answer back.');
       // TODO-QSP: dynamic text: "Is there something we can help you with, <<$pcs_firstname>>?" Glinina asks.
-      scene.text(`"Is there something we can help you with, ${((s as any).pcs_firstname ?? 0)}?" Glinina asks.`);
+      scene.text(`"Is there something we can help you with, ${((s as any).pcs_firstname || '')}?" Glinina asks.`);
       scene.actions([
         { label: 'Yes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -942,7 +942,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('"Excuse me," you whisper. "I don\'t want to bother you, but I needed a break and heard you watching TV…"');
       // TODO-QSP: dynamic text: Glinina slowly turns around. "You're not a bother at all, <<$pcs_firstname>>. We...
-      scene.text(`Glinina slowly turns around. "You're not a bother at all, ${((s as any).pcs_firstname ?? 0)}. We were just watching the news. You can join us if you want."`);
+      scene.text(`Glinina slowly turns around. "You're not a bother at all, ${((s as any).pcs_firstname || '')}. We were just watching the news. You can join us if you want."`);
       scene.actions([
         { label: 'Yes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -950,11 +950,11 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/masharin.jpg');
     scene.text('You face shines up as you quickly walk over and take a seat. "Thanks."');
     // TODO-QSP: dynamic text: "Not a problem, <<$pcs_firstname>>. You're more than welcome," Masharin replies ...
-    scene.text(`"Not a problem, ${((s as any).pcs_firstname ?? 0)}. You're more than welcome," Masharin replies as they return to watching the news.`);
+    scene.text(`"Not a problem, ${((s as any).pcs_firstname || '')}. You're more than welcome," Masharin replies as they return to watching the news.`);
     scene.text('Some time passes by and the three of you are discussing current events that are shown on the TV. The Chebotarevs are very polite and can really carry a discussion.');
     scene.text('"Well, time for me to go back," you say. "Thank you for the little break. It was a lot of fun."');
     // TODO-QSP: dynamic text: "Anytime, <<$pcs_firstname>>. We're glad to have someone else to discuss things ...
-    scene.text(`"Anytime, ${((s as any).pcs_firstname ?? 0)}. We're glad to have someone else to discuss things with," Glinina replies.`);
+    scene.text(`"Anytime, ${((s as any).pcs_firstname || '')}. We're glad to have someone else to discuss things with," Glinina replies.`);
     scene.actions([
       { label: 'Leave', goto: ['artemhome', 'hallway'] },
     ]);
@@ -963,7 +963,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/glinina.jpg');
     scene.text('"I\'ve bothered you enough," you say as you excuse yourself. "I need to head back to Artem…"');
     // TODO-QSP: dynamic text: "Okay <<$pcs_firstname>>. The offer still stands if you change your mind," Glini...
-    scene.text(`"Okay ${((s as any).pcs_firstname ?? 0)}. The offer still stands if you change your mind," Glinina replies.`);
+    scene.text(`"Okay ${((s as any).pcs_firstname || '')}. The offer still stands if you change your mind," Glinina replies.`);
     scene.text('"Thank you. Maybe next time," you say before turning around as they return to watching the TV.');
     scene.actions([
       { label: 'Leave', goto: ['artemhome', 'hallway'] },
@@ -990,7 +990,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'kit_din', '');
   scene.text('<center><b>Kitchen</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/kitchen.jpg');
-  qspCall(s, 'artemhome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).kitchenev ?? 0) === 1  &&  ((s as any).ArtemParentsLoc ?? 0) === 5  &&  ((s as any).hour ?? 0) < 22) {
     scene.text('As you enter the kitchen, you see Artem\'s mother busy working away.');
     scene.actions([
@@ -1003,13 +1003,13 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         scene.text('As Artem starts talking, she stops what she was doing. "This is the girl I was telling you about…"');
         scene.text('"Oh." She\'s a bit taken aback, but replies politely. "Hello, I\'m Glinina, Artem\'s mother. Pleasure to meet you."');
         // TODO-QSP: dynamic text: You greet her back. "Hi, my name is <<$pcs_firstname>>. Nice to meet you."
-        scene.text(`You greet her back. "Hi, my name is ${((s as any).pcs_firstname ?? 0)}. Nice to meet you."`);
+        scene.text(`You greet her back. "Hi, my name is ${((s as any).pcs_firstname || '')}. Nice to meet you."`);
         scene.text('An awkward silence follows before Glinina speaks up. "I\'m not sure that Artem told me your last name…"');
         scene.actions([
           { label: 'Answer', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/glinina.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>," you reply.
-    scene.text(`"${((s as any).pcs_lastname ?? 0)}," you reply.`);
+    scene.text(`"${((s as any).pcs_lastname || '')}," you reply.`);
     scene.text('"Oh," she replies a little hesitantly, as if she recognized it. "Yes, I know of your mother. You have a sister and a brother too, right?"');
     scene.text('You nod. "Yeah, but they\'re totally different from me, though…" you say with a naughty smirk.');
     scene.text('Glinina lets out a nervous laugh. "So the two of you are studying together?"');
@@ -1030,11 +1030,11 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: dynamic text: As Artem starts talking, she stops what she was doing. "<<$pcs_firstname>> came ...
-        scene.text(`As Artem starts talking, she stops what she was doing. "${((s as any).pcs_firstname ?? 0)} came back over, I'm tutoring her."`);
+        scene.text(`As Artem starts talking, she stops what she was doing. "${((s as any).pcs_firstname || '')} came back over, I'm tutoring her."`);
         scene.text('"Oh." She\'s a bit taken aback, but replies politely. "Well hello, again. I\'m sure my little Artem will have your grades up in no time. I\'m glad to see you putting some effort into that."');
         scene.text('You look at Artem and are barely able to hold a straight face.. "Oh… Yeah… Studying… My grades are not as good as I\'d like and your son offered to help me get them… up." ');
         // TODO-QSP: dynamic text: Glinina crosses her arms. "I'm glad you're helping <<$pcs_firstname>>, but remem...
-        scene.text(`Glinina crosses her arms. "I'm glad you're helping ${((s as any).pcs_firstname ?? 0)}, but remember to keep your focus on your own grades. You need to keep them up to get into the university."`);
+        scene.text(`Glinina crosses her arms. "I'm glad you're helping ${((s as any).pcs_firstname || '')}, but remember to keep your focus on your own grades. You need to keep them up to get into the university."`);
         scene.text('Artem looks gloomy at her. "Yes, mom…"');
         scene.text('The two of you exchange pleasantries and you give Artem a nudge with your hip as you walk away. "See? I do know how to behave…"');
         scene.actions([
@@ -1046,7 +1046,7 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
       if (((s as any).artemQW ?? 0)?.['metArtemMom'] === 0) {
         if (!(s as any).artemQW) (s as any).artemQW = {}; (s as any).artemQW['metArtemMom'] = 1;
         // TODO-QSP: dynamic text: Noticing you, she stops and smiles. "You must be <<$pcs_firstname>>. Artem has t...
-        scene.text(`Noticing you, she stops and smiles. "You must be ${((s as any).pcs_firstname ?? 0)}. Artem has told me a lot about you…"`);
+        scene.text(`Noticing you, she stops and smiles. "You must be ${((s as any).pcs_firstname || '')}. Artem has told me a lot about you…"`);
         scene.text('"Hopefully only good things…" you joke and smile while looking at Artem.');
         scene.text('She starts laughing. "Yes, no need to worry. He\'s kept all the bad stuff from me."');
         scene.text('Artem rolls his eyes, not too amused by his mother\'s comment.');
@@ -1060,12 +1060,12 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
     scene.text('"You don\'t find it a bit morbid?" you wonder.');
     scene.text('Artem sighs. "Now you\'ve gotten her started…"');
     // TODO-QSP: dynamic text: Glinina waves her hand towards Artem. "Shush. You've finally brought a friend ov...
-    scene.text(`Glinina waves her hand towards Artem. "Shush. You've finally brought a friend over that wants to discuss literature. Please take a seat ${((s as any).pcs_firstname ?? 0)}; I'll make some tea and we can discuss it further."`);
+    scene.text(`Glinina waves her hand towards Artem. "Shush. You've finally brought a friend over that wants to discuss literature. Please take a seat ${((s as any).pcs_firstname || '')}; I'll make some tea and we can discuss it further."`);
     scene.actions([
       { label: 'Pull out a chair', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/artemhome/glinina.jpg');
     // TODO-QSP: dynamic text: Just as you pull out the chair, Artem interrupts by clearing his throat. "We nee...
-    scene.text(`Just as you pull out the chair, Artem interrupts by clearing his throat. "We need to go and study Mom. I didn't bring ${((s as any).pcs_firstname ?? 0)} over here so you could have someone to chat with…"`);
+    scene.text(`Just as you pull out the chair, Artem interrupts by clearing his throat. "We need to go and study Mom. I didn't bring ${((s as any).pcs_firstname || '')} over here so you could have someone to chat with…"`);
     scene.text('Glinina sighs. "You and your studying. I know your father says it\'s the way to go, but you need to relax sometimes too. I\'ve already got one bookworm in this house, I don\'t need another."');
     scene.text('Glinina tells you that if you ever find the time, you\'re free to come and discuss literature with her over tea.');
     scene.actions([
@@ -1077,10 +1077,10 @@ function enterKitchen(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: dynamic text: Noticing you, she stops and smiles. "Hello <<$pcs_firstname>>." She then looks a...
-        scene.text(`Noticing you, she stops and smiles. "Hello ${((s as any).pcs_firstname ?? 0)}." She then looks at Artem. "Are you two studying again?"`);
+        scene.text(`Noticing you, she stops and smiles. "Hello ${((s as any).pcs_firstname || '')}." She then looks at Artem. "Are you two studying again?"`);
         scene.text('Artem nods his head. "Yes, mom…"');
         // TODO-QSP: dynamic text: His mom smiles and turns back to you. "How are you doing in school, <<$pcs_first...
-        scene.text(`His mom smiles and turns back to you. "How are you doing in school, ${((s as any).pcs_firstname ?? 0)}?"`);
+        scene.text(`His mom smiles and turns back to you. "How are you doing in school, ${((s as any).pcs_firstname || '')}?"`);
         if (((s as any).class ?? 0)?.['school_grades_above_70'] > 0  &&  ((s as any).class ?? 0)?.['school_grades_above_40'] === 13) {
           scene.text('You shake your head slightly. "Not good at all, but that\'s why I\'m here. I\'m hoping your son can help me improve my grades."');
           scene.text('She smiles at Artem. "Oh, I\'m sure he can. Our boy is very smart. He\'s going to get a full scholarship so he can go to the university in the city."');
@@ -1144,7 +1144,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
   // TODO-QSP: dynamic text: You open the fridge and see:<<$artem_tea>><<$artem_water>><<$artem_sup>><<$artem...
-  scene.text(`You open the fridge and see:${((s as any).artem_tea ?? 0)}${((s as any).artem_water ?? 0)}${((s as any).artem_sup ?? 0)}${((s as any).artem_lefto ?? 0)}${((s as any).artem_sanw ?? 0)}`);
+  scene.text(`You open the fridge and see:${((s as any).artem_tea || '')}${((s as any).artem_water || '')}${((s as any).artem_sup || '')}${((s as any).artem_lefto || '')}${((s as any).artem_sanw || '')}`);
   if (((s as any).artemlefto_count ?? 0) > 0) {
     scene.actions([
       { label: 'Eat some leftovers', handler: (st: GameState) => {
@@ -1299,7 +1299,7 @@ function enterArtemparents(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Artem\'s parent\'s room</b></center>');
   scene.img('images/locations/pavlovsk/resident/apartment/artemhome/parroom.jpg');
   scene.text('The room is clean and tidy. The large bed is neatly made with a comforter on it while nightstands rest on each side. The closest has a large mirror on the door and next to it is a two dressers, one of which has a small TV on it.');
-  qspCall(s, 'artemhome', 'timecheck');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTimecheck(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).hour ?? 0) < 7  ||  ((s as any).hour ?? 0) > 22) {
     scene.text('You look into the bedroom and see Artem\'s parents sleeping. Not wanting to disturb them, you close the door and leave.');
     scene.actions([

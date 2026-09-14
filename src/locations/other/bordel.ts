@@ -110,17 +110,17 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).borrand ?? 0))) {
     (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 21) + 10) * 10);
     // TODO-QSP: dynamic text: A customer orders you (<<$func('money', 'string_profit', bordelpay)>>).
-    scene.text(`A customer orders you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? 0))}).`);
+    scene.text(`A customer orders you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay || ''))}).`);
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -145,17 +145,17 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
     if (((s as any).borrand ?? 0) === 1) {
       (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 21) + 10) * 10);
       // TODO-QSP: dynamic text: A customer orders you and another girl (<<$func('money', 'string_profit', bordel...
-      scene.text(`A customer orders you and another girl (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? 0))}).`);
+      scene.text(`A customer orders you and another girl (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay || ''))}).`);
       qspCall(s, 'willpower', 'sex', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -179,17 +179,17 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
       if (((s as any).borrand ?? 0) === 2) {
         (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 31) + 15) * 10);
         // TODO-QSP: dynamic text: Two clients book you (<<$func('money', 'string_profit', bordelpay)>>).
-        scene.text(`Two clients book you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? 0))}).`);
+        scene.text(`Two clients book you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay || ''))}).`);
         qspCall(s, 'willpower', 'sex', 'resist', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -215,17 +215,17 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
         if (((s as any).borrand ?? 0) === 3) {
           (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 31) + 15) * 10);
           // TODO-QSP: dynamic text: Two clients book you and another girl (<<$func('money', 'string_profit', bordelp...
-          scene.text(`Two clients book you and another girl (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? 0))}).`);
+          scene.text(`Two clients book you and another girl (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay || ''))}).`);
           qspCall(s, 'willpower', 'sex', 'resist');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -251,17 +251,17 @@ function enterVar(s: GameState, scene: SceneBuilder): void {
           if (((s as any).borrand ?? 0) === 4) {
             (s as any).bordelpay = ((s as any).bordelpay ?? 0) + ((Math.floor(Math.random() * 41) + 20) * 10);
             // TODO-QSP: dynamic text: A group of customers order you (<<$func('money', 'string_profit', bordelpay)>>).
-            scene.text(`A group of customers order you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay ?? 0))}).`);
+            scene.text(`A group of customers order you (${qspFunc(s, 'money', 'string_profit', ((s as any).bordelpay || ''))}).`);
             qspCall(s, 'willpower', 'sex', 'resist', 'hard');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');

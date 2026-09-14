@@ -404,7 +404,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'materinstvo_dressmet'
   }
   // TODO-QSP: dynamic text: You sold <<poshvalldrop>> items of unwanted clothing for a total of <<$func('mon...
-  scene.text(`You sold ${((s as any).poshvalldrop ?? 0)} items of unwanted clothing for a total of ${qspFunc(s, 'money', 'string_profit', ((s as any).selltot ?? 0))}.`);
+  scene.text(`You sold ${((s as any).poshvalldrop || '')} items of unwanted clothing for a total of ${qspFunc(s, 'money', 'string_profit', ((s as any).selltot || ''))}.`);
   scene.build();
 }
 

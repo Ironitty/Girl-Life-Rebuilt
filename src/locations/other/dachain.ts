@@ -27,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['desk'] === 1) {
   }
   // TODO-QSP: dynamic text: In front of the window there is <<$stol>>.
-  scene.text(`In front of the window there is ${((s as any).stol ?? 0)}.`);
+  scene.text(`In front of the window there is ${((s as any).stol || '')}.`);
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1) {
     qspCall(s, 'internet_mobile', 'get_access');
     scene.text('Your <a href="exec: gt \'komp\',\'start\'">computer</a> is on the table. Unfortunately, there is no internet service in the village.');
@@ -78,17 +78,17 @@ function enterDachakit(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0) {
     // TODO-QSP: dynamic text: <b><<mc_inventory['dish_plates']>></b> clean plates are stored in the cupboard.
-    scene.text(`<b>${((s as any).mc_inventory ?? 0)?.['dish_plates']}</b> clean plates are stored in the cupboard.`);
+    scene.text(`<b>${((s as any).mc_inventory ?? 0)?.['dish_plates'] ?? ''}</b> clean plates are stored in the cupboard.`);
   } else {
     scene.text('<center><b>You have no clean dishes left.</b></center>');
   }
   if (((s as any).dirttarelka ?? 0) > 0) {
     // TODO-QSP: dynamic text: <b><<dirttarelka>></b> dirty dishes are lying in the sink. <a href="exec:gs 'kit...
-    scene.text(`<b>${((s as any).dirttarelka ?? 0)}</b> dirty dishes are lying in the sink. <a href="exec:gs 'kit_din', 'dirtarm'">Wash the dishes</a>.`);
+    scene.text(`<b>${((s as any).dirttarelka || '')}</b> dirty dishes are lying in the sink. <a href="exec:gs 'kit_din', 'dirtarm'">Wash the dishes</a>.`);
   }
   if (((s as any).mc_inventory ?? 0)?.['dish_soap'] > 0) {
     // TODO-QSP: dynamic text: Next to the sink is dishwashing liquid, enough for <b><<mc_inventory['dish_soap'...
-    scene.text(`Next to the sink is dishwashing liquid, enough for <b>${((s as any).mc_inventory ?? 0)?.['dish_soap']}</b> uses.`);
+    scene.text(`Next to the sink is dishwashing liquid, enough for <b>${((s as any).mc_inventory ?? 0)?.['dish_soap'] ?? ''}</b> uses.`);
   } else {
     scene.text('<center><b>You have nothing to wash dishes with, you need to buy dishwashing liquid.</b></center>');
   }
@@ -98,7 +98,7 @@ function enterDachakit(s: GameState, scene: SceneBuilder): void {
     if (((s as any).mc_inventory ?? 0)?.['dish_plates'] > 0  &&  (!((s as any).edahot ?? 0))) {
     }
     // TODO-QSP: dynamic text: There's enough food for <b><<mc_inventory['food_basic']>></b> ' + iif(mc_invento...
-    scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic']}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot ?? 0)}`);
+    scene.text(`There's enough food for <b>${((s as any).mc_inventory ?? 0)?.['food_basic'] ?? ''}</b> ' + iif(mc_inventory['food_basic'] = 1, 'serving', 'servings') + '. ${((s as any).edagot || '')}`);
   } else {
     if (((s as any).mc_inventory ?? 0)?.['food_diet'] === 0  &&  ((s as any).mc_inventory ?? 0)?.['food_basic'] === 0) {
       scene.text('<center><b>The fridge is empty. You have nothing to eat.</b></center>');

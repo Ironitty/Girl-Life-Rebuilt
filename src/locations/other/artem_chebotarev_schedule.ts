@@ -1,5 +1,3 @@
-import { qspCall } from '../_shared/qspBridge';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -51,7 +49,7 @@ function enterForce(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'artem_chebotarev_schedule', 'set_schedule');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -60,7 +58,7 @@ function enterForce(s: GameState, scene: SceneBuilder): void {
 function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A2'] = '';
   (s as any).artemLoc = 0;
-  qspCall(s, 'artem_chebotarev_schedule', 'set_schedule');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetSchedule(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();

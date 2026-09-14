@@ -25,7 +25,7 @@ function enter1(s: GameState, scene: SceneBuilder): void {
     scene.text('Reluctantly you open your mouth, allowing his vile smelling dick access past your lips. He places the head of his dick firmly inside your mouth and continues to pressure you: "Go on bitch, suck it. You\'ll regret it if you make me do all the work."');
     scene.text('Thoroughly intimidated by his demands, you begin to suck him off obediently. He can tell your heart is not really into it and decides to help out, shoving his cock further and further down your throat until you\'re nuzzling his hairy crotch. He leaves it in a few seconds more than you are comfortable with, making you gag. Watching you struggle puts an evil grin on his face and after a while he pulls his dick out of your mouth, a thick strand of saliva slowly dripping off it.');
     // TODO-QSP: dynamic text: "Not bad <<$pcs_nickname>>, not bad. Lie down, I'm going to have some fun with y...
-    scene.text(`"Not bad ${((s as any).pcs_nickname ?? 0)}, not bad. Lie down, I'm going to have some fun with you."`);
+    scene.text(`"Not bad ${((s as any).pcs_nickname || '')}, not bad. Lie down, I'm going to have some fun with you."`);
     qspCall(s, 'arousal', 'bj', 25, 'rough', 'rape');
     scene.actions([
       { label: 'Lie down on the bed', handler: (st: GameState) => {
@@ -87,9 +87,9 @@ function enter1_1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'themes', 'indoors');
   scene.img('images/characters/pavlovsk/resident/misha/sex/mishasex.jpg');
   // TODO-QSP: dynamic text: You leave the cafe with uncle Misha and go to his apartment. He once again locks...
-  scene.text(`You leave the cafe with uncle Misha and go to his apartment. He once again locks the door behind him and then turns towards you. Knowing you're here of your own volition this time, he is a bit more daring in his demands: "${((s as any).pcs_nickname ?? 0)}, take off your clothes."`);
+  scene.text(`You leave the cafe with uncle Misha and go to his apartment. He once again locks the door behind him and then turns towards you. Knowing you're here of your own volition this time, he is a bit more daring in his demands: "${((s as any).pcs_nickname || '')}, take off your clothes."`);
   // TODO-QSP: dynamic text: You know what he wants and give him a quick striptease, taking off your clothes ...
-  scene.text(`You know what he wants and give him a quick striptease, taking off your clothes and performing a little dance as you do. It's not very good, but uncle Misha appreciates the effort anyway. He gets comfortable and watches you slowly reveal your soon to be naked body, and encourages you to do a few erotic poses for him. "Very nice ${((s as any).pcs_nickname ?? 0)}, now suck", he says as he pulls out his cock and pulls your face closer to it. You obediently move over to him and close your lips around his dick, gently sucking him off. From the smell of it, the tongue bath you're giving it is the first wash it has had in a while.`);
+  scene.text(`You know what he wants and give him a quick striptease, taking off your clothes and performing a little dance as you do. It's not very good, but uncle Misha appreciates the effort anyway. He gets comfortable and watches you slowly reveal your soon to be naked body, and encourages you to do a few erotic poses for him. "Very nice ${((s as any).pcs_nickname || '')}, now suck", he says as he pulls out his cock and pulls your face closer to it. You obediently move over to him and close your lips around his dick, gently sucking him off. From the smell of it, the tongue bath you're giving it is the first wash it has had in a while.`);
   scene.text('You\'re doing a good enough job that he doesn\'t feel like he needs to take control of you and just leans back to enjoy your ministrations, sometimes giving you directions. After a few minutes, he pulls you down and rubs the head of his cock against your pussy before slamming it in.');
   qspCall(s, 'arousal', 'bj', 10);
   qspCall(s, 'arousal', 'vaginal', 10);

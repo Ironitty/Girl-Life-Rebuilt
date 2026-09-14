@@ -42,7 +42,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['desk'] === 1) {
   }
   // TODO-QSP: dynamic text: <<$zal>>. <<$divan>> sits next to the <<$zal2>>. In front of the sofa is <<$temp...
-  scene.text(`${((s as any).zal ?? 0)}. ${((s as any).divan ?? 0)} sits next to the ${((s as any).zal2 ?? 0)}. In front of the sofa is ${((s as any).temp_TV_text ?? 0)}, while ${((s as any).stol ?? 0)} sits in front of the window. ${((s as any).komp ?? 0)}`);
+  scene.text(`${((s as any).zal || '')}. ${((s as any).divan || '')} sits next to the ${((s as any).zal2 || '')}. In front of the sofa is ${((s as any).temp_TV_text || '')}, while ${((s as any).stol || '')} sits in front of the window. ${((s as any).komp || '')}`);
   if (((s as any).mishka ?? 0) > 0) {
     // TODO-QSP: iif(mishka = 1, 'Your teddy bear is', 'Your <<mishka>> teddy bears are') + 'sitting on a shelf.'
   }

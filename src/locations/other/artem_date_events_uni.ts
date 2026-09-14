@@ -30,7 +30,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/shared/park/walk_${Math.floor(Math.random() * 2) + 1}.jpg`);
     scene.text('When the movie ends, you and Artem leave the theater and he offers to walk you back to the dorms.');
     // TODO-QSP: dynamic text: Arriving outside your dorm building, Artem stops and looks at you. "I had fun, <...
-    scene.text(`Arriving outside your dorm building, Artem stops and looks at you. "I had fun, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`Arriving outside your dorm building, Artem stops and looks at you. "I had fun, ${((s as any).pcs_nickname || '')}."`);
     scene.text('You smile at him. "Me too."');
     scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
     scene.text('You nod. "Maybe. We\'ll see."');
@@ -49,7 +49,7 @@ function enterFirstdate(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t really feel like going to the cinema. "Let\'s just enjoy the walk we\'re on."');
     scene.text('Artem is happy enough to just spend time with you, regardless of what the two of you are doing. He nods as you continue on your walk, talking about everyday things. After a while, he checks his watch. "We should be getting back. I\'ll walk you to your dorm."');
     // TODO-QSP: dynamic text: Once you're outside your dorm room, Artem stops and looks at you. "I had fun, <<...
-    scene.text(`Once you're outside your dorm room, Artem stops and looks at you. "I had fun, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`Once you're outside your dorm room, Artem stops and looks at you. "I had fun, ${((s as any).pcs_nickname || '')}."`);
     scene.text('You smile at him. "Me too."');
     scene.text('He smiles widely. "Great! Maybe we can do it again some time?"');
     scene.text('You nod. "Maybe. We\'ll see."');

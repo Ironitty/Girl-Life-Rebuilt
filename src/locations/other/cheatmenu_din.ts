@@ -124,190 +124,190 @@ function enterVartracker(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Cheat menu</h1></center>');
   scene.text('<center>For testing purposes.<br>If reporting a bug only the lines in red are necessary.</center>');
   // TODO-QSP: dynamic text: $loc: <<$loc>>
-  scene.text(`$loc: ${((s as any).loc ?? 0)}`);
+  scene.text(`$loc: ${((s as any).loc || '')}`);
   // TODO-QSP: dynamic text: $locM: <<$locM>>
-  scene.text(`$locM: ${((s as any).locM ?? 0)}`);
+  scene.text(`$locM: ${((s as any).locM || '')}`);
   // TODO-QSP: dynamic text: <font color = red>$CURLOC: <<$CURLOC>></font>
-  scene.text(`<font color = red>$CURLOC: ${((s as any).CURLOC ?? 0)}</font>`);
+  scene.text(`<font color = red>$CURLOC: ${((s as any).CURLOC || '')}</font>`);
   // TODO-QSP: dynamic text: $location_type: <<$location_type>>
-  scene.text(`$location_type: ${((s as any).location_type ?? 0)}`);
+  scene.text(`$location_type: ${((s as any).location_type || '')}`);
   // TODO-QSP: dynamic text: $home['current']: <<$home['current']>>
-  scene.text(`$home['current']: ${((s as any).home ?? 0)?.['current']}`);
+  scene.text(`$home['current']: ${((s as any).home ?? 0)?.['current'] ?? ''}`);
   // TODO-QSP: dynamic text: $home['town']: <<$home['town']>>
-  scene.text(`$home['town']: ${((s as any).home ?? 0)?.['town']}`);
+  scene.text(`$home['town']: ${((s as any).home ?? 0)?.['town'] ?? ''}`);
   // TODO-QSP: dynamic text: $home['name']: <<$home['name']>>
-  scene.text(`$home['name']: ${((s as any).home ?? 0)?.['name']}`);
+  scene.text(`$home['name']: ${((s as any).home ?? 0)?.['name'] ?? ''}`);
   // TODO-QSP: dynamic text: daystart: <<daystart>>
-  scene.text(`daystart: ${((s as any).daystart ?? 0)}`);
+  scene.text(`daystart: ${((s as any).daystart || '')}`);
   // TODO-QSP: dynamic text: daystart_start: <<daystart_start>>
-  scene.text(`daystart_start: ${((s as any).daystart_start ?? 0)}`);
+  scene.text(`daystart_start: ${((s as any).daystart_start || '')}`);
   // TODO-QSP: dynamic text: month: <<month>>
-  scene.text(`month: ${((s as any).month ?? 0)}`);
+  scene.text(`month: ${((s as any).month || '')}`);
   // TODO-QSP: dynamic text: week: <<week>>
-  scene.text(`week: ${((s as any).week ?? 0)}`);
+  scene.text(`week: ${((s as any).week || '')}`);
   // TODO-QSP: dynamic text: $temperature: <<$temperature>>
-  scene.text(`$temperature: ${((s as any).temperature ?? 0)}`);
+  scene.text(`$temperature: ${((s as any).temperature || '')}`);
   // TODO-QSP: dynamic text: porn bookings active: <<job_bookings_active['city_pornstudio_actress']>>
-  scene.text(`porn bookings active: ${((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress']}`);
+  scene.text(`porn bookings active: ${((s as any).job_bookings_active ?? 0)?.['city_pornstudio_actress'] ?? ''}`);
   // TODO-QSP: dynamic text: porndays: <<porndays>>
-  scene.text(`porndays: ${((s as any).porndays ?? 0)}`);
+  scene.text(`porndays: ${((s as any).porndays || '')}`);
   // TODO-QSP: dynamic text: $pfname: <<$pfname>>
-  scene.text(`$pfname: ${((s as any).pfname ?? 0)}`);
+  scene.text(`$pfname: ${((s as any).pfname || '')}`);
   // TODO-QSP: dynamic text: modelmon: <<modelmon>>
-  scene.text(`modelmon: ${((s as any).modelmon ?? 0)}`);
+  scene.text(`modelmon: ${((s as any).modelmon || '')}`);
   // TODO-QSP: dynamic text: min_arousal: <<min_arousal>>
-  scene.text(`min_arousal: ${((s as any).min_arousal ?? 0)}`);
+  scene.text(`min_arousal: ${((s as any).min_arousal || '')}`);
   // TODO-QSP: dynamic text: pcs_nips: <<pcs_nips>>
-  scene.text(`pcs_nips: ${((s as any).pcs_nips ?? 0)}`);
+  scene.text(`pcs_nips: ${((s as any).pcs_nips || '')}`);
   // TODO-QSP: dynamic text: clit_size: <<clit_size>>
-  scene.text(`clit_size: ${((s as any).clit_size ?? 0)}`);
+  scene.text(`clit_size: ${((s as any).clit_size || '')}`);
   // TODO-QSP: dynamic text: steroids: <<mc_inventory['steroids']>>
-  scene.text(`steroids: ${((s as any).mc_inventory ?? 0)?.['steroids']}`);
+  scene.text(`steroids: ${((s as any).mc_inventory ?? 0)?.['steroids'] ?? ''}`);
   // TODO-QSP: dynamic text: steroids_used: <<drugVars['steroids_used']>>
-  scene.text(`steroids_used: ${((s as any).drugVars ?? 0)?.['steroids_used']}`);
+  scene.text(`steroids_used: ${((s as any).drugVars ?? 0)?.['steroids_used'] ?? ''}`);
   // TODO-QSP: dynamic text: steroid_dose: <<drugVars['steroids_dose']>>
-  scene.text(`steroid_dose: ${((s as any).drugVars ?? 0)?.['steroids_dose']}`);
+  scene.text(`steroid_dose: ${((s as any).drugVars ?? 0)?.['steroids_dose'] ?? ''}`);
   // TODO-QSP: dynamic text: aphrodisiac pills: <<mc_inventory['aphrodisiac']>>
-  scene.text(`aphrodisiac pills: ${((s as any).mc_inventory ?? 0)?.['aphrodisiac']}`);
+  scene.text(`aphrodisiac pills: ${((s as any).mc_inventory ?? 0)?.['aphrodisiac'] ?? ''}`);
   // TODO-QSP: dynamic text: aphrodisiac_counter: <<aphrodisiac_counter>>
-  scene.text(`aphrodisiac_counter: ${((s as any).aphrodisiac_counter ?? 0)}`);
+  scene.text(`aphrodisiac_counter: ${((s as any).aphrodisiac_counter || '')}`);
   // TODO-QSP: dynamic text: aphrodisiac_timer: <<drugVars['aphrodisiac_timer']>>
-  scene.text(`aphrodisiac_timer: ${((s as any).drugVars ?? 0)?.['aphrodisiac_timer']}`);
+  scene.text(`aphrodisiac_timer: ${((s as any).drugVars ?? 0)?.['aphrodisiac_timer'] ?? ''}`);
   // TODO-QSP: dynamic text: aphrodisiac_addiction: <<drugVars['aphrodisiac_addict']>>
-  scene.text(`aphrodisiac_addiction: ${((s as any).drugVars ?? 0)?.['aphrodisiac_addict']}`);
+  scene.text(`aphrodisiac_addiction: ${((s as any).drugVars ?? 0)?.['aphrodisiac_addict'] ?? ''}`);
   // TODO-QSP: dynamic text: breastcream: <<mc_inventory['breastcream']>>
-  scene.text(`breastcream: ${((s as any).mc_inventory ?? 0)?.['breastcream']}`);
+  scene.text(`breastcream: ${((s as any).mc_inventory ?? 0)?.['breastcream'] ?? ''}`);
   // TODO-QSP: dynamic text: motherQW: <<npc_QW['A29']>>
-  scene.text(`motherQW: ${((s as any).npc_QW ?? 0)?.['A29']}`);
+  scene.text(`motherQW: ${((s as any).npc_QW ?? 0)?.['A29'] ?? ''}`);
   // TODO-QSP: dynamic text: Anastasia quest level: <<npc_QW['A192']>>
-  scene.text(`Anastasia quest level: ${((s as any).npc_QW ?? 0)?.['A192']}`);
+  scene.text(`Anastasia quest level: ${((s as any).npc_QW ?? 0)?.['A192'] ?? ''}`);
   // TODO-QSP: dynamic text: sex: <<stat['vaginal']>>
-  scene.text(`sex: ${((s as any).stat ?? 0)?.['vaginal']}`);
+  scene.text(`sex: ${((s as any).stat ?? 0)?.['vaginal'] ?? ''}`);
   // TODO-QSP: dynamic text: $clothingworntype: <<$clothingworntype>>
-  scene.text(`$clothingworntype: ${((s as any).clothingworntype ?? 0)}`);
+  scene.text(`$clothingworntype: ${((s as any).clothingworntype || '')}`);
   // TODO-QSP: dynamic text: PCloQuality: <<PCloQuality>>
-  scene.text(`PCloQuality: ${((s as any).PCloQuality ?? 0)}`);
+  scene.text(`PCloQuality: ${((s as any).PCloQuality || '')}`);
   // TODO-QSP: dynamic text: Mira's Father Quest (npc_QW['A64']): <<npc_QW['A64']>>
-  scene.text(`Mira's Father Quest (npc_QW['A64']): ${((s as any).npc_QW ?? 0)?.['A64']}`);
+  scene.text(`Mira's Father Quest (npc_QW['A64']): ${((s as any).npc_QW ?? 0)?.['A64'] ?? ''}`);
   // TODO-QSP: dynamic text: Mira's Quest (MiraVars['QW']): <<MiraVars['QW']>>
-  scene.text(`Mira's Quest (MiraVars['QW']): ${((s as any).MiraVars ?? 0)?.['QW']}`);
+  scene.text(`Mira's Quest (MiraVars['QW']): ${((s as any).MiraVars ?? 0)?.['QW'] ?? ''}`);
   // TODO-QSP: dynamic text: MiraVars['Mitka_fucks']: <<MiraVars['Mitka_fucks']>>
-  scene.text(`MiraVars['Mitka_fucks']: ${((s as any).MiraVars ?? 0)?.['Mitka_fucks']}`);
+  scene.text(`MiraVars['Mitka_fucks']: ${((s as any).MiraVars ?? 0)?.['Mitka_fucks'] ?? ''}`);
   // TODO-QSP: dynamic text: Mira's Relationship (npc_rel['A60']): <<npc_rel['A60']>>
-  scene.text(`Mira's Relationship (npc_rel['A60']): ${((s as any).npc_rel ?? 0)?.['A60']}`);
+  scene.text(`Mira's Relationship (npc_rel['A60']): ${((s as any).npc_rel ?? 0)?.['A60'] ?? ''}`);
   // TODO-QSP: dynamic text: Mitka's Quest (npc_QW['A63']): <<npc_QW['A63']>>
-  scene.text(`Mitka's Quest (npc_QW['A63']): ${((s as any).npc_QW ?? 0)?.['A63']}`);
+  scene.text(`Mitka's Quest (npc_QW['A63']): ${((s as any).npc_QW ?? 0)?.['A63'] ?? ''}`);
   // TODO-QSP: dynamic text: mirabrosextime: <<mirabrosextime>>
-  scene.text(`mirabrosextime: ${((s as any).mirabrosextime ?? 0)}`);
+  scene.text(`mirabrosextime: ${((s as any).mirabrosextime || '')}`);
   // TODO-QSP: dynamic text: momslut: <<momslut>>
-  scene.text(`momslut: ${((s as any).momslut ?? 0)}`);
+  scene.text(`momslut: ${((s as any).momslut || '')}`);
   // TODO-QSP: dynamic text: Kirill's Relationship (Kirill): <<Kirill>>
-  scene.text(`Kirill's Relationship (Kirill): ${((s as any).Kirill ?? 0)}`);
+  scene.text(`Kirill's Relationship (Kirill): ${((s as any).Kirill || '')}`);
   // TODO-QSP: dynamic text: Kirill's Corruption (Kirill_Crpt): <<Kirill_Crpt>>
-  scene.text(`Kirill's Corruption (Kirill_Crpt): ${((s as any).Kirill_Crpt ?? 0)}`);
+  scene.text(`Kirill's Corruption (Kirill_Crpt): ${((s as any).Kirill_Crpt || '')}`);
   // TODO-QSP: dynamic text: children: <<kid>>
-  scene.text(`children: ${((s as any).kid ?? 0)}`);
+  scene.text(`children: ${((s as any).kid || '')}`);
   // TODO-QSP: dynamic text: fetus number: <<BabyEmbryo>>
-  scene.text(`fetus number: ${((s as any).BabyEmbryo ?? 0)}`);
+  scene.text(`fetus number: ${((s as any).BabyEmbryo || '')}`);
   // TODO-QSP: dynamic text: pregnancy state: <<preg>>
-  scene.text(`pregnancy state: ${((s as any).preg ?? 0)}`);
+  scene.text(`pregnancy state: ${((s as any).preg || '')}`);
   // TODO-QSP: dynamic text: thinkpreg: <<thinkpreg>>
-  scene.text(`thinkpreg: ${((s as any).thinkpreg ?? 0)}`);
+  scene.text(`thinkpreg: ${((s as any).thinkpreg || '')}`);
   // TODO-QSP: dynamic text: knowpreg: <<knowpreg>>
-  scene.text(`knowpreg: ${((s as any).knowpreg ?? 0)}`);
+  scene.text(`knowpreg: ${((s as any).knowpreg || '')}`);
   // TODO-QSP: dynamic text: knowpregrecover: <<knowpregrecover>>
-  scene.text(`knowpregrecover: ${((s as any).knowpregrecover ?? 0)}`);
+  scene.text(`knowpregrecover: ${((s as any).knowpregrecover || '')}`);
   // TODO-QSP: dynamic text: knowpregloss: <<knowpregloss>>
-  scene.text(`knowpregloss: ${((s as any).knowpregloss ?? 0)}`);
+  scene.text(`knowpregloss: ${((s as any).knowpregloss || '')}`);
   // TODO-QSP: dynamic text: cycle: <<cycle>>
-  scene.text(`cycle: ${((s as any).cycle ?? 0)}`);
+  scene.text(`cycle: ${((s as any).cycle || '')}`);
   // TODO-QSP: dynamic text: menoage: <<menoage>>
-  scene.text(`menoage: ${((s as any).menoage ?? 0)}`);
+  scene.text(`menoage: ${((s as any).menoage || '')}`);
   // TODO-QSP: dynamic text: age: <<age>>
-  scene.text(`age: ${((s as any).age ?? 0)}`);
+  scene.text(`age: ${((s as any).age || '')}`);
   // TODO-QSP: dynamic text: mesec: <<mesec>>
-  scene.text(`mesec: ${((s as any).mesec ?? 0)}`);
+  scene.text(`mesec: ${((s as any).mesec || '')}`);
   // TODO-QSP: dynamic text: focH: <<focH>>
-  scene.text(`focH: ${((s as any).focH ?? 0)}`);
+  scene.text(`focH: ${((s as any).focH || '')}`);
   // TODO-QSP: dynamic text: EggRH: <<EggRH>>
-  scene.text(`EggRH: ${((s as any).EggRH ?? 0)}`);
+  scene.text(`EggRH: ${((s as any).EggRH || '')}`);
   // TODO-QSP: dynamic text: Ovulate: <<Ovulate>>
-  scene.text(`Ovulate: ${((s as any).Ovulate ?? 0)}`);
+  scene.text(`Ovulate: ${((s as any).Ovulate || '')}`);
   // TODO-QSP: dynamic text: UnfertEgg: <<UnfertEgg>>
-  scene.text(`UnfertEgg: ${((s as any).UnfertEgg ?? 0)}`);
+  scene.text(`UnfertEgg: ${((s as any).UnfertEgg || '')}`);
   // TODO-QSP: dynamic text: FertEgg: <<FertEgg>>
-  scene.text(`FertEgg: ${((s as any).FertEgg ?? 0)}`);
+  scene.text(`FertEgg: ${((s as any).FertEgg || '')}`);
   if (((s as any).FertEgg ?? 0) > 0) {
     (s as any).i = qspUntranslated(s, "arrpos('kidname', 'unborn')", { location: "cheatmenu_din" });
     (s as any).imax = 0;
     // TODO-QSP: :chlp
     // TODO-QSP: dynamic text:   <<i+1>>. baby's pregnancy type: <<babyptype[i]>>
-    scene.text(`  ${((s as any).i ?? 0)+1}. baby's pregnancy type: ${((s as any).babyptype ?? 0)?.[String((s as any).i ?? 0)]}`);
+    scene.text(`  ${((s as any).i ?? '')+1}. baby's pregnancy type: ${((s as any).babyptype ?? 0)?.[String((s as any).i ?? 0)] ?? ''}`);
     if (((s as any).i ?? 0) < ((s as any).imax ?? 0)) {
       (s as any).i = ((s as any).i ?? 0) + (1);
       // TODO-QSP: jump 'chlp'
     }
   }
   // TODO-QSP: dynamic text: Implanted Embryos: <<BabyEmbryo>>
-  scene.text(`Implanted Embryos: ${((s as any).BabyEmbryo ?? 0)}`);
+  scene.text(`Implanted Embryos: ${((s as any).BabyEmbryo || '')}`);
   // TODO-QSP: dynamic text: ferteggage: <<ferteggage>>
-  scene.text(`ferteggage: ${((s as any).ferteggage ?? 0)}`);
+  scene.text(`ferteggage: ${((s as any).ferteggage || '')}`);
   // TODO-QSP: dynamic text: pregChem: <<pregChem>>
-  scene.text(`pregChem: ${((s as any).pregChem ?? 0)}`);
+  scene.text(`pregChem: ${((s as any).pregChem || '')}`);
   // TODO-QSP: dynamic text: pillcon: <<pillcon>>
-  scene.text(`pillcon: ${((s as any).pillcon ?? 0)}`);
+  scene.text(`pillcon: ${((s as any).pillcon || '')}`);
   // TODO-QSP: dynamic text: Believed pillcon: <<pillcon2>>
-  scene.text(`Believed pillcon: ${((s as any).pillcon2 ?? 0)}`);
+  scene.text(`Believed pillcon: ${((s as any).pillcon2 || '')}`);
   // TODO-QSP: dynamic text: RecovH: <<RecovH>>
-  scene.text(`RecovH: ${((s as any).RecovH ?? 0)}`);
+  scene.text(`RecovH: ${((s as any).RecovH || '')}`);
   // TODO-QSP: dynamic text: daylastperiod: <<daylastperiod>> (daystart difference: <<daystart-daylastperiod>...
-  scene.text(`daylastperiod: ${((s as any).daylastperiod ?? 0)} (daystart difference: ${((s as any).daystart ?? 0)-((s as any).daylastperiod ?? 0)})`);
+  scene.text(`daylastperiod: ${((s as any).daylastperiod || '')} (daystart difference: ${((s as any).daystart ?? '')-((s as any).daylastperiod ?? '')})`);
   // TODO-QSP: dynamic text: lastmens: <<lastmens>>
-  scene.text(`lastmens: ${((s as any).lastmens ?? 0)}`);
+  scene.text(`lastmens: ${((s as any).lastmens || '')}`);
   // TODO-QSP: dynamic text: firstmens: <<lastmens>> (daystart difference: <<daystart-firstmens>>)
-  scene.text(`firstmens: ${((s as any).lastmens ?? 0)} (daystart difference: ${((s as any).daystart ?? 0)-((s as any).firstmens ?? 0)})`);
+  scene.text(`firstmens: ${((s as any).lastmens || '')} (daystart difference: ${((s as any).daystart ?? '')-((s as any).firstmens ?? '')})`);
   // TODO-QSP: dynamic text: hypnoTime: <<hypnoTime>>
-  scene.text(`hypnoTime: ${((s as any).hypnoTime ?? 0)}`);
+  scene.text(`hypnoTime: ${((s as any).hypnoTime || '')}`);
   // TODO-QSP: dynamic text: hypnoStrength: <<hypnoStrength>>
-  scene.text(`hypnoStrength: ${((s as any).hypnoStrength ?? 0)}`);
+  scene.text(`hypnoStrength: ${((s as any).hypnoStrength || '')}`);
   // TODO-QSP: dynamic text: hypnoDay: <<hypnoDay>>
-  scene.text(`hypnoDay: ${((s as any).hypnoDay ?? 0)}`);
+  scene.text(`hypnoDay: ${((s as any).hypnoDay || '')}`);
   // TODO-QSP: dynamic text: missCum: <<missCum>> / timeTresh: <<timeTresh>>
-  scene.text(`missCum: ${((s as any).missCum ?? 0)} / timeTresh: ${((s as any).timeTresh ?? 0)}`);
+  scene.text(`missCum: ${((s as any).missCum || '')} / timeTresh: ${((s as any).timeTresh || '')}`);
   if ((!((s as any).preziktype ?? 0))) {
     // TODO-QSP: dynamic text: condoms: in use(normal)/damaged/bad condoms: <<mc_inventory['equipped_condoms']+...
-    scene.text(`condoms: in use(normal)/damaged/bad condoms: ${((s as any).mc_inventory ?? {})?.['equipped_condoms']+((s as any).mc_inventory ?? {})?.['normal_condoms']}/${((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']}/${((s as any).mc_inventory ?? 0)?.['bad_condoms']}`);
+    scene.text(`condoms: in use(normal)/damaged/bad condoms: ${(((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['normal_condoms'] ?? 0)}/${((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] ?? ''}/${((s as any).mc_inventory ?? 0)?.['bad_condoms'] ?? ''}`);
   } else {
     if (((s as any).preziktype ?? 0) === 1) {
       // TODO-QSP: dynamic text: condoms: (Not in use) normal/damaged/bad condoms: <<mc_inventory['normal_condoms...
-      scene.text(`condoms: (Not in use) normal/damaged/bad condoms: ${((s as any).mc_inventory ?? 0)?.['normal_condoms']}/${((s as any).mc_inventory ?? 0)?.['sabotaged_condoms']}/${((s as any).mc_inventory ?? 0)?.['bad_condoms']}`);
+      scene.text(`condoms: (Not in use) normal/damaged/bad condoms: ${((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? ''}/${((s as any).mc_inventory ?? 0)?.['sabotaged_condoms'] ?? ''}/${((s as any).mc_inventory ?? 0)?.['bad_condoms'] ?? ''}`);
     } else {
       // TODO-QSP: dynamic text: condoms: in use (damaged)/normal/bad condoms: <<mc_inventory['equipped_condoms']...
-      scene.text(`condoms: in use (damaged)/normal/bad condoms: ${((s as any).mc_inventory ?? {})?.['equipped_condoms']+((s as any).mc_inventory ?? {})?.['sabotaged_condoms']}/${((s as any).mc_inventory ?? 0)?.['normal_condoms']}/${((s as any).mc_inventory ?? 0)?.['bad_condoms']}`);
+      scene.text(`condoms: in use (damaged)/normal/bad condoms: ${(((s as any).mc_inventory ?? {})?.['equipped_condoms'] ?? 0)+(((s as any).mc_inventory ?? {})?.['sabotaged_condoms'] ?? 0)}/${((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? ''}/${((s as any).mc_inventory ?? 0)?.['bad_condoms'] ?? ''}`);
     }
   }
   if (((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] > 0) {
     // TODO-QSP: dynamic text: pack(s) of birth control pills: <<mc_inventory['contraceptive_pill']>>
-    scene.text(`pack(s) of birth control pills: ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill']}`);
+    scene.text(`pack(s) of birth control pills: ${((s as any).mc_inventory ?? 0)?.['contraceptive_pill'] ?? ''}`);
     if (((s as any).tabletkiold ?? 0) > 0) {
       // TODO-QSP: dynamic text:   <<tabletkiold>> expired pack
-      scene.text(`  ${((s as any).tabletkiold ?? 0)} expired pack`);
+      scene.text(`  ${((s as any).tabletkiold || '')} expired pack`);
     }
     if (((s as any).tabletkifake ?? 0) > 0) {
       // TODO-QSP: dynamic text:   <<tabletkifake>> counterfeit pack
-      scene.text(`  ${((s as any).tabletkifake ?? 0)} counterfeit pack`);
+      scene.text(`  ${((s as any).tabletkifake || '')} counterfeit pack`);
     }
     if (((s as any).tabletkirej ?? 0) > 0) {
       // TODO-QSP: dynamic text:   <<tabletkirej>> factory rejected pack
-      scene.text(`  ${((s as any).tabletkirej ?? 0)} factory rejected pack`);
+      scene.text(`  ${((s as any).tabletkirej || '')} factory rejected pack`);
     }
     if (((s as any).tabletkifert ?? 0) > 0) {
       // TODO-QSP: dynamic text:   <<tabletkifert>> fertility hormones pack
-      scene.text(`  ${((s as any).tabletkifert ?? 0)} fertility hormones pack`);
+      scene.text(`  ${((s as any).tabletkifert || '')} fertility hormones pack`);
     }
     if (((s as any).tabletkisug ?? 0) > 0) {
       // TODO-QSP: dynamic text:   <<tabletkisug>> sugar pills pack
-      scene.text(`  ${((s as any).tabletkisug ?? 0)} sugar pills pack`);
+      scene.text(`  ${((s as any).tabletkisug || '')} sugar pills pack`);
     }
   }
   if (((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] > 0) {
@@ -324,7 +324,7 @@ function enterVartracker(s: GameState, scene: SceneBuilder): void {
     if (((s as any).ptype ?? 0) === 5) {
     }
     // TODO-QSP: dynamic text: <<pillsleft[ptype]>> <<$pilltype>>pills left of your currently used pack
-    scene.text(`${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)]} ${((s as any).pilltype ?? 0)}pills left of your currently used pack`);
+    scene.text(`${((s as any).pillsleft ?? 0)?.[String((s as any).ptype ?? 0)] ?? ''} ${((s as any).pilltype || '')}pills left of your currently used pack`);
   }
   // TODO-QSP: end
   if (!(s as any).cheatmenu) (s as any).cheatmenu = {}; (s as any).cheatmenu['index'] = 'gt \'cheatmenu_din\', \'index\'';
@@ -342,7 +342,7 @@ function enterIndex(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_hour = ((s as any).hour ?? 0);
   (s as any).temp_minut = ((s as any).minut ?? 0);
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Index');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Index']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Index</h1></center>');
   // TODO-QSP: $cheatmenu['table_start']
   scene.text('<a href="exec:gs \'cheatmenu_din\', \'dynamic\'">Dynamic Input Command</a>');
@@ -357,8 +357,8 @@ function enterIndex(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec:gt\'gadukino\'"      >Teleport to Gadukino</a>');
   scene.text('<a href="exec:gt\'dachi\'"        >Teleport to Suburban Cooperative</a>');
   scene.text('<center><b>WARNING!</b></center>');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'console', 'Hide Console input in objects window');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'time', 'Time Cheat in Objects window');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'console', 'Hide Console input in objects window']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'time', 'Time Cheat in Objects window']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<a href="exec:gt \'cheatmenu_din\', \'vartracker\'"><b>Variable tracker</b></a>');
   // TODO-QSP: $cheatmenu['table_end']
   // TODO-QSP: end
@@ -464,26 +464,26 @@ function enterSlutshot(s: GameState, scene: SceneBuilder): void {
 
 function enterPermanent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Recurrent');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Recurrent']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).cheatmenu) (s as any).cheatmenu = {}; (s as any).cheatmenu['this_menu'] = 'permanent';
   scene.text('<center><h1>Cheat Menu - Recurrent Cheats</h1></center>');
   scene.text('<center><b>WARNING!</b></center>');
   // TODO-QSP: $cheatmenu['table_start']
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'willpower', 'Willpower cost always zero');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'inf_willpower', 'Infinite willpower');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'always_brushed', 'Always combed');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'makeup_smear', 'Cosmetics never smeared');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'no_sweat', 'Never sweat');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'hunger', 'Never eat');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'thirst', 'Never drink');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'sleep', 'Never sleep');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'mood', 'Never unhappy');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'no_leghair', 'Never shave legs');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'fat', 'Never lose or gain weight');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'body_staticAssets', 'Bust and butt unaffected by weight');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'school_clothing', 'Allow any clothing for school');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'edit_porn', 'Porn schedule editor');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'archetypes', 'Disable archetype system');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'willpower', 'Willpower cost always zero']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'inf_willpower', 'Infinite willpower']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'always_brushed', 'Always combed']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'makeup_smear', 'Cosmetics never smeared']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'no_sweat', 'Never sweat']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hunger', 'Never eat']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'thirst', 'Never drink']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sleep', 'Never sleep']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mood', 'Never unhappy']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'no_leghair', 'Never shave legs']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fat', 'Never lose or gain weight']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_staticAssets', 'Bust and butt unaffected by weight']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'school_clothing', 'Allow any clothing for school']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'edit_porn', 'Porn schedule editor']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'archetypes', 'Disable archetype system']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: Never get addicted: <a href="exec:gs 'cheatmenu_din', 'addict' & gt 'cheatmenu_d...
   scene.text(`Never get addicted: <a href="exec:gs 'cheatmenu_din', 'addict' & gt 'cheatmenu_din', 'permanent'">${((((s as any).cheatVars ?? 0)?.['drugs_immune']) ? ('Enabled') : ('Disabled'))}</a>`);
   // TODO-QSP: dynamic text: Enable sleeping with vibrator inserted: <a href="exec:gs 'cheatmenu_din', 'Vibra...
@@ -496,15 +496,15 @@ function enterPermanent(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text:   Succubus clothing invulnerability: <a href="exec:gs 'cheatmenu_din', 'SuccuBim...
     scene.text(`  Succubus clothing invulnerability: <a href="exec:gs 'cheatmenu_din', 'SuccuBimbo' & gt 'cheatmenu_din', 'permanent'">${((((s as any).cheatVars ?? 0)?.['suc_bimbo']) ? ('Enabled') : ('Disabled'))}</a>`);
   }
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'always_horny', 'Set arousal to always be at 50 or more');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'always_horny', 'Set arousal to always be at 50 or more']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: Periods (and pregnancies): <a href="exec:gs 'cheatmenu_din', 'slutshot' & gt 'ch...
   scene.text(`Periods (and pregnancies): <a href="exec:gs 'cheatmenu_din', 'slutshot' & gt 'cheatmenu_din', 'permanent'">${((((s as any).cheatVars ?? 0)?.['no_periods']) ? ('Disabled') : ('Enabled'))}</a>`);
   if (((s as any).cheatVars ?? 0)?.['no_periods'] === 0) {
-    qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'no_pregnancy', '  Impregnation', 'Disabled', 'Enabled');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'no_pregnancy', '  Impregnation', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'no_lactation', 'Lactation', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'no_cum_leak', 'Cum leaking', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'std', 'STDs', 'Disabled', 'Enabled');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'no_lactation', 'Lactation', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'no_cum_leak', 'Cum leaking', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'std', 'STDs', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: 'No dream chance: <a href="exec: cheatVars[''no_dream_chance''] = input(''Enter no dream chance (%)'...
   // TODO-QSP: $cheatmenu['table_end']
   scene.text('<center><b>WARNING!</b></center>');
@@ -546,7 +546,7 @@ function enterTherapistReset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCycle(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cheatmenu_din', 'cheattabs');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).cycle ?? 0) === 5) {
     scene.actions([{ label: 'Continue', goto: ['cheatmenu_din', 'state'] }]);
   } else {
@@ -626,7 +626,7 @@ function enterRemovePreg(s: GameState, scene: SceneBuilder): void {
 
 function enterState(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'State');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'State']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Character State Changes</h1></center>');
   scene.text('<center><b>WARNING!</b></center>');
   scene.text('especially dangerous unless you know what you\'re doing. When reporting bugs, please mention any cheats you used.</center>');
@@ -662,52 +662,52 @@ function enterState(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lactation ?? 0)?.['active'] <= 0) {
     scene.text('You are not lactating');
     // TODO-QSP: dynamic text: Your current prolactinlvl is <<lactation['prolactinlvl']>>ng/ml.
-    scene.text(`Your current prolactinlvl is ${((s as any).lactation ?? 0)?.['prolactinlvl']}ng/ml.`);
+    scene.text(`Your current prolactinlvl is ${((s as any).lactation ?? 0)?.['prolactinlvl'] ?? ''}ng/ml.`);
     scene.text('<a href="exec: gs \'lact_lib\',\'lact_switch\' & gs \'lact_lib\',\'BreastGrowth\' & gt \'cheatmenu_din\', \'state\'">Switch ON</a>');
   } else {
     scene.text('You are lactating');
     scene.text('<a href="exec: gs \'lact_lib\',\'lact_switch\' & gs \'lact_lib\',\'BreastGrowth\' & gt \'cheatmenu_din\', \'state\'">Switch OFF</a>');
     if (((s as any).lactation ?? 0)?.['milkprod_type'] === 1) {
       // TODO-QSP: dynamic text: The milk production is <a href="exec: lactation['milkprod_type'] = 0 & gt 'cheat...
-      scene.text(`The milk production is <a href="exec: lactation['milkprod_type'] = 0 & gt 'cheatmenu_din', 'state'">realistic</a>. ${((s as any).pcs_firstname ?? 0)} will produce breast milk based on her body resources.`);
+      scene.text(`The milk production is <a href="exec: lactation['milkprod_type'] = 0 & gt 'cheatmenu_din', 'state'">realistic</a>. ${((s as any).pcs_firstname || '')} will produce breast milk based on her body resources.`);
     } else {
       if (((s as any).lactation ?? 0)?.['milkprod_type'] === 0) {
         // TODO-QSP: dynamic text: The milk production is <a href="exec: lactation['milkprod_type'] = 1 & gt 'cheat...
-        scene.text(`The milk production is <a href="exec: lactation['milkprod_type'] = 1 & gt 'cheatmenu_din', 'state'">permanent</a>. ${((s as any).pcs_firstname ?? 0)} will produce breast milk disregarding her condition.`);
+        scene.text(`The milk production is <a href="exec: lactation['milkprod_type'] = 1 & gt 'cheatmenu_din', 'state'">permanent</a>. ${((s as any).pcs_firstname || '')} will produce breast milk disregarding her condition.`);
       } else {
         if (!(s as any).lactation) (s as any).lactation = {}; (s as any).lactation['milkprod_type'] = 1;
       }
     }
     if (((s as any).lactation ?? 0)?.['lactaterate'] <= 0) {
       // TODO-QSP: dynamic text: Lactate Rate: <<lactation['lactaterate']/1000>>ml/h <a href="exec:lactation['lac...
-      scene.text(`Lactate Rate: ${((s as any).lactation ?? {})?.['lactaterate']/1000}ml/h <a href="exec:lactation['lactaterate'] += 10000 & gt 'cheatmenu_din', 'state'">+10</a>`);
+      scene.text(`Lactate Rate: ${(((s as any).lactation ?? {})?.['lactaterate'] ?? 0)/1000}ml/h <a href="exec:lactation['lactaterate'] += 10000 & gt 'cheatmenu_din', 'state'">+10</a>`);
     } else {
       if (((s as any).lactation ?? 0)?.['lactaterate'] >= 600000) {
         // TODO-QSP: dynamic text: Lactate Rate: <a href="exec:lactation['lactaterate'] -= 10000 & gt 'cheatmenu_di...
-        scene.text(`Lactate Rate: <a href="exec:lactation['lactaterate'] -= 10000 & gt 'cheatmenu_din', 'state'">-10</a> ${((s as any).lactation ?? {})?.['lactaterate']/1000}ml/h`);
+        scene.text(`Lactate Rate: <a href="exec:lactation['lactaterate'] -= 10000 & gt 'cheatmenu_din', 'state'">-10</a> ${(((s as any).lactation ?? {})?.['lactaterate'] ?? 0)/1000}ml/h`);
       } else {
         // TODO-QSP: dynamic text: Lactate Rate: <a href="exec:lactation['lactaterate'] -= 10000 & gt 'cheatmenu_di...
-        scene.text(`Lactate Rate: <a href="exec:lactation['lactaterate'] -= 10000 & gt 'cheatmenu_din', 'state'">-10</a> ${((s as any).lactation ?? {})?.['lactaterate']/1000}ml/h <a href="exec:lactation['lactaterate'] += 10000 & gt 'cheatmenu_din', 'state'">+10</a>`);
+        scene.text(`Lactate Rate: <a href="exec:lactation['lactaterate'] -= 10000 & gt 'cheatmenu_din', 'state'">-10</a> ${(((s as any).lactation ?? {})?.['lactaterate'] ?? 0)/1000}ml/h <a href="exec:lactation['lactaterate'] += 10000 & gt 'cheatmenu_din', 'state'">+10</a>`);
         // TODO-QSP: 'Cap Lactate Rate: ' + iif(lactation['milkprod_type'] = 0 and lactation['caplactaterate'] > 0, '<a h...
         // TODO-QSP: dynamic text: <font color="grey">Cap lactate rate makes lactate rate stop growing if <<$pcs_fi...
-        scene.text(`<font color="grey">Cap lactate rate makes lactate rate stop growing if ${((s as any).pcs_firstname ?? 0)} needs milking more often.</font>`);
+        scene.text(`<font color="grey">Cap lactate rate makes lactate rate stop growing if ${((s as any).pcs_firstname || '')} needs milking more often.</font>`);
       }
     }
     // TODO-QSP: dynamic text: Milk in Breasts: <<lactation['breastmv']/1000>>ml
-    scene.text(`Milk in Breasts: ${((s as any).lactation ?? {})?.['breastmv']/1000}ml`);
+    scene.text(`Milk in Breasts: ${(((s as any).lactation ?? {})?.['breastmv'] ?? 0)/1000}ml`);
     // TODO-QSP: dynamic text: Max Milk Storage: <<lactation['breastmm']/1000>>ml
-    scene.text(`Max Milk Storage: ${((s as any).lactation ?? {})?.['breastmm']/1000}ml`);
+    scene.text(`Max Milk Storage: ${(((s as any).lactation ?? {})?.['breastmm'] ?? 0)/1000}ml`);
     // TODO-QSP: dynamic text: <font color="grey">Maximum milk storage changes with breast size, and if <<$pcs_...
-    scene.text(`<font color="grey">Maximum milk storage changes with breast size, and if ${((s as any).pcs_firstname ?? 0)} went through pregnancy</font>`);
+    scene.text(`<font color="grey">Maximum milk storage changes with breast size, and if ${((s as any).pcs_firstname || '')} went through pregnancy</font>`);
     if (((s as any).lactation ?? 0)?.['induced'] <= 0) {
       // TODO-QSP: dynamic text: Is <<$pcs_firstname>>'s lactation Induced?: <a href="exec:lactation['induced'] =...
-      scene.text(`Is ${((s as any).pcs_firstname ?? 0)}'s lactation Induced?: <a href="exec:lactation['induced'] = 1 & gt 'cheatmenu_din', 'state'">no</a>`);
+      scene.text(`Is ${((s as any).pcs_firstname || '')}'s lactation Induced?: <a href="exec:lactation['induced'] = 1 & gt 'cheatmenu_din', 'state'">no</a>`);
     } else {
       // TODO-QSP: dynamic text: Is <<$pcs_firstname>>'s lactation Induced?: <a href="exec:lactation['induced'] =...
-      scene.text(`Is ${((s as any).pcs_firstname ?? 0)}'s lactation Induced?: <a href="exec:lactation['induced'] = 0 & gt 'cheatmenu_din', 'state'">yes</a>`);
+      scene.text(`Is ${((s as any).pcs_firstname || '')}'s lactation Induced?: <a href="exec:lactation['induced'] = 0 & gt 'cheatmenu_din', 'state'">yes</a>`);
     }
     // TODO-QSP: dynamic text: <font color="grey">Does <<$pcs_firstname>> know she induced lactation herself, o...
-    scene.text(`<font color="grey">Does ${((s as any).pcs_firstname ?? 0)} know she induced lactation herself, or not? (This is only used for some events.)</font>`);
+    scene.text(`<font color="grey">Does ${((s as any).pcs_firstname || '')} know she induced lactation herself, or not? (This is only used for some events.)</font>`);
   }
   // TODO-QSP: $cheatmenu['table_end']
   // TODO-QSP: end
@@ -745,54 +745,54 @@ function enterBodyMod(s: GameState, scene: SceneBuilder): void {
   scene.text('May cause adverse interactions, use at your own risk!');
   scene.text('');
   // TODO-QSP: dynamic text: You are currently <<$bodyVars['desc']>>.
-  scene.text(`You are currently ${((s as any).bodyVars ?? 0)?.['desc']}.`);
+  scene.text(`You are currently ${((s as any).bodyVars ?? 0)?.['desc'] ?? ''}.`);
   scene.text('');
   scene.text('You may select from the following sizes:');
   scene.text('');
   if (((s as any).knowpreg ?? 0) === 1  ||  (((s as any).preg ?? 0) === 1  &&  (((s as any).thinkpreg ?? 0) === 1  ||  ((s as any).pregChem ?? 0) > 3600))) {
     if ((!(((s as any).pregChem ?? 0) < 2688))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 100"><<func('body_structure'...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 100">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 100)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 100">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi || ''), ((s as any).strenbuf || ''), 100)}</a>`);
       scene.text('');
     }
     if ((!(((s as any).pregChem ?? 0) >= 2688  &&  ((s as any).pregChem ?? 0) < 3192))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 2688"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 2688">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 2688)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 2688">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi || ''), ((s as any).strenbuf || ''), 2688)}</a>`);
       scene.text('');
     }
     if ((!(((s as any).pregChem ?? 0) >= 3192  &&  ((s as any).pregChem ?? 0) < 3696))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3192"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3192">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 3192)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3192">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi || ''), ((s as any).strenbuf || ''), 3192)}</a>`);
       scene.text('');
     }
     if ((!(((s as any).pregChem ?? 0) >= 3696  &&  ((s as any).pregChem ?? 0) < 4200))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3696"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3696">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 3696)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 3696">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi || ''), ((s as any).strenbuf || ''), 3696)}</a>`);
       scene.text('');
     }
     if ((!(((s as any).pregChem ?? 0) >= 4200  &&  ((s as any).pregChem ?? 0) < 4704))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4200"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4200">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 4200)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4200">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi || ''), ((s as any).strenbuf || ''), 4200)}</a>`);
       scene.text('');
     }
     if ((!(((s as any).pregChem ?? 0) >= 4704  &&  ((s as any).pregChem ?? 0) < 5208))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4704"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4704">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 4704)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 4704">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi || ''), ((s as any).strenbuf || ''), 4704)}</a>`);
       scene.text('');
     }
     if ((!(((s as any).pregChem ?? 0) >= 5208  &&  ((s as any).pregChem ?? 0) < 5712))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5208"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5208">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 5208)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5208">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi || ''), ((s as any).strenbuf || ''), 5208)}</a>`);
       scene.text('');
     }
     if ((!(((s as any).pregChem ?? 0) >= 5712  &&  ((s as any).pregChem ?? 0) < 6216))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5712"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5712">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 5712)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 5712">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi || ''), ((s as any).strenbuf || ''), 5712)}</a>`);
       scene.text('');
     }
     if ((!(((s as any).pregChem ?? 0) >= 6216))) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_preg_body', 6216"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 6216">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi ?? 0), ((s as any).strenbuf ?? 0), 6216)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_preg_body', 6216">${qspFunc(s, 'body_structure', 'body_desc', ((s as any).pcs_bmi || ''), ((s as any).strenbuf || ''), 6216)}</a>`);
       scene.text('');
     }
   } else {
@@ -801,37 +801,37 @@ function enterBodyMod(s: GameState, scene: SceneBuilder): void {
     scene.text('');
     if ((((s as any).bs_temp_bs_class ?? 0) / 100) !== 1) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_body_class', 170"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 170">${qspFunc(s, 'body_structure', 'body_desc', 17, ((s as any).strenbuf ?? 0), 0)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 170">${qspFunc(s, 'body_structure', 'body_desc', 17, ((s as any).strenbuf || ''), 0)}</a>`);
       scene.text('');
     }
     if ((((s as any).bs_temp_bs_class ?? 0) / 100) !== 2) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_body_class', 200"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 200">${qspFunc(s, 'body_structure', 'body_desc', 20, ((s as any).strenbuf ?? 0), 0)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 200">${qspFunc(s, 'body_structure', 'body_desc', 20, ((s as any).strenbuf || ''), 0)}</a>`);
       scene.text('');
     }
     if ((((s as any).bs_temp_bs_class ?? 0) / 100) !== 3) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_body_class', 230"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 230">${qspFunc(s, 'body_structure', 'body_desc', 23, ((s as any).strenbuf ?? 0), 0)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 230">${qspFunc(s, 'body_structure', 'body_desc', 23, ((s as any).strenbuf || ''), 0)}</a>`);
       scene.text('');
     }
     if ((((s as any).bs_temp_bs_class ?? 0) / 100) !== 4) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_body_class', 270"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 270">${qspFunc(s, 'body_structure', 'body_desc', 27, ((s as any).strenbuf ?? 0), 0)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 270">${qspFunc(s, 'body_structure', 'body_desc', 27, ((s as any).strenbuf || ''), 0)}</a>`);
       scene.text('');
     }
     if ((((s as any).bs_temp_bs_class ?? 0) / 100) !== 5) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_body_class', 320"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 320">${qspFunc(s, 'body_structure', 'body_desc', 32, ((s as any).strenbuf ?? 0), 0)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 320">${qspFunc(s, 'body_structure', 'body_desc', 32, ((s as any).strenbuf || ''), 0)}</a>`);
       scene.text('');
     }
     if ((((s as any).bs_temp_bs_class ?? 0) / 100) !== 6) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_body_class', 370"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 370">${qspFunc(s, 'body_structure', 'body_desc', 37, ((s as any).strenbuf ?? 0), 0)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 370">${qspFunc(s, 'body_structure', 'body_desc', 37, ((s as any).strenbuf || ''), 0)}</a>`);
       scene.text('');
     }
     if ((((s as any).bs_temp_bs_class ?? 0) / 100) !== 7) {
       // TODO-QSP: dynamic text: <a href="exec: gs 'cheatmenu_din', 'set_body_class', 420"><<func('body_structure...
-      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 420">${qspFunc(s, 'body_structure', 'body_desc', 42, ((s as any).strenbuf ?? 0), 0)}</a>`);
+      scene.text(`<a href="exec: gs 'cheatmenu_din', 'set_body_class', 420">${qspFunc(s, 'body_structure', 'body_desc', 42, ((s as any).strenbuf || ''), 0)}</a>`);
       scene.text('');
     }
   }
@@ -923,17 +923,17 @@ function enterSetLooksInput(s: GameState, scene: SceneBuilder): void {
 
 function enterPrintLooksLinks(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', 100">Max</a> 
-  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', 100">Max</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? '')}', 100">Max</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl +...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 1">+1</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl + 1">+1</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl +...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 10">+10</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl + 10">+10</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl -...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 1">-1</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl - 1">-1</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl -...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 10">-10</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl - 10">-10</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setLooks'], '<<$ARGS[1]>>', 0">Min</a> 
-  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? 0)}', 0">Min</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setLooks'], '${((s as any).locArgs?.[1] ?? '')}', 0">Min</a> `);
   // TODO-QSP: end
   if (!(s as any).cheatmenu) (s as any).cheatmenu = {}; (s as any).cheatmenu['looks'] = 'gt \'cheatmenu_din\', \'looks\'';
   scene.build();
@@ -948,29 +948,29 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     }
   }
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Appearance');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Appearance']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Character Appearance</h1></center>');
   scene.text('<center><b>WARNING!</b></center>');
   scene.text('<center><table width="1000" cellspacing="0" cellpadding="10" valign="top"><tr><td width="33%" valign="top">');
   // TODO-QSP: dynamic text: <<$pcs_firstname>> <<$pcs_lastname>> (<<$pcs_nickname>>). <a href="exec:gs 'chea...
-  scene.text(`${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)} (${((s as any).pcs_nickname ?? 0)}). <a href="exec:gs 'cheatmenu_din', 'rename'">Rename</a> <a href="exec:gt 'cheatmenu_din', 'reset_name'">Reset</a>`);
+  scene.text(`${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} (${((s as any).pcs_nickname || '')}). <a href="exec:gs 'cheatmenu_din', 'rename'">Rename</a> <a href="exec:gt 'cheatmenu_din', 'reset_name'">Reset</a>`);
   scene.text('<a href="exec:gs \'cheatmenu_din\', \'parameters\'">Show design parameters of body</a>');
   scene.text('<a href="exec:gs \'cheatmenu_din\', \'vneshpara\'">Show beauty parameters</a>');
   // TODO-QSP: dynamic text: You are <a href="exec: pcs_dob += 10000 & gs 'cheatmenu_din', 'age'">(-1)</a> <<...
-  scene.text(`You are <a href="exec: pcs_dob += 10000 & gs 'cheatmenu_din', 'age'">(-1)</a> ${((s as any).age ?? 0)} <a href="exec: pcs_dob -= 10000 & gs 'cheatmenu_din', 'age'">(+1)</a> years old`);
+  scene.text(`You are <a href="exec: pcs_dob += 10000 & gs 'cheatmenu_din', 'age'">(-1)</a> ${((s as any).age || '')} <a href="exec: pcs_dob -= 10000 & gs 'cheatmenu_din', 'age'">(+1)</a> years old`);
   // TODO-QSP: dynamic text: You look <<vidage>> years old
-  scene.text(`You look ${((s as any).vidage ?? 0)} years old`);
+  scene.text(`You look ${((s as any).vidage || '')} years old`);
   scene.text('<a href="exec:gs \'cheatmenu_din\', \'visualage\'">Change apparent age</a>');
   // TODO-QSP: dynamic text: You are <<pcs_hgt>> centimetres tall
-  scene.text(`You are ${((s as any).pcs_hgt ?? 0)} centimetres tall`);
+  scene.text(`You are ${((s as any).pcs_hgt || '')} centimetres tall`);
   // TODO-QSP: dynamic text: <a href="exec:pcs_hgt = input('Enter <<$pcs_nickname>>s height in centimetres<br...
-  scene.text(`<a href="exec:pcs_hgt = input('Enter ${((s as any).pcs_nickname ?? 0)}s height in centimetres<br><br>(default 165, min 100, max 200, values below 150 and above 180 will cause problems in the calculation of BMI/weight the more you deviate from the default 170)') & gt 'cheatmenu_din', 'looks'">Change ${((s as any).pcs_nickname ?? 0)}'s height</a>`);
+  scene.text(`<a href="exec:pcs_hgt = input('Enter ${((s as any).pcs_nickname || '')}s height in centimetres<br><br>(default 165, min 100, max 200, values below 150 and above 180 will cause problems in the calculation of BMI/weight the more you deviate from the default 170)') & gt 'cheatmenu_din', 'looks'">Change ${((s as any).pcs_nickname || '')}'s height</a>`);
   // TODO-QSP: dynamic text: Musculature (<<stren_plus_lvl>>): ' & dynamic $cheatmenu['printLooksLinks'], 'st...
-  scene.text(`Musculature (${((s as any).stren_plus_lvl ?? 0)}): ' & dynamic $cheatmenu['printLooksLinks'], 'stren_plus', 'Musculature`);
+  scene.text(`Musculature (${((s as any).stren_plus_lvl || '')}): ' & dynamic $cheatmenu['printLooksLinks'], 'stren_plus', 'Musculature`);
   scene.text('<font color="grey">Allows strength to go past 100');
   scene.text('Negatively</font> affects appearance');
   // TODO-QSP: dynamic text: Toned Butt (<<butt_tr_lvl>>): ' & dynamic $cheatmenu['printLooksLinks'], 'butt_t...
-  scene.text(`Toned Butt (${((s as any).butt_tr_lvl ?? 0)}): ' & dynamic $cheatmenu['printLooksLinks'], 'butt_tr', 'Toned Butt`);
+  scene.text(`Toned Butt (${((s as any).butt_tr_lvl || '')}): ' & dynamic $cheatmenu['printLooksLinks'], 'butt_tr', 'Toned Butt`);
   // TODO-QSP: $pcs_teeth_txt
   if (((s as any).pcs_teeth ?? 0) > -1) {
     scene.text('<a href="exec:gs \'cheatmenu_din\', \'teeth\', \'improve\'">Improve teeth</a>');
@@ -985,7 +985,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:pcs_missing_teeth = 0 & gt \'cheatmenu_din\', \'looks\'">Restore missing teeth</a>');
   }
   // TODO-QSP: dynamic text: You have <<$titsize>> breasts
-  scene.text(`You have ${((s as any).titsize ?? 0)} breasts`);
+  scene.text(`You have ${((s as any).titsize || '')} breasts`);
   if (((s as any).tits ?? 0) < 11) {
     // TODO-QSP: dynamic text: <a href="exec: bodyVars['bust_silicone'] += 5 & gt 'cheatmenu_din', 'looks'">Enl...
     scene.text('<a href="exec: bodyVars[\'bust_silicone\'] += 5 & gt \'cheatmenu_din\', \'looks\'">Enlarge breasts(silicone)</a>');
@@ -1000,7 +1000,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec: titreduc = 1 & gs \'cheatmenu_din\', \'change_pcs_mass_bust\', -5">Shrink breasts (natural)</a>');
   }
   // TODO-QSP: dynamic text: You have a <<$pc_desc['butt']>> butt.
-  scene.text(`You have a ${((s as any).pc_desc ?? 0)?.['butt']} butt.`);
+  scene.text(`You have a ${((s as any).pc_desc ?? 0)?.['butt'] ?? ''} butt.`);
   if (((s as any).pcs_buttsize ?? 0) < 50) {
     // TODO-QSP: dynamic text: <a href="exec: bodyVars['butt_silicone'] += 10 & gt 'cheatmenu_din', 'looks'">En...
     scene.text('<a href="exec: bodyVars[\'butt_silicone\'] += 10 & gt \'cheatmenu_din\', \'looks\'">Enlarge butt (silicone)</a>');
@@ -1015,7 +1015,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec: assreduc = 1 & gs \'cheatmenu_din\', \'change_pcs_mass_butt\', -10">Shrink butt (natural)</a>');
   }
   // TODO-QSP: dynamic text: <<$pc_descFull['lip']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['lip']}`);
+  scene.text(`${((s as any).pc_descFull ?? 0)?.['lip'] ?? ''}`);
   if (((s as any).pcs_lip ?? 0) < 4) {
     // TODO-QSP: dynamic text: <a href="exec:pcs_lip += 1 & gt 'cheatmenu_din', 'looks'">Enlarge lips</a>
     scene.text('<a href="exec:pcs_lip += 1 & gt \'cheatmenu_din\', \'looks\'">Enlarge lips</a>');
@@ -1024,7 +1024,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:pcs_lip -= 1 & gt \'cheatmenu_din\', \'looks\'">Shrink lips</a>');
   }
   // TODO-QSP: dynamic text: <<$nipplesize >> (<<pcs_nips>>)
-  scene.text(`${((s as any).nipplesize ?? 0)} (${((s as any).pcs_nips ?? 0)})`);
+  scene.text(`${((s as any).nipplesize || '')} (${((s as any).pcs_nips || '')})`);
   if (((s as any).pcs_nips ?? 0) <= 95) {
     // TODO-QSP: dynamic text: <a href="exec:pcs_nips += 5 & gt 'cheatmenu_din', 'looks'">Enlarge nipples</a>
     scene.text('<a href="exec:pcs_nips += 5 & gt \'cheatmenu_din\', \'looks\'">Enlarge nipples</a>');
@@ -1033,7 +1033,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:pcs_nips -= 5 & gt \'cheatmenu_din\', \'looks\'">Shrink nipples</a>');
   }
   // TODO-QSP: dynamic text: <<$clitsize>> (<<clit_size>>)
-  scene.text(`${((s as any).clitsize ?? 0)} (${((s as any).clit_size ?? 0)})`);
+  scene.text(`${((s as any).clitsize || '')} (${((s as any).clit_size || '')})`);
   if (((s as any).clit_size ?? 0) <= 95) {
     // TODO-QSP: dynamic text: <a href="exec:clit_size += 5 & gt 'cheatmenu_din', 'looks'">Enlarge clit</a>
     scene.text('<a href="exec:clit_size += 5 & gt \'cheatmenu_din\', \'looks\'">Enlarge clit</a>');
@@ -1043,7 +1043,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('</td><td width="33%" valign="top">');
   // TODO-QSP: dynamic text: <<$pc_descFull['skin']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['skin']}`);
+  scene.text(`${((s as any).pc_descFull ?? 0)?.['skin'] ?? ''}`);
   if (((s as any).pcs_skin ?? 0) < 900) {
     // TODO-QSP: dynamic text: <a href="exec:pcs_skin += 200 & gs 'AppearanceSystem', 'UpdateBaseAppearance' & ...
     scene.text('<a href="exec:pcs_skin += 200 & gs \'AppearanceSystem\', \'UpdateBaseAppearance\' & gt \'cheatmenu_din\', \'looks\'">Improve skin</a>');
@@ -1059,7 +1059,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:pcs_tan = 0 & gt \'cheatmenu_din\', \'looks\'">Remove tan</a>');
   }
   // TODO-QSP: dynamic text: <<$pc_descFull['throat']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['throat']}`);
+  scene.text(`${((s as any).pc_descFull ?? 0)?.['throat'] ?? ''}`);
   if (((s as any).pcs_throat ?? 0) <= 31) {
     // TODO-QSP: dynamic text: <a href="exec:pcs_throat += 5 & gt 'cheatmenu_din', 'looks'">Increase throat cap...
     scene.text('<a href="exec:pcs_throat += 5 & gt \'cheatmenu_din\', \'looks\'">Increase throat capacity</a>');
@@ -1071,13 +1071,13 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:dounsplkil = 2 & gs \'body\', \'hardreset\'">Hard Reset body shape</a>');
   }
   // TODO-QSP: dynamic text: <<$pcs_vag_txt>>
-  scene.text(`${((s as any).pcs_vag_txt ?? 0)}`);
+  scene.text(`${((s as any).pcs_vag_txt || '')}`);
   if (qspFunc(s, 'pcs_has_attr', 'sex_virgin') === 0) {
     scene.text('<a href="exec:pcs_vag = 20 & killvar\'virgin_stats\' & gt \'cheatmenu_din\', \'looks\'">Reinstate virginity</a>');
   }
   if (((s as any).stat ?? 0)?.['think_virgin'] < 1) {
     // TODO-QSP: dynamic text: <a href="exec:stat['vaginal'] = 0 & stat['vaginal_fist'] = 0 & stat['vaginal_dil...
-    scene.text(`<a href="exec:stat['vaginal'] = 0 & stat['vaginal_fist'] = 0 & stat['vaginal_dildo'] = 0 & stat['vaginal_strap'] = 0 & gt 'cheatmenu_din', 'looks'">Make ${((s as any).pcs_nickname ?? 0)} believe she is a virgin again (resets the related sex stats)</a>`);
+    scene.text(`<a href="exec:stat['vaginal'] = 0 & stat['vaginal_fist'] = 0 & stat['vaginal_dildo'] = 0 & stat['vaginal_strap'] = 0 & gt 'cheatmenu_din', 'looks'">Make ${((s as any).pcs_nickname || '')} believe she is a virgin again (resets the related sex stats)</a>`);
   }
   if (((s as any).pcs_vag ?? 0) <= 25) {
     scene.text('<a href="exec:gs \'cheatmenu_din\', \'vagenlarge\'">Enlarge comfortable vaginal capacity</a>');
@@ -1086,7 +1086,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:gs \'cheatmenu_din\', \'vagreduce\'">Reduce comfortable vaginal capacity</a>');
   }
   // TODO-QSP: dynamic text: Your comfortable vaginal capacity will reduce by <<vshrink>> every <<vshrinkdays...
-  scene.text(`Your comfortable vaginal capacity will reduce by ${((s as any).vshrink ?? 0)} every ${((s as any).vshrinkdays ?? 0)} days.`);
+  scene.text(`Your comfortable vaginal capacity will reduce by ${((s as any).vshrink || '')} every ${((s as any).vshrinkdays || '')} days.`);
   if (((s as any).vshrink ?? 0) < 10) {
     // TODO-QSP: dynamic text: <a href="exec:vshrink += 1 & gt 'cheatmenu_din', 'looks'">Increase amount of red...
     scene.text('<a href="exec:vshrink += 1 & gt \'cheatmenu_din\', \'looks\'">Increase amount of reduction</a>');
@@ -1111,7 +1111,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:vgape[4] -= 5 & gt \'cheatmenu_din\', \'looks\'">Reduce time by 5 minutes</a>');
   }
   // TODO-QSP: dynamic text: <<$pcs_ass_txt>>
-  scene.text(`${((s as any).pcs_ass_txt ?? 0)}`);
+  scene.text(`${((s as any).pcs_ass_txt || '')}`);
   if (((s as any).pcs_ass ?? 0) <= 25) {
     scene.text('<a href="exec:gs \'cheatmenu_din\', \'assenlarge\'">Enlarge comfortable anal capacity</a>');
   }
@@ -1119,7 +1119,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:gs \'cheatmenu_din\', \'assreduce\'">Reduce comfortable anal capacity</a>');
   }
   // TODO-QSP: dynamic text: Your comfortable anal capacity will reduce by <<ashrink>> every <<ashrinkdays>> ...
-  scene.text(`Your comfortable anal capacity will reduce by ${((s as any).ashrink ?? 0)} every ${((s as any).ashrinkdays ?? 0)} days.`);
+  scene.text(`Your comfortable anal capacity will reduce by ${((s as any).ashrink || '')} every ${((s as any).ashrinkdays || '')} days.`);
   if (((s as any).ashrink ?? 0) < 10) {
     // TODO-QSP: dynamic text: <a href="exec:ashrink += 1 & gt 'cheatmenu_din', 'looks'">Increase amount of red...
     scene.text('<a href="exec:ashrink += 1 & gt \'cheatmenu_din\', \'looks\'">Increase amount of reduction</a>');
@@ -1149,7 +1149,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
       scene.text('<a href="exec:fat = 0 & gt \'cheatmenu_din\', \'looks\'">Zero fat</a>');
     }
     // TODO-QSP: dynamic text: Body Fat = (<<pcs_mass['body']>>): 
-    scene.text(`Body Fat = (${((s as any).pcs_mass ?? 0)?.['body']}): `);
+    scene.text(`Body Fat = (${((s as any).pcs_mass ?? 0)?.['body'] ?? ''}): `);
     if (((s as any).pcs_mass ?? 0)?.['body'] > 10) {
       scene.text('<a href="exec: gs \'cheatmenu_din\', \'change_pcs_mass_body\', -10">-10</a> ');
     }
@@ -1164,18 +1164,18 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('<a href="exec:gt \'cheatmenu_din\', \'tatoo\'">Tattoo removal</a>');
   // TODO-QSP: dynamic text: <<$hair>>
-  scene.text(`${((s as any).hair ?? 0)}`);
+  scene.text(`${((s as any).hair || '')}`);
   if ((!((s as any).pcs_haircol ?? 0))) {
     // TODO-QSP: dynamic text: Your hair is now (prev) <<$pcs_haircolor>> <a href="exec:pcs_haircol +=1 & gt 'c...
-    scene.text(`Your hair is now (prev) ${((s as any).pcs_haircolor ?? 0)} <a href="exec:pcs_haircol +=1 & gt 'cheatmenu_din', 'looks' & nathcol = pcs_haircol">(next)</a>`);
+    scene.text(`Your hair is now (prev) ${((s as any).pcs_haircolor || '')} <a href="exec:pcs_haircol +=1 & gt 'cheatmenu_din', 'looks' & nathcol = pcs_haircol">(next)</a>`);
   } else {
     if (((s as any).pcs_haircol ?? 0) > 0  &&  ((s as any).pcs_haircol ?? 0) < 3) {
       // TODO-QSP: dynamic text: Your hair is now <a href="exec:pcs_haircol -=1 & gt 'cheatmenu_din', 'looks'" & ...
-      scene.text(`Your hair is now <a href="exec:pcs_haircol -=1 & gt 'cheatmenu_din', 'looks'" & nathcol = pcs_haircol>(prev)</a> ${((s as any).pcs_haircolor ?? 0)} <a href="exec:pcs_haircol +=1 & gt 'cheatmenu_din', 'looks'" & pcs_haircol = nathcol>(next)</a>`);
+      scene.text(`Your hair is now <a href="exec:pcs_haircol -=1 & gt 'cheatmenu_din', 'looks'" & nathcol = pcs_haircol>(prev)</a> ${((s as any).pcs_haircolor || '')} <a href="exec:pcs_haircol +=1 & gt 'cheatmenu_din', 'looks'" & pcs_haircol = nathcol>(next)</a>`);
     } else {
       if (((s as any).pcs_haircol ?? 0) === 3) {
         // TODO-QSP: dynamic text: Your hair is now <a href="exec:pcs_haircol -=1 & gt 'cheatmenu_din', 'looks'" & ...
-        scene.text(`Your hair is now <a href="exec:pcs_haircol -=1 & gt 'cheatmenu_din', 'looks'" & nathcol = pcs_haircol>(prev)</a> ${((s as any).pcs_haircolor ?? 0)} (next)`);
+        scene.text(`Your hair is now <a href="exec:pcs_haircol -=1 & gt 'cheatmenu_din', 'looks'" & nathcol = pcs_haircol>(prev)</a> ${((s as any).pcs_haircolor || '')} (next)`);
       } else {
         scene.text('To change your natural hair color, you have to <a href="exec:pcs_haircol = nathcol & gt \'cheatmenu_din\', \'looks\'">restore your natural hair color</a> first.');
       }
@@ -1183,26 +1183,26 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_hairlng ?? 0) > 975) {
     // TODO-QSP: dynamic text: Hair length (<<pcs_hairlng>>)  <a href="exec:pcs_hairlng -= 100 & gt 'cheatmenu_...
-    scene.text(`Hair length (${((s as any).pcs_hairlng ?? 0)})  <a href="exec:pcs_hairlng -= 100 & gt 'cheatmenu_din', 'looks'">-100</a> <a href="exec:pcs_hairlng -= 25 & gt 'cheatmenu_din', 'looks'">-25</a> <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a>`);
+    scene.text(`Hair length (${((s as any).pcs_hairlng || '')})  <a href="exec:pcs_hairlng -= 100 & gt 'cheatmenu_din', 'looks'">-100</a> <a href="exec:pcs_hairlng -= 25 & gt 'cheatmenu_din', 'looks'">-25</a> <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a>`);
   } else {
     if (((s as any).pcs_hairlng ?? 0) > 900) {
       // TODO-QSP: dynamic text: Hair length (<<pcs_hairlng>>)  <a href="exec:pcs_hairlng -= 100 & gt 'cheatmenu_...
-      scene.text(`Hair length (${((s as any).pcs_hairlng ?? 0)})  <a href="exec:pcs_hairlng -= 100 & gt 'cheatmenu_din', 'looks'">-100</a> <a href="exec:pcs_hairlng -= 25 & gt 'cheatmenu_din', 'looks'">-25</a> <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a>`);
+      scene.text(`Hair length (${((s as any).pcs_hairlng || '')})  <a href="exec:pcs_hairlng -= 100 & gt 'cheatmenu_din', 'looks'">-100</a> <a href="exec:pcs_hairlng -= 25 & gt 'cheatmenu_din', 'looks'">-25</a> <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a>`);
     } else {
       if (((s as any).pcs_hairlng ?? 0) >= 100) {
         // TODO-QSP: dynamic text: Hair length (<<pcs_hairlng>>)  <a href="exec:pcs_hairlng -= 100 & gt 'cheatmenu_...
-        scene.text(`Hair length (${((s as any).pcs_hairlng ?? 0)})  <a href="exec:pcs_hairlng -= 100 & gt 'cheatmenu_din', 'looks'">-100</a> <a href="exec:pcs_hairlng -= 25 & gt 'cheatmenu_din', 'looks'">-25</a> <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a> <a href="exec:pcs_hairlng += 100 & gt 'cheatmenu_din', 'looks'">+100</a>`);
+        scene.text(`Hair length (${((s as any).pcs_hairlng || '')})  <a href="exec:pcs_hairlng -= 100 & gt 'cheatmenu_din', 'looks'">-100</a> <a href="exec:pcs_hairlng -= 25 & gt 'cheatmenu_din', 'looks'">-25</a> <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a> <a href="exec:pcs_hairlng += 100 & gt 'cheatmenu_din', 'looks'">+100</a>`);
       } else {
         if (((s as any).pcs_hairlng ?? 0) >= 25) {
           // TODO-QSP: dynamic text: Hair length (<<pcs_hairlng>>)  <a href="exec:pcs_hairlng -= 25 & gt 'cheatmenu_d...
-          scene.text(`Hair length (${((s as any).pcs_hairlng ?? 0)})  <a href="exec:pcs_hairlng -= 25 & gt 'cheatmenu_din', 'looks'">-25</a> <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a> <a href="exec:pcs_hairlng += 100 & gt 'cheatmenu_din', 'looks'">+100</a>`);
+          scene.text(`Hair length (${((s as any).pcs_hairlng || '')})  <a href="exec:pcs_hairlng -= 25 & gt 'cheatmenu_din', 'looks'">-25</a> <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a> <a href="exec:pcs_hairlng += 100 & gt 'cheatmenu_din', 'looks'">+100</a>`);
         } else {
           if (((s as any).pcs_hairlng ?? 0) >= 5) {
             // TODO-QSP: dynamic text: Hair length (<<pcs_hairlng>>)  <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_di...
-            scene.text(`Hair length (${((s as any).pcs_hairlng ?? 0)})  <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a> <a href="exec:pcs_hairlng += 100 & gt 'cheatmenu_din', 'looks'">+100</a>`);
+            scene.text(`Hair length (${((s as any).pcs_hairlng || '')})  <a href="exec:pcs_hairlng -= 5 & gt 'cheatmenu_din', 'looks'">-5</a> <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a> <a href="exec:pcs_hairlng += 100 & gt 'cheatmenu_din', 'looks'">+100</a>`);
           } else {
             // TODO-QSP: dynamic text: Hair length (<<pcs_hairlng>>)  <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_di...
-            scene.text(`Hair length (${((s as any).pcs_hairlng ?? 0)})  <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a> <a href="exec:pcs_hairlng += 100 & gt 'cheatmenu_din', 'looks'">+100</a>`);
+            scene.text(`Hair length (${((s as any).pcs_hairlng || '')})  <a href="exec:pcs_hairlng += 5 & gt 'cheatmenu_din', 'looks'">+5</a> <a href="exec:pcs_hairlng += 25 & gt 'cheatmenu_din', 'looks'">+25</a> <a href="exec:pcs_hairlng += 100 & gt 'cheatmenu_din', 'looks'">+100</a>`);
           }
         }
       }
@@ -1215,7 +1215,7 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href="exec:hairgrowcht = 0 & gt \'cheatmenu_din\', \'looks\'">Allow hair growth</a>');
   }
   // TODO-QSP: dynamic text: <<$pc_descFull['eyes']>>
-  scene.text(`${((s as any).pc_descFull ?? 0)?.['eyes']}`);
+  scene.text(`${((s as any).pc_descFull ?? 0)?.['eyes'] ?? ''}`);
   if (((s as any).pcs_naturallashes ?? 0) < 2) {
     // TODO-QSP: dynamic text: <a href="exec:pcs_naturallashes += 1 & gt 'cheatmenu_din', 'looks'">Enlarge lash...
     scene.text('<a href="exec:pcs_naturallashes += 1 & gt \'cheatmenu_din\', \'looks\'">Enlarge lashes</a>');
@@ -1232,15 +1232,15 @@ function enterLooks(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_eyecol ?? 0) <= 0) {
     // TODO-QSP: dynamic text: Your eyes are now (prev) <<$pcs_eyecolor>> <a href="exec:pcs_eyecol +=1 & gt 'ch...
-    scene.text(`Your eyes are now (prev) ${((s as any).pcs_eyecolor ?? 0)} <a href="exec:pcs_eyecol +=1 & gt 'cheatmenu_din', 'looks'">(next)</a>`);
+    scene.text(`Your eyes are now (prev) ${((s as any).pcs_eyecolor || '')} <a href="exec:pcs_eyecol +=1 & gt 'cheatmenu_din', 'looks'">(next)</a>`);
   } else {
     if (((s as any).pcs_eyecol ?? 0) > 0  &&  ((s as any).pcs_eyecol ?? 0) < 3) {
       // TODO-QSP: dynamic text: Your eyes are now <a href="exec:pcs_eyecol -=1 & gt 'cheatmenu_din', 'looks'">(p...
-      scene.text(`Your eyes are now <a href="exec:pcs_eyecol -=1 & gt 'cheatmenu_din', 'looks'">(prev)</a> ${((s as any).pcs_eyecolor ?? 0)} <a href="exec:pcs_eyecol +=1 & gt 'cheatmenu_din', 'looks'">(next)</a>`);
+      scene.text(`Your eyes are now <a href="exec:pcs_eyecol -=1 & gt 'cheatmenu_din', 'looks'">(prev)</a> ${((s as any).pcs_eyecolor || '')} <a href="exec:pcs_eyecol +=1 & gt 'cheatmenu_din', 'looks'">(next)</a>`);
     } else {
       if (((s as any).pcs_eyecol ?? 0) >= 3) {
         // TODO-QSP: dynamic text: Your eyes are now <a href="exec:pcs_eyecol -=1 & gt 'cheatmenu_din', 'looks'">(p...
-        scene.text(`Your eyes are now <a href="exec:pcs_eyecol -=1 & gt 'cheatmenu_din', 'looks'">(prev)</a> ${((s as any).pcs_eyecolor ?? 0)} (next)`);
+        scene.text(`Your eyes are now <a href="exec:pcs_eyecol -=1 & gt 'cheatmenu_din', 'looks'">(prev)</a> ${((s as any).pcs_eyecolor || '')} (next)`);
       }
     }
   }
@@ -1400,19 +1400,19 @@ function enterVneshpara(s: GameState, scene: SceneBuilder): void {
   scene.text('Appearance Parameters');
   scene.text('Base Appearance');
   // TODO-QSP: dynamic text: pcs_skin = <<pcs_skin>> and skin_bonus = <<skinBonus>> (between 0 and 100)
-  scene.text(`pcs_skin = ${((s as any).pcs_skin ?? 0)} and skin_bonus = ${((s as any).skinBonus ?? 0)} (between 0 and 100)`);
+  scene.text(`pcs_skin = ${((s as any).pcs_skin || '')} and skin_bonus = ${((s as any).skinBonus || '')} (between 0 and 100)`);
   // TODO-QSP: dynamic text: bodyShapeBonus = <<bodyShapeBonus>> (between -158 and 70)
-  scene.text(`bodyShapeBonus = ${((s as any).bodyShapeBonus ?? 0)} (between -158 and 70)`);
+  scene.text(`bodyShapeBonus = ${((s as any).bodyShapeBonus || '')} (between -158 and 70)`);
   // TODO-QSP: dynamic text: visableAgePenalty = <<visibleAgePenalty>> (-2.5 for every year below 20)
-  scene.text(`visableAgePenalty = ${((s as any).visibleAgePenalty ?? 0)} (-2.5 for every year below 20)`);
+  scene.text(`visableAgePenalty = ${((s as any).visibleAgePenalty || '')} (-2.5 for every year below 20)`);
   // TODO-QSP: dynamic text: pcs_teeth = <<pcs_teeth>> and teethPenalty = <<teethPenalty>> 10 * (pcs_teeth + ...
-  scene.text(`pcs_teeth = ${((s as any).pcs_teeth ?? 0)} and teethPenalty = ${((s as any).teethPenalty ?? 0)} 10 * (pcs_teeth + pcs_missing_teeth)`);
+  scene.text(`pcs_teeth = ${((s as any).pcs_teeth || '')} and teethPenalty = ${((s as any).teethPenalty || '')} 10 * (pcs_teeth + pcs_missing_teeth)`);
   // TODO-QSP: dynamic text: attributeBonus = <<attributeBonus>> (pcs_agil + pcs_vital) / 5
-  scene.text(`attributeBonus = ${((s as any).attributeBonus ?? 0)} (pcs_agil + pcs_vital) / 5`);
+  scene.text(`attributeBonus = ${((s as any).attributeBonus || '')} (pcs_agil + pcs_vital) / 5`);
   // TODO-QSP: dynamic text: these are adjusted by BMI (<<pcs_bmi[0]>>.<<pcs_bmi[1]>>) if it is outside 19.0 ...
   scene.text(`these are adjusted by BMI (${qspUntranslated(s, "pcs_bmi[0]", { location: "cheatmenu_din" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "cheatmenu_din" })}) if it is outside 19.0 - 24.9`);
   // TODO-QSP: dynamic text: pcs_apprncbase = <<pcs_apprncbase>>
-  scene.text(`pcs_apprncbase = ${((s as any).pcs_apprncbase ?? 0)}`);
+  scene.text(`pcs_apprncbase = ${((s as any).pcs_apprncbase || '')}`);
   scene.text('Bonus');
   // TODO-QSP: dynamic text: groomingBonus = <<func('AppearanceSystem','CalcGroomingBonus')>> (pcs_breath and...
   scene.text(`groomingBonus = ${qspFunc(s, 'AppearanceSystem', 'CalcGroomingBonus')} (pcs_breath and makeup)`);
@@ -1426,35 +1426,35 @@ function enterVneshpara(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: ((PXCloThinness + PXCloTopCut + PXCloBottomShortness)/2)/ 76 * PCloQuality
   scene.text('((PXCloThinness + PXCloTopCut + PXCloBottomShortness)/2)/ 76 * PCloQuality');
   // TODO-QSP: dynamic text: coatQualityBonus = <<coatQualityBonus>>
-  scene.text(`coatQualityBonus = ${((s as any).coatQualityBonus ?? 0)}`);
+  scene.text(`coatQualityBonus = ${((s as any).coatQualityBonus || '')}`);
   // TODO-QSP: dynamic text: shoesQualityBonus = <<PShoQuality>>
-  scene.text(`shoesQualityBonus = ${((s as any).PShoQuality ?? 0)}`);
+  scene.text(`shoesQualityBonus = ${((s as any).PShoQuality || '')}`);
   // TODO-QSP: dynamic text: PXCloThinness = <<PXCloThinness>>
-  scene.text(`PXCloThinness = ${((s as any).PXCloThinness ?? 0)}`);
+  scene.text(`PXCloThinness = ${((s as any).PXCloThinness || '')}`);
   // TODO-QSP: dynamic text: PXCloTopCut = <<PXCloTopCut>>
-  scene.text(`PXCloTopCut = ${((s as any).PXCloTopCut ?? 0)}`);
+  scene.text(`PXCloTopCut = ${((s as any).PXCloTopCut || '')}`);
   // TODO-QSP: dynamic text: PXCloBottomShortness = <<PXCloBottomShortness>>
-  scene.text(`PXCloBottomShortness = ${((s as any).PXCloBottomShortness ?? 0)}`);
+  scene.text(`PXCloBottomShortness = ${((s as any).PXCloBottomShortness || '')}`);
   // TODO-QSP: dynamic text: PCloQuality = <<PCloQuality>>
-  scene.text(`PCloQuality = ${((s as any).PCloQuality ?? 0)}`);
+  scene.text(`PCloQuality = ${((s as any).PCloQuality || '')}`);
   // TODO-QSP: dynamic text: lipBalmPenalty = <<lipBalmPenalty>>
-  scene.text(`lipBalmPenalty = ${((s as any).lipBalmPenalty ?? 0)}`);
+  scene.text(`lipBalmPenalty = ${((s as any).lipBalmPenalty || '')}`);
   // TODO-QSP: dynamic text: hairPenalty = <<hairPenalty>>
-  scene.text(`hairPenalty = ${((s as any).hairPenalty ?? 0)}`);
+  scene.text(`hairPenalty = ${((s as any).hairPenalty || '')}`);
   // TODO-QSP: dynamic text: deodorantPenalty = <<deodorantPenalty>>
-  scene.text(`deodorantPenalty = ${((s as any).deodorantPenalty ?? 0)}`);
+  scene.text(`deodorantPenalty = ${((s as any).deodorantPenalty || '')}`);
   // TODO-QSP: dynamic text: sweatPenalty = <<sweatPenalty>>
-  scene.text(`sweatPenalty = ${((s as any).sweatPenalty ?? 0)}`);
+  scene.text(`sweatPenalty = ${((s as any).sweatPenalty || '')}`);
   // TODO-QSP: dynamic text: glassesPenalty = <<glassesPenalty>>
-  scene.text(`glassesPenalty = ${((s as any).glassesPenalty ?? 0)}`);
+  scene.text(`glassesPenalty = ${((s as any).glassesPenalty || '')}`);
   // TODO-QSP: dynamic text: hairDyePenalty = <<hairDyePenalty>>
-  scene.text(`hairDyePenalty = ${((s as any).hairDyePenalty ?? 0)}`);
+  scene.text(`hairDyePenalty = ${((s as any).hairDyePenalty || '')}`);
   // TODO-QSP: dynamic text: legPenalty = <<legPenalty>>
-  scene.text(`legPenalty = ${((s as any).legPenalty ?? 0)}`);
+  scene.text(`legPenalty = ${((s as any).legPenalty || '')}`);
   // TODO-QSP: dynamic text: pcs_eyesize = <<pcs_eyesize>>
-  scene.text(`pcs_eyesize = ${((s as any).pcs_eyesize ?? 0)}`);
+  scene.text(`pcs_eyesize = ${((s as any).pcs_eyesize || '')}`);
   // TODO-QSP: dynamic text: pcs_lip = <<pcs_lip>>
-  scene.text(`pcs_lip = ${((s as any).pcs_lip ?? 0)}`);
+  scene.text(`pcs_lip = ${((s as any).pcs_lip || '')}`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to appearance menu', goto: ['cheatmenu_din', 'looks'] },
@@ -1466,70 +1466,70 @@ function enterParameters(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h1>Cheat Menu - Appearance Stats</h1></center>');
   scene.text('Body Shape Parameters');
   // TODO-QSP: dynamic text: <<pcs_bust>> - <<pcs_waist>> - <<pcs_hips>>, <<$titsize>> breasts, the differenc...
-  scene.text(`${((s as any).pcs_bust ?? 0)} - ${((s as any).pcs_waist ?? 0)} - ${((s as any).pcs_hips ?? 0)}, ${((s as any).titsize ?? 0)} breasts, the difference between the hips and waist ${((s as any).pcs_hips ?? 0)-((s as any).pcs_waist ?? 0)} cm`);
+  scene.text(`${((s as any).pcs_bust || '')} - ${((s as any).pcs_waist || '')} - ${((s as any).pcs_hips || '')}, ${((s as any).titsize || '')} breasts, the difference between the hips and waist ${((s as any).pcs_hips ?? '')-((s as any).pcs_waist ?? '')} cm`);
   // TODO-QSP: dynamic text: Muscularity: strenbuf = <<strenbuf>>, pcs_mass['body'] =  <<pcs_mass['body']>>, ...
-  scene.text(`Muscularity: strenbuf = ${((s as any).strenbuf ?? 0)}, pcs_mass['body'] =  ${((s as any).pcs_mass ?? 0)?.['body']}, fat = ${((s as any).fat ?? 0)}`);
+  scene.text(`Muscularity: strenbuf = ${((s as any).strenbuf || '')}, pcs_mass['body'] =  ${((s as any).pcs_mass ?? 0)?.['body'] ?? ''}, fat = ${((s as any).fat || '')}`);
   scene.text('Variable List:');
   // TODO-QSP: dynamic text: agilbuf = <<agilbuf>>
-  scene.text(`agilbuf = ${((s as any).agilbuf ?? 0)}`);
+  scene.text(`agilbuf = ${((s as any).agilbuf || '')}`);
   // TODO-QSP: dynamic text: strenbuf = <<strenbuf>>
-  scene.text(`strenbuf = ${((s as any).strenbuf ?? 0)}`);
+  scene.text(`strenbuf = ${((s as any).strenbuf || '')}`);
   // TODO-QSP: dynamic text: vitalbuf = <<vitalbuf>>
-  scene.text(`vitalbuf = ${((s as any).vitalbuf ?? 0)}`);
+  scene.text(`vitalbuf = ${((s as any).vitalbuf || '')}`);
   // TODO-QSP: dynamic text: BMI (pcs_bmi) = <<pcs_bmi[0]>>.<<pcs_bmi[1]>>
   scene.text(`BMI (pcs_bmi) = ${qspUntranslated(s, "pcs_bmi[0]", { location: "cheatmenu_din" })}.${qspUntranslated(s, "pcs_bmi[1]", { location: "cheatmenu_din" })}`);
   // TODO-QSP: dynamic text: weight (pcs_weight) = <<pcs_weight[0]>>.<<pcs_weight[1]>> kg
   scene.text(`weight (pcs_weight) = ${qspUntranslated(s, "pcs_weight[0]", { location: "cheatmenu_din" })}.${qspUntranslated(s, "pcs_weight[1]", { location: "cheatmenu_din" })} kg`);
   // TODO-QSP: dynamic text: bust (pcs_bust) = <<pcs_bust>>
-  scene.text(`bust (pcs_bust) = ${((s as any).pcs_bust ?? 0)}`);
+  scene.text(`bust (pcs_bust) = ${((s as any).pcs_bust || '')}`);
   // TODO-QSP: dynamic text: band (pcs_band) = <<pcs_band>>
-  scene.text(`band (pcs_band) = ${((s as any).pcs_band ?? 0)}`);
+  scene.text(`band (pcs_band) = ${((s as any).pcs_band || '')}`);
   // TODO-QSP: dynamic text: waist (pcs_waist) = <<pcs_waist>>
-  scene.text(`waist (pcs_waist) = ${((s as any).pcs_waist ?? 0)}`);
+  scene.text(`waist (pcs_waist) = ${((s as any).pcs_waist || '')}`);
   // TODO-QSP: dynamic text: hips (pcs_hips) = <<pcs_hips>>
-  scene.text(`hips (pcs_hips) = ${((s as any).pcs_hips ?? 0)}`);
+  scene.text(`hips (pcs_hips) = ${((s as any).pcs_hips || '')}`);
   // TODO-QSP: dynamic text: bust - band (pcs_cupsize) = <<pcs_cupsize>>
-  scene.text(`bust - band (pcs_cupsize) = ${((s as any).pcs_cupsize ?? 0)}`);
+  scene.text(`bust - band (pcs_cupsize) = ${((s as any).pcs_cupsize || '')}`);
   // TODO-QSP: dynamic text: pcs_mass['bust'] = <<pcs_mass['bust']>>
-  scene.text(`pcs_mass['bust'] = ${((s as any).pcs_mass ?? 0)?.['bust']}`);
+  scene.text(`pcs_mass['bust'] = ${((s as any).pcs_mass ?? 0)?.['bust'] ?? ''}`);
   // TODO-QSP: dynamic text: pcs_mass['bust_gen'] = <<pcs_mass['bust_gen']>>
-  scene.text(`pcs_mass['bust_gen'] = ${((s as any).pcs_mass ?? 0)?.['bust_gen']}`);
+  scene.text(`pcs_mass['bust_gen'] = ${((s as any).pcs_mass ?? 0)?.['bust_gen'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['bust_magic'] = <<bodyVars['bust_magic']>>
-  scene.text(`bodyVars['bust_magic'] = ${((s as any).bodyVars ?? 0)?.['bust_magic']}`);
+  scene.text(`bodyVars['bust_magic'] = ${((s as any).bodyVars ?? 0)?.['bust_magic'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['bust_silicone'] = <<bodyVars['bust_silicone']>>
-  scene.text(`bodyVars['bust_silicone'] = ${((s as any).bodyVars ?? 0)?.['bust_silicone']}`);
+  scene.text(`bodyVars['bust_silicone'] = ${((s as any).bodyVars ?? 0)?.['bust_silicone'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['bust_other'] = <<bodyVars['bust_other']>>
-  scene.text(`bodyVars['bust_other'] = ${((s as any).bodyVars ?? 0)?.['bust_other']}`);
+  scene.text(`bodyVars['bust_other'] = ${((s as any).bodyVars ?? 0)?.['bust_other'] ?? ''}`);
   // TODO-QSP: dynamic text: pcs_mass['butt'] = <<pcs_mass['butt']>>
-  scene.text(`pcs_mass['butt'] = ${((s as any).pcs_mass ?? 0)?.['butt']}`);
+  scene.text(`pcs_mass['butt'] = ${((s as any).pcs_mass ?? 0)?.['butt'] ?? ''}`);
   // TODO-QSP: dynamic text: pcs_mass['butt_gen'] = <<pcs_mass['butt_gen']>>
-  scene.text(`pcs_mass['butt_gen'] = ${((s as any).pcs_mass ?? 0)?.['butt_gen']}`);
+  scene.text(`pcs_mass['butt_gen'] = ${((s as any).pcs_mass ?? 0)?.['butt_gen'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['butt_silicone'] = <<bodyVars['butt_silicone']>>
-  scene.text(`bodyVars['butt_silicone'] = ${((s as any).bodyVars ?? 0)?.['butt_silicone']}`);
+  scene.text(`bodyVars['butt_silicone'] = ${((s as any).bodyVars ?? 0)?.['butt_silicone'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['butt_other'] = <<bodyVars['butt_other']>>
-  scene.text(`bodyVars['butt_other'] = ${((s as any).bodyVars ?? 0)?.['butt_other']}`);
+  scene.text(`bodyVars['butt_other'] = ${((s as any).bodyVars ?? 0)?.['butt_other'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['vhips'] = <<bodyVars['vhips']>>
-  scene.text(`bodyVars['vhips'] = ${((s as any).bodyVars ?? 0)?.['vhips']}`);
+  scene.text(`bodyVars['vhips'] = ${((s as any).bodyVars ?? 0)?.['vhips'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['wratio'] = <<bodyVars['wratio']>>
-  scene.text(`bodyVars['wratio'] = ${((s as any).bodyVars ?? 0)?.['wratio']}`);
+  scene.text(`bodyVars['wratio'] = ${((s as any).bodyVars ?? 0)?.['wratio'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['bratio'] = <<bodyVars['bratio']>>
-  scene.text(`bodyVars['bratio'] = ${((s as any).bodyVars ?? 0)?.['bratio']}`);
+  scene.text(`bodyVars['bratio'] = ${((s as any).bodyVars ?? 0)?.['bratio'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['hratio'] = <<bodyVars['hratio']>>
-  scene.text(`bodyVars['hratio'] = ${((s as any).bodyVars ?? 0)?.['hratio']}`);
+  scene.text(`bodyVars['hratio'] = ${((s as any).bodyVars ?? 0)?.['hratio'] ?? ''}`);
   // TODO-QSP: dynamic text: bodyVars['vofat'] = <<bodyVars['vofat']>>
-  scene.text(`bodyVars['vofat'] = ${((s as any).bodyVars ?? 0)?.['vofat']}`);
+  scene.text(`bodyVars['vofat'] = ${((s as any).bodyVars ?? 0)?.['vofat'] ?? ''}`);
   // TODO-QSP: dynamic text: magf2bdo = <<magf2bdo>>
-  scene.text(`magf2bdo = ${((s as any).magf2bdo ?? 0)}`);
+  scene.text(`magf2bdo = ${((s as any).magf2bdo || '')}`);
   // TODO-QSP: dynamic text: mgf2bnocnt = <<mgf2bnocnt>>
-  scene.text(`mgf2bnocnt = ${((s as any).mgf2bnocnt ?? 0)}`);
+  scene.text(`mgf2bnocnt = ${((s as any).mgf2bnocnt || '')}`);
   // TODO-QSP: dynamic text: magtarcup = <<magtarcup>>
-  scene.text(`magtarcup = ${((s as any).magtarcup ?? 0)}`);
+  scene.text(`magtarcup = ${((s as any).magtarcup || '')}`);
   // TODO-QSP: dynamic text: normbuffpick = <<normbuffpick>>
-  scene.text(`normbuffpick = ${((s as any).normbuffpick ?? 0)}`);
+  scene.text(`normbuffpick = ${((s as any).normbuffpick || '')}`);
   // TODO-QSP: dynamic text: nrmbfpckct = <<nrmbfpckct>>
-  scene.text(`nrmbfpckct = ${((s as any).nrmbfpckct ?? 0)}`);
+  scene.text(`nrmbfpckct = ${((s as any).nrmbfpckct || '')}`);
   // TODO-QSP: dynamic text: bodyVars['weight_warning'] = <<bodyVars['weight_warning']>>
-  scene.text(`bodyVars['weight_warning'] = ${((s as any).bodyVars ?? 0)?.['weight_warning']}`);
+  scene.text(`bodyVars['weight_warning'] = ${((s as any).bodyVars ?? 0)?.['weight_warning'] ?? ''}`);
   // TODO-QSP: end
   if (!(s as any).cheatmenu) (s as any).cheatmenu = {}; (s as any).cheatmenu['tatoo'] = 'gt \'cheatmenu_din\', \'tatoo\'';
   scene.actions([
@@ -1541,24 +1541,24 @@ function enterParameters(s: GameState, scene: SceneBuilder): void {
 function enterTatoo(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><h1>Cheat Menu - Tattoos</h1></center>');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'ankle', 'ankle');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'arm', 'arm');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'ass', 'ass');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'back', 'back');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'belly', 'belly');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'breast', 'breast');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'chest', 'chest');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'face', 'face');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'leg', 'leg');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'lip', 'lip', 'You do not have a tattoo on your leg');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'neck', 'neck');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'pussy', 'pubic', 'You do not have a pubic tattoo');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'shoulder', 'shoulder');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'side', 'the tattoo on your side', 'You do not have a tattoo on your side');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'tramp', 'tramp stamp', 'You do not have a tramp stamp');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'under', 'under breast', 'You do not have an under breast tattoo');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'wrist', 'wrist');
-  qspCall(s, 'cheatmenu_din', 'cheatTattoo', 'hand', 'hand');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ankle', 'ankle']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'arm', 'arm']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ass', 'ass']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'back', 'back']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'belly', 'belly']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breast', 'breast']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chest', 'chest']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'face', 'face']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'leg', 'leg']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lip', 'lip', 'You do not have a tattoo on your leg']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'neck', 'neck']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pussy', 'pubic', 'You do not have a pubic tattoo']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shoulder', 'shoulder']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'side', 'the tattoo on your side', 'You do not have a tattoo on your side']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tramp', 'tramp stamp', 'You do not have a tramp stamp']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'under', 'under breast', 'You do not have an under breast tattoo']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wrist', 'wrist']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hand', 'hand']; enterCheatTattoo(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((!((s as any).cosmetic_tattoo ?? 0))) {
     scene.text('You do not have the makup tattoo</a>');
   }
@@ -1645,27 +1645,27 @@ function enterSetSkills(s: GameState, scene: SceneBuilder): void {
 function enterPrintStatLinks(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[3] ?? 0))) {
     // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = <<$ARGS[1]>>_lvl')>>) - Total (<<dyneval('res...
-    scene.text(`"${((s as any).locArgs?.[2] ?? 0)} (${0}_lvl')>>) - Total (${0}')>>): "`);
+    scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}_lvl')>>) - Total (${0}')>>): "`);
   } else {
     // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = <<$ARGS[1]>>_lvl')>>): "
-    scene.text(`"${((s as any).locArgs?.[2] ?? 0)} (${0}_lvl')>>): "`);
+    scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}_lvl')>>): "`);
   }
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', 0">Min</a> 
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', 0">Min</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', 0">Min</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 10">-10</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl - 10">-10</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 5">-5</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl - 5">-5</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 1">-1</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl - 1">-1</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 1">+1</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl + 1">+1</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 5">+5</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl + 5">+5</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 10">+10</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl + 10">+10</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', 100">Max</a> 
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', 100">Max</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', 100">Max</a> `);
   // TODO-QSP: end
   if (!(s as any).cheatmenu) (s as any).cheatmenu = {}; (s as any).cheatmenu['printStatLinksInverted'] = 'gs \'cheatmenu_din\', \'printStatLinksInverted\', $ARGS[0], $ARGS[1]';
   scene.build();
@@ -1674,27 +1674,27 @@ function enterPrintStatLinks(s: GameState, scene: SceneBuilder): void {
 function enterPrintStatLinksInverted(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).locArgs?.[3] ?? 0))) {
     // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = 100 - <<$ARGS[1]>>_lvl')>>) - Total (<<dyneva...
-    scene.text(`"${((s as any).locArgs?.[2] ?? 0)} (${0}_lvl')>>) - Total (${0}')>>): "`);
+    scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}_lvl')>>) - Total (${0}')>>): "`);
   } else {
     // TODO-QSP: dynamic text: "<<$ARGS[2]>> (<<dyneval('result = 100 - <<$ARGS[1]>>_lvl')>>): "
-    scene.text(`"${((s as any).locArgs?.[2] ?? 0)} (${0}_lvl')>>): "`);
+    scene.text(`"${((s as any).locArgs?.[2] ?? '')} (${0}_lvl')>>): "`);
   }
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', 100">Min</a> 
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', 100">Min</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', 100">Min</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 10">-10</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl + 10">-10</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 5">-5</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl + 5">-5</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl + ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl + 1">-1</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl + 1">-1</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 1">+1</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl - 1">+1</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 5">+5</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl - 5">+5</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', <<$ARGS[1]>>_lvl - ...
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', ${((s as any).locArgs?.[1] ?? 0)}_lvl - 10">+10</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', ${((s as any).locArgs?.[1] ?? '')}_lvl - 10">+10</a> `);
   // TODO-QSP: dynamic text: <a href="exec:dynamic $cheatmenu['setStat'], '<<$ARGS[1]>>', 0">Max</a> 
-  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? 0)}', 0">Max</a> `);
+  scene.text(`<a href="exec:dynamic $cheatmenu['setStat'], '${((s as any).locArgs?.[1] ?? '')}', 0">Max</a> `);
   // TODO-QSP: end
   if (!(s as any).cheatmenu) (s as any).cheatmenu = {}; (s as any).cheatmenu['stats'] = 'gt \'cheatmenu_din\', \'stats\'';
   scene.build();
@@ -1702,23 +1702,23 @@ function enterPrintStatLinksInverted(s: GameState, scene: SceneBuilder): void {
 
 function enterStats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Skill');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Skill']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Attributes and Skills</h1></center>');
   scene.text('<center><b>WARNING!</b></center>');
   scene.text('Levels are shown before modifiers (e.g. Archetype modifiers).');
   // TODO-QSP: $cheatmenu['table_start']
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'stren', 'Strength', 1);
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'agil', 'Agility', 1);
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'vital', 'Endurance', 1);
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'intel', 'Intelligence', 1);
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'react', 'Reaction', 1);
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'sprt', 'Spirit', 1);
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'chrsm', 'Charisma', 1);
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'prcptn', 'Perception', 1);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stren', 'Strength', 1]; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'agil', 'Agility', 1]; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vital', 'Endurance', 1]; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'intel', 'Intelligence', 1]; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'react', 'Reaction', 1]; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sprt', 'Spirit', 1]; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chrsm', 'Charisma', 1]; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'prcptn', 'Perception', 1]; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
-    qspCall(s, 'cheatmenu_din', 'printStatLinks', 'magik', 'Magic', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'magik', 'Magic', 1]; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'cheatmenu_din', 'printStatLinksInverted', 'inhib', 'Inhibition', 1);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'inhib', 'Inhibition', 1]; enterPrintStatLinksInverted(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).willpowermax ?? 0) > 150) {
     (s as any).willpowermax = 150;
   }
@@ -1727,72 +1727,72 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
     // TODO-QSP: dynamic text: l '<a href="exec:teacher[''level''] += 10 & gt ''cheatmenu_din'', ''stats''">Rep...
-    scene.text(`l '<a href="exec:teacher['level'] += 10 & gt 'cheatmenu_din', 'stats'">Reputation teacher+10: ${((s as any).teacher ?? 0)?.['level']}</a>'`);
+    scene.text(`l '<a href="exec:teacher['level'] += 10 & gt 'cheatmenu_din', 'stats'">Reputation teacher+10: ${((s as any).teacher ?? 0)?.['level'] ?? ''}</a>'`);
   }
   if (((s as any).job_status ?? 0)?.['pav_voc_school_teacher'] === 'employed') {
     // TODO-QSP: dynamic text: l '<a href="exec:teacher[''level''] -= 10 & gt ''cheatmenu_din'', ''stats''">Rep...
-    scene.text(`l '<a href="exec:teacher['level'] -= 10 & gt 'cheatmenu_din', 'stats'">Reputation teacher-10: ${((s as any).teacher ?? 0)?.['level']}</a>'`);
+    scene.text(`l '<a href="exec:teacher['level'] -= 10 & gt 'cheatmenu_din', 'stats'">Reputation teacher-10: ${((s as any).teacher ?? 0)?.['level'] ?? ''}</a>'`);
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'math', 'Math');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'rus', 'Russian');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'lit', 'Literature');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'art', 'Art');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'bio', 'Biology');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'eng', 'English');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'geo', 'Geography');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'sci', 'Science');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'his', 'History');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'shop', 'Shop');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'comp', 'Computer');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'mus', 'Music');
-    qspCall(s, 'cheatmenu_din', 'cheatGradeRow', 'pe', 'P.E.');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'math', 'Math']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'rus', 'Russian']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lit', 'Literature']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'art', 'Art']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bio', 'Biology']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'eng', 'English']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'geo', 'Geography']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sci', 'Science']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'his', 'History']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shop', 'Shop']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'comp', 'Computer']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mus', 'Music']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pe', 'P.E.']; enterCheatGradeRow(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).gschoolVars ?? 0)?.['absence_count'] >= 0) {
       // TODO-QSP: dynamic text: l '<a href="exec: gschoolVars[''absence_count''] = 0 & gt ''cheatmenu_din'', ''s...
-      scene.text(`l '<a href="exec: gschoolVars['absence_count'] = 0 & gt 'cheatmenu_din', 'stats'">Zero Absenteeism (School): ${((s as any).gschoolVars ?? 0)?.['absence_count']}</a>'`);
+      scene.text(`l '<a href="exec: gschoolVars['absence_count'] = 0 & gt 'cheatmenu_din', 'stats'">Zero Absenteeism (School): ${((s as any).gschoolVars ?? 0)?.['absence_count'] ?? ''}</a>'`);
     }
   }
   if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic') {
-    qspCall(s, 'cheatmenu_din', 'printStatLinks', 'splcstng', 'Spellcasting');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'splcstng', 'Spellcasting']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'humint', 'People Skills');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'persuas', 'Persuasion');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'observ', 'Observation');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'jab', 'Jabs');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'punch', 'Power Strikes');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'kick', 'Kicks');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'def', 'Defence');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'shoot', 'Marksmanship');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'bushcraft', 'Bushcraft');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'run', 'Running');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'vball', 'Volleyball');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'ftbll', 'Football');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'bkbll', 'Basketball');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'wrstlng', 'Wrestling');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'icesktng', 'Ice Skating');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'gaming', 'Gaming');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'chess', 'Chess');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'pool', 'Pool');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'makupskl', 'Makeup');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'danc', 'Modern Dancing');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'dancero', 'Erotic Dancing');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'dancpol', 'Pole Dancing');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'cheer', 'Cheerleading');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'heels', 'Heels');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'vokal', 'Singing');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'instrmusic', 'Instrumental Music');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'photoskl', 'Photography');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'artskls', 'Artistic Skills');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'perform', 'Performance');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'musicprod', 'Music Production');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'compskl', 'Computer Skill');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'comphckng', 'Hacking');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'hndiwrk', 'Handy-work');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'sewng', 'Tailoring');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'servng', 'Serving');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'medcn', 'Medicine');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'cleaning', 'Cleaning');
-  qspCall(s, 'cheatmenu_din', 'printStatLinks', 'mdlng', 'Modeling');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'humint', 'People Skills']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'persuas', 'Persuasion']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'observ', 'Observation']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'jab', 'Jabs']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'punch', 'Power Strikes']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'kick', 'Kicks']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'def', 'Defence']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shoot', 'Marksmanship']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bushcraft', 'Bushcraft']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'run', 'Running']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vball', 'Volleyball']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ftbll', 'Football']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bkbll', 'Basketball']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'wrstlng', 'Wrestling']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'icesktng', 'Ice Skating']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'gaming', 'Gaming']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chess', 'Chess']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pool', 'Pool']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'makupskl', 'Makeup']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'danc', 'Modern Dancing']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dancero', 'Erotic Dancing']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dancpol', 'Pole Dancing']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cheer', 'Cheerleading']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heels', 'Heels']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vokal', 'Singing']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'instrmusic', 'Instrumental Music']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'photoskl', 'Photography']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'artskls', 'Artistic Skills']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'perform', 'Performance']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'musicprod', 'Music Production']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'compskl', 'Computer Skill']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'comphckng', 'Hacking']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hndiwrk', 'Handy-work']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sewng', 'Tailoring']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'servng', 'Serving']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'medcn', 'Medicine']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cleaning', 'Cleaning']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mdlng', 'Modeling']; enterPrintStatLinks(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: $cheatmenu['table_end']
   // TODO-QSP: end
   scene.build();
@@ -1800,7 +1800,7 @@ function enterStats(s: GameState, scene: SceneBuilder): void {
 
 function enterStory(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Story');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Story']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Story cheats</h1></center>');
   // TODO-QSP: $cheatmenu['table_start']
   // TODO-QSP: 'Prevent non-drama GAMEOVER: ' +        iif(cheatVars['gameover'],        '<a href="exec:  cheatVars...
@@ -1824,7 +1824,7 @@ function enterStory(s: GameState, scene: SceneBuilder): void {
 
 function enterNpcs(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'NPCs');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'NPCs']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - NPCs</h1></center>');
   // TODO-QSP: $cheatmenu['table_start']
   scene.text('<center><h3>Relationships and Renown</h3></center>');
@@ -1837,20 +1837,20 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).Enable_reputation_family ?? 0) === 1) {
     scene.text('<a href="exec:Enable_reputation_family = 0 & gt \'cheatmenu_din\', \'npcs\'">Hide details</a>');
-    qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A28', '', 'Stepfather');
-    qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A29', '', 'Mother');
-    qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A33', '', 'Sister');
-    qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A34', '', 'Brother');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A28', '', 'Stepfather']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A29', '', 'Mother']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A33', '', 'Sister']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A34', '', 'Brother']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: 'Your dog: '+iif($status['dog'] = 'active', '<b>Active</b>', '<a href="exec: $status[''dog''] = ''ac...
   if (((s as any).status ?? 0)?.['dog'] !== 'blocked') {
     // TODO-QSP: 'Set the relationship and love of your dog to always be at maximum: '+iif(cheat['dog_rel'] = 0, '<a ...
     // TODO-QSP: dynamic text: You need to feed your dog <<rex['count_feed_base']>> per day: '+iif(rex['count_f...
-    scene.text(`You need to feed your dog ${((s as any).rex ?? 0)?.['count_feed_base']} per day: '+iif(rex['count_feed_base'] > 1, '<a href="exec: rex['count_feed_base'] -= 1 & gt 'cheatmenu_din', 'npcs'">-1</a>', '-1')+'|<a href="exec: rex['count_feed_base'] += 1 & gt 'cheatmenu_din', 'npcs'">+1</a>`);
+    scene.text(`You need to feed your dog ${((s as any).rex ?? 0)?.['count_feed_base'] ?? ''} per day: '+iif(rex['count_feed_base'] > 1, '<a href="exec: rex['count_feed_base'] -= 1 & gt 'cheatmenu_din', 'npcs'">-1</a>', '-1')+'|<a href="exec: rex['count_feed_base'] += 1 & gt 'cheatmenu_din', 'npcs'">+1</a>`);
     // TODO-QSP: dynamic text: You need to walk your dog <<rex['count_walk_base']>> per day: '+iif(rex['count_w...
-    scene.text(`You need to walk your dog ${((s as any).rex ?? 0)?.['count_walk_base']} per day: '+iif(rex['count_walk_base'] > 1, '<a href="exec: rex['count_walk_base'] -= 1 & gt 'cheatmenu_din', 'npcs'">-1</a>', '-1')+'|<a href="exec: rex['count_walk_base'] += 1 & gt 'cheatmenu_din', 'npcs'">+1</a>`);
+    scene.text(`You need to walk your dog ${((s as any).rex ?? 0)?.['count_walk_base'] ?? ''} per day: '+iif(rex['count_walk_base'] > 1, '<a href="exec: rex['count_walk_base'] -= 1 & gt 'cheatmenu_din', 'npcs'">-1</a>', '-1')+'|<a href="exec: rex['count_walk_base'] += 1 & gt 'cheatmenu_din', 'npcs'">+1</a>`);
     // TODO-QSP: dynamic text: You need to bath your dog <<rex['count_bath_base']>> per week: '+iif(rex['count_...
-    scene.text(`You need to bath your dog ${((s as any).rex ?? 0)?.['count_bath_base']} per week: '+iif(rex['count_bath_base'] > 1, '<a href="exec: rex['count_bath_base'] -= 1 & gt 'cheatmenu_din', 'npcs'">-1</a>', '-1')+'|<a href="exec: rex['count_bath_base'] += 1 & gt 'cheatmenu_din', 'npcs'">+1</a>`);
+    scene.text(`You need to bath your dog ${((s as any).rex ?? 0)?.['count_bath_base'] ?? ''} per week: '+iif(rex['count_bath_base'] > 1, '<a href="exec: rex['count_bath_base'] -= 1 & gt 'cheatmenu_din', 'npcs'">-1</a>', '-1')+'|<a href="exec: rex['count_bath_base'] += 1 & gt 'cheatmenu_din', 'npcs'">+1</a>`);
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     scene.text('<center><b><b>School</b></b></center>');
@@ -1860,20 +1860,20 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).Enable_reputation_popular ?? 0) === 1) {
       scene.text('<a href="exec:Enable_reputation_popular = 0 & gt \'cheatmenu_din\', \'npcs\'">Hide details</a>');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A1');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A4');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A14');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A15');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A17');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A22');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A146');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A147');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A148');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A1']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A4']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A14']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A15']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A17']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A22']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A146']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A147']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A148']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).soniaQW ?? 0)?.['slut'] === 0) {
-        qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A25');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A25']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A139');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A140');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A139']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A140']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<i>Athletes</i>');
     if ((!((s as any).Enable_reputation_athletes ?? 0))) {
@@ -1881,19 +1881,19 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).Enable_reputation_athletes ?? 0) === 1) {
       scene.text('<a href="exec:Enable_reputation_athletes = 0 & gt \'cheatmenu_din\', \'npcs\'">Hide details</a>');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A3');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A3']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
       if ((!((s as any).fedormasha ?? 0))) {
-        qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A5');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A8');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A13');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A18');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A19');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A23');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A149');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A150');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A141');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A165');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A8']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A13']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A18']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A19']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A23']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A149']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A150']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A141']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A165']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<i>Nerds</i>');
     if ((!((s as any).Enable_reputation_nerds ?? 0))) {
@@ -1901,15 +1901,15 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).Enable_reputation_nerds ?? 0) === 1) {
       scene.text('<a href="exec:Enable_reputation_nerds = 0 & gt \'cheatmenu_din\', \'npcs\'">Hide details</a>');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A2');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A6');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A12');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A16');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A151');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A152');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A153');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A142');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A240');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A2']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A6']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A12']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A16']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A151']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A152']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A153']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A142']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A240']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<i>Gopniks</i>');
     if ((!((s as any).Enable_reputation_gopniks ?? 0))) {
@@ -1917,21 +1917,21 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).Enable_reputation_gopniks ?? 0) === 1) {
       scene.text('<a href="exec:Enable_reputation_gopniks = 0 & gt \'cheatmenu_din\', \'npcs\'">Hide details</a>');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A9');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A10');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A11');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A20');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A21');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A24');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A154');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A155');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A156');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A157');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A158');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A143');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A144');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A145');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A189');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A9']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A10']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A11']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A20']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A21']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A24']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A154']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A155']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A156']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A157']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A158']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A143']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A144']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A145']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A189']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<i>Outcasts/Loners</i>');
     if ((!((s as any).Enable_reputation_outcasts ?? 0))) {
@@ -1939,14 +1939,14 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).Enable_reputation_outcasts ?? 0) === 1) {
       scene.text('<a href="exec:Enable_reputation_outcasts = 0 & gt \'cheatmenu_din\', \'npcs\'">Hide details</a>');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A7');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A7']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (((s as any).soniaQW ?? 0)?.['slut'] > 0) {
-        qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A25');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A25']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).fedormasha ?? 0) === 1) {
-        qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A5');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A159');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A159']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<i>Teachers/Coaches</i>');
     if ((!((s as any).Enable_reputation_teachers ?? 0))) {
@@ -1954,19 +1954,19 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).Enable_reputation_teachers ?? 0) === 1) {
       scene.text('<a href="exec:Enable_reputation_teachers = 0 & gt \'cheatmenu_din\', \'npcs\'">Hide details</a>');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A26');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A69', '', 'Mikhail Nikolayevich');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A128');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A129');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A130');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A131');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A132');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A133');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A134');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A135');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A136');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A137');
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A138');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A26']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A69', '', 'Mikhail Nikolayevich']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A128']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A129']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A130']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A131']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A132']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A133']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A134']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A135']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A136']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A137']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A138']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: $cheatmenu['table_second']
@@ -1978,49 +1978,49 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).Enable_reputation_others ?? 0) === 1) {
     scene.text('<a href="exec:Enable_reputation_others = 0 & gt \'cheatmenu_din\', \'npcs\'">Hide details</a>');
     if (((s as any).npc_rel ?? 0)?.['A112'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A112', '', 'Sergei Shulgin');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A112', '', 'Sergei Shulgin']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_rel ?? 0)?.['A219'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A219', '', 'Kat');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A219', '', 'Kat']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_rel ?? 0)?.['A220'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A220', '', 'Vika');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A220', '', 'Vika']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_rel ?? 0)?.['A93'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A93', '', 'Irina');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A93', '', 'Irina']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_rel ?? 0)?.['A43'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A43', '', 'Tamara');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A43', '', 'Tamara']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).alla ?? 0) >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatVarRow', 'alla', 'Alla', 'npcs');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'alla', 'Alla', 'npcs']; enterCheatVarRow(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).masha ?? 0) >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatVarRow', 'masha', 'Masha', 'npcs');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'masha', 'Masha', 'npcs']; enterCheatVarRow(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_rel ?? 0)?.['A41'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A41', '', 'Givi');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A41', '', 'Givi']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_rel ?? 0)?.['A42'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A42', '', 'Ashot');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A42', '', 'Ashot']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_rel ?? 0)?.['A89'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A89', '', 'Eugene');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A89', '', 'Eugene']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_rel ?? 0)?.['A217'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A217', '', 'Pavlin');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A217', '', 'Pavlin']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).hunterVars ?? 0)?.['AndreiQw'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatVarRow', 'hunterVars[\'AndreiQw\']', 'Hunter Andrei', 'npcs');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hunterVars[\'AndreiQw\']', 'Hunter Andrei', 'npcs']; enterCheatVarRow(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatVarRow', 'hunterVars[\'SergeiQw\']', 'Hunter Sergei', 'npcs');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hunterVars[\'SergeiQw\']', 'Hunter Sergei', 'npcs']; enterCheatVarRow(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).hunterVars ?? 0)?.['IgorQW'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatVarRow', 'hunterVars[\'IgorQW\']', 'Hunter Igor', 'npcs');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hunterVars[\'IgorQW\']', 'Hunter Igor', 'npcs']; enterCheatVarRow(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_rel ?? 0)?.['A216'] >= 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatNpcRel', 'A216', '', 'Martin');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A216', '', 'Martin']; enterCheatNpcRel(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   scene.text('<center><b><b>Nicholas\' Family</b></b></center>');
@@ -2032,7 +2032,7 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
   if (((s as any).fame ?? 0)?.['pav_slut'] >= 50) {
     qspCall(s, 'fame', '');
     // TODO-QSP: dynamic text: In Pavlovsk you are known as a ' + $func('wrap', 'neg', '<<$gnikname>>') + ' <a ...
-    scene.text(`In Pavlovsk you are known as a ' + $func('wrap', 'neg', '${((s as any).gnikname ?? 0)}') + ' <a href="exec:fame['pav_sex'] = 0 & fame['pav_prostitute'] = 0 & gs 'fame', 'calculateSlut' & gt 'cheatmenu_din', 'npcs'">Clear</a>`);
+    scene.text(`In Pavlovsk you are known as a ${((s as any).gnikname || '')} <a href="exec:fame['pav_sex'] = 0 & fame['pav_prostitute'] = 0 & gs 'fame', 'calculateSlut' & gt 'cheatmenu_din', 'npcs'">Clear</a>`);
   }
   if (((s as any).opusk ?? 0) > 0  ||  ((s as any).gnewQW ?? 0) > 0  ||  ((s as any).sipovka ?? 0) > 0) {
     scene.text('<a href="exec:opusk = 0 & gnewQW = 0 & sipovka = 0 & gt \'cheatmenu_din\', \'npcs\'">Clear reputation with Gopniks</a>');
@@ -2101,7 +2101,7 @@ function enterNpcs(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'NPCs');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'NPCs']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Cheat Menu - Relationships - Lovers</h2></center>');
   // TODO-QSP: $cheatmenu['table_start']
   scene.text('<a href="exec:gt \'cheatmenu_din\', \'NPCs\'">Go Back</a>');
@@ -2124,46 +2124,46 @@ function enterLoverMenu(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'boyfriend'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'girlfriend') {
       // TODO-QSP: dynamic text: You are dating <<$npc_usedname[$cmd_temp_npcid]>>.
-      scene.text(`You are dating ${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)]}.`);
+      scene.text(`You are dating ${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''}.`);
     } else {
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'husband'  ||  ((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'wife') {
         // TODO-QSP: dynamic text: You are married to <<$npc_usedname[$cmd_temp_npcid]>>.
-        scene.text(`You are married to ${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)]}.`);
+        scene.text(`You are married to ${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''}.`);
       } else {
         if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'fuckbuddy') {
           // TODO-QSP: dynamic text: You are fuckbuddies with <<$npc_usedname[$cmd_temp_npcid]>>.
-          scene.text(`You are fuckbuddies with ${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)]}.`);
+          scene.text(`You are fuckbuddies with ${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''}.`);
         } else {
           if (((s as any).npc_rel_type ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 'sugar_daddy') {
             // TODO-QSP: dynamic text: <<$npc_usedname[$cmd_temp_npcid]>> is your sugar daddy.
-            scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)]} is your sugar daddy.`);
+            scene.text(`${((s as any).npc_usedname ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''} is your sugar daddy.`);
           }
         }
       }
     }
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 1) {
       // TODO-QSP: dynamic text: Change lover's personality: <a href="exec: npc_gentle['<<$cmd_temp_npcid>>'] = 0...
-      scene.text(`Change lover's personality: <a href="exec: npc_gentle['${((s as any).cmd_temp_npcid ?? 0)}'] = 0 & gt 'cheatmenu_din', 'lover_menu'">Gentle</a>`);
+      scene.text(`Change lover's personality: <a href="exec: npc_gentle['${((s as any).cmd_temp_npcid || '')}'] = 0 & gt 'cheatmenu_din', 'lover_menu'">Gentle</a>`);
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 0) {
         // TODO-QSP: dynamic text: Change lover's personality: <a href="exec: npc_rough['<<$cmd_temp_npcid>>'] = 1 ...
-        scene.text(`Change lover's personality: <a href="exec: npc_rough['${((s as any).cmd_temp_npcid ?? 0)}'] = 1 & gt 'cheatmenu_din', 'lover_menu'">Normal</a>`);
+        scene.text(`Change lover's personality: <a href="exec: npc_rough['${((s as any).cmd_temp_npcid || '')}'] = 1 & gt 'cheatmenu_din', 'lover_menu'">Normal</a>`);
       } else {
         // TODO-QSP: dynamic text: Change lover's personality: <a href="exec: npc_rough['<<$cmd_temp_npcid>>'] = 0 ...
-        scene.text(`Change lover's personality: <a href="exec: npc_rough['${((s as any).cmd_temp_npcid ?? 0)}'] = 0 & npc_gentle['${((s as any).cmd_temp_npcid ?? 0)}'] = 1 & gt 'cheatmenu_din', 'lover_menu'">Rough</a>`);
+        scene.text(`Change lover's personality: <a href="exec: npc_rough['${((s as any).cmd_temp_npcid || '')}'] = 0 & npc_gentle['${((s as any).cmd_temp_npcid || '')}'] = 1 & gt 'cheatmenu_din', 'lover_menu'">Rough</a>`);
       }
     }
     if (((s as any).npc_pervert ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] === 0) {
       // TODO-QSP: dynamic text: Change lover's perversion: <a href="exec: npc_pervert['<<$cmd_temp_npcid>>'] = 1...
-      scene.text(`Change lover's perversion: <a href="exec: npc_pervert['${((s as any).cmd_temp_npcid ?? 0)}'] = 1 & gt 'cheatmenu_din', 'lover_menu'">Not perverted</a>`);
+      scene.text(`Change lover's perversion: <a href="exec: npc_pervert['${((s as any).cmd_temp_npcid || '')}'] = 1 & gt 'cheatmenu_din', 'lover_menu'">Not perverted</a>`);
     } else {
       // TODO-QSP: dynamic text: Change lover's perversion: <a href="exec: npc_pervert['<<$cmd_temp_npcid>>'] = 0...
-      scene.text(`Change lover's perversion: <a href="exec: npc_pervert['${((s as any).cmd_temp_npcid ?? 0)}'] = 0 & gt 'cheatmenu_din', 'lover_menu'">Perverted</a>`);
+      scene.text(`Change lover's perversion: <a href="exec: npc_pervert['${((s as any).cmd_temp_npcid || '')}'] = 0 & gt 'cheatmenu_din', 'lover_menu'">Perverted</a>`);
     }
     // TODO-QSP: dynamic text: Relationship: <<npc_rel[$cmd_temp_npcid]>> <a href="exec: gs 'npc_relationship',...
-    scene.text(`Relationship: ${((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)]} <a href="exec: gs 'npc_relationship', 'modify_exact', '${((s as any).cmd_temp_npcid ?? 0)}', 10 & gt 'cheatmenu_din', 'lover_menu'">+10</a> <a href="exec: gs 'npc_relationship', 'modify_exact', '${((s as any).cmd_temp_npcid ?? 0)}', -10 & gt 'cheatmenu_din', 'lover_menu'">-10</a>`);
+    scene.text(`Relationship: ${((s as any).npc_rel ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''} <a href="exec: gs 'npc_relationship', 'modify_exact', '${((s as any).cmd_temp_npcid || '')}', 10 & gt 'cheatmenu_din', 'lover_menu'">+10</a> <a href="exec: gs 'npc_relationship', 'modify_exact', '${((s as any).cmd_temp_npcid || '')}', -10 & gt 'cheatmenu_din', 'lover_menu'">-10</a>`);
     // TODO-QSP: dynamic text: You've been on <<npc_dates[$cmd_temp_npcid]>> dates. <a href="exec: npc_dates['<...
-    scene.text(`You've been on ${((s as any).npc_dates ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)]} dates. <a href="exec: npc_dates['${((s as any).cmd_temp_npcid ?? 0)}'] += 5 & gt 'cheatmenu_din', 'lover_menu'">+5</a> <a href="exec: npc_dates['${((s as any).cmd_temp_npcid ?? 0)}'] -= 5 & gt 'cheatmenu_din', 'lover_menu'">-5</a>`);
+    scene.text(`You've been on ${((s as any).npc_dates ?? 0)?.[String((s as any).cmd_temp_npcid ?? 0)] ?? ''} dates. <a href="exec: npc_dates['${((s as any).cmd_temp_npcid || '')}'] += 5 & gt 'cheatmenu_din', 'lover_menu'">+5</a> <a href="exec: npc_dates['${((s as any).cmd_temp_npcid || '')}'] -= 5 & gt 'cheatmenu_din', 'lover_menu'">-5</a>`);
     (s as any).temp_cmd_i = ((s as any).temp_cmd_i ?? 0) + (1);
     // TODO-QSP: jump 'loverrelationshiploop'
   }
@@ -2195,9 +2195,9 @@ function enterWeek(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><a href="exec:gt \'cheatmenu_din\', \'index\'"><b>Cheat menu</b></a> - <a href="exec:gt \'cheatmenu_din\', \'time\'"><b>Time</b></a></center>');
   // TODO-QSP: dynamic text: Current time: <b><<$weekName>></b>, <b><<day>></b> of <b><<$monthName>></b>, <b>...
-  scene.text(`Current time: <b>${((s as any).weekName ?? 0)}</b>, <b>${((s as any).day ?? 0)}</b> of <b>${((s as any).monthName ?? 0)}</b>, <b>${((s as any).year ?? 0)}</b>, ${((s as any).tempcurtime ?? 0)}`);
+  scene.text(`Current time: <b>${((s as any).weekName || '')}</b>, <b>${((s as any).day || '')}</b> of <b>${((s as any).monthName || '')}</b>, <b>${((s as any).year || '')}</b>, ${((s as any).tempcurtime || '')}`);
   // TODO-QSP: dynamic text: Target time: <b><<$weekName[temp_week]>></b>, <b><<temp_day>></b> of <b><<$month...
-  scene.text(`Target time: <b>${((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)]}</b>, <b>${((s as any).temp_day ?? 0)}</b> of <b>${((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)]}</b>, <b>${((s as any).temp_year ?? 0)}</b>, ${((s as any).temptime ?? 0)}`);
+  scene.text(`Target time: <b>${((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)] ?? ''}</b>, <b>${((s as any).temp_day || '')}</b> of <b>${((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)] ?? ''}</b>, <b>${((s as any).temp_year || '')}</b>, ${((s as any).temptime || '')}`);
   // TODO-QSP: dynamic text: <a href="exec:temp_daystart += 1 - temp_week & gt 'cheatmenu_din', 'time'">Monda...
   scene.text('<a href="exec:temp_daystart += 1 - temp_week & gt \'cheatmenu_din\', \'time\'">Monday</a>');
   // TODO-QSP: dynamic text: <a href="exec:temp_daystart += 2 - temp_week & gt 'cheatmenu_din', 'time'">Tuesd...
@@ -2221,9 +2221,9 @@ function enterMonth(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('<center><a href="exec:gt \'cheatmenu_din\', \'index\'"><b>Cheat menu</b></a> - <a href="exec:gt \'cheatmenu_din\', \'time\'"><b>Time</b></a></center>');
   // TODO-QSP: dynamic text: Current time: <b><<$weekName>></b>, <b><<day>></b>, of <b><<$monthName>></b>, <b...
-  scene.text(`Current time: <b>${((s as any).weekName ?? 0)}</b>, <b>${((s as any).day ?? 0)}</b>, of <b>${((s as any).monthName ?? 0)}</b>, <b>${((s as any).year ?? 0)}</b>, ${((s as any).tempcurtime ?? 0)}`);
+  scene.text(`Current time: <b>${((s as any).weekName || '')}</b>, <b>${((s as any).day || '')}</b>, of <b>${((s as any).monthName || '')}</b>, <b>${((s as any).year || '')}</b>, ${((s as any).tempcurtime || '')}`);
   // TODO-QSP: dynamic text: Target time: <b><<$weekName[temp_week]>></b>, <b><<temp_day>></b>, of <b><<$mont...
-  scene.text(`Target time: <b>${((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)]}</b>, <b>${((s as any).temp_day ?? 0)}</b>, of <b>${((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)]}</b>, <b>${((s as any).temp_year ?? 0)}</b>, ${((s as any).temptime ?? 0)}`);
+  scene.text(`Target time: <b>${((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)] ?? ''}</b>, <b>${((s as any).temp_day || '')}</b>, of <b>${((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)] ?? ''}</b>, <b>${((s as any).temp_year || '')}</b>, ${((s as any).temptime || '')}`);
   if (((s as any).temp_year ?? 0) > 2016) {
     scene.text('<a href="exec:gs \'cheatmenu_din\', \'month2\', 1">January</a>');
   }
@@ -2291,17 +2291,17 @@ function enterTime(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Time');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Time']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Manipulate Time and Weather</h1></center>');
   scene.text('<center><b>WARNING!</b></center>');
   scene.text('you know what you\'re doing. When reporting bugs, please mention any cheats you used.</center>');
   // TODO-QSP: $cheatmenu['table_start']
   // TODO-QSP: dynamic text: Current time: <b><<$weekName>></b>, <b><<day>><<$day_suffix>></b>, of <b><<$mont...
-  scene.text(`Current time: <b>${((s as any).weekName ?? 0)}</b>, <b>${((s as any).day ?? 0)}${((s as any).day_suffix ?? 0)}</b>, of <b>${((s as any).monthName ?? 0)}</b>, <b>${((s as any).year ?? 0)}</b>, ${((s as any).tempcurtime ?? 0)}`);
+  scene.text(`Current time: <b>${((s as any).weekName || '')}</b>, <b>${((s as any).day || '')}${((s as any).day_suffix || '')}</b>, of <b>${((s as any).monthName || '')}</b>, <b>${((s as any).year || '')}</b>, ${((s as any).tempcurtime || '')}`);
   // TODO-QSP: dynamic text: Target time: <b><<$weekName[temp_week]>></b>, <b><<temp_day>><<$temp_day_suffix>...
-  scene.text(`Target time: <b>${((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)]}</b>, <b>${((s as any).temp_day ?? 0)}${((s as any).temp_day_suffix ?? 0)}</b>, of <b>${((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)]}</b>, <b>${((s as any).temp_year ?? 0)}</b>, ${((s as any).temptime ?? 0)}`);
+  scene.text(`Target time: <b>${((s as any).weekName ?? 0)?.[String((s as any).temp_week ?? 0)] ?? ''}</b>, <b>${((s as any).temp_day || '')}${((s as any).temp_day_suffix || '')}</b>, of <b>${((s as any).monthName ?? 0)?.[String((s as any).temp_month ?? 0)] ?? ''}</b>, <b>${((s as any).temp_year || '')}</b>, ${((s as any).temptime || '')}`);
   // TODO-QSP: dynamic text: Daychange: <<temp_daystart - daystart>>
-  scene.text(`Daychange: ${((s as any).temp_daystart ?? 0) - ((s as any).daystart ?? 0)}`);
+  scene.text(`Daychange: ${((s as any).temp_daystart ?? '') - ((s as any).daystart ?? '')}`);
   scene.text('Select <a href="exec:gt \'cheatmenu_din\', \'month\'">Month</a>');
   scene.text('Select <a href="exec:gt \'cheatmenu_din\', \'week\'">Weekday</a>');
   if (((s as any).temp_daystart ?? 0) > 519) {
@@ -2355,7 +2355,7 @@ function enterTime(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Weather: <a href="exec:sunWeather=iif(sunWeather=0,1,0) & sunWeather[1] = totmin...
   scene.text('Weather: <a href="exec:sunWeather=iif(sunWeather=0,1,0) & sunWeather[1] = totminut+180 & gs \'outdoors\', \'weather\' & gt \'cheatmenu_din\', \'time\'">\'+iif(sunWeather=0, \'Rain\', \'Sunny\')+\'</a>');
   // TODO-QSP: dynamic text: Temperature = <<$temperature>>
-  scene.text(`Temperature = ${((s as any).temperature ?? 0)}`);
+  scene.text(`Temperature = ${((s as any).temperature || '')}`);
   if (((s as any).temper ?? 0) > -21) {
   }
   if (((s as any).temper ?? 0) > -25) {
@@ -2420,11 +2420,11 @@ function enterSuccubreset(s: GameState, scene: SceneBuilder): void {
 
 function enterMagic(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Magic');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Magic']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Magic</h1></center>');
   // TODO-QSP: $cheatmenu['table_start']
   // TODO-QSP: dynamic text: <center>Is magical: <a href="exec:pcs_magik += 1 & gt 'cheatmenu_din', 'magic'">...
-  scene.text(`<center>Is magical: <a href="exec:pcs_magik += 1 & gt 'cheatmenu_din', 'magic'">+1${((s as any).pcs_magik ?? 0)}</a></center>`);
+  scene.text(`<center>Is magical: <a href="exec:pcs_magik += 1 & gt 'cheatmenu_din', 'magic'">+1${((s as any).pcs_magik || '')}</a></center>`);
   if (((s as any).succubusflag ?? 0) === 1) {
     scene.text('<center><a href="exec:gt \'cheatmenu_din\', \'succubreset\'"><b>Remove & Reset Succubus status</b></a></center>');
     scene.text('<center><b>WARNING!</b></center>');
@@ -2432,8 +2432,8 @@ function enterMagic(s: GameState, scene: SceneBuilder): void {
   if (((s as any).spellMana ?? 0)?.['fog'] === 0) {
     qspCall(s, 'spellList', '');
   }
-  qspCall(s, 'cheatmenu_din', 'magicTable', 'Combat Spells', '$combatSpells');
-  qspCall(s, 'cheatmenu_din', 'magicTable', 'Non-Combat Spells', '$nonComSpells');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Combat Spells', '$combatSpells']; enterMagicTable(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Non-Combat Spells', '$nonComSpells']; enterMagicTable(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: <table width='90%' cellspacing='0' cellpadding='5' valign='top' border='1'>
   // TODO-QSP: <tr><th colspan='2'><b>Known Tree Circle Locations</b></th></tr>
   // TODO-QSP: <tr><td><a href=""EXEC: spellKnown['teleport']=<<iif(spellKnown['teleport']=1,'0','1')>> & gt 'cheat...
@@ -2564,82 +2564,82 @@ function enterPain(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'pain', 'calc');
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Pain');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Pain']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Pain Management</h1></center>');
   scene.text('<center><a href="exec:killvar \'pain\' & gs \'cheatmenu_din\', \'pain\'">No pain</a></center>');
   // TODO-QSP: $cheatmenu['table_start']
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'head', 'head');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'hair', 'hair');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'ears', 'ears');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'eyebrows', 'eyebrows');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'eyes', 'eyes');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'cheeks', 'cheeks');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'nose', 'nose');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'mouth', 'mouth');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'lips', 'lips');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'tongue', 'tongue');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'throat', 'throat');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'neck', 'neck');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'back', 'back');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'asscheeks', 'asscheeks');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'asshole', 'asshole');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'hips', 'hips');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'thighs', 'thighs');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'legL', 'left leg');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'legR', 'right leg');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'head', 'head']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair', 'hair']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ears', 'ears']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'eyebrows', 'eyebrows']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'eyes', 'eyes']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cheeks', 'cheeks']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nose', 'nose']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mouth', 'mouth']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lips', 'lips']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tongue', 'tongue']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'throat', 'throat']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'neck', 'neck']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'back', 'back']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'asscheeks', 'asscheeks']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'asshole', 'asshole']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hips', 'hips']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'thighs', 'thighs']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'legL', 'left leg']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'legR', 'right leg']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: $cheatmenu['table_second']
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'feet', 'feet');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'toes', 'toes');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'shoulders', 'shoulders');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'armL', 'left arm');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'armR', 'right arm');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'hands', 'hands');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'fingers', 'fingers');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'chest', 'chest');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'breasts', 'breasts');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'nipples', 'nipples');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'ribs', 'ribs');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'tummy', 'tummy');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'pubic', 'pubic');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'vaginal', 'vaginal');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'labia', 'labia');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'clitoris', 'clitoris');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'urethra', 'urethra');
-  qspCall(s, 'cheatmenu_din', 'cheatPainRow', 'cervix', 'cervix');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'feet', 'feet']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'toes', 'toes']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shoulders', 'shoulders']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'armL', 'left arm']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'armR', 'right arm']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hands', 'hands']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fingers', 'fingers']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chest', 'chest']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breasts', 'breasts']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'nipples', 'nipples']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ribs', 'ribs']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tummy', 'tummy']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pubic', 'pubic']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vaginal', 'vaginal']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'labia', 'labia']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'clitoris', 'clitoris']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'urethra', 'urethra']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cervix', 'cervix']; enterCheatPainRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: $cheatmenu['table_end']
   scene.text('You may still have pain from gaping or having been spanked, you can clear these using "Cure all ailments." in "Cheat Menu - Character State Changes"');
   // TODO-QSP: dynamic text: You currently have vaginal gaping of <<vgape>>
-  scene.text(`You currently have vaginal gaping of ${((s as any).vgape ?? 0)}`);
+  scene.text(`You currently have vaginal gaping of ${((s as any).vgape || '')}`);
   // TODO-QSP: dynamic text: You currently have anal gaping of <<agape>>
-  scene.text(`You currently have anal gaping of ${((s as any).agape ?? 0)}`);
+  scene.text(`You currently have anal gaping of ${((s as any).agape || '')}`);
   // TODO-QSP: dynamic text: You currently have spanked level <<spanked>>
-  scene.text(`You currently have spanked level ${((s as any).spanked ?? 0)}`);
+  scene.text(`You currently have spanked level ${((s as any).spanked || '')}`);
   // TODO-QSP: end
   scene.build();
 }
 
 function enterFame(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Fame');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Fame']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Fame</h1></center>');
   if (!(s as any).table) (s as any).table = {}; (s as any).table['fame'] = '<center><table width="90%" cellspacing="0" cellpadding="5" valign="top" border="1">';
   if (!(s as any).table) (s as any).table = {}; (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<th colspan="5"><b>Fame</b></th><tr>');
   if (!(s as any).table) (s as any).table = {}; (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('<th></th><th>Pavlovsk</th><th>City</th><th>Pushkin</th><th>Gadukino</th><tr>');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'acting', 'Actor');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'dance', 'Dancer');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'modelling', 'Glamour model');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'painting', 'Painter');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'music', 'Musician');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'ballet', 'Ballet dancer');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'porn', 'Porn actor');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'stripping', 'Stripper');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'sex', 'Sex');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'prostitute', 'Prostitution');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'kickboxing', 'Kickboxer');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'running', 'Runner');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'volleyball', 'Volleyball player');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'chess', 'Chess player');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'teaching', 'Teacher');
-  qspCall(s, 'cheatmenu_din', 'cheatFameRow', 'media', 'Social media');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'acting', 'Actor']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dance', 'Dancer']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'modelling', 'Glamour model']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'painting', 'Painter']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'music', 'Musician']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'ballet', 'Ballet dancer']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'porn', 'Porn actor']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'stripping', 'Stripper']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sex', 'Sex']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'prostitute', 'Prostitution']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'kickboxing', 'Kickboxer']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'running', 'Runner']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'volleyball', 'Volleyball player']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chess', 'Chess player']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'teaching', 'Teacher']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'media', 'Social media']; enterCheatFameRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).table) (s as any).table = {}; (s as any).table['fame'] = ((s as any).table['fame'] ?? 0) + ('</table></center>');
   // TODO-QSP: $table['fame']
   // TODO-QSP: end
@@ -2654,7 +2654,7 @@ function enterBdimmain(s: GameState, scene: SceneBuilder): void {
 
 function enterItems(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'Items');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Items']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Cheat Menu - Items</h1></center>');
   scene.text('<center>');
   scene.text('<h4>Documents</h4>');
@@ -2698,39 +2698,39 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href = "exec: showPharmacyItems = 1 & gt \'cheatmenu_din\', \'items\'">Show Details </a>');
   } else {
     scene.text('<a href = "exec: showPharmacyItems = 0 & gt \'cheatmenu_din\', \'items\'">Hide Details </a>');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'morning_after_pill', 'Morning after pill');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'morning_after_pill', 'Morning after pill']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).preziktype ?? 0) === 1) {
-      qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'normal_condoms', 'Condoms');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'normal_condoms', 'Condoms']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'equipped_condoms', 'Condoms');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'equipped_condoms', 'Condoms']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'pregnancy_test', 'Pregnancy test');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'contraceptive_pill', 'Birth control pills');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'antibiotics', 'Antibiotics');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'vitamins', 'Vitamins');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'painkillers', 'Painkillers');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'chafing_cream', 'Ointments for chafing');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'lubricant', 'Lubricants');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'weight_loss_pill', 'Weight loss pill');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'tampons', 'Tampons');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'sanitary_pads', 'Sanitary napkins');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'enema_kit', 'Enema kit');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'breast_pump', 'Breast pump');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'bottle_s', 'Breastmilk bottle S');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'bottle_m', 'Breastmilk bottle M');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pregnancy_test', 'Pregnancy test']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'contraceptive_pill', 'Birth control pills']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'antibiotics', 'Antibiotics']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vitamins', 'Vitamins']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'painkillers', 'Painkillers']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'chafing_cream', 'Ointments for chafing']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lubricant', 'Lubricants']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'weight_loss_pill', 'Weight loss pill']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'tampons', 'Tampons']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sanitary_pads', 'Sanitary napkins']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'enema_kit', 'Enema kit']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breast_pump', 'Breast pump']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bottle_s', 'Breastmilk bottle S']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bottle_m', 'Breastmilk bottle M']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.text('<h4>Food items</h4>');
   if ((!((s as any).showFoodItems ?? 0))) {
     scene.text('<a href = "exec: showFoodItems = 1 & gt \'cheatmenu_din\', \'items\'">Show Details </a>');
   } else {
     scene.text('<a href = "exec: showFoodItems = 0 & gt \'cheatmenu_din\', \'items\'">Hide Details </a>');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'food_basic', 'Regular food');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'food_diet', 'Diet food');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'food_biscuits', 'Tea biscuits');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'food_basic', 'Regular food']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'food_diet', 'Diet food']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'food_biscuits', 'Tea biscuits']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).bag ?? 0) > 0) {
-      qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'food_water', 'Bottle of water');
-      qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'food_sandwich', 'Sandwich');
-      qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'food_wine', 'Cheap Bottle of wine');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'food_water', 'Bottle of water']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'food_sandwich', 'Sandwich']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'food_wine', 'Cheap Bottle of wine']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   scene.text('<h4>Cosmetics items</h4>');
@@ -2738,23 +2738,23 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href = "exec:showCosmeticsItems = 1 & gt \'cheatmenu_din\', \'items\'">Show Details </a>');
   } else {
     scene.text('<a href = "exec:showCosmeticsItems = 0 & gt \'cheatmenu_din\', \'items\'">Hide Details </a>');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'cosmetics', 'Cosmetics');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'moisturiser', 'Moisturiser');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'lipbalm', 'Lip balms');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'eyelash_fake', 'Plain false lashes');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'eyelash_mink', 'Mink false lashes');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'razor', 'Razors');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'suncream', 'Sunblock');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'deodorant', 'Deodorant');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'shampoo', 'Shampoo');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'scrunchies', 'Hair scrunchies');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'kirbygrips', 'Hair pins');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cosmetics', 'Cosmetics']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'moisturiser', 'Moisturiser']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'lipbalm', 'Lip balms']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'eyelash_fake', 'Plain false lashes']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'eyelash_mink', 'Mink false lashes']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'razor', 'Razors']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'suncream', 'Sunblock']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'deodorant', 'Deodorant']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'shampoo', 'Shampoo']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'scrunchies', 'Hair scrunchies']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'kirbygrips', 'Hair pins']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).bag ?? 0) === 1) {
-      qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'makeup_wipes', 'Wipes');
-      qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'travel_makeup', 'Portable makeup');
-      qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'mouthwash', 'Mouthwash');
-      qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'comb', 'Comb');
-      qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'travel_mirror', 'Compact mirror');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'makeup_wipes', 'Wipes']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'travel_makeup', 'Portable makeup']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mouthwash', 'Mouthwash']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'comb', 'Comb']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'travel_mirror', 'Compact mirror']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   scene.text('<h4>Hardware items</h4>');
@@ -2762,13 +2762,13 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href = "exec: showHardwareItems = 1 & gt \'cheatmenu_din\', \'items\'">Show Details </a>');
   } else {
     scene.text('<a href = "exec: showHardwareItems = 0 & gt \'cheatmenu_din\', \'items\'">Hide Details </a>');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'dish_soap', 'Dishwashing detergent');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'laundry_soap', 'Clothing detergent');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'dish_plates', 'Plates');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'sewing_fabric', 'Fabric');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'sewing_kit', 'Sewing kit');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dish_soap', 'Dishwashing detergent']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'laundry_soap', 'Clothing detergent']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dish_plates', 'Plates']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sewing_fabric', 'Fabric']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sewing_kit', 'Sewing kit']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).bag ?? 0) === 1) {
-      qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'umbrella', 'Umbrella');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'umbrella', 'Umbrella']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   scene.text('<h4>Narcotics items</h4>');
@@ -2776,32 +2776,32 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
     scene.text('<a href = "exec: showNarcoticsItems = 1 & gt \'cheatmenu_din\', \'items\'">Show Details </a>');
   } else {
     scene.text('<a href = "exec: showNarcoticsItems = 0 & gt \'cheatmenu_din\', \'items\'">Hide Details </a>');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'cigarettes', 'Cigarettes');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'joints', 'Joints');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'cocaine', 'Cocaine');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'amphetamine', 'Amphetamine');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'mentats', 'Neuroboosters');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'steroids', 'Steroids');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'breastcream', 'Breast cream');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'aphrodisiac', 'Aphrodisiacs');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cigarettes', 'Cigarettes']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'joints', 'Joints']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cocaine', 'Cocaine']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'amphetamine', 'Amphetamine']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mentats', 'Neuroboosters']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'steroids', 'Steroids']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'breastcream', 'Breast cream']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'aphrodisiac', 'Aphrodisiacs']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.text('<h4>Sex shop items</h4>');
   if ((!((s as any).showSexItems ?? 0))) {
     scene.text('<a href = "exec: showSexItems = 1 & gt \'cheatmenu_din\', \'items\'">Show Details </a>');
   } else {
     scene.text('<a href = "exec: showSexItems = 0 & gt \'cheatmenu_din\', \'items\'">Hide Details </a>');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'mag_porn', 'Porn magazine');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'vibe', 'Vibrator');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'buttplug', 'Butt plug');
-    qspCall(s, 'cheatmenu_din', 'cheatItemQty', 'dildo_suction', '15cm suction dildo');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'strapon', 'Strap-on harness');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'dildo_small', '10cm dildo');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'dildo_normal', '15cm dildo');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'dildo_big', '20cm dildo');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'dildo_large', '25cm dildo');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'dildo_huge', '30cm dildo');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'dildo_enormous', '35cm dildo');
-    qspCall(s, 'cheatmenu_din', 'cheatItemToggle', 'dildo_gigantic', '40cm dildo');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'mag_porn', 'Porn magazine']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vibe', 'Vibrator']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttplug', 'Butt plug']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dildo_suction', '15cm suction dildo']; enterCheatItemQty(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'strapon', 'Strap-on harness']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dildo_small', '10cm dildo']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dildo_normal', '15cm dildo']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dildo_big', '20cm dildo']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dildo_large', '25cm dildo']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dildo_huge', '30cm dildo']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dildo_enormous', '35cm dildo']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'dildo_gigantic', '40cm dildo']; enterCheatItemToggle(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.text('</center>');
   // TODO-QSP: end
@@ -2810,7 +2810,7 @@ function enterItems(s: GameState, scene: SceneBuilder): void {
 
 function enterCheatPainRow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: pain[<<$ARGS[2]>>] = <<pain[$ARGS[1]]>> <a href="exec:pain['<<$ARGS[1]>>'] -= 10...
-  scene.text(`pain[${((s as any).locArgs?.[2] ?? 0)}] = ${((s as any).pain ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]} <a href="exec:pain['${((s as any).locArgs?.[1] ?? 0)}'] -= 10 & gs 'cheatmenu_din', 'pain'">-10</a> <a href="exec:pain['${((s as any).locArgs?.[1] ?? 0)}'] += 10 & gs 'cheatmenu_din', 'pain'">+10</a>`);
+  scene.text(`pain[${((s as any).locArgs?.[2] ?? '')}] = ${((s as any).pain ?? 0)?.[((s as any).locArgs?.[1] ?? '')]} <a href="exec:pain['${((s as any).locArgs?.[1] ?? '')}'] -= 10 & gs 'cheatmenu_din', 'pain'">-10</a> <a href="exec:pain['${((s as any).locArgs?.[1] ?? '')}'] += 10 & gs 'cheatmenu_din', 'pain'">+10</a>`);
   // TODO-QSP: end
   scene.build();
 }
@@ -2845,7 +2845,7 @@ function enterCheatTattoo(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: $temp_cheat_nomsg
   } else {
     // TODO-QSP: dynamic text: <a href="exec: gs 'tattoo_management', 'remove', '<<$ARGS[1]>>' & gt 'cheatmenu_...
-    scene.text(`<a href="exec: gs 'tattoo_management', 'remove', '${((s as any).locArgs?.[1] ?? 0)}' & gt 'cheatmenu_din', 'tatoo'">Remove your ${((s as any).locArgs?.[2] ?? 0)} tattoo</a>`);
+    scene.text(`<a href="exec: gs 'tattoo_management', 'remove', '${((s as any).locArgs?.[1] ?? '')}' & gt 'cheatmenu_din', 'tatoo'">Remove your ${((s as any).locArgs?.[2] ?? '')} tattoo</a>`);
   }
   // TODO-QSP: end
   scene.build();
@@ -2854,14 +2854,14 @@ function enterCheatTattoo(s: GameState, scene: SceneBuilder): void {
 function enterCheatGradeRow(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_cheat_val = ((s as any).class ?? 0)?.[String((s as any).temp_cheat_key ?? 0)];
   // TODO-QSP: dynamic text: <<$ARGS[2]>> grade: <<temp_cheat_val>>
-  scene.text(`${((s as any).locArgs?.[2] ?? 0)} grade: ${((s as any).temp_cheat_val ?? 0)}`);
+  scene.text(`${((s as any).locArgs?.[2] ?? '')} grade: ${((s as any).temp_cheat_val || '')}`);
   if (((s as any).temp_cheat_val ?? 0) > 0) {
     // TODO-QSP: dynamic text:  <a href="exec:gs 'grades', 'grade_award', 'school', '<<$ARGS[1]>>', -10 & gt 'c...
-    scene.text(` <a href="exec:gs 'grades', 'grade_award', 'school', '${((s as any).locArgs?.[1] ?? 0)}', -10 & gt 'cheatmenu_din', 'stats'">-10</a>`);
+    scene.text(` <a href="exec:gs 'grades', 'grade_award', 'school', '${((s as any).locArgs?.[1] ?? '')}', -10 & gt 'cheatmenu_din', 'stats'">-10</a>`);
   }
   if (((s as any).temp_cheat_val ?? 0) < 100) {
     // TODO-QSP: dynamic text:  <a href="exec:gs 'grades', 'grade_award', 'school', '<<$ARGS[1]>>', 10 & gt 'ch...
-    scene.text(` <a href="exec:gs 'grades', 'grade_award', 'school', '${((s as any).locArgs?.[1] ?? 0)}', 10 & gt 'cheatmenu_din', 'stats'">+10</a>`);
+    scene.text(` <a href="exec:gs 'grades', 'grade_award', 'school', '${((s as any).locArgs?.[1] ?? '')}', 10 & gt 'cheatmenu_din', 'stats'">+10</a>`);
   }
   // TODO-QSP: end
   scene.build();
@@ -2869,7 +2869,7 @@ function enterCheatGradeRow(s: GameState, scene: SceneBuilder): void {
 
 function enterCheatBoolRow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <<$ARGS[2]>>: <a href="exec:cheatVars['<<$ARGS[1]>>'] = iif(cheatVars['<<$ARGS[1...
-  scene.text(`${((s as any).locArgs?.[2] ?? 0)}: <a href="exec:cheatVars['${((s as any).locArgs?.[1] ?? 0)}'] = iif(cheatVars['${((s as any).locArgs?.[1] ?? 0)}'], 0, 1) & gt 'cheatmenu_din', '${((s as any).cheatmenu ?? 0)?.['this_menu']}'">${((((s as any).cheatVars ?? 0)[((s as any).locArgs?.[1] ?? 0)]) ? (((s as any).temp_cheat_on ?? 0)) : (((s as any).temp_cheat_off ?? 0)))}</a>`);
+  scene.text(`${((s as any).locArgs?.[2] ?? '')}: <a href="exec:cheatVars['${((s as any).locArgs?.[1] ?? '')}'] = iif(cheatVars['${((s as any).locArgs?.[1] ?? '')}'], 0, 1) & gt 'cheatmenu_din', '${((s as any).cheatmenu ?? 0)?.['this_menu'] ?? ''}'">${((((s as any).cheatVars ?? 0)[((s as any).locArgs?.[1] ?? 0)]) ? (((s as any).temp_cheat_on || '')) : (((s as any).temp_cheat_off || '')))}</a>`);
   // TODO-QSP: end
   scene.build();
 }
@@ -2878,7 +2878,7 @@ function enterCheatNpcRel(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[3] ?? 0) === '') {
   }
   // TODO-QSP: dynamic text: <<$temp_cheat_name>>: <<npc_rel[$ARGS[1]]>>  <a href="exec:gs 'npc_relationship'...
-  scene.text(`${((s as any).temp_cheat_name ?? 0)}: ${((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? 0)]}  <a href="exec:gs 'npc_relationship', 'modify_exact', '${((s as any).locArgs?.[1] ?? 0)}', 10 & gt 'cheatmenu_din', '${((s as any).temp_cheat_page ?? 0)}'">+10</a> <a href="exec:gs 'npc_relationship', 'modify_exact', '${((s as any).locArgs?.[1] ?? 0)}', -10 & gt 'cheatmenu_din', '${((s as any).temp_cheat_page ?? 0)}'">-10</a>`);
+  scene.text(`${((s as any).temp_cheat_name || '')}: ${((s as any).npc_rel ?? 0)?.[((s as any).locArgs?.[1] ?? '')]}  <a href="exec:gs 'npc_relationship', 'modify_exact', '${((s as any).locArgs?.[1] ?? '')}', 10 & gt 'cheatmenu_din', '${((s as any).temp_cheat_page || '')}'">+10</a> <a href="exec:gs 'npc_relationship', 'modify_exact', '${((s as any).locArgs?.[1] ?? '')}', -10 & gt 'cheatmenu_din', '${((s as any).temp_cheat_page || '')}'">-10</a>`);
   // TODO-QSP: end
   scene.build();
 }
@@ -2892,31 +2892,31 @@ function enterCheatVarRow(s: GameState, scene: SceneBuilder): void {
 
 function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  qspCall(s, 'cheatmenu_din', 'cheattabs', 'traits');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'traits']; enterCheattabs(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).cheatmenu) (s as any).cheatmenu = {}; (s as any).cheatmenu['this_menu'] = 'traits_cheats';
   scene.text('<center><h1>Cheat Menu - Traits & Archetypes</h1></center>');
   // TODO-QSP: $cheatmenu['table_start']
   scene.text('<center><h3>Archetype Settings</h3></center>');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'smart_bimbo', 'Ignore Archetype penalties');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'no_archetype_withdrawal', 'Disable Archetype withdrawal');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'smart_bimbo', 'Ignore Archetype penalties']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'no_archetype_withdrawal', 'Disable Archetype withdrawal']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h3>Archetype Points</h3></center>');
   // TODO-QSP: dynamic text: Active: <<iif($arch_vars['main_active'] <> '', $arch_vars['main_active'], 'none'...
-  scene.text(`Active: ${((((s as any).arch_vars ?? 0)?.['main_active'] !== '') ? (((s as any).arch_vars ?? 0)?.['main_active']) : ('none'))}`);
+  scene.text(`Active: ${((((s as any).arch_vars ?? 0)?.['main_active'] !== '') ? (((s as any).arch_vars ?? 0)?.['main_active'] ?? '') : ('none'))}`);
   // TODO-QSP: $cheat_arch[0] = 'bimbo' & $cheat_arch[1] = 'preppy' & $cheat_arch[2] = 'prude' & $cheat_arch[3] = '...
   (s as any).cheat_tp_i = 0;
   // TODO-QSP: :cheat_tp_loop
   // TODO-QSP: dynamic text: <b><<$cheat_tp_title>></b> (<<arch_vars[$cheat_tp_k]>>): 
-  scene.text(`<b>${((s as any).cheat_tp_title ?? 0)}</b> (${((s as any).arch_vars ?? 0)?.[String((s as any).cheat_tp_k ?? 0)]}): `);
+  scene.text(`<b>${((s as any).cheat_tp_title || '')}</b> (${((s as any).arch_vars ?? 0)?.[String((s as any).cheat_tp_k ?? 0)] ?? ''}): `);
   // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] += 10000 & gs 'archetypes', 'clamp',...
-  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] += 10000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t ?? 0)}' & ${((s as any).cheat_tp_refresh ?? 0)}">+10k</a>`);
+  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k || '')}'] += 10000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t || '')}' & ${((s as any).cheat_tp_refresh || '')}">+10k</a>`);
   // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] += 1000 & gs 'archetypes', 'clamp', ...
-  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] += 1000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t ?? 0)}' & ${((s as any).cheat_tp_refresh ?? 0)}">+1k</a>`);
+  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k || '')}'] += 1000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t || '')}' & ${((s as any).cheat_tp_refresh || '')}">+1k</a>`);
   // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] -= 1000 & gs 'archetypes', 'clamp', ...
-  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] -= 1000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t ?? 0)}' & ${((s as any).cheat_tp_refresh ?? 0)}">-1k</a>`);
+  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k || '')}'] -= 1000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t || '')}' & ${((s as any).cheat_tp_refresh || '')}">-1k</a>`);
   // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] -= 10000 & gs 'archetypes', 'clamp',...
-  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] -= 10000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t ?? 0)}' & ${((s as any).cheat_tp_refresh ?? 0)}">-10k</a>`);
+  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k || '')}'] -= 10000 & gs 'archetypes', 'clamp', '${((s as any).cheat_tp_t || '')}' & ${((s as any).cheat_tp_refresh || '')}">-10k</a>`);
   // TODO-QSP: dynamic text:  <a href="exec:arch_vars['<<$cheat_tp_k>>'] = 0 & <<$cheat_tp_refresh>>">Zero</a...
-  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k ?? 0)}'] = 0 & ${((s as any).cheat_tp_refresh ?? 0)}">Zero</a>`);
+  scene.text(` <a href="exec:arch_vars['${((s as any).cheat_tp_k || '')}'] = 0 & ${((s as any).cheat_tp_refresh || '')}">Zero</a>`);
   (s as any).cheat_tp_i = ((s as any).cheat_tp_i ?? 0) + (1);
   if (((s as any).cheat_tp_i ?? 0) < 5) {
     // TODO-QSP: jump 'cheat_tp_loop'
@@ -2924,80 +2924,80 @@ function enterTraitsCheats(s: GameState, scene: SceneBuilder): void {
   scene.text('<a href="exec:arch_vars[\'bimbo_points\'] = 0 & arch_vars[\'preppy_points\'] = 0 & arch_vars[\'prude_points\'] = 0 & arch_vars[\'punk_points\'] = 0 & arch_vars[\'goth_points\'] = 0 & gs \'archetypes\', \'set_active\' & gs \'archetypes\', \'seed_snapshots\' & gt \'cheatmenu_din\', \'traits_cheats\'">Reset all Archetype points</a>');
   scene.text('<center><h3>Trait Enable / Disable</h3></center>');
   scene.text('Disabling a trait prevents its daily/minute logic from running. The trait level is preserved but frozen.');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'cumeater_disabled', 'Cumeater', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'creampie_fetish_disabled', 'Creampie Fetish', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'addictive_personality_disabled', 'Addictive Personality', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'buttslut_disabled', 'Buttslut', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'exhibitionist_disabled', 'Exhibitionist', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'panty_preference_disabled', 'Panty Preference', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'drinking_disabled', 'Alcohol Tolerance', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'academic_disabled', 'Academic', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'bookworm_disabled', 'Bookworm', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'body_hair_growth_rate_disabled', 'Body Hair Growth Rate', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'body_hair_attitude_disabled', 'Body Hair Attitude', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'hair_growth_rate_disabled', 'Hair Growth Rate', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'sensitivity_disabled', 'Sensitivity', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'fertility_disabled', 'Fertility', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'sizequeen_disabled', 'Size Queen', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'fitness_freak_disabled', 'Fitness Freak', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'new_again_disabled', 'Everything Is New Again', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'heel_preference_disabled', 'Heel Preference', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'doormat_disabled', 'Doormat', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'cumslut_disabled', 'Cum Slut', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'cum_addict_disabled', 'Cum Addict', 'Disabled', 'Enabled');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'pain_tolerance_disabled', 'Pain Tolerance', 'Disabled', 'Enabled');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumeater_disabled', 'Cumeater', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'creampie_fetish_disabled', 'Creampie Fetish', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'addictive_personality_disabled', 'Addictive Personality', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'buttslut_disabled', 'Buttslut', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'exhibitionist_disabled', 'Exhibitionist', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'panty_preference_disabled', 'Panty Preference', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'drinking_disabled', 'Alcohol Tolerance', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'academic_disabled', 'Academic', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bookworm_disabled', 'Bookworm', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_growth_rate_disabled', 'Body Hair Growth Rate', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'body_hair_attitude_disabled', 'Body Hair Attitude', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hair_growth_rate_disabled', 'Hair Growth Rate', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sensitivity_disabled', 'Sensitivity', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fertility_disabled', 'Fertility', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sizequeen_disabled', 'Size Queen', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'fitness_freak_disabled', 'Fitness Freak', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'new_again_disabled', 'Everything Is New Again', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'heel_preference_disabled', 'Heel Preference', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'doormat_disabled', 'Doormat', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cumslut_disabled', 'Cum Slut', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cum_addict_disabled', 'Cum Addict', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'pain_tolerance_disabled', 'Pain Tolerance', 'Disabled', 'Enabled']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h3>Trait Level Cheats</h3></center>');
   scene.text('<small>▼ to level down, ▲ to level up. Reset does what it says. Note: Some traits have negative levels.<br>Warning: Some traits or trait levels are only meant to be obtainable via specific story events. Nothing here is likely to brick your game, but you should exercise caution anyway.</small>');
   // TODO-QSP: dynamic text: Exhibitionist (<<trait_vars['exhibitionist']>>): <a href="exec:gs 'traits', 'che...
-  scene.text(`Exhibitionist (${((s as any).trait_vars ?? 0)?.['exhibitionist']}): <a href="exec:gs 'traits', 'cheat', 'exhibitionist', ${((s as any).trait_vars ?? {})?.['exhibitionist'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'exhibitionist', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'exhibitionist', ${((s as any).trait_vars ?? {})?.['exhibitionist'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Exhibitionist (${((s as any).trait_vars ?? 0)?.['exhibitionist'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'exhibitionist', ${(((s as any).trait_vars ?? {})?.['exhibitionist'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'exhibitionist', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'exhibitionist', ${(((s as any).trait_vars ?? {})?.['exhibitionist'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Commando / Panty Preference (<<trait_vars['panty_preference']>>): <a href="exec:...
-  scene.text(`Commando / Panty Preference (${((s as any).trait_vars ?? 0)?.['panty_preference']}): <a href="exec:gs 'traits', 'cheat', 'panty_preference', ${((s as any).trait_vars ?? {})?.['panty_preference'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'panty_preference', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'panty_preference', ${((s as any).trait_vars ?? {})?.['panty_preference'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Commando / Panty Preference (${((s as any).trait_vars ?? 0)?.['panty_preference'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'panty_preference', ${(((s as any).trait_vars ?? {})?.['panty_preference'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'panty_preference', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'panty_preference', ${(((s as any).trait_vars ?? {})?.['panty_preference'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Buttslut (<<trait_vars['buttslut']>>): <a href="exec:gs 'traits', 'cheat', 'butt...
-  scene.text(`Buttslut (${((s as any).trait_vars ?? 0)?.['buttslut']}): <a href="exec:gs 'traits', 'cheat', 'buttslut', ${((s as any).trait_vars ?? {})?.['buttslut'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'buttslut', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'buttslut', ${((s as any).trait_vars ?? {})?.['buttslut'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Buttslut (${((s as any).trait_vars ?? 0)?.['buttslut'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'buttslut', ${(((s as any).trait_vars ?? {})?.['buttslut'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'buttslut', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'buttslut', ${(((s as any).trait_vars ?? {})?.['buttslut'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Academic (<<trait_vars['academic']>>): <a href="exec:gs 'traits', 'cheat', 'acad...
-  scene.text(`Academic (${((s as any).trait_vars ?? 0)?.['academic']}): <a href="exec:gs 'traits', 'cheat', 'academic', ${((s as any).trait_vars ?? {})?.['academic'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'academic', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'academic', ${((s as any).trait_vars ?? {})?.['academic'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Academic (${((s as any).trait_vars ?? 0)?.['academic'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'academic', ${(((s as any).trait_vars ?? {})?.['academic'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'academic', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'academic', ${(((s as any).trait_vars ?? {})?.['academic'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Alcohol Tolerance (<<trait_vars['drinking']>>): <a href="exec:gs 'traits', 'chea...
-  scene.text(`Alcohol Tolerance (${((s as any).trait_vars ?? 0)?.['drinking']}): <a href="exec:gs 'traits', 'cheat', 'drinking', ${((s as any).trait_vars ?? {})?.['drinking'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'drinking', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'drinking', ${((s as any).trait_vars ?? {})?.['drinking'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Alcohol Tolerance (${((s as any).trait_vars ?? 0)?.['drinking'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'drinking', ${(((s as any).trait_vars ?? {})?.['drinking'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'drinking', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'drinking', ${(((s as any).trait_vars ?? {})?.['drinking'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Cumeater (<<trait_vars['cumeater']>>): <a href="exec:gs 'traits', 'cheat', 'cume...
-  scene.text(`Cumeater (${((s as any).trait_vars ?? 0)?.['cumeater']}): <a href="exec:gs 'traits', 'cheat', 'cumeater', ${((s as any).trait_vars ?? {})?.['cumeater'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'cumeater', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'cumeater', ${((s as any).trait_vars ?? {})?.['cumeater'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Cumeater (${((s as any).trait_vars ?? 0)?.['cumeater'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'cumeater', ${(((s as any).trait_vars ?? {})?.['cumeater'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'cumeater', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'cumeater', ${(((s as any).trait_vars ?? {})?.['cumeater'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Creampie Fetish (<<trait_vars['creampie_fetish']>>): <a href="exec:gs 'traits', ...
-  scene.text(`Creampie Fetish (${((s as any).trait_vars ?? 0)?.['creampie_fetish']}): <a href="exec:gs 'traits', 'cheat', 'creampie_fetish', ${((s as any).trait_vars ?? {})?.['creampie_fetish'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'creampie_fetish', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'creampie_fetish', ${((s as any).trait_vars ?? {})?.['creampie_fetish'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Creampie Fetish (${((s as any).trait_vars ?? 0)?.['creampie_fetish'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'creampie_fetish', ${(((s as any).trait_vars ?? {})?.['creampie_fetish'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'creampie_fetish', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'creampie_fetish', ${(((s as any).trait_vars ?? {})?.['creampie_fetish'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Addictive Personality (<<trait_vars['addictive_personality']>>): <a href="exec:g...
-  scene.text(`Addictive Personality (${((s as any).trait_vars ?? 0)?.['addictive_personality']}): <a href="exec:gs 'traits', 'cheat', 'addictive_personality', ${((s as any).trait_vars ?? {})?.['addictive_personality'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'addictive_personality', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'addictive_personality', ${((s as any).trait_vars ?? {})?.['addictive_personality'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Addictive Personality (${((s as any).trait_vars ?? 0)?.['addictive_personality'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'addictive_personality', ${(((s as any).trait_vars ?? {})?.['addictive_personality'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'addictive_personality', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'addictive_personality', ${(((s as any).trait_vars ?? {})?.['addictive_personality'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Bookworm (<<trait_vars['bookworm']>>): <a href="exec:gs 'traits', 'cheat', 'book...
-  scene.text(`Bookworm (${((s as any).trait_vars ?? 0)?.['bookworm']}): <a href="exec:gs 'traits', 'cheat', 'bookworm', ${((s as any).trait_vars ?? {})?.['bookworm'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'bookworm', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'bookworm', ${((s as any).trait_vars ?? {})?.['bookworm'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Bookworm (${((s as any).trait_vars ?? 0)?.['bookworm'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'bookworm', ${(((s as any).trait_vars ?? {})?.['bookworm'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'bookworm', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'bookworm', ${(((s as any).trait_vars ?? {})?.['bookworm'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Body Hair Growth Rate (<<trait_vars['body_hair_growth_rate']>>): <a href="exec:g...
-  scene.text(`Body Hair Growth Rate (${((s as any).trait_vars ?? 0)?.['body_hair_growth_rate']}): <a href="exec:gs 'traits', 'cheat', 'body_hair_growth_rate', ${((s as any).trait_vars ?? {})?.['body_hair_growth_rate'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'body_hair_growth_rate', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'body_hair_growth_rate', ${((s as any).trait_vars ?? {})?.['body_hair_growth_rate'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Body Hair Growth Rate (${((s as any).trait_vars ?? 0)?.['body_hair_growth_rate'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'body_hair_growth_rate', ${(((s as any).trait_vars ?? {})?.['body_hair_growth_rate'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'body_hair_growth_rate', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'body_hair_growth_rate', ${(((s as any).trait_vars ?? {})?.['body_hair_growth_rate'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Body Hair Attitude (<<trait_vars['body_hair_attitude']>>): <a href="exec:gs 'tra...
-  scene.text(`Body Hair Attitude (${((s as any).trait_vars ?? 0)?.['body_hair_attitude']}): <a href="exec:gs 'traits', 'cheat', 'body_hair_attitude', ${((s as any).trait_vars ?? {})?.['body_hair_attitude'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'body_hair_attitude', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'body_hair_attitude', ${((s as any).trait_vars ?? {})?.['body_hair_attitude'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Body Hair Attitude (${((s as any).trait_vars ?? 0)?.['body_hair_attitude'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'body_hair_attitude', ${(((s as any).trait_vars ?? {})?.['body_hair_attitude'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'body_hair_attitude', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'body_hair_attitude', ${(((s as any).trait_vars ?? {})?.['body_hair_attitude'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Hair Growth Rate (<<trait_vars['hair_growth_rate']>>): <a href="exec:gs 'traits'...
-  scene.text(`Hair Growth Rate (${((s as any).trait_vars ?? 0)?.['hair_growth_rate']}): <a href="exec:gs 'traits', 'cheat', 'hair_growth_rate', ${((s as any).trait_vars ?? {})?.['hair_growth_rate'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'hair_growth_rate', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'hair_growth_rate', ${((s as any).trait_vars ?? {})?.['hair_growth_rate'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Hair Growth Rate (${((s as any).trait_vars ?? 0)?.['hair_growth_rate'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'hair_growth_rate', ${(((s as any).trait_vars ?? {})?.['hair_growth_rate'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'hair_growth_rate', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'hair_growth_rate', ${(((s as any).trait_vars ?? {})?.['hair_growth_rate'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Pain Tolerance (<<trait_vars['pain_tolerance']>>): <a href="exec:gs 'traits', 'c...
-  scene.text(`Pain Tolerance (${((s as any).trait_vars ?? 0)?.['pain_tolerance']}): <a href="exec:gs 'traits', 'cheat', 'pain_tolerance', ${((s as any).trait_vars ?? {})?.['pain_tolerance'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'pain_tolerance', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'pain_tolerance', ${((s as any).trait_vars ?? {})?.['pain_tolerance'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Pain Tolerance (${((s as any).trait_vars ?? 0)?.['pain_tolerance'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'pain_tolerance', ${(((s as any).trait_vars ?? {})?.['pain_tolerance'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'pain_tolerance', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'pain_tolerance', ${(((s as any).trait_vars ?? {})?.['pain_tolerance'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Sensitivity (<<trait_vars['sensitivity']>>): <a href="exec:gs 'traits', 'cheat',...
-  scene.text(`Sensitivity (${((s as any).trait_vars ?? 0)?.['sensitivity']}): <a href="exec:gs 'traits', 'cheat', 'sensitivity', ${((s as any).trait_vars ?? {})?.['sensitivity'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'sensitivity', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'sensitivity', ${((s as any).trait_vars ?? {})?.['sensitivity'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Sensitivity (${((s as any).trait_vars ?? 0)?.['sensitivity'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'sensitivity', ${(((s as any).trait_vars ?? {})?.['sensitivity'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'sensitivity', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'sensitivity', ${(((s as any).trait_vars ?? {})?.['sensitivity'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Fertility (<<trait_vars['fertility']>>): <a href="exec:gs 'traits', 'cheat', 'fe...
-  scene.text(`Fertility (${((s as any).trait_vars ?? 0)?.['fertility']}): <a href="exec:gs 'traits', 'cheat', 'fertility', ${((s as any).trait_vars ?? {})?.['fertility'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'fertility', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'fertility', ${((s as any).trait_vars ?? {})?.['fertility'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Fertility (${((s as any).trait_vars ?? 0)?.['fertility'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'fertility', ${(((s as any).trait_vars ?? {})?.['fertility'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'fertility', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'fertility', ${(((s as any).trait_vars ?? {})?.['fertility'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Size Queen (<<trait_vars['sizequeen']>>): <a href="exec:gs 'traits', 'cheat', 's...
-  scene.text(`Size Queen (${((s as any).trait_vars ?? 0)?.['sizequeen']}): <a href="exec:gs 'traits', 'cheat', 'sizequeen', ${((s as any).trait_vars ?? {})?.['sizequeen'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'sizequeen', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'sizequeen', ${((s as any).trait_vars ?? {})?.['sizequeen'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Size Queen (${((s as any).trait_vars ?? 0)?.['sizequeen'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'sizequeen', ${(((s as any).trait_vars ?? {})?.['sizequeen'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'sizequeen', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'sizequeen', ${(((s as any).trait_vars ?? {})?.['sizequeen'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Fitness Freak (<<trait_vars['fitness_freak']>>): <a href="exec:gs 'traits', 'che...
-  scene.text(`Fitness Freak (${((s as any).trait_vars ?? 0)?.['fitness_freak']}): <a href="exec:gs 'traits', 'cheat', 'fitness_freak', ${((s as any).trait_vars ?? {})?.['fitness_freak'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'fitness_freak', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'fitness_freak', ${((s as any).trait_vars ?? {})?.['fitness_freak'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Fitness Freak (${((s as any).trait_vars ?? 0)?.['fitness_freak'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'fitness_freak', ${(((s as any).trait_vars ?? {})?.['fitness_freak'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'fitness_freak', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'fitness_freak', ${(((s as any).trait_vars ?? {})?.['fitness_freak'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Doormat (<<trait_vars['doormat']>>): <a href="exec:gs 'traits', 'cheat', 'doorma...
-  scene.text(`Doormat (${((s as any).trait_vars ?? 0)?.['doormat']}): <a href="exec:gs 'traits', 'cheat', 'doormat', ${((s as any).trait_vars ?? {})?.['doormat'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'doormat', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'doormat', ${((s as any).trait_vars ?? {})?.['doormat'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Doormat (${((s as any).trait_vars ?? 0)?.['doormat'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'doormat', ${(((s as any).trait_vars ?? {})?.['doormat'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'doormat', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'doormat', ${(((s as any).trait_vars ?? {})?.['doormat'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Heel Preference (<<trait_vars['heel_preference']>>): <a href="exec:gs 'traits', ...
-  scene.text(`Heel Preference (${((s as any).trait_vars ?? 0)?.['heel_preference']}): <a href="exec:gs 'traits', 'cheat', 'heel_preference', ${((s as any).trait_vars ?? {})?.['heel_preference'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'heel_preference', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'heel_preference', ${((s as any).trait_vars ?? {})?.['heel_preference'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Heel Preference (${((s as any).trait_vars ?? 0)?.['heel_preference'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'heel_preference', ${(((s as any).trait_vars ?? {})?.['heel_preference'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'heel_preference', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'heel_preference', ${(((s as any).trait_vars ?? {})?.['heel_preference'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Cum Display / Cumslut (<<trait_vars['cumslut']>>): <a href="exec:gs 'traits', 'c...
-  scene.text(`Cum Display / Cumslut (${((s as any).trait_vars ?? 0)?.['cumslut']}): <a href="exec:gs 'traits', 'cheat', 'cumslut', ${((s as any).trait_vars ?? {})?.['cumslut'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'cumslut', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'cumslut', ${((s as any).trait_vars ?? {})?.['cumslut'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Cum Display / Cumslut (${((s as any).trait_vars ?? 0)?.['cumslut'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'cumslut', ${(((s as any).trait_vars ?? {})?.['cumslut'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'cumslut', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'cumslut', ${(((s as any).trait_vars ?? {})?.['cumslut'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Cum Addict (<<trait_vars['cum_addict']>>): <a href="exec:gs 'traits', 'cheat', '...
-  scene.text(`Cum Addict (${((s as any).trait_vars ?? 0)?.['cum_addict']}): <a href="exec:gs 'traits', 'cheat', 'cum_addict', ${((s as any).trait_vars ?? {})?.['cum_addict'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'cum_addict', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'cum_addict', ${((s as any).trait_vars ?? {})?.['cum_addict'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Cum Addict (${((s as any).trait_vars ?? 0)?.['cum_addict'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'cum_addict', ${(((s as any).trait_vars ?? {})?.['cum_addict'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'cum_addict', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'cum_addict', ${(((s as any).trait_vars ?? {})?.['cum_addict'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Elasticity (<<trait_vars['elasticity']>>): <a href="exec:gs 'traits', 'cheat', '...
-  scene.text(`Elasticity (${((s as any).trait_vars ?? 0)?.['elasticity']}): <a href="exec:gs 'traits', 'cheat', 'elasticity', ${((s as any).trait_vars ?? {})?.['elasticity'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'elasticity', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'elasticity', ${((s as any).trait_vars ?? {})?.['elasticity'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Elasticity (${((s as any).trait_vars ?? 0)?.['elasticity'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'elasticity', ${(((s as any).trait_vars ?? {})?.['elasticity'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'elasticity', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'elasticity', ${(((s as any).trait_vars ?? {})?.['elasticity'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Sleep Pattern (<<trait_vars['sleep_duration']>>): <a href="exec:gs 'traits', 'ch...
-  scene.text(`Sleep Pattern (${((s as any).trait_vars ?? 0)?.['sleep_duration']}): <a href="exec:gs 'traits', 'cheat', 'sleep_duration', ${((s as any).trait_vars ?? {})?.['sleep_duration'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'sleep_duration', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'sleep_duration', ${((s as any).trait_vars ?? {})?.['sleep_duration'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Sleep Pattern (${((s as any).trait_vars ?? 0)?.['sleep_duration'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'sleep_duration', ${(((s as any).trait_vars ?? {})?.['sleep_duration'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'sleep_duration', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'sleep_duration', ${(((s as any).trait_vars ?? {})?.['sleep_duration'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   // TODO-QSP: dynamic text: Everything Is New Again (<<trait_vars['new_again']>>): <a href="exec:gs 'traits'...
-  scene.text(`Everything Is New Again (${((s as any).trait_vars ?? 0)?.['new_again']}): <a href="exec:gs 'traits', 'cheat', 'new_again', ${((s as any).trait_vars ?? {})?.['new_again'] - 1}${((s as any).tc_r ?? 0)}">▼</a> <a href="exec:gs 'traits', 'cheat', 'new_again', -99${((s as any).tc_r ?? 0)}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'new_again', ${((s as any).trait_vars ?? {})?.['new_again'] + 1}${((s as any).tc_r ?? 0)}">▲</a>`);
+  scene.text(`Everything Is New Again (${((s as any).trait_vars ?? 0)?.['new_again'] ?? ''}): <a href="exec:gs 'traits', 'cheat', 'new_again', ${(((s as any).trait_vars ?? {})?.['new_again'] ?? 0) - 1}${((s as any).tc_r || '')}">▼</a> <a href="exec:gs 'traits', 'cheat', 'new_again', -99${((s as any).tc_r || '')}">Reset</a> <a href="exec:gs 'traits', 'cheat', 'new_again', ${(((s as any).trait_vars ?? {})?.['new_again'] ?? 0) + 1}${((s as any).tc_r || '')}">▲</a>`);
   scene.text('<center><h3>Hidden traits</h3></center>');
-  qspCall(s, 'cheatmenu_din', 'cheatBoolRow', 'show_hidden_traits', 'Show hidden traits as inactive (reveals names and descriptions)');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'show_hidden_traits', 'Show hidden traits as inactive (reveals names and descriptions)']; enterCheatBoolRow(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('When enabled, hidden traits that are inactive will display their name and description on the traits page instead of "???".');
   // TODO-QSP: $cheatmenu['table_end']
   // TODO-QSP: end

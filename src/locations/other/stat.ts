@@ -61,7 +61,7 @@ function enterApplyCaps(s: GameState, scene: SceneBuilder): void {
   (s as any).healthmax = Math.max(1, ((s as any).pcs_vital ?? 0) * 10 + ((s as any).pcs_stren ?? 0) * 5);
   (s as any).manamax = Math.max(1, (((s as any).pcs_intel ?? 0) + 100) * ((s as any).pcs_magik ?? 0) + ((s as any).pcs_vital ?? 0) * 10 + ((s as any).rikudo ?? 0));
   if (!(s as any).stammax) (s as any).stammax = {}; (s as any).stammax['base'] = (30 * (2 * ((s as any).pcs_vital ?? 0) + ((s as any).pcs_agil ?? 0) + ((s as any).pcs_stren ?? 0)) + 1000) / 13;
-  (s as any).stammax = Math.max(1, Math.max(((s as any).stammax ?? {})?.['base'] / 10, ((s as any).stammax ?? {})?.['base'] - ((s as any).pregChem ?? 0) / 10));
+  (s as any).stammax = Math.max(1, Math.max((((s as any).stammax ?? {})?.['base'] ?? 0) / 10, (((s as any).stammax ?? {})?.['base'] ?? 0) - ((s as any).pregChem ?? 0) / 10));
   (s as any).pcs_horny = Math.max(0, ((s as any).pcs_horny ?? 0));
   (s as any).pcs_willpwr = 0;
   (s as any).pcs_health = 0;
@@ -463,7 +463,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).stat_seen_anal = ((s as any).temp_anal ?? 0);
-  (s as any).temp_oral = ((s as any).stat ?? {})?.['bj'] + ((s as any).stat ?? {})?.['cuni'];
+  (s as any).temp_oral = (((s as any).stat ?? {})?.['bj'] ?? 0) + (((s as any).stat ?? {})?.['cuni'] ?? 0);
   if (((s as any).temp_oral ?? 0) > ((s as any).stat_seen_oral ?? 0)) {
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day'] = ((s as any).daystart ?? 0);
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_sex_day_oral'] = ((s as any).daystart ?? 0);
@@ -502,8 +502,8 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     }
   }
   (s as any).stat_seen_prostitution = ((s as any).temp_prostitution ?? 0);
-  (s as any).shameless = ((s as any).stat ?? {})?.['men_fucked'] + ((s as any).stat ?? {})?.['bj'] + ((s as any).stat ?? {})?.['anal'] + ((s as any).stat ?? {})?.['hj'] + ((((s as any).stat ?? {})?.['prostitution_count'] + ((s as any).stat ?? {})?.['gangbang_count']) * 2);
-  qspCall(s, 'stat', 'apply_caps');
+  (s as any).shameless = (((s as any).stat ?? {})?.['men_fucked'] ?? 0) + (((s as any).stat ?? {})?.['bj'] ?? 0) + (((s as any).stat ?? {})?.['anal'] ?? 0) + (((s as any).stat ?? {})?.['hj'] ?? 0) + (((((s as any).stat ?? {})?.['prostitution_count'] ?? 0) + (((s as any).stat ?? {})?.['gangbang_count'] ?? 0)) * 2);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterApplyCaps(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'time', '');
   qspCall(s, 'outdoors', 'weather');
   if (((s as any).daystage ?? 0) === 1) {
@@ -557,7 +557,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_workout_trig'] = 0;
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['last_workout'] = ((s as any).totminut ?? 0);
   }
-  qspCall(s, 'stat', 'apply_stretch');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterApplyStretch(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'outfit', 'stat', totminut - prevtotmin
   if (((s as any).kid ?? 0) > 0) {
     (s as any).i = 0;
@@ -577,11 +577,11 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
       (s as any).Trig15Minute = ((s as any).totminut ?? 0) - 1440;
     }
     if (((s as any).totminut ?? 0) - ((s as any).Trig15Minute ?? 0) >= 15) {
-      qspCall(s, 'stat', '15_minute_loop');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enter15MinuteLoop(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).succubusflag ?? 0) === 1) {
-    qspCall(s, 'stat', 'succubus_nutrition');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSuccubusNutrition(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).pcs_sleep ?? 0) < 0) {
     (s as any).pcs_sleep = 0;
@@ -697,7 +697,7 @@ function enter15MinuteLoop(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).acting) (s as any).acting = {}; (s as any).acting['icon'] = 0;
   }
   qspCall(s, 'stat_sklattrib_lvlset', '');
-  qspCall(s, 'stat', 'apply_caps');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterApplyCaps(s, scene); (s as any).locArgs = __savedLocArgs; }
   if ((((s as any).inSleep ?? 0) === 0  ||  ((s as any).sleepVars ?? 0)?.['stat_display'] === 1)  &&  (Array.isArray((s as any).ARGS) ? ((s as any).ARGS as any[]).indexOf('no_display') : -1) < 0) {
     qspCall(s, 'outdoors', 'main');
     qspCall(s, 'stat_display', '');

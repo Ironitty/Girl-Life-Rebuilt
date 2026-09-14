@@ -510,7 +510,7 @@ function enterActLearn(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).spellKnown) (s as any).spellKnown = {}; (s as any).spellKnown[String((s as any).ThisSpellName ?? 0)] = 1;
       scene.text('Finally, you are able to grasp and learn the spell.');
       // TODO-QSP: dynamic text: <<$spellName[$ThisSpellName]>>: <<$spellDesc[$ThisSpellName]>>
-      scene.text(`${((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)]}: ${((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)]}`);
+      scene.text(`${((s as any).spellName ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? ''}: ${((s as any).spellDesc ?? 0)?.[String((s as any).ThisSpellName ?? 0)] ?? ''}`);
     }
   }
   // TODO-QSP: end

@@ -36,7 +36,7 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
         scene.text('It\'s too early in the day to visit Julia.');
       } else {
         // TODO-QSP: dynamic text: You knock on the door. You hear footsteps in the apartment and sure enough, a fe...
-        scene.text(`You knock on the door. You hear footsteps in the apartment and sure enough, a few seconds later Julia opens the door. "Oh, hi ${((s as any).pcs_nickname ?? 0)}! Come on in!"`);
+        scene.text(`You knock on the door. You hear footsteps in the apartment and sure enough, a few seconds later Julia opens the door. "Oh, hi ${((s as any).pcs_nickname || '')}! Come on in!"`);
         scene.actions([
           { label: 'Enter Julia\'s apartment', goto: ['JuliaMilHome', 'hallway'] },
         ]);
@@ -125,7 +125,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/home/kitchen/fridge.jpg');
   // TODO-QSP: dynamic text: You open the fridge and see:<<$julia_tea>><<$julia_water>><<$julia_sup>><<$julia...
-  scene.text(`You open the fridge and see:${((s as any).julia_tea ?? 0)}${((s as any).julia_water ?? 0)}${((s as any).julia_sup ?? 0)}${((s as any).julia_lefto ?? 0)}${((s as any).julia_sanw ?? 0)}`);
+  scene.text(`You open the fridge and see:${((s as any).julia_tea || '')}${((s as any).julia_water || '')}${((s as any).julia_sup || '')}${((s as any).julia_lefto || '')}${((s as any).julia_sanw || '')}`);
   if (((s as any).julialefto_count ?? 0) > 0) {
     scene.actions([
       { label: 'Eat some left overs', handler: (st: GameState) => {
@@ -439,7 +439,7 @@ function enterJuliaRoom(s: GameState, scene: SceneBuilder): void {
           if (((s as any).juliaQW ?? 0)?.['SexTalkJulia'] === 4) {
             qspCall(s, 'npcStat', 'A12');
             // TODO-QSP: dynamic text: Julia is embarrassed and says, "There's something unusual about you, <<$pcs_nick...
-            scene.text(`Julia is embarrassed and says, "There's something unusual about you, ${((s as any).pcs_nickname ?? 0)}. I've never felt so much at ease around anyone else before, around you I can really be myself. I…", she doesn't finish her sentence, letting the silence linger in the air for a second. Then she suddenly moves her face to yours, intending to kiss you.`);
+            scene.text(`Julia is embarrassed and says, "There's something unusual about you, ${((s as any).pcs_nickname || '')}. I've never felt so much at ease around anyone else before, around you I can really be myself. I…", she doesn't finish her sentence, letting the silence linger in the air for a second. Then she suddenly moves her face to yours, intending to kiss you.`);
             scene.actions([
               { label: 'Kiss Julia', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/julia/sex/julkiss.jpg');
@@ -517,7 +517,7 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
     scene.text('She smiles at you as she says, "Well, we\'ve spent a lot of time together and we… you know, so I figured it would be nice to make it official."');
     scene.text('Not sure what you means you ask, "Make what official?"');
     // TODO-QSP: dynamic text: Julia is silent a moment before she asks. "<<$pcs_nickname>> Will you be my girl...
-    scene.text(`Julia is silent a moment before she asks. "${((s as any).pcs_nickname ?? 0)} Will you be my girlfriend?"`);
+    scene.text(`Julia is silent a moment before she asks. "${((s as any).pcs_nickname || '')} Will you be my girlfriend?"`);
     scene.actions([
       { label: 'Tell her no', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big12.jpg');
@@ -538,7 +538,7 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/shared/headshots_main/big12.jpg');
     // TODO-QSP: dynamic text: She gets a huge grin on her face, she pulls you up and into a tight fierce hug. ...
-    scene.text(`She gets a huge grin on her face, she pulls you up and into a tight fierce hug. She nuzzles your neck as the two of you hug. "You just made me the happiest girl in the world. I love you ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`She gets a huge grin on her face, she pulls you up and into a tight fierce hug. She nuzzles your neck as the two of you hug. "You just made me the happiest girl in the world. I love you ${((s as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Tell her you love her too', handler: (st: GameState) => {
     if (!(s as any).juliaQW) (s as any).juliaQW = {}; (s as any).juliaQW['Julialove'] = 1;
@@ -576,12 +576,12 @@ function enterJuliaChat(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/julia/juliacry.jpg');
     scene.text('You quietly walk in and sit on the bed next to Julia.');
     // TODO-QSP: dynamic text: Julia looks at you questioningly, "<<$pcs_nickname>>…"
-    scene.text(`Julia looks at you questioningly, "${((s as any).pcs_nickname ?? 0)}…"`);
+    scene.text(`Julia looks at you questioningly, "${((s as any).pcs_nickname || '')}…"`);
     scene.text('You frown as you look at her. "We need to talk."');
     scene.text('Julia asks. "Ok about what?"');
     scene.text('You sigh, "I think we should break up."');
     // TODO-QSP: dynamic text: Julia starts to cry, "Why <<$pcs_nickname>>? What did I do wrong?"
-    scene.text(`Julia starts to cry, "Why ${((s as any).pcs_nickname ?? 0)}? What did I do wrong?"`);
+    scene.text(`Julia starts to cry, "Why ${((s as any).pcs_nickname || '')}? What did I do wrong?"`);
     scene.text('You get up to put a little space between you. "It\'s not you… I just don\'t love you anymore."');
     scene.text('Julia openly starts to cry. "Is it someone else?"');
     scene.text('You shake your head, "No, your a great, I just feel differently now is all." You try to comfort her and she begs and pleads you not to do this, but after some time you finally get up. "I\'m sorry but this is over. I\'m truly sorry." With that you turn and walk out, leaving Julia crying behind you.');
@@ -661,7 +661,7 @@ function enterJuliaGo(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Julia Milova, your classmate</b></center>');
   scene.img('images/characters/shared/headshots_main/big12.jpg');
   // TODO-QSP: dynamic text: As you approach Julia after school, she smiles at you and asks, "Hi <<$pcs_nickn...
-  scene.text(`As you approach Julia after school, she smiles at you and asks, "Hi ${((s as any).pcs_nickname ?? 0)}! Want to go to my place? We can do our homework together, and maybe grab a bite to eat?"`);
+  scene.text(`As you approach Julia after school, she smiles at you and asks, "Hi ${((s as any).pcs_nickname || '')}! Want to go to my place? We can do our homework together, and maybe grab a bite to eat?"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Go with Julia', handler: (st: GameState) => {

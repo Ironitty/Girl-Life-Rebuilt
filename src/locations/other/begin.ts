@@ -143,7 +143,7 @@ function enterUseAvatarMenu(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).face_style) (s as any).face_style = {}; (s as any).face_style['avatar_path'] = 'images/avatar.jpg';
   }
   // TODO-QSP: dynamic text: You have selected: <<$face_style['avatar_path']>>. Is this correct?
-  scene.text(`You have selected: ${((s as any).face_style ?? 0)?.['avatar_path']}. Is this correct?`);
+  scene.text(`You have selected: ${((s as any).face_style ?? 0)?.['avatar_path'] ?? ''}. Is this correct?`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Yes', goto: ['intro_start', 'start'] },

@@ -22,11 +22,11 @@ function enterMirakiss(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp ?? 0) === 3) {
     // TODO-QSP: dynamic text: Mira gently kisses your <<$pc_desc['lips']>> lips, and you feel the thrill of he...
-    scene.text(`Mira gently kisses your ${((s as any).pc_desc ?? 0)?.['lips']} lips, and you feel the thrill of her kiss washing over you.`);
+    scene.text(`Mira gently kisses your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, and you feel the thrill of her kiss washing over you.`);
   }
   if (((s as any).temp ?? 0) === 4) {
     // TODO-QSP: dynamic text: Mira passionately kisses your <<$pc_desc['lips']>> lips, and you return the kiss...
-    scene.text(`Mira passionately kisses your ${((s as any).pc_desc ?? 0)?.['lips']} lips, and you return the kiss, feeling exhilaration in every part of your body.`);
+    scene.text(`Mira passionately kisses your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips, and you return the kiss, feeling exhilaration in every part of your body.`);
   }
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'arousal', 'kiss', (-10), 'lesbian');
@@ -63,7 +63,7 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).temp ?? 0) === 3) {
     // TODO-QSP: dynamic text: You kiss Mira, your <<$pc_desc['lips']>> lips touching her lips in a hot kiss, a...
-    scene.text(`You kiss Mira, your ${((s as any).pc_desc ?? 0)?.['lips']} lips touching her lips in a hot kiss, and your hand on her crotch making her moan excitedly.`);
+    scene.text(`You kiss Mira, your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips touching her lips in a hot kiss, and your hand on her crotch making her moan excitedly.`);
   }
   scene.text('Mira starts to unbutton your top.');
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
@@ -75,7 +75,7 @@ function enterForeplay(s: GameState, scene: SceneBuilder): void {
     (s as any).temp = Math.floor(Math.random() * 3) + 1;
     if (((s as any).temp ?? 0) === 1) {
       // TODO-QSP: dynamic text: Mira fondles your <<$titsize>> breasts, gently squeezing them in her hands and k...
-      scene.text(`Mira fondles your ${((s as any).titsize ?? 0)} breasts, gently squeezing them in her hands and kissing them.`);
+      scene.text(`Mira fondles your ${((s as any).titsize || '')} breasts, gently squeezing them in her hands and kissing them.`);
     }
     if (((s as any).temp ?? 0) === 2) {
       scene.text('You feel her hot breath on your chest and her slick tongue caressing your nipples and giving you great pleasure.');
@@ -189,7 +189,7 @@ function enterMiralickDog(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'mirasex', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -231,7 +231,7 @@ function enterLickmiraMis2(s: GameState, scene: SceneBuilder): void {
     (s as any).miraorgasm = 1;
     scene.img('images/characters/gadukino/mira/sex/lickmira_mis_cum.jpg');
     // TODO-QSP: $textmis[rand(1, 3)]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emot...
-    qspCall(s, 'mirasex', 'miralick_orgasm');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiralickOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
     qspCall(s, 'stat', '');
@@ -269,7 +269,7 @@ function enterLickmiraMis2(s: GameState, scene: SceneBuilder): void {
         scene.text('After Mira\'s orgasms, you get out between her legs and wipe her juices off your face. Then, you clean yourself up and head back to the village with Mira.');
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'mirasex', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -287,7 +287,7 @@ function enterMiralickStart(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.img('images/characters/gadukino/mira/sex/mira_start_tanga0.jpg');
     // TODO-QSP: dynamic text: Dropping to her knees and not finding any panties, Mira licked your <<$pc_desc['...
-    scene.text(`Dropping to her knees and not finding any panties, Mira licked your ${((s as any).pc_desc ?? 0)?.['pussy']} vagina, sampling its taste and causing an involuntary moan of pleasure from you. You lean against the tree, close your eyes, and wait for her to continue…`);
+    scene.text(`Dropping to her knees and not finding any panties, Mira licked your ${((s as any).pc_desc ?? 0)?.['pussy'] ?? ''} vagina, sampling its taste and causing an involuntary moan of pleasure from you. You lean against the tree, close your eyes, and wait for her to continue…`);
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
   qspCall(s, 'stat', '');
@@ -368,7 +368,7 @@ function enter69_1(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'mirasex', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -413,7 +413,7 @@ function enterMiralickStand2(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.actions([
           { label: 'Leave', handler: (st: GameState) => {
-    qspCall(s, 'mirasex', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -523,7 +523,7 @@ function enterLickmiraMis1(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['arousal'] = 0;
     scene.img('images/characters/gadukino/mira/sex/lickmira_mis_cum.jpg');
     // TODO-QSP: $textmis[rand(1, 3)]+$textlick[iif(stat['lesbian_count'] < 10, rand(7, 9), rand(10, 12))]+$text_emot...
-    qspCall(s, 'mirasex', 'miralick_orgasm');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMiralickOrgasm(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'arousal', 'cuni_give', (-10), 'lesbian');
     qspCall(s, 'stat', '');

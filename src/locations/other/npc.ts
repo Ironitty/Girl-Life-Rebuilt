@@ -132,7 +132,7 @@ function enterGetNpcCount(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['char'] = 0;
   if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['inner_i'] = 1;
   // TODO-QSP: :loop_inner_npc_count
-  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['npcID'] = ((s as any).temp_npcVars ?? {})?.['char'] + ((s as any).temp_npcVars ?? {})?.['inner_i'];
+  if (!(s as any).temp_npcVars) (s as any).temp_npcVars = {}; (s as any).temp_npcVars['npcID'] = (((s as any).temp_npcVars ?? {})?.['char'] ?? 0) + (((s as any).temp_npcVars ?? {})?.['inner_i'] ?? 0);
   if ((0 as any) > 0) {
     if (((s as any).npc_gender ?? 0)[((s as any).temp_npcVars ?? 0)?.['npcID']] === 0) {
       if (!(s as any).npc_results) (s as any).npc_results = {}; (s as any).npc_results['guys'] = ((s as any).npc_results['guys'] ?? 0) + (1);
@@ -210,7 +210,7 @@ function enterNpcStatUpdateAll(s: GameState, scene: SceneBuilder): void {
   (s as any).npcStat_update_max_i = 26;
   // TODO-QSP: :update_loop2
   // TODO-QSP: dynamic "
-  if (((s as any).npcID ?? 0)((s as any).npcStat_update_i ?? 0) !== '') {
+  if (((s as any).npcID ?? 0)?.[String((s as any).npcStat_update_i ?? 0)] !== '') {
     // TODO-QSP: gs 'npcStat', $npcID<<npcStat_update_i>>, '<<$npcStat_update_letter>>', $npcCondom<<npcStat_update_i...
   }
   // TODO-QSP: "

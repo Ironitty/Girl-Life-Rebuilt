@@ -75,12 +75,12 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).adv_init ?? 0))) {
     qspCall(s, 'adverts_definition', 'init');
     (s as any).adv_lastAppearanceChance = (-1);
-    qspCall(s, 'adverts_manager', 'appearance_chance');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAppearanceChance(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).week ?? 0) === 1) {
-    qspCall(s, 'adverts_manager', 'appearance_chance');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAppearanceChance(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'adverts_manager', 'sum_adverts');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSumAdverts(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   scene.text('<center><b>Noticeboard</b></center>');
@@ -106,11 +106,11 @@ function enterShow(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $adv_Text
   if (((s as any).adv_unknownCount ?? 0) > 0) {
     scene.text('<center><b>New Adverts</b></center>');
-    qspCall(s, 'adverts_manager', 'show_adverts', 0);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterShowAdverts(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).adv_knownCount ?? 0) > 0) {
     scene.text('<center><b>Known Adverts</b></center>');
-    qspCall(s, 'adverts_manager', 'show_adverts', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterShowAdverts(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.actions([
@@ -124,7 +124,7 @@ function enterSumAdverts(s: GameState, scene: SceneBuilder): void {
   (s as any).adv_unknownCount = 0;
   (s as any).i = 1;
   // TODO-QSP: :sum_visible_loop
-  qspCall(s, 'adverts_manager', 'check_location');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckLocation(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).adv_location_result ?? 0) > 0  &&  ((s as any).adv_appearance ?? 0)?.[String((s as any).i ?? 0)] === 1) {
     if (((s as any).adv_known ?? 0)?.[String((s as any).i ?? 0)] === 1) {
       (s as any).adv_knownCount = ((s as any).adv_knownCount ?? 0) + (1);
@@ -162,7 +162,7 @@ function enterAppearanceChance(s: GameState, scene: SceneBuilder): void {
 function enterShowAdverts(s: GameState, scene: SceneBuilder): void {
   (s as any).i = 1;
   // TODO-QSP: :show_adverts_loop
-  qspCall(s, 'adverts_manager', 'check_location');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckLocation(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).adv_location_result ?? 0) > 0  &&  ((s as any).adv_known ?? 0)?.[String((s as any).i ?? 0)] === ((s as any).args ?? 0)[1]  &&  ((s as any).adv_appearance ?? 0)?.[String((s as any).i ?? 0)] === 1) {
     if ((!((s as any).i2 ?? 0))) {
       // TODO-QSP: $adv_table_adverts += '<tr>'

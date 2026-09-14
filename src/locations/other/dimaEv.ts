@@ -13,7 +13,7 @@ function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
     scene.actions([{ label: 'Continue', goto: ['dimaHome', 'dimkaroom'] }]);
   }
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1']} ${((s as any).npc_lastname ?? 0)?.['A1']}</b></center>`);
+  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   scene.text('Dimka seeing you, walks up and says quietly, "Come here slut, we\'re going to go have some fun at my place." Your cheeks redden at the gross nickname');
   if (((s as any).fedorKozlovQW ?? 0) >= 10  &&  ((s as any).dimaFilm ?? 0) === 1  &&  ((s as any).FedorvsDimka ?? 0) === 1  ||  ((s as any).fedorKozlovQW ?? 0) === -15) {
@@ -21,7 +21,7 @@ function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).fedorKozlovQW ?? 0) >= 10  ||  ((s as any).fedorKozlovQW ?? 0) === -15) {
       // TODO-QSP: dynamic text: Fedor walks up to you. "Hey <<$pcs_nickname>>, shall we go?" Dimka turns to Fedo...
-      scene.text(`Fedor walks up to you. "Hey ${((s as any).pcs_nickname ?? 0)}, shall we go?" Dimka turns to Fedor. "Fedor, what are you doing here? ${((s as any).pcs_firstname ?? 0)} is my girl." Fedor raises his eyebrow. "What are you talking about? ${((s as any).pcs_firstname ?? 0)} is with me." Dimka grins at Fedor. "So let's ask her who she is dating?". You stand there fidgeting nervously`);
+      scene.text(`Fedor walks up to you. "Hey ${((s as any).pcs_nickname || '')}, shall we go?" Dimka turns to Fedor. "Fedor, what are you doing here? ${((s as any).pcs_firstname || '')} is my girl." Fedor raises his eyebrow. "What are you talking about? ${((s as any).pcs_firstname || '')} is with me." Dimka grins at Fedor. "So let's ask her who she is dating?". You stand there fidgeting nervously`);
       return;
       scene.actions([
         { label: 'Sorry Fedor, but I\'m with Dimka', handler: (st: GameState) => {
@@ -64,7 +64,7 @@ function enterAfterSchool(s: GameState, scene: SceneBuilder): void {
         scene.text('Dimka downcasts his eyes nervously, obviously afraid of Fedor, and looking around for some type of escape, but he doesn\'t know who to shut up "Yes, it\'s true, she sucked me off outside the community center."');
         scene.text('Fedor shoves Dimka to the ground and raise his fists. Dimka begin to panic as he remembers that Fedor is a boxer, "Keep your hands off me! Why would you want to date a cocksucker like her anyway?"');
         // TODO-QSP: dynamic text: Fedor grabs Dimka by the lapels and lifts him off the ground, then rams his fist...
-        scene.text(`Fedor grabs Dimka by the lapels and lifts him off the ground, then rams his fist into Dimka's stomach. "You talk shit about ${((s as any).pcs_firstname ?? 0)} again and I'll start collecting teeth."`);
+        scene.text(`Fedor grabs Dimka by the lapels and lifts him off the ground, then rams his fist into Dimka's stomach. "You talk shit about ${((s as any).pcs_firstname || '')} again and I'll start collecting teeth."`);
         scene.text('Dimka falls to the ground, trying to catch his breath and escape from Fedor as he crawls back. "Come on… cough… calm down… augh… I won\'t, I won\'t…"');
         scene.text('Fedor turns, leaving Dimka on the ground, then grabs your hand and leads you away. You don\'t know what is going to happen, but Fedor doesn\'t seem happy. Looking over your shoulder to the fallen form of Dimka, you suddenly realize the hotness and wetness between your legs.');
         scene.text(`<center><b>${'Fyodor [Fedor] Kozlov'}</b></center>`);
@@ -103,7 +103,7 @@ function enterDrugged(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   qspCall(s, 'drugs', 'cocaine', 1);
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1']} ${((s as any).npc_lastname ?? 0)?.['A1']}</b></center>`);
+  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   scene.text('You take several sips as you talk with Dimka. Again he doesn\'t seem to want to chat, and appears to be waiting for something. After a while you start to feel funny. For a moment you just feel numb, then you feel yourself get aroused. The heat coming from your pussy intensifying as it soaks itself. You gasp. It is almost too much to take. You desperately need someone to fuck you. "Oh, fuck". You don\'t think this is normal. He must have laced it with something. You blink a few times trying to clear your head, but soon your thoughts grow murky.');
   // TODO-QSP: end
@@ -145,7 +145,7 @@ function enterFirstvisitsex(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/minet.jpg');
     // TODO-QSP: dynamic text: Seeing his hard dick, you almost feel your mouth water. You don't understand wha...
-    scene.text(`Seeing his hard dick, you almost feel your mouth water. You don't understand what is happening anymore, but you want to suck his cock so much right now. You walk, stumbling over, to Dimka and settle comfortably in front of him, taking his hard, hot dick in your mouth. Your lips slide down the shaft of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock and you start bobbing your head on his rod while one hand strokes his shaft and the other massages his balls. Your mind is too drugged to have any will or thought anymore.`);
+    scene.text(`Seeing his hard dick, you almost feel your mouth water. You don't understand what is happening anymore, but you want to suck his cock so much right now. You walk, stumbling over, to Dimka and settle comfortably in front of him, taking his hard, hot dick in your mouth. Your lips slide down the shaft of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock and you start bobbing your head on his rod while one hand strokes his shaft and the other massages his balls. Your mind is too drugged to have any will or thought anymore.`);
     (s as any).dimadalrand = 0;
     qspCall(s, 'arousal', 'bj', 15, 'sub');
     qspCall(s, 'stat', '');
@@ -201,10 +201,10 @@ function enterFirstvisitsex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/resident/arthur/sex/facefuck0.jpg');
     if (((s as any).pcs_throat ?? 0) < 16) {
       // TODO-QSP: dynamic text: Your sense of time seems altered, minutes?, hours?, it doesn't seem to be import...
-      scene.text(`Your sense of time seems altered, minutes?, hours?, it doesn't seem to be important, you just keep sucking his cock as if it is the only thing in your little world. Dimka grabs you by the hair and pulls you onto his member. His hard ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock enters your throat, you choke but are too confused to really do anything about it. Dimka doesn't pay any attention to your distress, and in fact, seems to enjoy your gagging sounds. He just fucks your mouth with his hard cock. Finally the torture ends and he fills your mouth with his hot slimy sperm that you instinctively swallow.`);
+      scene.text(`Your sense of time seems altered, minutes?, hours?, it doesn't seem to be important, you just keep sucking his cock as if it is the only thing in your little world. Dimka grabs you by the hair and pulls you onto his member. His hard ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock enters your throat, you choke but are too confused to really do anything about it. Dimka doesn't pay any attention to your distress, and in fact, seems to enjoy your gagging sounds. He just fucks your mouth with his hard cock. Finally the torture ends and he fills your mouth with his hot slimy sperm that you instinctively swallow.`);
     } else {
       // TODO-QSP: dynamic text: Your sense of time seems altered, minutes?, hours?, it doesn't seem to be import...
-      scene.text(`Your sense of time seems altered, minutes?, hours?, it doesn't seem to be important, you just keep sucking his cock as if it is the only thing in your little world. Dimka grabs you by the hair and pulls you onto his member. His hard ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock enters your throat, you resist gagging, but are too confused to really understand what he is doing. Dimka enjoys the fact that he can push his hard cock to the back of your throat and relentlessly fucks your mouth. Finally the torture ends and he cums his hot slimy sperm that you instinctively swallow.`);
+      scene.text(`Your sense of time seems altered, minutes?, hours?, it doesn't seem to be important, you just keep sucking his cock as if it is the only thing in your little world. Dimka grabs you by the hair and pulls you onto his member. His hard ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock enters your throat, you resist gagging, but are too confused to really understand what he is doing. Dimka enjoys the fact that he can push his hard cock to the back of your throat and relentlessly fucks your mouth. Finally the torture ends and he cums his hot slimy sperm that you instinctively swallow.`);
     }
     qspCall(s, 'arousal', 'end');
     qspCall(s, 'pain', '', 2, 'throat', 'stretch');
@@ -251,7 +251,7 @@ function enterFirstvisitsex(s: GameState, scene: SceneBuilder): void {
     (s as any).dimasexday = ((s as any).daystart ?? 0);
     scene.img('images/shared/sex/vag/miss/sex2.jpg');
     // TODO-QSP: dynamic text: Your sense of time seems altered, minutes?, hours?, it doesn't seem to be import...
-    scene.text(`Your sense of time seems altered, minutes?, hours?, it doesn't seem to be important, you just keep sucking his cock as it is the only thing in your little world. Dimka puts you on the sofa on your back, your head against the back and your ass nearly hanging off. He lifts your legs up and pushes them forward until they are resting against your body. You try to get up from the awkward position, but he gives your exposed ass a slap. "Come on slut, fuck like a porn star". Grabbing your legs you complain. He presses the head of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick against the slit of your pussy and with a triumphant smile pushes himself inside.`);
+    scene.text(`Your sense of time seems altered, minutes?, hours?, it doesn't seem to be important, you just keep sucking his cock as it is the only thing in your little world. Dimka puts you on the sofa on your back, your head against the back and your ass nearly hanging off. He lifts your legs up and pushes them forward until they are resting against your body. You try to get up from the awkward position, but he gives your exposed ass a slap. "Come on slut, fuck like a porn star". Grabbing your legs you complain. He presses the head of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick against the slit of your pussy and with a triumphant smile pushes himself inside.`);
     qspCall(s, 'dinsex', 'boy_puts_condom');
     qspCall(s, 'dinsex', 'vaginal_sex', 10);
     qspCall(s, 'dinsex', 'sexcum');
@@ -269,7 +269,7 @@ function enterFirstvisitsex(s: GameState, scene: SceneBuilder): void {
     (s as any).dimasexday = ((s as any).daystart ?? 0);
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/anal.jpg');
     // TODO-QSP: dynamic text: Your sense of time seems altered, minutes?, hours?, it doesn't seem to be import...
-    scene.text(`Your sense of time seems altered, minutes?, hours?, it doesn't seem to be important, you just keep sucking his cock as it is the only thing in your little world. Dimka puts you on the sofa on your knees and forces your head down against the cushion. You try to get up, but he pushes his hand against your head, stopping you from moving. Then, without caring he shoves his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock against your asshole. Something sparks in your murky mind, and you reflexively move your hand between your legs. Dimka slap your hand away, stopping you. "Come on slut, show me that you like it".`);
+    scene.text(`Your sense of time seems altered, minutes?, hours?, it doesn't seem to be important, you just keep sucking his cock as it is the only thing in your little world. Dimka puts you on the sofa on your knees and forces your head down against the cushion. You try to get up, but he pushes his hand against your head, stopping you from moving. Then, without caring he shoves his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock against your asshole. Something sparks in your murky mind, and you reflexively move your hand between your legs. Dimka slap your hand away, stopping you. "Come on slut, show me that you like it".`);
     qspCall(s, 'dinSex', '', 'boy_wants_anal\' & gs \'dinsex', 'analsex');
     qspCall(s, 'arousal', 'end');
     scene.actions([
@@ -362,7 +362,7 @@ function enterPlead(s: GameState, scene: SceneBuilder): void {
 
 function enterBlackmail(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
-  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1']} ${((s as any).npc_lastname ?? 0)?.['A1']}</b></center>`);
+  scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
   scene.img('images/characters/shared/headshots_main/big1.jpg');
   (s as any).nodimkaK = 0;
   if (((s as any).dimkaWarn ?? 0) === 1) {
@@ -373,13 +373,13 @@ function enterBlackmail(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/choke.jpg');
     scene.text('After avoiding Dimka for more than a week, you finally show up at his home. You enter his room nervously, but he actually seems happy and relaxed.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, it is so good to see you. How have you been?" Dimka says jov...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, it is so good to see you. How have you been?" Dimka says jovially as he ushers you into his room and closes the door behind you. You start to relax, thinking that everything will be fine when he suddenly grabs your throat from behind.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, it is so good to see you. How have you been?" Dimka says jovially as he ushers you into his room and closes the door behind you. You start to relax, thinking that everything will be fine when he suddenly grabs your throat from behind.`);
     scene.text('"I told you that you belong to me and you fucking decide to avoid me, you bitch!" he snarls as he grabs your hair with his free hand and bends your neck painfully sideways, "You piece of trash. I should snap your neck right now."');
     // TODO-QSP: dynamic text: His voice changes, suddenly becoming pensive and quiet, "I could, you know, just...
-    scene.text(`His voice changes, suddenly becoming pensive and quiet, "I could, you know, just add a little more pressure and, Snap! No more little ${((s as any).pcs_nickname ?? 0)}." Fighting fear and suffocation you plead, "No, please Dimka, I…" `);
+    scene.text(`His voice changes, suddenly becoming pensive and quiet, "I could, you know, just add a little more pressure and, Snap! No more little ${((s as any).pcs_nickname || '')}." Fighting fear and suffocation you plead, "No, please Dimka, I…" `);
     scene.text('His hand on your throat tightens and you see spots in front of your eyes. Without warning, he lets go and throws you to the floor. As you lay there gasping for breath, he comes to stand over you. You recoil frightened.');
     // TODO-QSP: dynamic text: "I missed you, <<$pcs_nickname>>, you need to come see me more often." Dimka say...
-    scene.text(`"I missed you, ${((s as any).pcs_nickname ?? 0)}, you need to come see me more often." Dimka says gently as he helps you to your feet, "Now let's forget all this unpleasantness, shall we?"`);
+    scene.text(`"I missed you, ${((s as any).pcs_nickname || '')}, you need to come see me more often." Dimka says gently as he helps you to your feet, "Now let's forget all this unpleasantness, shall we?"`);
     scene.text('You nod your agreement and Dimka is all smiles again, as he undresses you, you can\'t stop shaking in fear.');
     scene.actions([
       { label: 'Continue', goto: ['dimaEv', 'dimkaplays'] },
@@ -417,7 +417,7 @@ function enterDimkawarns(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'boyStat', 'A1');
   scene.img('images/characters/pavlovsk/school/boy/dimka/sex/tiedinchair.jpg');
   // TODO-QSP: dynamic text: Dimka strips you of all your clothes, ties you securely to the chair and forces ...
-  scene.text(`Dimka strips you of all your clothes, ties you securely to the chair and forces a ball gag into your mouth. He pours himself another glass of vodka and drinks it as he stares at you. You want to beg him for forgiveness, but you can only moan fearfully through the gag. Finishing his drink, he unfastens his trousers and allows them to fall to the floor. He is not wearing underwear and his dick is already hard and leaking precum as he approaches you. "I loved you, you know, but you had to ruin it." He rubs the slippery head of his cock against your vagina until he finds your entrance. "You are still mine!" he hisses as he forces his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick into your dry vagina. You can only cry at the sudden intrusion.`);
+  scene.text(`Dimka strips you of all your clothes, ties you securely to the chair and forces a ball gag into your mouth. He pours himself another glass of vodka and drinks it as he stares at you. You want to beg him for forgiveness, but you can only moan fearfully through the gag. Finishing his drink, he unfastens his trousers and allows them to fall to the floor. He is not wearing underwear and his dick is already hard and leaking precum as he approaches you. "I loved you, you know, but you had to ruin it." He rubs the slippery head of his cock against your vagina until he finds your entrance. "You are still mine!" he hisses as he forces his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick into your dry vagina. You can only cry at the sudden intrusion.`);
   qspCall(s, 'arousal', 'vaginal', 15, 'rough', 'rape');
   qspCall(s, 'pain', '', 3, 'vaginal', 'tear');
   qspCall(s, 'stat', '');
@@ -449,13 +449,13 @@ function enterDimkaplays(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'drugs', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -505,7 +505,7 @@ function enterDimkaabuse0(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/ogag.jpg');
     // TODO-QSP: dynamic text: Your mouth is being held widely open by the ring and Dimka seems a little blurry...
-    scene.text(`Your mouth is being held widely open by the ring and Dimka seems a little blurry due to your eyes watering. It tastes like the ring in your mouth was dipped in lemon juice and your saliva begins streaming from your mouth. Dimka takes a moment to admire you then he takes out his iron hard ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock and shoves it into your mouth.`);
+    scene.text(`Your mouth is being held widely open by the ring and Dimka seems a little blurry due to your eyes watering. It tastes like the ring in your mouth was dipped in lemon juice and your saliva begins streaming from your mouth. Dimka takes a moment to admire you then he takes out his iron hard ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock and shoves it into your mouth.`);
     scene.actions([
       { label: 'Further', handler: (st: GameState) => {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
@@ -538,7 +538,7 @@ function enterDimkaabuse1(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/characters/pavlovsk/school/boy/dimka/sex/ab.jpg');
   // TODO-QSP: dynamic text: Dimka roughly pulls off your panties and puts them on your head. He inserts his ...
-  scene.text(`Dimka roughly pulls off your panties and puts them on your head. He inserts his penis into your mouth and begins to fuck you hard in the mouth. Your throat is burning with fire from the fact that his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock penetrates you nearly to the balls on every thrust. Dimka growls at you "A cocksucker's mouth is her second pussy, and what should be done with a pussy? Fuck it hard, right to the uterus!" Dimka slaps you on the cheek with his hand "Take it in your mouth pussy!" The dick in your mouth starts to cum and fills your mouth with sperm, you swallow.`);
+  scene.text(`Dimka roughly pulls off your panties and puts them on your head. He inserts his penis into your mouth and begins to fuck you hard in the mouth. Your throat is burning with fire from the fact that his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock penetrates you nearly to the balls on every thrust. Dimka growls at you "A cocksucker's mouth is her second pussy, and what should be done with a pussy? Fuck it hard, right to the uterus!" Dimka slaps you on the cheek with his hand "Take it in your mouth pussy!" The dick in your mouth starts to cum and fills your mouth with sperm, you swallow.`);
   qspCall(s, 'arousal', 'bj', 15, 'sub', 'rough', 'deepthroat');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'pain', '', 2, 'throat', 'stretch');
@@ -561,7 +561,7 @@ function enterDimkaabuse2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinsex', 'boy_puts_condom');
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   // TODO-QSP: dynamic text: Ignoring foreplay, Dimka push his <<dick>>cm <<$dick_girth>> cock through your v...
-  scene.text(`Ignoring foreplay, Dimka push his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock through your vaginal lips. Pain from the rape, bondage, forced position and, especially, the humiliation make you cry. "Peee." That stupid sound is the only thing that you can make. Dimka seems to enjoy it, and his laughs are probably the worst. "Peee". He tries to fuck you hard, but the wheel makes you drive away. Eventually he forces you against the wall pounding himself balls deep into your pussy, instead of moaning, you make funny clown sounds."Peee."`);
+  scene.text(`Ignoring foreplay, Dimka push his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock through your vaginal lips. Pain from the rape, bondage, forced position and, especially, the humiliation make you cry. "Peee." That stupid sound is the only thing that you can make. Dimka seems to enjoy it, and his laughs are probably the worst. "Peee". He tries to fuck you hard, but the wheel makes you drive away. Eventually he forces you against the wall pounding himself balls deep into your pussy, instead of moaning, you make funny clown sounds."Peee."`);
   qspCall(s, 'dinsex', 'sexcum');
   scene.text('At last he bends over you, nailing the steering wheel with his weight on your back. Pain rises all over your body. He is cumming. Then, slowly, Dimka get up, and without a word go to take a shower. You are left crying and sore. It takes a while to slowly undo all the stupid set, all the time sobbing in a corner of the room. Once Dimka end showering he walk over to you "What the fuck are you doing here".');
   // TODO-QSP: end
@@ -711,7 +711,7 @@ function enterDimkaabuse9(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/boy/dimka/sex/filming.jpg');
   scene.text('Your head is swimming at first, then you seem to be flying above the floor. Dimka smiles at you and unbuttons his pants, taking out his flaccid penis. "Crawl here bitch!" he commands. You do as he says and crawl over on your hands and knees to him.');
   // TODO-QSP: dynamic text: You sit in front of Dimka and kiss his dick, then you start to lick it carefully...
-  scene.text(`You sit in front of Dimka and kiss his dick, then you start to lick it carefully with your tongue as it thickens. Finally, his member is completely erect and glistens with your saliva. You take the head of Dimka's ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock between your lips and slowly let it slide into your mouth.`);
+  scene.text(`You sit in front of Dimka and kiss his dick, then you start to lick it carefully with your tongue as it thickens. Finally, his member is completely erect and glistens with your saliva. You take the head of Dimka's ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock between your lips and slowly let it slide into your mouth.`);
   scene.text('When you look up, you see that Dimka is recording you with his camera. You giggle and make a silly face with his cock in your mouth. You begin to erotically lick his cock and began to suck it in front of the camera, trying to act as sexily as you can, pretending to be a porn star.');
   scene.text('Dimka soon groans slightly and your mouth fills with spurting jets of sperm. You immediately start to swallow the hot thick liquid. Dimka turns off the camera and puts it aside. "That was awesome. You\'re a great cocksucker."');
   qspCall(s, 'arousal', 'bj', 15, 'humiliation', 'sub');
@@ -742,7 +742,7 @@ function enterDimkaabuse10(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'mouth_swallow', ((s as any).boy ?? 0), 1);
     scene.img('images/characters/pavlovsk/school/boy/dimka/sex/gagbj.jpg');
     // TODO-QSP: dynamic text: Dimka slips his <<dick>>cm <<$dick_girth>> dick through the ring in your mouth a...
-    scene.text(`Dimka slips his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick through the ring in your mouth and rams it down your throat. You're choking a bit, Dimka then drives his dick as far down your throat as it will go. Drool flows from your mouth, tears from your eyes and snot from your nose. Dimka furiously drives his penis in your mouth, causing your throat to feel like it is burning.`);
+    scene.text(`Dimka slips his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick through the ring in your mouth and rams it down your throat. You're choking a bit, Dimka then drives his dick as far down your throat as it will go. Drool flows from your mouth, tears from your eyes and snot from your nose. Dimka furiously drives his penis in your mouth, causing your throat to feel like it is burning.`);
     scene.text('Finally, he groans and with his cock balls deep in your mouth, he begins to cum in your throat. You almost faint from suffocation. Finally Dimka pulls his dick out of your mouth, then he takes the ring-gag out of your mouth and uncuff your hands.');
     scene.text('"Come visit me anytime."');
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'humiliation', 'deepthroat', 'rough');
@@ -781,7 +781,7 @@ function enterDimkaWarning(s: GameState, scene: SceneBuilder): void {
     scene.text('"He said you\'ll know when you open it." Lesco replied, then after taking another long look at your breasts, he leaves.');
     scene.text('You turn the envelope over in your hands. It only has your name written on the front with the word "Private". You open it and find pictures of you sucking a dick. You realize these are from the video that Dimka made that first time you went to his house.');
     // TODO-QSP: dynamic text: On the back of one of the pictures you find a note. "<<$pcs_nickname>>, come see...
-    scene.text(`On the back of one of the pictures you find a note. "${((s as any).pcs_nickname ?? 0)}, come see me or the next envelope will be for your ${((s as any).npc_nickname ?? 0)?.['A29']}." There is no signature.`);
+    scene.text(`On the back of one of the pictures you find a note. "${((s as any).pcs_nickname || '')}, come see me or the next envelope will be for your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}." There is no signature.`);
     scene.actions([
       { label: 'Move away', goto: ['korrPar', ''] },
     ]);

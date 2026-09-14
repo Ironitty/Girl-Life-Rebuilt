@@ -64,13 +64,13 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
           }
         }
       } else {
-        qspCall(s, 'fuelstation_carwash', 'flash_passing');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFlashPassing(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       // TODO-QSP: dynamic text: You wash the windows of several cars and earn <<$func('money', 'string_profit', ...
       scene.text(`You wash the windows of several cars and earn ${qspFunc(s, 'money', 'string_profit', 80)}.`);
       qspCall(s, 'money', 'earn', 80);
-      qspCall(s, 'fuelstation_carwash', 'flash_passing');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFlashPassing(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 60;
@@ -80,7 +80,7 @@ function enterWash(s: GameState, scene: SceneBuilder): void {
     scene.img(`images/locations/shared/carwash/regular${Math.floor(Math.random() * 4) + 1}.jpg`);
     // TODO-QSP: dynamic text: You wash the windows of several cars and earn <<$func('money', 'string_profit', ...
     scene.text(`You wash the windows of several cars and earn ${qspFunc(s, 'money', 'string_profit', 60)}.`);
-    qspCall(s, 'fuelstation_carwash', 'flash_passing');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFlashPassing(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -447,9 +447,9 @@ function enterHandjob(s: GameState, scene: SceneBuilder): void {
   } else {
     (s as any).i = Math.floor(Math.random() * 3) + 0;
     if ((!((s as any).i ?? 0))) {
-      scene.img(`images/shared/sex/handjob/hj${((s as any).i ?? 0)}.mp4`);
+      scene.img(`images/shared/sex/handjob/hj${((s as any).i || '')}.mp4`);
     } else {
-      scene.img(`images/shared/sex/handjob/handjob${((s as any).i ?? 0)}.mp4`);
+      scene.img(`images/shared/sex/handjob/handjob${((s as any).i || '')}.mp4`);
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'Paid') {
@@ -910,13 +910,13 @@ function enterRunback(s: GameState, scene: SceneBuilder): void {
     (s as any).will_cost = (((s as any).will_cost ?? 0) * 3) / 2;
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Push him off and escape [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push him off and escape', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Push him off and escape [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Push him off and escape', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['fuelstation_carwash', 'fight'] },
       ]);
@@ -964,7 +964,7 @@ function enterPunishSpank(s: GameState, scene: SceneBuilder): void {
   scene.text('After twenty minutes of ruthless punishment, he finally stops and you crawl away with your ass burning.');
   qspCall(s, 'arousal', 'foreplay', 15, 'sub', 'rough', 'unknown');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'fuelstation_carwash', 'punishEnd');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPunishEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -982,7 +982,7 @@ function enterPunishAnal(s: GameState, scene: SceneBuilder): void {
   scene.text('After half an hour of rough assfucking, he releases his grip on you so you can finally crawl away, your aching ass sore from the brutal penetration.');
   qspCall(s, 'arousal', 'anal', 30, 'sub', 'rough', 'rape', 'unknown');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'fuelstation_carwash', 'punishEnd');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPunishEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -1039,13 +1039,13 @@ function enterPunishPussy(s: GameState, scene: SceneBuilder): void {
   scene.text('After half an hour, he releases his grip on you so you can finally crawl away, your aching pussy sore from the brutal penetration.');
   qspCall(s, 'arousal', 'vaginal', 30, 'sub', 'rough', 'rape', 'unknown');
   qspCall(s, 'arousal', 'end');
-  qspCall(s, 'fuelstation_carwash', 'punishEnd');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPunishEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterPunishEnd(s: GameState, scene: SceneBuilder): void {
-  (s as any).temp_abd_thresh = (qspFunc(s, 'math', 'int_clamp', ((s as any).slut_compare ?? 0) / 3, 0, 250)) + (qspFunc(s, 'archetypes', 'get_percentage', 'bimbo', 1) / 2) + (((s as any).trait_vars ?? {})?.['doormat'] * 30) + (((s as any).alko ?? 0) * 8) - (Math.min(((s as any).pcs_stren ?? 0) - 50, 0) * 2) - (Math.min(((s as any).pcs_run ?? 0) - 50, 0) * 2) - (Math.min(((s as any).prcptn_lvl ?? 0) - 50, 0) * 2);
+  (s as any).temp_abd_thresh = (qspFunc(s, 'math', 'int_clamp', ((s as any).slut_compare ?? 0) / 3, 0, 250)) + (qspFunc(s, 'archetypes', 'get_percentage', 'bimbo', 1) / 2) + ((((s as any).trait_vars ?? {})?.['doormat'] ?? 0) * 30) + (((s as any).alko ?? 0) * 8) - (Math.min(((s as any).pcs_stren ?? 0) - 50, 0) * 2) - (Math.min(((s as any).pcs_run ?? 0) - 50, 0) * 2) - (Math.min(((s as any).prcptn_lvl ?? 0) - 50, 0) * 2);
   if (((s as any).cheatVars ?? 0)?.['abduction_chance'] === 1) {
     (s as any).temp_abd_thresh = 0;
   } else {

@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/mall/bowling/boul.jpg');
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) <= 20) {
     scene.actions([
-      { label: 'Play (1:00) [+$func(\'money\', \'get_cost_string\', 300)]', handler: (st: GameState) => {
+      { label: 'Play (1:00)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 300) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -35,13 +35,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'sex', 'resist', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse and play a normal game [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse and play a normal game', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse and play a normal game [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse and play a normal game', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -49,24 +49,24 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           ]);
         }
         scene.actions([
-          { label: 'Gamble ( [+$func(\'money\', \'string_price\', 2000) + \'...]', handler: (st: GameState) => {
+          { label: 'Gamble ( [2000₽]...]', handler: (st: GameState) => {
     (st as any).boulvar = 1;
   }, goto: ['bouling', 'randwin'] },
         ]);
       } else {
         if (((s as any).boulrand ?? 0) === 1) {
           // TODO-QSP: dynamic text: You meet two girls, and they suggest challenging two guys to a game: Prize ' + $...
-          scene.text('You meet two girls, and they suggest challenging two guys to a game: Prize \' + $func(\'money\', \'string_price\', 5000) + \', lose and they have sex with you.');
+          scene.text('You meet two girls, and they suggest challenging two guys to a game: Prize 5000₽, lose and they have sex with you.');
           qspCall(s, 'willpower', 'sex', 'resist', 'hard');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Refuse and play a normal game [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse and play a normal game', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Refuse and play a normal game [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Refuse and play a normal game', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -167,7 +167,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
     if ((!((s as any).boulvar ?? 0))) {
       qspCall(s, 'money', 'pay', 300);
       // TODO-QSP: dynamic text: You lose and pay ' + $func('money', 'string_price', 300) + '.
-      scene.text('You lose and pay \' + $func(\'money\', \'string_price\', 300) + \'.');
+      scene.text('You lose and pay 300₽.');
       scene.actions([
         { label: 'Leave', goto: ['bouling', ''] },
       ]);
@@ -176,17 +176,17 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
         (s as any).picrand = 14;
         if (qspFunc(s, 'money', 'can_afford', 2000, 'cash') === 1) {
           // TODO-QSP: dynamic text: You lose and have to pay ' + $func('money', 'string_price', 2000) + '.
-          scene.text('You lose and have to pay \' + $func(\'money\', \'string_price\', 2000) + \'.');
+          scene.text('You lose and have to pay 2000₽.');
           qspCall(s, 'willpower', 'sex', 'self', 'hard');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Offer sex instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Offer sex instead', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Offer sex instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Offer sex instead', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'sex', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -194,7 +194,7 @@ function enterRandwin(s: GameState, scene: SceneBuilder): void {
             ]);
           }
           scene.actions([
-            { label: 'Pay ( [+$func(\'money\', \'string_price\', 2000) + \'...]', handler: (st: GameState) => {
+            { label: 'Pay ( [2000₽]...]', handler: (st: GameState) => {
     qspCall(st, 'money', 'pay', 2000, 'cash');
   }, goto: ['bouling', ''] },
           ]);

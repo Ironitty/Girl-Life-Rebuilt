@@ -46,7 +46,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).prezikProver = 0;
     scene.img('images/pc/items/accessories/birthcontrol/condoms_steal.jpg');
     // TODO-QSP: dynamic text: After you make sure you're not seen, you quickly search your parents' room for t...
-    scene.text(`After you make sure you're not seen, you quickly search your parents' room for their condom stash and take a few. You now have '+iif(preziktype = 0, '${((s as any).mc_inventory ?? 0)?.['equipped_condoms']}', '${((s as any).mc_inventory ?? 0)?.['normal_condoms']}')+' condoms.`);
+    scene.text(`After you make sure you're not seen, you quickly search your parents' room for their condom stash and take a few. You now have '+iif(preziktype = 0, '${((s as any).mc_inventory ?? 0)?.['equipped_condoms'] ?? ''}', '${((s as any).mc_inventory ?? 0)?.['normal_condoms'] ?? ''}')+' condoms.`);
     scene.actions([
       { label: 'Continue', goto: ['bedrPar2', ''] },
     ]);
@@ -151,7 +151,7 @@ function enterMomtoyPlay(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pcs_horny ?? 0) >= 70) {
     // TODO-QSP: dynamic text: You're really thinking about experimenting with <<$npc_nickname['A29']>>'s dildo...
-    scene.text(`You're really thinking about experimenting with ${((s as any).npc_nickname ?? 0)?.['A29']}'s dildo.`);
+    scene.text(`You're really thinking about experimenting with ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}'s dildo.`);
     scene.text('I can also take it for later use?');
     scene.actions([
       { label: 'Play with it', handler: (st: GameState) => {

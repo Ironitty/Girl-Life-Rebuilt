@@ -29,9 +29,9 @@ function enterOpenAccount(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'bank_transfer', 1000, 'to_bank');
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: You're led to an open office where a member of the bank staff goes through your ...
-  scene.text('You\'re led to an open office where a member of the bank staff goes through your details and ID, then takes \' + $func(\'money\', \'string_price\', 1000) + \' from you before setting up your account.');
+  scene.text('You\'re led to an open office where a member of the bank staff goes through your details and ID, then takes 1000₽ from you before setting up your account.');
   // TODO-QSP: dynamic text: "Your account is now open with your ' + $func('money', 'string_price', 1000) + '...
-  scene.text('"Your account is now open with your \' + $func(\'money\', \'string_price\', 1000) + \'. Your account is not allotted an overdraft protection at this time, so be careful."');
+  scene.text('"Your account is now open with your 1000₽. Your account is not allotted an overdraft protection at this time, so be careful."');
   return;
   // TODO-QSP: end
   scene.actions([
@@ -45,15 +45,15 @@ function enterAskOverdraft(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 15;
   scene.text('You approach the teller. "Hello. I\'d like to set up an overdraft protection on my account."');
   // TODO-QSP: dynamic text: The teller scans your card and nods. "Certainly, Miss <<$pcs_lastname>>. There i...
-  scene.text(`The teller scans your card and nods. "Certainly, Miss ${((s as any).pcs_lastname ?? 0)}. There is a small fee of ${qspFunc(s, 'money', 'format', 500)} for this service, but it will allow you to withdraw more money than you have in your account up to a certain limit. However, overdraft protection is only available to account holders of good standing with the bank. Specifically, we require you to have maintained a minimum balance of ${qspFunc(s, 'money', 'format', 10000)} for the last 60 days. Alternatively, a minimum bank credit of ${qspFunc(s, 'money', 'format', 50000)} will also qualify you for this service. Please give me a moment to check your account details."`);
+  scene.text(`The teller scans your card and nods. "Certainly, Miss ${((s as any).pcs_lastname || '')}. There is a small fee of ${qspFunc(s, 'money', 'format', 500)} for this service, but it will allow you to withdraw more money than you have in your account up to a certain limit. However, overdraft protection is only available to account holders of good standing with the bank. Specifically, we require you to have maintained a minimum balance of ${qspFunc(s, 'money', 'format', 10000)} for the last 60 days. Alternatively, a minimum bank credit of ${qspFunc(s, 'money', 'format', 50000)} will also qualify you for this service. Please give me a moment to check your account details."`);
   if (((s as any).bank_last_less_than_10k ?? 0) + 60 <= ((s as any).daystart ?? 0)  ||  (((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0)) >= 50000) {
     // TODO-QSP: dynamic text: After a few moments, she looks up and smiles. "You're all set, Miss <<$pcs_lastn...
-    scene.text(`After a few moments, she looks up and smiles. "You're all set, Miss ${((s as any).pcs_lastname ?? 0)}. Your overdraft protection is now active with a limit of ${qspFunc(s, 'money', 'format', 5000)}. Please remember that any overdraft amounts will incur a daily fee of 0.055% of the overdraft amount until it is repaid."`);
+    scene.text(`After a few moments, she looks up and smiles. "You're all set, Miss ${((s as any).pcs_lastname || '')}. Your overdraft protection is now active with a limit of ${qspFunc(s, 'money', 'format', 5000)}. Please remember that any overdraft amounts will incur a daily fee of 0.055% of the overdraft amount until it is repaid."`);
     (s as any).bankDebtLimit = 5000;
     (s as any).karta = ((s as any).karta ?? 0) + (4500);
   } else {
     // TODO-QSP: dynamic text: After a few moments, she looks up and frowns. "I'm sorry, Miss <<$pcs_lastname>>...
-    scene.text(`After a few moments, she looks up and frowns. "I'm sorry, Miss ${((s as any).pcs_lastname ?? 0)}, but it appears you do not meet the requirements for overdraft protection at this time. Please feel free to check back in the future once you have maintained a higher balance for a longer period."`);
+    scene.text(`After a few moments, she looks up and frowns. "I'm sorry, Miss ${((s as any).pcs_lastname || '')}, but it appears you do not meet the requirements for overdraft protection at this time. Please feel free to check back in the future once you have maintained a higher balance for a longer period."`);
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -70,7 +70,7 @@ function enterDepositAmount(s: GameState, scene: SceneBuilder): void {
     scene.text('That is not a valid operation.');
   } else {
     qspCall(s, 'money', 'bank_transfer', ((s as any).kartaIN ?? 0), 'to_bank');
-    qspCall(s, 'bank', 'set_deposit_text', ((s as any).kartaIN ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).kartaIN ?? 0)]; enterSetDepositText(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -84,7 +84,7 @@ function enterDepositAmount(s: GameState, scene: SceneBuilder): void {
 function enterDepositShortcut(s: GameState, scene: SceneBuilder): void {
   (s as any).kartaIN = ((s as any).money ?? 0) - ((s as any).bankShortCutMoney ?? 0);
   qspCall(s, 'money', 'bank_transfer', ((s as any).kartaIN ?? 0), 'to_bank');
-  qspCall(s, 'bank', 'set_deposit_text', ((s as any).kartaIN ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).kartaIN ?? 0)]; enterSetDepositText(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -97,7 +97,7 @@ function enterDepositShortcut(s: GameState, scene: SceneBuilder): void {
 function enterDepositAll(s: GameState, scene: SceneBuilder): void {
   (s as any).kartaIN = ((s as any).money ?? 0);
   qspCall(s, 'money', 'bank_transfer', ((s as any).kartaIN ?? 0), 'to_bank');
-  qspCall(s, 'bank', 'set_deposit_text', ((s as any).kartaIN ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).kartaIN ?? 0)]; enterSetDepositText(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -109,7 +109,7 @@ function enterDepositAll(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterWithdrawAmount(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'bank', 'withdraw_cash', 0);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterWithdrawCash(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -121,7 +121,7 @@ function enterWithdrawAmount(s: GameState, scene: SceneBuilder): void {
 
 function enterWithdrawShortcut(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'money', 'bank_transfer', ((s as any).bankShortCutMoney ?? 0), 'to_cash');
-  qspCall(s, 'bank', 'set_withdraw_text', ((s as any).bankShortCutMoney ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).bankShortCutMoney ?? 0)]; enterSetWithdrawText(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'stat', '');
   // TODO-QSP: end
   scene.actions([
@@ -144,7 +144,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.actions([
       { label: 'Open account', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000, 'cash') === 1) {
-      qspCall(s, 'bank', 'open_account');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterOpenAccount(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       // TODO-QSP: dynamic text: The bank teller looks at you apologetically. "I'm sorry, but to open an account ...
       scene.text(`The bank teller looks at you apologetically. "I'm sorry, but to open an account we require a minimum initial deposit of ${qspFunc(s, 'money', 'string_price', 1000)}."`);
@@ -156,7 +156,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).bankShortCutMoney ?? 0) > 0  &&  ((s as any).money ?? 0) > ((s as any).bankShortCutMoney ?? 0)) {
         scene.actions([
           { label: 'Deposit all of your cash, except <<$func(\'money\', \'format\', bankShortCutMoney)>>.', handler: (st: GameState) => {
-    qspCall(s, 'bank', 'deposit_shortcut');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDepositShortcut(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -173,7 +173,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       if (((s as any).bankShortCutMoney ?? 0) > 0  &&  ((s as any).karta ?? 0) >= ((s as any).bankShortCutMoney ?? 0)) {
         scene.actions([
           { label: 'Withdraw <<$func(\'money\', \'format\', bankShortCutMoney)>>', handler: (st: GameState) => {
-    qspCall(s, 'bank', 'withdraw_shortcut');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWithdrawShortcut(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -209,7 +209,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: 'You can take out a loan of ' + $func('wrap', 'accent','<<$func(''money'', ''format'', karta)>>!')
     } else {
       // TODO-QSP: dynamic text: You have <<$func('money', 'format', karta - bankDebtLimit)>> in your account.
-      scene.text(`You have ${qspFunc(s, 'money', 'format', ((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0))} in your account.`);
+      scene.text(`You have ${qspFunc(s, 'money', 'format', ((s as any).karta ?? '') - ((s as any).bankDebtLimit ?? ''))} in your account.`);
       if ((!((s as any).bankDebtLimit ?? 0))) {
         scene.text('You do not have an overdraft protection on your account.');
       } else {
@@ -260,7 +260,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     scene.text('You speak to the teller, who tells you to have a seat in the waiting room.');
     scene.text('After waiting about 15 minutes, you\'re called back to an office where a handsome young executive awaits.');
     // TODO-QSP: dynamic text: He extends his hand. "Hello, Miss <<$pcs_lastname>>, I'm Filip Karpenko, the Loa...
-    scene.text(`He extends his hand. "Hello, Miss ${((s as any).pcs_lastname ?? 0)}, I'm Filip Karpenko, the Loan Officer here at VTB Bank. How can I help you today?"`);
+    scene.text(`He extends his hand. "Hello, Miss ${((s as any).pcs_lastname || '')}, I'm Filip Karpenko, the Loan Officer here at VTB Bank. How can I help you today?"`);
     scene.actions([
       { label: 'Talk about increasing your credit limit', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/bank/sex/002.jpg');
@@ -286,11 +286,11 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
           { label: 'Try and seduce him', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/bank/sex/003.jpg');
     // TODO-QSP: dynamic text: "I'm sorry, Miss <<$pcs_lastname>>, but my decision is final," he says firmly.
-    scene.text(`"I'm sorry, Miss ${((s as any).pcs_lastname ?? 0)}, but my decision is final," he says firmly.`);
+    scene.text(`"I'm sorry, Miss ${((s as any).pcs_lastname || '')}, but my decision is final," he says firmly.`);
     scene.text('You rise from your chair, but you don\'t turn and walk away. Instead, you approach him and lean in, giving him an excellent view of your cleavage.');
     scene.text('"It\'s true I don\'t have any real collateral," you tell him in a soft, sultry voice. "but that doesn\'t mean I don\'t have something you want. If we put our minds to it, we can come up with conditions that benefit us both…"');
     scene.text('Karpenko stares at your breasts, then looks into your eyes. "I suppose there may be some way we can work out a deal, if you\'re willing to be… cooperative."');
-    qspCall(s, 'bank', 'loan_officer', 'sex_start');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sex_start']; enterLoanOfficer(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
         ]);
       }
@@ -299,15 +299,15 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: delact $selact
     scene.text('"I see," you murmur. "What sort of requirements would I need to meet in order to qualify for more credit?"');
     // TODO-QSP: dynamic text: "Well, Miss <<$pcs_lastname>>," Karpenko replies, "the bank would need to see yo...
-    scene.text(`"Well, Miss ${((s as any).pcs_lastname ?? 0)}," Karpenko replies, "the bank would need to see you are capable of repaying such a loan. For someone in your position, that would mean maintaining a minimum balance of ${qspFunc(s, 'money', 'format', 100000)} for at least 100 days, or alternatively having a current balance of ${qspFunc(s, 'money', 'format', 200000)}."`);
+    scene.text(`"Well, Miss ${((s as any).pcs_lastname || '')}," Karpenko replies, "the bank would need to see you are capable of repaying such a loan. For someone in your position, that would mean maintaining a minimum balance of ${qspFunc(s, 'money', 'format', 100000)} for at least 100 days, or alternatively having a current balance of ${qspFunc(s, 'money', 'format', 200000)}."`);
   } },
         { label: 'Leave', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/bank/sex/004.jpg');
     // TODO-QSP: dynamic text: "Wait, Miss <<$pcs_lastname>>," Karpenko says as you turn away. "You seem like a...
-    scene.text(`"Wait, Miss ${((s as any).pcs_lastname ?? 0)}," Karpenko says as you turn away. "You seem like a trustworthy young lady. There may be a way I can arrange this loan if you're willing to be… cooperative."`);
+    scene.text(`"Wait, Miss ${((s as any).pcs_lastname || '')}," Karpenko says as you turn away. "You seem like a trustworthy young lady. There may be a way I can arrange this loan if you're willing to be… cooperative."`);
     scene.text('You\'re young, but even so there\'s little doubt about what sort of cooperation he\'s implying. The way his eyes are undressing you as you stand before him makes his intentions quite plain.');
     scene.text('He wants you to use your body as collateral! Is that really something you would consider? Is the loan really worth that much to you?');
-    qspCall(s, 'bank', 'loan_officer', 'sex_start');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'sex_start']; enterLoanOfficer(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -323,13 +323,13 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'sex', 'self', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Co-operate [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Co-operate', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Co-operate [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Co-operate', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     qspCall(s, 'npcgeneratec', '', 0, 'Mr. Karpenko, Loan Officer for VTB Bank', Math.floor(Math.random() * 7) + 21);
@@ -371,7 +371,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/bank/sex/009.jpg');
     scene.text('"I want you on top, you sweet little whore," he growls as pulls his dick out of you and rolls onto his back. You swing atop him, and he holds your hips as you reach between your legs and grasp his cock. Both of you gasp in unison as you settle down on it and feel it fill your pussy once again. You take it all inside you and then, eyes closed, begin to ride him.');
     // TODO-QSP: dynamic text: "You're a dirty little slut, Miss <<$pcs_lastname>>," Karpenko muses as you boun...
-    scene.text(`"You're a dirty little slut, Miss ${((s as any).pcs_lastname ?? 0)}," Karpenko muses as you bounce on him, his thick cock stretching you and finding wonderful depths to your pussy. You grind your hips against him, putting friction on your clit as you take him to the hilt.`);
+    scene.text(`"You're a dirty little slut, Miss ${((s as any).pcs_lastname || '')}," Karpenko muses as you bounce on him, his thick cock stretching you and finding wonderful depths to your pussy. You grind your hips against him, putting friction on your clit as you take him to the hilt.`);
     qspCall(s, 'arousal', 'vaginal', 15, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -384,7 +384,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/bank/sex/009.jpg');
     scene.text('Karpenko leads you to the plush leather sofa and lies down on his back. You waste no time climbing atop him and he holds your hips as you reach between your legs and grasp his cock. Both of you gasp in unison as you settle down on it and feel it fill your pussy once again. You take it all inside you and then, eyes closed, begin to ride him.');
     // TODO-QSP: dynamic text: "You're a dirty little slut, Miss <<$pcs_lastname>>," Karpenko muses as you boun...
-    scene.text(`"You're a dirty little slut, Miss ${((s as any).pcs_lastname ?? 0)}," Karpenko muses as you bounce on him, his thick cock stretching you and finding wonderful depths to your pussy. You grind your hips against him, putting friction on your clit as you take him to the hilt.`);
+    scene.text(`"You're a dirty little slut, Miss ${((s as any).pcs_lastname || '')}," Karpenko muses as you bounce on him, his thick cock stretching you and finding wonderful depths to your pussy. You grind your hips against him, putting friction on your clit as you take him to the hilt.`);
     qspCall(s, 'arousal', 'vaginal', 15, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -413,7 +413,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/city/citycenter/bank/sex/006.jpg');
     scene.text('"I\'m sorry," you say as you pull away, "I\'m just not that sort of girl. Sorry to waste your time."');
     // TODO-QSP: dynamic text: You turn and head for the door, but Karpenko's voice stops you before you reach ...
-    scene.text(`You turn and head for the door, but Karpenko's voice stops you before you reach it. "Wait a moment, Miss ${((s as any).pcs_lastname ?? 0)}. Before you go, I want you to know that this offer remains open. If you change your mind, you can return at any time and we can arrange the loan you desire."`);
+    scene.text(`You turn and head for the door, but Karpenko's voice stops you before you reach it. "Wait a moment, Miss ${((s as any).pcs_lastname || '')}. Before you go, I want you to know that this offer remains open. If you change your mind, you can return at any time and we can arrange the loan you desire."`);
     scene.text('"I\'ll… Keep that in mind," you mutter as you throw the door open and run back to the safety of the lobby.');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -449,7 +449,7 @@ function enterLoanOfficer(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: <i>Your maximum credit has been increased to <<$func('money', 'format', bankDebt...
-    scene.text(`<i>Your maximum credit has been increased to ${qspFunc(s, 'money', 'format', ((s as any).bankDebtLimit ?? 0))}</i>`);
+    scene.text(`<i>Your maximum credit has been increased to ${qspFunc(s, 'money', 'format', ((s as any).bankDebtLimit || ''))}</i>`);
     scene.actions([
       { label: 'Head back to the lobby', goto: ['bank', 'start'] },
     ]);
@@ -476,7 +476,7 @@ function enterDepositCash(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <br>After the fee, you deposit <<$func('money', 'format', atmDeposit[])>> into y...
     scene.text(`<br>After the fee, you deposit ${qspFunc(s, 'money', 'format', qspUntranslated(s, "atmDeposit[]", { location: "bank" }))} into your account.`);
     // TODO-QSP: dynamic text: It will take 2 days for funds to be available. Your new balance will be <<$func(...
-    scene.text(`It will take 2 days for funds to be available. Your new balance will be ${qspFunc(s, 'money', 'format', ((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) + ((s as any).atmDeposit ?? 0))}.`);
+    scene.text(`It will take 2 days for funds to be available. Your new balance will be ${qspFunc(s, 'money', 'format', ((s as any).karta ?? '') - ((s as any).bankDebtLimit ?? '') + ((s as any).atmDeposit ?? 0))}.`);
   }
   // TODO-QSP: end
   scene.build();
@@ -497,7 +497,7 @@ function enterWithdrawCash(s: GameState, scene: SceneBuilder): void {
     if (((s as any).locArgs?.[1] ?? 0) > 0) {
       (s as any).money = ((s as any).money ?? 0) - (qspUntranslated(s, "ARGS[1]", { location: "bank" }));
     }
-    qspCall(s, 'bank', 'set_withdraw_text', ((s as any).kartaOUT ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).kartaOUT ?? 0)]; enterSetWithdrawText(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -625,28 +625,28 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).job_status ?? 0)?.['city_diner_secretary'] === 'employed'  &&  ((s as any).job_worked_count ?? 0)?.['city_diner_secretary'] > 0) {
       (s as any).pay = qspFunc(s, 'jobs', 'paycheck', 'city_diner_secretary', ((s as any).temp_pay_method ?? 0));
-      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay ?? 0))} ${((s as any).temp_pay_display ?? 0)} for your job as a secretary.</b></center>`);
+      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay || ''))} ${((s as any).temp_pay_display || '')} for your job as a secretary.</b></center>`);
     }
     if (((s as any).job_status ?? 0)?.['city_cafe_waitress'] === 'employed'  &&  ((s as any).job_worked_count ?? 0)?.['city_cafe_waitress'] > 0) {
       (s as any).pay = qspFunc(s, 'jobs', 'paycheck', 'city_cafe_waitress', ((s as any).temp_pay_method ?? 0));
-      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay ?? 0))} ${((s as any).temp_pay_display ?? 0)} for your job as a waitress in a cafe.</b></center>`);
+      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay || ''))} ${((s as any).temp_pay_display || '')} for your job as a waitress in a cafe.</b></center>`);
     }
     if (((s as any).job_status ?? 0)?.['city_hospital_nurse'] === 'employed'  &&  ((s as any).job_worked_count ?? 0)?.['city_hospital_nurse'] > 0) {
       (s as any).pay = qspFunc(s, 'jobs', 'paycheck', 'city_hospital_nurse', ((s as any).temp_pay_method ?? 0));
-      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay ?? 0))} ${((s as any).temp_pay_display ?? 0)} for your work at the hospital.</b></center>`);
+      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay || ''))} ${((s as any).temp_pay_display || '')} for your work at the hospital.</b></center>`);
     }
     if (((s as any).tanwork ?? 0) === 1  &&  (!((s as any).nopaytanwork ?? 0))) {
       (s as any).nopaytanwork = 1;
       qspCall(s, 'money', 'earn', 10000, ((s as any).temp_pay_method ?? 0));
-      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', 10000)} ${((s as any).temp_pay_display ?? 0)} for your work as a house maid.</b></center>`);
+      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', 10000)} ${((s as any).temp_pay_display || '')} for your work as a house maid.</b></center>`);
     }
     if (((s as any).job_status ?? 0)?.['city_office_secretary'] === 'employed'  &&  ((s as any).job_worked_count ?? 0)?.['city_office_secretary'] > 0) {
       (s as any).pay = qspFunc(s, 'jobs', 'paycheck', 'city_office_secretary', ((s as any).temp_pay_method ?? 0));
-      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay ?? 0))} ${((s as any).temp_pay_display ?? 0)} for your job as a secretary.</b></center>`);
+      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay || ''))} ${((s as any).temp_pay_display || '')} for your job as a secretary.</b></center>`);
     }
     if (((s as any).job_status ?? 0)?.['pav_factory'] === 'employed') {
       (s as any).pay = qspFunc(s, 'jobs', 'paycheck', 'pav_factory', ((s as any).temp_pay_method ?? 0));
-      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay ?? 0))} ${((s as any).temp_pay_display ?? 0)} for your job at the garment factory.</b></center>`);
+      scene.text(`<center><b>Your salary of ${qspFunc(s, 'money', 'string_profit', ((s as any).pay || ''))} ${((s as any).temp_pay_display || '')} for your job at the garment factory.</b></center>`);
     }
     if (((s as any).husID ?? 0) !== ''  &&  (!((s as any).paydayHusb ?? 0))) {
       (s as any).paydayHusb = 1;
@@ -660,7 +660,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
         }
       }
       qspCall(s, 'money', 'earn', ((s as any).huspay ?? 0), ((s as any).temp_pay_method ?? 0));
-      scene.text(`<center><b>${qspFunc(s, 'money', 'string_profit', ((s as any).huspay ?? 0))} from your husband ${((s as any).temp_pay_display ?? 0)}.</b></center>`);
+      scene.text(`<center><b>${qspFunc(s, 'money', 'string_profit', ((s as any).huspay || ''))} from your husband ${((s as any).temp_pay_display || '')}.</b></center>`);
     }
     if (((s as any).wifID ?? 0) !== ''  &&  (!((s as any).paydayWife ?? 0))) {
       (s as any).paydayWife = 1;
@@ -674,7 +674,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
         }
       }
       qspCall(s, 'money', 'earn', ((s as any).wifpay ?? 0), ((s as any).temp_pay_method ?? 0));
-      scene.text(`<center><b>${qspFunc(s, 'money', 'string_profit', ((s as any).wifpay ?? 0))} from your wife ${((s as any).temp_pay_display ?? 0)}.</b></center>`);
+      scene.text(`<center><b>${qspFunc(s, 'money', 'string_profit', ((s as any).wifpay || ''))} from your wife ${((s as any).temp_pay_display || '')}.</b></center>`);
     }
     if (qspFunc(s, 'uniutil', 'scholarship', 'is_active')  &&  (!((s as any).scholarshipday ?? 0))) {
       (s as any).scholarshipday = 1;
@@ -684,7 +684,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
     if (qspFunc(s, 'homes_properties', 'get_owned_homes_count') > 0  &&  (!((s as any).electroday ?? 0))) {
       qspCall(s, 'housing', 'util');
       if (((s as any).bankAccount ?? 0) === 1  &&  qspFunc(s, 'money', 'can_afford', ((s as any).elektro ?? 0) * ((s as any).hcount_util ?? 0), 'bank')) {
-        scene.text(`<center><b>${qspFunc(s, 'money', 'string_price', ((s as any).elektro ?? 0) * ((s as any).hcount_util ?? 0))} for utilities has been automatically deducted from your bank account.</b></center>`);
+        scene.text(`<center><b>${qspFunc(s, 'money', 'string_price', ((s as any).elektro ?? '') * ((s as any).hcount_util ?? ''))} for utilities has been automatically deducted from your bank account.</b></center>`);
         (s as any).electroday = 1;
         if (((s as any).elektro ?? 0) >= 2000) {
           (s as any).elektro = 2000 + (Math.floor(Math.random() * 101) + 0);
@@ -692,35 +692,35 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
         }
       } else {
         if (((s as any).bankAccount ?? 0) === 0  &&  ((s as any).money ?? 0) >= ((s as any).elektro ?? 0)) {
-          scene.text(`<center><b>You currently do not have a bank account set up for automatic utilities payments. ${qspFunc(s, 'money', 'string_price', ((s as any).elektro ?? 0) * ((s as any).hcount_util ?? 0))} has been deducted from your cash holdings.</b></center>`);
+          scene.text(`<center><b>You currently do not have a bank account set up for automatic utilities payments. ${qspFunc(s, 'money', 'string_price', ((s as any).elektro ?? '') * ((s as any).hcount_util ?? ''))} has been deducted from your cash holdings.</b></center>`);
           (s as any).electroday = 1;
           if (((s as any).elektro ?? 0) >= 2000) {
             (s as any).elektro = 2000 + (Math.floor(Math.random() * 101) + 0);
             // TODO-QSP: gs 'money', 'pay', elektro * hcount_util, 'cash'
           }
         } else {
-          scene.text(`<center><b>Your card was declined during automatic debit of ${qspFunc(s, 'money', 'string_price', ((s as any).elektro ?? 0) * ((s as any).hcount_util ?? 0))} for automatic utilities payment.</b></center>`);
+          scene.text(`<center><b>Your card was declined during automatic debit of ${qspFunc(s, 'money', 'string_price', ((s as any).elektro ?? '') * ((s as any).hcount_util ?? ''))} for automatic utilities payment.</b></center>`);
         }
       }
     }
     if (((s as any).kabel ?? 0) > 0  &&  (!((s as any).kabelday ?? 0))) {
       qspCall(s, 'housing', 'cable');
       if (((s as any).bankAccount ?? 0) === 1  &&  ((s as any).karta ?? 0) - ((s as any).bankDebtLimit ?? 0) >= (300 * ((s as any).hcount_cable ?? 0))) {
-        scene.text(`<center><b>${qspFunc(s, 'money', 'string_price', 300 * ((s as any).hcount_cable ?? 0))} has been deducted from your bank account for your cable TV subscription.</b></center>`);
+        scene.text(`<center><b>${qspFunc(s, 'money', 'string_price', 300 * ((s as any).hcount_cable ?? ''))} has been deducted from your bank account for your cable TV subscription.</b></center>`);
         (s as any).kabelday = 1;
         // TODO-QSP: gs 'money', 'pay', 300 * hcount_cable, 'bank'
       } else {
         if (((s as any).bankAccount ?? 0) === 1  &&  ((s as any).karta ?? 0) >= (300 * ((s as any).hcount_cable ?? 0))) {
-          scene.text(`<center><b>${qspFunc(s, 'money', 'string_price', 300 * ((s as any).hcount_cable ?? 0))} has been deducted from your bank account and overdraw facility for your cable TV subscription.</b></center>`);
+          scene.text(`<center><b>${qspFunc(s, 'money', 'string_price', 300 * ((s as any).hcount_cable ?? ''))} has been deducted from your bank account and overdraw facility for your cable TV subscription.</b></center>`);
           (s as any).kabelday = 1;
           // TODO-QSP: gs 'money', 'pay', 300 * hcount_cable, 'bank'
         } else {
           if (((s as any).bankAccount ?? 0) === 0  &&  ((s as any).money ?? 0) >= (300 * ((s as any).hcount_cable ?? 0))) {
-            scene.text(`<center><b>You currently do not have a bank account set up for automatic payment of your cable TV subscription. ${qspFunc(s, 'money', 'string_price', 300 * ((s as any).hcount_cable ?? 0))} has been deducted from your cash holdings.</b></center>`);
+            scene.text(`<center><b>You currently do not have a bank account set up for automatic payment of your cable TV subscription. ${qspFunc(s, 'money', 'string_price', 300 * ((s as any).hcount_cable ?? ''))} has been deducted from your cash holdings.</b></center>`);
             (s as any).kabelday = 1;
             // TODO-QSP: gs 'money', 'pay', 300 * hcount_cable, 'cash'
           } else {
-            scene.text(`<center><b>Your card was declined during automatic debit of ${qspFunc(s, 'money', 'string_price', 300 * ((s as any).hcount_cable ?? 0))} for cable TV subscription.</b></center>`);
+            scene.text(`<center><b>Your card was declined during automatic debit of ${qspFunc(s, 'money', 'string_price', 300 * ((s as any).hcount_cable ?? ''))} for cable TV subscription.</b></center>`);
           }
         }
       }
@@ -736,7 +736,7 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
       if (((s as any).bankAccount ?? 0) === 1  &&  qspFunc(s, 'money', 'can_afford', ((s as any).property_rent ?? 0)?.[String((s as any).bank_i ?? 0)], 'bank')) {
         if (((s as any).property_rent ?? 0)?.[String((s as any).bank_i ?? 0)] > 0) {
           // TODO-QSP: dynamic text: <font color="green">Your rent payment of <<$func('money', 'string_price', proper...
-          scene.text(`<font color="green">Your rent payment of ${qspFunc(s, 'money', 'string_price', ((s as any).property_rent ?? 0)?.[String((s as any).bank_i ?? 0)])} for your ${((s as any).property_name ?? 0)?.[String((s as any).bank_i ?? 0)]}, has automatically been deducted from your bank account' + iif(karta >= bankDebtLimit, ', ' and overdraw facility. Please contact your bank regarding your overdraw repayment') + '.</font><br>`);
+          scene.text(`<font color="green">Your rent payment of ${qspFunc(s, 'money', 'string_price', ((s as any).property_rent ?? 0)?.[String((s as any).bank_i ?? 0)] ?? '')} for your ${((s as any).property_name ?? 0)?.[String((s as any).bank_i ?? 0)] ?? ''}, has automatically been deducted from your bank account' + iif(karta >= bankDebtLimit, ', ' and overdraw facility. Please contact your bank regarding your overdraw repayment') + '.</font><br>`);
         }
         // TODO-QSP: gs 'homes_properties', 'pay_rent', $property_code[bank_i], 'bank'
       } else {
@@ -744,9 +744,9 @@ function enterCikl(s: GameState, scene: SceneBuilder): void {
           // TODO-QSP: gs 'homes_properties', 'cancel_rent', $property_code[bank_i]
         } else {
           if ((!((s as any).bankAccount ?? 0))) {
-            scene.text(`You currently do not have a bank account setup for automatic rent deduction of ${qspFunc(s, 'money', 'string_price', ((s as any).property_rent ?? 0)?.[String((s as any).bank_i ?? 0)])} for your ${((s as any).property_name ?? 0)?.[String((s as any).bank_i ?? 0)]}. To avoid eviction, please make a manual payment as soon as possible.<br>`);
+            scene.text(`You currently do not have a bank account setup for automatic rent deduction of ${qspFunc(s, 'money', 'string_price', ((s as any).property_rent ?? 0)?.[String((s as any).bank_i ?? 0)] ?? '')} for your ${((s as any).property_name ?? 0)?.[String((s as any).bank_i ?? 0)] ?? ''}. To avoid eviction, please make a manual payment as soon as possible.<br>`);
           } else {
-            scene.text(`Your card was declined during automatic rent deduction of ${qspFunc(s, 'money', 'string_price', ((s as any).property_rent ?? 0)?.[String((s as any).bank_i ?? 0)])} for your ${((s as any).property_name ?? 0)?.[String((s as any).bank_i ?? 0)]}. To avoid eviction, please rectify as soon as possible.<br>`);
+            scene.text(`Your card was declined during automatic rent deduction of ${qspFunc(s, 'money', 'string_price', ((s as any).property_rent ?? 0)?.[String((s as any).bank_i ?? 0)] ?? '')} for your ${((s as any).property_name ?? 0)?.[String((s as any).bank_i ?? 0)] ?? ''}. To avoid eviction, please rectify as soon as possible.<br>`);
           }
         }
       }

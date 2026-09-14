@@ -20,19 +20,19 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).bumtolik ?? 0) >= 5) {
     // TODO-QSP: dynamic text: You volunteer at the Mercy Clinic in the city industrial region and work with th...
-    scene.text('You volunteer at the Mercy Clinic in the city industrial region and work with the homeless. Working hours are from \'+func(\'time\', \'get_time_string\', 9, 0)+\' to \'+func(\'time\', \'get_time_string\', 17, 0)+\' on Saturday and Sunday.');
+    scene.text('You volunteer at the Mercy Clinic in the city industrial region and work with the homeless. Working hours are from 9:00 to 17:00 on Saturday and Sunday.');
   }
   if (((s as any).audition_ev ?? 0)?.['day'] === ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: Your audition for the role of <<$role>> is today!
-    scene.text(`Your audition for the role of ${((s as any).role ?? 0)} is today!`);
+    scene.text(`Your audition for the role of ${((s as any).role || '')} is today!`);
   } else {
     if (((s as any).audition_ev ?? 0)?.['day'] - ((s as any).daystart ?? 0) === 1) {
       // TODO-QSP: dynamic text: You are auditioning for the role of <<$role>> tomorrow.
-      scene.text(`You are auditioning for the role of ${((s as any).role ?? 0)} tomorrow.`);
+      scene.text(`You are auditioning for the role of ${((s as any).role || '')} tomorrow.`);
     } else {
       if (((s as any).audition_ev ?? 0)?.['day'] - ((s as any).daystart ?? 0) > 1) {
         // TODO-QSP: dynamic text: You are auditioning for the role of <<$role>> in <<audition_ev['day'] - daystart...
-        scene.text(`You are auditioning for the role of ${((s as any).role ?? 0)} in ${((s as any).audition_ev ?? {})?.['day'] - ((s as any).daystart ?? 0)} days.`);
+        scene.text(`You are auditioning for the role of ${((s as any).role || '')} in ${(((s as any).audition_ev ?? {})?.['day'] ?? 0) - ((s as any).daystart ?? '')} days.`);
       }
     }
   }
@@ -42,11 +42,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).acting_ev ?? 0)?.['shoot_day'] - ((s as any).daystart ?? 0) === 1) {
         // TODO-QSP: dynamic text: You are scheduled to play the part of <<$role>> <<acting_ev['shoot_day'] - dayst...
-        scene.text(`You are scheduled to play the part of ${((s as any).role ?? 0)} ${((s as any).acting_ev ?? {})?.['shoot_day'] - ((s as any).daystart ?? 0)} days from now.`);
+        scene.text(`You are scheduled to play the part of ${((s as any).role || '')} ${(((s as any).acting_ev ?? {})?.['shoot_day'] ?? 0) - ((s as any).daystart ?? '')} days from now.`);
       } else {
         if (((s as any).acting_ev ?? 0)?.['shoot_day'] - ((s as any).daystart ?? 0) > 1) {
           // TODO-QSP: dynamic text: You are scheduled to play the part of <<$role>> <<acting_ev['shoot_day'] - dayst...
-          scene.text(`You are scheduled to play the part of ${((s as any).role ?? 0)} ${((s as any).acting_ev ?? {})?.['shoot_day'] - ((s as any).daystart ?? 0)} days from now.`);
+          scene.text(`You are scheduled to play the part of ${((s as any).role || '')} ${(((s as any).acting_ev ?? {})?.['shoot_day'] ?? 0) - ((s as any).daystart ?? '')} days from now.`);
         }
       }
     }

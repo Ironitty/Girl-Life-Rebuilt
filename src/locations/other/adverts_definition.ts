@@ -1,5 +1,3 @@
-import { qspCall } from '../_shared/qspBridge';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -21,17 +19,17 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $adv_list[9] = 'starlets'
   // TODO-QSP: $adv_list[10] = 'therapy'
   // TODO-QSP: $adv_list[11] = 'hotelmaid'
-  qspCall(s, 'adverts_definition', 'model');
-  qspCall(s, 'adverts_definition', 'guitar');
-  qspCall(s, 'adverts_definition', 'sing');
-  qspCall(s, 'adverts_definition', 'burlesque');
-  qspCall(s, 'adverts_definition', 'secretary');
-  qspCall(s, 'adverts_definition', 'diner');
-  qspCall(s, 'adverts_definition', 'fitness');
-  qspCall(s, 'adverts_definition', 'pushkin');
-  qspCall(s, 'adverts_definition', 'starlets');
-  qspCall(s, 'adverts_definition', 'therapy');
-  qspCall(s, 'adverts_definition', 'hotelmaid');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterModel(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterGuitar(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSing(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBurlesque(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSecretary(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDiner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFitness(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPushkin(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStarlets(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTherapy(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterHotelmaid(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).adv_listSize = 0;
   // TODO-QSP: end
   scene.build();

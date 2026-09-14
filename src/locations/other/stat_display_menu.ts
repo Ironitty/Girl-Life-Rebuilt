@@ -1,5 +1,7 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
+import { qspFunc } from '../_shared/qspBridge';
+
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -11,12 +13,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center>');
   // TODO-QSP: dynamic text: $func('stat_display_menu', 'general_options')
-  scene.text('$func(\'stat_display_menu\', \'general_options\')');
+  scene.text(qspFunc(s, 'stat_display_menu', 'general_options'));
   (s as any).temp_ls_i = 0;
   // TODO-QSP: :loop_sections
   if (((s as any).temp_ls_i ?? 0) < Object.keys((s as any).stat_order ?? {}).length) {
     // TODO-QSP: dynamic text: $func('stat_display_menu', 'section_table', temp_ls_i)
-    scene.text('$func(\'stat_display_menu\', \'section_table\', temp_ls_i)');
+    scene.text(qspFunc(s, 'stat_display_menu', 'section_table', ((s as any).temp_ls_i || '')));
     (s as any).temp_ls_i = ((s as any).temp_ls_i ?? 0) + (1);
     // TODO-QSP: jump 'loop_sections'
   }
@@ -37,8 +39,8 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
   if (((s as any).rco ?? 0)?.['i'] < ((s as any).rco ?? 0)?.['size']) {
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['i']], '|')", { location: "stat_display_menu" });
     if (((s as any).rco ?? 0)?.['pipe'] > 0) {
-      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = (String(qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)));
-      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = (String(qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? {})?.['pipe'] + 1)-1));
+      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = (String(qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+((((s as any).rco ?? {})?.['pipe'] ?? 0) - 1)));
+      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = (String(qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" })).slice(((((s as any).rco ?? {})?.['pipe'] ?? 0) + 1)-1));
     } else {
       if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" });
       if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = qspUntranslated(s, "temp_values[rco['i']]", { location: "stat_display_menu" });
@@ -62,31 +64,31 @@ function enterRenderCellOpt(s: GameState, scene: SceneBuilder): void {
   }
   if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx']], '|')", { location: "stat_display_menu" });
   if (((s as any).rco ?? 0)?.['pipe'] > 0) {
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = (String(qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)));
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = (String(qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((((s as any).rco ?? {})?.['pipe'] + 1)-1));
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = (String(qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+((((s as any).rco ?? {})?.['pipe'] ?? 0) - 1)));
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = (String(qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" })).slice(((((s as any).rco ?? {})?.['pipe'] ?? 0) + 1)-1));
   } else {
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_val'] = qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" });
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['entry_lbl'] = qspUntranslated(s, "temp_values[rco['idx']]", { location: "stat_display_menu" });
   }
   if (((s as any).rco ?? 0)?.['entry_val'] === 'custom') {
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['label'] = 'Custom: ' + ((s as any).rco ?? {})?.['cur_str'];
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['label'] = 'Custom: ' + (((s as any).rco ?? {})?.['cur_str'] ?? 0);
   } else {
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['label'] = ((s as any).rco ?? 0)?.['entry_lbl'];
   }
   if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['action_left'] = ((((s as any).temp_actions_left ?? 0)[((s as any).rco ?? 0)?.['idx']]  !== '') ? (qspUntranslated(s, "temp_actions_left[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_left[0]", { location: "stat_display_menu" })));
   if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['action_right'] = ((((s as any).temp_actions_right ?? 0)[((s as any).rco ?? 0)?.['idx']] !== '') ? (qspUntranslated(s, "temp_actions_right[rco['idx']]", { location: "stat_display_menu" })) : (qspUntranslated(s, "temp_actions_right[0]", { location: "stat_display_menu" })));
   if (((s as any).rco ?? 0)?.['action_left'] === ''  ||  ((s as any).rco ?? 0)?.['action_right'] === '') {
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['idx_prev'] = (((s as any).rco ?? {})?.['idx'] - 1 + ((s as any).rco ?? {})?.['size']) % ((s as any).rco ?? {})?.['size'];
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['idx_next'] = (((s as any).rco ?? {})?.['idx'] + 1) % ((s as any).rco ?? {})?.['size'];
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['idx_prev'] = ((((s as any).rco ?? {})?.['idx'] ?? 0) - 1 + (((s as any).rco ?? {})?.['size'] ?? 0)) % (((s as any).rco ?? {})?.['size'] ?? 0);
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['idx_next'] = ((((s as any).rco ?? {})?.['idx'] ?? 0) + 1) % (((s as any).rco ?? {})?.['size'] ?? 0);
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx_prev']], '|')", { location: "stat_display_menu" });
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['prev_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? ((String(qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })));
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['prev_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? ((String(qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+((((s as any).rco ?? {})?.['pipe'] ?? 0) - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_prev']]", { location: "stat_display_menu" })));
     if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['pipe'] = qspUntranslated(s, "instr(temp_values[rco['idx_next']], '|')", { location: "stat_display_menu" });
-    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['next_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? ((String(qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+(((s as any).rco ?? {})?.['pipe'] - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })));
+    if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['next_val'] = ((((s as any).rco ?? 0)?.['pipe'] > 0) ? ((String(qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })).slice((1)-1, ((1)-1)+((((s as any).rco ?? {})?.['pipe'] ?? 0) - 1)))) : (qspUntranslated(s, "temp_values[rco['idx_next']]", { location: "stat_display_menu" })));
     if (((s as any).rco ?? 0)?.['action_left'] === '') {
-      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['action_left'] = ((parseFloat(((s as any).rco ?? 0)?.['prev_val']) !== 0  ||  ((s as any).rco ?? 0)?.['prev_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? {})?.['prev_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + ((s as any).rco ?? {})?.['prev_val'] + '\''));
+      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['action_left'] = ((parseFloat(((s as any).rco ?? 0)?.['prev_val']) !== 0  ||  ((s as any).rco ?? 0)?.['prev_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + (((s as any).rco ?? {})?.['prev_val'] ?? 0)) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + (((s as any).rco ?? {})?.['prev_val'] ?? 0) + '\''));
     }
     if (((s as any).rco ?? 0)?.['action_right'] === '') {
-      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['action_right'] = ((parseFloat(((s as any).rco ?? 0)?.['next_val']) !== 0  ||  ((s as any).rco ?? 0)?.['next_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + ((s as any).rco ?? {})?.['next_val']) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + ((s as any).rco ?? {})?.['next_val'] + '\''));
+      if (!(s as any).rco) (s as any).rco = {}; (s as any).rco['action_right'] = ((parseFloat(((s as any).rco ?? 0)?.['next_val']) !== 0  ||  ((s as any).rco ?? 0)?.['next_val'] === '0') ? (((s as any).locArgs?.[2] ?? 0) + ' = ' + (((s as any).rco ?? {})?.['next_val'] ?? 0)) : (((s as any).locArgs?.[2] ?? 0) + ' = \'' + (((s as any).rco ?? {})?.['next_val'] ?? 0) + '\''));
     }
   }
   // TODO-QSP: $result +=    '<tr>'
@@ -630,7 +632,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :_rns_gloop
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['gkey'] = qspUntranslated(s, "skill_group_order[ro['gi']]", { location: "stat_display_menu" });
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['ghid'] = ((s as any).stat_hide ?? 0)?.[((s as any).ro ?? 0)?.['gkey']];
-  if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['show_skills_' + ((s as any).ro ?? {})?.['gkey']];
+  if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['show_skills_' + (((s as any).ro ?? {})?.['gkey'] ?? 0)];
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['ghi_ic'] = 'images/system/ui/\' + iif(ro[\'ghid\'] = 1, \'hide_\', \'show_\')       + $ro[\'c\'] + \'.png';
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['gex_ic'] = 'images/system/ui/\' + iif(ro[\'gexp\'] = 1, \'expand_\', \'collapse_\') + $ro[\'c\'] + \'.png';
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>'));
@@ -652,7 +654,7 @@ function enterReorderNestedSkills(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['mi'] = 0;
     if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rns_mloop
-    if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['mkey'] = ((s as any).skill_grp ?? 0)?.[((s as any).ro ?? {})?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])];
+    if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['mkey'] = ((s as any).skill_grp ?? 0)?.[(((s as any).ro ?? {})?.['gkey'] ?? 0) + '_' + String(((s as any).ro ?? 0)?.['mi'])];
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rns_mdone'
     }
@@ -700,7 +702,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :_rnr_gloop
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['gkey'] = qspUntranslated(s, "rel_group_order[ro['gi']]", { location: "stat_display_menu" });
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['ghid'] = ((s as any).stat_hide_rel_grp ?? 0)?.[((s as any).ro ?? 0)?.['gkey']];
-  if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['show_rels_' + ((s as any).ro ?? {})?.['gkey']];
+  if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['gexp'] = ((s as any).stat_cfg ?? 0)?.['show_rels_' + (((s as any).ro ?? {})?.['gkey'] ?? 0)];
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['ghi_ic'] = 'images/system/ui/\' + iif(ro[\'ghid\'] = 1, \'hide_\', \'show_\')       + $ro[\'c\'] + \'.png';
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['gex_ic'] = 'images/system/ui/\' + iif(ro[\'gexp\'] = 1, \'expand_\', \'collapse_\') + $ro[\'c\'] + \'.png';
   if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['glbl'] = ((((s as any).ro ?? 0)?.['ghid'] === 1) ? ('<font color="gray"><b>\' + $sd_dn[$ro[\'gkey\']] + \'</b></font>') : ('<b>\' + $sd_dn[$ro[\'gkey\']] + \'</b>'));
@@ -731,7 +733,7 @@ function enterReorderNestedRelations(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['nm'] = ((s as any).stat_cfg ?? 0)?.['rel_name_mode'];
     if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['html'] = ((s as any).ro['html'] ?? 0) + ('<table width="100%" cellspacing="3" cellpadding="0" border="0" style="margin-top:4px; padding-left:18px;">');
     // TODO-QSP: :_rnr_mloop
-    if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['mkey'] = ((s as any).rel_grp ?? 0)?.[((s as any).ro ?? {})?.['gkey'] + '_' + String(((s as any).ro ?? 0)?.['mi'])];
+    if (!(s as any).ro) (s as any).ro = {}; (s as any).ro['mkey'] = ((s as any).rel_grp ?? 0)?.[(((s as any).ro ?? {})?.['gkey'] ?? 0) + '_' + String(((s as any).ro ?? 0)?.['mi'])];
     if (((s as any).ro ?? 0)?.['mkey'] === '') {
       // TODO-QSP: jump '_rnr_mdone'
     }

@@ -21,17 +21,17 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     scene.text('He seems nice enough so you decide to give him your name.');
     if ((Math.floor(Math.random() * 11) + 0) === 0  &&  ((s as any).pcs_apprnc ?? 0) >= (Math.floor(Math.random() * 81) + 40)  &&  ((s as any).cheatVars ?? 0)?.['random_lovers'] !== 1) {
       // TODO-QSP: dynamic text: <<$boydesc>> smiles as he says, "You're a pretty cool girl. Maybe we can hang ou...
-      scene.text(`${((s as any).boydesc ?? 0)} smiles as he says, "You're a pretty cool girl. Maybe we can hang out again?"`);
+      scene.text(`${((s as any).boydesc || '')} smiles as he says, "You're a pretty cool girl. Maybe we can hang out again?"`);
       qspCall(s, 'willpower', 'misc', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Smile and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Smile and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Smile and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Smile and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
         ]);
@@ -46,7 +46,7 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).bmFrend) (s as any).bmFrend = {}; (s as any).bmFrend[String((s as any).Tboynum ?? 0)] = 1;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You give <<$boydesc>> your phone number and he adds it to his contact list.
-    scene.text(`You give ${((s as any).boydesc ?? 0)} your phone number and he adds it to his contact list.`);
+    scene.text(`You give ${((s as any).boydesc || '')} your phone number and he adds it to his contact list.`);
     scene.text('He then excuses himself and leaves, promising to call you.');
     scene.actions([
       { label: 'Return', goto: ['pav_lake', ''] },
@@ -55,17 +55,17 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: <<$boydesc>> sits closer to you and offers you a cold beer.
-      scene.text(`${((s as any).boydesc ?? 0)} sits closer to you and offers you a cold beer.`);
+      scene.text(`${((s as any).boydesc || '')} sits closer to you and offers you a cold beer.`);
       qspCall(s, 'willpower', 'drink', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Smile and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Smile and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Smile and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Smile and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
         ]);
@@ -79,17 +79,17 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     scene.text('You drink beer with the guy, and the two of you chat for a while.');
     scene.text('Suddenly, he puts his hand on your thigh.');
     // TODO-QSP: dynamic text: "Another beer, <<$pcs_nickname>>?"
-    scene.text(`"Another beer, ${((s as any).pcs_nickname ?? 0)}?"`);
+    scene.text(`"Another beer, ${((s as any).pcs_nickname || '')}?"`);
     qspCall(s, 'willpower', 'drink', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Thank him for the beer and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Thank him for the beer and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Thank him for the beer and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Thank him for the beer and leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
       ]);
@@ -101,19 +101,19 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/lake/event/drinkbeer.jpg');
     // TODO-QSP: dynamic text: You drink more beer with <<$boydesc>>. He begins stroking your leg and puts his ...
-    scene.text(`You drink more beer with ${((s as any).boydesc ?? 0)}. He begins stroking your leg and puts his hand on your chest as he leans into you.`);
+    scene.text(`You drink more beer with ${((s as any).boydesc || '')}. He begins stroking your leg and puts his hand on your chest as he leans into you.`);
     if ((Math.floor(Math.random() * 100) + 1) <= 20) {
       scene.text('Leaned in he whispers to you, "I need to taste those lips."');
       qspCall(s, 'willpower', 'kiss', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Push him away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Push him away and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Push him away and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Push him away and leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
         ]);
@@ -128,19 +128,19 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/pavlovsk/lake/event/kissboy.jpg');
     }
     // TODO-QSP: dynamic text: You passionately kiss <<$boydesc>>, as he continues to caress your body, paying ...
-    scene.text(`You passionately kiss ${((s as any).boydesc ?? 0)}, as he continues to caress your body, paying particular interest to your breasts.`);
+    scene.text(`You passionately kiss ${((s as any).boydesc || '')}, as he continues to caress your body, paying particular interest to your breasts.`);
     // TODO-QSP: dynamic text: <<$boydesc>> invites you to his house.
-    scene.text(`${((s as any).boydesc ?? 0)} invites you to his house.`);
+    scene.text(`${((s as any).boydesc || '')} invites you to his house.`);
     qspCall(s, 'willpower', 'sex', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Call it a day and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Call it a day and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Call it a day and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Call it a day and leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
       ]);
@@ -156,7 +156,7 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: <<$boydesc>> smiles and suggests that the two of you go for a walk.
-      scene.text(`${((s as any).boydesc ?? 0)} smiles and suggests that the two of you go for a walk.`);
+      scene.text(`${((s as any).boydesc || '')} smiles and suggests that the two of you go for a walk.`);
       scene.actions([
         { label: 'Reject and leave', goto: ['pav_lake', ''] },
         { label: 'Agree', handler: (st: GameState) => {
@@ -174,19 +174,19 @@ function enterGLBoyZ(s: GameState, scene: SceneBuilder): void {
     }
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You quickly get changed into your regular clothes and go for a walk with <<$boyd...
-    scene.text(`You quickly get changed into your regular clothes and go for a walk with ${((s as any).boydesc ?? 0)}.`);
+    scene.text(`You quickly get changed into your regular clothes and go for a walk with ${((s as any).boydesc || '')}.`);
     // TODO-QSP: dynamic text: <<$boydesc>> invites you over to his house.
-    scene.text(`${((s as any).boydesc ?? 0)} invites you over to his house.`);
+    scene.text(`${((s as any).boydesc || '')} invites you over to his house.`);
     qspCall(s, 'willpower', 'sex', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Call it a day and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Call it a day and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Call it a day and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Call it a day and leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['pav_lake', ''] },
       ]);

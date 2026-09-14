@@ -39,7 +39,7 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
     scene.text('You kiss his hand and straighten up.');
     scene.text('He leads you to his office and gestures for you to sit next to him on a small bench. "Now, my child. What\'s troubling you?" he asks gently.');
     // TODO-QSP: dynamic text: "Father, it has been <<lastconf>> days since my last confession."
-    scene.text(`"Father, it has been ${((s as any).lastconf ?? 0)} days since my last confession."`);
+    scene.text(`"Father, it has been ${((s as any).lastconf || '')} days since my last confession."`);
   }
   if (((s as any).sisterLesb ?? 0) > 3  ||  ((s as any).seepornofut ?? 0) !== 0) {
     scene.actions([
@@ -58,7 +58,7 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/church/confession.jpg');
     scene.text('"I\'ve been having these feelings… Feelings about another girl." you hesitantly admit.');
     // TODO-QSP: dynamic text: "What kind of feelings, <<$pcs_firstname>>?" Father Kirill asks gently.
-    scene.text(`"What kind of feelings, ${((s as any).pcs_firstname ?? 0)}?" Father Kirill asks gently.`);
+    scene.text(`"What kind of feelings, ${((s as any).pcs_firstname || '')}?" Father Kirill asks gently.`);
     scene.text('"Sexual feelings…" you mutter softly.');
     scene.text('"I\'m sorry, my dear, I didn\'t quite catch that. Did you say \'actual feelings\'?"');
     scene.text('"No, Father, I said sexual feelings." you repeat more clearly. "As in I want to have sex with her."');
@@ -148,11 +148,11 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Hmm. Anyway, my child, is there anything you wanted to share with me? Something...
-    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring ?? 0)}.`);
+    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring || '')}.`);
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you've jerked off <<$func('string', 'parse_nu...
-    scene.text(`You hesitantly tell the priest how you've jerked off ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_jerked'])} ${((((s as any).stat ?? 0)?.['men_jerked'] === 1) ? ('guy') : ('guys'))}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you've jerked off ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_jerked'] ?? '')} ${((((s as any).stat ?? 0)?.['men_jerked'] === 1) ? ('guy') : ('guys'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for the marital bed, child. As long as the act of foreplay leads to sexual intercourse where the male climaxes into the female, then genital stimulation is certainly permissible. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -165,13 +165,13 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'hj', 'resist');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse to give the father a handjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to give the father a handjob', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse to give the father a handjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to give the father a handjob', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/church/confession.jpg');
@@ -239,11 +239,11 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Hmm. Anyway, my child, is there anything you wanted to share with me? Something...
-    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring ?? 0)}.`);
+    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring || '')}.`);
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you performed oral sex on <<$func('string', '...
-    scene.text(`You hesitantly tell the priest how you performed oral sex on ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_blown'])} ${((((s as any).stat ?? 0)?.['men_blown'] === 1) ? ('guy') : ('guys'))}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you performed oral sex on ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_blown'] ?? '')} ${((((s as any).stat ?? 0)?.['men_blown'] === 1) ? ('guy') : ('guys'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for the marital bed, child. As long as the act of foreplay leads to sexual intercourse where the male climaxes into the female, then oral stimulation is certainly permissible. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -256,13 +256,13 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'bj', 'resist');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse to give the father a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to give the father a blowjob', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse to give the father a blowjob [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to give the father a blowjob', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/church/confession.jpg');
@@ -330,11 +330,11 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Hmm. Anyway, my child, is there anything you wanted to share with me? Something...
-    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring ?? 0)}.`);
+    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring || '')}.`);
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you've had anal sex <<$func('string', 'parse_...
-    scene.text(`You hesitantly tell the priest how you've had anal sex ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['anal'])} ${((((s as any).stat ?? 0)?.['anal'] === 1) ? ('time') : ('times'))}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you've had anal sex ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['anal'] ?? '')} ${((((s as any).stat ?? 0)?.['anal'] === 1) ? ('time') : ('times'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for procreation, child. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -347,13 +347,13 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'anal', 'resist');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse to let the father fuck your ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to let the father fuck your ass', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse to let the father fuck your ass [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to let the father fuck your ass', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/church/confession.jpg');
@@ -421,11 +421,11 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Hmm. Anyway, my child, is there anything you wanted to share with me? Something...
-    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring ?? 0)}.`);
+    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring || '')}.`);
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you've had sex with <<$func('string', 'parse_...
-    scene.text(`You hesitantly tell the priest how you've had sex with ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_fucked'])} ${((((s as any).stat ?? 0)?.['men_fucked'] === 1) ? ('guy') : ('guys'))}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you've had sex with ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['men_fucked'] ?? '')} ${((((s as any).stat ?? 0)?.['men_fucked'] === 1) ? ('guy') : ('guys'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for the marital bed, child. Make sure that the male climaxes into the female, in order to comply with church. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -438,13 +438,13 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'sex', 'resist');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse to let the father fuck you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to let the father fuck you', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse to let the father fuck you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to let the father fuck you', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/church/confession.jpg');
@@ -512,7 +512,7 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Hmm. Anyway, my child, is there anything you wanted to share with me? Something...
-    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring ?? 0)}.`);
+    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring || '')}.`);
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have.."');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     scene.text('You hesitantly tell the priest how you have performed sex acts with several others at once. It was difficult at first, but you feel better almost right away.');
@@ -566,11 +566,11 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Hmm. Anyway, my child, is there anything you wanted to share with me? Something...
-    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring ?? 0)}.`);
+    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring || '')}.`);
     scene.text('"Maybe… I\'ve done something that maybe I shouldn\'t have…"');
     scene.text('"And what was that thing, my child?" the priest encourages you gently. "Remember, Jesus already knows. You merely need to acknowledge your sins in His presence to be forgiven."');
     // TODO-QSP: dynamic text: You hesitantly tell the priest how you have masturbated <<$func('string', 'parse...
-    scene.text(`You hesitantly tell the priest how you have masturbated ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['mast'])} ${((((s as any).stat ?? 0)?.['mast'] === 1) ? ('time') : ('times'))}. It was difficult at first, but you feel better almost right away.`);
+    scene.text(`You hesitantly tell the priest how you have masturbated ${qspFunc(s, 'string', 'parse_number', ((s as any).stat ?? 0)?.['mast'] ?? '')} ${((((s as any).stat ?? 0)?.['mast'] === 1) ? ('time') : ('times'))}. It was difficult at first, but you feel better almost right away.`);
     if (((s as any).Kirill_Crpt ?? 0) <= 20) {
       scene.text('"Such acts should be reserved for your husband, child. Do not fear that your soul has been stained by your actions. However, such behavior may lead to greater sins in the future." the priest scolds you as he drapes his stole over your head and begins the Prayer of Absolution.');
     } else {
@@ -583,13 +583,13 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'exhib', 'resist');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Refuse to masturbate in front of the father [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to masturbate in front of the father', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Refuse to masturbate in front of the father [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Refuse to masturbate in front of the father', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/church/confession.jpg');
@@ -672,10 +672,10 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: "Hmm. Anyway, my child, is there anything you wanted to share with me? Something...
-    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring ?? 0)}.`);
+    scene.text(`"Hmm. Anyway, my child, is there anything you wanted to share with me? Something that makes you feel better?" he inquires as you ${((s as any).confstring || '')}.`);
     qspCall(s, 'pav_church', 'fillers');
     // TODO-QSP: dynamic text: You decide to talk to Father Kirill about some of the things going on in your li...
-    scene.text(`You decide to talk to Father Kirill about some of the things going on in your life, but you don't feel comfortable being too detailed. You touch briefly on some of the feelings you've had recently, but avoid going into any details. You almost tell him about some of your sexual activities a few times, but quickly change the subject and talk about ${((s as any).safesub ?? 0)} instead.`);
+    scene.text(`You decide to talk to Father Kirill about some of the things going on in your life, but you don't feel comfortable being too detailed. You touch briefly on some of the feelings you've had recently, but avoid going into any details. You almost tell him about some of your sexual activities a few times, but quickly change the subject and talk about ${((s as any).safesub || '')} instead.`);
     scene.text('Father Kirill listens intently and asks a few questions, trying to get you to open up a little more but he doesn\'t put any real pressure on you. In the end, Father Kirill absolves you of your sins and encourages you to put your trust in God and him.');
     scene.actions([
       { label: 'Finish', handler: (st: GameState) => {
@@ -753,7 +753,7 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
     if (((s as any).motherKnowSpravka ?? 0) === 0  &&  ((s as any).stat ?? 0)?.['vaginal'] === 0) {
       scene.text('You once more feel the need to speak to the priest about some of the things that have happened recently in your life.');
       // TODO-QSP: dynamic text: "I sometimes think that my <<$npc_nickname['A29']>> doesn't trust me. I'm still ...
-      scene.text(`"I sometimes think that my ${((s as any).npc_nickname ?? 0)?.['A29']} doesn't trust me. I'm still a virgin, but she won't take my word for it. Every month she nags my head off about going to the gynecologist to prove it. She claims that my school needs to know, but I know that's a lie. It’s starting to irritate me."`);
+      scene.text(`"I sometimes think that my ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} doesn't trust me. I'm still a virgin, but she won't take my word for it. Every month she nags my head off about going to the gynecologist to prove it. She claims that my school needs to know, but I know that's a lie. It’s starting to irritate me."`);
       scene.text('The priest sighs. "I\'m sure she\'s just doing what she thinks is best for you."');
       scene.text('"That doesn’t make me feel less irritated." you reply sourly.');
       scene.text('"Yes, I understand," the priest chuckles. "My mother, bless her soul, was just the same. Always checking up on who I was with and never letting me be alone with a girl. I almost went crazy."');
@@ -765,7 +765,7 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
       scene.text('"What is it, child?"');
       scene.text('"Could I ask your name?" you ask hesitantly.');
       // TODO-QSP: dynamic text: "Hmm? Of course you may, <<$pcs_firstname>>," he replies with a smile. "It is Ki...
-      scene.text(`"Hmm? Of course you may, ${((s as any).pcs_firstname ?? 0)}," he replies with a smile. "It is Kirill. Father Kirill."`);
+      scene.text(`"Hmm? Of course you may, ${((s as any).pcs_firstname || '')}," he replies with a smile. "It is Kirill. Father Kirill."`);
       scene.text('You kneel next to Father Kirill and recount your sins as he says the Prayer of Absolution. You leave feeling better after your little talk.');
     } else {
       scene.text('You once more feel the need to speak to the priest about some of the things that have happened recently in your life.');
@@ -781,13 +781,13 @@ function enterConfession(s: GameState, scene: SceneBuilder): void {
       scene.text('"What is it, child?"');
       scene.text('"Could I ask your name?" you ask hesitantly.');
       // TODO-QSP: dynamic text: "Hmm? Of course you may, <<$pcs_firstname>>," he replies with a smile. "It is Ki...
-      scene.text(`"Hmm? Of course you may, ${((s as any).pcs_firstname ?? 0)}," he replies with a smile. "It is Kirill. Father Kirill."`);
+      scene.text(`"Hmm? Of course you may, ${((s as any).pcs_firstname || '')}," he replies with a smile. "It is Kirill. Father Kirill."`);
       scene.text('You knee next to Father Kirill. "Father, I\'m no longer an virgin." you confess.');
       if (((s as any).forge_referral ?? 0) === 1) {
         scene.text('"I\'ve lied to my mother about it and given her a fake note from the gynecologist saying I\'m still a virgin." you admit shamefully.');
       } else {
         // TODO-QSP: dynamic text: "<<$npc_nickname['A29']>> will make me go to the gynecologist soon and he'll rep...
-        scene.text(`"${((s as any).npc_nickname ?? 0)?.['A29']} will make me go to the gynecologist soon and he'll report that I'm no longer a virgin." you say fearfully. "My ${((s as any).npc_nickname ?? 0)?.['A29']} will be so mad! I don't know what to do."`);
+        scene.text(`"${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} will make me go to the gynecologist soon and he'll report that I'm no longer a virgin." you say fearfully. "My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} will be so mad! I don't know what to do."`);
       }
       scene.text('"Now you must mend your ways, child. Please come again, and if you feel unsure, simply pray to God and He will hear you."');
       scene.text('"Thank you, Father." you say as you leave.');
@@ -807,7 +807,7 @@ function enterSecrets(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/confession.jpg');
   scene.text('As you kneel down next to Father Kirill, you think about what you want to say to him.');
   // TODO-QSP: dynamic text: Taking a deep breath, you decid to tell him about one of your dirtier secrets as...
-  scene.text(`Taking a deep breath, you decid to tell him about one of your dirtier secrets as you ${((s as any).confstring ?? 0)}.`);
+  scene.text(`Taking a deep breath, you decid to tell him about one of your dirtier secrets as you ${((s as any).confstring || '')}.`);
   scene.text('"Father, this is very hard for me to tell you…" you began hesitantly.');
   scene.text('"Go on, my dear." Father Kirill says gently. "Remember, our Lord already knows what you have done. All you need do is acknowledge the sin by speaking it."');
   scene.text('Steeling your nerve, you decid to tell him about…');
@@ -1056,13 +1056,13 @@ function enterSecrets(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'sex', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Refuse to let the father fuck you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Refuse to let the father fuck you', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Refuse to let the father fuck you [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Refuse to let the father fuck you', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/church/confession.jpg');
@@ -1157,7 +1157,7 @@ function enterHj(s: GameState, scene: SceneBuilder): void {
     { label: 'Stroke him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/hj2.jpg');
     // TODO-QSP: dynamic text: You feel it grow slightly in your hand as you stroke the full length of his <<di...
-    scene.text(`You feel it grow slightly in your hand as you stroke the full length of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock with your hand while he moans and prays. "Please Lord, release this child from the lust she is consumed by."`);
+    scene.text(`You feel it grow slightly in your hand as you stroke the full length of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock with your hand while he moans and prays. "Please Lord, release this child from the lust she is consumed by."`);
     qspCall(s, 'arousal', 'hj', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1204,7 +1204,7 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
     { label: 'Open your mouth', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/bj2.jpg');
     // TODO-QSP: dynamic text: You do as he tells you and open your mouth. Once your mouth is fully open he sli...
-    scene.text(`You do as he tells you and open your mouth. Once your mouth is fully open he slides his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick inside and you close your lips around it. He lets out a moan which turns into a moaning prayer. "Oh heavenly Father, forgive the sins of this child." he says as he starts to slowly and gently fuck your mouth.`);
+    scene.text(`You do as he tells you and open your mouth. Once your mouth is fully open he slides his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick inside and you close your lips around it. He lets out a moan which turns into a moaning prayer. "Oh heavenly Father, forgive the sins of this child." he says as he starts to slowly and gently fuck your mouth.`);
     qspCall(s, 'arousal', 'bj', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1270,7 +1270,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
       { label: 'Undress and bend over', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/sex1.jpg');
     // TODO-QSP: dynamic text: You remove your clothes as he watches, stroking his dick with one hand. Once you...
-    scene.text(`You remove your clothes as he watches, stroking his dick with one hand. Once you're naked on your knees, you lean forward until your hands touch the floor. Father Kirill kneels down behind you and rubs your pussy a few times with his fingers. You then feel the head of his dick rubbing against your wet slit before he gently pushes it into you. You both moan as his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick slides into you and he begins to gently fuck you, holding onto your hips with one hand.`);
+    scene.text(`You remove your clothes as he watches, stroking his dick with one hand. Once you're naked on your knees, you lean forward until your hands touch the floor. Father Kirill kneels down behind you and rubs your pussy a few times with his fingers. You then feel the head of his dick rubbing against your wet slit before he gently pushes it into you. You both moan as his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick slides into you and he begins to gently fuck you, holding onto your hips with one hand.`);
     qspCall(s, 'arousal', 'vaginal', 5);
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1336,7 +1336,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
       { label: 'Bend over', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/church/sex/anal3.jpg');
     // TODO-QSP: dynamic text: Once you bend over, he applies some lube to your asshole and rubs it in with his...
-    scene.text(`Once you bend over, he applies some lube to your asshole and rubs it in with his fingers. He then presses the head of his dick against your asshole and you feel the pressure build up until the tip pops into your ass, causing you to cry out slightly in both pain and pleasure. He pauses to let you adjust to it before he slowly and gently begins fucking your ass with his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick.`);
+    scene.text(`Once you bend over, he applies some lube to your asshole and rubs it in with his fingers. He then presses the head of his dick against your asshole and you feel the pressure build up until the tip pops into your ass, causing you to cry out slightly in both pain and pleasure. He pauses to let you adjust to it before he slowly and gently begins fucking your ass with his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick.`);
     qspCall(s, 'pain', '', 1, 'asshole', 'stretch');
     qspCall(s, 'arousal', 'anal', 5);
     qspCall(s, 'stat', '');

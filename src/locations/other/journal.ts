@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterRecords(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'housing', 'rent');
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -32,7 +32,7 @@ function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $tablebody += '<th><a href="exec:menutrack = 8 & gt ''journal'', ''notification_log''">Notifications...
   // TODO-QSP: $tablebody += '</tr>'
   // TODO-QSP: dynamic text: <center><table width="90%" align="center" width="90%" cellspacing="0" cellpaddin...
-  scene.text(`<center><table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody ?? 0)}</tr></table></center>`);
+  scene.text(`<center><table width="90%" align="center" width="90%" cellspacing="0" cellpadding="0" valign="top"><tr>${((s as any).tablebody || '')}</tr></table></center>`);
   if (((s as any).jumploc ?? 0) === 'worktab'  &&  ((s as any).jclose ?? 0) === 1) {
     (s as any).jclose = 0;
     (s as any).menutrack = 3;
@@ -49,7 +49,7 @@ function enterJournalmenu(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'journal', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -61,7 +61,7 @@ function enterCalendar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMagictab(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Magic</h2></center><br>');
   scene.text('<center><h2>Spells to Cast</h2></center><br>');
   // TODO-QSP: func('spellBook', 'cast', '$nonComSpells', 'gt ''journal'', ''magictab''', 'jclose = 1')
@@ -85,7 +85,7 @@ function enterMagictab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterHousingtab(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Housing</h2></center>');
   if (((s as any).accessible_property ?? 0)?.['shared_apartment'] === 4) {
     scene.text('You share an apartment with three others in Pavlovsk. Your bills are paid by the other tenants in exchange for your house services.');
@@ -236,22 +236,22 @@ function enterHousingtab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRelationstab(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Relationships</h2></center>');
   scene.text('<h2>Family</h2>');
   scene.text('Mother:');
-  qspCall(s, 'journal', 'relindex', 'A29');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A29']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Stepfather:');
-  qspCall(s, 'journal', 'relindex', 'A28');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A28']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Sister:');
-  qspCall(s, 'journal', 'relindex', 'A33');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A33']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Brother:');
-  qspCall(s, 'journal', 'relindex', 'A34');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A34']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Aunt Luda:');
-  qspCall(s, 'journal', 'relindex', 'A30');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A30']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).npc_known ?? 0)?.['A55'] === 1) {
     scene.text('Olu:');
-    qspCall(s, 'journal', 'relindex', 'A55');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A55']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg'  &&  ((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0  &&  ((s as any).gschoolVars ?? 0)?.['block'] === 0) {
     scene.text('<center><h2>Standings by Social Group</h2></center>');
@@ -276,11 +276,11 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
             // TODO-QSP: 'Your school social group consists of nerds, geeks and good students.' + $journal_school_standing
             if (((s as any).nerd_game ?? 0)?.['game_day'] > ((s as any).daystart ?? 0)) {
               // TODO-QSP: dynamic text: You have been invited to a games night on <<$weekName[(week + (nerd_game['game_d...
-              scene.text(`You have been invited to a games night on ${((s as any).weekName ?? 0)?.[(((s as any).week ?? 0) + (((s as any).nerd_game ?? {})?.['game_day'] - ((s as any).daystart ?? 0)))]} at ' + func('time', 'get_time_string', 20, 0) + ' in the community center library.`);
+              scene.text(`You have been invited to a games night on ${((s as any).weekName ?? 0)?.[(((s as any).week ?? '') + ((((s as any).nerd_game ?? {})?.['game_day'] ?? 0) - ((s as any).daystart ?? '')))]} at 20:00 in the community center library.`);
             }
             if (((s as any).nerd_game ?? 0)?.['game_day'] === ((s as any).daystart ?? 0)) {
               // TODO-QSP: dynamic text: You have been invited to a games night tonight at ' + func('time', 'get_time_str...
-              scene.text('You have been invited to a games night tonight at \' + func(\'time\', \'get_time_string\', 20, 0) + \' in the community center library.');
+              scene.text('You have been invited to a games night tonight at 20:00 in the community center library.');
             }
           } else {
             if (((s as any).grupTipe ?? 0) === 4) {
@@ -336,7 +336,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       }
     }
     // TODO-QSP: dynamic text: <<$grupbar_name>>
-    scene.text(`${((s as any).grupbar_name ?? 0)}`);
+    scene.text(`${((s as any).grupbar_name || '')}`);
     (s as any).i = ((s as any).i ?? 0) + (1);
     if (((s as any).i ?? 0) <= 4) {
       // TODO-QSP: jump 'grupbar_loop'
@@ -344,264 +344,264 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h2>Popular Kids Relations</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A1'] === 1) {
       scene.text('Friendship with Dimka:');
-      qspCall(s, 'journal', 'relindex', 'A1');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A1']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A4'] === 1) {
       scene.text('Friendship with Igor:');
-      qspCall(s, 'journal', 'relindex', 'A4');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A4']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A14'] === 1) {
       scene.text('Friendship with Katja:');
-      qspCall(s, 'journal', 'relindex', 'A14');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A14']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A15'] === 1) {
       scene.text('Friendship with Vicky:');
-      qspCall(s, 'journal', 'relindex', 'A15');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A15']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A17'] === 1) {
       scene.text('Friendship with Irina:');
-      qspCall(s, 'journal', 'relindex', 'A17');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A17']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A22'] === 1) {
       scene.text('Friendship with Bella:');
-      qspCall(s, 'journal', 'relindex', 'A22');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A22']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A146'] === 1) {
       scene.text('Friendship with Marcus:');
-      qspCall(s, 'journal', 'relindex', 'A146');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A146']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A147'] === 1) {
       scene.text('Friendship with Andrey:');
-      qspCall(s, 'journal', 'relindex', 'A147');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A147']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A148'] === 1) {
       scene.text('Friendship with Mefodiy:');
-      qspCall(s, 'journal', 'relindex', 'A148');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A148']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).soniaQW ?? 0)?.['slut'] === 0  &&  ((s as any).npc_known ?? 0)?.['A25'] === 1) {
       scene.text('Friendship with Sonia:');
-      qspCall(s, 'journal', 'relindex', 'A25');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A25']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A139'] === 1) {
       scene.text('Friendship with Stasya:');
-      qspCall(s, 'journal', 'relindex', 'A139');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A139']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A140'] === 1) {
       scene.text('Friendship with Lizaveta:');
-      qspCall(s, 'journal', 'relindex', 'A140');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A140']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<center><h2>Jocks Relations</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A3'] === 1) {
       scene.text('Friendship with Ivan:');
-      qspCall(s, 'journal', 'relindex', 'A3');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A3']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).fedormasha ?? 0) === 0  &&  ((s as any).npc_known ?? 0)?.['A5'] === 1) {
       scene.text('Friendship with Fedor:');
-      qspCall(s, 'journal', 'relindex', 'A5');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A8'] === 1) {
       scene.text('Friendship with Svyatoslav:');
-      qspCall(s, 'journal', 'relindex', 'A8');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A8']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A13'] === 1) {
       scene.text('Friendship with Lariska:');
-      qspCall(s, 'journal', 'relindex', 'A13');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A13']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A18'] === 1) {
       scene.text('Friendship with Christina:');
-      qspCall(s, 'journal', 'relindex', 'A18');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A18']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A19'] === 1) {
       scene.text('Friendship with Lina:');
-      qspCall(s, 'journal', 'relindex', 'A19');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A19']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A23'] === 1) {
       scene.text('Friendship with Albina:');
-      qspCall(s, 'journal', 'relindex', 'A23');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A23']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A149'] === 1) {
       scene.text('Friendship with Lazar:');
-      qspCall(s, 'journal', 'relindex', 'A149');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A149']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A150'] === 1) {
       scene.text('Friendship with Erast:');
-      qspCall(s, 'journal', 'relindex', 'A150');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A150']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A141'] === 1) {
       scene.text('Friendship with Veronika:');
-      qspCall(s, 'journal', 'relindex', 'A141');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A141']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A165'] === 1) {
       scene.text('Friendship with Vanya:');
-      qspCall(s, 'journal', 'relindex', 'A165');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A165']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<center><h2>Nerds Relations</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A2'] === 1) {
       scene.text('Friendship with Artem:');
-      qspCall(s, 'journal', 'relindex', 'A2');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A2']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A6'] === 1) {
       scene.text('Friendship with Petka:');
-      qspCall(s, 'journal', 'relindex', 'A6');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A6']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A12'] === 1) {
       scene.text('Friendship with Julia:');
-      qspCall(s, 'journal', 'relindex', 'A12');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A12']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A16'] === 1) {
       scene.text('Friendship with Natasha:');
-      qspCall(s, 'journal', 'relindex', 'A16');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A16']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A151'] === 1) {
       scene.text('Friendship with Evgeny:');
-      qspCall(s, 'journal', 'relindex', 'A151');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A151']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A152'] === 1) {
       scene.text('Friendship with Feofan:');
-      qspCall(s, 'journal', 'relindex', 'A152');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A152']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A153'] === 1) {
       scene.text('Friendship with Gerasim:');
-      qspCall(s, 'journal', 'relindex', 'A153');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A153']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A142'] === 1) {
       scene.text('Friendship with Zinaida:');
-      qspCall(s, 'journal', 'relindex', 'A142');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A142']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A240'] === 1) {
       scene.text('Friendship with Natalia:');
-      qspCall(s, 'journal', 'relindex', 'A240');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A240']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<center><h2>Gopnik Relations</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A9'] === 1) {
       scene.text('Friendship with Vitek:');
-      qspCall(s, 'journal', 'relindex', 'A9');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A9']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A10'] === 1) {
       scene.text('Friendship with Dan:');
-      qspCall(s, 'journal', 'relindex', 'A10');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A10']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A11'] === 1) {
       scene.text('Friendship with Vasily:');
-      qspCall(s, 'journal', 'relindex', 'A11');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A11']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A20'] === 1) {
       scene.text('Friendship with Lena:');
-      qspCall(s, 'journal', 'relindex', 'A20');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A20']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A21'] === 1) {
       scene.text('Friendship with Lera:');
-      qspCall(s, 'journal', 'relindex', 'A21');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A21']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A24'] === 1) {
       scene.text('Friendship with Pauline:');
-      qspCall(s, 'journal', 'relindex', 'A24');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A24']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A154'] === 1) {
       scene.text('Friendship with Radomir:');
-      qspCall(s, 'journal', 'relindex', 'A154');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A154']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A155'] === 1) {
       scene.text('Friendship with Lavrenti:');
-      qspCall(s, 'journal', 'relindex', 'A155');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A155']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A156'] === 1) {
       scene.text('Friendship with Arkadi:');
-      qspCall(s, 'journal', 'relindex', 'A156');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A156']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A157'] === 1) {
       scene.text('Friendship with Roman:');
-      qspCall(s, 'journal', 'relindex', 'A157');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A157']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A158'] === 1) {
       scene.text('Friendship with Valentin:');
-      qspCall(s, 'journal', 'relindex', 'A158');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A158']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A143'] === 1) {
       scene.text('Friendship with Alyona:');
-      qspCall(s, 'journal', 'relindex', 'A143');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A143']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A144'] === 1) {
       scene.text('Friendship with Anushka:');
-      qspCall(s, 'journal', 'relindex', 'A144');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A144']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A145'] === 1) {
       scene.text('Friendship with Katyusha:');
-      qspCall(s, 'journal', 'relindex', 'A145');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A145']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A189'] === 1) {
       scene.text('Friendship with Niko:');
-      qspCall(s, 'journal', 'relindex', 'A189');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A189']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<center><h2>Outcast/Loner Relations</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A7'] === 1) {
       scene.text('Friendship with Lesco:');
-      qspCall(s, 'journal', 'relindex', 'A7');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A7']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A159'] === 1) {
       scene.text('Friendship with Petia:');
-      qspCall(s, 'journal', 'relindex', 'A159');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A159']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).soniaQW ?? 0)?.['slut'] > 0  &&  ((s as any).npc_known ?? 0)?.['A25'] === 1) {
       scene.text('Friendship with Sonia:');
-      qspCall(s, 'journal', 'relindex', 'A25');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A25']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).fedormasha ?? 0) === 1  &&  ((s as any).npc_known ?? 0)?.['A5'] === 1) {
       scene.text('Friendship with Fedor:');
-      qspCall(s, 'journal', 'relindex', 'A5');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<center><h2>Teachers/Coaches/School Staff Relations</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A26'] === 1) {
       scene.text('Friendship with Anatoly Tsarev (Math Teacher):');
-      qspCall(s, 'journal', 'relindex', 'A26');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A26']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A69'] === 1) {
       scene.text('Friendship with Mikhail Nikolaevich (Volleyball Coach):');
-      qspCall(s, 'journal', 'relindex', 'A69');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A69']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A128'] === 1) {
       scene.text('Friendship with Makar Vasilyev (Art Teacher):');
-      qspCall(s, 'journal', 'relindex', 'A128');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A128']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A129'] === 1) {
       scene.text('Friendship with Serafim Ivanov (Computer Science Teacher):');
-      qspCall(s, 'journal', 'relindex', 'A129');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A129']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A130'] === 1) {
       scene.text('Friendship with Ilya Yenotin (Literature Teacher):');
-      qspCall(s, 'journal', 'relindex', 'A130');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A130']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A131'] === 1) {
       scene.text('Friendship with Viktor Pavlovich (P.E. Teacher):');
-      qspCall(s, 'journal', 'relindex', 'A131');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A131']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A132'] === 1) {
       scene.text('Friendship with Ruslan Kuznetsov (Shop Teacher):');
-      qspCall(s, 'journal', 'relindex', 'A132');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A132']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A133'] === 1) {
       scene.text('Friendship with Rolan Metveev (Janitor):');
-      qspCall(s, 'journal', 'relindex', 'A133');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A133']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A134'] === 1) {
       scene.text('Friendship with Aleksandrina Volkov (Headmistress):');
-      qspCall(s, 'journal', 'relindex', 'A134');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A134']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A135'] === 1) {
       scene.text('Friendship with Yeva Sokoloff (Geography Teacher):');
-      qspCall(s, 'journal', 'relindex', 'A135');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A135']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A136'] === 1) {
       scene.text('Friendship with Olga Aleksandrov (School Nurse):');
-      qspCall(s, 'journal', 'relindex', 'A136');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A136']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A137'] === 1) {
       scene.text('Friendship with Raven Braakman (English Teacher):');
-      qspCall(s, 'journal', 'relindex', 'A137');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A137']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A138'] === 1) {
       scene.text('Friendship with Arina Orlov (Biology Teacher):');
-      qspCall(s, 'journal', 'relindex', 'A138');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A138']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A93'] === 1  ||  ((s as any).npc_rel ?? 0)?.['A41'] > 0  ||  ((s as any).npc_rel ?? 0)?.['A42'] > 0  ||  ((s as any).npc_known ?? 0)?.['A43'] === 1  ||  ((s as any).gosh ?? 0) > 0  ||  ((s as any).npc_known ?? 0)?.['A220'] === 1  ||  ((s as any).npc_known ?? 0)?.['A219'] === 1  ||  ((s as any).npc_QW ?? 0)?.['A192'] > 0  ||  ((s as any).npc_known ?? 0)?.['A218'] === 1) {
     }
@@ -610,390 +610,390 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h2>University Students from Pavlovsk</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A149'] === 1) {
       scene.text('Friendship with Lazar:');
-      qspCall(s, 'journal', 'relindex', 'A149');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A149']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A1'] === 1) {
       scene.text('Friendship with Dima:');
-      qspCall(s, 'journal', 'relindex', 'A1');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A1']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A22'] === 1) {
       scene.text('Friendship with Bella:');
-      qspCall(s, 'journal', 'relindex', 'A22');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A22']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A23'] === 1) {
       scene.text('Friendship with Albina:');
-      qspCall(s, 'journal', 'relindex', 'A23');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A23']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A17'] === 1) {
       scene.text('Friendship with Irina:');
-      qspCall(s, 'journal', 'relindex', 'A17');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A17']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A144'] === 1) {
       scene.text('Friendship with Anushka:');
-      qspCall(s, 'journal', 'relindex', 'A144');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A144']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A155'] === 1) {
       scene.text('Friendship with Lavrenti:');
-      qspCall(s, 'journal', 'relindex', 'A155');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A155']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A15'] === 1) {
       scene.text('Friendship with Vicky:');
-      qspCall(s, 'journal', 'relindex', 'A15');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A15']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A147'] === 1) {
       scene.text('Friendship with Andrey:');
-      qspCall(s, 'journal', 'relindex', 'A147');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A147']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A139'] === 1) {
       scene.text('Friendship with Stasya:');
-      qspCall(s, 'journal', 'relindex', 'A139');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A139']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A146'] === 1) {
       scene.text('Friendship with Marcus:');
-      qspCall(s, 'journal', 'relindex', 'A146');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A146']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A16'] === 1) {
       scene.text('Friendship with Natasha:');
-      qspCall(s, 'journal', 'relindex', 'A16');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A16']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A152'] === 1) {
       scene.text('Friendship with Feofan:');
-      qspCall(s, 'journal', 'relindex', 'A152');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A152']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A140'] === 1) {
       scene.text('Friendship with Lizaveta:');
-      qspCall(s, 'journal', 'relindex', 'A140');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A140']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A2'] === 1) {
       scene.text('Friendship with Artem:');
-      qspCall(s, 'journal', 'relindex', 'A2');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A2']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A18'] === 1) {
       scene.text('Friendship with Christina:');
-      qspCall(s, 'journal', 'relindex', 'A18');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A18']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A14'] === 1) {
       scene.text('Friendship with Katja:');
-      qspCall(s, 'journal', 'relindex', 'A14');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A14']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A165'] === 1) {
       scene.text('Friendship with Vanya:');
-      qspCall(s, 'journal', 'relindex', 'A165');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A165']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A153'] === 1) {
       scene.text('Friendship with Gerasim:');
-      qspCall(s, 'journal', 'relindex', 'A153');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A153']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A12'] === 1) {
       scene.text('Friendship with Julia:');
-      qspCall(s, 'journal', 'relindex', 'A12');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A12']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A6'] === 1) {
       scene.text('Friendship with Petka:');
-      qspCall(s, 'journal', 'relindex', 'A6');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A6']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A13'] === 1) {
       scene.text('Friendship with Lariska:');
-      qspCall(s, 'journal', 'relindex', 'A13');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A13']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A19'] === 1) {
       scene.text('Friendship with Lina:');
-      qspCall(s, 'journal', 'relindex', 'A19');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A19']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A25'] === 1) {
       scene.text('Friendship with Sonia:');
-      qspCall(s, 'journal', 'relindex', 'A25');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A25']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A4'] === 1) {
       scene.text('Friendship with Igor:');
-      qspCall(s, 'journal', 'relindex', 'A4');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A4']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A142'] === 1) {
       scene.text('Friendship with Zinaida:');
-      qspCall(s, 'journal', 'relindex', 'A142');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A142']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A7'] === 1) {
       scene.text('Friendship with Lesco:');
-      qspCall(s, 'journal', 'relindex', 'A7');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A7']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A159'] === 1) {
       scene.text('Friendship with Petia:');
-      qspCall(s, 'journal', 'relindex', 'A159');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A159']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<center><h2>Other University Students</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A82'] === 1) {
       scene.text('Friendship with Djibril:');
-      qspCall(s, 'journal', 'relindex', 'A82');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A82']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A83'] === 1) {
       scene.text('Friendship with Goshi:');
-      qspCall(s, 'journal', 'relindex', 'A83');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A83']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A77'] === 1) {
       scene.text('Friendship with Tryndin:');
-      qspCall(s, 'journal', 'relindex', 'A77');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A77']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A242'] === 1) {
       scene.text('Friendship with Lebogang:');
-      qspCall(s, 'journal', 'relindex', 'A242');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A242']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A243'] === 1) {
       scene.text('Friendship with Ermias:');
-      qspCall(s, 'journal', 'relindex', 'A243');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A243']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A244'] === 1) {
       scene.text('Friendship with Farai:');
-      qspCall(s, 'journal', 'relindex', 'A244');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A244']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A245'] === 1) {
       scene.text('Friendship with Haruna:');
-      qspCall(s, 'journal', 'relindex', 'A245');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A245']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A246'] === 1) {
       scene.text('Friendship with Arendse:');
-      qspCall(s, 'journal', 'relindex', 'A246');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A246']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A84'] === 1) {
       scene.text('Friendship with Kendra:');
-      qspCall(s, 'journal', 'relindex', 'A84');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A84']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A247'] === 1) {
       scene.text('Friendship with Liliya:');
-      qspCall(s, 'journal', 'relindex', 'A247');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A247']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A267'] === 1) {
       scene.text('Friendship with Mia:');
-      qspCall(s, 'journal', 'relindex', 'A267');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A267']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A268'] === 1) {
       scene.text('Friendship with Yana:');
-      qspCall(s, 'journal', 'relindex', 'A268');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A268']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<center><h2>Former Pavlovsk Students</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A148'] === 1) {
       scene.text('Friendship with Mefodiy:');
-      qspCall(s, 'journal', 'relindex', 'A148');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A148']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A3'] === 1) {
       scene.text('Friendship with Ivan:');
-      qspCall(s, 'journal', 'relindex', 'A3');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A3']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A8'] === 1) {
       scene.text('Friendship with Svyatoslav:');
-      qspCall(s, 'journal', 'relindex', 'A8');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A8']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A5'] === 1) {
       scene.text('Friendship with Fedor:');
-      qspCall(s, 'journal', 'relindex', 'A5');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A5']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A150'] === 1) {
       scene.text('Friendship with Erast:');
-      qspCall(s, 'journal', 'relindex', 'A150');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A150']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A141'] === 1) {
       scene.text('Friendship with Veronika:');
-      qspCall(s, 'journal', 'relindex', 'A141');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A141']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A151'] === 1) {
       scene.text('Friendship with Evgeny:');
-      qspCall(s, 'journal', 'relindex', 'A151');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A151']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A240'] === 1) {
       scene.text('Friendship with Natalia:');
-      qspCall(s, 'journal', 'relindex', 'A240');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A240']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A9'] === 1) {
       scene.text('Friendship with Vitek:');
-      qspCall(s, 'journal', 'relindex', 'A9');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A9']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A10'] === 1) {
       scene.text('Friendship with Dan:');
-      qspCall(s, 'journal', 'relindex', 'A10');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A10']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A11'] === 1) {
       scene.text('Friendship with Vasily:');
-      qspCall(s, 'journal', 'relindex', 'A11');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A11']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A154'] === 1) {
       scene.text('Friendship with Radomir:');
-      qspCall(s, 'journal', 'relindex', 'A154');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A154']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A156'] === 1) {
       scene.text('Friendship with Arkadi:');
-      qspCall(s, 'journal', 'relindex', 'A156');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A156']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A157'] === 1) {
       scene.text('Friendship with Roman:');
-      qspCall(s, 'journal', 'relindex', 'A157');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A157']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A158'] === 1) {
       scene.text('Friendship with Valentin:');
-      qspCall(s, 'journal', 'relindex', 'A158');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A158']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A145'] === 1) {
       scene.text('Friendship with Katyusha:');
-      qspCall(s, 'journal', 'relindex', 'A145');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A145']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A20'] === 1) {
       scene.text('Friendship with Lena:');
-      qspCall(s, 'journal', 'relindex', 'A20');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A20']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A21'] === 1) {
       scene.text('Friendship with Lera:');
-      qspCall(s, 'journal', 'relindex', 'A21');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A21']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A24'] === 1) {
       scene.text('Friendship with Pauline:');
-      qspCall(s, 'journal', 'relindex', 'A24');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A24']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A143'] === 1) {
       scene.text('Friendship with Alyona:');
-      qspCall(s, 'journal', 'relindex', 'A143');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A143']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A189'] === 1) {
       scene.text('Friendship with Nikolai:');
-      qspCall(s, 'journal', 'relindex', 'A189');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A189']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.text('<center><h2>Professors</h2></center>');
     if (((s as any).npc_known ?? 0)?.['A254'] === 1) {
       scene.text('Friendship with Mr. Kovalyov:');
-      qspCall(s, 'journal', 'relindex', 'A254');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A254']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A255'] === 1) {
       scene.text('Friendship with Mr. Pasternak:');
-      qspCall(s, 'journal', 'relindex', 'A255');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A255']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A256'] === 1) {
       scene.text('Friendship with Mrs. Kovalchuk:');
-      qspCall(s, 'journal', 'relindex', 'A256');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A256']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A269'] === 1) {
       scene.text('Friendship with Miss Marinova:');
-      qspCall(s, 'journal', 'relindex', 'A269');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A269']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A270'] === 1) {
       scene.text('Friendship with Ms. Kudelina:');
-      qspCall(s, 'journal', 'relindex', 'A270');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A270']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).npc_known ?? 0)?.['A271'] === 1) {
       scene.text('Friendship with Mr. Borisov:');
-      qspCall(s, 'journal', 'relindex', 'A271');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A271']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   scene.text('<center><h2>Pavlovsk Relations</h2></center>');
   if (((s as any).npc_known ?? 0)?.['A27'] === 1) {
     scene.text('Friendship with Vera:');
-    qspCall(s, 'journal', 'relindex', 'A27');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A27']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A54'] === 1) {
     scene.text('Friendship with Uncle Misha:');
-    qspCall(s, 'journal', 'relindex', 'A54');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A54']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A57'] === 1) {
     scene.text('Friendship with Rex:');
-    qspCall(s, 'journal', 'relindex', 'A57');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A57']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A217'] === 1) {
     scene.text('Friendship with Pavlin:');
-    qspCall(s, 'journal', 'relindex', 'A217');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A217']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A112'] === 1) {
     scene.text('Friendship with Sergey Shulgin:');
-    qspCall(s, 'journal', 'relindex', 'A112');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A112']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A119'] === 1) {
     scene.text('Friendship with Borislav:');
-    qspCall(s, 'journal', 'relindex', 'A119');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A119']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.text('<center><h2>Gadukino Relations</h2></center>');
   if (((s as any).npc_known ?? 0)?.['A31'] === 1) {
     scene.text('Friendship with Elena (your great-grandmother):');
-    qspCall(s, 'journal', 'relindex', 'A31');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A31']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A32'] === 1) {
     scene.text('Friendship with Zlatek (your great-grandfather):');
-    qspCall(s, 'journal', 'relindex', 'A32');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A32']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A60'] === 1) {
     scene.text('Friendship with Mira:');
-    qspCall(s, 'journal', 'relindex', 'A60');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A60']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A61'] === 1) {
     scene.text('Friendship with Kolyamba:');
-    qspCall(s, 'journal', 'relindex', 'A61');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A61']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A62'] === 1) {
     scene.text('Friendship with Vasyan:');
-    qspCall(s, 'journal', 'relindex', 'A62');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A62']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A63'] === 1) {
     scene.text('Friendship with Mitka:');
-    qspCall(s, 'journal', 'relindex', 'A63');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A63']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A64'] === 1) {
     scene.text('Friendship with Afanasiy:');
-    qspCall(s, 'journal', 'relindex', 'A64');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A64']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A65'] === 1) {
     scene.text('Friendship with Vtialiy:');
-    qspCall(s, 'journal', 'relindex', 'A65');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A65']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A221'] === 1) {
     scene.text('Friendship with Grigory:');
-    qspCall(s, 'journal', 'relindex', 'A221');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A221']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A172'] === 1) {
     scene.text('Friendship with Andrei (hunter):');
-    qspCall(s, 'journal', 'relindex', 'A172');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A172']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A173'] === 1) {
     scene.text('Friendship with Igor (hunter):');
-    qspCall(s, 'journal', 'relindex', 'A173');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A173']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A174'] === 1) {
     scene.text('Friendship with Sergei (hunter):');
-    qspCall(s, 'journal', 'relindex', 'A174');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A174']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.text('<center><h2>Saint Petersburg Relations</h2></center>');
   if (((s as any).npc_QW ?? 0)?.['A192']  > 0) {
     scene.text('Friendship with Nastya:');
-    qspCall(s, 'journal', 'relindex', 'A192');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A192']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A218'] === 1) {
     scene.text('Friendship with Tanya:');
-    qspCall(s, 'journal', 'relindex', 'A218');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A218']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A219'] === 1) {
     scene.text('Friendship with Kat:');
-    qspCall(s, 'journal', 'relindex', 'A219');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A219']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A220'] === 1) {
     scene.text('Friendship with Vika:');
-    qspCall(s, 'journal', 'relindex', 'A220');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A220']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A93'] === 1) {
     scene.text('Friendship with Ira:');
-    qspCall(s, 'journal', 'relindex', 'A93');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A93']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A43'] === 1) {
     scene.text('Friendship with Tamara:');
-    qspCall(s, 'journal', 'relindex', 'A43');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A43']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A35'] === 1) {
     scene.text('Friendship with Mikhail Kuznetsov (your biological father):');
-    qspCall(s, 'journal', 'relindex', 'A35');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A35']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A169'] === 1) {
     scene.text('Friendship with Dima:');
-    qspCall(s, 'journal', 'relindex', 'A169');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A169']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A89'] === 1) {
     scene.text('Friendship with Eugene:');
-    qspCall(s, 'journal', 'relindex', 'A89');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A89']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).npc_known ?? 0)?.['A216'] === 1) {
     scene.text('Friendship with Martin:');
-    qspCall(s, 'journal', 'relindex', 'A216');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A216']; enterRelindex(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).kid ?? 0) > 0  ||  Object.keys((s as any).lover ?? {}).length > 0) {
     scene.text('<center><h2>Lovers & Children</h2></center>');
@@ -1007,7 +1007,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: :LoopKidCounter
         if (((s as any).i ?? 0) < ((s as any).kid ?? 0)) {
           // TODO-QSP: dynamic text: <br> a <<$polreb[i]>> named <<$kidname[i]>>. Born <<daykid[i]>>-<<monthkid[i]>>-...
-          scene.text(`<br> a ${((s as any).polreb ?? 0)?.[String((s as any).i ?? 0)]} named ${((s as any).kidname ?? 0)?.[String((s as any).i ?? 0)]}. Born ${((s as any).daykid ?? 0)?.[String((s as any).i ?? 0)]}-${((s as any).monthkid ?? 0)?.[String((s as any).i ?? 0)]}-${((s as any).yearkid ?? 0)?.[String((s as any).i ?? 0)]}. Aged ${((s as any).kidage ?? 0)?.[String((s as any).i ?? 0)]}.`);
+          scene.text(`<br> a ${((s as any).polreb ?? 0)?.[String((s as any).i ?? 0)] ?? ''} named ${((s as any).kidname ?? 0)?.[String((s as any).i ?? 0)] ?? ''}. Born ${((s as any).daykid ?? 0)?.[String((s as any).i ?? 0)] ?? ''}-${((s as any).monthkid ?? 0)?.[String((s as any).i ?? 0)] ?? ''}-${((s as any).yearkid ?? 0)?.[String((s as any).i ?? 0)] ?? ''}. Aged ${((s as any).kidage ?? 0)?.[String((s as any).i ?? 0)] ?? ''}.`);
           (s as any).i = ((s as any).i ?? 0) + (1);
           // TODO-QSP: jump 'LoopKidCounter'
         }
@@ -1024,22 +1024,22 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
       }
       if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID10 ?? 0)] === 'husband') {
         // TODO-QSP: dynamic text: You have been married for <<daystart - spouseVars['marry_day']>> days. Your husb...
-        scene.text(`You have been married for ${((s as any).daystart ?? 0) - ((s as any).spouseVars ?? {})?.['marry_day']} days. Your husband ${((s as any).npcdesc10 ?? 0)} is ${((s as any).npcheight10 ?? 0)} and ${((s as any).npcbuild10 ?? 0)} with ${((s as any).npchair10 ?? 0)} hair. ${((s as any).npcdesc10 ?? 0)} is usually wearing ${((s as any).npcClo10 ?? 0)}. Member ${((s as any).dick_desc10 ?? 0)} cock and ${((s as any).dick_girth10 ?? 0)}. Relationship ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)]}.`);
+        scene.text(`You have been married for ${((s as any).daystart ?? '') - (((s as any).spouseVars ?? {})?.['marry_day'] ?? 0)} days. Your husband ${((s as any).npcdesc10 || '')} is ${((s as any).npcheight10 || '')} and ${((s as any).npcbuild10 || '')} with ${((s as any).npchair10 || '')} hair. ${((s as any).npcdesc10 || '')} is usually wearing ${((s as any).npcClo10 || '')}. Member ${((s as any).dick_desc10 || '')} cock and ${((s as any).dick_girth10 || '')}. Relationship ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''}.`);
       } else {
         // TODO-QSP: dynamic text: Your <<$npcrelat10>> <<$npcdesc10>> is <<$npcheight10>> and <<$npcbuild10>> with...
-        scene.text(`Your ${((s as any).npcrelat10 ?? 0)} ${((s as any).npcdesc10 ?? 0)} is ${((s as any).npcheight10 ?? 0)} and ${((s as any).npcbuild10 ?? 0)} with ${((s as any).npchair10 ?? 0)} hair. ${((s as any).npcdesc10 ?? 0)} is usually wearing ${((s as any).npcClo10 ?? 0)}. Your relationship is ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)]} after ${((s as any).npc_dates ?? 0)?.[String((s as any).npcID10 ?? 0)]} dates and ${((s as any).daystart ?? 0) - ((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID10 ?? 0)]} days dating.`);
+        scene.text(`Your ${((s as any).npcrelat10 || '')} ${((s as any).npcdesc10 || '')} is ${((s as any).npcheight10 || '')} and ${((s as any).npcbuild10 || '')} with ${((s as any).npchair10 || '')} hair. ${((s as any).npcdesc10 || '')} is usually wearing ${((s as any).npcClo10 || '')}. Your relationship is ${((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''} after ${((s as any).npc_dates ?? 0)?.[String((s as any).npcID10 ?? 0)] ?? ''} dates and ${((s as any).daystart ?? '') - ((s as any).npc_daygenerated ?? 0)?.[String((s as any).npcID10 ?? 0)]} days dating.`);
       }
       if (((s as any).npc_rel ?? 0)?.[String((s as any).npcID10 ?? 0)] > 1) {
         if (((s as any).npc_gentle ?? 0)?.[String((s as any).npcID10 ?? 0)] === 1) {
           // TODO-QSP: dynamic text: <<$Xec10>> is timid and lacks confidence.
-          scene.text(`${((s as any).Xec10 ?? 0)} is timid and lacks confidence.`);
+          scene.text(`${((s as any).Xec10 || '')} is timid and lacks confidence.`);
         } else {
           if (((s as any).npc_rough ?? 0)?.[String((s as any).npcID10 ?? 0)] === 0) {
             // TODO-QSP: dynamic text: <<$Xec10>> has a cheerful and sociable personality.
-            scene.text(`${((s as any).Xec10 ?? 0)} has a cheerful and sociable personality.`);
+            scene.text(`${((s as any).Xec10 || '')} has a cheerful and sociable personality.`);
           } else {
             // TODO-QSP: dynamic text: <<$Xec10>> is short-tempered and strict.
-            scene.text(`${((s as any).Xec10 ?? 0)} is short-tempered and strict.`);
+            scene.text(`${((s as any).Xec10 || '')} is short-tempered and strict.`);
           }
         }
       }
@@ -1052,7 +1052,7 @@ function enterRelationstab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGeneraltab(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>General Information</h2></center>');
   if (Object.keys((s as any).portfolio_locations ?? {}).length > 0  ||  Object.keys((s as any).portfolio_people ?? {}).length > 0) {
     scene.actions([
@@ -1080,7 +1080,7 @@ function enterGeneraltab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNotestab(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Notes</h2></center>');
   scene.text('Create notes to keep track of any information you need.');
   scene.text('<a href="exec: $zapis[] = input(\'What do you want to record?\') & gt \'journal\',\'notestab\' ">Make a note</a>');
@@ -1088,7 +1088,7 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :jur_loop
   if (((s as any).jur_temp ?? 0) < Object.keys((s as any).zapis ?? {}).length) {
     // TODO-QSP: dynamic text: <<$zapis[jur_temp]>> <a href="exec: dynamic 'killvar''$zapis'',<<jur_temp>> & gt...
-    scene.text(`${((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)]} <a href="exec: dynamic 'killvar'$zapis',${((s as any).jur_temp ?? 0)} & gt 'journal', 'notestab'' ">Delete</a>`);
+    scene.text(`${((s as any).zapis ?? 0)?.[String((s as any).jur_temp ?? 0)] ?? ''} <a href="exec: dynamic 'killvar'$zapis',${((s as any).jur_temp || '')} & gt 'journal', 'notestab'' ">Delete</a>`);
     (s as any).jur_temp = ((s as any).jur_temp ?? 0) + (1);
     // TODO-QSP: jump 'jur_loop'
   }
@@ -1097,7 +1097,7 @@ function enterNotestab(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterNotificationLog(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Notifications</h2></center>');
   if (Object.keys((s as any).notification_log ?? {}).length === 0) {
     scene.text('Notification log is empty.');
@@ -1114,7 +1114,7 @@ function enterNotificationLog(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterBallet(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h1>Ballet Career</h1></center>');
   scene.img('images/locations/pushkin/ballet_events/dream_ballet.jpg');
   scene.text('Пан или пропал (You become the master or, leave).');
@@ -1139,7 +1139,7 @@ function enterBallet(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterClothing(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center>Clothing information</center>');
   scene.text('Clothing has a strength value, which decreases by 1 for every day you wear that outfit. At 0 it is ruined and you will have to throw it away.');
   scene.text('You can attempt to fix outfits when their strength is very low and you have a high enough sewing skill. Clothes you throw away will appear back in the shop.');
@@ -1151,13 +1151,13 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
   scene.text('  Reasonable quality outfit');
   scene.text('  Good quality outfit');
   scene.text('  Outstanding quality outfit');
-  qspCall(s, 'journal', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
 
 function enterUni(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>University</h2></center>');
   if (((s as any).university ?? 0)?.['diploma'] > 0) {
     // TODO-QSP: dynamic text: You have graduated from the University of St. Petersburg with a degree in ' + $f...
@@ -1168,7 +1168,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).university ?? 0)?.['elective1'] !== ''  ||  ((s as any).university ?? 0)?.['elective2'] !== ''  ||  ((s as any).university ?? 0)?.['elective3'] !== '') {
     // TODO-QSP: dynamic text: You are taking the following elective classes this semester: <<$university['elec...
-    scene.text(`You are taking the following elective classes this semester: ${((s as any).university ?? 0)?.['elective1']}, ${((s as any).university ?? 0)?.['elective2']}, ${((s as any).university ?? 0)?.['elective1']}.`);
+    scene.text(`You are taking the following elective classes this semester: ${((s as any).university ?? 0)?.['elective1'] ?? ''}, ${((s as any).university ?? 0)?.['elective2'] ?? ''}, ${((s as any).university ?? 0)?.['elective1'] ?? ''}.`);
   }
   (s as any).j = 1;
   // TODO-QSP: :semester_loop
@@ -1180,7 +1180,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :class_loop
     if (((s as any).class_list_institution ?? 0)?.[String((s as any).k ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).j ?? 0)) {
       // TODO-QSP: dynamic text: <<$class_list_name[k]>>: <<$class_grade_desc['<<$class_list_institution[k]>>_<<$...
-      scene.text(`${((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)]}: ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[k]", { location: "journal" })}_${((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)]}_grade']>>`);
+      scene.text(`${((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? ''}: ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[k]", { location: "journal" })}_${((s as any).class_list_name ?? 0)?.[String((s as any).k ?? 0)] ?? ''}_grade']>>`);
     }
     (s as any).k = ((s as any).k ?? 0) + (1);
     if (((s as any).k ?? 0) < Object.keys((s as any).class_list_institution ?? {}).length) {
@@ -1225,7 +1225,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
         if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
           if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] >= (3 * ((s as any).university ?? 0)?.['semester_week'] + 52)) {
             // TODO-QSP: dynamic text: You think you're doing great in <<$class_list_name[j]>> and will probably pass w...
-            scene.text(`You think you're doing great in ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} and will probably pass with a top grade if you keep this up.`);
+            scene.text(`You think you're doing great in ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} and will probably pass with a top grade if you keep this up.`);
             if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain'] + ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
               scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
             } else {
@@ -1238,7 +1238,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
           } else {
             if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] > (2 * ((s as any).university ?? 0)?.['semester_week'] + 32)) {
               // TODO-QSP: dynamic text: You're following the <<$class_list_name[j]>> class well and will probably pass w...
-              scene.text(`You're following the ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} class well and will probably pass with a good grade if you keep this up, but to get the top mark you'll need to put in some more effort.`);
+              scene.text(`You're following the ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} class well and will probably pass with a good grade if you keep this up, but to get the top mark you'll need to put in some more effort.`);
               if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain'] + ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
                 scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
               } else {
@@ -1255,7 +1255,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
             } else {
               if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] >= (1 * ((s as any).university ?? 0)?.['semester_week'] + 32)) {
                 // TODO-QSP: dynamic text: You have trouble following the <<$class_list_name[j]>> class, but will probably ...
-                scene.text(`You have trouble following the ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} class, but will probably still pass. If you want a good grade, then you'll really need to do something about it.`);
+                scene.text(`You have trouble following the ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} class, but will probably still pass. If you want a good grade, then you'll really need to do something about it.`);
                 if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain'] + ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
                   scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of getting good grade worse.');
                 } else {
@@ -1272,7 +1272,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] < 40) {
                   // TODO-QSP: dynamic text: You will fail your <<$class_list_name[j]>> class unless you do something about i...
-                  scene.text(`You will fail your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} class unless you do something about it right now. It might even be too late to catch up.`);
+                  scene.text(`You will fail your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} class unless you do something about it right now. It might even be too late to catch up.`);
                   if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain'] + ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
                     scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you be even further from passing the class.');
                   } else {
@@ -1284,7 +1284,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
                   }
                 } else {
                   // TODO-QSP: dynamic text: You are hopelessly behind in your <<$class_list_name[j]>> class, but can probabl...
-                  scene.text(`You are hopelessly behind in your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} class, but can probably still pass. Any hope of getting a good grade will require that you start doing something about it right now.`);
+                  scene.text(`You are hopelessly behind in your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} class, but can probably still pass. Any hope of getting a good grade will require that you start doing something about it right now.`);
                   if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain'] + ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_optional_weekly_grade_gain'] < ((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_weekly_grade_gain_breakeven_point']) {
                     scene.text('So far you have not done enough work this week an if you don\'t go to more classes and are active there or study more outside classes, you will not just fail to keep up, you will actually make your chances of even passing the class worse.');
                   } else {
@@ -1316,30 +1316,30 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
           if (((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] === 'uni_' + ((s as any).university ?? 0)?.['enrolled_in'] + '_semester_' + ((s as any).university ?? 0)?.['enrolled_in_semester']) {
             if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_exam_done'] === 1) {
               // TODO-QSP: dynamic text: You completed your <<$class_list_name[j]>> exam and think you will get an <<$cla...
-              scene.text(`You completed your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} exam and think you will get an ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[j]", { location: "journal" })}_${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]}_grade']>>.`);
+              scene.text(`You completed your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and think you will get an ${qspUntranslated(s, "class_grade_desc['<<class_list_institution[j]", { location: "journal" })}_${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''}_grade']>>.`);
             } else {
               if (qspFunc(s, 'uni_programs', 'is_exam_over', ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]) === 1) {
                 // TODO-QSP: dynamic text: Your exam <<$class_list_name[j]>> is over, but you did not attend. This means yo...
-                scene.text(`Your exam ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} is over, but you did not attend. This means you will fail the class and therefore the semester.`);
+                scene.text(`Your exam ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} is over, but you did not attend. This means you will fail the class and therefore the semester.`);
               } else {
                 if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] < 40) {
                   // TODO-QSP: dynamic text: If your <<$class_list_name[j]>> exam was today, then you would fail. Time to hit...
-                  scene.text(`If your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} exam was today, then you would fail. Time to hit the books if you don't want to fail the semester.`);
+                  scene.text(`If your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam was today, then you would fail. Time to hit the books if you don't want to fail the semester.`);
                 } else {
                   if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] < 70) {
                     // TODO-QSP: dynamic text: You think you've prepared enough to pass your <<$class_list_name[j]>> exam, but ...
-                    scene.text(`You think you've prepared enough to pass your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} exam, but if you want a good grade, then you'll need to do some serious studying.`);
+                    scene.text(`You think you've prepared enough to pass your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam, but if you want a good grade, then you'll need to do some serious studying.`);
                   } else {
                     if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] < 90) {
                       // TODO-QSP: dynamic text: You think that you've prepared pretty well for your <<$class_list_name[j]>> exam...
-                      scene.text(`You think that you've prepared pretty well for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} exam and will probably get a 4. With some more studying, you might get a 5.`);
+                      scene.text(`You think that you've prepared pretty well for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and will probably get a 4. With some more studying, you might get a 5.`);
                     } else {
                       if (((s as any).class ?? 0)[((s as any).class_list_institution ?? 0)?.[String((s as any).j ?? 0)] + '_' + ((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] + '_grade'] < 100) {
                         // TODO-QSP: dynamic text: You think you're well prepared for your <<$class_list_name[j]>> exam and will pr...
-                        scene.text(`You think you're well prepared for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} exam and will probably pass with a 5, but a little more studying never hurts.`);
+                        scene.text(`You think you're well prepared for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and will probably pass with a 5, but a little more studying never hurts.`);
                       } else {
                         // TODO-QSP: dynamic text: You think you're well prepared for your <<$class_list_name[j]>> exam and will pr...
-                        scene.text(`You think you're well prepared for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)]} exam and will probably pass with the highest mark possible.`);
+                        scene.text(`You think you're well prepared for your ${((s as any).class_list_name ?? 0)?.[String((s as any).j ?? 0)] ?? ''} exam and will probably pass with the highest mark possible.`);
                       }
                     }
                   }
@@ -1360,7 +1360,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
   scene.text('<br><center><a href="exec: gs \'journal_uni\', \'pavlovsk_university_students\'">University Students from Pavlovsk</a></center>');
   scene.text('<br><center><a href="exec: gs \'journal_uni\', \'university_students\'">Other University Students</a></center>');
   scene.text('<br><center><a href="exec: gs \'journal_uni\', \'former_pavlovsk_students\'">Former Pavlovsk Students</a></center>');
-  qspCall(s, 'journal', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
@@ -1369,7 +1369,7 @@ function enterUni(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterLocations(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Pavlovsk</h2></center>');
   scene.text('Pavlovsk is a small town. It is somewhat of a tourist trap thanks to the Catharina Palace and the former palace grounds, which have been converted into a large park centered around the train station. There is an open air market near the train station that is open year round where many bargains can be found. The cafe where your mother works can also be found near the train station. It caters to the visitors coming in by train. The downtown area contains businesses and some middle class housing, while the residential area is a mixture of houses and old Soviet era apartment blocks.');
   scene.text('The wealthier families live in large houses near the park on the outskirts of town, while the poorest homes are found near the old industrial area where several factories have long since been abandoned. The only factory still open is the G&M clothing factory, which also has a local store front and a tailor that can adjust your clothing. The industrial area is now mostly home to prostitutes and drug dealers and is not considered a safe area to walk around at night. Despite being a tourist destination, the area is seen as fairly poor and without many jobs.');
@@ -1377,7 +1377,7 @@ function enterLocations(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'ve spent several summers at your grandparents\' village. It\'s a small village where everyone is very tightly knit together. You remember spending your days playing with the local children at the river or visiting the little shop that had everything a kid needed. When your great grandparents were younger, they used to take you out into the woods where you picked mushrooms and berries. Your great grandfather also showed you around the hunting grounds and told you all kind of stories about the hunters that visit the area.');
   scene.text('<center><h2>St. Petersburg</h2></center>');
   scene.text('You\'ve heard many rumors about the city from both family members and school friends. They all say it\'s both a great and bad place. The few memories you have are connected to the big park that you and your family visited once, which had a large amusement park with lots of rides. You also know about the University because you\'ve overheard Anya and your mother argue about it. Sometimes, your mother would drag you and Anya along to the city mall while she was visiting the beauty salon. You remember running through the stores asking your mother to buy you clothes.');
-  qspCall(s, 'journal', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
@@ -1386,7 +1386,7 @@ function enterLocations(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterFamily(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Family</h2></center>');
   qspCall(s, 'journal_NPC_information', 'A29');
   qspCall(s, 'journal_NPC_information', 'A35');
@@ -1398,7 +1398,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A31');
   qspCall(s, 'journal_NPC_information', 'A32');
   qspCall(s, 'journal_NPC_information', 'A54');
-  qspCall(s, 'journal', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -1406,7 +1406,7 @@ function enterFamily(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPavRes(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Pavlovsk Residents</h2></center>');
   if (((s as any).yearstart ?? 0) > 1) {
     qspCall(s, 'journal_NPC_information', 'A148', 'uni');
@@ -1428,7 +1428,7 @@ function enterPavRes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'journal_NPC_information', 'A143', 'uni');
   }
   qspCall(s, 'journal_NPC_information', 'A112');
-  qspCall(s, 'journal', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -1436,7 +1436,7 @@ function enterPavRes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGadRes(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>Gadukino Residents</h2></center>');
   qspCall(s, 'journal_NPC_information', 'A31');
   qspCall(s, 'journal_NPC_information', 'A32');
@@ -1464,7 +1464,7 @@ function enterGadRes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'journal_NPC_information', 'A173');
     qspCall(s, 'journal_NPC_information', 'A174');
   }
-  qspCall(s, 'journal', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },
   ]);
@@ -1472,14 +1472,14 @@ function enterGadRes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCityRes(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'journal', 'journalmenu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterJournalmenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('<center><h2>City Residents</h2></center>');
   if (((s as any).yearstart ?? 0) > 1) {
     qspCall(s, 'journal_NPC_information', 'A154', 'uni');
     qspCall(s, 'journal_NPC_information', 'A156', 'uni');
     qspCall(s, 'journal_NPC_information', 'A158', 'uni');
   }
-  qspCall(s, 'journal', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'generaltab'] },

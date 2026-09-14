@@ -277,7 +277,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
         if (((s as any).lesbiQW ?? 0) >= 13) {
           if (((s as any).mistressqwest ?? 0) >= 1) {
             // TODO-QSP: dynamic text: Mistress won't see me again until I've serviced twelve men through the gloryhole...
-            scene.text(`Mistress won't see me again until I've serviced twelve men through the gloryhole booth at the Erotomaniac sex shop. I've serviced ${((s as any).mistressqwest ?? 0) - 1} so far.`);
+            scene.text(`Mistress won't see me again until I've serviced twelve men through the gloryhole booth at the Erotomaniac sex shop. I've serviced ${((s as any).mistressqwest ?? '') - 1} so far.`);
           } else {
             scene.text('I belong to Natalya now. I should keep visiting her whenever I have the time.');
             if (((s as any).MistressAdoration ?? 0) <= 30) {
@@ -294,7 +294,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).lesbiQW ?? 0) === 11) {
               if (((s as any).mistressqwest ?? 0) >= 1) {
                 // TODO-QSP: dynamic text: Natalya won't let me back into her apartment until I've serviced twenty men thro...
-                scene.text(`Natalya won't let me back into her apartment until I've serviced twenty men through the gloryhole booth at the Erotomaniac sex shop. I've serviced ${((s as any).mistressqwest ?? 0) - 1} so far.`);
+                scene.text(`Natalya won't let me back into her apartment until I've serviced twenty men through the gloryhole booth at the Erotomaniac sex shop. I've serviced ${((s as any).mistressqwest ?? '') - 1} so far.`);
               } else {
                 scene.text('I should go back and see Natalya again.');
               }
@@ -404,7 +404,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
                         } else {
                           if ((!((s as any).kotovVSprohorov ?? 0))) {
                             // TODO-QSP: dynamic text: I want to use Ivan to somehow make the coach jealous. I should start by chatting...
-                            scene.text('I want to use Ivan to somehow make the coach jealous. I should start by chatting with him in the sports section when he shows up, usually around \'+func(\'time\', \'get_time_string\', 17, 0)+\'.');
+                            scene.text('I want to use Ivan to somehow make the coach jealous. I should start by chatting with him in the sports section when he shows up, usually around 17:00.');
                           } else {
                             if (((s as any).kotovVSprohorov ?? 0) === 1) {
                               scene.text('I should take a shower at the sports center. If the rumors I heard about Ivan are true, he should try to join me.');
@@ -567,7 +567,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     } else {
       if ((!((s as any).kotovVSprohorov ?? 0))) {
         // TODO-QSP: dynamic text: I see Ivan at the sports center around '+func('time', 'get_time_string', 17, 0)+...
-        scene.text('I see Ivan at the sports center around \'+func(\'time\', \'get_time_string\', 17, 0)+\' a lot. I should try and chat with him then.');
+        scene.text('I see Ivan at the sports center around 17:00 a lot. I should try and chat with him then.');
       } else {
         if (((s as any).kotovVSprohorov ?? 0) === 1) {
           scene.text('I\'m feeling dirty. I should take a shower at the sports center.');
@@ -592,7 +592,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).ivanQW ?? 0)?.['ivan_boxing_invite'] === 1) {
       // TODO-QSP: dynamic text: Ivan agreed to teach me to box. I should look for him at the sports center aroun...
-      scene.text('Ivan agreed to teach me to box. I should look for him at the sports center around \'+func(\'time\', \'get_time_string\', 17, 0)+\' for training.');
+      scene.text('Ivan agreed to teach me to box. I should look for him at the sports center around 17:00 for training.');
     }
     qspCall(s, 'cards', 'section_close');
   }
@@ -1029,11 +1029,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
           if (((s as any).katjaQW ?? 0)?.['slut'] <75  &&  ((s as any).katjaQW ?? 0)?.['liberated'] === 0) {
             scene.text('Katja is a good girl who studies a lot, but sometimes on Thursday she will watch a movie in her dorm room at night instead of going to the library.');
             // TODO-QSP: dynamic text: She also goes partying on Friday evening, where she will prepare in her dorm roo...
-            scene.text('She also goes partying on Friday evening, where she will prepare in her dorm room from \'+func(\'time\', \'get_time_string\', 19, 0)+\' to \'+func(\'time\', \'get_time_string\', 19, 45)+\'. Saturday and Sunday she spends at her mother\'s house in Pavlovsk.');
+            scene.text('She also goes partying on Friday evening, where she will prepare in her dorm room from 19:00 to 19:45. Saturday and Sunday she spends at her mother\'s house in Pavlovsk.');
           } else {
             scene.text('Katja is a good girl who studies a lot but has started to loosen up. On Thursday she doesn\'t study at night but will watch a movie in her dorm or maybe go partying.');
             // TODO-QSP: dynamic text: She also goes partying on Friday evening, where she will prepare in her dorm roo...
-            scene.text('She also goes partying on Friday evening, where she will prepare in her dorm room from \'+func(\'time\', \'get_time_string\', 19, 0)+\' to \'+func(\'time\', \'get_time_string\', 19, 45)+\'. Saturday night is also spent partying and Sunday she spends at her mother\'s house in Pavlovsk.');
+            scene.text('She also goes partying on Friday evening, where she will prepare in her dorm room from 19:00 to 19:45. Saturday night is also spent partying and Sunday she spends at her mother\'s house in Pavlovsk.');
           }
           if (((s as any).trait_vars ?? 0)?.['panty_preference'] > 0) {
             if (((s as any).katjaQW ?? 0)?.['pantiesQWstage'] === 0) {

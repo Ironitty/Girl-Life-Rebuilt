@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -43,11 +43,11 @@ function enterShellClose(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterShell(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cards', 'shell_open');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShellOpen(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).card_in ?? 0)?.['body'] !== '') {
     // TODO-QSP: $ch_result += $card_in['body']
   }
-  qspCall(s, 'cards', 'shell_close');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShellClose(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -59,7 +59,7 @@ function enterSectionOpen(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['title'] = ((s as any).locArgs?.[1] ?? 0);
   if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['border'] = ((s as any).theme_hex ?? 0)?.['accent'];
   if (!(s as any).card_in) (s as any).card_in = {}; (s as any).card_in['bg'] = qspFunc(s, 'themes', 'alt_color', '');
-  qspCall(s, 'cards', 'shell_open');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShellOpen(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: $result
   scene.text('$result');
   return;
@@ -68,7 +68,7 @@ function enterSectionOpen(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSectionClose(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'cards', 'shell_close');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShellClose(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: $result
   scene.text('$result');
   return;

@@ -23,7 +23,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'shortgs', 'undress');
     if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
     // TODO-QSP: dynamic text: You feel like you almost can't take the teasing anymore when he fully pushes him...
-    scene.text(`You feel like you almost can't take the teasing anymore when he fully pushes himself inside of you, his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick filling your pussy up. He gently fucks you, slowly working himself deeper into you while he continues to kiss you and kneed your breasts. You moan in deep pleasure as the two of you make love.`);
+    scene.text(`You feel like you almost can't take the teasing anymore when he fully pushes himself inside of you, his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick filling your pussy up. He gently fucks you, slowly working himself deeper into you while he continues to kiss you and kneed your breasts. You moan in deep pleasure as the two of you make love.`);
     qspCall(s, 'dinsex', 'vaginal_sex', 15, 'sub');
     qspCall(s, 'cum_call', '', '', ((s as any).boy ?? 0), 1);
     qspCall(s, 'cuminsidereact', '', ((s as any).boydesc ?? 0));
@@ -33,7 +33,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/pc/body/cum/creampie/cumpussy12.jpg');
     // TODO-QSP: dynamic text: Stas rolls off you, and you roll onto your side to rest your head on his chest. ...
-    scene.text(`Stas rolls off you, and you roll onto your side to rest your head on his chest. You can feel his sperm leaking out of your pussy. He gives you a one-armed hug while his other hand strokes your hair, and he looks deep into your eyes with love in his eyes. Stas says apologetically, "I'm sorry, I came inside of you, couldn't resist." Then he rolls out of bed, getting up and starting to get dressed. "Well, I gotta go ${((s as any).pcs_nickname ?? 0)}. I'll see you later, ok." With that, he gathers the rest of his stuff and heads out. You follow him to the door to see him out.`);
+    scene.text(`Stas rolls off you, and you roll onto your side to rest your head on his chest. You can feel his sperm leaking out of your pussy. He gives you a one-armed hug while his other hand strokes your hair, and he looks deep into your eyes with love in his eyes. Stas says apologetically, "I'm sorry, I came inside of you, couldn't resist." Then he rolls out of bed, getting up and starting to get dressed. "Well, I gotta go ${((s as any).pcs_nickname || '')}. I'll see you later, ok." With that, he gathers the rest of his stuff and heads out. You follow him to the door to see him out.`);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Close the door', goto: ['korr', ''] },

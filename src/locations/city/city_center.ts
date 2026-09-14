@@ -42,7 +42,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'random_events', '');
   scene.text('<center><h2>St. Petersburg</h2></center>');
   scene.text('<center><b>City Center</b></center>');
-  qspCall(s, 'city_center', 'image');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterImage(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('Day or night, the city center is alive and bustling, so whether you\'re looking to shop, hit the gym or get some cheap food, you\'ll find it hard not to have your needs satisfied.');
   if (((s as any).mother ?? 0)?.['kickedout_timer'] !== 0  &&  ((s as any).mother ?? 0)?.['kickedout_timer'] + 3 <= ((s as any).daystart ?? 0)  &&  ((s as any).hour ?? 0) > 6  &&  ((s as any).hour ?? 0) <= 15  &&  ((s as any).locArgs?.[1] ?? 0) !== 'mom_check'  &&  ((s as any).cumloc ?? 0)[11] === 0) {
     qspCall(s, 'mother_chats', 'reconciliation_talk');
@@ -56,7 +56,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_actions', 'start');
   if (qspFunc(s, 'car_funcs', 'is_here')) {
     // TODO-QSP: dynamic text: Your <a href="exec:gs 'carF', 'start'"><<$car['name']>></a> sits in the parking ...
-    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name']}</a> sits in the parking lot.`);
+    scene.text(`Your <a href="exec:gs 'carF', 'start'">${((s as any).car ?? 0)?.['name'] ?? ''}</a> sits in the parking lot.`);
   }
   qspCall(s, 'taxi', '');
   // TODO-QSP: dynamic text: You have easy access to the <a href="exec: minut += 5 & gt 'train', 'center'">tr...
@@ -65,7 +65,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
   }
   // TODO-QSP: dynamic text: The neon green sign of a <<$desc_txt1>> catches your eye. It's open between '+fu...
-  scene.text(`The neon green sign of a ${((s as any).desc_txt1 ?? 0)} catches your eye. It's open between '+func('time', 'get_time_string', 8, 0)+' and '+func('time', 'get_time_string', 22, 0)+' and sells cheap magazines and cigarettes.`);
+  scene.text(`The neon green sign of a ${((s as any).desc_txt1 || '')} catches your eye. It's open between 8:00 and 22:00 and sells cheap magazines and cigarettes.`);
   if (((s as any).hour ?? 0) === 8  &&  ((s as any).minut ?? 0) >= 30) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
   } else {
@@ -74,7 +74,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <<$desc_txt1>> is front and center in the commercial area. Nearby is a <<$desc_t...
-  scene.text(`${((s as any).desc_txt1 ?? 0)} is front and center in the commercial area. Nearby is a ${((s as any).desc_txt2 ?? 0)} which has a swimming pool that can be used for a small fee.`);
+  scene.text(`${((s as any).desc_txt1 || '')} is front and center in the commercial area. Nearby is a ${((s as any).desc_txt2 || '')} which has a swimming pool that can be used for a small fee.`);
   if (((s as any).hour ?? 0) >= 6) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
   }
@@ -84,18 +84,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 23) {
   }
   // TODO-QSP: dynamic text: A few buildings away is <<$desc_txt1>> and <<$desc_txt2>>, a place that sells ch...
-  scene.text(`A few buildings away is ${((s as any).desc_txt1 ?? 0)} and ${((s as any).desc_txt2 ?? 0)}, a place that sells cheap fast food. For a more lavish dining experience, ${((s as any).desc_txt3 ?? 0)} is available.`);
+  scene.text(`A few buildings away is ${((s as any).desc_txt1 || '')} and ${((s as any).desc_txt2 || '')}, a place that sells cheap fast food. For a more lavish dining experience, ${((s as any).desc_txt3 || '')} is available.`);
   if (((s as any).week ?? 0) >= 4  &&  ((s as any).hour ?? 0) >= 18  ||  (((s as any).week ?? 0) >= 5  ||  ((s as any).week ?? 0) === 1)  &&  ((s as any).hour ?? 0) < 4) {
   }
   // TODO-QSP: dynamic text: The only place open here at night is <<$desc_txt3>>.
-  scene.text(`The only place open here at night is ${((s as any).desc_txt3 ?? 0)}.`);
+  scene.text(`The only place open here at night is ${((s as any).desc_txt3 || '')}.`);
   if ((((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 14)) {
   } else {
     if ((((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6)  &&  ((s as any).hour ?? 0) >= 17) {
     }
   }
   // TODO-QSP: dynamic text: Across the street is considered the business area. The large skyscraper there se...
-  scene.text(`Across the street is considered the business area. The large skyscraper there serves as the base of operations for ${((s as any).desc_txt1 ?? 0)}, an engineering company.`);
+  scene.text(`Across the street is considered the business area. The large skyscraper there serves as the base of operations for ${((s as any).desc_txt1 || '')}, an engineering company.`);
   if ((!((s as any).casting ?? 0))) {
   } else {
     if (((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 21) {
@@ -118,7 +118,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
   }
   // TODO-QSP: dynamic text: Next door is the <<$desc_txt1>> followed by a <<$desc_txt2>>, <<$desc_txt3>> and...
-  scene.text(`Next door is the ${((s as any).desc_txt1 ?? 0)} followed by a ${((s as any).desc_txt2 ?? 0)}, ${((s as any).desc_txt3 ?? 0)} and the 5-star <a href="exec: minut += 1 & gt 'city_hotel'">Hotel Indigo</a> for your housing needs. Lastly, the local ${((s as any).desc_txt4 ?? 0)}, ${((s as any).desc_txt5 ?? 0)} can be found at the end of the road.`);
+  scene.text(`Next door is the ${((s as any).desc_txt1 || '')} followed by a ${((s as any).desc_txt2 || '')}, ${((s as any).desc_txt3 || '')} and the 5-star <a href="exec: minut += 1 & gt 'city_hotel'">Hotel Indigo</a> for your housing needs. Lastly, the local ${((s as any).desc_txt4 || '')}, ${((s as any).desc_txt5 || '')} can be found at the end of the road.`);
   if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) >= 7  &&  ((s as any).hour ?? 0) < 18) {
     (s as any).minut = ((s as any).minut ?? 0) + 1;
   } else {
@@ -127,19 +127,19 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).minut = ((s as any).minut ?? 0) + 1;
   // TODO-QSP: dynamic text: Away from the shops is both <<$desc_txt6>> and the <<$desc_txt7>>.
-  scene.text(`Away from the shops is both ${((s as any).desc_txt6 ?? 0)} and the ${((s as any).desc_txt7 ?? 0)}.`);
+  scene.text(`Away from the shops is both ${((s as any).desc_txt6 || '')} and the ${((s as any).desc_txt7 || '')}.`);
   // TODO-QSP: dynamic text: <a href="exec: minut += 1 & gt 'city_church', 'start'">Kazan Cathedral</a>, also...
   scene.text('<a href="exec: minut += 1 & gt \'city_church\', \'start\'">Kazan Cathedral</a>, also known as the Cathedral of Our Lady of Kazan, sits at the very center of the city.');
   if (((s as any).nichHotelReferral ?? 0) === 2  &&  ((s as any).nichWork ?? 0) !== 2  &&  ((s as any).nichWork ?? 0) !== 4) {
     if (((s as any).hour ?? 0) >= 4  &&  ((s as any).hour ?? 0) < 16) {
       // TODO-QSP: dynamic text: You could go to the apartment of a man named Nicholas to apply for a job as a li...
-      scene.text('You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too early for that. You should come back between \'+func(\'time\', \'get_time_string\', 16, 0)+\' and \'+func(\'time\', \'get_time_string\', 21, 0)+\'.');
+      scene.text('You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too early for that. You should come back between 16:00 and 21:00.');
     } else {
       if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) < 22) {
         scene.text('You could go to the <a href="exec:gt \'nichApartment\', \'jobInterview\'">apartment of a man named Nicholas</a> to apply for a job as a live-in maid.');
       } else {
         // TODO-QSP: dynamic text: You could go to the apartment of a man named Nicholas to apply for a job as a li...
-        scene.text('You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too late for that. You should come back between \'+func(\'time\', \'get_time_string\', 16, 0)+\' and \'+func(\'time\', \'get_time_string\', 21, 0)+\'.');
+        scene.text('You could go to the apartment of a man named Nicholas to apply for a job as a live-in maid, but it\'s too late for that. You should come back between 16:00 and 21:00.');
       }
     }
   }
@@ -184,7 +184,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).st_count ?? 0) > 0) {
       // TODO-QSP: dynamic text: <table border=1><<$show_table>></tr></table>
-      scene.text(`<table border=1>${((s as any).show_table ?? 0)}</tr></table>`);
+      scene.text(`<table border=1>${((s as any).show_table || '')}</tr></table>`);
     }
   }
   if (((s as any).PSport ?? 0) === 1  &&  ((s as any).week ?? 0) >= 6  &&  ((s as any).AlexandriaQW ?? 0) === 15) {

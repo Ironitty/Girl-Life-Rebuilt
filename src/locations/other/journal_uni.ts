@@ -16,7 +16,7 @@ function enterProfessors(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A269');
   qspCall(s, 'journal_NPC_information', 'A270');
   qspCall(s, 'journal_NPC_information', 'A271');
-  qspCall(s, 'journal_uni', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
@@ -55,7 +55,7 @@ function enterPavlovskUniversityStudents(s: GameState, scene: SceneBuilder): voi
   qspCall(s, 'journal_NPC_information', 'A142', 'uni');
   qspCall(s, 'journal_NPC_information', 'A7', 'uni');
   qspCall(s, 'journal_NPC_information', 'A159', 'uni');
-  qspCall(s, 'journal_uni', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
@@ -79,7 +79,7 @@ function enterUniversityStudents(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'journal_NPC_information', 'A247', 'uni');
   qspCall(s, 'journal_NPC_information', 'A267', 'uni');
   qspCall(s, 'journal_NPC_information', 'A268', 'uni');
-  qspCall(s, 'journal_uni', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },
@@ -124,7 +124,7 @@ function enterFormerPavlovskStudents(s: GameState, scene: SceneBuilder): void {
     scene.text('The former outcasts that didn\'t go to the university in Saint Petersburg.');
     qspCall(s, 'journal_NPC_information', 'A5', 'uni');
   }
-  qspCall(s, 'journal_uni', 'leaveactions');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterLeaveactions(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Go back', goto: ['journal', 'uni'] },

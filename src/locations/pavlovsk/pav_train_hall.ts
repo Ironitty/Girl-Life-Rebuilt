@@ -16,7 +16,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: Stepping into the station building, you're greeted by a large waiting room where...
   scene.text('Stepping into the station building, you\'re greeted by a large waiting room where passengers await the trains. In one of the corners is the <a href="exec: gt \'pav_train_hall_events\', \'manager\'">station manager\'s office</a>. The <a href="exec:minut += 1 & gt \'pav_train_hall\', \'toilet\'">toilets</a> are located at the back of the building.');
   // TODO-QSP: dynamic text: The long-distance trains are at the station platforms between '+func('time', 'ge...
-  scene.text('The long-distance trains are at the station platforms between \'+func(\'time\', \'get_time_string\', 11, 0)+\'-\'+func(\'time\', \'get_time_string\', 11, 30)+\' and \'+func(\'time\', \'get_time_string\', 18, 0)+\'-\'+func(\'time\', \'get_time_string\', 18, 30)+\'.');
+  scene.text('The long-distance trains are at the station platforms between 11:00-11:30 and 18:00-18:30.');
   if ((Math.floor(Math.random() * 3) + 0) === 0  &&  ((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 8  &&  ((s as any).hour ?? 0) < 18) {
     if (((s as any).OluQW ?? 0)?.['met'] === 0) {
       scene.text('You see a very large black man sitting on one of the benches. When people head for the exit, he quickly gets up and asks if they need a taxi. It doesn\'t look like anyone is taking him up on his offer, though.');
@@ -132,7 +132,7 @@ function enterPlatform(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h2>Pavlovsk station platforms</h2></center>');
   scene.img('images/locations/shared/train/pavplat.jpg');
   // TODO-QSP: dynamic text: Since Pavlovsk attracts a fair amount of tourists, the station can be quite busy...
-  scene.text('Since Pavlovsk attracts a fair amount of tourists, the station can be quite busy at times. The busiest times on the platforms are between \'+func(\'time\', \'get_time_string\', 11, 0)+\' and \'+func(\'time\', \'get_time_string\', 11, 30)+\', and between \'+func(\'time\', \'get_time_string\', 18, 0)+\' and \'+func(\'time\', \'get_time_string\', 18, 30)+\' when the long-distance trains are ready for boarding.');
+  scene.text('Since Pavlovsk attracts a fair amount of tourists, the station can be quite busy at times. The busiest times on the platforms are between 11:00 and 11:30, and between 18:00 and 18:30 when the long-distance trains are ready for boarding.');
   qspCall(s, 'transport_functions', 'set_train_wait_time', 'pavlovsk');
   // TODO-QSP: 'The next train to St. Petersburg ' + iif(transportVars['train_wait_center'] = 0, 'is leaving now!',...
   if (((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 9  &&  ((s as any).hour ?? 0) <= 10) {

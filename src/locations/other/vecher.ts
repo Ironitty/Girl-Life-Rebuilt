@@ -16,13 +16,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'drink', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
@@ -57,13 +57,13 @@ function enterEnd2(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cuni', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
@@ -120,13 +120,13 @@ function enterEnd4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'cuni', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
@@ -171,13 +171,13 @@ function enterEnd7(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave him blueballed [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave him blueballed', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave him blueballed [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave him blueballed', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
     qspCall(st, 'arousal', 'end');
   }, goto: ['uni_dorm', 'tenth_floor'] },
@@ -231,13 +231,13 @@ function enterEnd8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'voyeur', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'tenth_floor'] },
     ]);
@@ -314,13 +314,13 @@ function enterEnd10(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'foreplay', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['uni_dorm', 'korr'] },
     ]);
@@ -351,7 +351,7 @@ function enterEnd11(s: GameState, scene: SceneBuilder): void {
 
 function enterEnd12(s: GameState, scene: SceneBuilder): void {
   (s as any).picrand = Math.floor(Math.random() * 7) + 3;
-  scene.img(`images/locations/city/island/university/dorm/sex/party/vechend${((s as any).picrand ?? 0)}.jpg`);
+  scene.img(`images/locations/city/island/university/dorm/sex/party/vechend${((s as any).picrand || '')}.jpg`);
   scene.text('All mixed up in a big ball of women\'s bodies, you can\'t remember the name of the girl your fingers are exploring, put a face to the taste on your tongue, or identify who is delving into your pussy.');
   qspCall(s, 'arousal', 'cuni', 15);
   qspCall(s, 'arousal', 'cuni_give', (-15));

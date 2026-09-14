@@ -84,7 +84,7 @@ function enterQW1(s: GameState, scene: SceneBuilder): void {
   scene.text('You\'re very nervous and briefly consider running, but then think about what she said in the boutique. You feel the urge to at least try it out.');
   scene.text('You take a deep breath and slowly feel your reluctance fade. Even though you\'re still nervous, you slowly enter her apartment and pull the door shut behind you.');
   // TODO-QSP: dynamic text: The woman is nowhere to be seen, and you're not sure what to do. It would be rud...
-  scene.text(`The woman is nowhere to be seen, and you're not sure what to do. It would be rude to just walk around her house. "Hello!?" you shout, hoping she will come. "It's ${((s as any).pcs_nickname ?? 0)}, from the boutique!"`);
+  scene.text(`The woman is nowhere to be seen, and you're not sure what to do. It would be rude to just walk around her house. "Hello!?" you shout, hoping she will come. "It's ${((s as any).pcs_nickname || '')}, from the boutique!"`);
   scene.text('The woman then appears, wearing a gorgeous red dress. "Ah, it\'s you," she says dismissively. She wordlessly gestures for you to follow her and walks towards a door, not looking to see if you\'re coming.');
   // TODO-QSP: end
   scene.actions([
@@ -102,13 +102,13 @@ function enterQW1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'I\'d rather not [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'I\'d rather not', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'I\'d rather not [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'I\'d rather not', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).MistressResist = 1;
@@ -121,7 +121,7 @@ function enterQW1(s: GameState, scene: SceneBuilder): void {
     scene.text('She chuckles. "I like your enthusiasm, but it\'s very important not to rush things. You need to get to know your victim well, first. For example, you could start by having a drink with them. Ask lots of questions, and gather information. At the same time, you also earn their trust."');
     scene.text('Then she looks as if an idea just crossed her mind, and continues: "Actually, why don\'t we sit down? I can see you\'re interested in learning, but there are some things I have to explain to you first."');
     // TODO-QSP: dynamic text: She leads you to another room when she sees you nod. She had already prepared a ...
-    scene.text(`She leads you to another room when she sees you nod. She had already prepared a bottle of wine, two glasses and some snacks, and invites you to take a seat. "Have a seat, ${((s as any).pcs_nickname ?? 0)}, I'll be with you soon."`);
+    scene.text(`She leads you to another room when she sees you nod. She had already prepared a bottle of wine, two glasses and some snacks, and invites you to take a seat. "Have a seat, ${((s as any).pcs_nickname || '')}, I'll be with you soon."`);
     scene.actions([
       { label: 'Enjoy some drinks with her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 35;
@@ -160,7 +160,7 @@ function enterQW1(s: GameState, scene: SceneBuilder): void {
     scene.text('She chuckles. "I like your enthusiasm, but it\'s very important not to rush things. You need to get to know your victim first. For example, you could start by having a drink with them. Ask lots of questions and gather information. At the same time, you also earn some trust by showing an interest in their lives."');
     scene.text('It looks like an idea just crossed her mind, and she continues. "Actually, why don\'t we sit down? I can see you\'re interested in learning, but there are some things I have to explain to you first."');
     // TODO-QSP: dynamic text: She leads you to another room, where you find she's already prepared a bottle of...
-    scene.text(`She leads you to another room, where you find she's already prepared a bottle of wine, two glasses and some snacks. "Have a seat, ${((s as any).pcs_nickname ?? 0)}. I'll be with you soon."`);
+    scene.text(`She leads you to another room, where you find she's already prepared a bottle of wine, two glasses and some snacks. "Have a seat, ${((s as any).pcs_nickname || '')}. I'll be with you soon."`);
     scene.actions([
       { label: 'Chat with her', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 35;
@@ -177,7 +177,7 @@ function enterQW1(s: GameState, scene: SceneBuilder): void {
     scene.text('You swallow nervously, but at the same time can\'t help but notice how persuasive and confident she sounds.');
     scene.text('"Okay… I think I understand," you reply with a slightly shaky voice.');
     // TODO-QSP: dynamic text: Mistress puts her hand on yours reassuringly. "There's no need to be nervous, <<...
-    scene.text(`Mistress puts her hand on yours reassuringly. "There's no need to be nervous, ${((s as any).pcs_nickname ?? 0)}. We don't start until next time. Today is just for getting to know one another, so why don't you tell me a little about yourself?"`);
+    scene.text(`Mistress puts her hand on yours reassuringly. "There's no need to be nervous, ${((s as any).pcs_nickname || '')}. We don't start until next time. Today is just for getting to know one another, so why don't you tell me a little about yourself?"`);
     scene.text('You have a few more sips of the wine, and your nerves and uncertainly soon fade away. You begin to tell her about yourself, and the conversation soon moves to your sexual adventures, where you confess all kinds of intimate details to her, barely giving it a second thought.');
     scene.text('Before you know it, the wine bottle in front of you is empty, discovering that you drank almost all of it. Mistress is still on her first glass. She looks at you sternly, and says it\'s time for you to leave. "I\'ll be awaiting your return. I can\'t wait to share my knowledge with you!" she exclaims as she ushers you out the door.');
     scene.actions([
@@ -207,13 +207,13 @@ function enterQW2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'humiliation', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Ask why you have to be naked [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ask why you have to be naked', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Ask why you have to be naked [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ask why you have to be naked', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (20);
@@ -243,7 +243,7 @@ function enterQW2(s: GameState, scene: SceneBuilder): void {
     }
   } else {
     scene.actions([
-      { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).MistressResist = 1;
@@ -423,13 +423,13 @@ function enterQW3(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'humiliation', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse to take your clothes off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse to take your clothes off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse to take your clothes off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse to take your clothes off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) - (10);
@@ -552,13 +552,13 @@ function enterQW4(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'humiliation', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse to show your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse to show your pussy', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse to show your pussy [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse to show your pussy', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 6;
     (s as any).pcs_horny = 0;
@@ -638,13 +638,13 @@ function enterQW5(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'BDSM', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Beg her not to do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Beg her not to do it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Beg her not to do it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Beg her not to do it', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (1);
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -924,7 +924,7 @@ function enterQW7(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/city/natalya/sex/sub200.jpg');
   scene.text('When you enter the apartment, Mistress comes to the door to see who it is. "You… You\'re back?" she quips with a surprised look on her face. You look at her questioningly, feeling a bit nervous.');
   // TODO-QSP: dynamic text: Her face then breaks out into a smile. "<<$pcs_nickname>>! I'm so glad you came....
-  scene.text(`Her face then breaks out into a smile. "${((s as any).pcs_nickname ?? 0)}! I'm so glad you came. I owe you an apology, come here."`);
+  scene.text(`Her face then breaks out into a smile. "${((s as any).pcs_nickname || '')}! I'm so glad you came. I owe you an apology, come here."`);
   scene.text('You\'re confused as to whether you should take your clothes off. Mistress kindly grabs you by the arm and ushers you to the living room, sitting you down on the couch. "Wait here, I\'ll be right back."');
   scene.text('She\'s carrying a small paper bag when she comes back. It looks like it\'s from some fancy boutique. "Here, this is for you," she smiles weakly. "I\'m really sorry about last time, I shouldn\'t have taken my poor mood out on you."');
   scene.text('You nod shyly at her, thanking her for the gift before opening it. You twist and turn the item in your hands, it looks like some sort of jewelry. Then you see it: it\'s a g-string! A very sexy one, with some sort of jewel attached to it.');
@@ -960,7 +960,7 @@ function enterQW7(s: GameState, scene: SceneBuilder): void {
     scene.text('Luckily, the vibrating stops and Mistress suddenly stands up: "Hey Masha! Over here! Come sit with us!"');
     scene.text('An attractive young woman approaches your table and kisses Mistress on the cheek. She then shakes your hand. "Hi, I\'m Masha! Nice to meet you!" she says in a loud, bubbly voice.');
     // TODO-QSP: dynamic text: "Erm, hi. I'm <<$pcs_nickname>>…" you reply softly. Your mind is still a bit haz...
-    scene.text(`"Erm, hi. I'm ${((s as any).pcs_nickname ?? 0)}…" you reply softly. Your mind is still a bit hazy from the stimulation.`);
+    scene.text(`"Erm, hi. I'm ${((s as any).pcs_nickname || '')}…" you reply softly. Your mind is still a bit hazy from the stimulation.`);
     scene.text('"Are you okay?" Masha asks with some concern. "You look a bit flustered…"');
     scene.text('Mistress grins. "Don\'t worry Masha, she\'s fine. Maybe just a little bit tipsy. Come, sit! I\'ll get us some drinks."');
     scene.text('You and Masha get acquainted while Mistress heads to the bar to get another round. Half-way in, the vibrator starts up again. It\'s on full blast now, and you know you won\'t last long.');
@@ -977,12 +977,12 @@ function enterQW7(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/natalya/sex/sub204.jpg');
     scene.text('You hear a light chuckle behind you, and the vibrating stops again. While you reassure Masha that you\'re okay, Mistress comes back with a devious smile on her face and three beers in her hands.');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>> is becoming a very good friend of mine very quickly, Masha! I...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)} is becoming a very good friend of mine very quickly, Masha! I'm sure you'll see more of her…" Mistress says ambiguously. You blush when you realize what she means… she's going to show you off to her friend!`);
+    scene.text(`"${((s as any).pcs_nickname || '')} is becoming a very good friend of mine very quickly, Masha! I'm sure you'll see more of her…" Mistress says ambiguously. You blush when you realize what she means… she's going to show you off to her friend!`);
     scene.text('"I like her, she seems nice!" Masha replies cheerfully.');
     scene.text('You have a chat while you drink your beers. Or rather, Masha and Natalya talk while you just sit there quietly, trying not to embarrass yourself any further. Every once in a while the vibrator fires up again, teasing you for a minute before being turned off again.');
     scene.text('The constant teasing paired with your wetness makes the vibrating jewelry extremely effective, and when it\'s time to leave you\'re intensely horny again. Luckily Mistress doesn\'t put you over the edge with the vibrator a second time as you walk home. However, the shape of the jewelry in itself keeps you ever close and your steps are noticeably shorter now, causing you to be on the receiving end of some strange looks.');
     // TODO-QSP: dynamic text: When you return home, Mistress gives you a kiss on the cheek and gives you the r...
-    scene.text(`When you return home, Mistress gives you a kiss on the cheek and gives you the remote. "Here, you earned it. That was a fun session, ${((s as any).pcs_nickname ?? 0)}! Don't get too used to it though. Next session, we'll be focusing on your training again."`);
+    scene.text(`When you return home, Mistress gives you a kiss on the cheek and gives you the remote. "Here, you earned it. That was a fun session, ${((s as any).pcs_nickname || '')}! Don't get too used to it though. Next session, we'll be focusing on your training again."`);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Thank her and leave', goto: ['city_residential', ''] },
@@ -1010,13 +1010,13 @@ function enterQW8(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'exhib', 'resist');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Hesitate and stay where you are [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Hesitate and stay where you are', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Hesitate and stay where you are [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Hesitate and stay where you are', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).pcs_horny = 0;
@@ -1979,7 +1979,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).mistresscontract ?? 0))) {
     scene.img('images/characters/city/natalya/sex/sub197.jpg');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, listen. You can speak freely for the remainder of this sessi...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, listen. You can speak freely for the remainder of this session. This will be a big step for the both of us. You need to be able to say what you want to say, and ask what you want to ask," Mistress begins when she sits down with you at the table. "I've been very impressed with your progress thus far, and I feel like there's still a lot more that we can explore together. You show great potential."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, listen. You can speak freely for the remainder of this session. This will be a big step for the both of us. You need to be able to say what you want to say, and ask what you want to ask," Mistress begins when she sits down with you at the table. "I've been very impressed with your progress thus far, and I feel like there's still a lot more that we can explore together. You show great potential."`);
     scene.text('"Thank you, Mistress…" you reply, feeling a tinge of pride when you hear her praises.');
     scene.text('She continues. "However, as you probably understand, my time is precious. Properly training a slave girl takes a lot of time and effort, so I can\'t focus on more than one girl at a time. As you can probably guess, right now that one girl is you."');
     scene.text('You offer her a small smile, but don\'t interrupt her, prompting her to continue.');
@@ -1993,7 +1993,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ve added a few mitigating clauses, compared to most contracts of this type," Mistress adds. "I have no desire to manage your life 24/7. I\'m sure you have your things to do, and I have mine. Therefore, <b>I will only require you to visit me at least once every seven days</b>. You can decide when it is most convenient for you to visit me. Of course, if you wish to visit more than once every seven days, you are allowed and encouraged to do so."');
     scene.text('Her expression becomes more stern. "But I\'m warning you: the punishment will be severe if you fail to show up when you\'re required to do so. Also, in very specific circumstances, I might summon you at my discretion."');
     // TODO-QSP: dynamic text: She smiles benevolently at you. "<<$pcs_nickname>>, I know this is a lot to take...
-    scene.text(`She smiles benevolently at you. "${((s as any).pcs_nickname ?? 0)}, I know this is a lot to take in, so I'll give you a chance to read the contract in full and think it over. I don't want you to sign something you don't believe is right." She then stands up and walks to her bedroom, lightly squeezing your shoulder as she walks past you.`);
+    scene.text(`She smiles benevolently at you. "${((s as any).pcs_nickname || '')}, I know this is a lot to take in, so I'll give you a chance to read the contract in full and think it over. I don't want you to sign something you don't believe is right." She then stands up and walks to her bedroom, lightly squeezing your shoulder as she walks past you.`);
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     scene.img('images/characters/city/gala/slave/contract.jpg');
@@ -2010,7 +2010,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
     scene.text('');
     scene.text('There\'s more, but these appear to be the most important. One thing you do notice is the lack of a safe word; apparently Mistress feels you don\'t need one, and that she\'ll know you well enough to decide for you. You\'ll not be able to interrupt any actions taking place. Do you trust her enough to agree to that?');
     // TODO-QSP: dynamic text: You mull it over for another minute, after which Mistress returns to the table a...
-    scene.text(`You mull it over for another minute, after which Mistress returns to the table and smiles at you confidently. "So, ${((s as any).pcs_nickname ?? 0)}… do you have any questions?"`);
+    scene.text(`You mull it over for another minute, after which Mistress returns to the table and smiles at you confidently. "So, ${((s as any).pcs_nickname || '')}… do you have any questions?"`);
     scene.actions([
       { label: 'Sign the contract', handler: (st: GameState) => {
     if (((s as any).pcs_hydra ?? 0) >= 100) {
@@ -2024,7 +2024,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'ve had enough time to think it over; you want this. You weakly smile at Mistress. "I… I have no questions, Mistress. I submit to you. I will sign."');
     scene.text('Mistress clearly looks happy and grins wolfishly as she hands you a pen. When you\'re finished signing, you feel relieved in a way. You know Mistress\' time is precious, and by promising yourself to her you have secured her undivided attention for a full year.');
     // TODO-QSP: dynamic text: She smiles at you. "I'll put this in my safe. I'm really glad we're taking this ...
-    scene.text(`She smiles at you. "I'll put this in my safe. I'm really glad we're taking this step together, ${((s as any).pcs_nickname ?? 0)}. Let's celebrate! Would you like some wine?"`);
+    scene.text(`She smiles at you. "I'll put this in my safe. I'm really glad we're taking this step together, ${((s as any).pcs_nickname || '')}. Let's celebrate! Would you like some wine?"`);
     scene.text('"That would be nice, Mistress," you smile. When you see her break open a rather old looking bottle of wine you feel touched; this must\'ve meant a lot to her too.');
     scene.text('You have a pleasant chat with Mistress for another half hour, after which she apologizes; she has other things to attend to today. She gives you a light peck on the cheek and grins. "So, slave… How does it feel to be owned?"');
     scene.text('"It feels good, Mistress," you admit.');
@@ -2057,7 +2057,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
     scene.text('She breaks the awkward silence that follows. "You know, I wasn\'t lying when I said I see potential in you. There\'s a BDSM club near the city, where people with interest in our lifestyle can go to explore their interests. I think you would enjoy going there."');
     scene.text('She offers you a luxurious black business card with a gold trim. "If you\'re interested, this will get you in."');
     // TODO-QSP: dynamic text: She stands up and signals for you to do the same. "I guess this is where we part...
-    scene.text(`She stands up and signals for you to do the same. "I guess this is where we part ways, then. Take care, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`She stands up and signals for you to do the same. "I guess this is where we part ways, then. Take care, ${((s as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Say goodbye to Mistress and leave', goto: ['city_residential', ''] },
     ]);
@@ -2073,7 +2073,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/city/natalya/lesbi.jpg');
       scene.text('When you return to Mistress\' apartment, she invites you to come and sit at the table with her.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you're back!" she says and invites you to sit down. "Did you...
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, you're back!" she says and invites you to sit down. "Did you get a chance to think about my proposal?"`);
+      scene.text(`"${((s as any).pcs_nickname || '')}, you're back!" she says and invites you to sit down. "Did you get a chance to think about my proposal?"`);
       scene.text('"I did, Mistress. It\'s why I\'m here."');
       scene.text('"Good, good. Do you have any further questions?"');
       scene.actions([
@@ -2085,7 +2085,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
     scene.text('You\'ve had enough time to think it over; you want this. You weakly smile. "I… I have no questions, Mistress. I submit to you. I will sign."');
     scene.text('Mistress clearly looks happy and grins wolfishly as she hands you a pen. When you\'re finished signing, you feel relieved in a way. You know Mistress\' time is precious, and by promising yourself to her you have secured her undivided attention for a full year.');
     // TODO-QSP: dynamic text: She smiles at you. "I'll put this in my safe. I'm really glad we're taking this ...
-    scene.text(`She smiles at you. "I'll put this in my safe. I'm really glad we're taking this step together, ${((s as any).pcs_nickname ?? 0)}. Let's celebrate! Would you like some wine?"`);
+    scene.text(`She smiles at you. "I'll put this in my safe. I'm really glad we're taking this step together, ${((s as any).pcs_nickname || '')}. Let's celebrate! Would you like some wine?"`);
     scene.text('"That would be nice, Mistress," you smile. When you see her break open a rather old looking bottle of wine you feel touched; this must\'ve meant a lot to her too.');
     scene.text('You have a pleasant chat with Mistress for another half hour, after which she apologizes; she has other things to attend to today. She gives you a light peck on the cheek and grins. "So, slave… How does it feel to be owned?"');
     scene.text('"It feels good, Mistress," you admit.');
@@ -2109,7 +2109,7 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
     scene.text('Mistress grins wolfishly as she hands you a pen. She\'s happy that she was able to convince you, even though she had to settle for a shorter term for now.');
     scene.text('When you\'re finished signing, you feel relieved in a way. You know Mistress\' time is precious, and by promising yourself to her you have secured her undivided attention for half a year. And if it goes well, who knows how much longer after that?');
     // TODO-QSP: dynamic text: She smiles at you. "I'll put this in my safe. I'm really glad we're taking this ...
-    scene.text(`She smiles at you. "I'll put this in my safe. I'm really glad we're taking this step together, ${((s as any).pcs_nickname ?? 0)}. Let's celebrate! Would you like some wine?"`);
+    scene.text(`She smiles at you. "I'll put this in my safe. I'm really glad we're taking this step together, ${((s as any).pcs_nickname || '')}. Let's celebrate! Would you like some wine?"`);
     scene.text('"That would be nice, Mistress," you smile. When you see her break open a rather old looking bottle of wine you feel touched; this must\'ve meant a lot to her too.');
     scene.text('You have a pleasant chat with Mistress for another half hour, after which she apologizes; she has other things to attend to today. She gives you a light peck on the cheek and grins. "So, slave… How does it feel to be owned?"');
     scene.text('"It feels good, Mistress," you admit.');
@@ -2123,11 +2123,11 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/natalya/sex/sub199.jpg');
     scene.text('You shake your head. "I\'m sorry, Mistress. Six months is still too long. I don\'t think I can commit to this, it doesn\'t feel right."');
     // TODO-QSP: dynamic text: Mistress is clearly disappointed. "That's too bad, <<$pcs_nickname>>. I really t...
-    scene.text(`Mistress is clearly disappointed. "That's too bad, ${((s as any).pcs_nickname ?? 0)}. I really thought we would be able to work it out, but I guess you don't not want this as much as I do."`);
+    scene.text(`Mistress is clearly disappointed. "That's too bad, ${((s as any).pcs_nickname || '')}. I really thought we would be able to work it out, but I guess you don't not want this as much as I do."`);
     scene.text('She breaks the awkward silence that follows. "You know, I wasn\'t lying when I said I see potential in you. There\'s a BDSM club near the city, where people with interest in our lifestyle can go to explore their interests. I think you would enjoy going there."');
     scene.text('She offers you a luxurious black business card with a gold trim. "If you\'re interested, this will get you in."');
     // TODO-QSP: dynamic text: She stands up and signals for you to do the same. "I guess this is where we part...
-    scene.text(`She stands up and signals for you to do the same. "I guess this is where we part ways, then. Take care, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`She stands up and signals for you to do the same. "I guess this is where we part ways, then. Take care, ${((s as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Say goodbye to Mistress and leave', goto: ['city_residential', ''] },
     ]);
@@ -2140,11 +2140,11 @@ function enterQW12(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/natalya/sex/sub199.jpg');
     scene.text('You\'ve given it enough thought; you wouldn\'t mind visiting her more, but you\'re not signing a contract for it.');
     // TODO-QSP: dynamic text: When you tell Mistress that, she's clearly disappointed. "That's too bad, <<$pcs...
-    scene.text(`When you tell Mistress that, she's clearly disappointed. "That's too bad, ${((s as any).pcs_nickname ?? 0)}. Like I explained, this would be a commitment from me as much as it is from you, and I need that mutual commitment to be there. I've wasted too much time on girls that just stopped showing up one day. I really thought we would be able to work it out, but I guess you don't not want this as much as I do."`);
+    scene.text(`When you tell Mistress that, she's clearly disappointed. "That's too bad, ${((s as any).pcs_nickname || '')}. Like I explained, this would be a commitment from me as much as it is from you, and I need that mutual commitment to be there. I've wasted too much time on girls that just stopped showing up one day. I really thought we would be able to work it out, but I guess you don't not want this as much as I do."`);
     scene.text('She breaks the awkward silence that follows. "You know, I wasn\'t lying when I said I see potential in you. There\'s a BDSM club near the city, where people with interest in our lifestyle can go to explore their interests. I think you would enjoy going there."');
     scene.text('She offers you a luxurious black business card with a gold trim. "If you\'re interested, this will get you in."');
     // TODO-QSP: dynamic text: She stands up and signals for you to do the same. "I guess this is where we part...
-    scene.text(`She stands up and signals for you to do the same. "I guess this is where we part ways, then. Take care, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`She stands up and signals for you to do the same. "I guess this is where we part ways, then. Take care, ${((s as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Say goodbye to Mistress and leave', goto: ['city_residential', ''] },
     ]);

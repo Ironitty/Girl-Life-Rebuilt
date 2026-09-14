@@ -94,15 +94,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).nichWork ?? 0) === 2  &&  (!((s as any).nichOutfitState ?? 0))) {
     if (((s as any).nichNichPresent ?? 0) === 1) {
       // TODO-QSP: dynamic text: Nicholas looks at you with a displeased expression. "<<$pcs_nickname>>, I though...
-      scene.text(`Nicholas looks at you with a displeased expression. "${((s as any).pcs_nickname ?? 0)}, I thought I made it clear that you have to wear your uniform here. Go back to your room and put it on."`);
+      scene.text(`Nicholas looks at you with a displeased expression. "${((s as any).pcs_nickname || '')}, I thought I made it clear that you have to wear your uniform here. Go back to your room and put it on."`);
     } else {
       if (((s as any).nichGalaPresent ?? 0) === 1) {
         // TODO-QSP: dynamic text: Gala takes a quick look at you. "<<$pcs_nickname>>, you really have to wear your...
-        scene.text(`Gala takes a quick look at you. "${((s as any).pcs_nickname ?? 0)}, you really have to wear your maid uniform here. That's part of your job."`);
+        scene.text(`Gala takes a quick look at you. "${((s as any).pcs_nickname || '')}, you really have to wear your maid uniform here. That's part of your job."`);
       } else {
         if (((s as any).nichTanyPresent ?? 0) === 1) {
           // TODO-QSP: dynamic text: Tanya notices that you are not wearing your uniform. "<<$pcs_nickname>>, I don't...
-          scene.text(`Tanya notices that you are not wearing your uniform. "${((s as any).pcs_nickname ?? 0)}, I don't mind if you walk around the house like this. But Nicholas does. You should better put your uniform on before he anybody else sees you."`);
+          scene.text(`Tanya notices that you are not wearing your uniform. "${((s as any).pcs_nickname || '')}, I don't mind if you walk around the house like this. But Nicholas does. You should better put your uniform on before he anybody else sees you."`);
         } else {
           scene.text('You realize that you are not wearing your uniform. If Nicholas saw you now he would be displeased. You should better change into your maid outfit before walking around the apartment.');
         }
@@ -203,18 +203,18 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
       scene.text('You hastilty prepare coffee and collect the newspaper from the mailbox.');
       scene.text('When the family members arrive one by one the breakfast table is only half-way ready.');
       // TODO-QSP: dynamic text: Nicholas looks annoyed by this lack of perfection "<<$pcs_nickname>>, I expect t...
-      scene.text(`Nicholas looks annoyed by this lack of perfection "${((s as any).pcs_nickname ?? 0)}, I expect the breakfast to be prepared in time. I won't accept you lazing around."`);
+      scene.text(`Nicholas looks annoyed by this lack of perfection "${((s as any).pcs_nickname || '')}, I expect the breakfast to be prepared in time. I won't accept you lazing around."`);
       (s as any).nichBreakFQual = 2;
     } else {
       if (((s as any).hour ?? 0) === ((s as any).nichTemp ?? 0)  &&  ((s as any).minut ?? 0) < 45) {
         scene.text('You hastily start prepaing breakfast. You don\'t even have enough time to make coffee and collect the newspaper from the mailbox before the family members arrive.');
         // TODO-QSP: dynamic text: Nicholas looks very annoyed by this lack of perfection "<<$pcs_nickname>>, one r...
-        scene.text(`Nicholas looks very annoyed by this lack of perfection "${((s as any).pcs_nickname ?? 0)}, one reason for having a maid is not having to wait for breakfast. If you don't manage to prepare breakfast before I want to eat it I don't see why I would need you."`);
+        scene.text(`Nicholas looks very annoyed by this lack of perfection "${((s as any).pcs_nickname || '')}, one reason for having a maid is not having to wait for breakfast. If you don't manage to prepare breakfast before I want to eat it I don't see why I would need you."`);
         (s as any).nichBreakFQual = 3;
       } else {
         scene.text('The family is already sitting at the breakfast table. Apparently they have collected some of the items they want from the kitchen themselves.');
         // TODO-QSP: dynamic text: Nicholas looks very annoyed by this lack of perfection "<<$pcs_nickname>>, your ...
-        scene.text(`Nicholas looks very annoyed by this lack of perfection "${((s as any).pcs_nickname ?? 0)}, your job is to prepare breakfast. What exactly would you say you get paid for when I have to do your chores?"`);
+        scene.text(`Nicholas looks very annoyed by this lack of perfection "${((s as any).pcs_nickname || '')}, your job is to prepare breakfast. What exactly would you say you get paid for when I have to do your chores?"`);
         (s as any).nichBreakFQual = 4;
       }
     }
@@ -222,7 +222,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
   (s as any).nichRand = Math.floor(Math.random() * 100) + 1;
   if (((s as any).nichGalaTarasPlan ?? 0) === 10) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, have you seen my wife lately? She wasn't home this night. Th...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, have you seen my wife lately? She wasn't home this night. That's quite unusual."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, have you seen my wife lately? She wasn't home this night. That's quite unusual."`);
     scene.text('"I am sorry, Master Nicholas, but I don\'t know anything about that."');
     scene.text('Tanya looks annoyed.');
     scene.text('"I guess she just spent the night at one of her friends. It wouldn\'t be the first time, right?"');
@@ -232,13 +232,13 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
     if (((s as any).nichGalaTarasPlan ?? 0) === 100) {
       scene.text('Gala looks distressed today.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, please talk to me after breakfast."
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, please talk to me after breakfast."`);
+      scene.text(`"${((s as any).pcs_nickname || '')}, please talk to me after breakfast."`);
       (s as any).nichAfterBFEvent = 5010;
     } else {
       if (((s as any).preg ?? 0) > 0  &&  ((s as any).nichPregnancy ?? 0) === 0  &&  qspFunc(s, 'body_din', 'pregnancyVisibility') === 1) {
         scene.text('Nicholas directs his attention at you.');
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>, there is something important we need to talk about after bre...
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}, there is something important we need to talk about after breakfast."`);
+        scene.text(`"${((s as any).pcs_nickname || '')}, there is something important we need to talk about after breakfast."`);
         scene.text('"Of course, Master Nicholas." You reply as is expected of you.');
         (s as any).nichPregnancy = 1;
         (s as any).nichAfterBFEvent = 90;
@@ -255,7 +255,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
           scene.text('"Sigh… all right."');
           scene.text('Nicholas doesn\'t look convinced by Tanyas change of heart. He drops the topic nevertheless and continues reading the newspaper.');
           // TODO-QSP: dynamic text: Once he finishes he looks up and directs his next words at you. "<<$pcs_nickname...
-          scene.text(`Once he finishes he looks up and directs his next words at you. "${((s as any).pcs_nickname ?? 0)}, I would like to speak to you when you are done cleaning up the breakfast table."`);
+          scene.text(`Once he finishes he looks up and directs his next words at you. "${((s as any).pcs_nickname || '')}, I would like to speak to you when you are done cleaning up the breakfast table."`);
           scene.text('"Of course, Master Nicholas." You reply as is expected of you.');
           if (!(s as any).nichTanya) (s as any).nichTanya = {}; (s as any).nichTanya['Uni'] = 1;
           (s as any).nichAfterBFEvent = 1;
@@ -264,14 +264,14 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
             scene.text('The family members are chatting with each other about topics of little interest to you.');
             scene.text('One of your duties is to refill empty glasses.');
             // TODO-QSP: dynamic text: Just as you refill the orange juice of Gala she says to you "By the way, <<$pcs_...
-            scene.text(`Just as you refill the orange juice of Gala she says to you "By the way, ${((s as any).pcs_nickname ?? 0)}, I would like to speak to you when you are done cleaning up. Alone."`);
+            scene.text(`Just as you refill the orange juice of Gala she says to you "By the way, ${((s as any).pcs_nickname || '')}, I would like to speak to you when you are done cleaning up. Alone."`);
             scene.text('"Of course, Mistress Gala." You reply as is expected of you.');
             (s as any).nichAfterBFEvent = 10;
           } else {
             if (((s as any).nichGalaKnowsPT ?? 0) > 10  &&  ((s as any).nichGalaKnowsPT ?? 0) < 15) {
               scene.text('The family members are chatting with each other about topics of little interest to you.');
               // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I would like to speak to you when you are done cleaning up. ...
-              scene.text(`"${((s as any).pcs_nickname ?? 0)}, I would like to speak to you when you are done cleaning up. Alone."`);
+              scene.text(`"${((s as any).pcs_nickname || '')}, I would like to speak to you when you are done cleaning up. Alone."`);
               scene.text('"Of course, Mistress Gala." You reply as is expected of you.');
               (s as any).nichAfterBFEvent = 11;
             } else {
@@ -299,28 +299,28 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
                   if (((s as any).nichGalaImplantCount ?? 0) > 0) {
                     scene.text('Gala looks at you with a stern look on her face.');
                     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want to talk to you after breakfast."
-                    scene.text(`"${((s as any).pcs_nickname ?? 0)}, I want to talk to you after breakfast."`);
+                    scene.text(`"${((s as any).pcs_nickname || '')}, I want to talk to you after breakfast."`);
                     scene.text('"Of course, Mistress Gala." You reply as is expected of you.');
                     (s as any).nichAfterBFEvent = 220;
                   } else {
                     if (((s as any).nichGalaContractActive ?? 0) === 1  &&  (!((s as any).nichGalaDoc ?? 0))) {
                       scene.text('Gala looks at you with a stern look on her face.');
                       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want to talk to you after breakfast."
-                      scene.text(`"${((s as any).pcs_nickname ?? 0)}, I want to talk to you after breakfast."`);
+                      scene.text(`"${((s as any).pcs_nickname || '')}, I want to talk to you after breakfast."`);
                       scene.text('"Of course, Mistress Gala." You reply as is expected of you.');
                       (s as any).nichAfterBFEvent = 210;
                     } else {
                       if (((s as any).nichGalaContractActive ?? 0) === 1  &&  ((s as any).nichGalaContractLast ?? 0) + (Math.floor(Math.random() * 3) + 5) <= ((s as any).daystart ?? 0)) {
                         scene.text('Gala looks at you with a stern look on her face.');
                         // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I want to talk to you after breakfast."
-                        scene.text(`"${((s as any).pcs_nickname ?? 0)}, I want to talk to you after breakfast."`);
+                        scene.text(`"${((s as any).pcs_nickname || '')}, I want to talk to you after breakfast."`);
                         scene.text('"Of course, Mistress Gala." You reply as is expected of you.');
                         (s as any).nichAfterBFEvent = 200;
                       } else {
                         if (((s as any).nichGentleclubE1 ?? 0) === 0  &&  ((s as any).nichPerformance ?? 0) >= 60  &&  ((s as any).nichStatMsg ?? 0) === ''  &&  (((s as any).nichRand ?? 0) <= 40  ||  ((s as any).nichDebug ?? 0) === 1)  &&  ((s as any).nichDebug ?? 0) === 1) {
                           scene.text('The family members are chatting with each other about topics of little interest to you.');
                           // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I have an important guest tonight. I need you to attend us a...
-                          scene.text(`"${((s as any).pcs_nickname ?? 0)}, I have an important guest tonight. I need you to attend us at '+func('time', 'get_time_string', 18, 0)+'in my study."`);
+                          scene.text(`"${((s as any).pcs_nickname || '')}, I have an important guest tonight. I need you to attend us at 18:00in my study."`);
                           scene.text('"Of course, Master Nicholas." You reply as is expected of you.');
                           (s as any).nichGentleclubE1 = 1;
                           (s as any).nichGentleclubDayE1 = ((s as any).daystart ?? 0);
@@ -344,7 +344,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/city/nicholas/01.jpg');
       scene.text('After you are done cleaning up the table you go to Nicholas as requested.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I am sure you heard what I said to Tanya earlier. I want her...
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, I am sure you heard what I said to Tanya earlier. I want her to become successful in life, to accomplish something on her own. But it seems as if she lacks the ambition to do so."`);
+      scene.text(`"${((s as any).pcs_nickname || '')}, I am sure you heard what I said to Tanya earlier. I want her to become successful in life, to accomplish something on her own. But it seems as if she lacks the ambition to do so."`);
       scene.text('"The two of you seem to get along quite well. Maybe you could speak some sense into her?"');
       scene.actions([
         { label: 'Agree', handler: (st: GameState) => {
@@ -362,7 +362,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/city/gala/02.jpg');
         scene.text('After you are done cleaning up the table you go to Gala as requested.');
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>, don't think you can fool me. I know what's going on between ...
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}, don't think you can fool me. I know what's going on between you and my daughter."`);
+        scene.text(`"${((s as any).pcs_nickname || '')}, don't think you can fool me. I know what's going on between you and my daughter."`);
         scene.text('"Don\'t get me wrong. I understand the appeal of another woman."');
         if (((s as any).nichGalaOpinion ?? 0) === 1) {
           scene.text('"As a matter of fact I am quite relieved. I thought you might be after my husband. But now that I know… never mind."');
@@ -393,7 +393,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
           scene.img('images/characters/city/gala/02.jpg');
           scene.text('After you are done cleaning up the table you go to Gala as requested.');
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>, did you do what I told you to do? Regarding my little Tanya?...
-          scene.text(`"${((s as any).pcs_nickname ?? 0)}, did you do what I told you to do? Regarding my little Tanya?"`);
+          scene.text(`"${((s as any).pcs_nickname || '')}, did you do what I told you to do? Regarding my little Tanya?"`);
           if (((s as any).nichGalaKnowsPT ?? 0) === 11) {
             scene.actions([
               { label: 'Yes', handler: (st: GameState) => {
@@ -456,7 +456,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
             scene.img('images/characters/city/nicholas/01.jpg');
             scene.text('After you are done cleaning up the table you go to Nicholas as requested.');
             // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I noticed something about you lately. Something about you ch...
-            scene.text(`"${((s as any).pcs_nickname ?? 0)}, I noticed something about you lately. Something about you changed. Then I realized it. You are obviously pregnant."`);
+            scene.text(`"${((s as any).pcs_nickname || '')}, I noticed something about you lately. Something about you changed. Then I realized it. You are obviously pregnant."`);
             if (((s as any).thinkpreg ?? 0) > 0  ||  ((s as any).knowpreg ?? 0) > 0) {
               scene.text('You are shocked. He figured out your little secret.');
             } else {
@@ -480,7 +480,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
             scene.text('"Good luck in your future."');
             scene.text('');
             // TODO-QSP: dynamic text: You got <b><<nichTemp>></b> transferred to your bank account.
-            scene.text(`You got <b>${((s as any).nichTemp ?? 0)}</b> transferred to your bank account.`);
+            scene.text(`You got <b>${((s as any).nichTemp || '')}</b> transferred to your bank account.`);
             scene.actions([
               { label: 'Get fired', goto: ['nichUtil', 'fired'] },
             ]);
@@ -492,7 +492,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
                 scene.text('Nicholas leads the small group of you through the whole apartment, inspecting every place where a necklace could be hidden.');
                 scene.text('The last room to be inspected is you private bedroom. Nicholas opens your drawer and pulls out the missing necklace.');
                 // TODO-QSP: dynamic text: "<<$pcs_nickname>>… I can't believe what I am seeing. I never took you for a thi...
-                scene.text(`"${((s as any).pcs_nickname ?? 0)}… I can't believe what I am seeing. I never took you for a thief. Under these circumstances I have to fire you. Be glad I don't call the police!"`);
+                scene.text(`"${((s as any).pcs_nickname || '')}… I can't believe what I am seeing. I never took you for a thief. Under these circumstances I have to fire you. Be glad I don't call the police!"`);
                 scene.text('Gala has a triumphant smile on her face.');
                 scene.actions([
                   { label: 'Get fired', goto: ['nichUtil', 'fired'] },
@@ -534,7 +534,7 @@ function enterBreakfast(s: GameState, scene: SceneBuilder): void {
                       scene.text('');
                       scene.text('Nicholas takes you to the side once they are gone.');
                       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I hope you know what this means. My wife… she is a criminal....
-                      scene.text(`"${((s as any).pcs_nickname ?? 0)}, I hope you know what this means. My wife… she is a criminal. You can't tell anybody about this. Just keep the silence. I will use my connections with the mayor to prevent the police from further investigation. If we are lucky nobody else will find out about this. It could ruin my reputation. Of course I would have to pay the poor girl Katinka… but let me worry about that."`);
+                      scene.text(`"${((s as any).pcs_nickname || '')}, I hope you know what this means. My wife… she is a criminal. You can't tell anybody about this. Just keep the silence. I will use my connections with the mayor to prevent the police from further investigation. If we are lucky nobody else will find out about this. It could ruin my reputation. Of course I would have to pay the poor girl Katinka… but let me worry about that."`);
                       scene.text('You wonder whether it was Taras plan all along to let Katinka surface to prevent Nicholas from searching for Gala.');
                       scene.text('"And about Tanya… this is very difficult for her. We should give her some time to process these events."');
                       scene.text('"Of course, Master Nicholas."');

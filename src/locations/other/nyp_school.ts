@@ -64,15 +64,15 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'fame', 'pav', 'sex', (-10));
       }
       // TODO-QSP: dynamic text: You hear the clattering of heels and turn to see Albina storming over, her furio...
-      scene.text(`You hear the clattering of heels and turn to see Albina storming over, her furious gaze directed towards Vasily. "I distinctly remember telling you and the other tiny dick morons to fuck off and leave ${((s as any).pcs_nickname ?? 0)} alone, or has your tiny dick brain forgotten that conversation?"`);
+      scene.text(`You hear the clattering of heels and turn to see Albina storming over, her furious gaze directed towards Vasily. "I distinctly remember telling you and the other tiny dick morons to fuck off and leave ${((s as any).pcs_nickname || '')} alone, or has your tiny dick brain forgotten that conversation?"`);
       scene.text('Vasily has already let go of you and bravely - or stupidly - lunged for Albina. "What did you call me, you buttslut whore!? You want me to fuck you instead!?"');
       // TODO-QSP: dynamic text: Albina, with lightning-fast reflexes, delivers a swift yet brutal kick to his cr...
-      scene.text(`Albina, with lightning-fast reflexes, delivers a swift yet brutal kick to his crotch, causing the howling Vasily to fall to the floor. Albina then squats down beside him as he rolls back and forth in pain. "Leave ${((s as any).pcs_nickname ?? 0)} alone or you'll do more than regret getting on my bad side."`);
+      scene.text(`Albina, with lightning-fast reflexes, delivers a swift yet brutal kick to his crotch, causing the howling Vasily to fall to the floor. Albina then squats down beside him as he rolls back and forth in pain. "Leave ${((s as any).pcs_nickname || '')} alone or you'll do more than regret getting on my bad side."`);
       scene.text('Vasily curls into a ball on the floor, nursing the pain in his crotch. Either he didn\'t hear her or he doesn\'t know when to stop, because the next thing he utters between incoherent moans of pain is clearly "Fuck you, you dirty anal-loving whore!"');
       scene.text('Albina stands up and proceeds to viciously stomp on his crotch before painfully twisting her heel into him. "You\'re testing my patience! Do you want me to burst your little balls in front of everyone?"');
       scene.text('Vasily squeals pathetically in pain. "No! I\'m sorry, I\'m sorry! Just please, stop!"');
       // TODO-QSP: dynamic text: Albina looks at you. "You better leave before somebody sees you, <<$pcs_nickname...
-      scene.text(`Albina looks at you. "You better leave before somebody sees you, ${((s as any).pcs_nickname ?? 0)}. With what people already think of you, you really don't want them to think you did this."`);
+      scene.text(`Albina looks at you. "You better leave before somebody sees you, ${((s as any).pcs_nickname || '')}. With what people already think of you, you really don't want them to think you did this."`);
       scene.text('Several of the other students are howling in laughter at Vasily\'s humiliating misfortune, but more than a few take another look at you and seem to see you a little differently thanks to Albina coming to your aid. Seeing that you\'re not going to be left alone, you safely slip out while everyone is distracted by Vasily and Albina.');
       qspCall(s, 'stat', '');
       scene.actions([
@@ -90,7 +90,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).fame ?? 0)?.['pav_slut'] > 250  &&  ((s as any).grupTipe ?? 0) === 4) {
         // TODO-QSP: dynamic text: One of the boys suddenly calls out to you. "Come over here, <<$pcs_nickname>>. I...
-        scene.text(`One of the boys suddenly calls out to you. "Come over here, ${((s as any).pcs_nickname ?? 0)}. I've got something for you."`);
+        scene.text(`One of the boys suddenly calls out to you. "Come over here, ${((s as any).pcs_nickname || '')}. I've got something for you."`);
         scene.actions([
           { label: 'Approach', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/gopniks.jpg');
@@ -100,13 +100,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse the drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse the drink', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse the drink [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse the drink', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'drugs', 'alcohol', 'vodka', 1);
@@ -114,12 +114,12 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/forceddrink.jpg');
     scene.text('You shake your head. "No thanks."');
     // TODO-QSP: dynamic text: "I don't think you understand, <<$pcs_nickname>>," Dan replies. "We <i>weren't</...
-    scene.text(`"I don't think you understand, ${((s as any).pcs_nickname ?? 0)}," Dan replies. "We <i>weren't</i> asking."`);
+    scene.text(`"I don't think you understand, ${((s as any).pcs_nickname || '')}," Dan replies. "We <i>weren't</i> asking."`);
     scene.text('You feel someone grab your hair and pull your head back while Dan grabs your chin and forces your mouth open. Someone then pours vodka into your mouth. You try to spit some out, but once your mouth is full, Dan forces your mouth closed. He then covers your mouth with his hand and pinches your nose closed, forcing you to swallow or drown. After repeating this several times, you\'re so drunk that you can barely stand.');
     if (((s as any).npc_rel ?? 0)?.['A1'] <= 10) {
       (s as any).NosovRevenge = 1;
       // TODO-QSP: dynamic text: Dimka looks at the floor as he talks. "<<$pcs_nickname>>, you and I have had dis...
-      scene.text(`Dimka looks at the floor as he talks. "${((s as any).pcs_nickname ?? 0)}, you and I have had disagreements. I sincerely apologize for my misbehavior. I hope you will still come to my party."`);
+      scene.text(`Dimka looks at the floor as he talks. "${((s as any).pcs_nickname || '')}, you and I have had disagreements. I sincerely apologize for my misbehavior. I hope you will still come to my party."`);
     }
     scene.actions([
       { label: 'Get dragged into the locker room', goto: ['nyp_school', 'slut'] },
@@ -137,7 +137,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A1'] <= 10) {
       (s as any).NosovRevenge = 1;
       // TODO-QSP: dynamic text: Dimka looks at the floor as he talks. "<<$pcs_nickname>>, you and I have had dis...
-      scene.text(`Dimka looks at the floor as he talks. "${((s as any).pcs_nickname ?? 0)}, you and I have had disagreements. I sincerely apologize for my misbehavior. I hope you will still come to my party."`);
+      scene.text(`Dimka looks at the floor as he talks. "${((s as any).pcs_nickname || '')}, you and I have had disagreements. I sincerely apologize for my misbehavior. I hope you will still come to my party."`);
     }
     scene.actions([
       { label: 'Get dragged into the locker room', goto: ['nyp_school', 'slut'] },
@@ -196,7 +196,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
   scene.text('Andrey and Stasya spend the whole time dancing together while some of the other girls occasionally agree to dance with one of the boys or often dance in a group.');
   if (((s as any).fedorKozlovQW ?? 0) >= 10) {
     // TODO-QSP: dynamic text: As you're hanging out and chatting with the girls, Fedor walks over and offers y...
-    scene.text(`As you're hanging out and chatting with the girls, Fedor walks over and offers you his hand. "Come dance with me, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`As you're hanging out and chatting with the girls, Fedor walks over and offers you his hand. "Come dance with me, ${((s as any).pcs_nickname || '')}."`);
     scene.actions([
       { label: 'Don\'t dance with him', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/fedorsad.jpg');
@@ -204,7 +204,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     scene.text('Fedor looks at the floor. "Alright, I didn\'t mean to interrupt your chat. I\'ll just go…"');
     scene.text('Feeling bad, you give him a smile and plant a soft kiss on his cheek. "Awww, don\'t give me that sad puppy face. How about a kiss instead?"');
     // TODO-QSP: dynamic text: He chuckles before nodding and giving you a passionate kiss. "Alright <<$pcs_nic...
-    scene.text(`He chuckles before nodding and giving you a passionate kiss. "Alright ${((s as any).pcs_nickname ?? 0)}, have a good time and I'll see you later." You wave at him as he walks away.`);
+    scene.text(`He chuckles before nodding and giving you a passionate kiss. "Alright ${((s as any).pcs_nickname || '')}, have a good time and I'll see you later." You wave at him as he walks away.`);
     scene.actions([
       { label: 'Hang out until the party ends', goto: ['nyp_school', 'end'] },
     ]);
@@ -221,11 +221,11 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/fedordance.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
     // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
-    scene.text('The students start picking up their stuff and heading for the door while you and Fedor walk together hand in hand before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at \'+func(\'time\', \'get_time_string\', 18, 0)+\' on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
+    scene.text('The students start picking up their stuff and heading for the door while you and Fedor walk together hand in hand before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((s as any).NosovRevenge ?? 0) === 1) {
       // TODO-QSP: dynamic text: Dimka walks over to you and looks at the floor. "<<$pcs_nickname>>, you and I ha...
-      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname ?? 0)}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
+      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname || '')}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
     }
     (s as any).InvitationToDimkaNYparty = 1;
     scene.text('Everyone then slowly makes their way out of the school.');
@@ -239,7 +239,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).IgorQW ?? 0)?.['Love'] > 0) {
       // TODO-QSP: dynamic text: As you're hanging out and chatting with the girls, Igor walks over and offers yo...
-      scene.text(`As you're hanging out and chatting with the girls, Igor walks over and offers you his hand. "Come dance with me, ${((s as any).pcs_nickname ?? 0)}."`);
+      scene.text(`As you're hanging out and chatting with the girls, Igor walks over and offers you his hand. "Come dance with me, ${((s as any).pcs_nickname || '')}."`);
       scene.actions([
         { label: 'Don\'t dance with him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/talk.jpg');
@@ -261,11 +261,11 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
     // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
-    scene.text('The students start picking up their stuff and heading for the door while you and Igor walk together hand in hand before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at \'+func(\'time\', \'get_time_string\', 18, 0)+\' on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
+    scene.text('The students start picking up their stuff and heading for the door while you and Igor walk together hand in hand before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((s as any).NosovRevenge ?? 0) === 1) {
       // TODO-QSP: dynamic text: Dimka walks over to you and looks at the floor. "<<$pcs_nickname>>, you and I ha...
-      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname ?? 0)}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
+      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname || '')}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
     }
     scene.text('Everyone then slowly makes their way out of the school.');
     (s as any).InvitationToDimkaNYparty = 1;
@@ -279,7 +279,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).Marcus_sextype ?? 0) > 0) {
         // TODO-QSP: dynamic text: As you're hanging out and chatting with the girls, Marcus walks over and offers ...
-        scene.text(`As you're hanging out and chatting with the girls, Marcus walks over and offers you his hand. "Come dance with me, ${((s as any).pcs_nickname ?? 0)}."`);
+        scene.text(`As you're hanging out and chatting with the girls, Marcus walks over and offers you his hand. "Come dance with me, ${((s as any).pcs_nickname || '')}."`);
         scene.actions([
           { label: 'Don\'t dance with him', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/talk.jpg');
@@ -301,11 +301,11 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
     // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
-    scene.text('The students start picking up their stuff and heading for the door while you and Marcus walk together hand in hand before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at \'+func(\'time\', \'get_time_string\', 18, 0)+\' on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
+    scene.text('The students start picking up their stuff and heading for the door while you and Marcus walk together hand in hand before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((s as any).NosovRevenge ?? 0) === 1) {
       // TODO-QSP: dynamic text: Dimka walks over to you and looks at the floor. "<<$pcs_nickname>>, you and I ha...
-      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname ?? 0)}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
+      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname || '')}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
     }
     scene.text('Everyone then slowly makes their way out of the school.');
     (s as any).InvitationToDimkaNYparty = 1;
@@ -319,7 +319,7 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).npc_had_sex ?? 0)?.['A14']) {
           // TODO-QSP: dynamic text: As you're hanging out and chatting with the girls, Katja strikes up a conversati...
-          scene.text(`As you're hanging out and chatting with the girls, Katja strikes up a conversation with you. After a few seconds, a song comes on and Katja becomes excited. "I love this song!" she squeals as she turns to you and grabs you by the hand. "Dance with me, ${((s as any).pcs_nickname ?? 0)}!"`);
+          scene.text(`As you're hanging out and chatting with the girls, Katja strikes up a conversation with you. After a few seconds, a song comes on and Katja becomes excited. "I love this song!" she squeals as she turns to you and grabs you by the hand. "Dance with me, ${((s as any).pcs_nickname || '')}!"`);
           scene.actions([
             { label: 'Don\'t dance with her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/talk.jpg');
@@ -341,11 +341,11 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
     // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
-    scene.text('The students start picking up their stuff and heading for the door while you and Katja walk together before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at \'+func(\'time\', \'get_time_string\', 18, 0)+\' on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
+    scene.text('The students start picking up their stuff and heading for the door while you and Katja walk together before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((s as any).NosovRevenge ?? 0) === 1) {
       // TODO-QSP: dynamic text: Dimka walks over to you and looks at the floor. "<<$pcs_nickname>>, you and I ha...
-      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname ?? 0)}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
+      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname || '')}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
     }
     scene.text('Everyone then slowly makes their way out of the school.');
     (s as any).InvitationToDimkaNYparty = 1;
@@ -359,13 +359,13 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).AlbinaQW ?? 0)?.['Friends'] === 2) {
             // TODO-QSP: dynamic text: As you're hanging out and chatting with the girls, Albina strikes up a conversat...
-            scene.text(`As you're hanging out and chatting with the girls, Albina strikes up a conversation with you. After a few seconds, she grabs your hand and starts pulling you along. "Come and dance with me, ${((s as any).pcs_nickname ?? 0)}!"`);
+            scene.text(`As you're hanging out and chatting with the girls, Albina strikes up a conversation with you. After a few seconds, she grabs your hand and starts pulling you along. "Come and dance with me, ${((s as any).pcs_nickname || '')}!"`);
             scene.actions([
               { label: 'Don\'t dance with her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/talk.jpg');
     scene.text('You shake your head and pull yourself free from her grasp. "I don\'t feel like it right now. Maybe later?"');
     // TODO-QSP: dynamic text: She pouts. "Aww, you're no fun, <<$pcs_nickname>>! If you change your mind, then...
-    scene.text(`She pouts. "Aww, you're no fun, ${((s as any).pcs_nickname ?? 0)}! If you change your mind, then come join us."`);
+    scene.text(`She pouts. "Aww, you're no fun, ${((s as any).pcs_nickname || '')}! If you change your mind, then come join us."`);
     scene.text('A few of the other girls join her on the dance floor and they all start dancing together.');
     scene.text('You watch them for a while before turning back to engage in conversation with the other girls.');
     scene.actions([
@@ -384,11 +384,11 @@ function enterCoolJocks(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
     scene.text('Time seems to have flown by. You rock your hips, enjoying the beats of the music when it suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
     // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door while you and...
-    scene.text('The students start picking up their stuff and heading for the door while you and Katja walk together before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at \'+func(\'time\', \'get_time_string\', 18, 0)+\' on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
+    scene.text('The students start picking up their stuff and heading for the door while you and Katja walk together before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
     scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
     if (((s as any).NosovRevenge ?? 0) === 1) {
       // TODO-QSP: dynamic text: Dimka walks over to you and looks at the floor. "<<$pcs_nickname>>, you and I ha...
-      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname ?? 0)}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
+      scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname || '')}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
     }
     scene.text('Everyone then slowly makes their way out of the school.');
     (s as any).InvitationToDimkaNYparty = 1;
@@ -427,7 +427,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/nerds.jpg');
     scene.text('You see the others sitting at a table lively discussing something. As you approach, you can hear Natasha complaining. "Ugh, you always talk about this damn roleplaying game! It\'s no wonder everyone sees you as nerds! Can\'t we talk about something else?"');
     // TODO-QSP: dynamic text: The group look at her with a blank stare and instead turn towards you. "<<$pcs_n...
-    scene.text(`The group look at her with a blank stare and instead turn towards you. "${((s as any).pcs_nickname ?? 0)}, how do you think we should face the undead ruler?" You can hear Natasha ironically yawn.`);
+    scene.text(`The group look at her with a blank stare and instead turn towards you. "${((s as any).pcs_nickname || '')}, how do you think we should face the undead ruler?" You can hear Natasha ironically yawn.`);
     scene.actions([
       { label: 'Head on', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/nerds.jpg');
@@ -477,7 +477,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
         { label: 'Approach', handler: (st: GameState) => {
     scene.text('As you come closer, the discussion subsides as the guys stop talking when they se you.');
     // TODO-QSP: dynamic text: Natasha turns around and greets you. "Hi <<$pcs_nickname>>, sorry about the comm...
-    scene.text(`Natasha turns around and greets you. "Hi ${((s as any).pcs_nickname ?? 0)}, sorry about the commotion. I was discussing how annoying it was that the only thing that everyone talks about is this stupid game."`);
+    scene.text(`Natasha turns around and greets you. "Hi ${((s as any).pcs_nickname || '')}, sorry about the commotion. I was discussing how annoying it was that the only thing that everyone talks about is this stupid game."`);
     scene.text('"And I take it that you\'re not a fan of it?" you reply.');
     scene.text('She smiles nervously back. "I mean I don\'t mind them talking about it, but it\'s just that they talk about it <i>all</i> the time. It\'s like there\'s nothing else happening around here."');
     scene.text('The other side still haven\'t said a word since you\'ve arrived.');
@@ -491,7 +491,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
     scene.text('Feofan, who you assume is the leader, tries his hardest to avoid looking you in the eyes while the others try to avoid making any sound at all.');
     scene.text('You\'re a little annoyed by the silent response. "What? Before I arrived, you guys wouldn\'t shut up and now you won\'t talk. What\'s so unreasonable about what she wants?"');
     // TODO-QSP: dynamic text: Feofan sighs and takes a deep breath. "S-Sorry <<$pcs_nickname>>, b-but this gam...
-    scene.text(`Feofan sighs and takes a deep breath. "S-Sorry ${((s as any).pcs_nickname ?? 0)}, b-but this game is really immersive and we enjoy it quite a lot. It's not that we don't want to talk about the other stuff, it's just… Who cares?"`);
+    scene.text(`Feofan sighs and takes a deep breath. "S-Sorry ${((s as any).pcs_nickname || '')}, b-but this game is really immersive and we enjoy it quite a lot. It's not that we don't want to talk about the other stuff, it's just… Who cares?"`);
     scene.text('You give him a silent look over and keep staring at him until he continues. "Anyway, we\'re just passionate and get caught up in the moment is all."');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -546,7 +546,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/events/newyear/nerds.jpg');
     scene.text('You stop and listen in while the girls continue to chat about the game. "What\'s this game you\'re all talking so fondly about?"');
     // TODO-QSP: dynamic text: Natasha looks at you despairingly. "Not you too, <<$pcs_nickname>>!"
-    scene.text(`Natasha looks at you despairingly. "Not you too, ${((s as any).pcs_nickname ?? 0)}!"`);
+    scene.text(`Natasha looks at you despairingly. "Not you too, ${((s as any).pcs_nickname || '')}!"`);
     scene.text('You look at her in confusion as Feofan quickly cuts in. "I see we have a new potential player here!" he grins. "Once a week, we meet at the library to play D&D. It\'s a fantasy role-playing game."');
     scene.text('"That\'s totally <i>boring</i>!" Natasha jumps in.');
     scene.text('Feofan, a little annoyed by Natasha butting in, continues. "Does it sound interesting to you?"');
@@ -578,7 +578,7 @@ function enterNerds(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'ll think about it. I\'m not too sure this is for me," you answer.');
     scene.text('Feofan looks a little dejected. "Well you know where you can find us. Whenever you decide what you want to do, you\'re more than welcome to join us."');
     // TODO-QSP: dynamic text: "Ha!" Natasha yells out. "I told you <<$pcs_nickname>> wouldn't want to join you...
-    scene.text(`"Ha!" Natasha yells out. "I told you ${((s as any).pcs_nickname ?? 0)} wouldn't want to join you," she says and sticks her tongue out.`);
+    scene.text(`"Ha!" Natasha yells out. "I told you ${((s as any).pcs_nickname || '')} wouldn't want to join you," she says and sticks her tongue out.`);
     scene.text('You try to calm the situation down and play peace maker. "It\'s not I don\'t want to, I just have schoolwork and other stuff going on. I just don\'t know if I have time for something like that."');
     scene.text('Natasha shrugs her shoulders. "It\'s good enough for me," she says as she gives the others an exasperating grin.');
     scene.text('You end up talking to Natasha about the latest things going on in school while the rest of them go back to talking about their game.');
@@ -613,7 +613,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     { label: 'Go tag something', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/school/events/newyear/gopniks.jpg');
     // TODO-QSP: dynamic text: Ekaterina is frantically waving, trying to get your attention. "<<$pcs_nickname>...
-    scene.text(`Ekaterina is frantically waving, trying to get your attention. "${((s as any).pcs_nickname ?? 0)}! ${((s as any).pcs_nickname ?? 0)}! Come over here!"`);
+    scene.text(`Ekaterina is frantically waving, trying to get your attention. "${((s as any).pcs_nickname || '')}! ${((s as any).pcs_nickname || '')}! Come over here!"`);
     scene.text('You move over to a small group that\'s gathered in one of the corners of the room. As soon you approach, Ekaterina tells you to come closer as if she\'s about to tell you a secret. "Now that all the teachers are gone, we\'re free to do what ever we want…" she slyly says.');
     scene.text('"Sounds intriguing. What did you have in mind?" you curiously ask.');
     scene.text('"Well, Lavrenti has been kind enough to provide us with some spray cans. So what do you say? Let\'s have some fun," she smiles.');
@@ -622,19 +622,19 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'crime', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
     scene.text('You don\'t want to be a part of such childish things. "There are other ways to leave a memento behind. So no, I won\'t be joining you."');
     // TODO-QSP: dynamic text: The group looks disappointingly at you. "We thought you were cool, <<$pcs_nickna...
-    scene.text(`The group looks disappointingly at you. "We thought you were cool, ${((s as any).pcs_nickname ?? 0)}," Ekaterina says. The others nod, agreeing with what she's saying.`);
+    scene.text(`The group looks disappointingly at you. "We thought you were cool, ${((s as any).pcs_nickname || '')}," Ekaterina says. The others nod, agreeing with what she's saying.`);
     scene.text('You shrug your shoulders at their reaction. It doesn\'t really bother you that they find you boring for not going along with it.');
     scene.text('They shake their heads as they walk past you and some of them whisper. "Can you believe she turned us down? Who the fuck does she think she is?"');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -786,13 +786,13 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     scene.text('The group throw some glances at each other. The boys seem irritated by your prodding while the girls cheerfully respond. "Arkadi\'s friends from the city came through and gave him what is supposedly some very good weed."');
     scene.text('Arkadi sighs. "Want to announce it to the whole room maybe? It was supposed to be a secret! There are too many blabbermouths around here."');
     // TODO-QSP: dynamic text: "Surely we can trust <<$pcs_nickname>>, right?" Anushka winks towards you.
-    scene.text(`"Surely we can trust ${((s as any).pcs_nickname ?? 0)}, right?" Anushka winks towards you.`);
+    scene.text(`"Surely we can trust ${((s as any).pcs_nickname || '')}, right?" Anushka winks towards you.`);
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     qspCall(s, 'willpower', 'drugs', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
@@ -800,7 +800,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m not interested, but your secret is safe with me. I won\'t tell anyone," you reply.');
     scene.text('"Yeah, you better keep that mouth shut!" Arkadi aggressively tells you off.');
     // TODO-QSP: dynamic text: "Take it easy, Arkadi! <<$pcs_nickname>> said she wouldn't say anything. And eve...
-    scene.text(`"Take it easy, Arkadi! ${((s as any).pcs_nickname ?? 0)} said she wouldn't say anything. And even if she did, it's not like this is a big secret after all," Anushka replies.`);
+    scene.text(`"Take it easy, Arkadi! ${((s as any).pcs_nickname || '')} said she wouldn't say anything. And even if she did, it's not like this is a big secret after all," Anushka replies.`);
     scene.text('"As I said, she better keep that mouth shut!" he yells out as he moves away from you. The rest of the group quickly chase after him as you\'re left alone, standing by yourself.');
     scene.actions([
       { label: 'Hang out until the party ends', goto: ['nyp_school', 'end'] },
@@ -809,7 +809,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
@@ -834,13 +834,13 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drugs', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Have second thoughts [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Have second thoughts', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Have second thoughts [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Have second thoughts', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/gym/locker/lockerroom.jpg');
@@ -868,7 +868,7 @@ function enterGopniks(s: GameState, scene: SceneBuilder): void {
     scene.text('You nod and feel even more light-headed, but it\'s not a bad feeling. Instead, you feel more relaxed and spaced out.');
     scene.text('You engage in all kinds of conversations with the rest of the group and you lose track of time. All you know is that you\'re having a great time. As the kick subsides, all of you decide that it\'s time to head back.');
     // TODO-QSP: dynamic text: As you're heading back, Arkadi walks next to you. "You know what, <<$pcs_nicknam...
-    scene.text(`As you're heading back, Arkadi walks next to you. "You know what, ${((s as any).pcs_nickname ?? 0)}? You're pretty cool. I'm sorry I reacted the way I did," he says.`);
+    scene.text(`As you're heading back, Arkadi walks next to you. "You know what, ${((s as any).pcs_nickname || '')}? You're pretty cool. I'm sorry I reacted the way I did," he says.`);
     scene.text('"Nothing to worry about," you smile.');
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).narkweed = ((s as any).narkweed ?? 0) + (1);
@@ -995,7 +995,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
     scene.text('You stand at the edge of the hall with Sonia to avoid drawing any attention to yourselves. You\'re actually quite enjoying yourself and Sonia is happily talking about her latest sexual endeavors.');
     scene.text('The two of you let your guard down and as you talk, you hardly notice that some of the gopniks have snuck upon you.');
     // TODO-QSP: dynamic text: "Ohhh, what is this I hear? <<$pcs_nickname>> and Sonia exchanging tips on how t...
-    scene.text(`"Ohhh, what is this I hear? ${((s as any).pcs_nickname ?? 0)} and Sonia exchanging tips on how to suck a cock properly?" Vitek says to the others as they laugh.`);
+    scene.text(`"Ohhh, what is this I hear? ${((s as any).pcs_nickname || '')} and Sonia exchanging tips on how to suck a cock properly?" Vitek says to the others as they laugh.`);
     scene.text('The two of you throw a quick look at each other, afraid of what might happen next.');
     scene.actions([
       { label: 'What do you want?', handler: (st: GameState) => {
@@ -1018,13 +1018,13 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'pain', '', 5, 'neck', 'pinch');
@@ -1032,7 +1032,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/image_needed.png');
     scene.text('In a moment of bravery, you fight back. "Sonia and I are not your playthings, so go fuck yourself!" you yell.');
     // TODO-QSP: dynamic text: Vitek starts laughing as he tightens his grip around your neck and you let out a...
-    scene.text(`Vitek starts laughing as he tightens his grip around your neck and you let out a squeak as the pain becomes unbearable. "What did you say, whore? Forget the foreplay boys, ${((s as any).pcs_nickname ?? 0)} will do fine by herself."`);
+    scene.text(`Vitek starts laughing as he tightens his grip around your neck and you let out a squeak as the pain becomes unbearable. "What did you say, whore? Forget the foreplay boys, ${((s as any).pcs_nickname || '')} will do fine by herself."`);
     scene.text('The guys all laugh in unison, but just as they\'re about to lead you through the main door, Lena runs up to Vitek and whispers something.');
     scene.text('You see his face turn red as he yells to the rest of his gang to get ready for a fight. "You\'re lucky this time, whore! Next time I won\'t be so nice!" he snarls as he releases you from his grip.');
     scene.actions([
@@ -1058,7 +1058,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
     scene.text('Vitek lets go of you. "Great. Now that that\'s settled, shall we?"');
     scene.text('You both nod and make yourself ready to head over to the restroom. Just as you\'re about to leave, Lena runs up to Vitek and whispers something.');
     // TODO-QSP: dynamic text: You see his face turn red as he yells to the rest of his gang to get ready for a...
-    scene.text(`You see his face turn red as he yells to the rest of his gang to get ready for a fight. "I'll take a rain check, ${((s as any).pcs_nickname ?? 0)}!" he yells as he walks away.`);
+    scene.text(`You see his face turn red as he yells to the rest of his gang to get ready for a fight. "I'll take a rain check, ${((s as any).pcs_nickname || '')}!" he yells as he walks away.`);
     scene.actions([
       { label: 'Leave the party', handler: (st: GameState) => {
     scene.img('images/system/image_needed.png');
@@ -1080,9 +1080,9 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/image_needed.png');
     scene.text('You stand by yourself with your back to the wall, trying to draw as little attention to yourself as possible. People pass by, not paying attention to you before you suddenly hear someone shouting your name.');
     // TODO-QSP: dynamic text: "We haven't played with <<$pcs_nickname>> for a while. Let's go and fuck around ...
-    scene.text(`"We haven't played with ${((s as any).pcs_nickname ?? 0)} for a while. Let's go and fuck around with her," you overhear Lena tell Vitek. He nods and before you know it, the majority of the gopniks stand in front of you.`);
+    scene.text(`"We haven't played with ${((s as any).pcs_nickname || '')} for a while. Let's go and fuck around with her," you overhear Lena tell Vitek. He nods and before you know it, the majority of the gopniks stand in front of you.`);
     // TODO-QSP: dynamic text: "Hi <<$pcs_nickname>>! Sucked many cocks today?" Lena asks as the others laugh. ...
-    scene.text(`"Hi ${((s as any).pcs_nickname ?? 0)}! Sucked many cocks today?" Lena asks as the others laugh. "She's truly a good piece of ass. Who here hasn't fucked her yet? I'm sure she'll be willing to please you."`);
+    scene.text(`"Hi ${((s as any).pcs_nickname || '')}! Sucked many cocks today?" Lena asks as the others laugh. "She's truly a good piece of ass. Who here hasn't fucked her yet? I'm sure she'll be willing to please you."`);
     scene.actions([
       { label: 'Leave me alone', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
@@ -1090,9 +1090,9 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
     scene.img('images/system/image_needed.png');
     scene.text('Frightened by the sheer number of people that surround you, you try to plead with them. "I haven\'t done anything to you! Please just leave me alone."');
     // TODO-QSP: dynamic text: They all laugh at your pathetic plea. "Listen here, <<$pcs_nickname>>. <i>We</i>...
-    scene.text(`They all laugh at your pathetic plea. "Listen here, ${((s as any).pcs_nickname ?? 0)}. <i>We</i> decide when you've had enough and when to stop!" Lena angrily berates you."`);
+    scene.text(`They all laugh at your pathetic plea. "Listen here, ${((s as any).pcs_nickname || '')}. <i>We</i> decide when you've had enough and when to stop!" Lena angrily berates you."`);
     // TODO-QSP: dynamic text: Once again, she turns towards the crowd. "Come on, who here hasn't fucked <<$pcs...
-    scene.text(`Once again, she turns towards the crowd. "Come on, who here hasn't fucked ${((s as any).pcs_nickname ?? 0)} yet? Any takers? Doesn't matter if you're male or female, I'm sure ${((s as any).pcs_nickname ?? 0)} is up to it."`);
+    scene.text(`Once again, she turns towards the crowd. "Come on, who here hasn't fucked ${((s as any).pcs_nickname || '')} yet? Any takers? Doesn't matter if you're male or female, I'm sure ${((s as any).pcs_nickname || '')} is up to it."`);
     scene.text('Vitek steps up to you, grabs you by the neck and forces you down to his crotch while the others laugh loudly. "See! I told you she was willing!"');
     scene.actions([
       { label: 'Let go of me', handler: (st: GameState) => {
@@ -1113,7 +1113,7 @@ function enterOutcast(s: GameState, scene: SceneBuilder): void {
     scene.text('Lena starts laughing. "Don\'t believe her lies! She\'s just trying to get away." She walks up to you. "How about you show a little skin for the group?" she says as she grabs hold of your clothes and tries to expose your body.');
     scene.text('You try your hardest to keep Lena at a distance and after a few seconds, she gives up and angrily walks away, pushing away some people standing in the crowd.');
     // TODO-QSP: dynamic text: "That's it! The show is over!" Vitek yells. "Until next time, <<$pcs_nickname>>,...
-    scene.text(`"That's it! The show is over!" Vitek yells. "Until next time, ${((s as any).pcs_nickname ?? 0)}," he winks.`);
+    scene.text(`"That's it! The show is over!" Vitek yells. "Until next time, ${((s as any).pcs_nickname || '')}," he winks.`);
     scene.actions([
       { label: 'Leave the party', handler: (st: GameState) => {
     scene.img('images/system/image_needed.png');
@@ -1138,11 +1138,11 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/school/events/newyear/newyear.jpg');
   scene.text('Time seems to have flown by as the music suddenly stops. "Okay everyone, time to go home," one of the teachers says. "I hope that you\'ve all had a great time and I wish you all a happy and safe holiday. We\'ll see everyone back at school once the winter break is over."');
   // TODO-QSP: dynamic text: The students start picking up their stuff and heading for the door before Dimka ...
-  scene.text('The students start picking up their stuff and heading for the door before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at \'+func(\'time\', \'get_time_string\', 18, 0)+\' on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
+  scene.text('The students start picking up their stuff and heading for the door before Dimka suddenly gets everyone\'s attention. "Hey everyone! My parents left for the New Year, so you know what that means! Party at my house! Come by at 18:00 on New Years Eve, you\'re all invited!" Everyone cheers at the idea of a party without any adults around to make it boring.');
   scene.text('He then looks at the outcasts. "Well everyone except you losers that is," he says with a laugh, which gets several of the other students to join in. He then stops and smirks. "Except you Sonia, you can come. I\'m sure you\'ll show your gratitude one way or another."');
   if (((s as any).NosovRevenge ?? 0) === 1) {
     // TODO-QSP: dynamic text: Dimka walks over to you and looks at the floor. "<<$pcs_nickname>>, you and I ha...
-    scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname ?? 0)}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
+    scene.text(`Dimka walks over to you and looks at the floor. "${((s as any).pcs_nickname || '')}, you and I have had some disagreements before, but I sincerely apologize for my behavior and I hope you'll still come to my party."`);
   }
   scene.text('Everyone then slowly makes their way out of the school.');
   (s as any).InvitationToDimkaNYparty = 1;
@@ -1174,7 +1174,7 @@ function enterSlut(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/newyear/sex/snyfilming.jpg');
     // TODO-QSP: dynamic text: You slurp on one cock in your mouth while using your hands to jerk off two other...
-    scene.text(`You slurp on one cock in your mouth while using your hands to jerk off two others, casually looking up you see that Dimka has taken out a camera and started filming it all. "Don't worry, ${((s as any).pcs_nickname ?? 0)}. This is for all our private collections. I'm sure no one will spread this video around," he winks.`);
+    scene.text(`You slurp on one cock in your mouth while using your hands to jerk off two others, casually looking up you see that Dimka has taken out a camera and started filming it all. "Don't worry, ${((s as any).pcs_nickname || '')}. This is for all our private collections. I'm sure no one will spread this video around," he winks.`);
     qspCall(s, 'gschool_events', 'rand_boy_arg1', 1, 1, 0, 0, 0, 0);
     qspCall(s, 'npcStat', '', ((s as any).school_static_num ?? 0), 2);
     // TODO-QSP: gs 'arousal', 'bj', 5, $npcID[2], 'sub'

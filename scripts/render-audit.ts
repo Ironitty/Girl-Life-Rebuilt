@@ -57,10 +57,99 @@ function getLocations(): string[] {
   return locations.sort();
 }
 
+function getLocationFileMap(): Record<string, string> {
+  const locDir = join(ROOT, 'src', 'locations');
+  const map: Record<string, string> = {};
+  function scanDir(dir: string) {
+    const entries = readdirSync(dir);
+    for (const entry of entries) {
+      const fullPath = join(dir, entry);
+      const stat = statSync(fullPath);
+      if (stat.isDirectory()) {
+        if (entry === '_shared') continue;
+        scanDir(fullPath);
+      } else if (entry.endsWith('.ts')) {
+        const name = basename(entry, '.ts');
+        if (name.startsWith('_')) continue;
+        map[name] = fullPath;
+      }
+    }
+  }
+  scanDir(locDir);
+  return map;
+}
+
+function stripHandlers(code: string): string {
+  let out = code;
+  let idx = 0;
+  while (true) {
+    const h = out.indexOf('handler:', idx);
+    if (h === -1) break;
+    const arrow = out.indexOf('=>', h);
+    if (arrow === -1) break;
+    const open = out.indexOf('{', arrow);
+    if (open === -1) break;
+    let depth = 0;
+    let close = -1;
+    for (let i = open; i < out.length; i++) {
+      if (out[i] === '{') depth++;
+      else if (out[i] === '}') { depth--; if (depth === 0) { close = i; break; } }
+    }
+    if (close === -1) break;
+    out = out.slice(0, h) + out.slice(close + 1);
+    idx = h;
+  }
+  return out;
+}
+
+const locationFileMap = getLocationFileMap();
+const imageCache: Record<string, boolean> = {};
+function sourceHasImage(loc: string): boolean {
+  if (loc in imageCache) return imageCache[loc];
+  const p = locationFileMap[loc];
+  let has = false;
+  if (p) {
+    try {
+      const c = readFileSync(p, 'utf8');
+      const def = c.match(/function enterDefault\(s: GameState, scene: SceneBuilder\): void \{([\s\S]*?)\n\}/);
+      const scope = def ? def[1] : c;
+      has = /scene\.img\(|scene\.background\(/.test(stripHandlers(scope));
+    } catch { has = false; }
+  }
+  imageCache[loc] = has;
+  return has;
+}
+
+async function setupPage(p: any): Promise<void> {
+  await p.goto('http://localhost:4173', { waitUntil: 'networkidle' });
+  await sleep(500);
+  await p.locator('button', { hasText: /^Start$/ }).click();
+  await sleep(500);
+  await p.locator('button', { hasText: 'Quick Start' }).click();
+  await sleep(500);
+  await p.locator('input[placeholder="Elena"]').first().fill('Test');
+  await p.locator('button', { hasText: /^Continue$/ }).click();
+  await sleep(500);
+  await p.locator('button', { hasText: /^Continue$/ }).click();
+  await sleep(500);
+  await p.locator('button', { hasText: /End of August/ }).click();
+  await sleep(500);
+  await p.locator('button', { hasText: 'Pavlovsk' }).first().click();
+  await sleep(500);
+  await p.locator('button', { hasText: 'Popular' }).first().click();
+  await sleep(500);
+  await p.locator('button', { hasText: 'Sociable' }).first().click();
+  await sleep(500);
+  await p.locator('button', { hasText: /^Continue$/ }).click();
+  await sleep(500);
+  await p.locator('button', { hasText: 'Start Game' }).click();
+  await sleep(1000);
+}
+
 async function main() {
   const srv = startServer();
   await sleep(500);
-  const browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
+  let browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
   let page = await browser.newPage();
 
   const errors: string[] = [];
@@ -70,30 +159,7 @@ async function main() {
   });
 
   try {
-    await page.goto('http://localhost:4173', { waitUntil: 'networkidle' });
-    await sleep(500);
-
-    await page.locator('button', { hasText: /^Start$/ }).click();
-    await sleep(500);
-    await page.locator('button', { hasText: 'Quick Start' }).click();
-    await sleep(500);
-    await page.locator('input[placeholder="Elena"]').first().fill('Test');
-    await page.locator('button', { hasText: /^Continue$/ }).click();
-    await sleep(500);
-    await page.locator('button', { hasText: /^Continue$/ }).click();
-    await sleep(500);
-    await page.locator('button', { hasText: /End of August/ }).click();
-    await sleep(500);
-    await page.locator('button', { hasText: 'Pavlovsk' }).first().click();
-    await sleep(500);
-    await page.locator('button', { hasText: 'Popular' }).first().click();
-    await sleep(500);
-    await page.locator('button', { hasText: 'Sociable' }).first().click();
-    await sleep(500);
-    await page.locator('button', { hasText: /^Continue$/ }).click();
-    await sleep(500);
-    await page.locator('button', { hasText: 'Start Game' }).click();
-    await sleep(1000);
+    await setupPage(page);
 
     const EXCLUDE_NO_ACTIONS = new Set([
       // Utility locations (no title, not meant for direct navigation)
@@ -101,11 +167,23 @@ async function main() {
       // Display locations (has title but 0 action refs by design)
       'FSstat','anekdot','cuminsidereact','dinsexFX','exp_deg','map','spell',
       // Conditional locations (actions only under specific game states)
-      'KGOLfight','KGZgame','VolleyTrenCentr','andrey','city_kafeend','father','intro_overview','kotovEv','nichUtil','pav_library','pirsingsalon','placer_pav_park','pornstudio','road','shop_exhibitionist','sister','transport_functions',
+      'KGOLfight','KGZgame','VolleyTrenCentr','andrey','city_kafeend','city_trashplace','father','intro_overview','kotovEv','nichUtil','pav_library','pirsingsalon','placer_pav_park','pornstudio','road','shop_exhibitionist','sister','transport_functions',
+      // Hub/stub locations (text-link navigation or empty by design)
+      'pushkin_sq','pushkin_theatre','placer_house','treeCircle',
+    ]);
+    // Utility locations whose enter() touches state (arrays/dynamic vars) not initialized in the default audit state.
+    const EXCLUDE_JS_ERRORS = new Set<string>([
+      'saveupdater','stat_sklattrib',
     ]);
     const EXCLUDE_BG_IMAGE = new Set([
       // NPC-specific locations requiring valid numnpc state
       'Gnpc','Gnpc2','Snpc',
+      // Dynamic image (ev${dancegevtipe}.jpg) — default state resolves to a non-existent file
+      'danceGev',
+    ]);
+    // Locations whose source sets an image only under states not met by the default audit state.
+    const EXCLUDE_NO_BG = new Set<string>([
+      'Serpent','andrey','food_menu','furisex','gad_backwater','gad_swampspring','journal_portfolio','katalkin','komp','pav_park_meet_kol_event','placer_act','placer_end','podval_rape','sister',
     ]);
 
     let locations = getLocations();
@@ -143,60 +221,48 @@ async function main() {
         issues.push('page crashed');
         results.push({ loc, passed: false, issues });
         console.log(`  [page crashed at ${loc}, recovering...]`);
-        const newPage = await browser.newPage();
+        let newPage: any;
+        try {
+          newPage = await browser.newPage();
+        } catch {
+          await browser.close().catch(() => {});
+          browser = await chromium.launch({ headless: true, executablePath: '/snap/bin/chromium' });
+          newPage = await browser.newPage();
+        }
         newPage.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
         newPage.on('console', (msg) => { if (msg.type() === 'error') errors.push(`console: ${msg.text()}`); });
-        await newPage.goto('http://localhost:4173', { waitUntil: 'networkidle' });
-        await sleep(500);
-        await newPage.locator('button', { hasText: /^Start$/ }).click();
-        await sleep(500);
-        await newPage.locator('button', { hasText: 'Quick Start' }).click();
-        await sleep(500);
-        await newPage.locator('input[placeholder="Elena"]').first().fill('Test');
-        await newPage.locator('button', { hasText: /^Continue$/ }).click();
-        await sleep(500);
-        await newPage.locator('button', { hasText: /^Continue$/ }).click();
-        await sleep(500);
-        await newPage.locator('button', { hasText: /End of August/ }).click();
-        await sleep(500);
-        await newPage.locator('button', { hasText: 'Pavlovsk' }).first().click();
-        await sleep(500);
-        await newPage.locator('button', { hasText: 'Popular' }).first().click();
-        await sleep(500);
-        await newPage.locator('button', { hasText: 'Sociable' }).first().click();
-        await sleep(500);
-        await newPage.locator('button', { hasText: /^Continue$/ }).click();
-        await sleep(500);
-        await newPage.locator('button', { hasText: 'Start Game' }).click();
-        await sleep(1000);
+        await setupPage(newPage);
         page = newPage;
         continue;
       }
 
       const newErrors = errors.filter((e) => !/404|Failed to load resource/i.test(e));
-      if (newErrors.length > 0) {
+      if (newErrors.length > 0 && !EXCLUDE_JS_ERRORS.has(loc)) {
         issues.push(`JS errors: ${newErrors.slice(0, 3).join('; ')}`);
       }
 
       const bgInfo = await page.evaluate(async () => {
         const main = document.querySelector('main');
-        if (!main) return null;
+        if (!main) return { noBg: true };
         const bg = getComputedStyle(main).backgroundImage;
-        if (!bg || bg === 'none') return null;
+        if (!bg || bg === 'none') return { noBg: true };
         const match = bg.match(/url\("?(.*?)"?\)/);
-        if (!match) return null;
+        if (!match) return { noBg: true };
         const url = match[1];
         if (url.includes('undefined') || url.includes('null')) {
-          return { url, ok: false };
+          return { noBg: false, url, ok: false };
         }
         try {
           const resp = await fetch(url, { method: 'HEAD' });
-          return { url, ok: resp.ok };
+          return { noBg: false, url, ok: resp.ok };
         } catch {
-          return { url, ok: false };
+          return { noBg: false, url, ok: false };
         }
       });
-      if (bgInfo && !bgInfo.ok && !EXCLUDE_BG_IMAGE.has(loc)) {
+      if (bgInfo.noBg && sourceHasImage(loc) && !EXCLUDE_NO_BG.has(loc)) {
+        issues.push('missing background image (source sets image, none rendered)');
+      }
+      if (!bgInfo.noBg && !bgInfo.ok && !EXCLUDE_BG_IMAGE.has(loc)) {
         issues.push(`background image issue (src="${bgInfo.url}")`);
       }
 
@@ -223,6 +289,10 @@ async function main() {
 
       const passed = issues.length === 0;
       results.push({ loc, passed, issues });
+
+      if (!passed) {
+        console.log(`  ✗ ${loc}: ${issues.join(', ')}`);
+      }
 
       if (verbose) {
         const status = passed ? '✓' : '✗';

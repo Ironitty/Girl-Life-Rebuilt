@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspCall, qspFunc, hasLocation } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -19,9 +19,9 @@ function enterIsInit(s: GameState, scene: SceneBuilder): void {
 
 function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'start') {
-    qspCall(s, 'shop_utils', 'init', 'set_defaults');
-    qspCall(s, 'shop_utils', 'init', 'set_outfit_file', ((s as any).locArgs?.[2] ?? 0));
-    qspCall(s, 'shop_utils', 'init', 'set_link', ((s as any).locArgs?.[3] ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_defaults']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_outfit_file', ((s as any).locArgs?.[2] ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_link', ((s as any).locArgs?.[3] ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set_defaults') {
@@ -35,7 +35,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['link'] = '';
     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['inclusion_check'] = '1';
     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['bcolor'] = '';
-    qspCall(s, 'shop_utils', 'filter', 'reset_sorting');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset_sorting']; enterFilter(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (!(s as any).outfitfilter) (s as any).outfitfilter = {}; (s as any).outfitfilter['number_sort'] = 1;
     return;
   }
@@ -52,7 +52,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'add_all_types') {
-    if (! ((s as any).loc ?? 0)(((s as any).shop_display ?? 0)?.['view_file'])) {
+    if (! hasLocation(((s as any).shop_display ?? 0)?.['view_file'])) {
       return;
     }
     // TODO-QSP: gs $shop_display['view_file'], 'init', 'add_types', 'all'
@@ -192,7 +192,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'set_default_exceptions') {
-    if (((s as any).loc ?? 0)(((s as any).shop_display ?? 0)?.['view_file'])) {
+    if (hasLocation(((s as any).shop_display ?? 0)?.['view_file'])) {
       // TODO-QSP: gs $shop_display['view_file'], 'init', 'set_exceptions'
     } else {
       qspCall(s, 'clothing_view', 'init', 'set_exceptions');
@@ -214,7 +214,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'end') {
     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['init'] = 1;
     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_max'] = 0;
-    qspCall(s, 'shop_utils', 'sorted', 'main');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'main']; enterSorted(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
   return;
@@ -224,10 +224,10 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
 
 function enterSorted(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'main') {
-    if (! ((s as any).loc ?? 0)(((s as any).shop_display ?? 0)?.['func_file'])) {
+    if (! hasLocation(((s as any).shop_display ?? 0)?.['func_file'])) {
       return;
     }
-    if (! ((s as any).loc ?? 0)(((s as any).shop_display ?? 0)?.['view_file'])) {
+    if (! hasLocation(((s as any).shop_display ?? 0)?.['view_file'])) {
       return;
     }
     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_i'] = 0;
@@ -235,12 +235,12 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
     if (((s as any).shop_display ?? 0)?.['type_i'] < Object.keys((s as any).shop_display_types ?? {}).length) {
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type'] = qspUntranslated(s, "shop_display_types[shop_display['type_i']]", { location: "shop_utils" });
       // TODO-QSP: gs $shop_display['func_file'], 'totals', $shop_display['type']
-      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['number'] = 1 + ((s as any).shop_display ?? {})?.['offset'];
+      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['number'] = 1 + (((s as any).shop_display ?? {})?.['offset'] ?? 0);
       // TODO-QSP: :main_loop_sorted
       if (((s as any).shop_display ?? 0)?.['number'] <= ((s as any).total ?? 0)) {
         if (((s as any).shop_display_exceptions ?? 0)[((s as any).shop_display ?? 0)?.['type'] + ((s as any).shop_display ?? 0)?.['type_suffix'] + '-' + ((s as any).shop_display ?? 0)?.['number']] === 0) {
           if ((0 as any)) {
-            if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['shop'] = (String(((s as any).shop_display ?? 0)?.['type']).slice((1)-1, ((1)-1)+((String(((s as any).shop_display ?? {})?.['type'] + '_').indexOf(String('_'))) + 1 - 1)));
+            if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['shop'] = (String(((s as any).shop_display ?? 0)?.['type']).slice((1)-1, ((1)-1)+((String((((s as any).shop_display ?? {})?.['type'] ?? 0) + '_').indexOf(String('_'))) + 1 - 1)));
             if (((s as any).shop_display ?? 0)?.['shop'] !== '') {
               if ((Array.isArray((s as any).shop_display_sorted_titles) ? ((s as any).shop_display_sorted_titles as any[]).indexOf(((s as any).shop_display ?? 0)?.['shop']) : -1) < 0) {
                 // TODO-QSP: $shop_display_sorted_titles[] = $shop_display['shop']
@@ -266,10 +266,10 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
     if (((s as any).shop_display ?? 0)?.['item_i'] < Object.keys((s as any).shop_display_items ?? {}).length) {
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['item_entry'] = qspUntranslated(s, "shop_display_items[shop_display['item_i']]", { location: "shop_utils" });
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['sep_index'] = (String(((s as any).shop_display ?? 0)?.['item_entry']).indexOf(String('-'))) + 1;
-      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type'] = (String(((s as any).shop_display ?? 0)?.['item_entry']).slice((1)-1, ((1)-1)+(((s as any).shop_display ?? {})?.['sep_index'] - 1)));
-      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['number'] = parseFloat((String(((s as any).shop_display ?? 0)?.['item_entry']).slice((((s as any).shop_display ?? {})?.['sep_index'] + 1)-1)));
+      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type'] = (String(((s as any).shop_display ?? 0)?.['item_entry']).slice((1)-1, ((1)-1)+((((s as any).shop_display ?? {})?.['sep_index'] ?? 0) - 1)));
+      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['number'] = parseFloat((String(((s as any).shop_display ?? 0)?.['item_entry']).slice(((((s as any).shop_display ?? {})?.['sep_index'] ?? 0) + 1)-1)));
       if ((0 as any)) {
-        if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['shop'] = (String(((s as any).shop_display ?? {})?.['type'] + '_').slice((1)-1, ((1)-1)+((String(((s as any).shop_display ?? 0)?.['type']).indexOf(String('_'))) + 1 - 1)));
+        if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['shop'] = (String((((s as any).shop_display ?? {})?.['type'] ?? 0) + '_').slice((1)-1, ((1)-1)+((String(((s as any).shop_display ?? 0)?.['type']).indexOf(String('_'))) + 1 - 1)));
         if ((Array.isArray((s as any).shop_display_sorted_titles) ? ((s as any).shop_display_sorted_titles as any[]).indexOf(((s as any).shop_display ?? 0)?.['shop']) : -1) < 0) {
           // TODO-QSP: $shop_display_sorted_titles[] = $shop_display['shop']
           // TODO-QSP: $shop_display_sorted['number_' + shop_display['unused_type_i'] + '_title'] = $shop_display['shop']
@@ -341,10 +341,10 @@ function enterSorted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplay(s: GameState, scene: SceneBuilder): void {
-  if (! ((s as any).loc ?? 0)(((s as any).shop_display ?? 0)?.['view_file'])) {
+  if (! hasLocation(((s as any).shop_display ?? 0)?.['view_file'])) {
     return;
   }
-  if (! ((s as any).loc ?? 0)(((s as any).shop_display ?? 0)?.['func_file'])) {
+  if (! hasLocation(((s as any).shop_display ?? 0)?.['func_file'])) {
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'init') {
@@ -383,9 +383,9 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).outfitfilter ?? 0)?.['sort_direction'] === 0) {
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['j'] = 0;
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['j_inc'] = 1;
-      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['j_max'] = ((s as any).shop_display_sorted ?? 0)?.['max_' + ((s as any).shop_display ?? {})?.['sort_type']];
+      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['j_max'] = ((s as any).shop_display_sorted ?? 0)?.['max_' + (((s as any).shop_display ?? {})?.['sort_type'] ?? 0)];
     } else {
-      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['j'] = ((s as any).shop_display_sorted ?? 0)?.['max_' + ((s as any).shop_display ?? {})?.['sort_type']];
+      if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['j'] = ((s as any).shop_display_sorted ?? 0)?.['max_' + (((s as any).shop_display ?? {})?.['sort_type'] ?? 0)];
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['j_inc'] = (-1);
       if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['j_max'] = 0;
     }
@@ -397,8 +397,8 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     }
     if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['i'] = 0;
     // TODO-QSP: :main_display_loop
-    if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type'] = ((s as any).shop_display_sorted ?? 0)?.[((s as any).shop_display ?? {})?.['sort_type'] + '_' + ((s as any).shop_display ?? {})?.['j'] + '_type_' + ((s as any).shop_display ?? {})?.['i']];
-    if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['number'] = ((s as any).shop_display_sorted ?? 0)?.[((s as any).shop_display ?? {})?.['sort_type'] + '_' + ((s as any).shop_display ?? {})?.['j'] + '_number_' + ((s as any).shop_display ?? {})?.['i']];
+    if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type'] = ((s as any).shop_display_sorted ?? 0)?.[(((s as any).shop_display ?? {})?.['sort_type'] ?? 0) + '_' + (((s as any).shop_display ?? {})?.['j'] ?? 0) + '_type_' + (((s as any).shop_display ?? {})?.['i'] ?? 0)];
+    if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['number'] = ((s as any).shop_display_sorted ?? 0)?.[(((s as any).shop_display ?? {})?.['sort_type'] ?? 0) + '_' + (((s as any).shop_display ?? {})?.['j'] ?? 0) + '_number_' + (((s as any).shop_display ?? {})?.['i'] ?? 0)];
     if (((s as any).shop_display ?? 0)?.['type'] !== ''  &&  ((s as any).shop_display ?? 0)?.['number'] !== 0) {
       if ((0 as any)) {
         // TODO-QSP: gs $shop_display['view_file'], 'display', $shop_display['display_func'], 'main', $shop_display['link...
@@ -417,31 +417,31 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><table border=1><tr>');
     if (((s as any).shop_display ?? 0)?.['link'] !== 'wardrobe') {
       // TODO-QSP: dynamic text: <th><a href="exec:gs 'shop_utils', 'cleanup' & gt '<<$shop_display['view_file']>...
-      scene.text(`<th><a href="exec:gs 'shop_utils', 'cleanup' & gt '${((s as any).shop_display ?? 0)?.['view_file']}', '${((s as any).locArgs?.[2] ?? 0)}', 'wardrobe'">Wardrobe</a></th>`);
+      scene.text(`<th><a href="exec:gs 'shop_utils', 'cleanup' & gt '${((s as any).shop_display ?? 0)?.['view_file'] ?? ''}', '${((s as any).locArgs?.[2] ?? '')}', 'wardrobe'">Wardrobe</a></th>`);
     }
     if (((s as any).shop_display ?? 0)?.['link'] !== 'storage') {
       // TODO-QSP: dynamic text: <th><a href="exec:gs 'shop_utils', 'cleanup' & gt '<<$shop_display['view_file']>...
-      scene.text(`<th><a href="exec:gs 'shop_utils', 'cleanup' & gt '${((s as any).shop_display ?? 0)?.['view_file']}', '${((s as any).locArgs?.[2] ?? 0)}', 'storage'">Storage</a></th>`);
+      scene.text(`<th><a href="exec:gs 'shop_utils', 'cleanup' & gt '${((s as any).shop_display ?? 0)?.['view_file'] ?? ''}', '${((s as any).locArgs?.[2] ?? '')}', 'storage'">Storage</a></th>`);
     }
     if (((s as any).shop_display ?? 0)?.['link'] !== 'unwanted') {
       // TODO-QSP: dynamic text: <th><a href="exec:gs 'shop_utils', 'cleanup' & gt '<<$shop_display['view_file']>...
-      scene.text(`<th><a href="exec:gs 'shop_utils', 'cleanup' & gt '${((s as any).shop_display ?? 0)?.['view_file']}', '${((s as any).locArgs?.[2] ?? 0)}', 'unwanted'">Unwanted</a></th>`);
+      scene.text(`<th><a href="exec:gs 'shop_utils', 'cleanup' & gt '${((s as any).shop_display ?? 0)?.['view_file'] ?? ''}', '${((s as any).locArgs?.[2] ?? '')}', 'unwanted'">Unwanted</a></th>`);
     }
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'grid_shop') {
-    qspCall(s, 'shop_utils', 'display', 'init', 'grid_shop', 0);
-    qspCall(s, 'shop_utils', 'display', 'main');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'init', 'grid_shop', 0]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'main']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'grid_wardrobe') {
-    qspCall(s, 'shop_utils', 'display', 'init', 'grid_wardrobe', 1);
-    qspCall(s, 'shop_utils', 'display', 'main');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'init', 'grid_wardrobe', 1]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'main']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'list_wardrobe') {
-    qspCall(s, 'shop_utils', 'display', 'init', 'list_wardrobe', 0);
-    qspCall(s, 'shop_utils', 'display', 'main');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'init', 'list_wardrobe', 0]; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'main']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
     return;
   }
   return;
@@ -450,21 +450,21 @@ function enterDisplay(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplayGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayGridWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayListWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'list_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'list_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -472,7 +472,7 @@ function enterDisplayListWardrobe(s: GameState, scene: SceneBuilder): void {
 
 function enterReturn(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic "
-  qspCall(s, 'shop_utils', 'cleanup');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCleanup(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gt '<<$shop_display['return_loc']>>', '<<$shop_display['return_arg0']>>', '<<$shop_display['return_a...
   // TODO-QSP: "
   // TODO-QSP: end
@@ -579,11 +579,11 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
         scene.text('<tr>');
         if (((s as any).Headerstring ?? 0)?.['filter_count'] > 0) {
           // TODO-QSP: dynamic text: <th colspan="<<Headerstring['filter_count']>>"><font color="<<$Headerstring['inc...
-          scene.text(`<th colspan="${((s as any).Headerstring ?? 0)?.['filter_count']}"><font color="${((s as any).Headerstring ?? 0)?.['inc_color']}">Include</font>/<font color="red">Exclude</font></th>`);
+          scene.text(`<th colspan="${((s as any).Headerstring ?? 0)?.['filter_count'] ?? ''}"><font color="${((s as any).Headerstring ?? 0)?.['inc_color'] ?? ''}">Include</font>/<font color="red">Exclude</font></th>`);
         }
         if (((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
           // TODO-QSP: dynamic text: "<th colspan=""<<Headerstring['sorting_count']>>"">Sort by</th>"
-          scene.text(`"<th colspan=""${((s as any).Headerstring ?? 0)?.['sorting_count']}"">Sort by</th>"`);
+          scene.text(`"<th colspan=""${((s as any).Headerstring ?? 0)?.['sorting_count'] ?? ''}"">Sort by</th>"`);
         }
         scene.text('</tr><tr>');
         if (((s as any).Headerstring ?? 0)?.['filter_count'] > 0) {
@@ -598,8 +598,8 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       }
       return;
     }
-    qspCall(s, 'shop_utils', 'filter_builder', '_set_headerstring_split_widths', 'sorting');
-    qspCall(s, 'shop_utils', 'filter_builder', '_set_headerstring_split_widths', 'filter');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '_set_headerstring_split_widths', 'sorting']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '_set_headerstring_split_widths', 'filter']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['max_width'] = qspUntranslated(s, "max(Headerstring['sorting_width'], Headerstring['filter_width'])", { location: "shop_utils" });
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting_indent'] = '';
     if (((s as any).Headerstring ?? 0)?.['sorting_width'] / 2 < ((s as any).Headerstring ?? 0)?.['max_width'] / 2) {
@@ -621,18 +621,18 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: jump 'headerstring_filter_loop'
       }
     }
-    qspCall(s, 'shop_utils', 'filter_builder', '_split_headerstring', 'sorting');
-    qspCall(s, 'shop_utils', 'filter_builder', '_split_headerstring', 'filter');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '_split_headerstring', 'sorting']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '_split_headerstring', 'filter']; enterFilterBuilder(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.text('<center><table>');
     if (((s as any).Headerstring ?? 0)?.['sorting_count'] > 0) {
       // TODO-QSP: dynamic text: "<tr><th colspan=""<<Headerstring['max_width']>>"">Sort by</th></tr>"
-      scene.text(`"<tr><th colspan=""${((s as any).Headerstring ?? 0)?.['max_width']}"">Sort by</th></tr>"`);
+      scene.text(`"<tr><th colspan=""${((s as any).Headerstring ?? 0)?.['max_width'] ?? ''}"">Sort by</th></tr>"`);
       // TODO-QSP: dynamic text: $Headerstring['sorting']
       scene.text('$Headerstring[\'sorting\']');
     }
     if (((s as any).Headerstring ?? 0)?.['filter_count'] > 0) {
       // TODO-QSP: dynamic text: <tr><th colspan="<<Headerstring['max_width']>>"><font color="<<$Headerstring['in...
-      scene.text(`<tr><th colspan="${((s as any).Headerstring ?? 0)?.['max_width']}"><font color="${((s as any).Headerstring ?? 0)?.['inc_color']}">Include</font>/<font color="red">Exclude</font></th></tr>`);
+      scene.text(`<tr><th colspan="${((s as any).Headerstring ?? 0)?.['max_width'] ?? ''}"><font color="${((s as any).Headerstring ?? 0)?.['inc_color'] ?? ''}">Include</font>/<font color="red">Exclude</font></th></tr>`);
       // TODO-QSP: dynamic text: $Headerstring['filter']
       scene.text('$Headerstring[\'filter\']');
     }
@@ -651,9 +651,9 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['cols'] = ((s as any).temp_sh_hs_vars['cols'] ?? 0) + (1);
       // TODO-QSP: jump 'split_headerstring_loop_1'
     }
-    if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['width'] = ((s as any).temp_sh_hs_vars ?? {})?.['count'] / ((s as any).temp_sh_hs_vars ?? {})?.['cols'];
-    if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['cols_overshoot'] = ((s as any).temp_sh_hs_vars ?? {})?.['count'] % ((s as any).temp_sh_hs_vars ?? {})?.['cols'];
-    if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['new_width'] = ((s as any).temp_sh_hs_vars ?? {})?.['width'] + ((((s as any).temp_sh_hs_vars ?? 0)?.['cols_overshoot'] > 0) ? (1) : (0));
+    if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['width'] = (((s as any).temp_sh_hs_vars ?? {})?.['count'] ?? 0) / (((s as any).temp_sh_hs_vars ?? {})?.['cols'] ?? 0);
+    if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['cols_overshoot'] = (((s as any).temp_sh_hs_vars ?? {})?.['count'] ?? 0) % (((s as any).temp_sh_hs_vars ?? {})?.['cols'] ?? 0);
+    if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['new_width'] = (((s as any).temp_sh_hs_vars ?? {})?.['width'] ?? 0) + ((((s as any).temp_sh_hs_vars ?? 0)?.['cols_overshoot'] > 0) ? (1) : (0));
     // TODO-QSP: Headerstring[$ARGS[2] + '_width'] = temp_sh_hs_vars['new_width']
     // TODO-QSP: Headerstring[$ARGS[2] + '_cols'] = temp_sh_hs_vars['cols']
     // TODO-QSP: Headerstring[$ARGS[2] + '_col_overshoot'] = temp_sh_hs_vars['cols_overshoot']
@@ -675,7 +675,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: :split_headerstring_loop_2_inner
       if (((s as any).temp_sh_hs_vars ?? 0)?.['j'] < ((s as any).temp_sh_hs_vars ?? 0)?.['temp_width']) {
         if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['td_index'] = 5 + (String(((s as any).temp_sh_hs_vars ?? 0)?.['cur_string']).indexOf(String('</td><td>'))) + 1;
-        if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['head'] = (String(((s as any).temp_sh_hs_vars ?? 0)?.['cur_string']).slice((1)-1, ((1)-1)+(((s as any).temp_sh_hs_vars ?? {})?.['td_index'] - 1)));
+        if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['head'] = (String(((s as any).temp_sh_hs_vars ?? 0)?.['cur_string']).slice((1)-1, ((1)-1)+((((s as any).temp_sh_hs_vars ?? {})?.['td_index'] ?? 0) - 1)));
         if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['tail'] = qspUntranslated(s, "mid(temp_sh_hs_vars['cur_string'], temp_sh_hs_vars['td_index'])", { location: "shop_utils" });
         if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + (((s as any).temp_sh_hs_vars ?? 0)?.['head']);
         if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['cur_string'] = ((s as any).temp_sh_hs_vars ?? 0)?.['tail'];
@@ -686,7 +686,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['i'] = ((s as any).temp_sh_hs_vars['i'] ?? 0) + (1);
       // TODO-QSP: jump 'split_headerstring_loop_2_outer'
     }
-    if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + (((s as any).temp_sh_hs_vars ?? {})?.['cur_string'] + '</tr>');
+    if (!(s as any).temp_sh_hs_vars) (s as any).temp_sh_hs_vars = {}; (s as any).temp_sh_hs_vars['new_string'] = ((s as any).temp_sh_hs_vars['new_string'] ?? 0) + ((((s as any).temp_sh_hs_vars ?? {})?.['cur_string'] ?? 0) + '</tr>');
     // TODO-QSP: $Headerstring[$ARGS[2]] = $temp_sh_hs_vars['new_string']
     return;
   }
@@ -703,7 +703,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting_count'] = ((s as any).Headerstring['sorting_count'] ?? 0) + (1);
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['number_sort']) {
-      qspCall(s, 'shop_utils', 'filter', 'reset_sorting');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset_sorting']; enterFilter(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).outfitfilter) (s as any).outfitfilter = {}; (s as any).outfitfilter['number_sort'] = 1;
       if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/number_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
@@ -724,7 +724,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting_count'] = ((s as any).Headerstring['sorting_count'] ?? 0) + (1);
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['quality_sort']) {
-      qspCall(s, 'shop_utils', 'filter', 'reset_sorting');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset_sorting']; enterFilter(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).outfitfilter) (s as any).outfitfilter = {}; (s as any).outfitfilter['quality_sort'] = 1;
       if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/quality_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
@@ -745,7 +745,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting_count'] = ((s as any).Headerstring['sorting_count'] ?? 0) + (1);
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['inhibition_sort']) {
-      qspCall(s, 'shop_utils', 'filter', 'reset_sorting');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset_sorting']; enterFilter(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).outfitfilter) (s as any).outfitfilter = {}; (s as any).outfitfilter['inhibition_sort'] = 1;
       if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/inhibition_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
@@ -766,7 +766,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting_count'] = ((s as any).Headerstring['sorting_count'] ?? 0) + (1);
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['heelsize_sort']) {
-      qspCall(s, 'shop_utils', 'filter', 'reset_sorting');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset_sorting']; enterFilter(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).outfitfilter) (s as any).outfitfilter = {}; (s as any).outfitfilter['heelsize_sort'] = 1;
       if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/heels_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
@@ -787,7 +787,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting_count'] = ((s as any).Headerstring['sorting_count'] ?? 0) + (1);
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['price_sort']) {
-      qspCall(s, 'shop_utils', 'filter', 'reset_sorting');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset_sorting']; enterFilter(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).outfitfilter) (s as any).outfitfilter = {}; (s as any).outfitfilter['price_sort'] = 1;
       if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/price_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
@@ -808,7 +808,7 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting_count'] = ((s as any).Headerstring['sorting_count'] ?? 0) + (1);
     if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('</td><td>');
     if (((s as any).outfitfilter ?? 0)?.['discount_sort']) {
-      qspCall(s, 'shop_utils', 'filter', 'reset_sorting');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'reset_sorting']; enterFilter(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).outfitfilter) (s as any).outfitfilter = {}; (s as any).outfitfilter['discount_sort'] = 1;
       if (!(s as any).Headerstring) (s as any).Headerstring = {}; (s as any).Headerstring['sorting'] = ((s as any).Headerstring['sorting'] ?? 0) + ('<img src="images/system/icons/clothing/discount_inc' + qspUntranslated(s, "Headerstring['inc_alt']>", { location: "shop_utils" }) + '.png">');
     } else {
@@ -1451,136 +1451,136 @@ function enterFilterBuilder(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDisplayClothingGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayClothingGridWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayClothingListWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'list_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'list_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayShoesGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayShoesListWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'list_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'list_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBrasGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBrasGridWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPantiesGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPantiesGridWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBodysuitsGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayBodysuitsGridWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayCoatsGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayCoatsGridWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPursesGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPursesGridWardrobe(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_wardrobe');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_wardrobe']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayTattoosGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterDisplayPiercingsGridShop(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'display', 'grid_shop');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'grid_shop']; enterDisplay(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterInitDisplay(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'init', 'start');
-  qspCall(s, 'shop_utils', 'init', 'add_type', ((s as any).locArgs?.[1] ?? 0));
-  qspCall(s, 'shop_utils', 'init', 'set_link', ((s as any).locArgs?.[2] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'start']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'add_type', ((s as any).locArgs?.[1] ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_link', ((s as any).locArgs?.[2] ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', ARGS[3], ARGS[4]
   // TODO-QSP: gs 'shop_utils', 'init', 'set_discount', ARGS[5]
   if (((s as any).shop_display ?? 0)?.['link'] === 'wardrobe'  ||  ((s as any).shop_display ?? 0)?.['link'] === 'storage'  ||  ((s as any).shop_display ?? 0)?.['link'] === 'unwanted') {
-    qspCall(s, 'shop_utils', 'init', 'set_return', 'wardrobe', 'main');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_return', 'wardrobe', 'main']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'shop_utils', 'init', 'set_return', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_return', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'shop_utils', 'init', 'end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'end']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -1588,16 +1588,16 @@ function enterInitDisplay(s: GameState, scene: SceneBuilder): void {
 
 function enterInitDisplayMultiple(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).shop_display) (s as any).shop_display = {}; (s as any).shop_display['type_max'] = 0;
-  qspCall(s, 'shop_utils', 'init', 'start');
-  qspCall(s, 'shop_utils', 'init', 'set_link', ((s as any).locArgs?.[1] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'start']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_link', ((s as any).locArgs?.[1] ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'shop_utils', 'init', 'set_steps', ARGS[2], ARGS[3]
   // TODO-QSP: gs 'shop_utils', 'init', 'set_discount', ARGS[4]
   if (((s as any).shop_display ?? 0)?.['link'] === 'wardrobe'  ||  ((s as any).shop_display ?? 0)?.['link'] === 'storage'  ||  ((s as any).shop_display ?? 0)?.['link'] === 'unwanted') {
-    qspCall(s, 'shop_utils', 'init', 'set_return', 'wardrobe', 'main');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_return', 'wardrobe', 'main']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'shop_utils', 'init', 'set_return', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'set_return', ((s as any).loc ?? 0), ((s as any).loc_arg ?? 0)]; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'shop_utils', 'init', 'end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'end']; enterInit(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -1637,7 +1637,7 @@ function enterInitAddTypes(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterAddTypes(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'shop_utils', 'init_add_types', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), ((s as any).locArgs?.[2] ?? 0)]; enterInitAddTypes(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();

@@ -70,13 +70,13 @@ function enterPartyalone(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -138,10 +138,10 @@ function enterPartyalone(s: GameState, scene: SceneBuilder): void {
           scene.text('You are way too drunk and can barely stand. The guys tell you to leave, they already fucked you tonight, but to make sure to come back tomorrow for another round.');
           if (((s as any).MiraVars ?? 0)?.['QW'] < 11) {
             // TODO-QSP: dynamic text: As you are leaving the guys call after you "Hey, <<$pcs_nickname>>, come drink w...
-            scene.text(`As you are leaving the guys call after you "Hey, ${((s as any).pcs_nickname ?? 0)}, come drink with us again, we love fucking you!! Ha-ha!" They laugh as you make your way out. You are too drunk to come up with a proper insult and just mumble, "I'm sure you can find someone else instead…"`);
+            scene.text(`As you are leaving the guys call after you "Hey, ${((s as any).pcs_nickname || '')}, come drink with us again, we love fucking you!! Ha-ha!" They laugh as you make your way out. You are too drunk to come up with a proper insult and just mumble, "I'm sure you can find someone else instead…"`);
           } else {
             // TODO-QSP: dynamic text: As you are leaving the guys call after you "Hey, <<$pcs_nickname>>, come drink w...
-            scene.text(`As you are leaving the guys call after you "Hey, ${((s as any).pcs_nickname ?? 0)}, come drink with us again, we love fucking you!! Ha-ha!" They laugh as you make your way out. You are too drunk to come up with a proper insult and just walk away.`);
+            scene.text(`As you are leaving the guys call after you "Hey, ${((s as any).pcs_nickname || '')}, come drink with us again, we love fucking you!! Ha-ha!" They laugh as you make your way out. You are too drunk to come up with a proper insult and just walk away.`);
           }
         }
         scene.actions([
@@ -193,12 +193,12 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
         if (((s as any).npc_QW ?? 0)?.['A63'] >= 11  &&  ((s as any).MiraVars ?? 0)?.['QW'] < 11) {
           scene.text('You and Mira are both way too drunk and can barely stand. The guys tell you to leave, they already fucked you tonight, but to make sure to come back tomorrow for another round.');
           // TODO-QSP: dynamic text: As you are leaving the guys call after you "Hey, <<$pcs_nickname>>, come drink w...
-          scene.text(`As you are leaving the guys call after you "Hey, ${((s as any).pcs_nickname ?? 0)}, come drink with us again, we love fucking you!! Ha-ha!" They laugh as you make your way out. You are too drunk to come up with a proper insult and just mumble, "I'm sure you can find someone else instead…"`);
+          scene.text(`As you are leaving the guys call after you "Hey, ${((s as any).pcs_nickname || '')}, come drink with us again, we love fucking you!! Ha-ha!" They laugh as you make your way out. You are too drunk to come up with a proper insult and just mumble, "I'm sure you can find someone else instead…"`);
         } else {
           if (((s as any).npc_QW ?? 0)?.['A63'] >= 11  &&  ((s as any).MiraVars ?? 0)?.['QW'] >= 11) {
             scene.text('You and Mira are both way too drunk and can barely stand. The guys tell you to leave, they already fucked you tonight, but to make sure to come back tomorrow for another round.');
             // TODO-QSP: dynamic text: As you are leaving the guys call after you both "Hey, <<$pcs_nickname>> and Mira...
-            scene.text(`As you are leaving the guys call after you both "Hey, ${((s as any).pcs_nickname ?? 0)} and Mira, come drink with us again, we love fucking you both!! Ha-ha!" They laugh as you make your way out. You are too drunk to come up with a proper insult and just walk away with Mira.`);
+            scene.text(`As you are leaving the guys call after you both "Hey, ${((s as any).pcs_nickname || '')} and Mira, come drink with us again, we love fucking you both!! Ha-ha!" They laugh as you make your way out. You are too drunk to come up with a proper insult and just walk away with Mira.`);
           }
         }
       }
@@ -232,13 +232,13 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'willpower', 'drink', 'resist');
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                     scene.actions([
-                      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                     ]);
                   } else {
                     scene.actions([
-                      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                      { label: 'Leave', handler: (st: GameState) => {
     if (!(s as any).npc_drunk) (s as any).npc_drunk = {}; (s as any).npc_drunk['A60'] = 0;
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'drink', 'resist');
@@ -305,13 +305,13 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'willpower', 'drink', 'force');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Make Mira drink the shot instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Make Mira drink the shot instead', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Make Mira drink the shot instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Make Mira drink the shot instead', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'npc_relationship', 'modify', 'A60', Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'npc_relationship', 'modify', 'A61', Math.floor(Math.random() * 2) + 0);
@@ -348,13 +348,13 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'drink', 'resist');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -375,13 +375,13 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'force');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Make Mira drink the shot instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Make Mira drink the shot instead', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Make Mira drink the shot instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Make Mira drink the shot instead', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'npc_relationship', 'modify', 'A60', Math.floor(Math.random() * 2) + 0);
     qspCall(s, 'npc_relationship', 'modify', 'A61', Math.floor(Math.random() * 2) + 0);
@@ -427,13 +427,13 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'willpower', 'drink', 'resist');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -526,7 +526,7 @@ function enterSetContinueActs(s: GameState, scene: SceneBuilder): void {
 function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big63.jpg');
   // TODO-QSP: dynamic text: You are way too drunk and can barely stand. Mitka, noticing your condition, grab...
-  scene.text(`You are way too drunk and can barely stand. Mitka, noticing your condition, grabs you by the waist. "Well, well little ${((s as any).pcs_nickname ?? 0)}, had a bit too much to drink? Come with me."`);
+  scene.text(`You are way too drunk and can barely stand. Mitka, noticing your condition, grabs you by the waist. "Well, well little ${((s as any).pcs_nickname || '')}, had a bit too much to drink? Come with me."`);
   (s as any).temp_rand = Math.floor(Math.random() * 10) + 1;
   if ((((s as any).temp_rand ?? 0) === 1  ||  (((s as any).temp_rand ?? 0) < 5  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0))  &&  (!((s as any).mesec ?? 0))) {
     scene.actions([
@@ -554,7 +554,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', '', '', 'A63', 1);
     qspCall(s, 'arousal', 'vaginal', 20, 'sub');
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } else {
@@ -604,7 +604,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
       }
     }
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -635,7 +635,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', 'anus', 'A63', 1);
     qspCall(s, 'arousal', 'anal', 15, 'sub', 'rough');
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -647,7 +647,7 @@ function enterSolo_1to9(s: GameState, scene: SceneBuilder): void {
 function enterSolo_10(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/shared/headshots_main/big63.jpg');
   // TODO-QSP: dynamic text: You are way too drunk and can barely stand. Mitka, noticing your condition, grab...
-  scene.text(`You are way too drunk and can barely stand. Mitka, noticing your condition, grabs you by the waist. "Well, well little ${((s as any).pcs_nickname ?? 0)}, had a bit too much to drink? Come with me."`);
+  scene.text(`You are way too drunk and can barely stand. Mitka, noticing your condition, grabs you by the waist. "Well, well little ${((s as any).pcs_nickname || '')}, had a bit too much to drink? Come with me."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'You mumble something about needing to pee', handler: (st: GameState) => {
@@ -655,7 +655,7 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Mitka helps you '+iif(sunWeather=1, 'get up', 'go outside')+' and lean against a...
     scene.text('Mitka helps you \'+iif(sunWeather=1, \'get up\', \'go outside\')+\' and lean against a tree, as you giggle drunkenly and pee. Mitka watches you and laughs at your the whole time. He stumbles over to you, barely able to stand himself and pulls you into him.');
     // TODO-QSP: dynamic text: "Listen, <<$pcs_nickname>>, come with me," Mitka says loudly. You try to hide it...
-    scene.text(`"Listen, ${((s as any).pcs_nickname ?? 0)}, come with me," Mitka says loudly. You try to hide it from us but, we already know. "I'm going have you fucked like the slut you are. I know you won't mind." Mitka grins evilly.`);
+    scene.text(`"Listen, ${((s as any).pcs_nickname || '')}, come with me," Mitka says loudly. You try to hide it from us but, we already know. "I'm going have you fucked like the slut you are. I know you won't mind." Mitka grins evilly.`);
     scene.text('He turns to his friends, "Here," pointing to a drunken Kolyamba. "Get yourself over here and have some fun with this cunt," Kolyamba stumbles forward pulling his pants down as he approaches. "We may be drunk, but we can still have fun with this whore\'s pussy…"');
     scene.text('"Well, that\'s a beautiful sight," Mitka stammers smugly as he exposes you for everyone to see. "Let\'s get this party started!"');
     scene.actions([
@@ -684,7 +684,7 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'anal', 10, 'sub', 'rough');
     }
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -709,7 +709,7 @@ function enterSolo_10(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'arousal', 'anal', 10, 'sub');
     }
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -763,7 +763,7 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
     // TODO-QSP: gs 'cum_call', 'mouth_swallow', $boy[0], 1
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -817,7 +817,7 @@ function enterSolo_11andup_1boy(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('He gets up and goes back to drinking again, leaving you alone outside. After a little while you sober up enough to get dressed and go sit back by the boys.');
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -883,7 +883,7 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'cum_call', 'mouth_swallow', $boy[0], 1
     // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -953,7 +953,7 @@ function enterSolo_11andup_2boys(s: GameState, scene: SceneBuilder): void {
     }
     // TODO-QSP: gs 'cum_call', 'mouth', $boy[1], 1
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -1025,7 +1025,7 @@ function enterSolo_11andup_3boys(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'cum_call', 'anus', 'A63', 1);
     }
     qspCall(s, 'arousal', 'end');
-    qspCall(s, 'mitkabuh', 'set_continue_acts');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetContinueActs(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

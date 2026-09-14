@@ -1,4 +1,4 @@
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -157,12 +157,12 @@ function enterForceChange(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
   if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follow_time'] = 0;
   if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['follower'] = 0;
-  qspCall(s, 'miroslava_schedule', '');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).mss_i = 0;
   // TODO-QSP: :mira_loop_start
   if (((s as any).locat ?? 0)?.['A60_loc'] === ((s as any).temp_start_loc ?? 0)) {
-    qspCall(s, 'miroslava_schedule', 'cikl');
-    qspCall(s, 'miroslava_schedule', 'update_locat');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCikl(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
     (s as any).mss_i = ((s as any).mss_i ?? 0) + (1);
     if (((s as any).mss_i ?? 0) < 10) {
       // TODO-QSP: jump 'mira_loop_start'
@@ -176,7 +176,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_loc_prev'] = ((s as any).locat ?? 0)?.['A60_loc'];
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg_prev'] = ((s as any).locat ?? 0)?.['A60_arg'];
   if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1_prev'] = ((s as any).locat ?? 0)?.['A60_arg1'];
-  qspCall(s, 'miroslava_schedule', 'update_locat');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -196,7 +196,7 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).locat) (s as any).locat = {}; (s as any).locat['A60_arg1'] = '';
     } else {
       if (!(s as any).MiraVars) (s as any).MiraVars = {}; (s as any).MiraVars['guest'] = 0;
-      qspCall(s, 'miroslava_schedule', 'update_locat');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     return;
   }
@@ -262,7 +262,7 @@ function enterUpdateLocat(s: GameState, scene: SceneBuilder): void {
     (s as any).MiraLoc = 10;
   }
   // TODO-QSP: :set_locarg
-  qspCall(s, 'miroslava_schedule', 'set_locarg', ((s as any).MiraLoc ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).MiraLoc ?? 0)]; enterSetLocarg(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -540,7 +540,7 @@ function enterGetBaseSchedule(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetLocation(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'miroslava_schedule', 'update_locat');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUpdateLocat(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A60_loc'] === 'gad_miroslava_home') {
     if (!(s as any).npcLocation) (s as any).npcLocation = {}; (s as any).npcLocation['A60'] = 'Mira is at home';
   } else {

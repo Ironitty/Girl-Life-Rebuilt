@@ -15,7 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You give Vitek a light kiss on his lips, and whisper in his ear: "It\'s time my hero gets his reward…"');
     }
     // TODO-QSP: dynamic text: Vitek begins to grope you, while he aggressively kisses you on your lips. He gru...
-    scene.text(`Vitek begins to grope you, while he aggressively kisses you on your lips. He grunts: "${((s as any).pcs_nickname ?? 0)}, take off your clothes."`);
+    scene.text(`Vitek begins to grope you, while he aggressively kisses you on your lips. He grunts: "${((s as any).pcs_nickname || '')}, take off your clothes."`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
         scene.actions([
@@ -37,31 +37,31 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'sex', 'resist', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/embarrassed.mp4');
     // TODO-QSP: dynamic text: You avoid his gaze as you say: "I'm sorry, Vitek. I would like to, but it's just...
-    scene.text(`You avoid his gaze as you say: "I'm sorry, Vitek. I would like to, but it's just too early for me. My ${((s as any).npc_nickname ?? 0)?.['A29']} would never forgive me."`);
+    scene.text(`You avoid his gaze as you say: "I'm sorry, Vitek. I would like to, but it's just too early for me. My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} would never forgive me."`);
     // TODO-QSP: dynamic text: Vitek loses his patience and angrily says: "Damnit, <<$pcs_nickname>>. You're <<...
-    scene.text(`Vitek loses his patience and angrily says: "Damnit, ${((s as any).pcs_nickname ?? 0)}. You're ${((s as any).age ?? 0)} years old, and hot as hell. You're my bitch, and I say it's time we fuck… I've waited long enough!"`);
+    scene.text(`Vitek loses his patience and angrily says: "Damnit, ${((s as any).pcs_nickname || '')}. You're ${((s as any).age || '')} years old, and hot as hell. You're my bitch, and I say it's time we fuck… I've waited long enough!"`);
     qspCall(s, 'willpower', 'sex', 'resist', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Keep refusing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Keep refusing', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Keep Refusing [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Keep Refusing', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     (s as any).kotovLoveQW = (-1);
     if (!(s as any).npc_rel) (s as any).npc_rel = {}; (s as any).npc_rel[String((s as any).boy ?? 0)] = 0;
@@ -122,7 +122,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice… aren\'t those supposed to make it feel better when you suck a dick? Is that why you got it?"');
       scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');
       // TODO-QSP: dynamic text: He's still grinning, intrigued by your tongue piercing. He says: "Don't worry, <...
-      scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry, ${((s as any).pcs_nickname ?? 0)}. I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
+      scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry, ${((s as any).pcs_nickname || '')}. I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
     }
   } else {
     if (!(s as any).npc_had_sex) (s as any).npc_had_sex = {}; (s as any).npc_had_sex[String((s as any).boy ?? 0)] = 1;
@@ -225,7 +225,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.text('You stick out your tongue and show him your piercing. He grins at you: "Oh, nice! Aren\'t those supposed to make it feel better for the guy when you suck his dick? Is that why you got it?"');
       scene.text('You act insulted and give him a weak slap on his chest: "Viktor, come on!"');
       // TODO-QSP: dynamic text: He's still grinning, intrigued by your tongue piercing. He says: "Don't worry <<...
-      scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry ${((s as any).pcs_nickname ?? 0)}, I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
+      scene.text(`He's still grinning, intrigued by your tongue piercing. He says: "Don't worry ${((s as any).pcs_nickname || '')}, I won't tell anyone. Now I really want to know how it feels on my cock, though…"`);
     }
   }
   // TODO-QSP: end
@@ -238,23 +238,23 @@ function enterBj(s: GameState, scene: SceneBuilder): void {
   (s as any).kotovBJtimes = ((s as any).kotovBJtimes ?? 0) + (1);
   if (((s as any).pcs_piercings ?? 0)?.['tongue'] > 0) {
   }
-  scene.img(`images/shared/sex/blowjob/kotovbj${((s as any).bjrand ?? 0)}.jpg`);
+  scene.img(`images/shared/sex/blowjob/kotovbj${((s as any).bjrand || '')}.jpg`);
   scene.text('You lightly pat his crotch while you give him a teasing grin: "Oooo, feels like someone is happy to see me!" when his cock becomes more and more erect.');
   scene.text('Vitek wastes no time and quickly takes off his pants, and you close your fingers around his exposed cock immediately. "Just relax, Vitek…" you whisper in his ears, before closing your lips around the head.');
   // TODO-QSP: dynamic text: You do your best to give your boyfriend a good blowjob, <<$textsexkotov>>. Befor...
-  scene.text(`You do your best to give your boyfriend a good blowjob, ${((s as any).textsexkotov ?? 0)}. Before you know it, his cock is mostly in your mouth and you feel the head pushing against your throat. Vitek groans: "${((s as any).pcs_nickname ?? 0)}, I'm going to come!"`);
+  scene.text(`You do your best to give your boyfriend a good blowjob, ${((s as any).textsexkotov || '')}. Before you know it, his cock is mostly in your mouth and you feel the head pushing against your throat. Vitek groans: "${((s as any).pcs_nickname || '')}, I'm going to come!"`);
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
   qspCall(s, 'willpower', 'bj', 'resist', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Jerk him off instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Jerk him off instead', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Jerk him off instead [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Jerk him off instead', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     scene.img('images/shared/sex/handjob/kotovhj.jpg');
     scene.text('You silently think to yourself: "Aww… what a gentleman! Most guys wouldn\'t bother warning me," while you jerk him off enthusiastically, wanting to make him feel good even though he\'s no longer in your mouth.');
@@ -352,7 +352,7 @@ function enterAnal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'dinSex', 'boy_wants_anal');
   (s as any).anala = ((s as any).anala ?? 0) + (1);
   // TODO-QSP: dynamic text: He laughs: "Wow <<$pcs_nickname>>, you fuck like a bunny! You've drained me comp...
-  scene.text(`He laughs: "Wow ${((s as any).pcs_nickname ?? 0)}, you fuck like a bunny! You've drained me completely, for now… I really don't think I can go again! You were great though…"`);
+  scene.text(`He laughs: "Wow ${((s as any).pcs_nickname || '')}, you fuck like a bunny! You've drained me completely, for now… I really don't think I can go again! You were great though…"`);
   qspCall(s, 'arousal', 'anal', 15, 'sub');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', 'anus', 'A9', 1);
@@ -383,7 +383,7 @@ function enterSex(s: GameState, scene: SceneBuilder): void {
   (s as any).sexa = ((s as any).sexa ?? 0) + (1);
   (s as any).kotovVagSex = ((s as any).kotovVagSex ?? 0) + (1);
   // TODO-QSP: dynamic text: He laughs: "Wow <<$pcs_nickname>>, you fuck like a bunny! You've drained me comp...
-  scene.text(`He laughs: "Wow ${((s as any).pcs_nickname ?? 0)}, you fuck like a bunny! You've drained me completely, for now… I really don't think I can go again! It was great though…"`);
+  scene.text(`He laughs: "Wow ${((s as any).pcs_nickname || '')}, you fuck like a bunny! You've drained me completely, for now… I really don't think I can go again! It was great though…"`);
   qspCall(s, 'arousal', 'vaginal', 15, 'sub');
   qspCall(s, 'arousal', 'end');
   qspCall(s, 'cum_call', '', '', 'A9', 1);
@@ -432,9 +432,9 @@ function enterCumface6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/cumf60.mp4');
   qspCall(s, 'sweat', 'add', 10);
   // TODO-QSP: dynamic text: You feel his member throb down your throat, and you hold still to let him enjoy ...
-  scene.text(`You feel his member throb down your throat, and you hold still to let him enjoy his orgasm the way he pleases. You swallow most of his sperm, but don't catch all of it. With your ${((s as any).pcs_eyecolor ?? 0)} eyes fixated onto his, you let it leak out of your mouth and eventually suck his cock clean when you feel he's finished.`);
+  scene.text(`You feel his member throb down your throat, and you hold still to let him enjoy his orgasm the way he pleases. You swallow most of his sperm, but don't catch all of it. With your ${((s as any).pcs_eyecolor || '')} eyes fixated onto his, you let it leak out of your mouth and eventually suck his cock clean when you feel he's finished.`);
   // TODO-QSP: dynamic text: He laughs at your lewd display and says: "You're such an insatiable slut, <<$pcs...
-  scene.text(`He laughs at your lewd display and says: "You're such an insatiable slut, ${((s as any).pcs_nickname ?? 0)}. That was exactly what I needed today."`);
+  scene.text(`He laughs at your lewd display and says: "You're such an insatiable slut, ${((s as any).pcs_nickname || '')}. That was exactly what I needed today."`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
   qspCall(s, 'cum_call', 'mouth_swallow', 'A9', 1);
   qspCall(s, 'arousal', 'end');
@@ -465,7 +465,7 @@ function enterCumface4(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/cumf40.mp4');
   scene.text('When Vitek is close to orgasming, you point his cock at your boobs and keep jerking him off until his sperm is all over them. When you\'re certain he has nothing left, you let go of him and give him a lewd smile while you rub his cum out all over them.');
   // TODO-QSP: dynamic text: Vitek flashes you a grin and jokes: "Hey <<$pcs_nickname>>… do you think it's tr...
-  scene.text(`Vitek flashes you a grin and jokes: "Hey ${((s as any).pcs_nickname ?? 0)}… do you think it's true that boobs can grow by doing that a lot? I'd love for you to be my busty beauty…"`);
+  scene.text(`Vitek flashes you a grin and jokes: "Hey ${((s as any).pcs_nickname || '')}… do you think it's true that boobs can grow by doing that a lot? I'd love for you to be my busty beauty…"`);
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'arousal', 'hj', 5);
   qspCall(s, 'cum_call', 'breasts', 'A9', 1);
@@ -528,9 +528,9 @@ function enterCumface2(s: GameState, scene: SceneBuilder): void {
 function enterCumface1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/cumf10.mp4');
   // TODO-QSP: dynamic text: You open your mouth widely for him and look up to him with your <<$pcs_eyecolor>...
-  scene.text(`You open your mouth widely for him and look up to him with your ${((s as any).pcs_eyecolor ?? 0)} eyes, inviting him to shoot as much sperm in your mouth as he can. He tries, but when he shoots his load, very little of it ends up in your mouth.`);
+  scene.text(`You open your mouth widely for him and look up to him with your ${((s as any).pcs_eyecolor || '')} eyes, inviting him to shoot as much sperm in your mouth as he can. He tries, but when he shoots his load, very little of it ends up in your mouth.`);
   // TODO-QSP: dynamic text: "You're such a cute little slut with my cum on your face, <<$pcs_nickname>>… I l...
-  scene.text(`"You're such a cute little slut with my cum on your face, ${((s as any).pcs_nickname ?? 0)}… I love it!" he grins at you, while he helps you up from your kneeled position. You give him a cute smile while pretending you want to kiss him, and he laughs while he tries to keep you away from his face.`);
+  scene.text(`"You're such a cute little slut with my cum on your face, ${((s as any).pcs_nickname || '')}… I love it!" he grins at you, while he helps you up from your kneeled position. You give him a cute smile while pretending you want to kiss him, and he laughs while he tries to keep you away from his face.`);
   qspCall(s, 'arousal', 'hj', 5, 'dom');
   qspCall(s, 'sweat', 'add', 10);
   qspCall(s, 'cum_call', 'mouth', 'A9', 1, '', '', 5);
@@ -797,7 +797,7 @@ function enterCum3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/cum/cum3.mp4');
   scene.text('Vitek pulls his cock out of you just before he reaches his orgasm, and you feel warm drops land on your back and ass cheeks.');
   // TODO-QSP: dynamic text: He then helps you up from the bed and says with a satisfied smile on his face: "...
-  scene.text(`He then helps you up from the bed and says with a satisfied smile on his face: "Hell, ${((s as any).pcs_nickname ?? 0)}… you kept going and going in this position, you are insatiable!" before kissing you gently on the cheek.`);
+  scene.text(`He then helps you up from the bed and says with a satisfied smile on his face: "Hell, ${((s as any).pcs_nickname || '')}… you kept going and going in this position, you are insatiable!" before kissing you gently on the cheek.`);
   qspCall(s, 'cum_call', 'butt', 'A9', 1, '', '', 20);
   qspCall(s, 'cum_call', 'legs', 'A9', 1, '', '', 20);
   qspCall(s, 'arousal', 'end');
@@ -1129,7 +1129,7 @@ function enterSexCow4(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('Almost immediately, Vitek sits up and puts his strong muscular arms around you, pulling you tightly against his chest. Meanwhile you put your slender arms around his neck, and try not to moan too loudly in his ear when he keeps driving his cock deep inside your cunt.');
   // TODO-QSP: dynamic text: He's firmly in control of you in this position, and groans softly: "You're such ...
-  scene.text(`He's firmly in control of you in this position, and groans softly: "You're such a hot little bitch, ${((s as any).pcs_nickname ?? 0)}. <i>My</i> hot little bitch."`);
+  scene.text(`He's firmly in control of you in this position, and groans softly: "You're such a hot little bitch, ${((s as any).pcs_nickname || '')}. <i>My</i> hot little bitch."`);
   scene.text('Before you can respond he puts his mouth on your nipple, and you do your best to stifle a cry when he bites down on it softly.');
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -1241,7 +1241,7 @@ function enterDog4(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You\'re not about to let him show you up! While you grind your ass back against his hips you say: "Hold still babe, I\'m going to fuck myself with your cock."');
   // TODO-QSP: dynamic text: He reluctantly stops, looking at you questioningly. When he sees what you means,...
-  scene.text(`He reluctantly stops, looking at you questioningly. When he sees what you means, he grins and encourages you: "You're like a little bitch in heat, ${((s as any).pcs_nickname ?? 0)}! I love it… keep going! Come on, harder!"`);
+  scene.text(`He reluctantly stops, looking at you questioningly. When he sees what you means, he grins and encourages you: "You're like a little bitch in heat, ${((s as any).pcs_nickname || '')}! I love it… keep going! Come on, harder!"`);
   qspCall(s, 'arousal', 'vaginal', 5, 'dom');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1434,7 +1434,7 @@ function enterKuni(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (((s as any).npc_rel ?? 0)?.['A9'] <= 75) {
       // TODO-QSP: dynamic text: Vitek flat out refuses to lick your pussy: "Don't be ridiculous, <<$pcs_nickname...
-      scene.text(`Vitek flat out refuses to lick your pussy: "Don't be ridiculous, ${((s as any).pcs_nickname ?? 0)}. I'm a man, not some kid! Come on, spread your legs and let's fuck."`);
+      scene.text(`Vitek flat out refuses to lick your pussy: "Don't be ridiculous, ${((s as any).pcs_nickname || '')}. I'm a man, not some kid! Come on, spread your legs and let's fuck."`);
       scene.actions([
         { label: 'Missionary', goto: ['kotovSex', 'misionary<<rand (1,4)>>'] },
       ]);
@@ -1531,7 +1531,7 @@ function enterTitjob(s: GameState, scene: SceneBuilder): void {
   scene.text('He nods eagerly: "You know I do, babe… they\'re amazing!"');
   scene.text('"Why don\'t you show me?" you challenge him.');
   // TODO-QSP: dynamic text: Vitek knows exactly what you're getting at, and rests his penis between your <<$...
-  scene.text(`Vitek knows exactly what you're getting at, and rests his penis between your ${((s as any).titsize ?? 0)} breasts. You squeeze your breasts together for him and spit on his cock for lubrication, as he slowly begins to move his hips.`);
+  scene.text(`Vitek knows exactly what you're getting at, and rests his penis between your ${((s as any).titsize || '')} breasts. You squeeze your breasts together for him and spit on his cock for lubrication, as he slowly begins to move his hips.`);
   scene.text('After a while he pushes your hands away and takes over, pushing your tits tighter around his cock while he fucks them harder.');
   scene.text('You moan softly, this feels even better than you thought it would…');
   qspCall(s, 'arousal', 'titjob', 5, 'sub');
@@ -1686,7 +1686,7 @@ function enterBj8(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj8\'+rand(0, 1)+\'.mp4');
   scene.text('You work your way down and gently lick the underside of his testicles, before you slip your tongue over his anus. At first he assumes it\'s a mistake, but he looks a bit panicked when you keep teasing it rhythmically with the tip of your tongue.');
   // TODO-QSP: dynamic text: He groans: "Oh shit, <<$pcs_nickname>>! What are you doing!?"
-  scene.text(`He groans: "Oh shit, ${((s as any).pcs_nickname ?? 0)}! What are you doing!?"`);
+  scene.text(`He groans: "Oh shit, ${((s as any).pcs_nickname || '')}! What are you doing!?"`);
   scene.text('When you look into his eyes and just keep licking it with the tip of your tongue, a soft moan escapes his lips. After a few seconds he admits: "That… that feels great! Just don\'t tell the boys, okay?"');
   qspCall(s, 'arousal', 'cuni_give', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -1737,7 +1737,7 @@ function enterBj6(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj6\'+rand(0, 1)+\'.mp4');
   scene.text('You take his dick in your hand, and begin to stroke him off while you look at him confidently. You know this isn\'t what he wants, but it\'s fun to get a rise out of him!');
   // TODO-QSP: dynamic text: It doesn't take long for him to say: "<<$pcs_nickname>>… it doesn't feel bad, bu...
-  scene.text(`It doesn't take long for him to say: "${((s as any).pcs_nickname ?? 0)}… it doesn't feel bad, but I can just jerk myself off whenever I want. Why aren't you putting your lady parts to use?"`);
+  scene.text(`It doesn't take long for him to say: "${((s as any).pcs_nickname || '')}… it doesn't feel bad, but I can just jerk myself off whenever I want. Why aren't you putting your lady parts to use?"`);
   qspCall(s, 'arousal', 'hj', 5, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1810,7 +1810,7 @@ function enterBj3(s: GameState, scene: SceneBuilder): void {
   (s as any).kotov_bj_times = ((s as any).kotov_bj_times ?? 0) + (1);
   scene.img('images/shared/sex/blowjob/kotovbj3\'+rand(0, 1)+\'.mp4');
   // TODO-QSP: dynamic text: You wrap your delicate fingers around the shaft of his cock, guiding it to your ...
-  scene.text(`You wrap your delicate fingers around the shaft of his cock, guiding it to your mouth. Ignoring his pleas, you don't take it in your mouth and just put your ${((s as any).pc_desc ?? 0)?.['lips']} lips lips against it, kissing it over and over.`);
+  scene.text(`You wrap your delicate fingers around the shaft of his cock, guiding it to your mouth. Ignoring his pleas, you don't take it in your mouth and just put your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips lips against it, kissing it over and over.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -1837,7 +1837,7 @@ function enterBj2(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/sex/blowjob/kotovbj2\'+rand(0, 6)+\'.mp4');
   // TODO-QSP: dynamic text: You <<$textsexkotov>>. You clench your <<$pc_desc['lips']>> lips lips around his...
-  scene.text(`You ${((s as any).textsexkotov ?? 0)}. You clench your ${((s as any).pc_desc ?? 0)?.['lips']} lips lips around his cock tightly, and try to give him the best blowjob you've ever given.`);
+  scene.text(`You ${((s as any).textsexkotov || '')}. You clench your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips lips around his cock tightly, and try to give him the best blowjob you've ever given.`);
   scene.text('The tenderness of your lips is driving Vitek crazy, and he can do little more than moan uncontrollably while you keep sucking.');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -1865,7 +1865,7 @@ function enterBj1(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/shared/sex/blowjob/kotovbj1\'+rand(0, 3)+\'.mp4');
   // TODO-QSP: dynamic text: You gently <<$textsexkotov>>.
-  scene.text(`You gently ${((s as any).textsexkotov ?? 0)}.`);
+  scene.text(`You gently ${((s as any).textsexkotov || '')}.`);
   scene.text('When you flick your tongue against the opening of his urethra, his body spasms a little. You found a sensitive spot, that should be fun!');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -1939,7 +1939,7 @@ function enterFirstSex(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t talk about much while he walks you home, but you\'re touched by the fact that he\'s holding your hand. He\'s usually not this sensitive… taking your virginity must\'ve meant a lot to him too.');
     scene.text('When you arrive at your apartment door, Vitek kisses you goodbye. It\'s a long and deep kiss, and his hands are groping your ass the whole time.');
     // TODO-QSP: dynamic text: With a grin on his face he says: "See you soon, <<$pcs_nickname>>."
-    scene.text(`With a grin on his face he says: "See you soon, ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`With a grin on his face he says: "See you soon, ${((s as any).pcs_nickname || '')}."`);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Thank him for walking you home and leave', goto: ['pod_ezd', 'etaj_2'] },

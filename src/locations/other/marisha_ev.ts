@@ -116,7 +116,7 @@ function enter2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
     // TODO-QSP: dynamic text: "So my name is <<$pcs_firstname>> but my friends call me <<$pcs_nickname>>. What...
-    scene.text(`"So my name is ${((s as any).pcs_firstname ?? 0)} but my friends call me ${((s as any).pcs_nickname ?? 0)}. What is your name?" She replies, "My name is Marisha." You then say, "Let's start by heading to the mall. We need to get you a nicer outfit." She nods before walking with you to the mall`);
+    scene.text(`"So my name is ${((s as any).pcs_firstname || '')} but my friends call me ${((s as any).pcs_nickname || '')}. What is your name?" She replies, "My name is Marisha." You then say, "Let's start by heading to the mall. We need to get you a nicer outfit." She nods before walking with you to the mall`);
     scene.actions([
       { label: 'Head to the mall', goto: ['marisha_ev', 'Mall'] },
     ]);
@@ -167,7 +167,7 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
     // TODO-QSP: dynamic text: You quickly gesture him to leave which he quickly does before you head back to y...
-    scene.text(`You quickly gesture him to leave which he quickly does before you head back to your room and patiently wait for Marisha to finish showering. After a few minutes, Marisha comes back and sits on the bed next to you before saying, "Thank you for helping me out ${((s as any).pcs_firstname ?? 0)}. I really appreciate it." You place your hand on her shoulder then say, "No need to thank me. You can stay the night if you want." She nods and says, "That sounds great." You both then spend the night chatting about various topics.`);
+    scene.text(`You quickly gesture him to leave which he quickly does before you head back to your room and patiently wait for Marisha to finish showering. After a few minutes, Marisha comes back and sits on the bed next to you before saying, "Thank you for helping me out ${((s as any).pcs_firstname || '')}. I really appreciate it." You place your hand on her shoulder then say, "No need to thank me. You can stay the night if you want." She nods and says, "That sounds great." You both then spend the night chatting about various topics.`);
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all');
@@ -181,7 +181,7 @@ function enterMall(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/resident/marisha/marisha.jpg');
     // TODO-QSP: dynamic text: You ignore him and he continues to spy on her as you wait patiently in your room...
-    scene.text(`You ignore him and he continues to spy on her as you wait patiently in your room. After a few minutes, Marisha comes back and sits on the bed next to you before saying, "Thank you for helping me out ${((s as any).pcs_firstname ?? 0)}. I really appreciate it." You place your hand on her shoulder then say, "No need to thank me. You can stay the night if you want." She nods and says, "That sounds great." You both then spend the night chatting about various topics.`);
+    scene.text(`You ignore him and he continues to spy on her as you wait patiently in your room. After a few minutes, Marisha comes back and sits on the bed next to you before saying, "Thank you for helping me out ${((s as any).pcs_firstname || '')}. I really appreciate it." You place your hand on her shoulder then say, "No need to thank me. You can stay the night if you want." She nods and says, "That sounds great." You both then spend the night chatting about various topics.`);
     scene.actions([
       { label: 'Go to sleep', handler: (st: GameState) => {
     qspCall(s, 'outfit', 'strip_all');

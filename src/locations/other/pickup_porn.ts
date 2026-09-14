@@ -27,7 +27,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Hi?" you reply in a wary tone as you step back from him.');
     scene.text('He smiles again. "Relax, I\'m not going to hurt you. I\'m Ignat."');
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>…" you reply.
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}…" you reply.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}…" you reply.`);
     // TODO-QSP: dynamic text: "Sexy name for a sexy girl," he grins. "So here's the deal. I'm an art student a...
     scene.text(`"Sexy name for a sexy girl," he grins. "So here's the deal. I'm an art student and I'm looking for a model to do a… private shoot with me. I'll pay you ${qspFunc(s, 'money', 'string_profit', 3000)} for your time."`);
     scene.actions([
@@ -76,13 +76,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -142,13 +142,13 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -188,7 +188,7 @@ function enterReluctantStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You finish undressing and sit on the bed as he starts filming. You avoid looking into the camera and reluctantly tell him your name as he motions for you to spread your legs.');
   scene.text('You reluctantly do so and he moves in for a few closeups. "What an amazing looking pussy! I can\'t wait to fuck it!" he laughs as he runs his hand over your crotch.');
   // TODO-QSP: dynamic text: After getting a few more shots of you and asking a few more questions, he stands...
-  scene.text(`After getting a few more shots of you and asking a few more questions, he stands and pulls his pants down to let his fully erect ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock spring free while motioning for you get in position.`);
+  scene.text(`After getting a few more shots of you and asking a few more questions, he stands and pulls his pants down to let his fully erect ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock spring free while motioning for you get in position.`);
   scene.text('You glare at him out of camera shot, but get on your knees in front of him.');
   // TODO-QSP: end
   scene.actions([
@@ -285,17 +285,17 @@ function enterHesitantStart(s: GameState, scene: SceneBuilder): void {
     scene.text('"Nice view of that sexy pussy from back here," he laughs and you look back and smile at the camera as you feel his hand running over your crotch.');
   }
   // TODO-QSP: dynamic text: After getting a few more shots of you and asking a few more questions, he stands...
-  scene.text(`After getting a few more shots of you and asking a few more questions, he stands and pulls his pants down to let his fully erect ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock spring free while motioning for you get in position.`);
+  scene.text(`After getting a few more shots of you and asking a few more questions, he stands and pulls his pants down to let his fully erect ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock spring free while motioning for you get in position.`);
   qspCall(s, 'willpower', 'misc', 'force', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'force', 'medium');
     qspCall(s, 'willpower', 'pay', 'force');
     (s as any).minut = ((s as any).minut ?? 0) + 20;
@@ -410,7 +410,7 @@ function enterEnthusiasticStart(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: After getting a few more shots of you and asking a few more questions, he stands...
-  scene.text(`After getting a few more shots of you and asking a few more questions, he stands and pulls his pants down to let his fully erect ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock spring free while motioning for you get in position.`);
+  scene.text(`After getting a few more shots of you and asking a few more questions, he stands and pulls his pants down to let his fully erect ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock spring free while motioning for you get in position.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Blowjob', handler: (st: GameState) => {
@@ -752,7 +752,7 @@ function enterCastingAftermath(s: GameState, scene: SceneBuilder): void {
 function enterDiscoverVideo(s: GameState, scene: SceneBuilder): void {
   scene.img('images/pc/items/accesories/computer/porno.jpg');
   // TODO-QSP: dynamic text: As you browse through the selection of videos, your attention is suddenly drawn ...
-  scene.text(`As you browse through the selection of videos, your attention is suddenly drawn to one titled "College Exploits #78 - ${((s as any).pcs_firstname ?? 0)}".`);
+  scene.text(`As you browse through the selection of videos, your attention is suddenly drawn to one titled "College Exploits #78 - ${((s as any).pcs_firstname || '')}".`);
   scene.text('Curious, you click on it and discover that it\'s a video of you and that guy who paid you for that "erotic shoot."');
   scene.text('After watching yourself get fucked from both his point of view and the camera on the bed, you scroll down and read some of the comments.');
   scene.text('"Such a hot bitch! Ignat the chad scores again!"');

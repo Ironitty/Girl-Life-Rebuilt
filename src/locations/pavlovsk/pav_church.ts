@@ -36,11 +36,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('The church of Saint Nikolas is the only church in Pavlovsk and the tallest building in town. It\'s very old, but is well maintained by the worshipers of the parish.');
   scene.text('');
   // TODO-QSP: dynamic text: You can attend confession every weekday between '+func('time', 'get_time_string'...
-  scene.text('You can attend confession every weekday between \'+func(\'time\', \'get_time_string\', 7, 0)+\' and \'+func(\'time\', \'get_time_string\', 9, 0)+\' or \'+func(\'time\', \'get_time_string\', 16, 0)+\' and \'+func(\'time\', \'get_time_string\', 18, 0)+\', and on the weekend between \'+func(\'time\', \'get_time_string\', 16, 0)+\' and \'+func(\'time\', \'get_time_string\', 18, 0)+\'.');
+  scene.text('You can attend confession every weekday between 7:00 and 9:00 or 16:00 and 18:00, and on the weekend between 16:00 and 18:00.');
   // TODO-QSP: dynamic text: Vigil is held on Saturdays at '+func('time', 'get_time_string', 19, 0)+'.
-  scene.text('Vigil is held on Saturdays at \'+func(\'time\', \'get_time_string\', 19, 0)+\'.');
+  scene.text('Vigil is held on Saturdays at 19:00.');
   // TODO-QSP: dynamic text: The Divine Liturgy is on Sundays between '+func('time', 'get_time_string', 9, 0)...
-  scene.text('The Divine Liturgy is on Sundays between \'+func(\'time\', \'get_time_string\', 9, 0)+\' and \'+func(\'time\', \'get_time_string\', 12, 0)+\'.');
+  scene.text('The Divine Liturgy is on Sundays between 9:00 and 12:00.');
   if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >=19  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Attend vigil', goto: ['pav_church', 'vigil'] },
@@ -93,7 +93,7 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
   (s as any).mom_church = ((s as any).daystart ?? 0);
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: <center><b><h4><font color=#CB00A2>"Natasha <<$pcs_lastname>>"</font></h4></b></...
-  scene.text(`<center><b><h4><font color=#CB00A2>"Natasha ${((s as any).pcs_lastname ?? 0)}"</font></h4></b></center>`);
+  scene.text(`<center><b><h4><font color=#CB00A2>"Natasha ${((s as any).pcs_lastname || '')}"</font></h4></b></center>`);
   if (((s as any).VKChurchNo ?? 0) === 4  ||  ((s as any).VKChurchNo ?? 0) === 5) {
     scene.img('images/characters/pavlovsk/resident/mom/prost10.jpg');
   } else {
@@ -101,17 +101,17 @@ function enterMom(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).motherKnowWhore ?? 0) === 0  &&  (!((s as any).VKChurchIntro ?? 0))) {
     // TODO-QSP: dynamic text: You suddenly hear someone calling you out. "<<$pcs_firstname>>? I never expected...
-    scene.text(`You suddenly hear someone calling you out. "${((s as any).pcs_firstname ?? 0)}? I never expected you to come here without me dragging you."`);
+    scene.text(`You suddenly hear someone calling you out. "${((s as any).pcs_firstname || '')}? I never expected you to come here without me dragging you."`);
     scene.text('You turn to see your mother sitting in the middle row, who motions for you to sit next to her.');
   } else {
     if (((s as any).motherKnowWhore ?? 0) === 0  &&  ((s as any).VKChurchNo ?? 0) < 4) {
       // TODO-QSP: dynamic text: You see your mother sitting in the middle row, who turns and notices you. "<<$pc...
-      scene.text(`You see your mother sitting in the middle row, who turns and notices you. "${((s as any).pcs_firstname ?? 0)}, you're here! Come and take a seat." She motions for you to sit next to her.`);
+      scene.text(`You see your mother sitting in the middle row, who turns and notices you. "${((s as any).pcs_firstname || '')}, you're here! Come and take a seat." She motions for you to sit next to her.`);
     } else {
       if (((s as any).motherKnowWhore ?? 0) === 0  &&  ((s as any).VKChurchNo ?? 0) === 4) {
         scene.text('You see your mother sitting in the middle row. She quickly notices you, gets up and walks over to you.');
         // TODO-QSP: dynamic text: "<<$pcs_firstname>>, we need to talk," she says sternly as she drags you out of ...
-        scene.text(`"${((s as any).pcs_firstname ?? 0)}, we need to talk," she says sternly as she drags you out of the church.`);
+        scene.text(`"${((s as any).pcs_firstname || '')}, we need to talk," she says sternly as she drags you out of the church.`);
       } else {
         if (((s as any).motherKnowWhore ?? 0) > 0  ||  ((s as any).VKChurchNo ?? 0) === 5) {
           scene.text('You see your mother sitting in the middle row. She peeks over in your direction before turning away from you, as if you\'re not there.');
@@ -273,7 +273,7 @@ function enterExcuses(s: GameState, scene: SceneBuilder): void {
               scene.img('images/characters/pavlovsk/resident/mom/prost1.jpg');
               scene.text('You approach your mother. "What are you doing here?" she asks without turning to face you.');
               // TODO-QSP: dynamic text: You can't look her in the eyes as you reply and just look at the floor. "I'm sor...
-              scene.text(`You can't look her in the eyes as you reply and just look at the floor. "I'm sorry for lying to you, ${((s as any).npc_nickname ?? 0)?.['A29']}. I know I screwed up and I'm here to ask for your forgiveness."`);
+              scene.text(`You can't look her in the eyes as you reply and just look at the floor. "I'm sorry for lying to you, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I know I screwed up and I'm here to ask for your forgiveness."`);
               scene.text('Your mother\'s eyebrow raises in disbelief. "Do you really mean that?"');
               scene.text('You slowly nod. "Yes. I\'d like to join the sermon."');
               scene.text('"Of course you can. Sit down and let\'s listen to the word of god together."');
@@ -469,11 +469,11 @@ function enterServiceEnd(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/pavlovsk/church/enterchurch.jpg');
   if (((s as any).fame ?? 0)?.['pav_prostitute'] > (Math.floor(Math.random() * 1000) + 1)) {
     if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['approach_type'] = 'prostitute';
-    qspCall(s, 'pav_church', 'sex_approach1');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexApproach1(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).fame ?? 0)?.['pav_slut'] > (Math.floor(Math.random() * 1000) + 1)) {
       if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['approach_type'] = 'slut';
-      qspCall(s, 'pav_church', 'sex_approach1');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexApproach1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       scene.actions([{ label: 'Continue', goto: ['pav_church', 'start'] }]);
     }
@@ -503,27 +503,27 @@ function enterSexApproach1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 28) + 18, 1, 1);
   scene.text('The service ends and you stand up to leave. As you near the entrance, a man approaches while gazing lecherously at you.');
   // TODO-QSP: dynamic text: "You're <<$pcs_nickname>>, aren't you?"
-  scene.text(`"You're ${((s as any).pcs_nickname ?? 0)}, aren't you?"`);
-  qspCall(s, 'pav_church', 'sex_approach_run');
+  scene.text(`"You're ${((s as any).pcs_nickname || '')}, aren't you?"`);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexApproachRun(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Answer (shy)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_response'] = 'shy';
     scene.text('"Yes, that\'s me," you mumble meekly.');
-    qspCall(s, 'pav_church', 'sex_offer');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexOffer(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Answer (normal)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_response'] = 'normal';
     scene.text('"Yes, that\'s me," you answer naturally, meeting his eyes like any other conversation.');
-    qspCall(s, 'pav_church', 'sex_offer');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexOffer(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     { label: 'Answer (slutty)', handler: (st: GameState) => {
     qspCall(s, 'boyStat', '', ((s as any).npclastgenerated ?? 0));
     if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['prost_response'] = 'slutty';
     scene.text('"Sure am," you answer, stepping closer and returning his gaze with a lascivious smirk of your own.');
-    qspCall(s, 'pav_church', 'sex_offer');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexOffer(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
   ]);
   scene.build();
@@ -565,7 +565,7 @@ function enterSexOffer(s: GameState, scene: SceneBuilder): void {
       }
     }
   }
-  qspCall(s, 'pav_church', 'sex_approach_run');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSexApproachRun(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: 'Accept', handler: (st: GameState) => {
@@ -626,27 +626,27 @@ function enterRestroomBlowjob(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if ((Math.floor(Math.random() * 3) + 1) === 1) {
     scene.text('Inside the restroom, you kneel down and unzip the man\'s pants, tugging them down to reveal his already hard cock and immediately put it between your lips. It only takes a few minutes of working his shaft with your mouth before he starts grunting. "I\'m gonna cum!"');
-    qspCall(s, 'pav_church', 'restroom_cum_hand');
-    qspCall(s, 'pav_church', 'restroom_cum_mouth');
-    qspCall(s, 'pav_church', 'restroom_cum_face');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumHand(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumMouth(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumFace(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if ((Math.floor(Math.random() * 2) + 1) === 1) {
       scene.text('Inside the restroom, you kneel down and unzip the man\'s pants, tugging them down to reveal his already hard cock and immediately put it between your lips. It only takes a few minutes of working his shaft with your mouth before he grunts.');
       if (((s as any).npc_cum_pref ?? 0)?.[String((s as any).boy ?? 0)] === 'facial') {
         scene.text('"I\'m gonna cum on your face!"');
-        qspCall(s, 'pav_church', 'restroom_cum_face');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumFace(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).npc_cum_pref ?? 0)?.[String((s as any).boy ?? 0)] === 'mouth') {
           scene.text('"I\'m gonna cum! Swallow it!"');
-          qspCall(s, 'pav_church', 'restroom_cum_mouth');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumMouth(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           scene.text('"I\'m gonna cum!" he says and pushes you gently off his cock.');
-          qspCall(s, 'pav_church', 'restroom_cum_hand');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumHand(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     } else {
       scene.text('Inside the restroom, you kneel down and unzip the man\'s pants, tugging them down to reveal his already hard cock and immediately put it between your lips. It only takes a few minutes of working his shaft before he grunts and a thick salty liquid suddenly squirts into your mouth.');
-      qspCall(s, 'pav_church', 'restroom_cum_mouth');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumMouth(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: end
@@ -726,7 +726,7 @@ function enterRestroomFuckBareback(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['condom_use'] = 0;
   scene.img('images/shared/sex/public/restroom/fuck_stand1.mp4');
   scene.text('Once in a stall, the man pushes you up against the wall and roughly fucks your pussy.');
-  qspCall(s, 'pav_church', 'restroom_fuck_thoughts');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckThoughts(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -735,7 +735,7 @@ function enterRestroomFuckCondom(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp) (s as any).temp = {}; (s as any).temp['condom_use'] = 1;
   scene.img('images/shared/sex/public/restroom/fuck_stand1.mp4');
   scene.text('Once in a stall, the man pushes you up against the wall and roughly fucks your pussy.');
-  qspCall(s, 'pav_church', 'restroom_fuck_thoughts');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckThoughts(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -751,9 +751,9 @@ function enterRestroomFuckThoughts(s: GameState, scene: SceneBuilder): void {
       scene.text('You press your leg up on the opposing wall and let the man enjoy himself with you. He grunts, roughly shoving his cock into your pussy as you wait patiently for him to finish, even managing to have an orgasm yourself before he does.');
     }
     if (((s as any).temp ?? 0)?.['condom_use'] === 0) {
-      qspCall(s, 'pav_church', 'restroom_fuck_bareback_cum');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckBarebackCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'pav_church', 'restroom_fuck_condom_cum');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckCondomCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Enjoy yourself', handler: (st: GameState) => {
@@ -764,27 +764,27 @@ function enterRestroomFuckThoughts(s: GameState, scene: SceneBuilder): void {
       scene.text('You press your leg up on the opposing wall and thrust back at him, smiling as warmth and wetness spread from between your legs. Your breathing picks up in time with his and before you know it, you\'re shuddering in orgasm yourself before he\'s done.');
     }
     if (((s as any).temp ?? 0)?.['condom_use'] === 0) {
-      qspCall(s, 'pav_church', 'restroom_fuck_bareback_cum');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckBarebackCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'pav_church', 'restroom_fuck_condom_cum');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckCondomCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Boring', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', Math.floor(Math.random() * 6) + 5, 'prostitution', 'no_orgasm_msg');
     scene.text('<i>Ugh, how boring…</i> you sigh silently as the man keeps grunting, shoving his cock into your pussy as you mechanically thrust back in time. This is taking forever and you stifle another sigh waiting for him to finish.');
     if (((s as any).temp ?? 0)?.['condom_use'] === 0) {
-      qspCall(s, 'pav_church', 'restroom_fuck_bareback_cum');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckBarebackCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'pav_church', 'restroom_fuck_condom_cum');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckCondomCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
     { label: 'Think happy thoughts', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'vaginal', Math.floor(Math.random() * 6) + 5, 'prostitution', 'no_orgasm_msg');
     scene.text('As the man keeps grunting, uncomfortably shoving his cock into your pussy, you close your eyes and try to disassociate from the experience, thinking of the happiest thoughts you can muster.');
     if (((s as any).temp ?? 0)?.['condom_use'] === 0) {
-      qspCall(s, 'pav_church', 'restroom_fuck_bareback_cum');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckBarebackCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
-      qspCall(s, 'pav_church', 'restroom_fuck_condom_cum');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomFuckCondomCum(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -835,9 +835,9 @@ function enterRestroomFuckBarebackCum(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.text('A few minutes later, he groans softly. "I\'m gonna cum!"');
-    qspCall(s, 'pav_church', 'restroom_cum_hand');
-    qspCall(s, 'pav_church', 'restroom_cum_mouth');
-    qspCall(s, 'pav_church', 'restroom_cum_face');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumHand(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumMouth(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRestroomCumFace(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Let him cum inside you', handler: (st: GameState) => {
     qspCall(s, 'cum_call', '', '', 'man at church');
@@ -1069,7 +1069,7 @@ function enterLeaveEarly(s: GameState, scene: SceneBuilder): void {
   (s as any).mom_church = ((s as any).daystart ?? 0);
   scene.img('images/characters/pavlovsk/resident/mom/prost9.jpg');
   // TODO-QSP: dynamic text: You approach your mother. "I had a great time <<$npc_nickname['A29']>>, but I sh...
-  scene.text(`You approach your mother. "I had a great time ${((s as any).npc_nickname ?? 0)?.['A29']}, but I should be heading home now."`);
+  scene.text(`You approach your mother. "I had a great time ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, but I should be heading home now."`);
   scene.text('"Alright. Thank you for stopping by. I hope you learned something about yourself today," she replies and lightly pats your arm before going back to praying.');
   // TODO-QSP: end
   scene.actions([
@@ -1101,7 +1101,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
   if (((s as any).VKChurchQW ?? 0) === 1) {
     scene.text('As the church ceremonies ends, you and your mother get up and collect your things before walking out of the church, where she places her hand on your shoulder.');
     // TODO-QSP: dynamic text: "I'm really happy that you decided to join me today, <<$pcs_nickname>>. You came...
-    scene.text(`"I'm really happy that you decided to join me today, ${((s as any).pcs_nickname ?? 0)}. You came here by your own choice and I'm proud of you. Now take this and get yourself some lunch."`);
+    scene.text(`"I'm really happy that you decided to join me today, ${((s as any).pcs_nickname || '')}. You came here by your own choice and I'm proud of you. Now take this and get yourself some lunch."`);
     // TODO-QSP: dynamic text: She hands you ' + $func('money', 'string_profit', 300) + ' and gently pats your ...
     scene.text('She hands you \' + $func(\'money\', \'string_profit\', 300) + \' and gently pats your shoulder before walking away.');
   } else {
@@ -1130,7 +1130,7 @@ function enterLeave(s: GameState, scene: SceneBuilder): void {
             scene.text('"How do you feel about these ceremonies? Be honest," your mother asks.');
             scene.text('You give her a smile. "I\'ve learned a lot since coming here and there\'s still more to learn. I\'ve been enjoying learning of our lord and savior."');
             // TODO-QSP: dynamic text: Your mother gives you a warm hug as she whispers in your ear. "I'm so proud of y...
-            scene.text(`Your mother gives you a warm hug as she whispers in your ear. "I'm so proud of you, ${((s as any).pcs_firstname ?? 0)}. Your brother and sister can learn so much from you."`);
+            scene.text(`Your mother gives you a warm hug as she whispers in your ear. "I'm so proud of you, ${((s as any).pcs_firstname || '')}. Your brother and sister can learn so much from you."`);
             // TODO-QSP: dynamic text: She thens squeezes slightly tighter before releasing you and placing ' + $func('...
             scene.text('She thens squeezes slightly tighter before releasing you and placing \' + $func(\'money\', \'string_profit\', 500) + \' in your pocket. "A small reward for my loving daughter."');
             scene.text('She then waves with a big smile on her face as she walks away.');
@@ -1166,21 +1166,21 @@ function enterCandle(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 1  &&  (!((s as any).owechurch ?? 0))) {
     qspCall(s, 'money', 'pay', 10, 'cash');
     // TODO-QSP: dynamic text: You approach the deacon and hand over the ' + $func('money', 'string_price', 10)...
-    scene.text('You approach the deacon and hand over the \' + $func(\'money\', \'string_price\', 10) + \' for a candle.');
+    scene.text('You approach the deacon and hand over the 10₽ for a candle.');
   } else {
     if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 1  &&  qspFunc(s, 'money', 'can_afford', 20, 'cash') === 0  &&  ((s as any).owechurch ?? 0) === 1) {
       (s as any).owechurch = 0;
       qspCall(s, 'money', 'pay', 10, 'cash');
       qspCall(s, 'mood', 'lower', 'small');
       // TODO-QSP: dynamic text: You approach the deacon and hope that he doesn't recognize you since you couldn'...
-      scene.text('You approach the deacon and hope that he doesn\'t recognize you since you couldn\'t pay for your last candle. You give him \' + $func(\'money\', \'string_price\', 10) + \' and he hands you a candle. You hustle away from the counter while guilt gnaws at you.');
+      scene.text('You approach the deacon and hope that he doesn\'t recognize you since you couldn\'t pay for your last candle. You give him 10₽ and he hands you a candle. You hustle away from the counter while guilt gnaws at you.');
     } else {
       if (qspFunc(s, 'money', 'can_afford', 20, 'cash') === 1  &&  ((s as any).owechurch ?? 0) === 1) {
         (s as any).owechurch = 0;
         qspCall(s, 'money', 'pay', 20, 'cash');
         qspCall(s, 'mood', 'raise', 'tiny');
         // TODO-QSP: dynamic text: You approach the deacon. He is confused when you hand him ' + $func('money', 'st...
-        scene.text('You approach the deacon. He is confused when you hand him \' + $func(\'money\', \'string_price\', 20) + \' before smiling in understanding. You feel relieved that the debt is paid.');
+        scene.text('You approach the deacon. He is confused when you hand him 20₽ before smiling in understanding. You feel relieved that the debt is paid.');
       } else {
         if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 0) {
           (s as any).owechurch = 1;
@@ -1278,7 +1278,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 30);
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * ((s as any).drugVars ?? {})?.['cocaine_system'] / 4;
+                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 4;
               }
               scene.text('The Nave is lit only with small candles, leaving your surroundings in darkness, but you find it comforting. You get the urge to pray very intensely and before you know it, an hour has passed and you feel cleansed.');
             } else {
@@ -1296,7 +1296,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
                 (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
                 (s as any).minut = ((s as any).minut ?? 0) + 60;
                 if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                  if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * ((s as any).drugVars ?? {})?.['cocaine_system'] / 4;
+                  if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 4;
                 }
                 scene.text('The Nave is lit only with candles and small presence lights and the darkness feels very comforting, like being in the womb. You get the urge to pray very intensely and before you know it, more than an hour has passed and you feel reborn and cleansed.');
               }
@@ -1358,7 +1358,7 @@ function enterTalkPriest(s: GameState, scene: SceneBuilder): void {
     scene.text('You take the broom and begin your task, thankful that the church isn\'t a very large one. You diligently sweep the floor, making sure to get into all the corners. Once the sweeping is done, you mop the floor and then put everything away. You feel a sense of satisfaction and wellbeing at a job well done.');
     scene.text('As you close the closet door, you turn around to find the priest looking at you with a pleased expression.');
     // TODO-QSP: dynamic text: "Thank you, <<$pcs_firstname>>. You did a fine job." he says. Surprisingly, you ...
-    scene.text(`"Thank you, ${((s as any).pcs_firstname ?? 0)}. You did a fine job." he says. Surprisingly, you feel a flush of pleasure at the praise. You finish putting things away and leave.`);
+    scene.text(`"Thank you, ${((s as any).pcs_firstname || '')}. You did a fine job." he says. Surprisingly, you feel a flush of pleasure at the praise. You finish putting things away and leave.`);
     scene.actions([
       { label: 'Leave the church', goto: ['pav_church', 'start'] },
     ]);
@@ -1380,7 +1380,7 @@ function enterTalkPriest(s: GameState, scene: SceneBuilder): void {
     } else {
       scene.text('The priest leads you to a bench in the Narthex and has you sit down with him.');
       // TODO-QSP: dynamic text: "I feel that you have lost your way <<$pcs_firstname>>," he begins softly. "Such...
-      scene.text(`"I feel that you have lost your way ${((s as any).pcs_firstname ?? 0)}," he begins softly. "Such behavior can only lead to a life of misery and sin."`);
+      scene.text(`"I feel that you have lost your way ${((s as any).pcs_firstname || '')}," he begins softly. "Such behavior can only lead to a life of misery and sin."`);
       scene.text('"I know father," you reply with a sigh. "But I just can\'t seem to help it sometimes."');
       scene.actions([
         { label: 'Tease him', goto: ['pav_church', 'tease'] },
@@ -1420,7 +1420,7 @@ function enterTalkPriest(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "I'm sorry <<$pcs_firstname>>. It seems that I'm needed by Mrs. Seldipi," he say...
-      scene.text(`"I'm sorry ${((s as any).pcs_firstname ?? 0)}. It seems that I'm needed by Mrs. Seldipi," he says with obvious regret. "I've enjoyed our chat. Please think on what we've discussed and we'll talk another time."`);
+      scene.text(`"I'm sorry ${((s as any).pcs_firstname || '')}. It seems that I'm needed by Mrs. Seldipi," he says with obvious regret. "I've enjoyed our chat. Please think on what we've discussed and we'll talk another time."`);
       scene.actions([
         { label: 'Leave the church', goto: ['pav_church', 'start'] },
       ]);
@@ -1454,17 +1454,17 @@ function enterTease(s: GameState, scene: SceneBuilder): void {
     scene.text('You look the priest right in the eyes when his attention is on you, slowly leaning forward and allowing your breasts to be exposed. To your delight, you see his eyes dart to your breasts and stay there.');
     if (((s as any).kirillsex ?? 0) !== 0) {
       // TODO-QSP: dynamic text: "Very nice, <<$pcs_firstname>>." Father Kirill whispers as he reaches out and ca...
-      scene.text(`"Very nice, ${((s as any).pcs_firstname ?? 0)}." Father Kirill whispers as he reaches out and caresses your breasts before pulling your top back into place, covering you once again. "Follow me."`);
+      scene.text(`"Very nice, ${((s as any).pcs_firstname || '')}." Father Kirill whispers as he reaches out and caresses your breasts before pulling your top back into place, covering you once again. "Follow me."`);
       qspCall(s, 'willpower', 'sex', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Leave the church [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Leave the church', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Leave the church [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Leave the church', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
   }, goto: ['pav_church', 'start'] },
@@ -1475,7 +1475,7 @@ function enterTease(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "Very nice, <<$pcs_firstname>>." Father Kirill whispers with a smile as he reach...
-      scene.text(`"Very nice, ${((s as any).pcs_firstname ?? 0)}." Father Kirill whispers with a smile as he reaches out and softly caresses your breasts before pulling your top back into place, covering you up once again.`);
+      scene.text(`"Very nice, ${((s as any).pcs_firstname || '')}." Father Kirill whispers with a smile as he reaches out and softly caresses your breasts before pulling your top back into place, covering you up once again.`);
       scene.text('"No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it," he murmurs as he fastens your buttons and sighs.');
       scene.text('"Thus it is written, and thus it behooved Christ to suffer, and to rise from the dead the third day," you reply looking at the telltale lump in Father Kirill\'s crotch, "It seems that Jesus is not the only one to rise from the dead," you add with a playful giggle.');
       scene.text('Father Kirill looks at you and opens his mouth to speak but no words come out. With a laugh, you jump up and skip out of the church with a final glance back at the dumbfounded cleric.');
@@ -1495,14 +1495,14 @@ function enterTease(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).Churchbad ?? 0) <= 4  &&  ((s as any).Kirill ?? 0) <= 20) {
         // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>!" the priest hisses, his face twisted in r...
-        scene.text(`"${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}!" the priest hisses, his face twisted in rage. "How dare you behave like this in the House of God! Get out now!"`);
+        scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}!" the priest hisses, his face twisted in rage. "How dare you behave like this in the House of God! Get out now!"`);
         scene.text('Stunned by his unexpected fury, you hastily cover yourself up and flee from the church.');
         scene.actions([
           { label: 'Leave the church', goto: ['pav_church', 'start'] },
         ]);
       } else {
         // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>!" the priest hisses, his face flushed with...
-        scene.text(`"${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}!" the priest hisses, his face flushed with embarrassment. "How could you behave like this in the House of God! Cover yourself up, now!"`);
+        scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}!" the priest hisses, his face flushed with embarrassment. "How could you behave like this in the House of God! Cover yourself up, now!"`);
         scene.text('Although it isn\'t the reaction you were expecting, it is a reaction. Looking up at the priest, you can tell that his embarrassment is changing to anger. You decide that it might be best if you leave.');
         scene.actions([
           { label: 'Leave the church', goto: ['pav_church', 'start'] },

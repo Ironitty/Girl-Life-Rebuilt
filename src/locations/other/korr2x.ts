@@ -23,11 +23,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).krolik ?? 0) === 1) {
     // TODO-QSP: dynamic text: Your rabbit <a href="exec:gt 'krol', 'start'"><<$namekrol>></a> sits in it's cag...
-    scene.text(`Your rabbit <a href="exec:gt 'krol', 'start'">${((s as any).namekrol ?? 0)}</a> sits in it's cage on the floor.`);
+    scene.text(`Your rabbit <a href="exec:gt 'krol', 'start'">${((s as any).namekrol || '')}</a> sits in it's cage on the floor.`);
   }
   if (((s as any).ParrotQW ?? 0)?.['Owned1'] === 1) {
     // TODO-QSP: dynamic text: Your parrot <a href="exec:gt 'popu', 'start'"><<$ParrotQW['Name1']>></a> sits in...
-    scene.text(`Your parrot <a href="exec:gt 'popu', 'start'">${((s as any).ParrotQW ?? 0)?.['Name1']}</a> sits in it's cage.`);
+    scene.text(`Your parrot <a href="exec:gt 'popu', 'start'">${((s as any).ParrotQW ?? 0)?.['Name1'] ?? ''}</a> sits in it's cage.`);
   }
   qspCall(s, 'daily_routine', 'offer_here');
   if (qspFunc(s, 'homes_properties', 'is_current_home') === 0) {
@@ -43,11 +43,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).hour ?? 0) > 5) {
           // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt 'pet_dog', 'start'"><<$rex['name']>></a> is lying...
-          scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name']}</a> is lying on the floor.<br>`);
+          scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
             // TODO-QSP: dynamic text: <br><<$rex['name']>> is sleeping in his dog basket.<br>
-            scene.text(`<br>${((s as any).rex ?? 0)?.['name']} is sleeping in his dog basket.<br>`);
+            scene.text(`<br>${((s as any).rex ?? 0)?.['name'] ?? ''} is sleeping in his dog basket.<br>`);
           }
         }
       }

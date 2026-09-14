@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterCheckForInit(s: GameState, scene: SceneBuilder): void {
   if (((s as any).balletqw ?? 0)?.['blocker'] === 0  &&  ((s as any).start_type ?? 0)?.['cat'] === 'dancer') {
     if (((((s as any).daystart ?? 0) >= 158  &&  ((s as any).daystart ?? 0) <= 198)  &&  ((s as any).balletqw ?? 0)?.['letter'] === 0)  ||  (((s as any).daystart ?? 0) >= 198  &&  ((s as any).balletqw ?? 0)?.['school'] > 1)) {
-      qspCall(s, 'pushkin_ballet_init', 'start');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: end
@@ -34,7 +34,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).loc ?? 0) === 'pushkin_ballet_res'  &&  ((s as any).loc_arg ?? 0) === 'hallway'  &&  (((s as any).hour ?? 0) >= 6  &&  ((s as any).hour ?? 0) < 8)  &&  (((s as any).day ?? 0) >= 1  ||  ((s as any).day ?? 0) <= 6)) {
         scene.actions([
-          { label: 'Go to School ( [+func(\'time\', \'get_time_string\', 7, 30)+\'...]', goto: ['pushkin_ballet_class', 'start'] },
+          { label: 'Go to School ( [7:30]...]', goto: ['pushkin_ballet_class', 'start'] },
         ]);
       }
     }
@@ -164,7 +164,7 @@ function enterDailyAssessment(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).ballet_grade_score) (s as any).ballet_grade_score = {}; (s as any).ballet_grade_score['class'] = ((s as any).ballet_grade_score['class'] ?? 0) + (((s as any).ballet_daily_score ?? 0)?.[String((s as any).week ?? 0)]);
   }
   if (((s as any).locArgs?.[1] ?? 0)=== 'grade') {
-    if (!(s as any).ballet_grade_score) (s as any).ballet_grade_score = {}; (s as any).ballet_grade_score['total'] = 100 * (((s as any).ballet_grade_score ?? {})?.['class'] + ((s as any).ballet_grade_score ?? {})?.['homework'] + ((s as any).ballet_grade_health ?? 0) + (((s as any).danc_lvl ?? 0) / 10)) / 210;
+    if (!(s as any).ballet_grade_score) (s as any).ballet_grade_score = {}; (s as any).ballet_grade_score['total'] = 100 * ((((s as any).ballet_grade_score ?? {})?.['class'] ?? 0) + (((s as any).ballet_grade_score ?? {})?.['homework'] ?? 0) + ((s as any).ballet_grade_health ?? 0) + (((s as any).danc_lvl ?? 0) / 10)) / 210;
     if (((s as any).ballet_grade_score ?? 0)?.['total'] <= 40) {
       if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['school'] = 0;
     } else {
@@ -287,7 +287,7 @@ function enterDebugMenu(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.actions([
       { label: '<b>Open Debug Menu</b>', handler: (st: GameState) => {
-    qspCall(s, 'pushkin_ballet_init', 'debug_menu');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDebugMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   }
@@ -352,7 +352,7 @@ function enterDebugVars(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $ballet_log[] = 'balletqw[rank]: ' + balletqw['rank']
   // TODO-QSP: $ballet_log[] = 'balletqw[performances]: ' + balletqw['performances']
   if (((s as any).ballet_day ?? 0) > 0  &&  ((s as any).balletqw ?? 0)?.['school'] === 0) {
-    qspCall(s, 'pushkin_ballet_init', 'score_debug');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterScoreDebug(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.build();
@@ -363,9 +363,9 @@ function enterBalletDebug(s: GameState, scene: SceneBuilder): void {
     (s as any).i = 0;
     scene.text('---- Ballet Debug Log ----');
     // TODO-QSP: dynamic text: Date: <<daystart>> - <<year>>, <<month>>, <<day>>
-    scene.text(`Date: ${((s as any).daystart ?? 0)} - ${((s as any).year ?? 0)}, ${((s as any).month ?? 0)}, ${((s as any).day ?? 0)}`);
+    scene.text(`Date: ${((s as any).daystart || '')} - ${((s as any).year || '')}, ${((s as any).month || '')}, ${((s as any).day || '')}`);
     // TODO-QSP: dynamic text: Girl Life version: <<version_major+"."+version_minor+"."+version_revision+"."+ve...
-    scene.text(`Girl Life version: ${((s as any).version_major ?? 0)+"."+((s as any).version_minor ?? 0)+"."+((s as any).version_revision ?? 0)+"."+((s as any).version_patch ?? 0)+((((s as any).git_hash ?? 0) !== "") ? ('<br>"+$git_hash+" (dev build)') : (''))}`);
+    scene.text(`Girl Life version: ${((s as any).version_major ?? '')+"."+((s as any).version_minor ?? '')+"."+((s as any).version_revision ?? '')+"."+((s as any).version_patch ?? '')+((((s as any).git_hash ?? 0) !== "") ? ('<br>"+$git_hash+" (dev build)') : (''))}`);
     // TODO-QSP: :debug_ballet_loop
     // TODO-QSP: 'Entry <<i>>: ' + $ballet_log[i]
     (s as any).i = ((s as any).i ?? 0) + (1);

@@ -84,7 +84,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/pc/activities/spy/peep3.jpg');
     // TODO-QSP: dynamic text: You knock on the door and your <<$npc_nickname['A29']>> opens it, looking like s...
-    scene.text(`You knock on the door and your ${((s as any).npc_nickname ?? 0)?.['A29']} opens it, looking like she just got out of the shower.`);
+    scene.text(`You knock on the door and your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} opens it, looking like she just got out of the shower.`);
     scene.text('"I don\'t have time right now. Go wake up your brother."');
     scene.text('She then closes the door in your face.');
     scene.actions([
@@ -218,11 +218,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).hour ?? 0) > 5) {
           // TODO-QSP: dynamic text: <br>Your dog <a href="exec: gt 'pet_dog', 'start'"><<$rex['name']>></a> is lying...
-          scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name']}</a> is lying on the floor.<br>`);
+          scene.text(`<br>Your dog <a href="exec: gt 'pet_dog', 'start'">${((s as any).rex ?? 0)?.['name'] ?? ''}</a> is lying on the floor.<br>`);
         } else {
           if (((s as any).hour ?? 0) < 6) {
             // TODO-QSP: dynamic text: <br><<$rex['name']>> is sleeping in his dog basket.<br>
-            scene.text(`<br>${((s as any).rex ?? 0)?.['name']} is sleeping in his dog basket.<br>`);
+            scene.text(`<br>${((s as any).rex ?? 0)?.['name'] ?? ''} is sleeping in his dog basket.<br>`);
           }
         }
       }
@@ -246,7 +246,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You slap away her hand with a defiant look in your eyes. "Oh really? Well you're...
-    scene.text(`You slap away her hand with a defiant look in your eyes. "Oh really? Well you're no angel yourself, ${((s as any).npc_nickname ?? 0)?.['A29']}! Does Vladimir know what YOU have been up to lately? Why don't we go and ask him?"`);
+    scene.text(`You slap away her hand with a defiant look in your eyes. "Oh really? Well you're no angel yourself, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}! Does Vladimir know what YOU have been up to lately? Why don't we go and ask him?"`);
     scene.text('Your mother looks at you furiously, but is at a loss for words. After a few seconds of awkward silence, she storms off, slamming the door behind her as she goes.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -263,7 +263,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 2;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You burst into tears. "<<$npc_nickname['A29']>>, please forgive me! It will neve...
-    scene.text(`You burst into tears. "${((s as any).npc_nickname ?? 0)?.['A29']}, please forgive me! It will never happen again! I made a stupid mistake, I'm sorry… I didn't mean to… Please… I don't… I'm sorry…"`);
+    scene.text(`You burst into tears. "${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, please forgive me! It will never happen again! I made a stupid mistake, I'm sorry… I didn't mean to… Please… I don't… I'm sorry…"`);
     scene.text('You fall to your knees sobbing uncontrollably, hoping she will have mercy on you.');
     scene.text('Your mother looks down at you, still angry but not quite sure what to do. She just lets out an exasperated gasp, shakes her head and walks away.');
     scene.actions([
@@ -278,7 +278,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     (s as any).spank = ((s as any).spank ?? 0) + (1);
     qspCall(s, 'pain', '', 5, 'asscheeks', 'spank');
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_nickname ?? 0)?.['A29']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}</b></center>`);
     scene.img('images/characters/pavlovsk/resident/mom/spank.jpg');
     scene.text('You stand in the hallway staring at the floor, too embarrassed to say anything before your mother suddenly grabs you by the arm and drags you into the living room. "Take off your pants and bend over!"');
     scene.text('You shake your head and refuse to budge, not liking where this is going at all.');
@@ -298,7 +298,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'mood', 'lower', 'min');
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: When you enter the hallway, you find your mother waiting for you. "What's all th...
-      scene.text(`When you enter the hallway, you find your mother waiting for you. "What's all this I hear about a video of you sucking some guy's dick? How could you be so careless, ${((s as any).pcs_nickname ?? 0)}? You do realize this makes our whole family look bad?"`);
+      scene.text(`When you enter the hallway, you find your mother waiting for you. "What's all this I hear about a video of you sucking some guy's dick? How could you be so careless, ${((s as any).pcs_nickname || '')}? You do realize this makes our whole family look bad?"`);
       return;
       scene.actions([
         { label: 'Apologize', handler: (st: GameState) => {
@@ -307,7 +307,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npc_relationship', 'modify', 'A29', (-40));
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: "I don't know what to say, <<$npc_nickname['A29']>>… I'm really sorry."
-    scene.text(`"I don't know what to say, ${((s as any).npc_nickname ?? 0)?.['A29']}… I'm really sorry."`);
+    scene.text(`"I don't know what to say, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}… I'm really sorry."`);
     scene.text('Your mother is clearly very upset with you. After a short discussion, she walks away.');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -326,19 +326,19 @@ function enter(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'stat', '');
         if (((s as any).abductionReturned ?? 0) === 2) {
           // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>! Thank god, where have you been? I've been worried sick!"
-          scene.text(`"Oh ${((s as any).pcs_nickname ?? 0)}! Thank god, where have you been? I've been worried sick!"`);
+          scene.text(`"Oh ${((s as any).pcs_nickname || '')}! Thank god, where have you been? I've been worried sick!"`);
           scene.text('You tell her you went to stay with a friend for a few days and lost track of time, and apologize for not calling. She looks relieved, if annoyed you did not at least send a message.');
           scene.text('"Next time, you call me. Do you understand? I do not care how old you think you are, you scared me half to death." She pulls you into a tight hug anyway, holding on a little longer than usual.');
         } else {
           scene.text('"Oh my darling, where have you been? We\'ve been so worried!"');
           // TODO-QSP: dynamic text: You walk into the kitchen with your <<$npc_nickname['A29']>> and spend some time...
-          scene.text(`You walk into the kitchen with your ${((s as any).npc_nickname ?? 0)?.['A29']} and spend some time explaining what happened to you. Many of the details are difficult to talk about, and you cry and hug her as you tell your story.`);
+          scene.text(`You walk into the kitchen with your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and spend some time explaining what happened to you. Many of the details are difficult to talk about, and you cry and hug her as you tell your story.`);
           // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> tells you she'll sort out everything with the scho...
-          scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} tells you she'll sort out everything with the school and makes you a bowl of chicken soup.`);
+          scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} tells you she'll sort out everything with the school and makes you a bowl of chicken soup.`);
           qspCall(s, 'food', 'family_meals');
           qspCall(s, 'food', 'aftermeal');
           // TODO-QSP: dynamic text: You eat the chicken soup, and<<$mtxt>>
-          scene.text(`You eat the chicken soup, and${((s as any).mtxt ?? 0)}`);
+          scene.text(`You eat the chicken soup, and${((s as any).mtxt || '')}`);
         }
         (s as any).abductionReturned = 0;
         return;
@@ -367,11 +367,11 @@ function enter(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'grades', 'grade_award', 'school', 'his', (-20));
           if (((s as any).npc_rel ?? 0)?.['A29'] >= 40) {
             // TODO-QSP: dynamic text: You find your mother waiting for you when you enter the hallway. "<<$pcs_nicknam...
-            scene.text(`You find your mother waiting for you when you enter the hallway. "${((s as any).pcs_nickname ?? 0)}? The school called saying you weren't at school today. You know they're very unforgiving when it comes to absenteeism. They said they would expel you if it happens again. What are you doing with your life? Get it together!"`);
+            scene.text(`You find your mother waiting for you when you enter the hallway. "${((s as any).pcs_nickname || '')}? The school called saying you weren't at school today. You know they're very unforgiving when it comes to absenteeism. They said they would expel you if it happens again. What are you doing with your life? Get it together!"`);
             scene.text('She angrily leaves the room, leaving you to your thoughts.');
           } else {
             // TODO-QSP: dynamic text: You find your mother waiting for you when you enter the hallway. "<<$pcs_nicknam...
-            scene.text(`You find your mother waiting for you when you enter the hallway. "${((s as any).pcs_nickname ?? 0)}? The school called saying you weren't at school today. You know they're very unforgiving when it comes to absenteeism. They said they would expel you if it happens again. What are you doing with your life? Get it together!"`);
+            scene.text(`You find your mother waiting for you when you enter the hallway. "${((s as any).pcs_nickname || '')}? The school called saying you weren't at school today. You know they're very unforgiving when it comes to absenteeism. They said they would expel you if it happens again. What are you doing with your life? Get it together!"`);
             scene.text('She angrily leaves the room, leaving you to your thoughts.');
           }
         } else {
@@ -395,12 +395,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
             if (((s as any).npc_rel ?? 0)?.['A29'] >= 40) {
               scene.text('You find your mother waiting for you when you enter the hallway. She seems very angry with you. "The school called saying you didn\'t show up for class again. They wanted to expel you! I had to go over there and beg the principal to give you one last chance. I\'ve never felt so humiliated!"');
               // TODO-QSP: dynamic text: She rubs the bridge of her nose, seemingly to calm herself down. "This is your l...
-              scene.text(`She rubs the bridge of her nose, seemingly to calm herself down. "This is your last chance, ${((s as any).pcs_nickname ?? 0)}. You will <i>not</i> embarrass me any further! If you miss one more day of school, they will kick you out. And if you get kicked out of school, life is going to get a lot tougher for you, especially around here!"`);
+              scene.text(`She rubs the bridge of her nose, seemingly to calm herself down. "This is your last chance, ${((s as any).pcs_nickname || '')}. You will <i>not</i> embarrass me any further! If you miss one more day of school, they will kick you out. And if you get kicked out of school, life is going to get a lot tougher for you, especially around here!"`);
               scene.text('Having said her piece, she turns around and leaves.');
             } else {
               scene.text('You find your mother waiting for you when you enter the hallway. She seems very angry with you. "The school called saying you didn\'t show up for class again. They wanted to expel you! I had to go over there and beg the principal to give you one last chance. I\'ve never felt so humiliated!"');
               // TODO-QSP: dynamic text: She rubs the bridge of her nose, seemingly to calm herself down. "This is your l...
-              scene.text(`She rubs the bridge of her nose, seemingly to calm herself down. "This is your last chance, ${((s as any).pcs_nickname ?? 0)}. You will <i>not</i> embarrass me any further! If you miss one more day of school, they will kick you out. And if you get kicked out of school, I will personally kick you out of the house. If you cannot be responsible and behave like a normal person, then get out! No one is forcing you to stay."`);
+              scene.text(`She rubs the bridge of her nose, seemingly to calm herself down. "This is your last chance, ${((s as any).pcs_nickname || '')}. You will <i>not</i> embarrass me any further! If you miss one more day of school, they will kick you out. And if you get kicked out of school, I will personally kick you out of the house. If you cannot be responsible and behave like a normal person, then get out! No one is forcing you to stay."`);
               scene.text('Having said her piece, she turns around and leaves.');
             }
           } else {
@@ -426,12 +426,12 @@ function enter(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'calendar', 'pack', 'remove', 'school');
               if (((s as any).npc_rel ?? 0)?.['A29'] >= 40) {
                 // TODO-QSP: dynamic text: You find your mother waiting for you when you enter the hallway. You have never ...
-                scene.text(`You find your mother waiting for you when you enter the hallway. You have never seen her this furious before. "${((s as any).pcs_nickname ?? 0)}? I just got off the phone with the school. They told me you didn't show up yet again and expelled you. I'm extremely disappointed with you! I've warned you so many times! If you want to keep sleeping under this roof, then you better start pulling your weight around here! Right now, I want you to go out and find a job!"`);
+                scene.text(`You find your mother waiting for you when you enter the hallway. You have never seen her this furious before. "${((s as any).pcs_nickname || '')}? I just got off the phone with the school. They told me you didn't show up yet again and expelled you. I'm extremely disappointed with you! I've warned you so many times! If you want to keep sleeping under this roof, then you better start pulling your weight around here! Right now, I want you to go out and find a job!"`);
                 scene.text('She pushes you out the door and slams it shut in your face.');
               } else {
                 qspCall(s, 'homes_properties', 'block_access', 'parents_home');
                 // TODO-QSP: dynamic text: You find your mother waiting for you when you enter the hallway. You have never ...
-                scene.text(`You find your mother waiting for you when you enter the hallway. You have never seen her this furious before. "${((s as any).pcs_nickname ?? 0)}? I just got off the phone with the school, they told me you didn't show up yet again and expelled you. I've had it with you! I've warned you so many times! Go ahead, live your irresponsible life the way you want. You're no longer welcome here."`);
+                scene.text(`You find your mother waiting for you when you enter the hallway. You have never seen her this furious before. "${((s as any).pcs_nickname || '')}? I just got off the phone with the school, they told me you didn't show up yet again and expelled you. I've had it with you! I've warned you so many times! Go ahead, live your irresponsible life the way you want. You're no longer welcome here."`);
                 scene.text('She has already packed up your things and roughly shoves the bag into your hands before she pushes you out the door and slams it shut in your face.');
               }
               return;

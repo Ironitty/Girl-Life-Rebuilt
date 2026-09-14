@@ -97,7 +97,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('A small village with many old wooden houses and even more in various states of disrepair. It has certainly seen better times.');
     if (qspFunc(s, 'car_funcs', 'is_here')) {
       // TODO-QSP: dynamic text: <a href="exec:gs 'carF', 'start'">Your <<$car['name']>></a> is close by.
-      scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name']}</a> is close by.`);
+      scene.text(`<a href="exec:gs 'carF', 'start'">Your ${((s as any).car ?? 0)?.['name'] ?? ''}</a> is close by.`);
     }
     // TODO-QSP: dynamic text: Several small farms are scattered around the outskirts of the village, one of wh...
     scene.text('Several small farms are scattered around the outskirts of the village, one of which belongs to <a href="exec:minut += 5 & gt \'gad_gpyard\', \'start\'">your grandparents</a>.');
@@ -114,7 +114,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         // TODO-QSP: :lover_pickup_loop
         if (((s as any).npc_meetday ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).daystart ?? 0)  &&  ((s as any).npc_meethour ?? 0)?.[String((s as any).temp_npcid ?? 0)] === ((s as any).hour ?? 0)) {
           // TODO-QSP: dynamic text: <b><a href="exec: gt 'lover_meet', 'start', '<<$temp_npcid>>'"><<$npc_usedname[$...
-          scene.text(`<b><a href="exec: gt 'lover_meet', 'start', '${((s as any).temp_npcid ?? 0)}'">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)]}</a> is waiting in the street.</b>`);
+          scene.text(`<b><a href="exec: gt 'lover_meet', 'start', '${((s as any).temp_npcid || '')}'">${((s as any).npc_usedname ?? 0)?.[String((s as any).temp_npcid ?? 0)] ?? ''}</a> is waiting in the street.</b>`);
         }
         (s as any).temp_i = ((s as any).temp_i ?? 0) + (1);
         if (((s as any).temp_i ?? 0) < ((s as any).temp_max_i ?? 0)) {
@@ -217,7 +217,7 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'money', 'earn', boletus*25+bilberry*25
     scene.img('images/locations/gadukino/village/collection_point.jpg');
     // TODO-QSP: dynamic text: You decide to sell your mushrooms and berries for <<$func('money', 'string_profi...
-    scene.text(`You decide to sell your mushrooms and berries for ${qspFunc(s, 'money', 'string_profit', ((s as any).boletus ?? 0)*25+((s as any).bilberry ?? 0)*25)}.`);
+    scene.text(`You decide to sell your mushrooms and berries for ${qspFunc(s, 'money', 'string_profit', ((s as any).boletus ?? '')*25+((s as any).bilberry ?? '')*25)}.`);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -235,7 +235,7 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'money', 'earn', boletus*25
     scene.img('images/locations/gadukino/village/collection_point.jpg');
     // TODO-QSP: dynamic text: You decide to sell your mushrooms for <<$func('money', 'string_profit', boletus*...
-    scene.text(`You decide to sell your mushrooms for ${qspFunc(s, 'money', 'string_profit', ((s as any).boletus ?? 0)*25)}.`);
+    scene.text(`You decide to sell your mushrooms for ${qspFunc(s, 'money', 'string_profit', ((s as any).boletus ?? '')*25)}.`);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -252,7 +252,7 @@ function enterCollectionPoint(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: gs 'money', 'earn', bilberry*25
     scene.img('images/locations/gadukino/village/collection_point.jpg');
     // TODO-QSP: dynamic text: You decide to sell your berries for <<$func('money', 'string_profit', bilberry*2...
-    scene.text(`You decide to sell your berries for ${qspFunc(s, 'money', 'string_profit', ((s as any).bilberry ?? 0)*25)}.`);
+    scene.text(`You decide to sell your berries for ${qspFunc(s, 'money', 'string_profit', ((s as any).bilberry ?? '')*25)}.`);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
@@ -331,13 +331,13 @@ function enterSuccubusHunt2(s: GameState, scene: SceneBuilder): void {
       scene.text('Your seduction and succubus powers were strong enough to get your victim hard. Still, they weren\'t enough to make him forget about his situation: He is giving you hateful looks, clearly pissed about his door and food and, oh yeah, you are raping him, but you simply ignore that.');
       scene.text('All you need is his sperm. You could care less about his happiness, and if he wants to complain about a woman like you fucking his brains out, that\'s his problem. Just as you\'re thinking, your powers surge and force him to come, unloading his jizz deep into your waiting cunt.');
       // TODO-QSP: dynamic text: You don't know how long you go at it with him exactly. Still, after coming insid...
-      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((s as any).scxcum ?? 0)} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix.`);
+      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((s as any).scxcum || '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix.`);
       scene.text('Then you head out the back door, making sure to break the handle on the way out - you\'re nothing if not consistent.');
     } else {
       scene.text('He was resisting you initially, but after a while, your powers break any resistance he had in him. By the time his first orgasm hits and he shoots his sperm into your needy cunt, he would have betrayed his own mother, much less broken his front door and laid his fridge at your feet, just to be inside you a little longer.');
       scene.text('However unsavoury the first few minutes of your meeting, this state of bliss you share with him pushes that memory into the far back of your mind and lets both of you enjoy the hard ride you\'re giving him.');
       // TODO-QSP: dynamic text: You don't know how long you go at it with him exactly. Still, after coming insid...
-      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((s as any).scxcum ?? 0)} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything, patting his head affectionately, and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix. There's nothing better than sex with a willing subject.`);
+      scene.text(`You don't know how long you go at it with him exactly. Still, after coming inside you ${((s as any).scxcum || '')} and thus making you come too, he runs out of energy and falls unconscious. You lift yourself off your passed-out plaything, patting his head affectionately, and head for the kitchen to collect your clothes and one last snack, feeling wonderfully relaxed after getting your fix. There's nothing better than sex with a willing subject.`);
       scene.text('Then you head out the back door. For a split second, you consider breaking that door, too… but why add insult to injury when he has pleased you?');
     }
     qspCall(s, 'stat', '');
@@ -381,13 +381,13 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'prostitution', 'force');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Approach Mira [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Approach Mira', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Approach Mira [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Approach Mira', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'prostitution', 'force');
     qspCall(s, 'willpower', 'pay', 'force');
@@ -497,13 +497,13 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'exhib', 'force');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'You\'re feeling naughty [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'You\'re feeling naughty', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'You\'re feeling naughty [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'You\'re feeling naughty', handler: (st: GameState) => {
     if (((s as any).MiraVars ?? 0)?.['Mitka_fucks'] < 50) {
       (s as any).temp = Math.floor(Math.random() * 4) + 0;
       if ((!((s as any).temp ?? 0))) {
@@ -627,13 +627,13 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'willpower', 'voyeur', 'self');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Continue watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Continue watching', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Continue watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/gadukino/mira/sex/mirasexgad3.jpg');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('They are so absorbed in fucking each other senseless that they ignore everything else, so you decide to quietly continue to watch. Within a few minutes, you see Mitka begin to pick up the pace. He starts to drive his cock faster and faster into Mira\'s pussy until he grunts like a pig, dumping a massive load of cum into Mira\'s pussy which is again squirting. After a few minutes of them laying together, holding each other and gasping for breath, they slowly begin to kiss and laugh as they freshen up. You smile and rub your own dripping snatch before moving away.');
@@ -662,13 +662,13 @@ function enterMiraEvents(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'willpower', 'voyeur', 'self');
               if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                 scene.actions([
-                  { label: 'Continue watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                  { label: 'Continue watching', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                 ]);
               } else {
                 scene.actions([
-                  { label: 'Continue watching [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                  { label: 'Continue watching', handler: (st: GameState) => {
     scene.img('images/characters/gadukino/mira/sex/mirasexgad1.jpg');
     if ((!(Math.floor(Math.random() * 2) + 0))) {
       scene.text('You think she\'s about to notice you watching a couple of times, but she never does, continuing to suck Mitka\'s cock. Finally, he tilts his head back, and Mira, quickly seeing this, takes his dick in her hand and directs it into her mouth, taking a mouth full of sperm. She greedily swallows it all and licks Mitka\'s cock clean before tucking it back into his pants. You see she is about to rise from her knees, so you hastily depart.');

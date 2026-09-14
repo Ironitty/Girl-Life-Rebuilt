@@ -43,7 +43,7 @@ function enterSendSelfie(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'add_rest_ARGS_loop'
   }
   if (!(s as any).SMSSelfieVars) (s as any).SMSSelfieVars = {}; (s as any).SMSSelfieVars['return_string'] = ((s as any).temp_return_string ?? 0);
-  qspCall(s, 'SMS_selfies', 'selfie_menu');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSelfieMenu(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -60,7 +60,7 @@ function enterSelfieMenu(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: jump 'LocationLoop'
   }
   if (!(s as any).SMSSelfieVars) (s as any).SMSSelfieVars = {}; (s as any).SMSSelfieVars['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('<a href="exec: gs \'SMS_selfies\', \'exit\', ' + qspUntranslated(s, "ARGS[2]>", { location: "SMS_selfies" }) + '">Exit</a></td></tr></table>');
-  qspCall(s, 'SMS_selfies', 'show_sms');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowSms(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -70,7 +70,7 @@ function enterShowlocation(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: gs 'SMS_selfies', 'listretrieve', ARGS[1], $selfieLoc[ARGS[1]]
   if (!(s as any).SMSSelfieVars) (s as any).SMSSelfieVars = {}; (s as any).SMSSelfieVars['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('<tr><td colspan=3><a href="exec: gs \'SMS_selfies\', \'selfie_menu\'">Go Back</a></td></tr>');
   if (!(s as any).SMSSelfieVars) (s as any).SMSSelfieVars = {}; (s as any).SMSSelfieVars['text'] = ((s as any).SMSSelfieVars['text'] ?? 0) + ('<tr><td colspan=3><a href="exec: gs \'SMS_selfies\', \'exit\'">Exit</a></td></tr></table>');
-  qspCall(s, 'SMS_selfies', 'show_sms');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowSms(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

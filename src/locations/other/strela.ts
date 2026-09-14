@@ -18,22 +18,22 @@ function enter(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/fedor/fedorev/Strela/vadimbely.jpg');
     // TODO-QSP: dynamic text: Vadim nods. "So you don't dispute it. Well kid, you'll learn that if you're rude...
-    scene.text('Vadim nods. "So you don\'t dispute it. Well kid, you\'ll learn that if you\'re rude to the wrong people, you get trouble. I\'ll give you one chance to pay for your mistakes. \' + $func(\'money\', \'string_price\', 30000) + \', tomorrow. If you don\'t pay up, you lose fingers, one for every day you\'re late. Understood?"');
+    scene.text('Vadim nods. "So you don\'t dispute it. Well kid, you\'ll learn that if you\'re rude to the wrong people, you get trouble. I\'ll give you one chance to pay for your mistakes. 30000₽, tomorrow. If you don\'t pay up, you lose fingers, one for every day you\'re late. Understood?"');
     scene.text('Fedor\'s face pales and tears form in his eyes. Vadim Bely is quite notorious in your region, and this wouldn\'t be the first time he\'s actually taken fingers from someone for missing payments.');
     scene.text('"Please sir!" he exclaims. "I don\'t have that kind of money! I\'m just a kid going to school!"');
     // TODO-QSP: dynamic text: Vadim shrugs. "You should've thought of that before you were disrespectful, 'kid...
-    scene.text('Vadim shrugs. "You should\'ve thought of that before you were disrespectful, \'kid going to school\'. That\'s really not my problem. \' + $func(\'money\', \'string_price\', 30000) + \', tomorrow."');
+    scene.text('Vadim shrugs. "You should\'ve thought of that before you were disrespectful, \'kid going to school\'. That\'s really not my problem. 30000₽, tomorrow."');
     scene.text('At this point, a number of other students have noticed the commotion and wandered a little closer to get a better look at what\'s going on.');
     scene.actions([
       { label: 'Watch', handler: (st: GameState) => {
     scene.img('images/characters/shared/headshots_main/big11.jpg');
     scene.text('Fedor is panicking now. "Sir, please!" he begs. "I can\'t get that amount of money!"');
     // TODO-QSP: dynamic text: Vasily grins. "Come on guys, the only way this kid could get ' + $func('money', ...
-    scene.text('Vasily grins. "Come on guys, the only way this kid could get \' + $func(\'money\', \'string_price\', 30000) + \' together is if his parents sold their house. Let\'s cut him a deal." He waits a moment to make sure he has everyone\'s attention before he continues. "How about this? He sucks my dick. Right here, right now. If he does, we\'re even."');
+    scene.text('Vasily grins. "Come on guys, the only way this kid could get 30000₽ together is if his parents sold their house. Let\'s cut him a deal." He waits a moment to make sure he has everyone\'s attention before he continues. "How about this? He sucks my dick. Right here, right now. If he does, we\'re even."');
     scene.text('Vadim smirks and shakes his head as he looks at Dan and Vitek. "This guy… Unbelievable! Still, it\'s up to you. If you\'re okay with it, then I am too."');
     scene.text('Vitek shrugs. "I don\'t care."');
     // TODO-QSP: dynamic text: "Fine by me too," Dan adds. "Your call, Fedor. ' + $func('money', 'string_price'...
-    scene.text('"Fine by me too," Dan adds. "Your call, Fedor. \' + $func(\'money\', \'string_price\', 30000) + \' tomorrow or you suck Shulga\'s dick right now."');
+    scene.text('"Fine by me too," Dan adds. "Your call, Fedor. 30000₽ tomorrow or you suck Shulga\'s dick right now."');
     scene.actions([
       { label: 'Say nothing', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/events/dandick.jpg');
@@ -44,7 +44,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
     scene.text('Vadim looks at him indifferently. "This is taking too long! I have other places to be!"');
     scene.text('Vasily still uses his mocking supportive voice as he unbuttons his pants. "Wipe the snot from your face and make a decision. You have one minute. Don\'t be foolish. You can erase your debt within a few minutes."');
     scene.actions([
-      { label: 'Pay the money for Fedor [+$func(\'money\', \'get_cost_string\', 30000,...]', handler: (st: GameState) => {
+      { label: 'Pay the money for Fedor', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 30000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -64,7 +64,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       scene.text('You watch the cars drive off before turning back to the guys. Vitek is clearly angry that his plan to get back at Fedor failed, but there\'s nothing he can do about it without getting on Vadim\'s bad side himself.');
       scene.text('He angrily turns to Dan and Vasily. "Come on guys, let\'s get out of here. I need a beer."');
       // TODO-QSP: dynamic text: As they leave, Fedor comes over to you. "Thank you, <<$pcs_firstname>>, thank yo...
-      scene.text(`As they leave, Fedor comes over to you. "Thank you, ${((s as any).pcs_firstname ?? 0)}, thank you! Thank you so much, you saved me! I'll pay you back, I promise! I can't pay it all at once, but I'll try to save up."`);
+      scene.text(`As they leave, Fedor comes over to you. "Thank you, ${((s as any).pcs_firstname || '')}, thank you! Thank you so much, you saved me! I'll pay you back, I promise! I can't pay it all at once, but I'll try to save up."`);
       scene.text('You assure him that\'s not necessary and get ready to leave the school grounds.');
       scene.actions([
         { label: 'Leave the school courtyard', goto: ['pav_residential', ''] },

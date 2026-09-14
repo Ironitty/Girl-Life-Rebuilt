@@ -94,7 +94,7 @@ function enterMetroDestination(s: GameState, scene: SceneBuilder): void {
       if (qspFunc(s, 'money', 'can_afford', 250) === 1) {
         qspCall(s, 'money', 'pay', 250);
         // TODO-QSP: dynamic text: You pay the ' + $func('money', 'string_price', 250) + ' entrance fee and head in...
-        scene.text('You pay the \' + $func(\'money\', \'string_price\', 250) + \' entrance fee and head into the club.');
+        scene.text('You pay the 250₽ entrance fee and head into the club.');
       } else {
         scene.text('You don\'t have enough to pay the entrance fee, so Katja pays for you.');
         scene.text('"You\'re paying for us next time," she says with a slight hint of annoyance.');
@@ -166,7 +166,7 @@ function enterClothesStart1(s: GameState, scene: SceneBuilder): void {
   scene.text('You suggest that you should try on some clothes while you\'re here and Katja almost jumps with joy. "Yes, let\'s! It will be so much fun!"');
   if ((Math.floor(Math.random() * 2) + 0) ===1) {
     // TODO-QSP: dynamic text: "Let's go to <<$store_choice>>," Katja says.
-    scene.text(`"Let's go to ${((s as any).store_choice ?? 0)}," Katja says.`);
+    scene.text(`"Let's go to ${((s as any).store_choice || '')}," Katja says.`);
     scene.actions([
       { label: 'Go to <<$store_choice>>', goto: ['katja_city', 'store_choice'] },
     ]);
@@ -197,7 +197,7 @@ function enterClothesStart2(s: GameState, scene: SceneBuilder): void {
     scene.text('You tell her that you would love to try on clothes and she gives you a big hug. "This will be so much fun!" she says.');
     if ((Math.floor(Math.random() * 2) + 0) === 1) {
       // TODO-QSP: dynamic text: "Let's go to <<$store_choice>>," Katja says.
-      scene.text(`"Let's go to ${((s as any).store_choice ?? 0)}," Katja says.`);
+      scene.text(`"Let's go to ${((s as any).store_choice || '')}," Katja says.`);
       scene.actions([
         { label: 'Go to <<$store_choice>>', goto: ['katja_city', 'store_choice'] },
       ]);
@@ -239,7 +239,7 @@ function enterPussy_Cats(s: GameState, scene: SceneBuilder): void {
     if (((s as any).loop_counter ?? 0) === 600) {
       scene.img('images/characters/shared/headshots_main/big14.jpg');
       // TODO-QSP: dynamic text: You try to put on what Katja brought you, but it's ' + iif(pcs_bmi < 25, 'way to...
-      scene.text(`You try to put on what Katja brought you, but it's ' + iif(pcs_bmi < 25, 'way too loose and will fall off', 'so tight you can't get into it') + ' so you give up. "Sorry ${((s as any).pcs_nickname ?? 0)}, seems I've miscalculated your size. Let me get something else," she says.`);
+      scene.text(`You try to put on what Katja brought you, but it's ' + iif(pcs_bmi < 25, 'way too loose and will fall off', 'so tight you can't get into it') + ' so you give up. "Sorry ${((s as any).pcs_nickname || '')}, seems I've miscalculated your size. Let me get something else," she says.`);
       scene.text('You stop her before she runs out. "Hey don\'t be sorry, it\'s not your fault. Try what I picked out first."');
       scene.actions([
         { label: 'Katja tries the clothes you picked', goto: ['katja_city', 'pussy_cat_outfit<<rand(0,3)>>'] },
@@ -276,7 +276,7 @@ function enterPussy_Cats(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cats_dress ?? 0)?.[String((s as any).numrand ?? 0)] === 0) {
           scene.text('<center><b>Pussy-Cats</b></center>');
-          scene.img(`images/pc/items/cats/dress/${((s as any).numrand ?? 0)}.jpg`);
+          scene.img(`images/pc/items/cats/dress/${((s as any).numrand || '')}.jpg`);
           scene.text('You try on the dress Katja has picked for you while she looks on excitedly. She seems to like it, but it\'s clear that she\'s waiting for your reaction before saying anything.');
           (s as any).price = qspFunc(s, 'clothing', 'get_price', 'cats_dress', ((s as any).numrand ?? 0));
           scene.actions([
@@ -349,7 +349,7 @@ function enterPussy_Cats(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).cats_outfits ?? 0)?.[String((s as any).numrand ?? 0)] === 0) {
           scene.text('<center><b>Pussy-Cats</b></center>');
-          scene.img(`images/pc/items/cats/outfits/${((s as any).numrand ?? 0)}.jpg`);
+          scene.img(`images/pc/items/cats/outfits/${((s as any).numrand || '')}.jpg`);
           scene.text('You try on the clothes Katja picked out for you while she looks on excitedly. She seems to like it, but it\'s clear she\'s waiting for your reaction before saying anything.');
           (s as any).price = qspFunc(s, 'clothing', 'get_price', 'cats_outfits', ((s as any).numrand ?? 0));
           scene.actions([
@@ -418,7 +418,7 @@ function enterPussyCatOutfit1(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).katjaQW ?? 0)?.['slut'] >= 20) {
             // TODO-QSP: dynamic text: "What were you thinking, <<$pcs_nickname>>?!" she says. "These are clothes for s...
-            scene.text(`"What were you thinking, ${((s as any).pcs_nickname ?? 0)}?!" she says. "These are clothes for sluts!"`);
+            scene.text(`"What were you thinking, ${((s as any).pcs_nickname || '')}?!" she says. "These are clothes for sluts!"`);
             scene.text('"Come on, you look so sexy in them!" you reply.');
             scene.text('"Maybe, but you\'re not going to see me in them outside this changing room!"');
           } else {
@@ -475,13 +475,13 @@ function enterPussyCatOutfit1(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'misc', 'force', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Ask her to put on a show [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Ask her to put on a show', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Ask her to put on a show [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Ask her to put on a show', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
   }, goto: ['katja_city', 'pussy_cat_outfit1_strip'] },
@@ -495,7 +495,7 @@ function enterPussyCatOutfit1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_1_3.jpg');
     // TODO-QSP: dynamic text: Katja finishes changing back to her original clothes and you leave the store. "T...
-    scene.text(`Katja finishes changing back to her original clothes and you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+    scene.text(`Katja finishes changing back to her original clothes and you leave the store. "That was fun, ${((s as any).pcs_nickname || '')}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -532,13 +532,13 @@ function enterPussyCatOutfit1Strip(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'mast', 'force');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Ask her to touch herself [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ask her to touch herself', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Ask her to touch herself [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ask her to touch herself', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
   }, goto: ['katja_city', 'pussy_cat_outfit1_play'] },
@@ -564,7 +564,7 @@ function enterPussyCatOutfit1Strip2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Very impressive…" you say.');
   scene.text('"Enough of this," she says with a laugh, and starts to change her clothes normally.');
   // TODO-QSP: dynamic text: A few minutes later, you leave the store. "That was fun, <<$pcs_nickname>>," she...
-  scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+  scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname || '')}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -664,7 +664,7 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks. I think," she says while blushing. "Let me get changed," she says and starts taking off the rest of the shirt.');
     scene.text('She starts to take out the butt plug, but you stop her. "Keep it in until you get home. It will be a good experience for you," you say. She blushes, but keeps it in as she puts on her clothes.');
     // TODO-QSP: dynamic text: A few minutes later, you leave the store. "That was fun, <<$pcs_nickname>>," she...
-    scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+    scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname || '')}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -688,7 +688,7 @@ function enterPussyCatOutfit1Play(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks. I guess," she adds while blushing. "Let me get changed," she adds and begins to remove the rest of the shirt.');
     scene.text('She tries to take out the buttplug, but you stop her. "Keep it in until you get home. It will be a great experience for you," you say. She blushes, but keeps it in and starts putting on her clothes.');
     // TODO-QSP: dynamic text: A few minutes later, you leave the store. "That was fun, <<$pcs_nickname>>," she...
-    scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+    scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname || '')}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -734,7 +734,7 @@ function enterPussyCatOutfit2(s: GameState, scene: SceneBuilder): void {
       scene.text('"What?!" she gasps. "Why would you ask me that?!"');
       scene.text('"No reason," you reply when it\'s clear she\'s not comfortable with the question, and you let her change in peace.');
       // TODO-QSP: dynamic text: A few minutes later, you leave the store. "That was fun, <<$pcs_nickname>>," she...
-      scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+      scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname || '')}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -774,13 +774,13 @@ function enterPussyCatOutfit2(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'willpower', 'misc', 'force', 'easy');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Ask her to put on a show [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Ask her to put on a show', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Ask her to put on a show [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Ask her to put on a show', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay');
     qspCall(s, 'stat', '');
   }, goto: ['katja_city', 'pussy_cat_outfit2_strip'] },
@@ -794,7 +794,7 @@ function enterPussyCatOutfit2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/katja/uni/mall/cats_2_2.jpg');
     // TODO-QSP: dynamic text: Katja finishes changing and you leave the store. "That was fun, <<$pcs_nickname>...
-    scene.text(`Katja finishes changing and you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+    scene.text(`Katja finishes changing and you leave the store. "That was fun, ${((s as any).pcs_nickname || '')}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -831,13 +831,13 @@ function enterPussyCatOutfit2Strip(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'mast', 'force');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Ask her to touch herself [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ask her to touch herself', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Ask her to touch herself [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Ask her to touch herself', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
   }, goto: ['katja_city', 'pussy_cat_outfit2_play'] },
@@ -863,7 +863,7 @@ function enterPussyCatOutfit2Strip2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Very nice," you reply.');
   scene.text('"Enough of this," she says with a laugh, and starts to change her clothes normally.');
   // TODO-QSP: dynamic text: A few minutes later, you leave the store. "That was fun, <<$pcs_nickname>>," she...
-  scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+  scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname || '')}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -955,7 +955,7 @@ function enterPussyCatOutfit2Play(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks. I guess," she adds while blushing. "Let me get changed," she adds and begins to remove the rest of the shirt.');
     scene.text('She tries to take out the buttplug, but you stop her. "Keep it in until you get home. It will be a great experience for you," you say. She blushes, but keeps it in and starts putting on her clothes.');
     // TODO-QSP: dynamic text: A few minutes later, you leave the store. "That was fun, <<$pcs_nickname>>," she...
-    scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+    scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname || '')}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;
@@ -979,7 +979,7 @@ function enterPussyCatOutfit2Play(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thanks. I guess," she adds while blushing. "Let me get changed," she adds and begins to remove the rest of the shirt.');
     scene.text('She tries to take out the buttplug, but you stop her. "Keep it in until you get home. It will be a great experience for you," you say. She blushes, but keeps it in and starts putting on her clothes.');
     // TODO-QSP: dynamic text: A few minutes later, you leave the store. "That was fun, <<$pcs_nickname>>," she...
-    scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname ?? 0)}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
+    scene.text(`A few minutes later, you leave the store. "That was fun, ${((s as any).pcs_nickname || '')}," she says. "We should do this again!" She then waves goodbye and leaves you alone in the mall.`);
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 2;

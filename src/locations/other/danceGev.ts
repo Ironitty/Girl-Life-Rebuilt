@@ -20,7 +20,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if (((s as any).danceevtimes ?? 0) >= 5) {
     (s as any).dancegevtipe = Math.floor(Math.random() * 4) + 0;
   }
-  scene.img(`images/locations/pavlovsk/community/dance_studio/ev${((s as any).dancegevtipe ?? 0)}.jpg`);
+  scene.img(`images/locations/pavlovsk/community/dance_studio/ev${((s as any).dancegevtipe || '')}.jpg`);
   if ((!((s as any).dancegevtipe ?? 0))) {
     scene.text('You see a rather well-toned girl doing stretches. You watch as she does the splits, her skimpy g-string leaving nothing to your imagination.');
     if (((s as any).stat ?? 0)?.['lesbian_count'] > 0) {

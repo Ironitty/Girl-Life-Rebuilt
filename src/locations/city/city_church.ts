@@ -36,11 +36,11 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('Kazan Cathedral, also known as the Cathedral of Our Lady of Kazan. It\'s old, but well maintained by the worshipers of the parish.');
   scene.text('');
   // TODO-QSP: dynamic text: You can attend confession every weekday between '+func('time', 'get_time_string'...
-  scene.text('You can attend confession every weekday between \'+func(\'time\', \'get_time_string\', 7, 0)+\' and \'+func(\'time\', \'get_time_string\', 9, 0)+\' or \'+func(\'time\', \'get_time_string\', 16, 0)+\' and \'+func(\'time\', \'get_time_string\', 18, 0)+\', and on the weekend between \'+func(\'time\', \'get_time_string\', 16, 0)+\' and \'+func(\'time\', \'get_time_string\', 18, 0)+\'.');
+  scene.text('You can attend confession every weekday between 7:00 and 9:00 or 16:00 and 18:00, and on the weekend between 16:00 and 18:00.');
   // TODO-QSP: dynamic text: Vigil is held on Saturdays at '+func('time', 'get_time_string', 19, 0)+'.
-  scene.text('Vigil is held on Saturdays at \'+func(\'time\', \'get_time_string\', 19, 0)+\'.');
+  scene.text('Vigil is held on Saturdays at 19:00.');
   // TODO-QSP: dynamic text: The Divine Liturgy is on Sundays between '+func('time', 'get_time_string', 9, 0)...
-  scene.text('The Divine Liturgy is on Sundays between \'+func(\'time\', \'get_time_string\', 9, 0)+\' and \'+func(\'time\', \'get_time_string\', 12, 0)+\'.');
+  scene.text('The Divine Liturgy is on Sundays between 9:00 and 12:00.');
   if (((s as any).week ?? 0) === 6  &&  ((s as any).hour ?? 0) >= 19  &&  ((s as any).hour ?? 0) <= 22  &&  ((s as any).churchday ?? 0) !== ((s as any).daystart ?? 0)) {
     scene.actions([
       { label: 'Attend vigil', goto: ['city_church', 'vigil'] },
@@ -174,21 +174,21 @@ function enterCandle(s: GameState, scene: SceneBuilder): void {
   if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 1  &&  (!((s as any).owechurch ?? 0))) {
     qspCall(s, 'money', 'pay', 10, 'cash');
     // TODO-QSP: dynamic text: You approach the deacon and hand over the ' + $func('money', 'string_price', 10)...
-    scene.text('You approach the deacon and hand over the \' + $func(\'money\', \'string_price\', 10) + \' for a candle.');
+    scene.text('You approach the deacon and hand over the 10₽ for a candle.');
   } else {
     if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 1  &&  qspFunc(s, 'money', 'can_afford', 20, 'cash') === 0  &&  ((s as any).owechurch ?? 0) === 1) {
       (s as any).owechurch = 0;
       qspCall(s, 'money', 'pay', 10, 'cash');
       qspCall(s, 'mood', 'lower', 'small');
       // TODO-QSP: dynamic text: You approach the deacon and hope that he doesn't recognize you since you couldn'...
-      scene.text('You approach the deacon and hope that he doesn\'t recognize you since you couldn\'t pay for your last candle. You give him \' + $func(\'money\', \'string_price\', 10) + \' and he hands you a candle. You hustle away from the counter while guilt gnaws at you.');
+      scene.text('You approach the deacon and hope that he doesn\'t recognize you since you couldn\'t pay for your last candle. You give him 10₽ and he hands you a candle. You hustle away from the counter while guilt gnaws at you.');
     } else {
       if (qspFunc(s, 'money', 'can_afford', 20, 'cash') === 1  &&  ((s as any).owechurch ?? 0) === 1) {
         (s as any).owechurch = 0;
         qspCall(s, 'money', 'pay', 20, 'cash');
         qspCall(s, 'mood', 'raise', 'tiny');
         // TODO-QSP: dynamic text: You approach the deacon. He is confused when you hand him ' + $func('money', 'st...
-        scene.text('You approach the deacon. He is confused when you hand him \' + $func(\'money\', \'string_price\', 20) + \' before smiling in understanding. You feel relieved that the debt is paid.');
+        scene.text('You approach the deacon. He is confused when you hand him 20₽ before smiling in understanding. You feel relieved that the debt is paid.');
       } else {
         if (qspFunc(s, 'money', 'can_afford', 10, 'cash') === 0) {
           (s as any).owechurch = 1;
@@ -278,7 +278,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + (Math.floor(Math.random() * 31) + 30);
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * ((s as any).drugVars ?? {})?.['cocaine_system'] / 4;
+                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = 3 * (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 4;
               }
               scene.text('The Nave is lit only with small candles, leaving your surroundings in darkness, but you find it comforting. You get the urge to pray very intensely and before you know it, an hour has passed and you feel cleansed.');
             } else {
@@ -287,7 +287,7 @@ function enterPray(s: GameState, scene: SceneBuilder): void {
               (s as any).church_moral = ((s as any).church_moral ?? 0) + (1);
               (s as any).minut = ((s as any).minut ?? 0) + 60;
               if (((s as any).drugVars ?? 0)?.['cocaine_system'] > 1) {
-                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = ((s as any).drugVars ?? {})?.['cocaine_system'] / 2;
+                if (!(s as any).drugVars) (s as any).drugVars = {}; (s as any).drugVars['cocaine_system'] = (((s as any).drugVars ?? {})?.['cocaine_system'] ?? 0) / 2;
               }
               scene.text('The Nave is lit only with candles and small presence lights and the darkness feels very comforting, like being in the womb. You get the urge to pray very intensely and before you know it, more than an hour has passed and you feel reborn and cleansed.');
             }

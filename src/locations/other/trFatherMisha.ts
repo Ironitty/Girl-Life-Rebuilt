@@ -48,7 +48,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_14.jpg');
     scene.text('You decide to visit your father since you\'re in the neighborhood. You\'re not sure if he\'s there but you go for it anyway.');
     // TODO-QSP: dynamic text: You knock on the door and after a few seconds you hear someone grabbing the door...
-    scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname ?? 0)}…"`);
+    scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname || '')}…"`);
     scene.text('"Hey dad, have I come by a bad time? I can come back some other time if you\'re busy?"');
     scene.text('Mikhail quickly waves your worries away, "No, don\'t be silly. Come in, come in. What would you like to do?"');
     scene.actions([
@@ -59,9 +59,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_17.jpg');
     scene.text('The last time you met your father you spent a lot of time talking about yourself and about the family, but now you wanted to hear his side of the story.');
     // TODO-QSP: dynamic text: "Every time you were brought up, <<$npc_nickname['A29']>> told me that you alway...
-    scene.text(`"Every time you were brought up, ${((s as any).npc_nickname ?? 0)?.['A29']} told me that you always were drinking and swearing a lot and in the end she could not take it anymore so she filed for divorce. Was she telling me the truth?`);
+    scene.text(`"Every time you were brought up, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} told me that you always were drinking and swearing a lot and in the end she could not take it anymore so she filed for divorce. Was she telling me the truth?`);
     // TODO-QSP: dynamic text: "Well <<$pcs_nickname>>, I always knew your mother would be bad talking me, but ...
-    scene.text(`"Well ${((s as any).pcs_nickname ?? 0)}, I always knew your mother would be bad talking me, but you must believe me while there is some truth to it many things have surely been exaggerated.`);
+    scene.text(`"Well ${((s as any).pcs_nickname || '')}, I always knew your mother would be bad talking me, but you must believe me while there is some truth to it many things have surely been exaggerated.`);
     scene.text('As your father tells you this, you look in his eyes and can only see sadness…');
     scene.actions([
       { label: 'Support', handler: (st: GameState) => {
@@ -70,12 +70,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_19.jpg');
     scene.text('Without any hesitation you decided to support your father, gently touching the palm of his hand.');
     // TODO-QSP: dynamic text: "Don't worry dad, I've noticed the sadness in your eyes. <<$npc_nickname['A29']>...
-    scene.text(`"Don't worry dad, I've noticed the sadness in your eyes. ${((s as any).npc_nickname ?? 0)?.['A29']} changed the story so many times I knew something was off. So tell me the truth, what happened?`);
+    scene.text(`"Don't worry dad, I've noticed the sadness in your eyes. ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} changed the story so many times I knew something was off. So tell me the truth, what happened?`);
     scene.text('"So it was difficult time for the both of us. Your mother was always stressed, yelling at me to take better care of the family. And I really tried my best I always gave her what I\'ve earned so she could buy stuff for the two of you. We tried working it out but the whole situation just escalated.');
     scene.text('There was no affection between us anymore and we became cold to each other. At the end she began to mysteriously disappear in the evening just as I came back from work, and I was sure she was cheating on me with someone. As she did that I began to spend more time with my friends, drinking. Yes, sometimes I had a bit too much to drink, but you must understand it wasn\'t a pleasant life we were living…');
     scene.text('You notice that your father is having a hard time with this and you decide to not pry further.');
     (s as any).trfatherMishaQW = 2;
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -89,7 +89,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_20.jpg');
     scene.text('You nod saying you would like to eat at the diner Bystroeshka.');
     // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, it's the least I could do. I missed you growing up so t...
-    scene.text(`"Okay ${((s as any).pcs_nickname ?? 0)}, it's the least I could do. I missed you growing up so the least I can do is treat you to some food."`);
+    scene.text(`"Okay ${((s as any).pcs_nickname || '')}, it's the least I could do. I missed you growing up so the least I can do is treat you to some food."`);
     scene.text('"Sounds fair." you say, "Just remember I want to be spoiled to make up time you missed being away."');
     scene.text('You sat down at a table and the waitress comes over with the menu. You spend some time deciding on what to eat while continuing the conversation with your father. After you\'ve finished and are just about to leave the waitress comes to your table.');
     scene.actions([
@@ -102,7 +102,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Your father clears his throat, as he probably wants to say that you are not a couple, but you kick him under the table, smile to the waitress and say…');
     scene.text('"I\'m stuffed so could you put it in a doggy bag please, we\'ll take with us. Don\'t you agree honey?"');
     scene.text('Mikhail nods and smiles to the waitress.');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -116,7 +116,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/city/mikhail/terminal/trfatherqw_14.jpg');
       scene.text('You decide to visit your father since you\'re in the neighborhood. You\'re not sure if he\'s there but you go for it anyway.');
       // TODO-QSP: dynamic text: You knock on the door and after a few seconds you hear someone grabbing the door...
-      scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname ?? 0)}…"`);
+      scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname || '')}…"`);
       scene.text('"Hey dad, have I come by a bad time? I can come back some other time if you\'re busy?"');
       scene.text('Mikhail quickly waves your worries away, "No, don\'t be silly. Come in, come in. Would you like something to eat?"');
       scene.actions([
@@ -144,7 +144,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_20.jpg');
     scene.text('You nod saying you would like to eat at the diner Bystroeshka.');
     // TODO-QSP: dynamic text: "Okay <<$pcs_nickname>>, it's the least I could do. I missed you growing up so t...
-    scene.text(`"Okay ${((s as any).pcs_nickname ?? 0)}, it's the least I could do. I missed you growing up so the least I can do is treat you to some food."`);
+    scene.text(`"Okay ${((s as any).pcs_nickname || '')}, it's the least I could do. I missed you growing up so the least I can do is treat you to some food."`);
     scene.text('"Sounds fair." you say, "Just remember I want to be spoiled to make up time you missed being away."');
     scene.text('You sat down at a table and the waitress comes over with the menu. You spend some time deciding on what to eat while continuing the conversation with your father. After you\'ve finished and are just about to leave the waitress comes to your table.');
     scene.actions([
@@ -163,7 +163,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m sorry but you are mistaken, we are not a couple, so we cannot partake in your contest."');
     scene.text('"Oh, I\'m so sorry, but you just looked so happy, so we got the impression that you were a couple."');
     scene.text('The waitress walked away, and you and Dad laughed at the absurdity of the situation and continued to sit and chat cute.');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Lie', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'kiss', 5, 'incest');
@@ -175,7 +175,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"Just go with the flow." you whisper while the waitress is away. "If it gets us free food let them think that we are a couple."');
     scene.text('As the waitress returns with your doggy bags you continue on like nothing special happened. Your father looks at you a bit differently, apparently he did not expect such courage from you.');
     (s as any).trfatherMishaQW = 3;
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -199,7 +199,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"So why didn\'t you ever show up when we were young?" you asked Mikhail.');
     scene.text('"You must understand, my little girl, I made a promise to your mother, that would never let my presence be known.');
     scene.text('You tear up a little as you continue to walk, constantly talking, because you have a lot of catching up to do.');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Buy cotton candy', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -209,7 +209,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_25.jpg');
     scene.text('You\'re having a bit of a sweet tooth and ask your father if he could buy you some cotton candy.');
     scene.text('He nods and you give him a hug. You are enjoying spending time with him, and you feel like on top of the world. There is probably no other person happier than you in the world…');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -221,7 +221,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/city/mikhail/terminal/trfatherqw_14.jpg');
         scene.text('You decide to visit your father since you\'re in the neighborhood. You\'re not sure if he\'s there but you go for it anyway.');
         // TODO-QSP: dynamic text: You knock on the door and after a few seconds you hear someone grabbing the door...
-        scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname ?? 0)}…"`);
+        scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname || '')}…"`);
         scene.text('"Hey dad, have I come by a bad time? I can come back some other time if you\'re busy?"');
         scene.text('Mikhail quickly waves your worries away, "No, don\'t be silly. Come in, come in. What would you like to do?"');
         scene.actions([
@@ -248,7 +248,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_27.jpg');
     scene.text('Embarrassed, you quickly try to cover yourself and grab tightly hold of your dress.');
     scene.text('You struggle as ride continues on. After a while the ride stops and you get off. Still embarrassed you thank your father for all the fun today. You quickly walk away from him.');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Raise dress', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'flashlite', 5);
@@ -258,7 +258,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('As you turn back, you notice your father is mesmerized by your ass. Pleased with yourself, you continue on teasing him just before the ride stops…');
     scene.text('As you step of the ride you father is clearly confused by your actions. He manages to mutter something, and you decide to call it the day…');
     (s as any).trfatherMishaQW = 4;
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -271,7 +271,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You walk around looking for the game you want to play. You end up at the BB gun stall. You decide to try your luck at this, picking up a gun you start to shoot, and not surprising you miss all the targets.');
     scene.text('Your father, feeling bad watching you struggle, he stands behind you showing you how to position your hands and feet and how to shoot…');
     scene.text('You try once more improving somewhat…');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -285,7 +285,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"So why didn\'t you ever show up when we were young?" you asked Mikhail.');
     scene.text('"You must understand, my little girl, I made a promise to your mother, that would never let my presence be known.');
     scene.text('You tear up a little as you continue to walk, constantly talking, because you have a lot of catching up to do.');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Keep on walking', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -294,7 +294,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('The two of you get carried away in the conversation and end up on an off-path trail in the park.');
     scene.text('You suddenly notice that you\'ve entered what\'s known as the worst part of the park, you see a lot of alcoholics and drug addicts laying around.');
     scene.text('The two of you are drawn to some sounds and moans near a big tree. The curiosity gets the best of you, you quietly approach the sound source.');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Take a closer look', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -305,7 +305,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Even though the woman was enjoying herself, you could notice she wanted it to finish as quickly as possible as they were fucking in a public place.');
     scene.text('You totally forgot about your father and as you got tired of the show you looked for him. Mikhail just stood there frozen, observing the couple. He doesn\'t even react as you approach him and you struggle for a while to get his attention.');
     scene.text('"We need to move on, it feels wrong spying on others." you tell him as you were walking back to the path.');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -319,7 +319,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           scene.img('images/characters/city/mikhail/terminal/trfatherqw_14.jpg');
           scene.text('You decide to visit your father since you\'re in the neighborhood. You\'re not sure if he\'s there but you go for it anyway.');
           // TODO-QSP: dynamic text: You knock on the door and after a few seconds you hear someone grabbing the door...
-          scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname ?? 0)}…"`);
+          scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname || '')}…"`);
           scene.text('"Hey dad, have I come by a bad time? I can come back some other time if you\'re busy?"');
           scene.text('Mikhail quickly waves your worries away, "No, don\'t be silly. Come in, come in. What would you like to do?"');
           scene.actions([
@@ -360,9 +360,9 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Flabbergasted, Mikhail stops for a moment and leans in even closer and you can feel the growing bulge poking you through his pants.');
     scene.text('Standing in this position you take some shots but miss all the targets.');
     // TODO-QSP: dynamic text: "Not bad <<$pcs_nickname>>." he muttered not really paying attention on your sho...
-    scene.text(`"Not bad ${((s as any).pcs_nickname ?? 0)}." he muttered not really paying attention on your shots…`);
+    scene.text(`"Not bad ${((s as any).pcs_nickname || '')}." he muttered not really paying attention on your shots…`);
     (s as any).trfatherMishaQW = 5;
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Concentrate', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -373,7 +373,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You are focused and enthusiastically listen to what Mikhail has to say.');
     scene.text('As you follow his instruction to the point, you hit all the targets and win a big toy. Without thinking about it you turn around and hug your father, giving him a kiss on the cheek.');
     scene.text('Your father praises you as you\'re a quick learner, but that he\'s not finished with the lessons…');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -386,7 +386,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"Thank you, dad, but I can handle it myself, I just need to focus and I\'ll win this damn prize.');
     scene.text('You take a deep breath and start shooting, but unfortunately you miss quite the few targets.');
     scene.text('Mikhail sighs, "I told you that you should listen to me, but it doesn\'t matter now you had your shot at it…');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -419,7 +419,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('You push on, "I want to know more, did you ever meet a new woman that you wanted to get settled with?"');
     scene.text('"I\'ll be honest with you, I\'ve been with plenty of women but nothing ever serious, most of my relationships has been shallow and never amounted to anything, like with your mother."');
     scene.text('Your father sighs deeply and you know it\'s not the time to keep pushing on in a public place. You sit there in silence for a while, deciding that the time has come to…');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -431,7 +431,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             scene.img('images/characters/city/mikhail/terminal/trfatherqw_14.jpg');
             scene.text('You decide to visit your father since you\'re in the neighborhood. You\'re not sure if he\'s there but you go for it anyway.');
             // TODO-QSP: dynamic text: You knock on the door and after a few seconds you hear someone grabbing the door...
-            scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname ?? 0)}…"`);
+            scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname || '')}…"`);
             scene.text('"Hey dad, have I come by a bad time? I can come back some other time if you\'re busy?"');
             scene.text('Mikhail quickly waves your worries away, "No, don\'t be silly. Come in, come in. What would you like to do?"');
             scene.actions([
@@ -472,7 +472,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"Aren\'t you worried about what people here will think? A grown man with a young girl. They might really think we\'re a couple." he nervously smiles.');
     scene.text('"Don\'t get me wrong I have no problem yelling that I love you with all my heart, but the fact that no one knows that I\'m your father makes it a bit uncomfortable." Mikhail continues.');
     scene.text('You nod, realizing that your father is quite frustrated by what\'s happening so you decide calling it the day…');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       { label: 'Ask him a private question', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 10;
@@ -480,12 +480,12 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_37.jpg');
     scene.text('As you put the flowers to the side your curiosity gets the best of you, and you must ask him about the women he was together with after the divorce?');
     // TODO-QSP: dynamic text: "Well <<$pcs_nickname>> after your mother I was together with a much younger wom...
-    scene.text(`"Well ${((s as any).pcs_nickname ?? 0)} after your mother I was together with a much younger woman than me but it didn't feel right, the age difference was too damaging. A lot of it was my fault too, I was finally free from your mother so I wanted to have all the focus on me. Now that I think about it I treated her quite badly… But what can you do you always learn something new in life…"`);
+    scene.text(`"Well ${((s as any).pcs_nickname || '')} after your mother I was together with a much younger woman than me but it didn't feel right, the age difference was too damaging. A lot of it was my fault too, I was finally free from your mother so I wanted to have all the focus on me. Now that I think about it I treated her quite badly… But what can you do you always learn something new in life…"`);
     scene.text('You sit there in silence pondering how to cheer him up.');
     scene.text('"Don\'t worry, you have me now. That should cheer you up, right?" You pause and take a deep breath, "By the way, I wanted to ask you this for quite some time now… What do you think about me?"');
     scene.text('Mikhail is clearly feeling the pressure by your question, "You\'re not a little girl anymore… You\'ve grown into quite a young woman… You have beautiful hair… a beautiful face… and…"');
     scene.text('Your father stops, his face is flushing red… Just as he\'s about to continue…');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'Kiss', handler: (st: GameState) => {
     qspCall(s, 'arousal', 'kiss', 5, 'incest');
@@ -495,7 +495,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('As you make out none of you is holding back. You\'re happy that you don\'t have to hold back anymore. All of the animosity disappears and you let yourself enjoy the moment.');
     scene.text('Your arousal is building, knowing this is forbidden but you can\'t help yourself. The forbidden attraction between a father and daughter is too arousing to ignore…');
     (s as any).trfatherMishaQW = 6;
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -511,7 +511,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Mikhail is closely observing your every move, worrying for every little thing that might happen as you seem so careless while driving.');
     scene.text('He yells, "Do not press so hard on the gas pedal, we are not in any hurry…"');
     (s as any).fatherMishaCar = 1;
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
             ]);
           } else {
@@ -521,7 +521,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               scene.img('images/characters/city/mikhail/terminal/trfatherqw_14.jpg');
               scene.text('You decide to visit your father since you\'re in the neighborhood. You\'re not sure if he\'s there but you go for it anyway.');
               // TODO-QSP: dynamic text: You knock on the door and after a few seconds you hear someone grabbing the door...
-              scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname ?? 0)}…"`);
+              scene.text(`You knock on the door and after a few seconds you hear someone grabbing the door handle. As he opens the door he's a bit surprised as he wasn't expecting you, "Oh, hello ${((s as any).pcs_nickname || '')}…"`);
               scene.text('"Hey dad, have I come by a bad time? I can come back some other time if you\'re busy?"');
               scene.text('Mikhail quickly waves your worries away, "No, don\'t be silly. Come in, come in. What would you like to do?"');
               scene.actions([
@@ -558,7 +558,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('It doesn\'t take long before your father begins groaning as his cock twitches, quickly finishing in your mouth, letting all the cum dribble into your mouth so you could swallow it…');
     scene.text('As you swallow the remaining sperm, you turn to Mikhail with a serious look…');
     // TODO-QSP: dynamic text: "We should be safe now that you've cum. I demand that you fuck me, otherwise I'l...
-    scene.text(`"We should be safe now that you've cum. I demand that you fuck me, otherwise I'll go and tell ${((s as any).npc_nickname ?? 0)?.['A29']} that you forced me to suck your cock."`);
+    scene.text(`"We should be safe now that you've cum. I demand that you fuck me, otherwise I'll go and tell ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} that you forced me to suck your cock."`);
     scene.actions([
       { label: 'Drag him out', handler: (st: GameState) => {
     scene.img('images/characters/city/mikhail/sex/trfatherqw_43.jpg');
@@ -573,7 +573,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_call', '', '', 'A35', 1, 0, 12500, Math.floor(Math.random() * 21) + 20);
     qspCall(s, 'stat', '');
     scene.text('Moments later Mikhail begins to groan loudly, his cock starts growing inside you and shortly thereafter you feel his warm cum shoot inside of you. As he finishes you fall over him as you\'re completely exhausted. You embrace him and lay still for a while…');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -584,7 +584,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"I\'m truly sorry dad, I don\'t know what came over me, I\'ll stop right away. My feelings are all messed up, I\'m kind of attracted to you but I know it\'s wrong to have these kind of feelings for you. I need time to think about it all."');
     scene.text('Mikhail looks at you concerned, "Well at least you know what we\'re doing is wrong. But I think it would be for the best if we took some time away from each other. You\'re still my daughter and all but I don\'t know if we can have a close-knit relationship if you can\'t control yourself…"');
     (s as any).trfatherMishaQW = 1;
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -596,7 +596,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('"Do you want to come in and greet everyone?" you ask Mikhail.');
     scene.text('Mikhail sighs, "No no no, thank you caring, but it\'s for the best that I\'m kept far away from your mother. I also know that your mother turned Anya against me so there is no one but you that is friendly towards me so what\'s the point."');
     scene.text('With these words, you decide it\'s not worth pressing on as your father seems quite determined…');
-    qspCall(s, 'trFatherMisha', 'end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },
@@ -620,7 +620,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/city/mikhail/terminal/trfatherqw_15.jpg');
     // TODO-QSP: dynamic text: Your father looks at his watch, noticing that you've spent quite the time togeth...
-    scene.text(`Your father looks at his watch, noticing that you've spent quite the time together, "${((s as any).pcs_nickname ?? 0)} I have to go I have some stuff to take care of. But don't be a stranger, make sure to come by again. I will be eagerly awaiting you to visit me again."`);
+    scene.text(`Your father looks at his watch, noticing that you've spent quite the time together, "${((s as any).pcs_nickname || '')} I have to go I have some stuff to take care of. But don't be a stranger, make sure to come by again. I will be eagerly awaiting you to visit me again."`);
     scene.text('You answer eagerly, "Yes dad, don\'t worry, I\'ll make sure to visit you once again."');
     scene.text('With a smile on his face he leans in and kisses you on the cheek as a goodbye.');
     if (((s as any).fatherMishaCar ?? 0) > 0) {

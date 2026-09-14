@@ -162,17 +162,17 @@ function enterCheck(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterDefaultFamilyFriends(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'npc_relationship', 'set', 'A28', 50);
-  qspCall(s, 'npc_relationship', 'set', 'A29', 50);
-  qspCall(s, 'npc_relationship', 'set', 'A30', 50);
-  qspCall(s, 'npc_relationship', 'set', 'A31', 50);
-  qspCall(s, 'npc_relationship', 'set', 'A32', 50);
-  qspCall(s, 'npc_relationship', 'set', 'A33', 70);
-  qspCall(s, 'npc_relationship', 'set', 'A34', 50);
-  qspCall(s, 'npc_relationship', 'set', 'A11', 60);
-  qspCall(s, 'npc_relationship', 'set', 'A63', 40);
-  qspCall(s, 'npc_relationship', 'set', 'A62', 20);
-  qspCall(s, 'npc_relationship', 'set', 'A61', 20);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A28', 50]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A29', 50]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A30', 50]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A31', 50]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A32', 50]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A33', 70]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A34', 50]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A11', 60]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A63', 40]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A62', 20]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A61', 20]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -221,7 +221,7 @@ function enterDefaultfriendship(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :default_friendship_loop
   if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 1  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 2  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 3  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 4  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 5  ||  ((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 6) {
-    qspCall(s, 'npc_relationship', 'set', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).r = ((s as any).r ?? 0) + (1);
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
@@ -235,7 +235,7 @@ function enterDefaultnotschool(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :default_friendship_loop2
   if (((s as any).npc_grupTipe ?? 0)['A' + ((s as any).r ?? 0)] === 0) {
-    qspCall(s, 'npc_relationship', 'set', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).r = ((s as any).r ?? 0) + (1);
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
@@ -248,7 +248,7 @@ function enterDefaultnotschool(s: GameState, scene: SceneBuilder): void {
 function enterDefault2(s: GameState, scene: SceneBuilder): void {
   (s as any).r = 1;
   // TODO-QSP: :default_friendship_loop3
-  qspCall(s, 'npc_relationship', 'set', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'A' + qspUntranslated(s, "r>", { location: "npc_relationship" }) + '', 30]; enterSet(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).r = ((s as any).r ?? 0) + (1);
   if (((s as any).r ?? 0) <= ((s as any).aarraynumber ?? 0)) {
     // TODO-QSP: jump 'default_friendship_loop3'

@@ -77,7 +77,7 @@ function enterGenerateRandom(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandomizeStats(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'intro_initialization', '_generate_random', 8);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterGenerateRandom(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).pcs_stren = ((s as any).pcs_stren ?? 0) + (qspUntranslated(s, "temp_rand[1]", { location: "intro_initialization" }));
   (s as any).pcs_agil = ((s as any).pcs_agil ?? 0) + (qspUntranslated(s, "temp_rand[2]", { location: "intro_initialization" }));
   (s as any).pcs_vital = ((s as any).pcs_vital ?? 0) + (qspUntranslated(s, "temp_rand[3]", { location: "intro_initialization" }));
@@ -95,7 +95,7 @@ function enterRandomizeStats(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRandomizeGrades(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'intro_initialization', '_generate_random', 13);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 13]; enterGenerateRandom(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'grades', 'grade_award', 'school', 'math',  temp_rand[1]
   // TODO-QSP: gs 'grades', 'grade_award', 'school', 'rus',  temp_rand[2]
   // TODO-QSP: gs 'grades', 'grade_award', 'school', 'lit',  temp_rand[3]
@@ -165,7 +165,7 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'traits', 'level', 'heel_preference', (-1));
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-    qspCall(s, 'intro_initialization', 'sg_settings');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSgSettings(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).start_type ?? 0)?.['magic'] === 'tg') {
       if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['equipped_condoms'] = 3;
       if (!(s as any).mc_inventory) (s as any).mc_inventory = {}; (s as any).mc_inventory['mag_porn'] = 40;
@@ -174,9 +174,9 @@ function enterInit(s: GameState, scene: SceneBuilder): void {
       (s as any).hour = 9;
     }
   }
-  qspCall(s, 'intro_initialization', 'start');
-  qspCall(s, 'intro_initialization', 'mid');
-  qspCall(s, 'intro_initialization', 'end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStart(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterMid(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: showstat 1
   if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['debug'] = 1;
   // TODO-QSP: showobjs cfg_vars['debug']
@@ -222,9 +222,9 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     if (!(s as any).start_type) (s as any).start_type = {}; (s as any).start_type['cat'] = 'custom';
   }
   if (((s as any).start_type ?? 0)?.['cat'] !== 'custom') {
-    qspCall(s, 'intro_initialization', 'randomize_stats');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRandomizeStats(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
-      qspCall(s, 'intro_initialization', 'randomize_grades');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRandomizeGrades(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   if (((s as any).currentpursetype ?? 0) !== ''  &&  ((s as any).currentpursetype ?? 0) !== 'none') {
@@ -470,16 +470,16 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
   (s as any).stat_fix_loop_times = 0;
   // TODO-QSP: :stat_fixing_loop
   (s as any).temp_stats_changed = 0;
-  qspCall(s, 'intro_initialization', 'fix_stat_inner', 'kiss', 'men_kissed', 'women_kissed', 'herm_kissed');
-  qspCall(s, 'intro_initialization', 'fix_stat_inner', 'hj', 'men_jerked', 'herm_jerked');
-  qspCall(s, 'intro_initialization', 'fix_stat_inner', 'vaginal_finger_give', 'women_fingered');
-  qspCall(s, 'intro_initialization', 'fix_stat_inner', 'footjob', 'men_feetfucked', 'women_feetfucked', 'herm_feetfucked');
-  qspCall(s, 'intro_initialization', 'fix_stat_inner', 'titjob', 'men_titfucked', 'women_titfucked', 'herm_titfucked');
-  qspCall(s, 'intro_initialization', 'fix_stat_inner', 'bj', 'men_blown', 'herm_blown');
-  qspCall(s, 'intro_initialization', 'fix_stat_inner', 'cuni_give', 'women_munched');
-  qspCall(s, 'intro_initialization', 'fix_stat_inner', 'vaginal', 'men_vaginal_fucked', 'women_vaginal_fucked', 'herm_vaginal_fucked');
-  qspCall(s, 'intro_initialization', 'fix_stat_inner', 'anal', 'men_anal_fucked', 'women_vaginal_fucked', 'herm_anal_fucked');
-  (s as any).temp_stat_diff = ((s as any).stat ?? {})?.['men_fucked'] - Math.max(((s as any).stat ?? 0)?.['men_vaginal_fucked'], ((s as any).stat ?? 0)?.['men_anal_fucked']);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'kiss', 'men_kissed', 'women_kissed', 'herm_kissed']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'hj', 'men_jerked', 'herm_jerked']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vaginal_finger_give', 'women_fingered']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'footjob', 'men_feetfucked', 'women_feetfucked', 'herm_feetfucked']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'titjob', 'men_titfucked', 'women_titfucked', 'herm_titfucked']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'bj', 'men_blown', 'herm_blown']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'cuni_give', 'women_munched']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'vaginal', 'men_vaginal_fucked', 'women_vaginal_fucked', 'herm_vaginal_fucked']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'anal', 'men_anal_fucked', 'women_vaginal_fucked', 'herm_anal_fucked']; enterFixStatInner(s, scene); (s as any).locArgs = __savedLocArgs; }
+  (s as any).temp_stat_diff = (((s as any).stat ?? {})?.['men_fucked'] ?? 0) - Math.max(((s as any).stat ?? 0)?.['men_vaginal_fucked'], ((s as any).stat ?? 0)?.['men_anal_fucked']);
   if (((s as any).temp_stat_diff ?? 0) > 0) {
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['men_vaginal_fucked_times'] = ((s as any).stat['men_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['men_vaginal_fucked'] = ((s as any).stat['men_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
@@ -490,7 +490,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_stats_changed = 1;
     }
   }
-  (s as any).temp_stat_diff = ((s as any).stat ?? {})?.['women_fucked'] - Math.max(((s as any).stat ?? 0)?.['women_vaginal_fucked'], ((s as any).stat ?? 0)?.['women_anal_fucked']);
+  (s as any).temp_stat_diff = (((s as any).stat ?? {})?.['women_fucked'] ?? 0) - Math.max(((s as any).stat ?? 0)?.['women_vaginal_fucked'], ((s as any).stat ?? 0)?.['women_anal_fucked']);
   if (((s as any).temp_stat_diff ?? 0) > 0) {
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['women_vaginal_fucked_times'] = ((s as any).stat['women_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['women_vaginal_fucked'] = ((s as any).stat['women_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
@@ -501,7 +501,7 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       (s as any).temp_stats_changed = 1;
     }
   }
-  (s as any).temp_stat_diff = ((s as any).stat ?? {})?.['herm_fucked'] - Math.max(((s as any).stat ?? 0)?.['herm_vaginal_fucked'], ((s as any).stat ?? 0)?.['herm_anal_fucked']);
+  (s as any).temp_stat_diff = (((s as any).stat ?? {})?.['herm_fucked'] ?? 0) - Math.max(((s as any).stat ?? 0)?.['herm_vaginal_fucked'], ((s as any).stat ?? 0)?.['herm_anal_fucked']);
   if (((s as any).temp_stat_diff ?? 0) > 0) {
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_vaginal_fucked_times'] = ((s as any).stat['herm_vaginal_fucked_times'] ?? 0) + (((s as any).temp_stat_diff ?? 0));
     if (!(s as any).stat) (s as any).stat = {}; (s as any).stat['herm_vaginal_fucked'] = ((s as any).stat['herm_vaginal_fucked'] ?? 0) + (((s as any).temp_stat_diff ?? 0));

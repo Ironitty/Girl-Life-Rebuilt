@@ -11,18 +11,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterDinMesec(s: GameState, scene: SceneBuilder): void {
   if (((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
     // TODO-QSP: dynamic text: <<$boydesc>>: Damn, they weren't lying about that body of yours.
-    scene.text(`${((s as any).boydesc ?? 0)}: Damn, they weren't lying about that body of yours.`);
+    scene.text(`${((s as any).boydesc || '')}: Damn, they weren't lying about that body of yours.`);
     // TODO-QSP: dynamic text: Don't worry, we were only told good things, <<$pcs_nickname>>. Do you want it in...
-    scene.text(`Don't worry, we were only told good things, ${((s as any).pcs_nickname ?? 0)}. Do you want it in the ass or in the mouth? " he asks you.`);
+    scene.text(`Don't worry, we were only told good things, ${((s as any).pcs_nickname || '')}. Do you want it in the ass or in the mouth? " he asks you.`);
     // TODO-QSP: dynamic text: Oh, anal won't work for me today <<$boydesc>>, I'm not quite ready… if you know ...
-    scene.text(`Oh, anal won't work for me today ${((s as any).boydesc ?? 0)}, I'm not quite ready… if you know what I mean…`);
+    scene.text(`Oh, anal won't work for me today ${((s as any).boydesc || '')}, I'm not quite ready… if you know what I mean…`);
     // TODO-QSP: dynamic text: I understand, says <<$boydesc>>. - Okay, next time, come with a clean ass!
-    scene.text(`I understand, says ${((s as any).boydesc ?? 0)}. - Okay, next time, come with a clean ass!`);
+    scene.text(`I understand, says ${((s as any).boydesc || '')}. - Okay, next time, come with a clean ass!`);
   } else {
     // TODO-QSP: dynamic text: <<$boydesc>>: Damn, they weren't lying about that body of yours.
-    scene.text(`${((s as any).boydesc ?? 0)}: Damn, they weren't lying about that body of yours.`);
+    scene.text(`${((s as any).boydesc || '')}: Damn, they weren't lying about that body of yours.`);
     // TODO-QSP: dynamic text: Don't worry, we were only told good things, <<$pcs_nickname>>. Do you want it in...
-    scene.text(`Don't worry, we were only told good things, ${((s as any).pcs_nickname ?? 0)}. Do you want it in the ass or in the mouth? " he asks you.`);
+    scene.text(`Don't worry, we were only told good things, ${((s as any).pcs_nickname || '')}. Do you want it in the ass or in the mouth? " he asks you.`);
     scene.text('"Let\'s not rush things too fast", you say.');
   }
   scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
@@ -37,10 +37,10 @@ function enterDinHuntersBjBonusH1(s: GameState, scene: SceneBuilder): void {
   scene.text('You glide your tongue over the head of his member, gently flicking and poking at his urethra.');
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: <<$boydesc>> looks down at you: -<<$pcs_nickname>>, what are you doing, stop it,...
-    scene.text(`${((s as any).boydesc ?? 0)} looks down at you: -${((s as any).pcs_nickname ?? 0)}, what are you doing, stop it, I'm fucking going to cum from this already.`);
+    scene.text(`${((s as any).boydesc || '')} looks down at you: -${((s as any).pcs_nickname || '')}, what are you doing, stop it, I'm fucking going to cum from this already.`);
   } else {
     // TODO-QSP: dynamic text: <<$boydesc>> looks down at you: -<<$pcs_nickname>>, what are you doing, stop it,...
-    scene.text(`${((s as any).boydesc ?? 0)} looks down at you: -${((s as any).pcs_nickname ?? 0)}, what are you doing, stop it, I'm going to shoot my load already.`);
+    scene.text(`${((s as any).boydesc || '')} looks down at you: -${((s as any).pcs_nickname || '')}, what are you doing, stop it, I'm going to shoot my load already.`);
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -59,7 +59,7 @@ function enterDinHuntersBjH1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj1\' + rand(0, 3) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: dynamic text: You <<$textsexkotov>>
-  scene.text(`You ${((s as any).textsexkotov ?? 0)}`);
+  scene.text(`You ${((s as any).textsexkotov || '')}`);
   scene.text('Gently and quickly slid the tip of your tongue over the head of the cock, playing with the opening.');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
@@ -176,10 +176,10 @@ function enterDinHuntersBjBonusH2(s: GameState, scene: SceneBuilder): void {
   scene.text('He shivers slightly as you gently bite the head of his cock with your pearly white teeth.');
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -Hey, fuck, <<$pcs_nickname>>, are you mistaking my dick for a banana? Cut that ...
-    scene.text(`-Hey, fuck, ${((s as any).pcs_nickname ?? 0)}, are you mistaking my dick for a banana? Cut that shit out!`);
+    scene.text(`-Hey, fuck, ${((s as any).pcs_nickname || '')}, are you mistaking my dick for a banana? Cut that shit out!`);
   } else {
     // TODO-QSP: dynamic text: -Be careful <<$pcs_nickname>>, stop joking around with that thing.
-    scene.text(`-Be careful ${((s as any).pcs_nickname ?? 0)}, stop joking around with that thing.`);
+    scene.text(`-Be careful ${((s as any).pcs_nickname || '')}, stop joking around with that thing.`);
   }
   scene.text('You smile and look at him.');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
@@ -199,7 +199,7 @@ function enterDinHuntersBjH2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj2\' + rand(0, 6) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: dynamic text: You <<$textsexkotov>>, and tightly clench your <<$pc_desc['lips']>> lips 
-  scene.text(`You ${((s as any).textsexkotov ?? 0)}, and tightly clench your ${((s as any).pc_desc ?? 0)?.['lips']} lips `);
+  scene.text(`You ${((s as any).textsexkotov || '')}, and tightly clench your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips `);
   scene.text('The tenderness of your lips is driving him crazy');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
@@ -315,7 +315,7 @@ function enterDinHuntersBjBonusH3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbjbonus3.mp4');
   scene.text('Looking into the eyes of your boyfriend, you use your tongue to tease one of the most erogenous zones of his member.');
   // TODO-QSP: dynamic text: -Class <<$pcs_nickname>>, you know how to make me even harder.
-  scene.text(`-Class ${((s as any).pcs_nickname ?? 0)}, you know how to make me even harder.`);
+  scene.text(`-Class ${((s as any).pcs_nickname || '')}, you know how to make me even harder.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end & !! --- din_hunters_bj_bonusH3 ---
@@ -331,7 +331,7 @@ function enterDinHuntersBjH3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj3\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: dynamic text: You cover his cock with sweet kisses, gently touching your <<$pc_desc['lips']>> ...
-  scene.text(`You cover his cock with sweet kisses, gently touching your ${((s as any).pc_desc ?? 0)?.['lips']} lips`);
+  scene.text(`You cover his cock with sweet kisses, gently touching your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     scene.text('You slightly <a href="exec:gt \'hunterLoveSex\', \'din_hunters_bj_bonusH3\'"> tease</a> his member');
@@ -470,7 +470,7 @@ function enterDinHuntersBjH4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     // TODO-QSP: dynamic text: <<$boydesc>> asks you <a href="exec:gt 'hunterLoveSex', 'din_hunters_bj_bonusH4'...
-    scene.text(`${((s as any).boydesc ?? 0)} asks you <a href="exec:gt 'hunterLoveSex', 'din_hunters_bj_bonusH4'">to slap</a> his cock on your cheek.`);
+    scene.text(`${((s as any).boydesc || '')} asks you <a href="exec:gt 'hunterLoveSex', 'din_hunters_bj_bonusH4'">to slap</a> his cock on your cheek.`);
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] === 3) {
@@ -554,7 +554,7 @@ function enterDinHuntersBjBonusH6(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus6.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> slaps his member on your face.
-  scene.text(`${((s as any).boydesc ?? 0)} slaps his member on your face.`);
+  scene.text(`${((s as any).boydesc || '')} slaps his member on your face.`);
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     scene.text('-You are a perfect little slut, he says with a smile.');
   } else {
@@ -577,12 +577,12 @@ function enterDinHuntersBjH6(s: GameState, scene: SceneBuilder): void {
   scene.text('Grasping his thick cock in your hands, you begin to stroke it confidently watching his reaction.');
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     // TODO-QSP: dynamic text: -Well, <<$pcs_nickname>>, I can jerk myself off, but lets see what sort of skill...
-    scene.text(`-Well, ${((s as any).pcs_nickname ?? 0)}, I can jerk myself off, but lets see what sort of skills you have.`);
+    scene.text(`-Well, ${((s as any).pcs_nickname || '')}, I can jerk myself off, but lets see what sort of skills you have.`);
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -Come on, <<$pcs_nickname>>, show me what you can do! <<$boydesc>> says, gazing ...
-    scene.text(`-Come on, ${((s as any).pcs_nickname ?? 0)}, show me what you can do! ${((s as any).boydesc ?? 0)} says, gazing deep into your eyes.`);
+    scene.text(`-Come on, ${((s as any).pcs_nickname || '')}, show me what you can do! ${((s as any).boydesc || '')} says, gazing deep into your eyes.`);
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
@@ -688,7 +688,7 @@ function enterDinHuntersBjBonusH7(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus11.mp4');
   // TODO-QSP: dynamic text: You take his cock into your mouth, your cheeks bulging from his size. <<$boydesc...
-  scene.text(`You take his cock into your mouth, your cheeks bulging from his size. ${((s as any).boydesc ?? 0)} begins to roughly fuck you in this position, stretching your mouth to the extreme.`);
+  scene.text(`You take his cock into your mouth, your cheeks bulging from his size. ${((s as any).boydesc || '')} begins to roughly fuck you in this position, stretching your mouth to the extreme.`);
   scene.text('-Oh yeah, baby, just take it for a little while, your pretty face looks so fucking sexy like that.');
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
@@ -822,11 +822,11 @@ function enterDinHuntersBjBonusH8(s: GameState, scene: SceneBuilder): void {
   scene.text('You try to take his cock even deeper, but, unaccustomed to deepthroating, you gag and almost puked all over him.');
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text:  -Fuck, fucking<<$pcs_nickname>>, if you are not able to take it all, work on it...
-    scene.text(` -Fuck, fucking${((s as any).pcs_nickname ?? 0)}, if you are not able to take it all, work on it at home with a banana, and not on my cock.`);
+    scene.text(` -Fuck, fucking${((s as any).pcs_nickname || '')}, if you are not able to take it all, work on it at home with a banana, and not on my cock.`);
   }
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text:  -Don't worry <<$pcs_nickname>>, maybe you'll be able to take all of it next tim...
-    scene.text(` -Don't worry ${((s as any).pcs_nickname ?? 0)}, maybe you'll be able to take all of it next time.`);
+    scene.text(` -Don't worry ${((s as any).pcs_nickname || '')}, maybe you'll be able to take all of it next time.`);
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
@@ -1001,7 +1001,7 @@ function enterDinHuntersSexBellAnalH(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).h ?? 0) === 1) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and you realize that he is already o...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) === 2) {
     scene.text('Have you had enough of this position he asks you…');
@@ -1047,7 +1047,7 @@ function enterDinHuntersSexCowAnalH(s: GameState, scene: SceneBuilder): void {
   (s as any).h = Math.floor(Math.random() * 2) + 1;
   if (((s as any).h ?? 0) === 1) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and your realize that he is already ...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and your realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and your realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) === 2) {
     scene.text('Have you had enough of this position he asks you…');
@@ -1093,7 +1093,7 @@ function enterDinHuntersSexDogAnalH(s: GameState, scene: SceneBuilder): void {
   (s as any).h = Math.floor(Math.random() * 2) + 1;
   if (((s as any).h ?? 0) === 1) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and you realize that he is already o...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) === 2) {
     scene.text('Have you had enough of this position he asks you…');
@@ -1139,7 +1139,7 @@ function enterDinHuntersSexMisionaryAnalH(s: GameState, scene: SceneBuilder): vo
   (s as any).h = Math.floor(Math.random() * 2) + 1;
   if (((s as any).h ?? 0) === 1) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and you realize that he is already o...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) === 2) {
     scene.text('Have you had enough of this position he asks you…');
@@ -1183,19 +1183,19 @@ function enterDinHuntersSexCumface7(s: GameState, scene: SceneBuilder): void {
   scene.text('You feel his member begin to throb in your mouth as it unleashes a torrent of hot, tart spunk down your throat.');
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     // TODO-QSP: dynamic text: -Sorry <<$pcs_nickname>>, I couldn't hold back any longer.
-    scene.text(`-Sorry ${((s as any).pcs_nickname ?? 0)}, I couldn't hold back any longer.`);
+    scene.text(`-Sorry ${((s as any).pcs_nickname || '')}, I couldn't hold back any longer.`);
   }
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: All <<$pcs_nickname>> hare. I can't.
-    scene.text(`All ${((s as any).pcs_nickname ?? 0)} hare. I can't.`);
+    scene.text(`All ${((s as any).pcs_nickname || '')} hare. I can't.`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: All <<$pcs_nickname>>. I can't.
-    scene.text(`All ${((s as any).pcs_nickname ?? 0)}. I can't.`);
+    scene.text(`All ${((s as any).pcs_nickname || '')}. I can't.`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: All <<$pcs_nickname>>, enough. I can't.
-    scene.text(`All ${((s as any).pcs_nickname ?? 0)}, enough. I can't.`);
+    scene.text(`All ${((s as any).pcs_nickname || '')}, enough. I can't.`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -1209,7 +1209,7 @@ function enterDinHuntersSexCumface7(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!".
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!".`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!".`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1260,7 +1260,7 @@ function enterDinHuntersSexCumface7(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1323,15 +1323,15 @@ function enterDinHuntersSexCumface6(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -1345,7 +1345,7 @@ function enterDinHuntersSexCumface6(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1396,7 +1396,7 @@ function enterDinHuntersSexCumface6(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1456,19 +1456,19 @@ function enterDinHuntersSexCumface5(s: GameState, scene: SceneBuilder): void {
   scene.text('His powerful jet of cum hits you on the face chin. It slowly drips onto your tits, leaving them nicely glazed with his fresh load.');
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -<<$pcs_nickname>>, just dig your kueng Boobs.
-    scene.text(`-${((s as any).pcs_nickname ?? 0)}, just dig your kueng Boobs.`);
+    scene.text(`-${((s as any).pcs_nickname || '')}, just dig your kueng Boobs.`);
   }
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -1482,7 +1482,7 @@ function enterDinHuntersSexCumface5(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1533,7 +1533,7 @@ function enterDinHuntersSexCumface5(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1591,22 +1591,22 @@ function enterDinHuntersSexCumface4(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cumf40.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> cum is on your chest. Warm droplets flow down to your stomach. You ...
-  scene.text(`${((s as any).boydesc ?? 0)} cum is on your chest. Warm droplets flow down to your stomach. You smear the sticky cum all over your body, relishing the feeling.`);
+  scene.text(`${((s as any).boydesc || '')} cum is on your chest. Warm droplets flow down to your stomach. You smear the sticky cum all over your body, relishing the feeling.`);
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -<<$pcs_nickname>>, it's supposed to help your tits grow. Do you want to be my B...
-    scene.text(`-${((s as any).pcs_nickname ?? 0)}, it's supposed to help your tits grow. Do you want to be my Busty beauty?`);
+    scene.text(`-${((s as any).pcs_nickname || '')}, it's supposed to help your tits grow. Do you want to be my Busty beauty?`);
   }
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -1620,7 +1620,7 @@ function enterDinHuntersSexCumface4(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1671,7 +1671,7 @@ function enterDinHuntersSexCumface4(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1729,21 +1729,21 @@ function enterDinHuntersSexCumface3(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cumf30.mp4');
   // TODO-QSP: dynamic text: You feel his hard dick begin to throb in your hands and soon <<$boydesc>> cum gu...
-  scene.text(`You feel his hard dick begin to throb in your hands and soon ${((s as any).boydesc ?? 0)} cum gushes out covering your hands in a fresh coat of warm spunk.`);
+  scene.text(`You feel his hard dick begin to throb in your hands and soon ${((s as any).boydesc || '')} cum gushes out covering your hands in a fresh coat of warm spunk.`);
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     scene.text('-Baby, you have some Golden hands! Will you lend them to me sometime?');
   }
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -1757,7 +1757,7 @@ function enterDinHuntersSexCumface3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1808,7 +1808,7 @@ function enterDinHuntersSexCumface3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1878,19 +1878,19 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     scene.text('With great pleasure you swallow every last drop.');
     if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: -Fuck <<$pcs_nickname>>, you're a real cum guzzler, don't forget to mouth wash, ...
-      scene.text(`-Fuck ${((s as any).pcs_nickname ?? 0)}, you're a real cum guzzler, don't forget to mouth wash, I still want to kiss you sometime.`);
+      scene.text(`-Fuck ${((s as any).pcs_nickname || '')}, you're a real cum guzzler, don't forget to mouth wash, I still want to kiss you sometime.`);
     }
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -1904,7 +1904,7 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -1955,7 +1955,7 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2011,19 +2011,19 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     scene.text('You don\'t like the taste and you quickly spit out his disgusting load.');
     if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: -Does that not taste good <<$pcs_nickname>>? I thought all women loved the taste...
-      scene.text(`-Does that not taste good ${((s as any).pcs_nickname ?? 0)}? I thought all women loved the taste of a fresh load. It's a pity you don't. `);
+      scene.text(`-Does that not taste good ${((s as any).pcs_nickname || '')}? I thought all women loved the taste of a fresh load. It's a pity you don't. `);
     }
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -2037,7 +2037,7 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2088,7 +2088,7 @@ function enterDinHuntersSexCumface2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2149,19 +2149,19 @@ function enterDinHuntersSexCumface1(s: GameState, scene: SceneBuilder): void {
   scene.text('The jets of hot sperm hit you in the face and slowly flow down onto your throat and tits.');
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     // TODO-QSP: dynamic text: -Ohh, <<$pcs_nickname>>, god that felt good!
-    scene.text(`-Ohh, ${((s as any).pcs_nickname ?? 0)}, god that felt good!`);
+    scene.text(`-Ohh, ${((s as any).pcs_nickname || '')}, god that felt good!`);
   }
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -2175,7 +2175,7 @@ function enterDinHuntersSexCumface1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2226,7 +2226,7 @@ function enterDinHuntersSexCumface1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2284,18 +2284,18 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum61.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and realizes that he has cum in the condom. Feeling complete...
-    scene.text(`${((s as any).boydesc ?? 0)} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
+    scene.text(`${((s as any).boydesc || '')} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -2309,7 +2309,7 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2360,7 +2360,7 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2413,19 +2413,19 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum111.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and you feel a jet of sperm pour into you.
-    scene.text(`${((s as any).boydesc ?? 0)} groans and you feel a jet of sperm pour into you.`);
+    scene.text(`${((s as any).boydesc || '')} groans and you feel a jet of sperm pour into you.`);
     qspCall(s, 'cuminsidereact', '');
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -2439,7 +2439,7 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2490,7 +2490,7 @@ function enterDinHuntersSexCum11(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2549,18 +2549,18 @@ function enterDinHuntersSexCum10(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cum110.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls out at the last second and groans as you feel hot streams of ...
-  scene.text(`${((s as any).boydesc ?? 0)} pulls out at the last second and groans as you feel hot streams of cum shoot onto your belly and tits, covering you in spunk. Your man lies back on the bed completely relaxed and contented.`);
+  scene.text(`${((s as any).boydesc || '')} pulls out at the last second and groans as you feel hot streams of cum shoot onto your belly and tits, covering you in spunk. Your man lies back on the bed completely relaxed and contented.`);
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -2574,7 +2574,7 @@ function enterDinHuntersSexCum10(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2625,7 +2625,7 @@ function enterDinHuntersSexCum10(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2684,18 +2684,18 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum91.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and realizes that he has cum in the condom. Feeling complete...
-    scene.text(`${((s as any).boydesc ?? 0)} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
+    scene.text(`${((s as any).boydesc || '')} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -2709,7 +2709,7 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2760,7 +2760,7 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2813,19 +2813,19 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/mouth/cum19.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and you feel a jet of sperm pour into you.
-    scene.text(`${((s as any).boydesc ?? 0)} groans and you feel a jet of sperm pour into you.`);
+    scene.text(`${((s as any).boydesc || '')} groans and you feel a jet of sperm pour into you.`);
     qspCall(s, 'cuminsidereact', '');
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -2839,7 +2839,7 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2890,7 +2890,7 @@ function enterDinHuntersSexCum9(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -2950,18 +2950,18 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum82.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and realizes that he has cum in the condom. Feeling complete...
-    scene.text(`${((s as any).boydesc ?? 0)} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
+    scene.text(`${((s as any).boydesc || '')} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -2975,7 +2975,7 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3026,7 +3026,7 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3079,19 +3079,19 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum81.mp4');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and you feel a jet of sperm pour into you.
-    scene.text(`${((s as any).boydesc ?? 0)} groans and you feel a jet of sperm pour into you.`);
+    scene.text(`${((s as any).boydesc || '')} groans and you feel a jet of sperm pour into you.`);
     qspCall(s, 'cuminsidereact', '');
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -3105,7 +3105,7 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3156,7 +3156,7 @@ function enterDinHuntersSexCum81(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3216,18 +3216,18 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum81.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and realizes that he has cum in the condom. Feeling complete...
-    scene.text(`${((s as any).boydesc ?? 0)} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
+    scene.text(`${((s as any).boydesc || '')} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -3241,7 +3241,7 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3292,7 +3292,7 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3345,19 +3345,19 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum8.mp4');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and you feel a jet of sperm pour into you.
-    scene.text(`${((s as any).boydesc ?? 0)} groans and you feel a jet of sperm pour into you.`);
+    scene.text(`${((s as any).boydesc || '')} groans and you feel a jet of sperm pour into you.`);
     qspCall(s, 'cuminsidereact', '');
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -3371,7 +3371,7 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3422,7 +3422,7 @@ function enterDinHuntersSexCum8(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3482,18 +3482,18 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum71.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and realizes that he has cum in the condom. Feeling complete...
-    scene.text(`${((s as any).boydesc ?? 0)} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
+    scene.text(`${((s as any).boydesc || '')} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -3507,7 +3507,7 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3558,7 +3558,7 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3611,19 +3611,19 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum7.mp4');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and you feel a jet of sperm pour into you.
-    scene.text(`${((s as any).boydesc ?? 0)} groans and you feel a jet of sperm pour into you.`);
+    scene.text(`${((s as any).boydesc || '')} groans and you feel a jet of sperm pour into you.`);
     qspCall(s, 'cuminsidereact', '');
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -3637,7 +3637,7 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3688,7 +3688,7 @@ function enterDinHuntersSexCum7(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3748,18 +3748,18 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum61.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and realizes that he has cum in the condom. Feeling complete...
-    scene.text(`${((s as any).boydesc ?? 0)} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
+    scene.text(`${((s as any).boydesc || '')} groans and realizes that he has cum in the condom. Feeling completely relaxed, he throws the condom on the ground and contentedly lies back on the bed.`);
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -3773,7 +3773,7 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3824,7 +3824,7 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3877,19 +3877,19 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/cum/cum6.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> groans and you feel a jet of sperm pour into you.
-    scene.text(`${((s as any).boydesc ?? 0)} groans and you feel a jet of sperm pour into you.`);
+    scene.text(`${((s as any).boydesc || '')} groans and you feel a jet of sperm pour into you.`);
     qspCall(s, 'cuminsidereact', '');
     if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
       // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-      scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+      scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
     }
     qspCall(s, 'arousal', 'end');
     if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -3903,7 +3903,7 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -3954,7 +3954,7 @@ function enterDinHuntersSexCum6(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4013,18 +4013,18 @@ function enterDinHuntersSexCum5(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cum5.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls out his member, groans and you feel his hot streams of sperm ...
-  scene.text(`${((s as any).boydesc ?? 0)} pulls out his member, groans and you feel his hot streams of sperm spray onto your ass and back. Your man lies back on the bed, completely contended and relaxed.`);
+  scene.text(`${((s as any).boydesc || '')} pulls out his member, groans and you feel his hot streams of sperm spray onto your ass and back. Your man lies back on the bed, completely contended and relaxed.`);
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -4038,7 +4038,7 @@ function enterDinHuntersSexCum5(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4089,7 +4089,7 @@ function enterDinHuntersSexCum5(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4147,18 +4147,18 @@ function enterDinHuntersSexCum41(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cum41.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls out his member and groans. You feel his hot streams of sperm ...
-  scene.text(`${((s as any).boydesc ?? 0)} pulls out his member and groans. You feel his hot streams of sperm spray onto your stomach, and slowly ooze down your sides. Your man, completely relaxed and satisfied, lies back on the bed.`);
+  scene.text(`${((s as any).boydesc || '')} pulls out his member and groans. You feel his hot streams of sperm spray onto your stomach, and slowly ooze down your sides. Your man, completely relaxed and satisfied, lies back on the bed.`);
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -4172,7 +4172,7 @@ function enterDinHuntersSexCum41(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4223,7 +4223,7 @@ function enterDinHuntersSexCum41(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4281,18 +4281,18 @@ function enterDinHuntersSexCum4(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cum4.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls out his member, groans and you feel his hot streams of sperm ...
-  scene.text(`${((s as any).boydesc ?? 0)} pulls out his member, groans and you feel his hot streams of sperm spray onto your ass and back. Your man lies back on the bed, completely contended and relaxed.`);
+  scene.text(`${((s as any).boydesc || '')} pulls out his member, groans and you feel his hot streams of sperm spray onto your ass and back. Your man lies back on the bed, completely contended and relaxed.`);
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -4306,7 +4306,7 @@ function enterDinHuntersSexCum4(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4357,7 +4357,7 @@ function enterDinHuntersSexCum4(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4415,26 +4415,26 @@ function enterDinHuntersSexCum3(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cum3.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls out his member and groans as you feel his warm drops of sperm...
-  scene.text(`${((s as any).boydesc ?? 0)} pulls out his member and groans as you feel his warm drops of sperm drip on your ass and back.`);
+  scene.text(`${((s as any).boydesc || '')} pulls out his member and groans as you feel his warm drops of sperm drip on your ass and back.`);
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -Hell, <<$pcs_nickname>>, in this position you fuck like a perfect whore. He sla...
-    scene.text(`-Hell, ${((s as any).pcs_nickname ?? 0)}, in this position you fuck like a perfect whore. He slaps you lightly on the ass.`);
+    scene.text(`-Hell, ${((s as any).pcs_nickname || '')}, in this position you fuck like a perfect whore. He slaps you lightly on the ass.`);
   }
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -<<$pcs_nickname>>, in this position you are simply irresistible. He gently kiss...
-    scene.text(`-${((s as any).pcs_nickname ?? 0)}, in this position you are simply irresistible. He gently kisses you on the cheek.`);
+    scene.text(`-${((s as any).pcs_nickname || '')}, in this position you are simply irresistible. He gently kisses you on the cheek.`);
   }
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -4448,7 +4448,7 @@ function enterDinHuntersSexCum3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4499,7 +4499,7 @@ function enterDinHuntersSexCum3(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4557,22 +4557,22 @@ function enterDinHuntersSexCum2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cum2.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls out his cock and groans as you feel his warm sperm drip onto ...
-  scene.text(`${((s as any).boydesc ?? 0)} pulls out his cock and groans as you feel his warm sperm drip onto your stomach.`);
+  scene.text(`${((s as any).boydesc || '')} pulls out his cock and groans as you feel his warm sperm drip onto your stomach.`);
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -Shit, <<$pcs_nickname>> that was awesome, <<$boydesc>> looks completely satisfi...
-    scene.text(`-Shit, ${((s as any).pcs_nickname ?? 0)} that was awesome, ${((s as any).boydesc ?? 0)} looks completely satisfied. He passionately kisses you.`);
+    scene.text(`-Shit, ${((s as any).pcs_nickname || '')} that was awesome, ${((s as any).boydesc || '')} looks completely satisfied. He passionately kisses you.`);
   }
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -4586,7 +4586,7 @@ function enterDinHuntersSexCum2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4637,7 +4637,7 @@ function enterDinHuntersSexCum2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4695,18 +4695,18 @@ function enterDinHuntersSexCum1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/cum/cum1.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> moans and you feel your ass fill with warmth. -Oh yeah, baby, you'r...
-  scene.text(`${((s as any).boydesc ?? 0)} moans and you feel your ass fill with warmth. -Oh yeah, baby, you're just super. ${((s as any).boydesc ?? 0)} kisses you on the forehead.`);
+  scene.text(`${((s as any).boydesc || '')} moans and you feel your ass fill with warmth. -Oh yeah, baby, you're just super. ${((s as any).boydesc || '')} kisses you on the forehead.`);
   if (((s as any).silavag ?? 0) === 0  &&  (!((s as any).dikos ?? 0))) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) === 1) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   if (((s as any).silavag ?? 0) === 2  &&  ((s as any).dikos ?? 0) === 2) {
     // TODO-QSP: dynamic text: Sorry <<$pcs_nickname>>. I couldn't help myself!
-    scene.text(`Sorry ${((s as any).pcs_nickname ?? 0)}. I couldn't help myself!`);
+    scene.text(`Sorry ${((s as any).pcs_nickname || '')}. I couldn't help myself!`);
   }
   qspCall(s, 'arousal', 'end');
   if (((s as any).silavag ?? 0) === 1  &&  ((s as any).dikos ?? 0) < 1  &&  ((s as any).pcs_horny ?? 0) >= 60  &&  ((s as any).stat ?? 0)?.['think_virgin'] === 0) {
@@ -4720,7 +4720,7 @@ function enterDinHuntersSexCum1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: <<$boydesc>> answered - "Fuck you <<$pcs_nickname>> you're insatiable!"…
-    scene.text(`${((s as any).boydesc ?? 0)} answered - "Fuck you ${((s as any).pcs_nickname ?? 0)} you're insatiable!"…`);
+    scene.text(`${((s as any).boydesc || '')} answered - "Fuck you ${((s as any).pcs_nickname || '')} you're insatiable!"…`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4771,7 +4771,7 @@ function enterDinHuntersSexCum1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     scene.text('You ask him, what else do you want?');
     // TODO-QSP: dynamic text: - Well, <<$pcs_nickname>> you're an insatiable little minx aren't you, <<$boydes...
-    scene.text(`- Well, ${((s as any).pcs_nickname ?? 0)} you're an insatiable little minx aren't you, ${((s as any).boydesc ?? 0)} smiles in response to your question.`);
+    scene.text(`- Well, ${((s as any).pcs_nickname || '')} you're an insatiable little minx aren't you, ${((s as any).boydesc || '')} smiles in response to your question.`);
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1) {
       scene.actions([{ label: 'Continue', goto: ['hunterLoveSex', 'din_hunters_bj'] }]);
     }
@@ -4827,7 +4827,7 @@ function enterDinHuntersSexBellAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/facedown/kotovsexanal20.mp4');
   scene.text('Fortunately you had time to prepare for anal. He pulls his cock out of your pussy and begins to slowly rub against your asshole. ');
   // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and you realize that he is already o...
-  scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and you realize that he is already on edge and ready…`);
+  scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and you realize that he is already on edge and ready…`);
   qspCall(s, 'arousal', 'anal', 10, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
@@ -4851,7 +4851,7 @@ function enterDinHuntersSexCowAnal2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/cowgirl/kotovsexanal34.mp4');
   scene.text('Fortunately you had time to prepare for anal. He pulls his cock out of your pussy and begins to slowly rub against your asshole. ');
   // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and you realize that he is already o...
-  scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and you realize that he is already on edge and ready…`);
+  scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and you realize that he is already on edge and ready…`);
   qspCall(s, 'arousal', 'anal', 10, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
@@ -4875,7 +4875,7 @@ function enterDinHuntersSexCowAnal1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/cowgirl/kotovsexanal3\' + rand(0, 1) + \'.mp4');
   scene.text('Fortunately you had time to prepare for anal. He pulls his cock out of your pussy and begins to slowly rub against your asshole. ');
   // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and you realize that he is already o...
-  scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and you realize that he is already on edge and ready…`);
+  scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and you realize that he is already on edge and ready…`);
   qspCall(s, 'arousal', 'anal', 10, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
@@ -4899,7 +4899,7 @@ function enterDinHuntersSexCowAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/cowgirl/kotovsexanal3\' + rand(2, 3) + \'.mp4');
   scene.text('Fortunately you had time to prepare for anal. He pulls his cock out of your pussy and begins to slowly rub against your asshole. ');
   // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and you realize that he is already o...
-  scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and you realize that he is already on edge and ready…`);
+  scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and you realize that he is already on edge and ready…`);
   qspCall(s, 'arousal', 'anal', 10, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
@@ -4923,7 +4923,7 @@ function enterDinHuntersSexDogAnal(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/anal/doggy/kotovsexanal1\' + rand(0, 1) + \'.mp4');
   scene.text('Fortunately you had time to prepare for anal. He pulls his cock out of your pussy and begins to slowly rub against your asshole. ');
   // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and you realize that he is already o...
-  scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and you realize that he is already on edge and ready…`);
+  scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and you realize that he is already on edge and ready…`);
   qspCall(s, 'arousal', 'anal', 10, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
@@ -4947,7 +4947,7 @@ function enterDinHuntersSexMisionaryAnal(s: GameState, scene: SceneBuilder): voi
   scene.img('images/shared/sex/anal/mis/kotovsexanal\' + rand(0, 1) + \'.mp4');
   scene.text('Fortunately you had time to prepare for anal. He pulls his cock out of your pussy and begins to slowly rub against your asshole. ');
   // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and you realize that he is already o...
-  scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and you realize that he is already on edge and ready…`);
+  scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and you realize that he is already on edge and ready…`);
   qspCall(s, 'arousal', 'anal', 10, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 2) + 1;
@@ -4972,10 +4972,10 @@ function enterDinHuntersSexAnalNo(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/anal/kotovsexanalno.mp4');
   // TODO-QSP: dynamic text: -Sorry <<$boydesc>>, but I'm not quite ready. Well, if you know what I mean.
-  scene.text(`-Sorry ${((s as any).boydesc ?? 0)}, but I'm not quite ready. Well, if you know what I mean.`);
+  scene.text(`-Sorry ${((s as any).boydesc || '')}, but I'm not quite ready. Well, if you know what I mean.`);
   scene.text('-I understand. Okay, next time, come with a clean ass.');
   // TODO-QSP: dynamic text: <<$boydesc>> asks you…
-  scene.text(`${((s as any).boydesc ?? 0)} asks you…`);
+  scene.text(`${((s as any).boydesc || '')} asks you…`);
   (s as any).i = Math.floor(Math.random() * 4) + 1;
   if (((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5007,7 +5007,7 @@ function enterDinHuntersSex_69(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/69/kotovsex7\' + rand(0, 2) + \'.mp4');
   scene.text('You sit on your man\'s face and, grabbing his cock, begin to suck passionately.');
   // TODO-QSP: dynamic text: <<$boydesc>> skillfully licks your pussy, you begin moaning and panting as you c...
-  scene.text(`${((s as any).boydesc ?? 0)} skillfully licks your pussy, you begin moaning and panting as you continue to suck.`);
+  scene.text(`${((s as any).boydesc || '')} skillfully licks your pussy, you begin moaning and panting as you continue to suck.`);
   qspCall(s, 'arousal', 'cuni', 5, 'dom');
   qspCall(s, 'arousal', 'bj', (-5), 'sub');
   qspCall(s, 'stat', '');
@@ -5024,7 +5024,7 @@ function enterDinHuntersSex_69(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and your realize that he is already ...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and your realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and your realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5100,7 +5100,7 @@ function enterDinHuntersSexHandBonus(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move faster and your realize that he is already ...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move faster and your realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move faster and your realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5172,7 +5172,7 @@ function enterDinHuntersSexHand(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/vag/hug/kotovsex50.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> takes you in his strong hands and abruptly enters you.
-  scene.text(`${((s as any).boydesc ?? 0)} takes you in his strong hands and abruptly enters you.`);
+  scene.text(`${((s as any).boydesc || '')} takes you in his strong hands and abruptly enters you.`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 4) + 1;
@@ -5186,7 +5186,7 @@ function enterDinHuntersSexHand(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5257,13 +5257,13 @@ function enterDinHuntersSexBellBonus1(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/vag/facedown/kotovsexbonus10.mp4');
   // TODO-QSP: dynamic text: Lying relaxed on your stomach, you lazily twist your ass, spreading your cheeks ...
-  scene.text(`Lying relaxed on your stomach, you lazily twist your ass, spreading your cheeks open to show off your tight hole. ${((s as any).boydesc ?? 0)} freezes and enjoys the view.`);
+  scene.text(`Lying relaxed on your stomach, you lazily twist your ass, spreading your cheeks open to show off your tight hole. ${((s as any).boydesc || '')} freezes and enjoys the view.`);
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     scene.text('Oh yeah, my kitty, I never get tired of looking at your tasty ass.');
   }
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -Uhh, <<$pcs_nickname>>, don't stop…
-    scene.text(`-Uhh, ${((s as any).pcs_nickname ?? 0)}, don't stop…`);
+    scene.text(`-Uhh, ${((s as any).pcs_nickname || '')}, don't stop…`);
   }
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     scene.text('-It\'s super cute…');
@@ -5278,7 +5278,7 @@ function enterDinHuntersSexBellBonus1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5349,7 +5349,7 @@ function enterDinHuntersSexBellBonus(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/vag/facedown/kotovsexbonus20.mp4');
   // TODO-QSP: dynamic text: You passionately kiss <<$boydesc>> as he continues to RAM you from behind.
-  scene.text(`You passionately kiss ${((s as any).boydesc ?? 0)} as he continues to RAM you from behind.`);
+  scene.text(`You passionately kiss ${((s as any).boydesc || '')} as he continues to RAM you from behind.`);
   qspCall(s, 'arousal', 'anal', 5, 'sub');
   qspCall(s, 'arousal', 'kiss', (-5), 'sub');
   qspCall(s, 'stat', '');
@@ -5361,7 +5361,7 @@ function enterDinHuntersSexBellBonus(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5450,7 +5450,7 @@ function enterDinHuntersSexBell(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5532,7 +5532,7 @@ function enterDinHuntersSexCowBonus3(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5603,7 +5603,7 @@ function enterDinHuntersSexCowBonus2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/vag/hug/kotovsex60.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> gets up and you tightly hug him. You clasp his neck, and move your ...
-  scene.text(`${((s as any).boydesc ?? 0)} gets up and you tightly hug him. You clasp his neck, and move your waist.`);
+  scene.text(`${((s as any).boydesc || '')} gets up and you tightly hug him. You clasp his neck, and move your waist.`);
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     scene.text('-Umm, what a hot bitch, let me get my hands on those tits of yours…');
   }
@@ -5620,7 +5620,7 @@ function enterDinHuntersSexCowBonus2(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5696,7 +5696,7 @@ function enterDinHuntersSexCowBonus1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     // TODO-QSP: dynamic text: -Lookin good <<$pcs_nickname>>…
-    scene.text(`-Lookin good ${((s as any).pcs_nickname ?? 0)}…`);
+    scene.text(`-Lookin good ${((s as any).pcs_nickname || '')}…`);
   }
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
@@ -5709,7 +5709,7 @@ function enterDinHuntersSexCowBonus1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5780,7 +5780,7 @@ function enterDinHuntersSexCowBonus(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/vag/cowgirl/kotovsexbonus\' + rand(14, 16) + \'.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> stops, leaving it up to you to do all the work. You began to move r...
-  scene.text(`${((s as any).boydesc ?? 0)} stops, leaving it up to you to do all the work. You began to move rhythmically on his cock.`);
+  scene.text(`${((s as any).boydesc || '')} stops, leaving it up to you to do all the work. You began to move rhythmically on his cock.`);
   qspCall(s, 'dinsex', 'vaginal_sex', 10);
   if (((s as any).sex ?? 0) > 30) {
     scene.text('Turn your <a href="exec:gt \'hunterLoveSex\', \'din_hunters_sex_cow_bonus1\'">back</a> to him and continue to ride his dick.');
@@ -5795,7 +5795,7 @@ function enterDinHuntersSexCowBonus(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5867,7 +5867,7 @@ function enterDinHuntersSexCow(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/vag/cowgirl/kotovsex2\' + rand(0, 1) + \'.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> takes you by the hand, helping you to sit on top of him.
-  scene.text(`${((s as any).boydesc ?? 0)} takes you by the hand, helping you to sit on top of him.`);
+  scene.text(`${((s as any).boydesc || '')} takes you by the hand, helping you to sit on top of him.`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 4) + 1;
@@ -5885,7 +5885,7 @@ function enterDinHuntersSexCow(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -5958,14 +5958,14 @@ function enterDinHuntersSexDogBonus(s: GameState, scene: SceneBuilder): void {
   scene.text('Slowing him down, you start to move your dripping pussy to meet his hot member.');
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: <<$boydesc>> slows his movements "You're good just so good <<$pcs_nickname>>."
-    scene.text(`${((s as any).boydesc ?? 0)} slows his movements "You're good just so good ${((s as any).pcs_nickname ?? 0)}."`);
+    scene.text(`${((s as any).boydesc || '')} slows his movements "You're good just so good ${((s as any).pcs_nickname || '')}."`);
   } else {
     if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: <<$boydesc>> slows his movements "Excellent work, bootyful bitch."
-      scene.text(`${((s as any).boydesc ?? 0)} slows his movements "Excellent work, bootyful bitch."`);
+      scene.text(`${((s as any).boydesc || '')} slows his movements "Excellent work, bootyful bitch."`);
     } else {
       // TODO-QSP: dynamic text: <<$boydesc>> slows his movements "Cool <<$pcs_nickname>>."
-      scene.text(`${((s as any).boydesc ?? 0)} slows his movements "Cool ${((s as any).pcs_nickname ?? 0)}."`);
+      scene.text(`${((s as any).boydesc || '')} slows his movements "Cool ${((s as any).pcs_nickname || '')}."`);
     }
   }
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
@@ -5978,7 +5978,7 @@ function enterDinHuntersSexDogBonus(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -6059,7 +6059,7 @@ function enterDinHuntersSexDogBonus1(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -6130,7 +6130,7 @@ function enterDinHuntersSexDogBonus2(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/sequence/kotovsexbonus21.mp4');
   // TODO-QSP: dynamic text: The two of you hold each other tightly, <<$boydesc>> supports you as he continue...
-  scene.text(`The two of you hold each other tightly, ${((s as any).boydesc ?? 0)} supports you as he continues to violently batter away at your hole.`);
+  scene.text(`The two of you hold each other tightly, ${((s as any).boydesc || '')} supports you as he continues to violently batter away at your hole.`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 4) + 1;
@@ -6141,7 +6141,7 @@ function enterDinHuntersSexDogBonus2(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -6213,7 +6213,7 @@ function enterDinHuntersSexDog(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/vag/doggy/kotovsex1\' + rand(0, 3) + \'.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> pulls you closer and you shake your sexy ass in front of him.
-  scene.text(`${((s as any).boydesc ?? 0)} pulls you closer and you shake your sexy ass in front of him.`);
+  scene.text(`${((s as any).boydesc || '')} pulls you closer and you shake your sexy ass in front of him.`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 4) + 1;
@@ -6234,7 +6234,7 @@ function enterDinHuntersSexDog(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -6306,7 +6306,7 @@ function enterDinHuntersSexMisionaryBonus2(s: GameState, scene: SceneBuilder): v
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/vag/miss/kotovsexbonus\' + rand(5, 6) + \'.mp4');
   // TODO-QSP: dynamic text: You kiss passionately, feeling his hot breath on your face. <<$boydesc>> continu...
-  scene.text(`You kiss passionately, feeling his hot breath on your face. ${((s as any).boydesc ?? 0)} continues to fuck you while passionately kissing you.`);
+  scene.text(`You kiss passionately, feeling his hot breath on your face. ${((s as any).boydesc || '')} continues to fuck you while passionately kissing you.`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 4) + 1;
@@ -6317,7 +6317,7 @@ function enterDinHuntersSexMisionaryBonus2(s: GameState, scene: SceneBuilder): v
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -6400,7 +6400,7 @@ function enterDinHuntersSexMisionaryBonus1(s: GameState, scene: SceneBuilder): v
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -6478,7 +6478,7 @@ function enterDinHuntersSexMisionaryBonus(s: GameState, scene: SceneBuilder): vo
   scene.img('images/shared/sex/vag/miss/kotovsexbonus\' + rand(0, 3) + \'.mp4');
   scene.text('Not to be outdone, you lift up your legs, giving him an incredible view of your pussy and a bit more freedom for his cock.');
   // TODO-QSP: dynamic text: <<$boydesc>> continues to violently fuck you in this position.
-  scene.text(`${((s as any).boydesc ?? 0)} continues to violently fuck you in this position.`);
+  scene.text(`${((s as any).boydesc || '')} continues to violently fuck you in this position.`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub', 'rough');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 4) + 1;
@@ -6492,7 +6492,7 @@ function enterDinHuntersSexMisionaryBonus(s: GameState, scene: SceneBuilder): vo
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).i ?? 0) === 1) {
     scene.actions([
@@ -6573,7 +6573,7 @@ function enterDinHuntersSexKuniBonus(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/facesit/kotovsexbonus\' + rand(23, 24) + \'.mp4');
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -What are you doing? Oh shit, <<$pcs_nickname>>, not this! Why do I let you do t...
-    scene.text(`-What are you doing? Oh shit, ${((s as any).pcs_nickname ?? 0)}, not this! Why do I let you do this to me…`);
+    scene.text(`-What are you doing? Oh shit, ${((s as any).pcs_nickname || '')}, not this! Why do I let you do this to me…`);
   }
   scene.text('You climb up and begin rubbing your wet pussy on his face.');
   qspCall(s, 'arousal', 'cuni', 5, 'dom');
@@ -6593,7 +6593,7 @@ function enterDinHuntersSexKuniBonus(s: GameState, scene: SceneBuilder): void {
   }
   scene.text('You enjoy the sweet efforts of your boyfriend.');
   // TODO-QSP: dynamic text: -Alright <<$boydesc>>, come here and fuck me.
-  scene.text(`-Alright ${((s as any).boydesc ?? 0)}, come here and fuck me.`);
+  scene.text(`-Alright ${((s as any).boydesc || '')}, come here and fuck me.`);
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     scene.text('-Yes baby, I\'m going to fuck you like crazy. Come over here, my dick is like stone.');
   }
@@ -6633,14 +6633,14 @@ function enterDinHuntersSexKuni(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'stat', '');
   if (((s as any).hunterVars ?? 0)?.['kuni'] === 0) {
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9']} ${((s as any).npc_lastname ?? 0)?.['A9']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A9'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A9'] ?? ''}</b></center>`);
     scene.img('images/shared/sex/oface/kotovecho.mp4');
     if (((s as any).pcs_horny ?? 0) >= 80) {
       // TODO-QSP: dynamic text: <<$boydesc>> refuses to lick your pussy.
-      scene.text(`${((s as any).boydesc ?? 0)} refuses to lick your pussy.`);
+      scene.text(`${((s as any).boydesc || '')} refuses to lick your pussy.`);
       if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
         // TODO-QSP: dynamic text: -No <<$pcs_nickname>>, leave me alone. Real men don't lick pussy, now spread tho...
-        scene.text(`-No ${((s as any).pcs_nickname ?? 0)}, leave me alone. Real men don't lick pussy, now spread those legs.`);
+        scene.text(`-No ${((s as any).pcs_nickname || '')}, leave me alone. Real men don't lick pussy, now spread those legs.`);
       }
       if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
         scene.text('Maybe another time, honey');
@@ -6651,18 +6651,18 @@ function enterDinHuntersSexKuni(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
         // TODO-QSP: dynamic text: <<$boydesc>> happily agrees to lick you.
-        scene.text(`${((s as any).boydesc ?? 0)} happily agrees to lick you.`);
+        scene.text(`${((s as any).boydesc || '')} happily agrees to lick you.`);
         // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I will deliver you unearthly pleasure.
-        scene.text(`-${((s as any).pcs_nickname ?? 0)}, I will deliver you unearthly pleasure.`);
+        scene.text(`-${((s as any).pcs_nickname || '')}, I will deliver you unearthly pleasure.`);
       } else {
         if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
           // TODO-QSP: dynamic text: <<$boydesc>> reluctantly agrees to lick you.
-          scene.text(`${((s as any).boydesc ?? 0)} reluctantly agrees to lick you.`);
+          scene.text(`${((s as any).boydesc || '')} reluctantly agrees to lick you.`);
           // TODO-QSP: dynamic text: -Okay, <<$pcs_nickname>>, don't tell anyone or they'll lose all respect for me.
-          scene.text(`-Okay, ${((s as any).pcs_nickname ?? 0)}, don't tell anyone or they'll lose all respect for me.`);
+          scene.text(`-Okay, ${((s as any).pcs_nickname || '')}, don't tell anyone or they'll lose all respect for me.`);
         } else {
           // TODO-QSP: dynamic text: <<$boydesc>> agrees to lick you.
-          scene.text(`${((s as any).boydesc ?? 0)} agrees to lick you.`);
+          scene.text(`${((s as any).boydesc || '')} agrees to lick you.`);
         }
       }
       scene.actions([
@@ -6681,7 +6681,7 @@ function enterDinHuntersSexKuni(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/kuni/kotovsex3\' + rand(0, 3) + \'.mp4');
     // TODO-QSP: dynamic text: <<$boydesc>> lies down between your legs and begins to work his tongue up and do...
-    scene.text(`${((s as any).boydesc ?? 0)} lies down between your legs and begins to work his tongue up and down your pussy.`);
+    scene.text(`${((s as any).boydesc || '')} lies down between your legs and begins to work his tongue up and down your pussy.`);
     qspCall(s, 'arousal', 'cuni', 5, 'dom');
     qspCall(s, 'stat', '');
     if (((s as any).pcs_horny ?? 0) >= 90) {
@@ -6725,7 +6725,7 @@ function enterDinHuntersSexKuni(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/kuni/kotovsex3\' + rand(0, 3) + \'.mp4');
     // TODO-QSP: dynamic text: <<$boydesc>> lies down between your legs and begins to work his tongue up and do...
-    scene.text(`${((s as any).boydesc ?? 0)} lies down between your legs and begins to work his tongue up and down your pussy.`);
+    scene.text(`${((s as any).boydesc || '')} lies down between your legs and begins to work his tongue up and down your pussy.`);
     qspCall(s, 'arousal', 'cuni', 5, 'dom');
     qspCall(s, 'stat', '');
     if (((s as any).pcs_horny ?? 0) >= 90) {
@@ -6772,7 +6772,7 @@ function enterDinHuntersSexMisionary(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/kuni/kotovsex3\' + rand(0, 3) + \'.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> puts you on your back and spreads your legs.
-  scene.text(`${((s as any).boydesc ?? 0)} puts you on your back and spreads your legs.`);
+  scene.text(`${((s as any).boydesc || '')} puts you on your back and spreads your legs.`);
   qspCall(s, 'arousal', 'vaginal', 5, 'sub');
   qspCall(s, 'stat', '');
   (s as any).i = Math.floor(Math.random() * 9) + 1;
@@ -6793,7 +6793,7 @@ function enterDinHuntersSexMisionary(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).h ?? 0) === 3) {
     // TODO-QSP: dynamic text: Suddenly <<$boydesc>> begins to move even faster and you realize that he is alre...
-    scene.text(`Suddenly ${((s as any).boydesc ?? 0)} begins to move even faster and you realize that he is already on edge and ready…`);
+    scene.text(`Suddenly ${((s as any).boydesc || '')} begins to move even faster and you realize that he is already on edge and ready…`);
   }
   if (((s as any).h ?? 0) < 3  &&  ((s as any).j ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['kuni'] === 0  &&  ((s as any).i ?? 0) === 8  ||  ((s as any).i ?? 0) === 1  ||  ((s as any).i ?? 0) === 2) {
     scene.actions([
@@ -6856,7 +6856,7 @@ function enterDinHuntersBj14(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj14\' + rand(0, 2) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: dynamic text: <<$boydesc>> puts his dick between your <<tits>>size tits and you onto his cockh...
-  scene.text(`${((s as any).boydesc ?? 0)} puts his dick between your ${((s as any).tits ?? 0)}size tits and you onto his cockhead to help lube it up. You squeeze your tits together and he starts to move, fucking your gorgeous melons. You have an unusual but pleasant sensation from these actions.`);
+  scene.text(`${((s as any).boydesc || '')} puts his dick between your ${((s as any).tits || '')}size tits and you onto his cockhead to help lube it up. You squeeze your tits together and he starts to move, fucking your gorgeous melons. You have an unusual but pleasant sensation from these actions.`);
   qspCall(s, 'arousal', 'breasts', 5, 'sub');
   qspCall(s, 'stat', '');
   if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] === 3) {
@@ -7119,15 +7119,15 @@ function enterDinHuntersBjBonus12(s: GameState, scene: SceneBuilder): void {
   scene.text('You try to swallow his cock even deeper, but gag in the process. You barely avoid throwing up all over him.');
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text:  -Fu fucking<<$pcs_nickname>>, if you are not able to swallow normally, practice...
-    scene.text(` -Fu fucking${((s as any).pcs_nickname ?? 0)}, if you are not able to swallow normally, practice at home on a banana and not on my cock!`);
+    scene.text(` -Fu fucking${((s as any).pcs_nickname || '')}, if you are not able to swallow normally, practice at home on a banana and not on my cock!`);
   }
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text:  -Do not worry <<$pcs_nickname>>, deep throating is hard to learn, but gets easi...
-    scene.text(` -Do not worry ${((s as any).pcs_nickname ?? 0)}, deep throating is hard to learn, but gets easier the more you do it.`);
+    scene.text(` -Do not worry ${((s as any).pcs_nickname || '')}, deep throating is hard to learn, but gets easier the more you do it.`);
   }
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text:  -Do not worry <<$pcs_nickname>>, maybe next time it will work.
-    scene.text(` -Do not worry ${((s as any).pcs_nickname ?? 0)}, maybe next time it will work.`);
+    scene.text(` -Do not worry ${((s as any).pcs_nickname || '')}, maybe next time it will work.`);
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
@@ -7276,7 +7276,7 @@ function enterDinHuntersBjBonus11(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus11.mp4');
   // TODO-QSP: dynamic text: You take his cock into your mouth and <<$boydesc>> starts roughly fucking your f...
-  scene.text(`You take his cock into your mouth and ${((s as any).boydesc ?? 0)} starts roughly fucking your face, doing his best to shove as much of his cock down your throat as he can.`);
+  scene.text(`You take his cock into your mouth and ${((s as any).boydesc || '')} starts roughly fucking your face, doing his best to shove as much of his cock down your throat as he can.`);
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     scene.text('-Honey, this is amazing, your face looks so sexy.');
   } else {
@@ -7284,7 +7284,7 @@ function enterDinHuntersBjBonus11(s: GameState, scene: SceneBuilder): void {
       scene.text('-Oh yeah, baby, just let me do this for a little while, your pretty face looks so sexy.');
     } else {
       // TODO-QSP: dynamic text: -Oh yeah, <<$pcs_nickname>>, come on, that feels so good.
-      scene.text(`-Oh yeah, ${((s as any).pcs_nickname ?? 0)}, come on, that feels so good.`);
+      scene.text(`-Oh yeah, ${((s as any).pcs_nickname || '')}, come on, that feels so good.`);
     }
   }
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
@@ -7435,7 +7435,7 @@ function enterDinHuntersBj10(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj1\' + rand(0, 3) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: dynamic text: You obey him and fully relax your throat. <<$boydesc>> begins to move his cock, ...
-  scene.text(`You obey him and fully relax your throat. ${((s as any).boydesc ?? 0)} begins to move his cock, plunging deeper into your asophagus. You choke and barely keep yourself from vomiting all over his meaty schlong. You can feel the head of his cock resting at the back of your mouth and you do your best to swallow it down, squeezing it with the muscles in your throat.`);
+  scene.text(`You obey him and fully relax your throat. ${((s as any).boydesc || '')} begins to move his cock, plunging deeper into your asophagus. You choke and barely keep yourself from vomiting all over his meaty schlong. You can feel the head of his cock resting at the back of your mouth and you do your best to swallow it down, squeezing it with the muscles in your throat.`);
   qspCall(s, 'arousal', 'bj', 5, 'sub', 'deepthroat');
   qspCall(s, 'stat', '');
   if (((s as any).h ?? 0) < 3  &&  ((s as any).hunterVars ?? 0)?.['bj_times'] === 3) {
@@ -7681,17 +7681,17 @@ function enterDinHuntersBjBonus8(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus8.mp4');
   // TODO-QSP: dynamic text: While <<$boydesc>> continues to enjoy himself, you lick the pucker of his asshol...
-  scene.text(`While ${((s as any).boydesc ?? 0)} continues to enjoy himself, you lick the pucker of his asshole, forcing your tongue inside. He jumps and looks down at you startled.`);
+  scene.text(`While ${((s as any).boydesc || '')} continues to enjoy himself, you lick the pucker of his asshole, forcing your tongue inside. He jumps and looks down at you startled.`);
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: - Mmmm <<$pcs_nickname>>, don't stop," <<$boydesc>> says.
-    scene.text(`- Mmmm ${((s as any).pcs_nickname ?? 0)}, don't stop," ${((s as any).boydesc ?? 0)} says.`);
+    scene.text(`- Mmmm ${((s as any).pcs_nickname || '')}, don't stop," ${((s as any).boydesc || '')} says.`);
   } else {
     if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: -Who told you to fuck my ass with your tongue? No, <<$pcs_nickname>>, I don't li...
-      scene.text(`-Who told you to fuck my ass with your tongue? No, ${((s as any).pcs_nickname ?? 0)}, I don't like it. Cut that shit out!`);
+      scene.text(`-Who told you to fuck my ass with your tongue? No, ${((s as any).pcs_nickname || '')}, I don't like it. Cut that shit out!`);
     } else {
       // TODO-QSP: dynamic text: - What the hell <<$pcs_nickname>>, stop!
-      scene.text(`- What the hell ${((s as any).pcs_nickname ?? 0)}, stop!`);
+      scene.text(`- What the hell ${((s as any).pcs_nickname || '')}, stop!`);
     }
   }
   qspCall(s, 'arousal', 'cuni_give', 5, 'sub');
@@ -7710,7 +7710,7 @@ function enterDinHuntersBj8(s: GameState, scene: SceneBuilder): void {
   (s as any).h = Math.floor(Math.random() * 3) + 1;
   scene.text('You lick down even lower, to the sensitive space below his ballsack. Using your tongue you tease and lick his tightly puckered asshole, bathing it in your saliva.');
   // TODO-QSP: dynamic text: -Oh shit, <<$pcs_nickname>>, what are you doing? Keep going, but you better swea...
-  scene.text(`-Oh shit, ${((s as any).pcs_nickname ?? 0)}, what are you doing? Keep going, but you better swear not to tell anyone. Fuck that's good!`);
+  scene.text(`-Oh shit, ${((s as any).pcs_nickname || '')}, what are you doing? Keep going, but you better swear not to tell anyone. Fuck that's good!`);
   qspCall(s, 'arousal', 'cuni_give', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     scene.text('Try to go even further and <a href="exec:gt \'hunterLoveSex\', \'din_hunters_bj_bonus8\'">shove</a> your tongue in his hole.');
@@ -7847,7 +7847,7 @@ function enterDinHuntersBjBonus7(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus7.mp4');
   // TODO-QSP: dynamic text: You continue to play with his balls hugging them <<$pc_desc['lips']>> lips. You ...
-  scene.text(`You continue to play with his balls hugging them ${((s as any).pc_desc ?? 0)?.['lips']} lips. You put them in your mouth and use your tongue to tease them as you suck each one separately.`);
+  scene.text(`You continue to play with his balls hugging them ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips. You put them in your mouth and use your tongue to tease them as you suck each one separately.`);
   scene.text('-Fuck, baby, don\'t stop!');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -8001,7 +8001,7 @@ function enterDinHuntersBjBonus6(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/blowjob/kotovbjbonus6.mp4');
   // TODO-QSP: dynamic text: <<$boydesc>> slaps his cock against your tongue.
-  scene.text(`${((s as any).boydesc ?? 0)} slaps his cock against your tongue.`);
+  scene.text(`${((s as any).boydesc || '')} slaps his cock against your tongue.`);
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     scene.text('-Bad girl, now daddy will punish you.');
   }
@@ -8026,11 +8026,11 @@ function enterDinHuntersBj6(s: GameState, scene: SceneBuilder): void {
   scene.text('Capturing hold of his thick meat with your hands, you start to jerk it confidently, watching his reaction.');
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     // TODO-QSP: dynamic text: -Well, <<$pcs_nickname>>, I can jerk my dick myself, but I bet you have some bet...
-    scene.text(`-Well, ${((s as any).pcs_nickname ?? 0)}, I can jerk my dick myself, but I bet you have some better tools to use on what you're holding there.`);
+    scene.text(`-Well, ${((s as any).pcs_nickname || '')}, I can jerk my dick myself, but I bet you have some better tools to use on what you're holding there.`);
   }
   if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -Come on, <<$pcs_nickname>>, show me what you can do - <<$boydesc>> says with a ...
-    scene.text(`-Come on, ${((s as any).pcs_nickname ?? 0)}, show me what you can do - ${((s as any).boydesc ?? 0)} says with a smile.`);
+    scene.text(`-Come on, ${((s as any).pcs_nickname || '')}, show me what you can do - ${((s as any).boydesc || '')} says with a smile.`);
   }
   qspCall(s, 'arousal', 'hj', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3  &&  ((s as any).bj ?? 0) > 10) {
@@ -8161,7 +8161,7 @@ function enterDinHuntersBjBonus5(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbjbonus5.mp4');
   scene.text('You spit on his dick, and using your hands smere your saliva all over his head and shaft.');
   // TODO-QSP: dynamic text:  -Uhh, <<$pcs_nickname>>, that's the kind of lubrication you don't have to spend...
-  scene.text(` -Uhh, ${((s as any).pcs_nickname ?? 0)}, that's the kind of lubrication you don't have to spend money on.`);
+  scene.text(` -Uhh, ${((s as any).pcs_nickname || '')}, that's the kind of lubrication you don't have to spend money on.`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end & !! --- din_hunters_bj_bonus5 ---
@@ -8331,7 +8331,7 @@ function enterDinHuntersBj4(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     // TODO-QSP: dynamic text: <<$boydesc>> asks you to <a href="exec:gt 'hunterLoveSex', 'din_hunters_bj_bonus...
-    scene.text(`${((s as any).boydesc ?? 0)} asks you to <a href="exec:gt 'hunterLoveSex', 'din_hunters_bj_bonus4'">slap</a> his member against your cheek.`);
+    scene.text(`${((s as any).boydesc || '')} asks you to <a href="exec:gt 'hunterLoveSex', 'din_hunters_bj_bonus4'">slap</a> his member against your cheek.`);
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -8460,7 +8460,7 @@ function enterDinHuntersBjBonus3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbjbonus3.mp4');
   scene.text('Looking into the eyes of your boyfriend, you tease your tongue over one of the most erogenous zones of his member.');
   // TODO-QSP: dynamic text: -Mmmm <<$pcs_nickname>>, how do you know how to make me even harder?
-  scene.text(`-Mmmm ${((s as any).pcs_nickname ?? 0)}, how do you know how to make me even harder?`);
+  scene.text(`-Mmmm ${((s as any).pcs_nickname || '')}, how do you know how to make me even harder?`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end & !! --- din_hunters_bj_bonus3 ---
@@ -8476,7 +8476,7 @@ function enterDinHuntersBj3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj3\' + rand(0, 1) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: dynamic text: You sweetly kiss at his shaft and cock head, gently rubbing his member against y...
-  scene.text(`You sweetly kiss at his shaft and cock head, gently rubbing his member against your ${((s as any).pc_desc ?? 0)?.['lips']} lips`);
+  scene.text(`You sweetly kiss at his shaft and cock head, gently rubbing his member against your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips`);
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
     scene.text('You slightly <a href="exec:gt \'hunterLoveSex\', \'din_hunters_bj_bonus3\'">tease</a> his member');
@@ -8609,11 +8609,11 @@ function enterDinHuntersBjBonus2(s: GameState, scene: SceneBuilder): void {
   scene.text('He shivers slightly as you bite the head of his dick with your pearly white teeth.');
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: -Hey, fuck, <<$pcs_nickname>>, are you mistaking my dick for a fucking banana? S...
-    scene.text(`-Hey, fuck, ${((s as any).pcs_nickname ?? 0)}, are you mistaking my dick for a fucking banana? Suck it, don't bite it!`);
+    scene.text(`-Hey, fuck, ${((s as any).pcs_nickname || '')}, are you mistaking my dick for a fucking banana? Suck it, don't bite it!`);
   }
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     // TODO-QSP: dynamic text: -Careful <<$pcs_nickname>>, don't joke like that!
-    scene.text(`-Careful ${((s as any).pcs_nickname ?? 0)}, don't joke like that!`);
+    scene.text(`-Careful ${((s as any).pcs_nickname || '')}, don't joke like that!`);
   }
   scene.text('You smiled and look at him, deciding to…');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
@@ -8634,7 +8634,7 @@ function enterDinHuntersBj2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj2\' + rand(0, 6) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: dynamic text: You <<$textsexkotov>>, and tightly clench your <<$pc_desc['lips']>> lips 
-  scene.text(`You ${((s as any).textsexkotov ?? 0)}, and tightly clench your ${((s as any).pc_desc ?? 0)?.['lips']} lips `);
+  scene.text(`You ${((s as any).textsexkotov || '')}, and tightly clench your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips `);
   scene.text('The tenderness of your lips is driving him crazy');
   qspCall(s, 'arousal', 'bj', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
@@ -8768,11 +8768,11 @@ function enterDinHuntersBjBonus1(s: GameState, scene: SceneBuilder): void {
   scene.text('You run your tongue along the tip of his penis, flicking at his urethra.');
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
     // TODO-QSP: dynamic text: <<$boydesc>> is already on edge: -<<$pcs_nickname>>, what are you doing, stop it...
-    scene.text(`${((s as any).boydesc ?? 0)} is already on edge: -${((s as any).pcs_nickname ?? 0)}, what are you doing, stop it, I'm fucking going to cum from this.`);
+    scene.text(`${((s as any).boydesc || '')} is already on edge: -${((s as any).pcs_nickname || '')}, what are you doing, stop it, I'm fucking going to cum from this.`);
   }
   if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 0) {
     // TODO-QSP: dynamic text: <<$boydesc>> is already on edge: -<<$pcs_nickname>>, what are you doing, stop it...
-    scene.text(`${((s as any).boydesc ?? 0)} is already on edge: -${((s as any).pcs_nickname ?? 0)}, what are you doing, stop it or i'm going to blow my load!`);
+    scene.text(`${((s as any).boydesc || '')} is already on edge: -${((s as any).pcs_nickname || '')}, what are you doing, stop it or i'm going to blow my load!`);
   }
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   qspCall(s, 'stat', '');
@@ -8793,7 +8793,7 @@ function enterDinHuntersBj1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/shared/sex/blowjob/kotovbj1\' + rand(0, 3) + \'.mp4');
   (s as any).h = Math.floor(Math.random() * 3) + 1;
   // TODO-QSP: dynamic text: You <<$textsexkotov>>
-  scene.text(`You ${((s as any).textsexkotov ?? 0)}`);
+  scene.text(`You ${((s as any).textsexkotov || '')}`);
   scene.text('You run your tongue along the tip of his penis, flicking at his urethra.');
   qspCall(s, 'arousal', 'foreplay', 5, 'sub');
   if (((s as any).hunterVars ?? 0)?.['bj_times'] < 3) {
@@ -8964,7 +8964,7 @@ function enterDinHuntersSub(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/dom/kotovsub.jpg');
   // TODO-QSP: dynamic text: Like the obedient girl you are, you fully obey his will. Would you like somethin...
-  scene.text(`Like the obedient girl you are, you fully obey his will. Would you like something more, ${((s as any).boydesc ?? 0)} asks you…`);
+  scene.text(`Like the obedient girl you are, you fully obey his will. Would you like something more, ${((s as any).boydesc || '')} asks you…`);
   (s as any).i = Math.floor(Math.random() * 8) + 1;
   if (((s as any).i ?? 0) === 1  ||  ((s as any).i ?? 0) === 7) {
     scene.actions([
@@ -9007,7 +9007,7 @@ function enterDinHuntersFirstSex(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><h4>Hut</h4></center>');
   scene.img('images/shared/sex/oface/kotovfirst.jpg');
   // TODO-QSP: dynamic text: <<$boydesc>> puts you on your back and spreads your legs, opening your virgin wo...
-  scene.text(`${((s as any).boydesc ?? 0)} puts you on your back and spreads your legs, opening your virgin womb to his gaze and his quivering member.`);
+  scene.text(`${((s as any).boydesc || '')} puts you on your back and spreads your legs, opening your virgin womb to his gaze and his quivering member.`);
   qspCall(s, 'arousal', 'vaginal', 30, 'sub');
   qspCall(s, 'stat', '');
   // TODO-QSP: end & !! --- din_hunters_first_sex ---
@@ -9019,20 +9019,20 @@ function enterDinHuntersFirstSex(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/sex/oface/kotovfirst1.jpg');
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: -<<$pcs_nickname>>, all is well, how are you feeling? 
-      scene.text(`-${((s as any).pcs_nickname ?? 0)}, all is well, how are you feeling? `);
+      scene.text(`-${((s as any).pcs_nickname || '')}, all is well, how are you feeling? `);
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
         // TODO-QSP: dynamic text: Oh, <<$pcs_nickname>>, you're a fucking woman now, congratulations! Now quit bei...
-        scene.text(`Oh, ${((s as any).pcs_nickname ?? 0)}, you're a fucking woman now, congratulations! Now quit being a little crybaby. How do you feel?`);
+        scene.text(`Oh, ${((s as any).pcs_nickname || '')}, you're a fucking woman now, congratulations! Now quit being a little crybaby. How do you feel?`);
       } else {
         // TODO-QSP: dynamic text: Well <<$pcs_nickname>>, congratulations, you're not a little girl any more. How ...
-        scene.text(`Well ${((s as any).pcs_nickname ?? 0)}, congratulations, you're not a little girl any more. How do you feel?`);
+        scene.text(`Well ${((s as any).pcs_nickname || '')}, congratulations, you're not a little girl any more. How do you feel?`);
       }
     }
     scene.text('-It hurts damn, never going to do it.');
     if (((s as any).npc_gentle ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
       // TODO-QSP: dynamic text: - Calm down, sweetheart, next time will be much better and you'll still like it,...
-      scene.text(`- Calm down, sweetheart, next time will be much better and you'll still like it, I promise - ${((s as any).boydesc ?? 0)} says with a smile. He gently kisses and comforts you.`);
+      scene.text(`- Calm down, sweetheart, next time will be much better and you'll still like it, I promise - ${((s as any).boydesc || '')} says with a smile. He gently kisses and comforts you.`);
     } else {
       if (((s as any).npc_rough ?? 0)?.[String((s as any).boy ?? 0)] === 1) {
         scene.text('-Ha ha, we\'ll see if we can\'t fix that.');
@@ -9061,7 +9061,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/characters/shared/headshots_main/big173.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> hugs you and starts showering you with kisses. "<<$pcs_nickname>>, ...
-    scene.text(`${((s as any).boydesc ?? 0)} hugs you and starts showering you with kisses. "${((s as any).pcs_nickname ?? 0)}, take off your clothes."`);
+    scene.text(`${((s as any).boydesc || '')} hugs you and starts showering you with kisses. "${((s as any).pcs_nickname || '')}, take off your clothes."`);
     qspCall(s, 'arousal', 'kiss', 5, 'sub');
     qspCall(s, 'stat', '');
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  (!((s as any).sex ?? 0))) {
@@ -9074,19 +9074,19 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/reactions/embarrassed.mp4');
     if (((s as any).hunterVars ?? 0)?.['IgorQW'] <= 45) {
       // TODO-QSP: dynamic text: You, blushing, whisper in his ear that you're still a virgin. <<$boydesc>> distr...
-      scene.text(`You, blushing, whisper in his ear that you're still a virgin. ${((s as any).boydesc ?? 0)} distractedly scratches his chin "Wow, still a virgin and you've graduated from school? Well, maybe we can try it in your mouth or ass?"`);
+      scene.text(`You, blushing, whisper in his ear that you're still a virgin. ${((s as any).boydesc || '')} distractedly scratches his chin "Wow, still a virgin and you've graduated from school? Well, maybe we can try it in your mouth or ass?"`);
     }
     if (((s as any).hunterVars ?? 0)?.['IgorQW'] <= 45  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
       // TODO-QSP: dynamic text:  - Oh, anal won't work <<$boydesc>>, I'm not quite ready… errr, or clean if you ...
-      scene.text(` - Oh, anal won't work ${((s as any).boydesc ?? 0)}, I'm not quite ready… errr, or clean if you know what I mean…`);
+      scene.text(` - Oh, anal won't work ${((s as any).boydesc || '')}, I'm not quite ready… errr, or clean if you know what I mean…`);
       // TODO-QSP: dynamic text:  - I understand, <<$boydesc>> says. - Okay, next time make sure you clean your a...
-      scene.text(` - I understand, ${((s as any).boydesc ?? 0)} says. - Okay, next time make sure you clean your ass first.`);
+      scene.text(` - I understand, ${((s as any).boydesc || '')} says. - Okay, next time make sure you clean your ass first.`);
     }
     if (((s as any).hunterVars ?? 0)?.['IgorQW'] > 45) {
       // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I want to be the first man inside you. It will only hurt you...
-      scene.text(`-${((s as any).pcs_nickname ?? 0)}, I want to be the first man inside you. It will only hurt you a little and I promise to be gentle.`);
+      scene.text(`-${((s as any).pcs_nickname || '')}, I want to be the first man inside you. It will only hurt you a little and I promise to be gentle.`);
       // TODO-QSP: dynamic text: -<<$boydesc>>, honey, I really want to, but if <<$npc_nickname['A29']>> finds ou...
-      scene.text(`-${((s as any).boydesc ?? 0)}, honey, I really want to, but if ${((s as any).npc_nickname ?? 0)?.['A29']} finds out, she is going to kill me.`);
+      scene.text(`-${((s as any).boydesc || '')}, honey, I really want to, but if ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} finds out, she is going to kill me.`);
       scene.text('-Well… you know? I will say that we\'re serious, that we\'re in love and everything else…');
     }
     if (((s as any).hunterVars ?? 0)?.['IgorQW'] <= 45) {
@@ -9107,11 +9107,11 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/pc/reactions/embarrassed.mp4');
     // TODO-QSP: dynamic text: -Sorry <<$boydesc>>, I'd really like to, but i'm just not ready yet.
-    scene.text(`-Sorry ${((s as any).boydesc ?? 0)}, I'd really like to, but i'm just not ready yet.`);
+    scene.text(`-Sorry ${((s as any).boydesc || '')}, I'd really like to, but i'm just not ready yet.`);
     // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I am a normal guy and want normal sex with my girlfriend now...
-    scene.text(`-${((s as any).pcs_nickname ?? 0)}, I am a normal guy and want normal sex with my girlfriend now that we're together. Can't you understand that?`);
+    scene.text(`-${((s as any).pcs_nickname || '')}, I am a normal guy and want normal sex with my girlfriend now that we're together. Can't you understand that?`);
     // TODO-QSP: dynamic text: -<<$boydesc>>, I said no. I think we better leave it at that if you don't want m...
-    scene.text(`-${((s as any).boydesc ?? 0)}, I said no. I think we better leave it at that if you don't want me to get upset. If this is going to be a problem then I don't think we can be together.`);
+    scene.text(`-${((s as any).boydesc || '')}, I said no. I think we better leave it at that if you don't want me to get upset. If this is going to be a problem then I don't think we can be together.`);
     scene.text('You broke up with your boyfriend');
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
@@ -9129,8 +9129,8 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You tell him that you are still a virgin. <<$boydesc>> smiles "<<$pcs_nickname>>...
-    scene.text(`You tell him that you are still a virgin. ${((s as any).boydesc ?? 0)} smiles "${((s as any).pcs_nickname ?? 0)} you finished school and you're how old? Do you think you can take me in your mouth or ass?"`);
-    qspCall(s, 'hunterLoveSex', 'din_hunters_bj');
+    scene.text(`You tell him that you are still a virgin. ${((s as any).boydesc || '')} smiles "${((s as any).pcs_nickname || '')} you finished school and you're how old? Do you think you can take me in your mouth or ass?"`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinHuntersBj(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'To lose innocence', goto: ['hunterLoveSex', 'din_hunters_first_sex'] },
     ]);
@@ -9144,7 +9144,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/undress/kotovpre1\' + rand(1, 6) + \'.mp4');
     // TODO-QSP: dynamic text: You quickly peel off each other's clothes and <<$boydesc>> sees you naked for th...
-    scene.text(`You quickly peel off each other's clothes and ${((s as any).boydesc ?? 0)} sees you naked for the first time.`);
+    scene.text(`You quickly peel off each other's clothes and ${((s as any).boydesc || '')} sees you naked for the first time.`);
     if (((s as any).mesec ?? 0) <= 0) {
       scene.actions([
         { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
@@ -9170,24 +9170,24 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><h4>Hut</h4></center>');
         scene.img('images/shared/sex/sequence/kotovpre\' + rand(1, 2) + \'.mp4');
         // TODO-QSP: dynamic text: <<$boydesc>> and you begin to hug and kiss, carressing each others bodies, getti...
-        scene.text(`${((s as any).boydesc ?? 0)} and you begin to hug and kiss, carressing each others bodies, getting more and more excited as you do.`);
+        scene.text(`${((s as any).boydesc || '')} and you begin to hug and kiss, carressing each others bodies, getting more and more excited as you do.`);
         qspCall(s, 'arousal', 'foreplay', 5, 'sub');
         qspCall(s, 'stat', '');
         if (((s as any).mesec ?? 0) > 0  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
           // TODO-QSP: dynamic text:  - <<$boydesc>>: Damn, they weren't lying about what they said about that body o...
-          scene.text(` - ${((s as any).boydesc ?? 0)}: Damn, they weren't lying about what they said about that body of yours.`);
+          scene.text(` - ${((s as any).boydesc || '')}: Damn, they weren't lying about what they said about that body of yours.`);
           // TODO-QSP: dynamic text: - Only good things, <<$pcs_nickname>>. Do you want it in the ass or in the mouth...
-          scene.text(`- Only good things, ${((s as any).pcs_nickname ?? 0)}. Do you want it in the ass or in the mouth? " he asks you.`);
+          scene.text(`- Only good things, ${((s as any).pcs_nickname || '')}. Do you want it in the ass or in the mouth? " he asks you.`);
           // TODO-QSP: dynamic text: - Oh, anal won't work for me today <<$boydesc>>, I'm not quite ready… if you kno...
-          scene.text(`- Oh, anal won't work for me today ${((s as any).boydesc ?? 0)}, I'm not quite ready… if you know what I mean…`);
+          scene.text(`- Oh, anal won't work for me today ${((s as any).boydesc || '')}, I'm not quite ready… if you know what I mean…`);
           // TODO-QSP: dynamic text: - I understand, says <<$boydesc>>. - Okay, next time, come with a clean ass!
-          scene.text(`- I understand, says ${((s as any).boydesc ?? 0)}. - Okay, next time, come with a clean ass!`);
+          scene.text(`- I understand, says ${((s as any).boydesc || '')}. - Okay, next time, come with a clean ass!`);
         }
         if (((s as any).mesec ?? 0) > 0  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
           // TODO-QSP: dynamic text:  - <<$boydesc>>: Damn, they weren't lying about what they said about that body o...
-          scene.text(` - ${((s as any).boydesc ?? 0)}: Damn, they weren't lying about what they said about that body of yours.`);
+          scene.text(` - ${((s as any).boydesc || '')}: Damn, they weren't lying about what they said about that body of yours.`);
           // TODO-QSP: dynamic text: - Only good things, <<$pcs_nickname>>. Do you want it in the ass or in the mouth...
-          scene.text(`- Only good things, ${((s as any).pcs_nickname ?? 0)}. Do you want it in the ass or in the mouth? " he asks you.`);
+          scene.text(`- Only good things, ${((s as any).pcs_nickname || '')}. Do you want it in the ass or in the mouth? " he asks you.`);
           scene.text('- Well… - you mutter.');
         }
         scene.actions([
@@ -9218,7 +9218,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/undress/kotovpre1\' + rand(1, 6) + \'.mp4');
     // TODO-QSP: dynamic text: You quickly took off <<$boydesc>>'s clothes and gaze at his gorgeous naked body.
-    scene.text(`You quickly took off ${((s as any).boydesc ?? 0)}'s clothes and gaze at his gorgeous naked body.`);
+    scene.text(`You quickly took off ${((s as any).boydesc || '')}'s clothes and gaze at his gorgeous naked body.`);
     if (((s as any).mesec ?? 0) <= 0) {
       scene.actions([
         { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
@@ -9249,9 +9249,9 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
           scene.text('<center><h4>Hut</h4></center>');
           scene.img('images/shared/sex/kiss/kotovpre30.mp4');
           // TODO-QSP: dynamic text: <<$boydesc>> throws you on the bed and pounces on top of you, pinning you down.
-          scene.text(`${((s as any).boydesc ?? 0)} throws you on the bed and pounces on top of you, pinning you down.`);
+          scene.text(`${((s as any).boydesc || '')} throws you on the bed and pounces on top of you, pinning you down.`);
           // TODO-QSP: dynamic text: Longing to taste his lips, <<$boydesc>> manages to rip off your clothes as your ...
-          scene.text(`Longing to taste his lips, ${((s as any).boydesc ?? 0)} manages to rip off your clothes as your devour his mouth with your own`);
+          scene.text(`Longing to taste his lips, ${((s as any).boydesc || '')} manages to rip off your clothes as your devour his mouth with your own`);
           qspCall(s, 'arousal', 'kiss', 5, 'sub');
           qspCall(s, 'stat', '');
           if (((s as any).mesec ?? 0) <= 0) {
@@ -9267,7 +9267,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
             scene.text('<center><h4>Hut</h4></center>');
             scene.img('images/shared/sex/undress/kotovpre50.mp4');
             // TODO-QSP: dynamic text: <<$boydesc>> throws you on the bed and immediately drops down to begin kissing a...
-            scene.text(`${((s as any).boydesc ?? 0)} throws you on the bed and immediately drops down to begin kissing and licking between your legs `);
+            scene.text(`${((s as any).boydesc || '')} throws you on the bed and immediately drops down to begin kissing and licking between your legs `);
             qspCall(s, 'arousal', 'foreplay', 5, 'sub');
             qspCall(s, 'stat', '');
             if (((s as any).mesec ?? 0) <= 0) {
@@ -9284,7 +9284,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
               scene.img('images/shared/sex/undress/kotovpre60.mp4');
               scene.text('You kiss him as you undress each other. He fondles your tits and pinches your nipples as you begin stroking his cock. You feel him continue to harden in your hands.');
               // TODO-QSP: dynamic text: <<$boydesc>> raises his hands to your shoulders and applies gentle pressure. You...
-              scene.text(`${((s as any).boydesc ?? 0)} raises his hands to your shoulders and applies gentle pressure. You know exactly what he's asking you to do…`);
+              scene.text(`${((s as any).boydesc || '')} raises his hands to your shoulders and applies gentle pressure. You know exactly what he's asking you to do…`);
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
@@ -9299,7 +9299,7 @@ function enterIgor(s: GameState, scene: SceneBuilder): void {
               scene.text('<center><h4>Hut</h4></center>');
               scene.img('images/shared/sex/undress/kotovpre4\' + rand(0, 2) + \'.mp4');
               // TODO-QSP: dynamic text: Bursting into the room <<$boydesc>> pushes you onto the bed, stripping and cares...
-              scene.text(`Bursting into the room ${((s as any).boydesc ?? 0)} pushes you onto the bed, stripping and caressing your ass`);
+              scene.text(`Bursting into the room ${((s as any).boydesc || '')} pushes you onto the bed, stripping and caressing your ass`);
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
@@ -9330,7 +9330,7 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/characters/shared/headshots_main/big172.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> holds you in his arms and begins kissing you. "<<$pcs_nickname>>, t...
-    scene.text(`${((s as any).boydesc ?? 0)} holds you in his arms and begins kissing you. "${((s as any).pcs_nickname ?? 0)}, take off your clothes."`);
+    scene.text(`${((s as any).boydesc || '')} holds you in his arms and begins kissing you. "${((s as any).pcs_nickname || '')}, take off your clothes."`);
     qspCall(s, 'arousal', 'kiss', 5, 'sub');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -9341,11 +9341,11 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/reactions/embarrassed.mp4');
     scene.text('You, blushing, whisper to him that you\'re still a virgin.');
     // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I want to be your first, and I'm not gonna hurt you, I promi...
-    scene.text(`-${((s as any).pcs_nickname ?? 0)}, I want to be your first, and I'm not gonna hurt you, I promise.`);
+    scene.text(`-${((s as any).pcs_nickname || '')}, I want to be your first, and I'm not gonna hurt you, I promise.`);
     // TODO-QSP: dynamic text: -<<$boydesc>>, honey, I really want to, but if my <<$npc_nickname['A29']>> finds...
-    scene.text(`-${((s as any).boydesc ?? 0)}, honey, I really want to, but if my ${((s as any).npc_nickname ?? 0)?.['A29']} finds out, she is going to kill me, you reply.`);
+    scene.text(`-${((s as any).boydesc || '')}, honey, I really want to, but if my ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} finds out, she is going to kill me, you reply.`);
     // TODO-QSP: dynamic text: -Well, you know what? In short, it's either your <<$npc_nickname['A29']>> or me…
-    scene.text(`-Well, you know what? In short, it's either your ${((s as any).npc_nickname ?? 0)?.['A29']} or me…`);
+    scene.text(`-Well, you know what? In short, it's either your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} or me…`);
     scene.actions([
       { label: 'To lose innocence', goto: ['hunterLoveSex', 'din_hunters_first_sex'] },
       { label: 'Part with a guy', handler: (st: GameState) => {
@@ -9356,11 +9356,11 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/pc/reactions/embarrassed.mp4');
     // TODO-QSP: dynamic text: -Sorry <<$boydesc>>, I'd really like to, but I've never done it before.
-    scene.text(`-Sorry ${((s as any).boydesc ?? 0)}, I'd really like to, but I've never done it before.`);
+    scene.text(`-Sorry ${((s as any).boydesc || '')}, I'd really like to, but I've never done it before.`);
     // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I'm a normal guy and I want to do the things that normal cou...
-    scene.text(`-${((s as any).pcs_nickname ?? 0)}, I'm a normal guy and I want to do the things that normal couples do now that we're together.`);
+    scene.text(`-${((s as any).pcs_nickname || '')}, I'm a normal guy and I want to do the things that normal couples do now that we're together.`);
     // TODO-QSP: dynamic text: -<<$boydesc>>, I said no. If that's going to be your attitude then I don't think...
-    scene.text(`-${((s as any).boydesc ?? 0)}, I said no. If that's going to be your attitude then I don't think that we can be together.`);
+    scene.text(`-${((s as any).boydesc || '')}, I said no. If that's going to be your attitude then I don't think that we can be together.`);
     scene.text('You broke up with your boyfriend');
     scene.actions([
       { label: 'Go', handler: (st: GameState) => {
@@ -9384,25 +9384,25 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><h4>Hut</h4></center>');
         scene.img('images/shared/sex/sequence/kotovpre0.mp4');
         // TODO-QSP: dynamic text: <<$boydesc>> and you began to hug and kiss.
-        scene.text(`${((s as any).boydesc ?? 0)} and you began to hug and kiss.`);
+        scene.text(`${((s as any).boydesc || '')} and you began to hug and kiss.`);
         scene.text('Your hands are all over each other, making you both more and more aroused and excited');
         qspCall(s, 'arousal', 'foreplay', 5, 'sub');
         qspCall(s, 'stat', '');
         if (((s as any).mesec ?? 0) > 0  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
           // TODO-QSP: dynamic text:  - <<$boydesc>>, Damn, they weren't lying about what they said about that body o...
-          scene.text(` - ${((s as any).boydesc ?? 0)}, Damn, they weren't lying about what they said about that body of yours.`);
+          scene.text(` - ${((s as any).boydesc || '')}, Damn, they weren't lying about what they said about that body of yours.`);
           // TODO-QSP: dynamic text: - Only good things, <<$pcs_nickname>>. Do you want it in the ass or in the mouth...
-          scene.text(`- Only good things, ${((s as any).pcs_nickname ?? 0)}. Do you want it in the ass or in the mouth? " he asks you.`);
+          scene.text(`- Only good things, ${((s as any).pcs_nickname || '')}. Do you want it in the ass or in the mouth? " he asks you.`);
           // TODO-QSP: dynamic text: - Oh, anal won't work for me today <<$boydesc>>, I'm not quite ready… if you kno...
-          scene.text(`- Oh, anal won't work for me today ${((s as any).boydesc ?? 0)}, I'm not quite ready… if you know what I mean…`);
+          scene.text(`- Oh, anal won't work for me today ${((s as any).boydesc || '')}, I'm not quite ready… if you know what I mean…`);
           // TODO-QSP: dynamic text: - Yeah fuck <<$pcs_nickname>>, you say you have a headache, huh? Okay, next time...
-          scene.text(`- Yeah fuck ${((s as any).pcs_nickname ?? 0)}, you say you have a headache, huh? Okay, next time, don't forget to come prepared to fuck.`);
+          scene.text(`- Yeah fuck ${((s as any).pcs_nickname || '')}, you say you have a headache, huh? Okay, next time, don't forget to come prepared to fuck.`);
         }
         if (((s as any).mesec ?? 0) > 0  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
           // TODO-QSP: dynamic text:  - <<$boydesc>>, Damn, they weren't lying about what they said about that body o...
-          scene.text(` - ${((s as any).boydesc ?? 0)}, Damn, they weren't lying about what they said about that body of yours.`);
+          scene.text(` - ${((s as any).boydesc || '')}, Damn, they weren't lying about what they said about that body of yours.`);
           // TODO-QSP: dynamic text: - Only good things, <<$pcs_nickname>>. Do you want it in the ass or in the mouth...
-          scene.text(`- Only good things, ${((s as any).pcs_nickname ?? 0)}. Do you want it in the ass or in the mouth? " he asks you.`);
+          scene.text(`- Only good things, ${((s as any).pcs_nickname || '')}. Do you want it in the ass or in the mouth? " he asks you.`);
           scene.text('- Well… - you mutter.');
         }
         scene.actions([
@@ -9434,7 +9434,7 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/undress/kotovpre1\' + rand(1, 6) + \'.mp4');
     // TODO-QSP: dynamic text: You quickly take off his clothes and stare at <<$boydesc>>'s naked body for the ...
-    scene.text(`You quickly take off his clothes and stare at ${((s as any).boydesc ?? 0)}'s naked body for the first time.`);
+    scene.text(`You quickly take off his clothes and stare at ${((s as any).boydesc || '')}'s naked body for the first time.`);
     if (((s as any).mesec ?? 0) <= 0) {
       scene.actions([
         { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
@@ -9465,9 +9465,9 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
           scene.text('<center><h4>Hut</h4></center>');
           scene.img('images/shared/sex/kiss/kotovpre30.mp4');
           // TODO-QSP: dynamic text: <<$boydesc>> throws you on the bed and pounces on top of you
-          scene.text(`${((s as any).boydesc ?? 0)} throws you on the bed and pounces on top of you`);
+          scene.text(`${((s as any).boydesc || '')} throws you on the bed and pounces on top of you`);
           // TODO-QSP: dynamic text: You long for his kisses. <<$boydesc>> somehow manages to rip off your clothes ev...
-          scene.text(`You long for his kisses. ${((s as any).boydesc ?? 0)} somehow manages to rip off your clothes even as you devour his mouth with your own`);
+          scene.text(`You long for his kisses. ${((s as any).boydesc || '')} somehow manages to rip off your clothes even as you devour his mouth with your own`);
           qspCall(s, 'arousal', 'foreplay', 5, 'sub');
           qspCall(s, 'stat', '');
           if (((s as any).mesec ?? 0) <= 0) {
@@ -9483,7 +9483,7 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
             scene.text('<center><h4>Hut</h4></center>');
             scene.img('images/shared/sex/undress/kotovpre50.mp4');
             // TODO-QSP: dynamic text: <<$boydesc>> throws you on the bed and lowers himself between your legs, licking...
-            scene.text(`${((s as any).boydesc ?? 0)} throws you on the bed and lowers himself between your legs, licking and sucking at your pussy`);
+            scene.text(`${((s as any).boydesc || '')} throws you on the bed and lowers himself between your legs, licking and sucking at your pussy`);
             qspCall(s, 'arousal', 'foreplay', 5, 'sub');
             qspCall(s, 'stat', '');
             if (((s as any).mesec ?? 0) <= 0) {
@@ -9500,7 +9500,7 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
               scene.img('images/shared/sex/undress/kotovpre60.mp4');
               scene.text('You kiss him as you undress each other. He fondles your tits and pinches your nipples as you begin stroking his cock. You feel him continue to harden in your hands.');
               // TODO-QSP: dynamic text: <<$boydesc>> raises his hands to your shoulders and applies gentle pressure. You...
-              scene.text(`${((s as any).boydesc ?? 0)} raises his hands to your shoulders and applies gentle pressure. You know exactly what he's asking you to do…`);
+              scene.text(`${((s as any).boydesc || '')} raises his hands to your shoulders and applies gentle pressure. You know exactly what he's asking you to do…`);
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
@@ -9515,7 +9515,7 @@ function enterAndrei(s: GameState, scene: SceneBuilder): void {
               scene.text('<center><h4>Hut</h4></center>');
               scene.img('images/shared/sex/undress/kotovpre4\' + rand(0, 2) + \'.mp4');
               // TODO-QSP: dynamic text: Bursting into the room, <<$boydesc>> pushes you onto the bed, stripping and care...
-              scene.text(`Bursting into the room, ${((s as any).boydesc ?? 0)} pushes you onto the bed, stripping and caressing your ass`);
+              scene.text(`Bursting into the room, ${((s as any).boydesc || '')} pushes you onto the bed, stripping and caressing your ass`);
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
@@ -9546,7 +9546,7 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/characters/shared/headshots_main/big174.jpg');
     // TODO-QSP: dynamic text: <<$boydesc>> holds you in his arms and kisses you deeply. "<<$pcs_nickname>>, ta...
-    scene.text(`${((s as any).boydesc ?? 0)} holds you in his arms and kisses you deeply. "${((s as any).pcs_nickname ?? 0)}, take off your clothes."`);
+    scene.text(`${((s as any).boydesc || '')} holds you in his arms and kisses you deeply. "${((s as any).pcs_nickname || '')}, take off your clothes."`);
     qspCall(s, 'arousal', 'foreplay', 5, 'sub');
     qspCall(s, 'stat', '');
     if (((s as any).stat ?? 0)?.['think_virgin'] === 1  &&  (!((s as any).sex ?? 0))) {
@@ -9559,19 +9559,19 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     scene.img('images/pc/reactions/embarrassed.mp4');
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] <= 35) {
       // TODO-QSP: dynamic text: You, blushing, whisper to him that you're still a virgin. <<$boydesc>> distracte...
-      scene.text(`You, blushing, whisper to him that you're still a virgin. ${((s as any).boydesc ?? 0)} distractedly scratches his chin "A high school graduate and still a virgin? Wow! Well, maybe in I can use your mouth or ass?."`);
+      scene.text(`You, blushing, whisper to him that you're still a virgin. ${((s as any).boydesc || '')} distractedly scratches his chin "A high school graduate and still a virgin? Wow! Well, maybe in I can use your mouth or ass?."`);
     }
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] <= 35  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
       // TODO-QSP: dynamic text:  - Oh, anal won't work for me today <<$boydesc>>, I'm not quite ready… if you kn...
-      scene.text(` - Oh, anal won't work for me today ${((s as any).boydesc ?? 0)}, I'm not quite ready… if you know what I mean…`);
+      scene.text(` - Oh, anal won't work for me today ${((s as any).boydesc || '')}, I'm not quite ready… if you know what I mean…`);
       // TODO-QSP: dynamic text: - I understand, <<$boydesc>> says. - Okay, next time, come with a clean booty.
-      scene.text(`- I understand, ${((s as any).boydesc ?? 0)} says. - Okay, next time, come with a clean booty.`);
+      scene.text(`- I understand, ${((s as any).boydesc || '')} says. - Okay, next time, come with a clean booty.`);
     }
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] > 35) {
       // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I want to be your first, I won't hurt you.
-      scene.text(`-${((s as any).pcs_nickname ?? 0)}, I want to be your first, I won't hurt you.`);
+      scene.text(`-${((s as any).pcs_nickname || '')}, I want to be your first, I won't hurt you.`);
       // TODO-QSP: dynamic text: -<<$boydesc>>, honey, I really want to, but if my <<$npc_nickname['A29']>> finds...
-      scene.text(`-${((s as any).boydesc ?? 0)}, honey, I really want to, but if my ${((s as any).npc_nickname ?? 0)?.['A29']} finds out, she is going to kill me.`);
+      scene.text(`-${((s as any).boydesc || '')}, honey, I really want to, but if my ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} finds out, she is going to kill me.`);
       scene.text('-Well, if she does just tell her that we love each other');
     }
     if (((s as any).hunterVars ?? 0)?.['SergeiQw'] <= 35) {
@@ -9592,11 +9592,11 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/pc/reactions/embarrassed.mp4');
     // TODO-QSP: dynamic text: -Sorry <<$boydesc>>, I'd really like, but i've never done that before.
-    scene.text(`-Sorry ${((s as any).boydesc ?? 0)}, I'd really like, but i've never done that before.`);
+    scene.text(`-Sorry ${((s as any).boydesc || '')}, I'd really like, but i've never done that before.`);
     // TODO-QSP: dynamic text: -<<$pcs_nickname>>, I'm a normal guy and want normal sex with you.
-    scene.text(`-${((s as any).pcs_nickname ?? 0)}, I'm a normal guy and want normal sex with you.`);
+    scene.text(`-${((s as any).pcs_nickname || '')}, I'm a normal guy and want normal sex with you.`);
     // TODO-QSP: dynamic text: -<<$boydesc>>, I said no. If you can't accept that then I don't think this is go...
-    scene.text(`-${((s as any).boydesc ?? 0)}, I said no. If you can't accept that then I don't think this is going to work out.`);
+    scene.text(`-${((s as any).boydesc || '')}, I said no. If you can't accept that then I don't think this is going to work out.`);
     scene.text('You broke up with your boyfriend');
   } },
         { label: 'Go', handler: (st: GameState) => {
@@ -9612,8 +9612,8 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You tell him that you're still a virgin. <<$boydesc>> smiles "<<$pcs_nickname>> ...
-    scene.text(`You tell him that you're still a virgin. ${((s as any).boydesc ?? 0)} smiles "${((s as any).pcs_nickname ?? 0)} you finished school, and you're how old? You think you can take it in your mouth or in your ass."`);
-    qspCall(s, 'hunterLoveSex', 'din_hunters_bj');
+    scene.text(`You tell him that you're still a virgin. ${((s as any).boydesc || '')} smiles "${((s as any).pcs_nickname || '')} you finished school, and you're how old? You think you can take it in your mouth or in your ass."`);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinHuntersBj(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: 'To lose innocence', goto: ['hunterLoveSex', 'din_hunters_first_sex'] },
     ]);
@@ -9627,7 +9627,7 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/undress/kotovpre1\' + rand(1, 6) + \'.mp4');
     // TODO-QSP: dynamic text: You quickly take off his clothes and see <<$boydesc>> naked for the first time.
-    scene.text(`You quickly take off his clothes and see ${((s as any).boydesc ?? 0)} naked for the first time.`);
+    scene.text(`You quickly take off his clothes and see ${((s as any).boydesc || '')} naked for the first time.`);
     if (((s as any).mesec ?? 0) <= 0) {
       scene.actions([
         { label: 'Kneel', goto: ['hunterLoveSex', 'din_hunters_bj200'] },
@@ -9653,24 +9653,24 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
         scene.text('<center><h4>Hut</h4></center>');
         scene.img('images/shared/sex/sequence/kotovpre4.mp4');
         // TODO-QSP: dynamic text: <<$boydesc>> and you begin to hug and kiss. Your hands wander all over each othe...
-        scene.text(`${((s as any).boydesc ?? 0)} and you begin to hug and kiss. Your hands wander all over each others clearly aroused bodies. The raw sexual energy you're both emitting is overpowering.`);
+        scene.text(`${((s as any).boydesc || '')} and you begin to hug and kiss. Your hands wander all over each others clearly aroused bodies. The raw sexual energy you're both emitting is overpowering.`);
         qspCall(s, 'arousal', 'foreplay', 5, 'sub');
         qspCall(s, 'stat', '');
         if (((s as any).mesec ?? 0) > 0  &&  ((s as any).klismaday ?? 0) !== ((s as any).daystart ?? 0)) {
           // TODO-QSP: dynamic text:  - <<$boydesc>>, Damn, they weren't lying about what they said about that body o...
-          scene.text(` - ${((s as any).boydesc ?? 0)}, Damn, they weren't lying about what they said about that body of yours.`);
+          scene.text(` - ${((s as any).boydesc || '')}, Damn, they weren't lying about what they said about that body of yours.`);
           // TODO-QSP: dynamic text: - Only good things, <<$pcs_nickname>>. Do you want it in the ass or in the mouth...
-          scene.text(`- Only good things, ${((s as any).pcs_nickname ?? 0)}. Do you want it in the ass or in the mouth? " he asks you.`);
+          scene.text(`- Only good things, ${((s as any).pcs_nickname || '')}. Do you want it in the ass or in the mouth? " he asks you.`);
           // TODO-QSP: dynamic text: - Oh, anal won't work for me today <<$boydesc>>, I'm not quite ready… if you kno...
-          scene.text(`- Oh, anal won't work for me today ${((s as any).boydesc ?? 0)}, I'm not quite ready… if you know what I mean…`);
+          scene.text(`- Oh, anal won't work for me today ${((s as any).boydesc || '')}, I'm not quite ready… if you know what I mean…`);
           // TODO-QSP: dynamic text:  - I understand, <<$boydesc>> says. - Okay, next time, come with a clean ass.
-          scene.text(` - I understand, ${((s as any).boydesc ?? 0)} says. - Okay, next time, come with a clean ass.`);
+          scene.text(` - I understand, ${((s as any).boydesc || '')} says. - Okay, next time, come with a clean ass.`);
         }
         if (((s as any).mesec ?? 0) > 0  &&  ((s as any).klismaday ?? 0) === ((s as any).daystart ?? 0)) {
           // TODO-QSP: dynamic text:  - <<$boydesc>>, Damn, they weren't lying about what they said about that body o...
-          scene.text(` - ${((s as any).boydesc ?? 0)}, Damn, they weren't lying about what they said about that body of yours.`);
+          scene.text(` - ${((s as any).boydesc || '')}, Damn, they weren't lying about what they said about that body of yours.`);
           // TODO-QSP: dynamic text: - Only good things, <<$pcs_nickname>>. Do you want it in the ass or in the mouth...
-          scene.text(`- Only good things, ${((s as any).pcs_nickname ?? 0)}. Do you want it in the ass or in the mouth? " he asks you.`);
+          scene.text(`- Only good things, ${((s as any).pcs_nickname || '')}. Do you want it in the ass or in the mouth? " he asks you.`);
           scene.text('- Well… - you mutter');
         }
         scene.actions([
@@ -9702,7 +9702,7 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
     scene.text('<center><h4>Hut</h4></center>');
     scene.img('images/shared/sex/undress/kotovpre1\' + rand(1, 6) + \'.mp4');
     // TODO-QSP: dynamic text: You quickly took off <<$boydesc>>'s clothes, exsposing his naked body to your gr...
-    scene.text(`You quickly took off ${((s as any).boydesc ?? 0)}'s clothes, exsposing his naked body to your greedy eyes for the first time.`);
+    scene.text(`You quickly took off ${((s as any).boydesc || '')}'s clothes, exsposing his naked body to your greedy eyes for the first time.`);
     if (((s as any).mesec ?? 0) <= 0) {
       scene.actions([
         { label: 'Jump on top of him', goto: ['hunterLoveSex', 'din_hunters_sex_cow'] },
@@ -9733,9 +9733,9 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
           scene.text('<center><h4>Hut</h4></center>');
           scene.img('images/shared/sex/kiss/kotovpre30.mp4');
           // TODO-QSP: dynamic text: <<$boydesc>> he throws you onto the bed and pounces on top of you.
-          scene.text(`${((s as any).boydesc ?? 0)} he throws you onto the bed and pounces on top of you.`);
+          scene.text(`${((s as any).boydesc || '')} he throws you onto the bed and pounces on top of you.`);
           // TODO-QSP: dynamic text: As you furiously devour his mouth with your own, <<$boydesc>> somehow manages to...
-          scene.text(`As you furiously devour his mouth with your own, ${((s as any).boydesc ?? 0)} somehow manages to tear off your clothes, leaving you naked before him.`);
+          scene.text(`As you furiously devour his mouth with your own, ${((s as any).boydesc || '')} somehow manages to tear off your clothes, leaving you naked before him.`);
           qspCall(s, 'arousal', 'foreplay', 5, 'sub');
           qspCall(s, 'stat', '');
           if (((s as any).mesec ?? 0) <= 0) {
@@ -9751,7 +9751,7 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
             scene.text('<center><h4>Hut</h4></center>');
             scene.img('images/shared/sex/undress/kotovpre50.mp4');
             // TODO-QSP: dynamic text: <<$boydesc>> throws you on to the bed and, spreading your legs wide, immediately...
-            scene.text(`${((s as any).boydesc ?? 0)} throws you on to the bed and, spreading your legs wide, immediately turns his attention to your obviously dripping pussy`);
+            scene.text(`${((s as any).boydesc || '')} throws you on to the bed and, spreading your legs wide, immediately turns his attention to your obviously dripping pussy`);
             qspCall(s, 'arousal', 'foreplay', 5, 'sub');
             qspCall(s, 'stat', '');
             if (((s as any).mesec ?? 0) <= 0) {
@@ -9767,9 +9767,9 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
               scene.text('<center><h4>Hut</h4></center>');
               scene.img('images/shared/sex/undress/kotovpre60.mp4');
               // TODO-QSP: dynamic text: You kiss <<$boydesc>> while undressing each other. He fondles your boobs and twe...
-              scene.text(`You kiss ${((s as any).boydesc ?? 0)} while undressing each other. He fondles your boobs and tweaks your nipples as you gently massage his rapidly hardening cock.`);
+              scene.text(`You kiss ${((s as any).boydesc || '')} while undressing each other. He fondles your boobs and tweaks your nipples as you gently massage his rapidly hardening cock.`);
               // TODO-QSP: dynamic text: <<$boydesc>> gently pushes down on your shoulders. You know exactly what he's as...
-              scene.text(`${((s as any).boydesc ?? 0)} gently pushes down on your shoulders. You know exactly what he's asking for…`);
+              scene.text(`${((s as any).boydesc || '')} gently pushes down on your shoulders. You know exactly what he's asking for…`);
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {
@@ -9784,7 +9784,7 @@ function enterSergei(s: GameState, scene: SceneBuilder): void {
               scene.text('<center><h4>Hut</h4></center>');
               scene.img('images/shared/sex/undress/kotovpre4\' + rand(0, 2) + \'.mp4');
               // TODO-QSP: dynamic text: Bursting into the room <<$boydesc>> pushes you down onto the bed while stripping...
-              scene.text(`Bursting into the room ${((s as any).boydesc ?? 0)} pushes you down onto the bed while stripping and caressing your ass`);
+              scene.text(`Bursting into the room ${((s as any).boydesc || '')} pushes you down onto the bed while stripping and caressing your ass`);
               qspCall(s, 'arousal', 'foreplay', 5, 'sub');
               qspCall(s, 'stat', '');
               if (((s as any).mesec ?? 0) <= 0) {

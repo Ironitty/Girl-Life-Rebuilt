@@ -10,22 +10,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 
 function enterDateRate(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'love') {
-    qspCall(s, 'date_funcs', 'date_mood', 'improve');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'improve']; enterDateMood(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) + (2);
     qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'love');
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'like') {
-      qspCall(s, 'date_funcs', 'date_mood', 'improve');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'improve']; enterDateMood(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) + (1);
       qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'like');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'dislike') {
-        qspCall(s, 'date_funcs', 'date_mood', 'worsen');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'worsen']; enterDateMood(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) - (1);
         qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'dislike');
       } else {
         if (((s as any).locArgs?.[1] ?? 0) === 'hate') {
-          qspCall(s, 'date_funcs', 'date_mood', 'worsen');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'worsen']; enterDateMood(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['date_rating'] = ((s as any).date_ev['date_rating'] ?? 0) - (3);
           qspCall(s, 'npc_relationship', 'modify', ((s as any).npcID ?? 0), 'hate');
         }
@@ -102,7 +102,7 @@ function enterFuckbuddyAdd(s: GameState, scene: SceneBuilder): void {
 
 function enterSugarDaddyAdd(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'lover', 'add_sugar_daddy', ((s as any).npcID ?? 0));
-  if (!(s as any).npc_sugar_daddy_price) (s as any).npc_sugar_daddy_price = {}; (s as any).npc_sugar_daddy_price[String((s as any).npcID ?? 0)] = ((s as any).date_ev ?? {})?.['sugar_daddy_offer'] * 100;
+  if (!(s as any).npc_sugar_daddy_price) (s as any).npc_sugar_daddy_price = {}; (s as any).npc_sugar_daddy_price[String((s as any).npcID ?? 0)] = (((s as any).date_ev ?? {})?.['sugar_daddy_offer'] ?? 0) * 100;
   if (((s as any).npc_rel_type ?? 0)?.[String((s as any).npcID ?? 0)] !== 'sugar_daddy') {
     // TODO-QSP: $npc_rel_type[$npcID] = 'sugar_daddy'
     if (!(s as any).date_ev) (s as any).date_ev = {}; (s as any).date_ev['sugar_daddy_count'] = ((s as any).date_ev['sugar_daddy_count'] ?? 0) + (1);
@@ -175,7 +175,7 @@ function enterAlternatePlans(s: GameState, scene: SceneBuilder): void {
       scene.text('"Great! Let\'s go!"');
     }
     // TODO-QSP: dynamic text: You take <<$npcdesc>> by the arm and head off back to his place for sexy times.
-    scene.text(`You take ${((s as any).npcdesc ?? 0)} by the arm and head off back to his place for sexy times.`);
+    scene.text(`You take ${((s as any).npcdesc || '')} by the arm and head off back to his place for sexy times.`);
     scene.actions([
       { label: 'Go to <<$npcdesc>>\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },
     ]);
@@ -190,7 +190,7 @@ function enterAlternatePlans(s: GameState, scene: SceneBuilder): void {
       scene.text('"Great! Let\'s go!"');
     }
     // TODO-QSP: dynamic text: You take <<$npcdesc>> by the arm and head off back to his place for sexy times.
-    scene.text(`You take ${((s as any).npcdesc ?? 0)} by the arm and head off back to his place for sexy times.`);
+    scene.text(`You take ${((s as any).npcdesc || '')} by the arm and head off back to his place for sexy times.`);
     scene.actions([
       { label: 'Go to <<$npcdesc>>\'s place', goto: ['sex_ev_start', 'date_npc_home_start'] },
     ]);

@@ -59,7 +59,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
   }
   qspCall(s, 'blackmailer', 'set_police_act');
   // TODO-QSP: end
-  (s as any).temp_tot_booked_pav = ((s as any).policeQW ?? {})?.['shoplift_booked_pav'] + ((s as any).policeQW ?? {})?.['prostitution_booked_pav'];
+  (s as any).temp_tot_booked_pav = (((s as any).policeQW ?? {})?.['shoplift_booked_pav'] ?? 0) + (((s as any).policeQW ?? {})?.['prostitution_booked_pav'] ?? 0);
   scene.actions([
     { label: 'Just looking around', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -130,23 +130,23 @@ function enterFirstShoplift(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).fame ?? 0)?.['pav_slut'] > 250) {
     // TODO-QSP: dynamic text: He notices that it's you. "Aren't you <<$pcs_firstname>> <<$pcs_lastname>>, one ...
-    scene.text(`He notices that it's you. "Aren't you ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, one of, uh… Natasha's kids? I guess I'm not surprised. I've heard things about that woman…"`);
+    scene.text(`He notices that it's you. "Aren't you ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, one of, uh… Natasha's kids? I guess I'm not surprised. I've heard things about that woman…"`);
   } else {
     if (((s as any).grupTipe ?? 0) === 1) {
       // TODO-QSP: dynamic text: He notices that it's you. "Well if it isn't <<$pcs_firstname>> <<$pcs_lastname>>...
-      scene.text(`He notices that it's you. "Well if it isn't ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}! Who would've thought that you would end up here?"`);
+      scene.text(`He notices that it's you. "Well if it isn't ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}! Who would've thought that you would end up here?"`);
     } else {
       if (((s as any).grupTipe ?? 0) === 2) {
         // TODO-QSP: dynamic text: He notices that it's you. "I really hope this is the first and only time you get...
-        scene.text(`He notices that it's you. "I really hope this is the first and only time you get brought here, ${((s as any).pcs_lastname ?? 0)}…"`);
+        scene.text(`He notices that it's you. "I really hope this is the first and only time you get brought here, ${((s as any).pcs_lastname || '')}…"`);
       } else {
         if (((s as any).grupTipe ?? 0) === 3) {
           // TODO-QSP: dynamic text: He notices that it's you. "You're telling me that <<$pcs_firstname>> <<$pcs_last...
-          scene.text(`He notices that it's you. "You're telling me that ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)} committed a crime? I've seen it all now…"`);
+          scene.text(`He notices that it's you. "You're telling me that ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')} committed a crime? I've seen it all now…"`);
         } else {
           if (((s as any).grupTipe ?? 0) === 4) {
             // TODO-QSP: dynamic text: He notices that it's you. "It was just a matter of time until we saw you here, <...
-            scene.text(`He notices that it's you. "It was just a matter of time until we saw you here, ${((s as any).pcs_lastname ?? 0)}. Not surprising at all."`);
+            scene.text(`He notices that it's you. "It was just a matter of time until we saw you here, ${((s as any).pcs_lastname || '')}. Not surprising at all."`);
           } else {
             if (((s as any).policeQW ?? 0)?.['toldonguard_pav'] === 2) {
               scene.text('"I\'m not lying! That security guard forced me to have sex with him! Why won\'t you believe me?" you plead, but it does you no good.');
@@ -215,17 +215,17 @@ function enterRepeat(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).temp_tot_booked_pav ?? 0) === 1) {
     // TODO-QSP: dynamic text: "You're way too young to be doing all these things, Miss <<$pcs_lastname>>. We m...
-    scene.text(`"You're way too young to be doing all these things, Miss ${((s as any).pcs_lastname ?? 0)}. We might have to call your mother here…"`);
+    scene.text(`"You're way too young to be doing all these things, Miss ${((s as any).pcs_lastname || '')}. We might have to call your mother here…"`);
     scene.text('The others smile and shake their heads as he leads you further inside the police station.');
   } else {
     if (((s as any).temp_tot_booked_pav ?? 0) === 2) {
       // TODO-QSP: dynamic text: "Seems like you don't learn, Miss <<$pcs_lastname>>. It's really time to call yo...
-      scene.text(`"Seems like you don't learn, Miss ${((s as any).pcs_lastname ?? 0)}. It's really time to call your parents…"`);
+      scene.text(`"Seems like you don't learn, Miss ${((s as any).pcs_lastname || '')}. It's really time to call your parents…"`);
       scene.text('The others laugh and shake their heads as he leads you further inside the police station.');
     } else {
       if (((s as any).temp_tot_booked_pav ?? 0) === 3) {
         // TODO-QSP: dynamic text: "I'm shocked to see you here again, <<$pcs_lastname>>. Not really. It's just as ...
-        scene.text(`"I'm shocked to see you here again, ${((s as any).pcs_lastname ?? 0)}. Not really. It's just as I expected."`);
+        scene.text(`"I'm shocked to see you here again, ${((s as any).pcs_lastname || '')}. Not really. It's just as I expected."`);
         scene.text('The others smile and shake their heads as he leads you further inside the police station.');
       } else {
         if (((s as any).temp_tot_booked_pav ?? 0) === 4) {
@@ -233,7 +233,7 @@ function enterRepeat(s: GameState, scene: SceneBuilder): void {
           scene.text('The others shake their heads as he leads you further inside the police station.');
         } else {
           // TODO-QSP: dynamic text: "I expected the Kotov kids or one of their friends to be a repeat offender, but ...
-          scene.text(`"I expected the Kotov kids or one of their friends to be a repeat offender, but not you, Miss ${((s as any).pcs_lastname ?? 0)}…"`);
+          scene.text(`"I expected the Kotov kids or one of their friends to be a repeat offender, but not you, Miss ${((s as any).pcs_lastname || '')}…"`);
           scene.text('The others shake their heads as he leads you further inside the police station.');
         }
       }
@@ -260,7 +260,7 @@ function enterMultiple(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp_tot_booked_pav ?? 0) === 8) {
         // TODO-QSP: dynamic text: "Well if it isn't our favorite guest! Welcome back, Miss <<$pcs_lastname>>. We h...
-        scene.text(`"Well if it isn't our favorite guest! Welcome back, Miss ${((s as any).pcs_lastname ?? 0)}. We have a room all waiting for you."`);
+        scene.text(`"Well if it isn't our favorite guest! Welcome back, Miss ${((s as any).pcs_lastname || '')}. We have a room all waiting for you."`);
         scene.text('The others shake their heads as he leads you further inside the police station.');
       } else {
         if (((s as any).temp_tot_booked_pav ?? 0) === 9) {
@@ -268,7 +268,7 @@ function enterMultiple(s: GameState, scene: SceneBuilder): void {
           scene.text('The others shake their heads as he leads you further inside the police station.');
         } else {
           // TODO-QSP: dynamic text: "What are we going to do with you, <<$pcs_firstname>>? I don't know how we're go...
-          scene.text(`"What are we going to do with you, ${((s as any).pcs_firstname ?? 0)}? I don't know how we're going to make you stop…"`);
+          scene.text(`"What are we going to do with you, ${((s as any).pcs_firstname || '')}? I don't know how we're going to make you stop…"`);
           scene.text('The others shake their heads as he leads you further inside the police station.');
         }
       }
@@ -288,7 +288,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_rand = Math.floor(Math.random() * 8) + 1;
   if (((s as any).temp_rand ?? 0) === 1) {
     // TODO-QSP: dynamic text: The staff sitting at the reception desk glance your way as the arresting officer...
-    scene.text(`The staff sitting at the reception desk glance your way as the arresting officer glares down at you. "I'm sick and tired of processing you, ${((s as any).pcs_lastname ?? 0)}! I hope they lock you away for a long time!"`);
+    scene.text(`The staff sitting at the reception desk glance your way as the arresting officer glares down at you. "I'm sick and tired of processing you, ${((s as any).pcs_lastname || '')}! I hope they lock you away for a long time!"`);
     scene.text('The others shake their heads as he leads you further inside the police station.');
   } else {
     if (((s as any).temp_rand ?? 0) === 2) {
@@ -297,7 +297,7 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).temp_rand ?? 0) === 3) {
         // TODO-QSP: dynamic text: The staff sitting at the reception desk glance at you as the arresting officer s...
-        scene.text(`The staff sitting at the reception desk glance at you as the arresting officer sighs heavily. "Why do you continue doing this, ${((s as any).pcs_lastname ?? 0)}? Aren't you getting tired of this life?"`);
+        scene.text(`The staff sitting at the reception desk glance at you as the arresting officer sighs heavily. "Why do you continue doing this, ${((s as any).pcs_lastname || '')}? Aren't you getting tired of this life?"`);
         scene.text('The others shake their heads as he leads you further inside the police station.');
       } else {
         if (((s as any).temp_rand ?? 0) === 4) {
@@ -306,12 +306,12 @@ function enterRegular(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).temp_rand ?? 0) === 5) {
             // TODO-QSP: dynamic text: "Looks like I won the bet! I knew you would be in here again. Thanks for the 100...
-            scene.text(`"Looks like I won the bet! I knew you would be in here again. Thanks for the 100 rubles, ${((s as any).pcs_firstname ?? 0)}!"`);
+            scene.text(`"Looks like I won the bet! I knew you would be in here again. Thanks for the 100 rubles, ${((s as any).pcs_firstname || '')}!"`);
             scene.text('The others shake their heads as he leads you further inside the police station.');
           } else {
             if (((s as any).temp_rand ?? 0) === 6) {
               // TODO-QSP: dynamic text: "So what is it this time, <<$pcs_lastname>>? Don't you get tired of it?"
-              scene.text(`"So what is it this time, ${((s as any).pcs_lastname ?? 0)}? Don't you get tired of it?"`);
+              scene.text(`"So what is it this time, ${((s as any).pcs_lastname || '')}? Don't you get tired of it?"`);
               scene.text('The others shake their heads as he leads you further inside the police station.');
             } else {
               if (((s as any).temp_rand ?? 0) === 7) {
@@ -353,19 +353,19 @@ function enterBooking1(s: GameState, scene: SceneBuilder): void {
   scene.text('"Sit over there," the officer commands and you take a seat as ordered as he walks to the door and calls another officer over. You sit in silence, trying to overhear what\'s being said, but you can\'t hear them.');
   scene.text('After a few minutes, the officer that brought you in comes back with another officer unknown to you, but he\'s young and fairly good looking.');
   // TODO-QSP: dynamic text: "Alright <<$pcs_lastname>>, I'll be leaving you here with my colleague. He'll so...
-  scene.text(`"Alright ${((s as any).pcs_lastname ?? 0)}, I'll be leaving you here with my colleague. He'll sort you out," the first officer says as they turn to the other officer. "I've already checked her pockets, there was nothing of interest."`);
+  scene.text(`"Alright ${((s as any).pcs_lastname || '')}, I'll be leaving you here with my colleague. He'll sort you out," the first officer says as they turn to the other officer. "I've already checked her pockets, there was nothing of interest."`);
   // TODO-QSP: dynamic text: The young officer looks you up and down, evaluating you at a glance. "<<$pcs_las...
-  scene.text(`The young officer looks you up and down, evaluating you at a glance. "${((s as any).pcs_lastname ?? 0)} was it?"`);
+  scene.text(`The young officer looks you up and down, evaluating you at a glance. "${((s as any).pcs_lastname || '')} was it?"`);
   qspCall(s, 'willpower', 'crime', 'self', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Answer brashly [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Answer brashly', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Answer brashly [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Answer brashly', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -408,7 +408,7 @@ function enterBooking1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/police/booking_officer.jpg');
     // TODO-QSP: dynamic text: "That's right… <<$pcs_firstname>> <<$pcs_lastname>>," you cautiously answer.
-    scene.text(`"That's right… ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}," you cautiously answer.`);
+    scene.text(`"That's right… ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}," you cautiously answer.`);
     scene.text('"Good, good. I hope we can continue to keep it civil like this," he smiles halfheartedly. "Now, let me tell you how this is going to go: I\'ll ask you some questions and you\'ll answer them - <i>truthfully</i>," he emphasizes with a pointed look. "Then I\'ll take your fingerprints and your mug shot. Understood?"');
     scene.text('Dispirited, you nod weakly.');
     scene.text('"Good. Now come over here," he orders as he walks up to the counter.');
@@ -458,13 +458,13 @@ function enterTakeFingerprints1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'crime', 'self', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Flip him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Flip him off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Flip him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Flip him off', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -537,13 +537,13 @@ function enterBooking1Undress(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'sex', 'resist', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Reject him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Reject him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Reject him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Reject him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -646,24 +646,24 @@ function enterBooking2(s: GameState, scene: SceneBuilder): void {
   scene.text('After what feels like an eternity, the young officer from last time returns.');
   if (((s as any).policeQW ?? 0)?.['bookingofficer_sex_pav'] >= 1) {
     // TODO-QSP: dynamic text: The young officer observes you with a hungry lustful grin on his face. "<<$pcs_l...
-    scene.text(`The young officer observes you with a hungry lustful grin on his face. "${((s as any).pcs_lastname ?? 0)}, hmm? I remember you from the last time," he says as he walks over to you, stopping with his crotch almost in your face.`);
+    scene.text(`The young officer observes you with a hungry lustful grin on his face. "${((s as any).pcs_lastname || '')}, hmm? I remember you from the last time," he says as he walks over to you, stopping with his crotch almost in your face.`);
     scene.text('You lean back so his crotch isn\'t so close to your face and sigh. You have a feeling he\'ll want another blowjob.');
   } else {
     // TODO-QSP: dynamic text: The young officer observes you with a smile on his face. "<<$pcs_lastname>>, hmm...
-    scene.text(`The young officer observes you with a smile on his face. "${((s as any).pcs_lastname ?? 0)}, hmm? I remember you from the last time."`);
+    scene.text(`The young officer observes you with a smile on his face. "${((s as any).pcs_lastname || '')}, hmm? I remember you from the last time."`);
     scene.text('You sigh as you recall the last time you were with him.');
   }
   scene.text('He walks over to the counter and motions you over.');
   qspCall(s, 'willpower', 'crime', 'self', 'hard');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Spit on him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Spit on him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Spit on him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Spit on him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -859,13 +859,13 @@ function enterBooking2Undress(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'sex', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Reject him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Reject him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Reject him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Reject him', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -1095,7 +1095,7 @@ function enterHoldingcell(s: GameState, scene: SceneBuilder): void {
   scene.text('It feels like you\'re waiting forever, but surely it can\'t be as long as it feels.');
   scene.text('Finally, another officer come back and unlocks the cell. "Come on, someone has paid your fine."');
   // TODO-QSP: dynamic text: You walk out of the cell and he closes it behind you before he leads you to the ...
-  scene.text(`You walk out of the cell and he closes it behind you before he leads you to the front of the station. As you walk into the main room, you find your ${((s as any).temp_rescuer ?? 0)} staring at you.`);
+  scene.text(`You walk out of the cell and he closes it behind you before he leads you to the front of the station. As you walk into the main room, you find your ${((s as any).temp_rescuer || '')} staring at you.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Stare back', handler: (st: GameState) => {

@@ -1,6 +1,6 @@
 import { qspUntranslated } from '../_shared/qspUntranslated';
 
-import { qspCall, qspFunc } from '../_shared/qspBridge';
+import { qspFunc } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -16,7 +16,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterPreset(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'set') {
     if (((s as any).locArgs?.[2] ?? 0) === 'sims') {
-      qspCall(s, '_difficulty', 'setdifficulty_int', 1);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
       if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = (-4);
       if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
       if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = (-4);
@@ -34,7 +34,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'very easy') {
-        qspCall(s, '_difficulty', 'setdifficulty_int', 1);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
         if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = (-3);
         if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
         if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = (-3);
@@ -52,7 +52,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
       } else {
         if (((s as any).locArgs?.[2] ?? 0) === 'easy') {
-          qspCall(s, '_difficulty', 'setdifficulty_int', 2);
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
           if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = (-1);
           if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
           if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = (-1);
@@ -70,7 +70,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
           if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
         } else {
           if (((s as any).locArgs?.[2] ?? 0) === 'normal') {
-            qspCall(s, '_difficulty', 'setdifficulty_int', 3);
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
             if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 0;
             if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
             if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = 0;
@@ -88,7 +88,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
             if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
           } else {
             if (((s as any).locArgs?.[2] ?? 0) === 'hard') {
-              qspCall(s, '_difficulty', 'setdifficulty_int', 3);
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
               if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 2;
               if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
               if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = 2;
@@ -106,7 +106,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
               if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 1;
             } else {
               if (((s as any).locArgs?.[2] ?? 0) === 'very hard') {
-                qspCall(s, '_difficulty', 'setdifficulty_int', 3);
+                { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
                 if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 3;
                 if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
                 if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = 3;
@@ -124,7 +124,7 @@ function enterPreset(s: GameState, scene: SceneBuilder): void {
                 if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['track_period'] = 0;
               } else {
                 if (((s as any).locArgs?.[2] ?? 0) === 'russia') {
-                  qspCall(s, '_difficulty', 'setdifficulty_int', 4);
+                  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
                   if (!(s as any).cheatVars) (s as any).cheatVars = {}; (s as any).cheatVars['deg_speed_opt'] = 4;
                   if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['pos_mult_opt'] = 0;
                   if (!(s as any).cfg_vars) (s as any).cfg_vars = {}; (s as any).cfg_vars['neg_mult_opt'] = 4;
@@ -207,15 +207,15 @@ function enterSetdifficultyInt(s: GameState, scene: SceneBuilder): void {
 
 function enterSetdifficulty(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === 'easy peasy') {
-    qspCall(s, '_difficulty', 'setdifficulty_int', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).locArgs?.[1] ?? 0) === 'relaxed') {
-      qspCall(s, '_difficulty', 'setdifficulty_int', 2);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 2]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 'hardcore') {
-        qspCall(s, '_difficulty', 'setdifficulty_int', 4);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
-        qspCall(s, '_difficulty', 'setdifficulty_int', 3);
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterSetdifficultyInt(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     }
   }
@@ -236,7 +236,7 @@ function enterGetdifficulty(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGetexpadj(s: GameState, scene: SceneBuilder): void {
-  (s as any).result = 20 * ((s as any).cheatVars ?? {})?.['skill_gain'];
+  (s as any).result = 20 * (((s as any).cheatVars ?? {})?.['skill_gain'] ?? 0);
   return;
   // TODO-QSP: end
   scene.build();

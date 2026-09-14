@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterInit(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'init');
   if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Ballet Secrets';
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/ballet-shop-window.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/ballet-shop-window.jpg');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
@@ -65,13 +65,13 @@ function enterExit(s: GameState, scene: SceneBuilder): void {
 function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['ballet_secrets_visit'] = 1;
   if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['shoe_order'] = ((s as any).daystart ?? 0) + 14;
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/ballet_secrets_fitting_1.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/ballet_secrets_fitting_1.jpg');
   (s as any).minut = ((s as any).minut ?? 0) + 60;
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
   scene.text('You are greeted by a middle aged woman. "Hello, how may I help you?" She asks politely.');
   // TODO-QSP: dynamic text: "Hello, I am <<$pcs_firstname>> <<$pcs_lastname>>. I am part of the ballet schoo...
-  scene.text(`"Hello, I am ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}. I am part of the ballet school intake." you give her a smile and hand over the school's letter as proof.`);
+  scene.text(`"Hello, I am ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}. I am part of the ballet school intake." you give her a smile and hand over the school's letter as proof.`);
   scene.text('The woman smiles warmly, "Ah you are the new students for this year?" she claps her hands and then takes yours, "Come, come we must measure your feet and order your shoes"');
   scene.text('Before you say anything she\'s dragging you through the shop towards the back we are greeted by a wall of shoes and there are pictures on the wall signed by dancers with shoes next to them. You look at the woman.');
   scene.text('"Yes, they are all dancers who are or have been clients of our establishment", she noticed your gaze and explained with pride."We will only provide the best for the school."');
@@ -79,7 +79,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
   scene.text('For the next hour, Madam Pushkina bombards you with questions of whether you want leather or cotton fabric, how many satin shoes and a myriad other questions before she finally relents.');
   scene.text('"Of course, as you are aware the school is sponsoring these costs, but only for the first year she says and you will need to manage your own equipment after this.", Madame Pushkina advises.');
   // TODO-QSP: dynamic text: "Is there anything else you need? No? Good, I will see you again in two weeks fo...
-  scene.text(`"Is there anything else you need? No? Good, I will see you again in two weeks for your final shoe fitting. I would like to extend my congratulations and wish you a successful career Ms. ${((s as any).pcs_lastname ?? 0)}."`);
+  scene.text(`"Is there anything else you need? No? Good, I will see you again in two weeks for your final shoe fitting. I would like to extend my congratulations and wish you a successful career Ms. ${((s as any).pcs_lastname || '')}."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['pushkin_sq', ''] },
@@ -91,7 +91,7 @@ function enterFirstVisit(s: GameState, scene: SceneBuilder): void {
 function enterReception(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'reception');
   if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Ballet Secrets - Reception';
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/reception.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/reception.jpg');
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'shortgs', 'clothing_status');
   qspCall(s, 'stat', '');
@@ -129,7 +129,7 @@ function enterReception(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).hour ?? 0) >= 16) {
         // TODO-QSP: dynamic text: All the evening classes have started today, you need to be here before '+func('t...
-        scene.text('All the evening classes have started today, you need to be here before \'+func(\'time\', \'get_time_string\', 16, 0)+\' to ensure you can attend.');
+        scene.text('All the evening classes have started today, you need to be here before 16:00 to ensure you can attend.');
       }
     }
   }
@@ -155,7 +155,7 @@ function enterEnrol(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: The gym offers a weekly or monthly subscription for ' + $func('money', 'string_p...
-  scene.text('The gym offers a weekly or monthly subscription for \' + $func(\'money\', \'string_price\', 1500) + \' or \' + $func(\'money\', \'string_price\', 4500) + \' to use the facilities with some courses included. Physio appointments and personal trainers are charged separately.');
+  scene.text('The gym offers a weekly or monthly subscription for 1500₽ or 4500₽ to use the facilities with some courses included. Physio appointments and personal trainers are charged separately.');
   scene.text('The subscriptions include classes in gymnastics, yoga and introductory ballet. For advanced classes, there is an additional instructor fee. A personal trainer is on hand to assist at all times if you so need one.');
   scene.text('We also have a small café which attracts a members discount and your membership card can purchase items directly from the vending machine which will be billed to your account.');
   // TODO-QSP: end
@@ -163,14 +163,14 @@ function enterEnrol(s: GameState, scene: SceneBuilder): void {
     { label: 'Return to the studio entrance', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['pushkin_ballet_secrets', 'reception'] },
-    { label: 'Purchase a weekly subscription [+$func(\'money\', \'get_cost_string\', 1500)]', handler: (st: GameState) => {
+    { label: 'Purchase a weekly subscription', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 1500);
       if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['membership'] = ((s as any).daystart ?? 0) + 7;
       // TODO-QSP: dynamic text: You purchase a weeks subscription for ' + $func('money', 'string_price', 1500) +...
-      scene.text('You purchase a weeks subscription for \' + $func(\'money\', \'string_price\', 1500) + \'.');
+      scene.text('You purchase a weeks subscription for 1500₽.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -178,14 +178,14 @@ function enterEnrol(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-    { label: 'Purchase a monthly subscription [+$func(\'money\', \'get_cost_string\', 4500)]', handler: (st: GameState) => {
+    { label: 'Purchase a monthly subscription', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 4500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       qspCall(s, 'money', 'pay', 4500);
       if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['membership'] = ((s as any).daystart ?? 0) + 28;
       // TODO-QSP: dynamic text: You purchase a monthly subscription for ' + $func('money', 'string_price', 4500)...
-      scene.text('You purchase a monthly subscription for \' + $func(\'money\', \'string_price\', 4500) + \' and got a week free.');
+      scene.text('You purchase a monthly subscription for 4500₽ and got a week free.');
       scene.actions([
         { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
@@ -236,7 +236,7 @@ function enterChangingRoom(s: GameState, scene: SceneBuilder): void {
 function enterPhysio(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'physio');
   if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Ballet Secrets - Physio';
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/physio.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/physio.jpg');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
   // TODO-QSP: end
@@ -249,7 +249,7 @@ function enterPhysio(s: GameState, scene: SceneBuilder): void {
 function enterGymnasticsCourses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'gymnastics_courses');
   if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Ballet Secrets - Gymnastics Class';
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/gymnastics.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/gymnastics.jpg');
   qspCall(s, 'themes', 'indoors');
   qspCall(s, 'core_library', 'stage_title');
   // TODO-QSP: end
@@ -263,12 +263,12 @@ function enterBalletCourses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'ballet_courses');
   if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Ballet Secrets - Courses';
   if (((s as any).pcs_danc ?? 0) < 50) {
-    scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/basic_class.jpg');
+    scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/basic_class.jpg');
   } else {
     if (((s as any).pcs_danc ?? 0) < 75) {
-      scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/intermediate_class.jpg');
+      scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/intermediate_class.jpg');
     } else {
-      scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/advanced_class.jpg');
+      scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/advanced_class.jpg');
     }
   }
   qspCall(s, 'themes', 'indoors');
@@ -330,7 +330,7 @@ function enterBalletCourses(s: GameState, scene: SceneBuilder): void {
 function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'yoga_courses');
   if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Ballet Secrets - Yoga Class';
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/yoga_class.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/yoga_class.jpg');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'gdksport', 'jocks_acceptance');
   qspCall(s, 'stat', '');
@@ -347,7 +347,7 @@ function enterYogaCourses(s: GameState, scene: SceneBuilder): void {
     if (((s as any).start_type ?? 0)?.['magic'] !== 'nomagic'  &&  ((s as any).scene_sel ?? 0) >= 55) {
       (s as any).img_sel = Math.floor(Math.random() * 3) + 1;
       if (!(s as any).balletqw) (s as any).balletqw = {}; (s as any).balletqw['yoga_session'] = ((s as any).daystart ?? 0);
-      scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/awakened_yoga_' + ((s as any).img_sel ?? 0) + '.jpg');
+      scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/awakened_yoga_' + ((s as any).img_sel ?? 0) + '.jpg');
       qspCall(s, 'core_library', 'stage_title');
       scene.text('You enter the yoga studio, but instead of your usual instructor there is a group of naked woman in the class. It takes a moment to realise that they are Fae.');
       if (((s as any).trait_vars ?? 0)?.['exhibitionist'] > 1) {
@@ -420,7 +420,7 @@ function enterJobs(s: GameState, scene: SceneBuilder): void {
 function enterClothing(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'clothing');
   if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Ballet Secrets - Dancewear';
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/sports_shop.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/sports_shop.jpg');
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -434,7 +434,7 @@ function enterClothing(s: GameState, scene: SceneBuilder): void {
 function enterQuest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'quest');
   if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Ballet Secrets';
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/quest.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/quest.jpg');
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -448,7 +448,7 @@ function enterQuest(s: GameState, scene: SceneBuilder): void {
 function enterCafe(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'core_library', 'setloc', 'pushkin_ballet_secrets', 'cafe');
   if (!(s as any).setloc) (s as any).setloc = {}; (s as any).setloc['StageTitle'] = 'Food Court';
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/food_court.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/food_court.jpg');
   qspCall(s, 'core_library', 'stage_title');
   qspCall(s, 'stat', '');
   qspCall(s, 'themes', 'indoors');
@@ -458,14 +458,14 @@ function enterCafe(s: GameState, scene: SceneBuilder): void {
     { label: 'Leave', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 5;
   }, goto: ['pushkin_ballet_secrets', 'reception'] },
-    { label: 'Buy an energy bar [+$func(\'money\', \'get_cost_string\', 150, \'...]', handler: (st: GameState) => {
+    { label: 'Buy an energy bar', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 150, 'bank') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
       scene.actions([{ label: 'Continue', goto: ['pushkin_ballet_secrets', 'energy_bar'] }]);
     }
   } },
-    { label: 'Buy an energy drink [+$func(\'money\', \'get_cost_string\', 200, \'...]', handler: (st: GameState) => {
+    { label: 'Buy an energy drink', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 200, 'bank') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -477,7 +477,7 @@ function enterCafe(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnergyBar(s: GameState, scene: SceneBuilder): void {
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/protein_bar.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/protein_bar.jpg');
   qspCall(s, 'core_library', 'stage_title');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'pay', 150, 'bank');
@@ -500,7 +500,7 @@ function enterEnergyBar(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterEnergyDrink(s: GameState, scene: SceneBuilder): void {
-  scene.img(((s as any).setloc ?? {})?.['imagepath'] + '/energy_drink.jpg');
+  scene.img((((s as any).setloc ?? {})?.['imagepath'] ?? 0) + '/energy_drink.jpg');
   qspCall(s, 'core_library', 'stage_title');
   (s as any).minut = ((s as any).minut ?? 0) + 5;
   qspCall(s, 'money', 'pay', 200, 'bank');

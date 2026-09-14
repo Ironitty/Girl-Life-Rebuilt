@@ -9,8 +9,8 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterCikl(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'telefon_schedules', 'cikl_calls');
-  qspCall(s, 'telefon_schedules', 'cikl_sms');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCiklCalls(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCiklSms(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();

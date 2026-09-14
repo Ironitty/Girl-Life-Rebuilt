@@ -36,7 +36,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
   }
   // TODO-QSP: dynamic text: <center><b>Date <<KGD['day']>></b></center>
-  scene.text(`<center><b>Date ${((s as any).KGD ?? 0)?.['day']}</b></center>`);
+  scene.text(`<center><b>Date ${((s as any).KGD ?? 0)?.['day'] ?? ''}</b></center>`);
   scene.text('<center><b>Your town</b></center>');
   if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = '<center><table border="0" align="center">';
   if (!(s as any).KGD) (s as any).KGD = {}; (s as any).KGD['table'] = ((s as any).KGD['table'] ?? 0) + ('<tr><td colspan="2" align="center">Buildings</td></tr>');

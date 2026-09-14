@@ -30,7 +30,7 @@ function enterPos2(s: GameState, scene: SceneBuilder): void {
   scene.text('"Good afternoon! I was just employeed by the school and they\'ve sent me over here until they find a place for me to live. They\'ve said to give you these documents…" you say.');
   scene.text('The man looks up not saying anything and glances over the documents, "Yes, everything seems to be in order. Welcome to my little hostel. My name is Peter, but you can call me Petya."');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>>." you reply.
-  scene.text(`"${((s as any).pcs_firstname ?? 0)}." you reply.`);
+  scene.text(`"${((s as any).pcs_firstname || '')}." you reply.`);
   scene.text('"A teacher, eh. Those kids sure are lucky to have such a good-looking teacher." he compliments you.');
   scene.text('You blush a little and politely thank him for the compliment.');
   scene.text('"Here are your keys, the room number is on the key fob. You can find the kitchen and bathroom at the end of the corridor, although I should warn you though the bathroom pipes are really bad. And if you have any problems, please come and see me." he says smiling.');

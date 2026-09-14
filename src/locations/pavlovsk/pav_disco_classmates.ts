@@ -28,7 +28,7 @@ function enterClassmates(s: GameState, scene: SceneBuilder): void {
   if (((s as any).atdisco ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  ||  ((s as any).atdisco ?? 0)?.['hour'] !== ((s as any).hour ?? 0)) {
     if (!(s as any).atdisco) (s as any).atdisco = {}; (s as any).atdisco['day'] = ((s as any).daystart ?? 0);
     if (!(s as any).atdisco) (s as any).atdisco = {}; (s as any).atdisco['hour'] = ((s as any).hour ?? 0);
-    qspCall(s, 'pav_disco_classmates', 'atdisco');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterAtdisco(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.text('<center><b>Disco</b></center>');
   scene.text('Most of the cool kids and jocks are gathered around some tables and couches near the dance floor while the others dance. Some of the other students are hanging around near them or are out dancing.');
@@ -186,120 +186,120 @@ function enterAtdisco(s: GameState, scene: SceneBuilder): void {
   if (((s as any).IgorQW ?? 0)?.['DimaNos_day'] === ((s as any).daystart ?? 0)) {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A1'] = 0;
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco10', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).IgorQW ?? 0)?.['DimaNos_day'] === ((s as any).daystart ?? 0)) {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A4'] = 0;
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco10', 4);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 4]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'pav_disco_classmates', 'atdisco4', 148);
-  qspCall(s, 'pav_disco_classmates', 'atdisco10', 146);
-  qspCall(s, 'pav_disco_classmates', 'atdisco10', 147);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 148]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 146]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 147]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['Katja'] === 8) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco10', 14);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 14]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A14'] = 0;
   }
   if (((s as any).locat ?? 0)?.['Vicky'] === 14) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco10', 15);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 15]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A15'] = 0;
   }
-  qspCall(s, 'pav_disco_classmates', 'atdisco10', 17);
-  qspCall(s, 'pav_disco_classmates', 'atdisco10', 22);
-  qspCall(s, 'pav_disco_classmates', 'atdisco10', 140);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 17]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 22]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 140]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).discoenable ?? 0)?.['A147'] === 1) {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A139'] = 1;
   }
   if (((s as any).soniaQW ?? 0)?.['slut'] > 0) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco4i', 25);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 25]; enterAtdisco4i(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco10', 25);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 25]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).week ?? 0) === 5) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco3i', 149);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 149]; enterAtdisco3i(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco10', 149);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 149]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).week ?? 0) === 5) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco3i', 5);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5]; enterAtdisco3i(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco4', 5);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 5]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).week ?? 0) === 5) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco3i', 8);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterAtdisco3i(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco10', 8);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 8]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'pav_disco_classmates', 'atdisco4', 165);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 165]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).week ?? 0) === 5) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco3i', 13);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 13]; enterAtdisco3i(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco4', 13);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 13]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).locat ?? 0)?.['A23'] === 5) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco10', 23);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 23]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A23'] = 0;
   }
   if (((s as any).week ?? 0) === 5) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco3i', 18);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 18]; enterAtdisco3i(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco4', 18);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 18]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).week ?? 0) === 5) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco3i', 19);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 19]; enterAtdisco3i(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco4', 19);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 19]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).week ?? 0) === 5) {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A3'] = 0;
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco10i', 3);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 3]; enterAtdisco10i(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).week ?? 0) === 5) {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A150'] = 0;
   } else {
-    qspCall(s, 'pav_disco_classmates', 'atdisco5i', 150);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 150]; enterAtdisco5i(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'pav_disco_classmates', 'atdisco3i', 16);
-  qspCall(s, 'pav_disco_classmates', 'atdisco10', 9);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 16]; enterAtdisco3i(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 9]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).discoenable ?? 0)?.['A9'] === 1) {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A10'] = 1;
   }
   if (((s as any).discoenable ?? 0)?.['A9'] === 1) {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A11'] = 1;
   }
-  qspCall(s, 'pav_disco_classmates', 'atdisco4', 157);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 157]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A154'] === 25) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco4', 154);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 154]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A154'] = 0;
   }
   if (((s as any).locat ?? 0)?.['A158'] === 25) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco4', 158);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 158]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A158'] = 0;
   }
   if (((s as any).locat ?? 0)?.['A156'] === 25) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco4', 156);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 156]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A156'] = 0;
   }
-  qspCall(s, 'pav_disco_classmates', 'atdisco4', 185);
-  qspCall(s, 'pav_disco_classmates', 'atdisco10', 155);
-  qspCall(s, 'pav_disco_classmates', 'atdisco4', 20);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 185]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 155]; enterAtdisco10(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 20]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).discoenable ?? 0)?.['A20'] === 1) {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A21'] = 1;
   }
-  qspCall(s, 'pav_disco_classmates', 'atdisco4', 24);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 24]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).locat ?? 0)?.['A144'] === 25) {
-    qspCall(s, 'pav_disco_classmates', 'atdisco4', 144);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 144]; enterAtdisco4(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A144'] = 0;
   }
-  qspCall(s, 'pav_disco_classmates', 'atdisco2', 143);
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 143]; enterAtdisco2(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A141'] = 0;
   if (!(s as any).discoenable) (s as any).discoenable = {}; (s as any).discoenable['A145'] = 0;
   // TODO-QSP: end
@@ -393,7 +393,7 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener2.jpg');
       scene.text('You go up to Mikhail Nikolayevich and politely say hello.');
       // TODO-QSP: dynamic text: "<<$pcs_lastname>>, I was told you were here... Are you really that stupid? Ther...
-      scene.text(`"${((s as any).pcs_lastname ?? 0)}, I was told you were here... Are you really that stupid? There's a game tomorrow!"`);
+      scene.text(`"${((s as any).pcs_lastname || '')}, I was told you were here... Are you really that stupid? There's a game tomorrow!"`);
       scene.text('"I... err... was... erm... dropping off a book for a friend," you mumble.');
       if (((s as any).alko ?? 0) > 1) {
         scene.text('"You\'ve been drinking! If you can\'t even take the team seriously, then you\'re not playing tomorrow."');
@@ -422,17 +422,17 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_vball ?? 0) < 35) {
         // TODO-QSP: dynamic text: The coach looks at you with mild condescension. "<<$pcs_lastname>>, well done. Y...
-        scene.text(`The coach looks at you with mild condescension. "${((s as any).pcs_lastname ?? 0)}, well done. You're getting a hang of the basics. You don't really belong here though... although, what do I know?"`);
+        scene.text(`The coach looks at you with mild condescension. "${((s as any).pcs_lastname || '')}, well done. You're getting a hang of the basics. You don't really belong here though... although, what do I know?"`);
       } else {
         if (((s as any).pcs_vball ?? 0) < 60) {
           // TODO-QSP: dynamic text: The coach looks at you disapprovingly. "<<$pcs_lastname>>, you were pretty good ...
-          scene.text(`The coach looks at you disapprovingly. "${((s as any).pcs_lastname ?? 0)}, you were pretty good in training, but places like this set back your development. You should go home."`);
+          scene.text(`The coach looks at you disapprovingly. "${((s as any).pcs_lastname || '')}, you were pretty good in training, but places like this set back your development. You should go home."`);
         } else {
           if (((s as any).pcs_vball ?? 0) < 80) {
             scene.text('The coach looks at you with condemnation. "What are you doing here?"');
             scene.text('"What are you doing here?" You turn the question back onto him.');
             // TODO-QSP: dynamic text: "<<$pcs_lastname>>, don't piss me off. What I do is my business, and what you ar...
-            scene.text(`"${((s as any).pcs_lastname ?? 0)}, don't piss me off. What I do is my business, and what you are doing here is also my business."`);
+            scene.text(`"${((s as any).pcs_lastname || '')}, don't piss me off. What I do is my business, and what you are doing here is also my business."`);
             if (((s as any).pcs_horny ?? 0) > 79) {
               if (!(s as any).vballVars) (s as any).vballVars = {}; (s as any).vballVars['coach_lust'] = ((s as any).vballVars['coach_lust'] ?? 0) + (1);
               scene.text('"Is that the truth, Mr. Nikolayevich? Are you here because of me?" You move closer to the coach and flutter your eyes at him.');
@@ -442,10 +442,10 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
             }
           } else {
             // TODO-QSP: dynamic text: The coach looks at you with condemnation. "<<$pcs_lastname>>, you here again? Th...
-            scene.text(`The coach looks at you with condemnation. "${((s as any).pcs_lastname ?? 0)}, you here again? This is not the place for someone who wants to be on the team."`);
+            scene.text(`The coach looks at you with condemnation. "${((s as any).pcs_lastname || '')}, you here again? This is not the place for someone who wants to be on the team."`);
             scene.text('"Mr. Nikolayevich, you never said anything about not going out on a Friday."');
             // TODO-QSP: dynamic text: "<<$pcs_lastname>>, are you thick? When does the team play?"
-            scene.text(`"${((s as any).pcs_lastname ?? 0)}, are you thick? When does the team play?"`);
+            scene.text(`"${((s as any).pcs_lastname || '')}, are you thick? When does the team play?"`);
             scene.text('"Saturday," you respond, sheepishly.');
             scene.text('"So on Friday I expect my candidates to be home getting some sleep, not hanging out here. Clear? You have some skill — sort out your attitude and you might yet make the team."');
           }
@@ -463,7 +463,7 @@ function enterCoach(s: GameState, scene: SceneBuilder): void {
 function enterCoachSex(s: GameState, scene: SceneBuilder): void {
   scene.img('images/characters/pavlovsk/school/teacher/mikhail/volleytrener4.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_lastname>>, let's find somewhere a bit more private." You are about to s...
-  scene.text(`"${((s as any).pcs_lastname ?? 0)}, let's find somewhere a bit more private." You are about to say there is nowhere quiet when the coach smiles and says, "Follow me."`);
+  scene.text(`"${((s as any).pcs_lastname || '')}, let's find somewhere a bit more private." You are about to say there is nowhere quiet when the coach smiles and says, "Follow me."`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Follow him', handler: (st: GameState) => {

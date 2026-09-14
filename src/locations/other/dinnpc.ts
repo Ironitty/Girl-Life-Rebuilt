@@ -14,7 +14,7 @@ function enterDinPredlogDimaBj(s: GameState, scene: SceneBuilder): void {
     { label: 'Get down on your knees', handler: (st: GameState) => {
     (s as any).DimaRudeQW = ((s as any).DimaRudeQW ?? 0) + (1);
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1']} ${((s as any).npc_lastname ?? 0)?.['A1']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('Embarrassed, blushing, but eager to please Dimka and a little intimated by him, you get on your knees before Dimka who pulls out his dick and slaps it against your face, looking at you like he owns you.');
     scene.actions([
@@ -25,7 +25,7 @@ function enterDinPredlogDimaBj(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/shared/sex/blowjob/cocksucker2.jpg');
     // TODO-QSP: dynamic text: You gently kiss the purple head of his member, hoping against hope that maybe yo...
-    scene.text(`You gently kiss the purple head of his member, hoping against hope that maybe you can set the tone and pace for this. But Dimka is already impatient and grabs your hair, ignoring your pained yelp. "Stop wasting time and start sucking." Without a second thought, you take his dick into your mouth. You begin to move your ${((s as any).pc_desc ?? 0)?.['lips']} lips up and down Dimka's hard cock, taking his rod deep into your mouth. You don't go slow and move your tongue around his head all the while, trying to please him, but Dimka groans and grabs your head firmly. "Take it deeper!"`);
+    scene.text(`You gently kiss the purple head of his member, hoping against hope that maybe you can set the tone and pace for this. But Dimka is already impatient and grabs your hair, ignoring your pained yelp. "Stop wasting time and start sucking." Without a second thought, you take his dick into your mouth. You begin to move your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips up and down Dimka's hard cock, taking his rod deep into your mouth. You don't go slow and move your tongue around his head all the while, trying to please him, but Dimka groans and grabs your head firmly. "Take it deeper!"`);
     qspCall(s, 'arousal', 'bj', 5, 'sub', 'rough');
     qspCall(s, 'stat', '');
     scene.actions([
@@ -80,17 +80,17 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'bj', 'self', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Who does he think you are?! - Slap him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Who does he think you are?! - Slap him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Who does he think you are?! - Slap him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Who does he think you are?! - Slap him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'set', 'A1', 0);
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1']} ${((s as any).npc_lastname ?? 0)?.['A1']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You give Dimka a good, hard, resounding slap that causes him to yelp like a girl as he clutched his red cheek. His immediate reaction only adds to your satisfaction, but the look he gives you is one of pure hatred - one that makes you wonder if he\'s going to hit you back now.');
     scene.text('But instead, he backs away from you, looking like an animal trapped in a corner. His voice is more of an angry hiss:');
@@ -103,29 +103,29 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   }
-  qspCall(s, 'dinnpc', 'din_predlog_dima_bj');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinPredlogDimaBj(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.actions([
     { label: '… is he serious? Think about what he said for a moment', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1']} ${((s as any).npc_lastname ?? 0)?.['A1']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('Your eyes widen and you flush at his proposal - surely, he didn\'t actually mean that you had to give him a blowjob right here, just so you could go out with him… right?');
     scene.text('As if to answer your question, Dimka unbuttons his pants. "Come on, are you gonna keep me waiting all night long? Which is it? Are you brave and fun? Or just another prude?"');
     qspCall(s, 'willpower', 'bj', 'self', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'That does it! - Slap him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'That does it! - Slap him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'That does it! - Slap him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'That does it! - Slap him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'set', 'A1', 0);
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1']} ${((s as any).npc_lastname ?? 0)?.['A1']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You give Dimka a good, hard, resounding slap that causes him to yelp like a girl as he clutched his red cheek. His immediate reaction only adds to your satisfaction, but the look he gives you is one of pure hatred - one that makes you wonder if he\'s going to hit you back now.');
     scene.text('But instead, he backs away from you, looking like an animal trapped in a corner. His voice is more of an angry hiss:');
@@ -138,16 +138,16 @@ function enterDinDimaPredlog(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     }
-    qspCall(s, 'dinnpc', 'din_predlog_dima_bj');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinPredlogDimaBj(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.actions([
       { label: '"And you promise not to tell anyone?"', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1']} ${((s as any).npc_lastname ?? 0)?.['A1']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A1'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A1'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big1.jpg');
     scene.text('You ask Dimka. You\'re really not sure if you want to do this but you also don\'t want him to think that you are a prude. You are fun… right? And as long as nobody finds out, as long as only he knows…');
     scene.text('');
     scene.text('Dimka gives you a gentle smile and reassuringly touches your cheek. "No, of course I wouldn\'t tell anybody. You\'ll be my girlfriend - why would I tell somebody about what we are doing when we\'re together?"');
-    qspCall(s, 'dinnpc', 'din_predlog_dima_bj');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDinPredlogDimaBj(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
     ]);
   } },

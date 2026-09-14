@@ -8,7 +8,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.text('The prison cell is not very big, and has almost nothing in it. No toilet, no sink, no bed… except for a wooden plank, there is nothing at all.');
   // TODO-QSP: dynamic text: You have to stay in prison for <<kutime>> more hour(s).
-  scene.text(`You have to stay in prison for ${((s as any).kutime ?? 0)} more hour(s).`);
+  scene.text(`You have to stay in prison for ${((s as any).kutime || '')} more hour(s).`);
   if (((s as any).kutime ?? 0) > 0) {
     scene.actions([
       { label: 'Sit out your punishment (1:00)', handler: (st: GameState) => {

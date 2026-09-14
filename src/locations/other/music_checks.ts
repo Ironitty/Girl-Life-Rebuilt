@@ -1,5 +1,3 @@
-import { qspCall } from '../_shared/qspBridge';
-
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
 import type { SceneBuilder } from '../../core/scene';
@@ -52,7 +50,7 @@ function enterZariyahApproach(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).ml_delparcoQW) (s as any).ml_delparcoQW = {}; (s as any).ml_delparcoQW['Stage'] = 99;
       }
     }
-    qspCall(s, 'music_checks', 'check_for_trust');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckForTrust(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).ml_delparcoQW ?? 0)?.['Stage'] === 100) {
       (s as any).ml_approach = 0;
     }

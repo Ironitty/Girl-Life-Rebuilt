@@ -30,7 +30,7 @@ function enterStatLoopCore1(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: :arousal_stat_core_loop1
     if ((!(0 as any))) {
       if (((s as any).locArgs?.[7] ?? 0) !== '') {
-        qspCall(s, 'arousal_stats', '', ((s as any).locArgs?.[7] ?? 0), ((s as any).arousal_temp_npcID ?? 0));
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[7] ?? 0), ((s as any).arousal_temp_npcID ?? 0)]; enterDefault(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).npc_gender ?? 0)?.[String((s as any).arousal_temp_npcID ?? 0)] === 0) {
         // TODO-QSP: stat[$ARGS[4]] += 1
@@ -255,20 +255,20 @@ function enterEnd(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'archetypes', 'sex_change', 300, (-2000), 'Gloryhole');
     }
   }
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_kissed', 'npc_kissed_count', 'npc_last_kissed', 'men_kissed', 'women_kissed', 'herm_kissed');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_hidden_kissed', 'npc_hidden_kissed_count', '', 'men_hidden_kissed', 'women_hidden_kissed', 'herm_hidden_kissed');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_handstuff', 'npc_handstuff_count', 'npc_last_handstuff', 'men_jerked', 'women_fingered', 'herm_jerked');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_hidden_handstuff', 'npc_hidden_handstuff_count', '', 'men_hidden_jerked', 'women_hidden_fingered', 'herm_hidden_jerked');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_footstuff', 'npc_footstuff_count', 'npc_last_footstuff', 'men_feetfucked', 'women_feetfucked', 'herm_feetfucked');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_hidden_footstuff', 'npc_hidden_footstuff_count', '', 'men_hidden_feetfucked', 'women_hidden_feetfucked', 'herm_hidden_feetfucked');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_titstuff', 'npc_titstuff_count', 'npc_last_titstuff', 'men_titfucked', 'women_titfucked', 'herm_titfucked');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_hidden_titstuff', 'npc_hidden_titstuff_count', '', 'men_hidden_titfucked', 'women_hidden_titfucked', 'herm_hidden_titfucked');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_oral', 'npc_oral_count', 'npc_last_oral', 'men_blown', 'women_munched', 'herm_blown', '', 'last_sex_day_oral');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_hidden_oral', 'npc_hidden_oral_count', '', 'men_hidden_blown', 'women_hidden_munched', 'herm_hidden_blown', '', 'last_sex_day_oral');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_vaginal', 'npc_vaginal_count', 'npc_last_vaginal', 'men_vaginal_fucked', 'women_vaginal_fucked', 'herm_vaginal_fucked', 'set_stat_fucked', 'last_sex_day_vaginal');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_hidden_vaginal', 'npc_hidden_vaginal_count', '', 'men_hidden_vaginal_fucked', 'women_hidden_vaginal_fucked', 'herm_hidden_vaginal_fucked', 'set_stat_hidden_fucked', 'last_sex_day_vaginal');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_anal', 'npc_anal_count', 'npc_last_anal', 'men_anal_fucked', 'women_anal_fucked', 'herm_anal_fucked', 'set_stat_fucked', 'last_sex_day_anal');
-  qspCall(s, 'arousal_stats', 'stat_loop_core1', '$arousal_npc_hidden_anal', 'npc_hidden_anal_count', '', 'men_hidden_anal_fucked', 'women_hidden_anal_fucked', 'herm_hidden_anal_fucked', 'set_stat_hidden_fucked', 'last_sex_day_anal');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_kissed', 'npc_kissed_count', 'npc_last_kissed', 'men_kissed', 'women_kissed', 'herm_kissed']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_hidden_kissed', 'npc_hidden_kissed_count', '', 'men_hidden_kissed', 'women_hidden_kissed', 'herm_hidden_kissed']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_handstuff', 'npc_handstuff_count', 'npc_last_handstuff', 'men_jerked', 'women_fingered', 'herm_jerked']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_hidden_handstuff', 'npc_hidden_handstuff_count', '', 'men_hidden_jerked', 'women_hidden_fingered', 'herm_hidden_jerked']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_footstuff', 'npc_footstuff_count', 'npc_last_footstuff', 'men_feetfucked', 'women_feetfucked', 'herm_feetfucked']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_hidden_footstuff', 'npc_hidden_footstuff_count', '', 'men_hidden_feetfucked', 'women_hidden_feetfucked', 'herm_hidden_feetfucked']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_titstuff', 'npc_titstuff_count', 'npc_last_titstuff', 'men_titfucked', 'women_titfucked', 'herm_titfucked']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_hidden_titstuff', 'npc_hidden_titstuff_count', '', 'men_hidden_titfucked', 'women_hidden_titfucked', 'herm_hidden_titfucked']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_oral', 'npc_oral_count', 'npc_last_oral', 'men_blown', 'women_munched', 'herm_blown', '', 'last_sex_day_oral']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_hidden_oral', 'npc_hidden_oral_count', '', 'men_hidden_blown', 'women_hidden_munched', 'herm_hidden_blown', '', 'last_sex_day_oral']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_vaginal', 'npc_vaginal_count', 'npc_last_vaginal', 'men_vaginal_fucked', 'women_vaginal_fucked', 'herm_vaginal_fucked', 'set_stat_fucked', 'last_sex_day_vaginal']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_hidden_vaginal', 'npc_hidden_vaginal_count', '', 'men_hidden_vaginal_fucked', 'women_hidden_vaginal_fucked', 'herm_hidden_vaginal_fucked', 'set_stat_hidden_fucked', 'last_sex_day_vaginal']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_anal', 'npc_anal_count', 'npc_last_anal', 'men_anal_fucked', 'women_anal_fucked', 'herm_anal_fucked', 'set_stat_fucked', 'last_sex_day_anal']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', '$arousal_npc_hidden_anal', 'npc_hidden_anal_count', '', 'men_hidden_anal_fucked', 'women_hidden_anal_fucked', 'herm_hidden_anal_fucked', 'set_stat_hidden_fucked', 'last_sex_day_anal']; enterStatLoopCore1(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).arousal_maxi = 0;
   if (((s as any).arousal_maxi ?? 0) > 0) {
     (s as any).arousal_i = 0;

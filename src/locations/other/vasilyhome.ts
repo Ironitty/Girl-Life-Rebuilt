@@ -41,9 +41,9 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       if (((s as any).hour ?? 0) >= 16  &&  ((s as any).hour ?? 0) <= 19) {
         scene.img('images/characters/shared/headshots_main/big112.jpg');
         // TODO-QSP: dynamic text: When you knock on the door, <<$serg_obr>> Sergey answers it.
-        scene.text(`When you knock on the door, ${((s as any).serg_obr ?? 0)} Sergey answers it.`);
+        scene.text(`When you knock on the door, ${((s as any).serg_obr || '')} Sergey answers it.`);
         // TODO-QSP: dynamic text: "Oh, hello <<$pcs_nickname>>," he shrugs. "If you're looking for Vasily, he's no...
-        scene.text(`"Oh, hello ${((s as any).pcs_nickname ?? 0)}," he shrugs. "If you're looking for Vasily, he's not here, and I don't know when he'll be back."`);
+        scene.text(`"Oh, hello ${((s as any).pcs_nickname || '')}," he shrugs. "If you're looking for Vasily, he's not here, and I don't know when he'll be back."`);
         if (((s as any).npc_rel ?? 0)?.['A112'] >= 50) {
           scene.text('"You can come in and wait for him if you want," he offers.');
           scene.actions([
@@ -54,9 +54,9 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
         if ((((s as any).week ?? 0) === 5  ||  ((s as any).week ?? 0) === 6)  &&  ((s as any).hour ?? 0) >= 20) {
           scene.img('images/characters/shared/headshots_main/big112.jpg');
           // TODO-QSP: dynamic text: When you knock on the door, <<$serg_obr>> Sergey answers it.
-          scene.text(`When you knock on the door, ${((s as any).serg_obr ?? 0)} Sergey answers it.`);
+          scene.text(`When you knock on the door, ${((s as any).serg_obr || '')} Sergey answers it.`);
           // TODO-QSP: dynamic text: "Oh, hello <<$pcs_nickname>>," he shrugs. "If you're looking for Vasily, he's no...
-          scene.text(`"Oh, hello ${((s as any).pcs_nickname ?? 0)}," he shrugs. "If you're looking for Vasily, he's not here. He's probably at the disco with everyone else."`);
+          scene.text(`"Oh, hello ${((s as any).pcs_nickname || '')}," he shrugs. "If you're looking for Vasily, he's not here. He's probably at the disco with everyone else."`);
           if (((s as any).npc_rel ?? 0)?.['A112'] >= 50) {
             scene.text('"You can come in and wait for him if you want," he offers.');
             scene.actions([
@@ -189,17 +189,17 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       (s as any).shulga_whore = ((s as any).daystart ?? 0) + 7;
       qspCall(s, 'fame', 'pav', 'sex', 20);
       // TODO-QSP: dynamic text: As you walk in, the boys are already laughing. "Too late <<$pcs_nickname>>, the ...
-      scene.text(`As you walk in, the boys are already laughing. "Too late ${((s as any).pcs_nickname ?? 0)}, the whole school now knows what a whore you are. Since you're here, you might as well fuck us like the good little slut you are."`);
+      scene.text(`As you walk in, the boys are already laughing. "Too late ${((s as any).pcs_nickname || '')}, the whole school now knows what a whore you are. Since you're here, you might as well fuck us like the good little slut you are."`);
       qspCall(s, 'willpower', 'misc', 'self', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Put an end to this [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Put an end to this', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Put an end to this [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Put an end to this', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'misc', 'self', 'hard');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).shulga_whore = 0;
@@ -213,13 +213,13 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'self', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Run out of the room crying [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Run out of the room crying', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Run out of the room crying [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Run out of the room crying', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'misc', 'self', 'easy');
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['vasilyhome', 'hallway'] },
@@ -235,7 +235,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: You walk into the room and the boys smile at you. "Well look who it is. <<$pcs_n...
-      scene.text(`You walk into the room and the boys smile at you. "Well look who it is. ${((s as any).pcs_nickname ?? 0)}, our own personal fuck slut. Isn't that right, slut?"`);
+      scene.text(`You walk into the room and the boys smile at you. "Well look who it is. ${((s as any).pcs_nickname || '')}, our own personal fuck slut. Isn't that right, slut?"`);
       scene.text('You nod your head, knowing you have no choice but to obey. "Yes, I\'m your fuck slut…"');
       scene.text('Laughing, they look at each other. "Damn, if we don\'t have the bitch well trained." Then they look back at you. "So? Take off your clothes then!"');
       scene.text('You walk over to them while taking off your clothes.');
@@ -266,7 +266,7 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 20) {
     // TODO-QSP: dynamic text: <<$shulga_room_rnd>> <a href="exec: gt 'vasilyhome', 'vasily_bazar_night'">Vasil...
-    scene.text(`${((s as any).shulga_room_rnd ?? 0)} <a href="exec: gt 'vasilyhome', 'vasily_bazar_night'">Vasily</a>, <a href="exec: gt 'vasilyhome', 'dan_bazar'">Dan</a> and <a href="exec: gt 'vasilyhome', 'vitek_bazar'">Vitek</a>, invites you to <a href="exec: gt 'vasilyhome', 'vasily_beer'">have a drink with them</a>.`);
+    scene.text(`${((s as any).shulga_room_rnd || '')} <a href="exec: gt 'vasilyhome', 'vasily_bazar_night'">Vasily</a>, <a href="exec: gt 'vasilyhome', 'dan_bazar'">Dan</a> and <a href="exec: gt 'vasilyhome', 'vitek_bazar'">Vitek</a>, invites you to <a href="exec: gt 'vasilyhome', 'vasily_beer'">have a drink with them</a>.`);
   }
   if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)) {
     scene.text('<a href="exec: gt \'vasilyhome\', \'vasily_bazar_day\'">Vasily</a> is sitting on the big sofa.');
@@ -287,13 +287,13 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'sex', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Seduce the guys [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Seduce the guys', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Seduce the guys [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Seduce the guys', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'sex', 'self');
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['gopsex', 'gopsex_select'] },
@@ -304,13 +304,13 @@ function enterLivingroom(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'sex', 'self', 'easy');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Seduce Vasily [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Seduce Vasily', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Seduce Vasily [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Seduce Vasily', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'sex', 'self', 'easy');
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['gopsex', 'gopsex_select'] },
@@ -362,24 +362,24 @@ function enterShHooker(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'misc', 'self', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Leave feigning resentment [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave feigning resentment', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Leave feigning resentment [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Leave feigning resentment', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['vasilyhome', 'hallway'] },
     ]);
   }
   if (((s as any).week ?? 0) < 5  &&  ((s as any).hour ?? 0) >= 20) {
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, why on earth are dressed like a whore? You know damn well we...
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, why on earth are dressed like a whore? You know damn well we aren't going to pay you for it," Vasily jokes.`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, why on earth are dressed like a whore? You know damn well we aren't going to pay you for it," Vasily jokes.`);
     scene.text('Dan and Vitek snicker and start throwing catcalls your way.');
     scene.text('"I come over dressed like this for you guys and this is how you greet me? I guess I\'ll just be on my way then…" you say as you turn toward the door.');
     // TODO-QSP: dynamic text: "Wait <<$pcs_nickname>>, it was just a joke. We didn't mean to offend you. Why d...
-    scene.text(`"Wait ${((s as any).pcs_nickname ?? 0)}, it was just a joke. We didn't mean to offend you. Why don't you come over and let us make it up to you?" Vasily asks with a grin.`);
+    scene.text(`"Wait ${((s as any).pcs_nickname || '')}, it was just a joke. We didn't mean to offend you. Why don't you come over and let us make it up to you?" Vasily asks with a grin.`);
     scene.actions([
       { label: 'Sigh dramatically and open your arms', handler: (st: GameState) => {
     (s as any).shgopsex_gr_day = ((s as any).daystart ?? 0);
@@ -393,10 +393,10 @@ function enterShHooker(s: GameState, scene: SceneBuilder): void {
   } else {
     if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)) {
       // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, why are you dressed like a whore? Did you leave work in ...
-      scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, why are you dressed like a whore? Did you leave work in such a hurry that you forgot to change your uniform?" Vasily asks sarcastically.`);
+      scene.text(`"Hey ${((s as any).pcs_nickname || '')}, why are you dressed like a whore? Did you leave work in such a hurry that you forgot to change your uniform?" Vasily asks sarcastically.`);
       scene.text('"Listen you jerk, I came here dressed like this for you. If you want I can turn around and head right back out that door," you say while putting on your best pouty expression.');
       // TODO-QSP: dynamic text: "Come on <<$pcs_nickname>>, it was just a bad joke. Let's just kiss and make up,...
-      scene.text(`"Come on ${((s as any).pcs_nickname ?? 0)}, it was just a bad joke. Let's just kiss and make up," Vasily smiles as he unzips his pants.`);
+      scene.text(`"Come on ${((s as any).pcs_nickname || '')}, it was just a bad joke. Let's just kiss and make up," Vasily smiles as he unzips his pants.`);
       scene.actions([
         { label: 'Accept his apology', handler: (st: GameState) => {
     (s as any).gopsex_n_npc = 1;
@@ -425,13 +425,13 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'You\'ve had enough [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'You\'ve had enough', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'You\'ve had enough [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'You\'ve had enough', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['vasilyhome', 'livingroom'] },
       ]);
@@ -445,7 +445,7 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/drunk_ev/pjanaja\' + rand(1, 8) + \'.jpg');
     scene.text('You\'re almost too drunk to stand. The boys notice and start harassing you.');
     // TODO-QSP: dynamic text: "We let you drink for free all night, <<$pcs_nickname>>. Show us a little skin a...
-    scene.text(`"We let you drink for free all night, ${((s as any).pcs_nickname ?? 0)}. Show us a little skin as a thank you," Vasily says with a grin.`);
+    scene.text(`"We let you drink for free all night, ${((s as any).pcs_nickname || '')}. Show us a little skin as a thank you," Vasily says with a grin.`);
     if (qspFunc(s, 'cardgame_durak', 'get_mod_fame') >= 250  &&  ((s as any).kotovLoveQW ?? 0) <= 0) {
       scene.actions([
         { label: 'Get this party started', goto: ['vasilyhome', 'drunken_sex_yes'] },
@@ -459,13 +459,13 @@ function enterVasilyBeer(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'sex', 'resist');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Tell them to knock it off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Tell them to knock it off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Tell them to knock it off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Tell them to knock it off', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['vasilyhome', 'drunken_sex_no'] },
           ]);
@@ -576,7 +576,7 @@ function enterShultv(s: GameState, scene: SceneBuilder): void {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'mood', 'raise', 'tiny');
     // TODO-QSP: dynamic text: <<$shulga_tv_rand>> <br> You veg out in front of the TV for 30 minutes.
-    scene.text(`${((s as any).shulga_tv_rand ?? 0)} <br> You veg out in front of the TV for 30 minutes.`);
+    scene.text(`${((s as any).shulga_tv_rand || '')} <br> You veg out in front of the TV for 30 minutes.`);
   } else {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/tv/tvrekl\' + rand(1, 4) + \'.mp4');
@@ -588,7 +588,7 @@ function enterShultv(s: GameState, scene: SceneBuilder): void {
     if ((((s as any).week ?? 0) >= 6  &&  ((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 17)  ||  (((s as any).week ?? 0) === 7  &&  ((s as any).hour ?? 0) >= 20)) {
       qspCall(s, 'vasily_home_sex', 'view_pornotv_vasily');
     } else {
-      qspCall(s, 'vasilyhome', 'view_pornotv');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterViewPornotv(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   // TODO-QSP: end
@@ -624,13 +624,13 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Ask him for sex [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ask him for sex', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Ask him for sex [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Ask him for sex', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     if ((!((s as any).shgopsex_vasya_count ?? 0))) {
       scene.text('"Keep your pants on, woman. I\'m not a machine," Vasily says.');
@@ -665,7 +665,7 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk\' + rand(1, 5) + \'.jpg');
     if (((s as any).bazar_count ?? 0) <= 0) {
       // TODO-QSP: dynamic text: "Give it a rest, <<$pcs_nickname>>. How about a drink instead?" Vasily offers.
-      scene.text(`"Give it a rest, ${((s as any).pcs_nickname ?? 0)}. How about a drink instead?" Vasily offers.`);
+      scene.text(`"Give it a rest, ${((s as any).pcs_nickname || '')}. How about a drink instead?" Vasily offers.`);
     } else {
       if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
         (s as any).temp_rand = Math.floor(Math.random() * 9) + 0;
@@ -674,7 +674,7 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).temp_rand ?? 0) === 1) {
             // TODO-QSP: dynamic text: "I love <<$pcs_haircolor>> hair, and it looks so good on you <<$pcs_nickname>>."...
-            scene.text(`"I love ${((s as any).pcs_haircolor ?? 0)} hair, and it looks so good on you ${((s as any).pcs_nickname ?? 0)}."<br> "Thanks Vasily. That's very sweet," you reply while blushing.<br> "Does the carpet match the drapes?" he asks with a smirk.<br> "Typical," is all you answer with an exasperated sigh.`);
+            scene.text(`"I love ${((s as any).pcs_haircolor || '')} hair, and it looks so good on you ${((s as any).pcs_nickname || '')}."<br> "Thanks Vasily. That's very sweet," you reply while blushing.<br> "Does the carpet match the drapes?" he asks with a smirk.<br> "Typical," is all you answer with an exasperated sigh.`);
           } else {
             if (((s as any).temp_rand ?? 0) === 2) {
               if (((s as any).gschoolVars ?? 0)?.['school_diploma'] === 0) {
@@ -697,7 +697,7 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((s as any).temp_rand ?? 0) === 7) {
                         // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, the guys and I were trying to figure something out. How ...
-                        scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, the guys and I were trying to figure something out. How big are your tits? I said they look like ${((s as any).titsize ?? 0)}s, but I figured I'd ask you to be sure."<br> You cross your arms over your chest, and glare at him in response.<br> "So, bigger then?" he quirks an eyebrow.<br> You give him a little slug in the arm for an answer.`);
+                        scene.text(`"Hey ${((s as any).pcs_nickname || '')}, the guys and I were trying to figure something out. How big are your tits? I said they look like ${((s as any).titsize || '')}s, but I figured I'd ask you to be sure."<br> You cross your arms over your chest, and glare at him in response.<br> "So, bigger then?" he quirks an eyebrow.<br> You give him a little slug in the arm for an answer.`);
                       } else {
                         if (((s as any).npc_rel ?? 0)?.['A11'] < 30) {
                           scene.text('He tells you a story about magic fairies who live in the countryside. He swears it\'s true, but you just roll your eyes.');
@@ -707,13 +707,13 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
                           } else {
                             if (((s as any).npc_rel ?? 0)?.['A11'] < 50) {
                               // TODO-QSP: dynamic text: "Have you heard about all the webcam sites that are popping up? Apparently girls...
-                              scene.text(`"Have you heard about all the webcam sites that are popping up? Apparently girls can make a lot of money on them. If you have a computer, webcam, and are willing to show a little skin, I bet you could do very well ${((s as any).pcs_nickname ?? 0)}," he says.<br> "I'm not sure I would be comfortable doing something like that," you reply.<br> "You should think about it. It's not like you would be selling it on the street. All you have to do is lie around on a bed and talk to a bunch of lonely guys. Then you show them a little skin and the money starts rolling in. It would be so easy."`);
+                              scene.text(`"Have you heard about all the webcam sites that are popping up? Apparently girls can make a lot of money on them. If you have a computer, webcam, and are willing to show a little skin, I bet you could do very well ${((s as any).pcs_nickname || '')}," he says.<br> "I'm not sure I would be comfortable doing something like that," you reply.<br> "You should think about it. It's not like you would be selling it on the street. All you have to do is lie around on a bed and talk to a bunch of lonely guys. Then you show them a little skin and the money starts rolling in. It would be so easy."`);
                             } else {
                               if (((s as any).npc_rel ?? 0)?.['A11'] < 70) {
                                 scene.text('"Do you remember when I told you about the webcam sites where you can earn big money for showing some skin?"<br> "Yeah, I remember," you answer.<br> "Well, not too long ago, I bought a webcam so that I could video chat on Skype. If you want to use it, I wouldn\'t mind…"<br> "Umm thanks, I\'ll think about it…" you reply.');
                               } else {
                                 // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, have you checked out the webcam I bought?" Vasily asks.<...
-                                scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, have you checked out the webcam I bought?" Vasily asks.<br> "Yeah, I may have checked it out a little…" you say.<br> "Well, if you ever want to get on there during the weekend let me know. We could do a show together and rake in some big bucks," he says with a wink and a smile.<br> "That's not a bad idea, but I'll have to think about it," you blush.`);
+                                scene.text(`"Hey ${((s as any).pcs_nickname || '')}, have you checked out the webcam I bought?" Vasily asks.<br> "Yeah, I may have checked it out a little…" you say.<br> "Well, if you ever want to get on there during the weekend let me know. We could do a show together and rake in some big bucks," he says with a wink and a smile.<br> "That's not a bad idea, but I'll have to think about it," you blush.`);
                               }
                             }
                           }
@@ -737,14 +737,14 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).temp_rand ?? 0) === 1) {
             // TODO-QSP: dynamic text:  You really seemed to enjoy getting fucked like a drunken slut the other day <<$...
-            scene.text(` You really seemed to enjoy getting fucked like a drunken slut the other day ${((s as any).pcs_nickname ?? 0)}," Vasily snickers.<br> "Well I… yeah, I kind of got into it," you stammer meekly.<br> "Then you should come drinking with us in the park more often. We'll gladly fuck you six ways to Sunday if you show up there," he says with a sly grin.<br> "Don't be surprised if I take you up on that offer," you say with a wink.`);
+            scene.text(` You really seemed to enjoy getting fucked like a drunken slut the other day ${((s as any).pcs_nickname || '')}," Vasily snickers.<br> "Well I… yeah, I kind of got into it," you stammer meekly.<br> "Then you should come drinking with us in the park more often. We'll gladly fuck you six ways to Sunday if you show up there," he says with a sly grin.<br> "Don't be surprised if I take you up on that offer," you say with a wink.`);
           } else {
             if (((s as any).temp_rand ?? 0) === 2) {
               if (((s as any).soniaQW ?? 0)?.['slut'] === 1) {
                 scene.text(' "We have to figure out how to get you and Sonia in the same room," Vasily says hungrily.<br> "I certainly wouldn\'t kick her out of bed…" you say and give him a wink.<br> "Just thinking about it is getting me going. Actually seeing you two together would be hot enough to start a fire."<br> You rest your hand on his groin and give it a squeeze. "Oh, I can tell…" you whisper seductively.');
               } else {
                 // TODO-QSP: dynamic text: "Sonia was talking about you the other day," Vasily tells you.<br> "Oh really? W...
-                scene.text(`"Sonia was talking about you the other day," Vasily tells you.<br> "Oh really? What did she say?" you ask.<br> "She said and I quote: That ${((s as any).pcs_nickname ?? 0)} is crazy hot. Every time I see her, I just want to eat her like a bowl of ice cream," he says laughing.<br> "Well, next time you see her, tell her it tastes like cherry", you tell him laughing.`);
+                scene.text(`"Sonia was talking about you the other day," Vasily tells you.<br> "Oh really? What did she say?" you ask.<br> "She said and I quote: That ${((s as any).pcs_nickname || '')} is crazy hot. Every time I see her, I just want to eat her like a bowl of ice cream," he says laughing.<br> "Well, next time you see her, tell her it tastes like cherry", you tell him laughing.`);
               }
             } else {
               if (((s as any).temp_rand ?? 0) === 3) {
@@ -756,7 +756,7 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).temp_rand ?? 0) === 4) {
                   // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, did you know that your mother is still a slut? We saw he...
-                  scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, did you know that your mother is still a slut? We saw her in the cafe after closing with her boss. She was sucking his dick like it was the fountain of youth. I see where you got your skills from; she must have been a really good teacher."<br> "Ha, dream on asshole," you tell him with a laugh.`);
+                  scene.text(`"Hey ${((s as any).pcs_nickname || '')}, did you know that your mother is still a slut? We saw her in the cafe after closing with her boss. She was sucking his dick like it was the fountain of youth. I see where you got your skills from; she must have been a really good teacher."<br> "Ha, dream on asshole," you tell him with a laugh.`);
                 } else {
                   if (((s as any).temp_rand ?? 0) === 5) {
                     if (((s as any).soniaQW ?? 0)?.['slut'] === 1) {
@@ -774,39 +774,39 @@ function enterVasilyBazarNight(s: GameState, scene: SceneBuilder): void {
                     } else {
                       if (((s as any).temp_rand ?? 0) === 7) {
                         // TODO-QSP: dynamic text: "Do you like anal now <<$pcs_nickname>>? Does it hurt, or does it give you pleas...
-                        scene.text(`"Do you like anal now ${((s as any).pcs_nickname ?? 0)}? Does it hurt, or does it give you pleasure?" Vasily asks.<br> "My ${((s as any).npc_nickname ?? 0)?.['A29']} has a dildo in her closet. I could get it if you want to find out for yourself…" you say laughing.<br> "Yeah, I'll pass," he says dryly.<br> "Party pooper," you say while sticking out your tongue at him.`);
+                        scene.text(`"Do you like anal now ${((s as any).pcs_nickname || '')}? Does it hurt, or does it give you pleasure?" Vasily asks.<br> "My ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} has a dildo in her closet. I could get it if you want to find out for yourself…" you say laughing.<br> "Yeah, I'll pass," he says dryly.<br> "Party pooper," you say while sticking out your tongue at him.`);
                       } else {
                         if (((s as any).temp_rand ?? 0) === 8) {
                           scene.text('"What\'s your favorite position?" Vasily asks.<br> "Comfortable," you answer laughing.<br> All the boys join in laughing.');
                         } else {
                           if (((s as any).temp_rand ?? 0) === 9) {
                             // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, you want to play some cards?" Vasily asks.<br> "I don't ...
-                            scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, you want to play some cards?" Vasily asks.<br> "I don't know, will I get to keep my clothes on?" you ask.<br> "Sure, we can play for money," he says.<br> "Too bad, I guess I'l pass," you say disappointedly. You flash him your tits and have a good laugh.`);
+                            scene.text(`"Hey ${((s as any).pcs_nickname || '')}, you want to play some cards?" Vasily asks.<br> "I don't know, will I get to keep my clothes on?" you ask.<br> "Sure, we can play for money," he says.<br> "Too bad, I guess I'l pass," you say disappointedly. You flash him your tits and have a good laugh.`);
                           } else {
                             if (((s as any).temp_rand ?? 0) === 10) {
                               scene.text('"Do you remember that barmaid in the city I was telling you about?" Vasily says. "I finally made it back to the barbecue to see her again. She gave me the best blowjob I\'ve had in my life!"<br> "Umm Vasily, there\'s something I…"<br> "I didn\'t mean it babe. She was good is all. Nobody is better than you," he says apologetically.<br> You decide not to push the topic of the barmaid.');
                             } else {
                               if (((s as any).temp_rand ?? 0) === 11) {
                                 // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, are you into water sports?" he asks innocently.<br> "Oh,...
-                                scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, are you into water sports?" he asks innocently.<br> "Oh, I don't know. I'm better at volleyball and running than I am at swimming. If it's warm, I do like to cool off in the water though."<br> "I think that means she's up for it guys," he announces to the room.<br> "What are you guys talking about? Up for what?" you ask suspiciously.`);
+                                scene.text(`"Hey ${((s as any).pcs_nickname || '')}, are you into water sports?" he asks innocently.<br> "Oh, I don't know. I'm better at volleyball and running than I am at swimming. If it's warm, I do like to cool off in the water though."<br> "I think that means she's up for it guys," he announces to the room.<br> "What are you guys talking about? Up for what?" you ask suspiciously.`);
                               } else {
                                 if (((s as any).npc_rel ?? 0)?.['A11'] < 30) {
                                   // TODO-QSP: dynamic text: "I love <<$pcs_haircolor>> hair, and it looks so good on you <<$pcs_nickname>>."...
-                                  scene.text(`"I love ${((s as any).pcs_haircolor ?? 0)} hair, and it looks so good on you ${((s as any).pcs_nickname ?? 0)}."<br> "Thanks Vasily. That's very sweet," you reply while blushing.<br> "Does the carpet match the drapes?" he asks with a smirk.<br> "Typical," is all you answer with an exasperated sigh.`);
+                                  scene.text(`"I love ${((s as any).pcs_haircolor || '')} hair, and it looks so good on you ${((s as any).pcs_nickname || '')}."<br> "Thanks Vasily. That's very sweet," you reply while blushing.<br> "Does the carpet match the drapes?" he asks with a smirk.<br> "Typical," is all you answer with an exasperated sigh.`);
                                 } else {
                                   if (((s as any).mc_inventory ?? 0)?.['tech_webcam'] === 1) {
                                     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, would you grab me a beer?" Vasily asks.<br> "Sure thing," yo...
-                                    scene.text(`"${((s as any).pcs_nickname ?? 0)}, would you grab me a beer?" Vasily asks.<br> "Sure thing," you say.<br> "Grab one for yourself too," he adds.<br> "Vasily Shulgin, are you trying to get me drunk?" you answer in a shocked tone. Laughing, you head for the kitchen.`);
+                                    scene.text(`"${((s as any).pcs_nickname || '')}, would you grab me a beer?" Vasily asks.<br> "Sure thing," you say.<br> "Grab one for yourself too," he adds.<br> "Vasily Shulgin, are you trying to get me drunk?" you answer in a shocked tone. Laughing, you head for the kitchen.`);
                                   } else {
                                     if (((s as any).npc_rel ?? 0)?.['A11'] < 50) {
                                       // TODO-QSP: dynamic text: "Have you heard about all the webcam sites that are popping up? Apparently girls...
-                                      scene.text(`"Have you heard about all the webcam sites that are popping up? Apparently girls can make a lot of money on them. If you have a computer, webcam, and are willing to show a little skin I bet you could do very well ${((s as any).pcs_nickname ?? 0)}," he says.<br> "I'm not sure I would be comfortable doing something like that," you reply.<br> "You should think about it. It's not like you would be selling it on the street. All you have to do is lie around on a bed and talk to a bunch of lonely guys. Then you show them a little skin and the money starts rolling in. It would be so easy."`);
+                                      scene.text(`"Have you heard about all the webcam sites that are popping up? Apparently girls can make a lot of money on them. If you have a computer, webcam, and are willing to show a little skin I bet you could do very well ${((s as any).pcs_nickname || '')}," he says.<br> "I'm not sure I would be comfortable doing something like that," you reply.<br> "You should think about it. It's not like you would be selling it on the street. All you have to do is lie around on a bed and talk to a bunch of lonely guys. Then you show them a little skin and the money starts rolling in. It would be so easy."`);
                                     } else {
                                       if (((s as any).npc_rel ?? 0)?.['A11'] < 70) {
                                         scene.text('"Do you remember when I told you about the webcam sites where you can earn big money for showing some skin?"<br> "Yeah, I remember," you answer.<br> "Well, not too long ago I bought a webcam so that I could video chat on Skype. If you want to use it, I wouldn\'t mind…"<br> "Umm thanks, I\'ll think about it…" you reply.');
                                       } else {
                                         // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, have you checked out the webcam I bought?" Vasily asks.<...
-                                        scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, have you checked out the webcam I bought?" Vasily asks.<br> "Yeah, I may have checked it out a little…" you say.<br> "Well, if you ever want to get on there during the weekend let me know. We could do a show together and rake in some big bucks," he says with a wink and a smile.<br> "That's not a bad idea, but I'll have to think about it," you blush.`);
+                                        scene.text(`"Hey ${((s as any).pcs_nickname || '')}, have you checked out the webcam I bought?" Vasily asks.<br> "Yeah, I may have checked it out a little…" you say.<br> "Well, if you ever want to get on there during the weekend let me know. We could do a show together and rake in some big bucks," he says with a wink and a smile.<br> "That's not a bad idea, but I'll have to think about it," you blush.`);
                                       }
                                     }
                                   }
@@ -843,13 +843,13 @@ function enterDanBazar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Have sex with Dan [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Have sex with Dan', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Have sex with Dan [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Have sex with Dan', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     if ((!((s as any).shgopsex_den_count ?? 0))) {
       scene.text('"Damn slut, I\'m only one man. Suck your supper out of someone else\'s cock!" Dan says.');
@@ -922,14 +922,14 @@ function enterDanBazar(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).bazar_count_den ?? 0) <= 0) {
       // TODO-QSP: dynamic text: "Be quiet, <<$pcs_nickname>>! That's enough talk out of you tonight. Leave me in...
-      scene.text(`"Be quiet, ${((s as any).pcs_nickname ?? 0)}! That's enough talk out of you tonight. Leave me in peace, unless you want to put those ${((s as any).pc_desc ?? 0)?.['lips']} lips to better use," he says.`);
+      scene.text(`"Be quiet, ${((s as any).pcs_nickname || '')}! That's enough talk out of you tonight. Leave me in peace, unless you want to put those ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips to better use," he says.`);
     } else {
       if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
         // TODO-QSP: dynamic text: <<$den_textb>>
-        scene.text(`${((s as any).den_textb ?? 0)}`);
+        scene.text(`${((s as any).den_textb || '')}`);
       } else {
         // TODO-QSP: dynamic text: <<$den_textb_gorslut>>
-        scene.text(`${((s as any).den_textb_gorslut ?? 0)}`);
+        scene.text(`${((s as any).den_textb_gorslut || '')}`);
       }
     }
     scene.actions([
@@ -950,13 +950,13 @@ function enterVitekBazar(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Get laid [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Get laid', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Get laid [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Get laid', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     if ((!((s as any).shgopsex_vitya_count ?? 0))) {
       scene.text('"Sorry kitten, but you\'ve worn me out for the day," he says.');
@@ -1033,14 +1033,14 @@ function enterVitekBazar(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).bazar_count_vitek ?? 0) <= 0) {
       // TODO-QSP: dynamic text: "That's enough talk for now, <<$pcs_nickname>>," he says.
-      scene.text(`"That's enough talk for now, ${((s as any).pcs_nickname ?? 0)}," he says.`);
+      scene.text(`"That's enough talk for now, ${((s as any).pcs_nickname || '')}," he says.`);
     } else {
       if (((s as any).fame ?? 0)?.['pav_slut'] < 200) {
         // TODO-QSP: dynamic text: <<$vitek_textb>>
-        scene.text(`${((s as any).vitek_textb ?? 0)}`);
+        scene.text(`${((s as any).vitek_textb || '')}`);
       } else {
         // TODO-QSP: dynamic text: <<$vitek_textb_gorslut>>
-        scene.text(`${((s as any).vitek_textb_gorslut ?? 0)}`);
+        scene.text(`${((s as any).vitek_textb_gorslut || '')}`);
       }
     }
     scene.actions([
@@ -1066,17 +1066,17 @@ function enterVasilyBazarDay(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Suggest sex [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suggest sex', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Suggest sex [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suggest sex', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     if ((!((s as any).shgopsex_vasya_count ?? 0))) {
       // TODO-QSP: dynamic text: "Maybe next time, <<$pcs_nickname>>. I've had enough for today," Vasily says.
-      scene.text(`"Maybe next time, ${((s as any).pcs_nickname ?? 0)}. I've had enough for today," Vasily says.`);
+      scene.text(`"Maybe next time, ${((s as any).pcs_nickname || '')}. I've had enough for today," Vasily says.`);
       scene.actions([
         { label: 'Sigh', goto: ['vasilyhome', 'livingroom'] },
       ]);
@@ -1103,7 +1103,7 @@ function enterVasilyBazarDay(s: GameState, scene: SceneBuilder): void {
     if (((s as any).bazar_count ?? 0) > 0) {
       qspCall(s, 'npc_relationship', 'modify', 'A11', 1);
     }
-    qspCall(s, 'vasilyhome', 'vasily_rep');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterVasilyRep(s, scene); (s as any).locArgs = __savedLocArgs; }
     scene.img('images/locations/pavlovsk/resident/apartment/shulginhome/bigroom/talk/talk\' + rand(1, 5) + \'.jpg');
     (s as any).temp_rand = Math.floor(Math.random() * 9) + 0;
     if ((!((s as any).temp_rand ?? 0))) {
@@ -1145,10 +1145,10 @@ function enterVasilyBazarDay(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).bazar_count ?? 0) <= 0) {
       // TODO-QSP: dynamic text: "I'm tired of talking, <<$pcs_nickname>>. Leave me alone," he says.
-      scene.text(`"I'm tired of talking, ${((s as any).pcs_nickname ?? 0)}. Leave me alone," he says.`);
+      scene.text(`"I'm tired of talking, ${((s as any).pcs_nickname || '')}. Leave me alone," he says.`);
     } else {
       // TODO-QSP: dynamic text: <<$vasyan_textb_day>>
-      scene.text(`${((s as any).vasyan_textb_day ?? 0)}`);
+      scene.text(`${((s as any).vasyan_textb_day || '')}`);
     }
     qspCall(s, 'stat', '');
     scene.actions([
@@ -1188,13 +1188,13 @@ function enterVasilyVodka(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'force', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Decide to get revenge [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Decide to get revenge', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Decide to get revenge [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Decide to get revenge', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/revenge/vodka5.jpg');
@@ -1293,13 +1293,13 @@ function enterVasilyVodka(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'drink', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'You\'ve had enough [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'You\'ve had enough', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'You\'ve had enough [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'You\'ve had enough', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['vasilyhome', 'livingroom'] },
       ]);
@@ -1323,7 +1323,7 @@ function enterVasilyLern(s: GameState, scene: SceneBuilder): void {
     (s as any).lern = ((s as any).lern ?? 0) + (Math.floor(Math.random() * 6) + 1);
     qspCall(s, 'exp_gain', 'intel', Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset ?? 0)}.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset || '')}.jpg`);
     scene.text('You sit with Vasily for an hour and do your homework.');
     if (((s as any).lernHome ?? 0) > 1) {
       qspCall(s, 'grades', 'homework', 'school', 'yes', 2, 1, 'A2');
@@ -1336,21 +1336,21 @@ function enterVasilyLern(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     qspCall(s, 'stat', '');
-    scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset ?? 0)}_1.jpg`);
+    scene.img(`images/characters/pavlovsk/school/boy/vasya/sex/shuglinhome/lern/ev${((s as any).lern_imgset || '')}_1.jpg`);
     if (((s as any).fame ?? 0)?.['pav_slut'] >= 200) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, there's no way I can concentrate with you in that outfit. Le...
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, there's no way I can concentrate with you in that outfit. Let's get you out of it so we can continue," he suggests.`);
+      scene.text(`"${((s as any).pcs_nickname || '')}, there's no way I can concentrate with you in that outfit. Let's get you out of it so we can continue," he suggests.`);
       scene.text('From the way he\'s pawing at you, it looks like more school work is out of the question. The only question that remains is: What are you going to do about that bulge in Vasily\'s pants?');
       qspCall(s, 'willpower', 'sex', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'You\'re not in the mood [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'You\'re not in the mood', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'You\'re not in the mood [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'You\'re not in the mood', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['vasilyhome', 'vasily_lern_sex_no'] },
         ]);
@@ -1358,20 +1358,20 @@ function enterVasilyLern(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: act iif(pcs_horny >= 50, 'You''re already wet', 'Oh, I suppose'): gt 'vasily_home_sex', 'vasily_lern...
     } else {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, if you would like to keep learning, I've been told that I'm ...
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, if you would like to keep learning, I've been told that I'm an excellent teacher," Vasily says as he gently starts to paw at you.`);
+      scene.text(`"${((s as any).pcs_nickname || '')}, if you would like to keep learning, I've been told that I'm an excellent teacher," Vasily says as he gently starts to paw at you.`);
       scene.text('You have a sneaking suspicion that he isn\'t talking about the biology assignment.');
       scene.text('"I… Don\'t know… Would you please…" you stammer.');
       if (((s as any).stat ?? 0)?.['think_virgin'] === 0) {
         qspCall(s, 'willpower', 'sex', 'resist', 'easy');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Stop it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Stop it', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Stop it [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Stop it', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'pay', 'resist');
   }, goto: ['vasilyhome', 'vasily_lern_sex_no'] },
           ]);
@@ -1469,13 +1469,13 @@ function enterSoniaEv(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'cuni', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Suggest you take a bath together [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suggest you take a bath together', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Suggest you take a bath together [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suggest you take a bath together', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'cuni', 'self', 'easy');
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['vasily_home_sex', 'sonia_les_bathroom'] },
@@ -1486,13 +1486,13 @@ function enterSoniaEv(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'group', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Suggest you and Sonia fuck Vasily together [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suggest you and Sonia fuck Vasily together', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Suggest you and Sonia fuck Vasily together [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suggest you and Sonia fuck Vasily together', handler: (st: GameState) => {
     qspCall(st, 'willpower', 'group', 'self');
     qspCall(st, 'willpower', 'pay', 'self');
   }, goto: ['vasily_home_sex', 'vasily_3some_sex'] },
@@ -1532,7 +1532,7 @@ function enterSoniaChat(s: GameState, scene: SceneBuilder): void {
     scene.text('You spend some time chatting with Sonia, mostly sharing what the two of you have done today.');
   }
   // TODO-QSP: dynamic text: "Sorry <<$pcs_nickname>>, but I have to go. Maybe I'll see you here again so we ...
-  scene.text(`"Sorry ${((s as any).pcs_nickname ?? 0)}, but I have to go. Maybe I'll see you here again so we can chat some more!"`);
+  scene.text(`"Sorry ${((s as any).pcs_nickname || '')}, but I have to go. Maybe I'll see you here again so we can chat some more!"`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Return to the hallway', goto: ['vasilyhome', 'hallway'] },
@@ -1551,10 +1551,10 @@ function enterVasilykitchen(s: GameState, scene: SceneBuilder): void {
   if (((s as any).hour ?? 0) >= 18  &&  ((s as any).hour ?? 0) < 21  &&  (!((s as any).locArgs?.[0] ?? 0))) {
     if ((Math.floor(Math.random() * 100) + 1) < 10) {
       // TODO-QSP: dynamic text: When you enter the kitchen, <<$serg_obr>> <a href="exec:gt 'Serge_kuh','kuh_buh'...
-      scene.text(`When you enter the kitchen, ${((s as any).serg_obr ?? 0)} <a href="exec:gt 'Serge_kuh','kuh_buh'">Sergey</a> gives you a friendly nod. He's sitting at the kitchen table, drinking vodka.`);
+      scene.text(`When you enter the kitchen, ${((s as any).serg_obr || '')} <a href="exec:gt 'Serge_kuh','kuh_buh'">Sergey</a> gives you a friendly nod. He's sitting at the kitchen table, drinking vodka.`);
     } else {
       // TODO-QSP: dynamic text: When you enter the kitchen, <<$serg_obr>> <a href="exec:gt 'Serge_kuh'">Sergey</...
-      scene.text(`When you enter the kitchen, ${((s as any).serg_obr ?? 0)} <a href="exec:gt 'Serge_kuh'">Sergey</a> is standing at the kitchen counter preparing a meal.`);
+      scene.text(`When you enter the kitchen, ${((s as any).serg_obr || '')} <a href="exec:gt 'Serge_kuh'">Sergey</a> is standing at the kitchen counter preparing a meal.`);
     }
   }
   qspCall(s, 'kit_din', 'kitchen', 'edasnack');
@@ -1600,7 +1600,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).beer_count ?? 0) === 0  &&  ((s as any).vodka_count ?? 0) === 0  &&  (!((s as any).sup_count ?? 0))) {
   }
   // TODO-QSP: dynamic text: You open the fridge and see:<<$r_vodka>><<$r_beer>><<$r_sup>><<$r_pusto>>
-  scene.text(`You open the fridge and see:${((s as any).r_vodka ?? 0)}${((s as any).r_beer ?? 0)}${((s as any).r_sup ?? 0)}${((s as any).r_pusto ?? 0)}`);
+  scene.text(`You open the fridge and see:${((s as any).r_vodka || '')}${((s as any).r_beer || '')}${((s as any).r_sup || '')}${((s as any).r_pusto || '')}`);
   if (((s as any).beer_count ?? 0) > 0) {
     scene.actions([
       { label: 'Drink a beer', handler: (st: GameState) => {
@@ -1633,7 +1633,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
       { label: 'Drink more vodka', handler: (st: GameState) => {
     if ((!((s as any).vodka_count ?? 0))) {
       // TODO-QSP: dynamic text: <font color = red>There's no vodka left, you drank it all!</font><center><img <<...
-      scene.text(`<font color = red>There's no vodka left, you drank it all!</font><center><img ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka0.jpg"></center>`);
+      scene.text(`<font color = red>There's no vodka left, you drank it all!</font><center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/resident/apartment/shulginhome/kuh/vodka0.jpg"></center>`);
     }
     if (((s as any).vodka_count ?? 0) > 0) {
       (s as any).minut = ((s as any).minut ?? 0) + 1;
@@ -1671,7 +1671,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'cum_cleanup', '', 2);
     (s as any).pcs_breath = 0;
     // TODO-QSP: dynamic text: You happily eat a bowl of soup. <<$serg_obr>> Sergey sure knows how to cook!
-    scene.text(`You happily eat a bowl of soup. ${((s as any).serg_obr ?? 0)} Sergey sure knows how to cook!`);
+    scene.text(`You happily eat a bowl of soup. ${((s as any).serg_obr || '')} Sergey sure knows how to cook!`);
     scene.actions([
       { label: 'Keep looking around', goto: ['vasilyhome', 'fridge'] },
       { label: 'Close the refrigerator', goto: ['vasilyhome', 'vasilykitchen'] },
@@ -1695,14 +1695,14 @@ function enterSergeyRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('Sergey\'s bedroom looks just like any other bedroom. There\'s a large bed, a television with a VCR connected to it, and a large cabinet to store clothes in. A random amount of junk is deposited on one of the nightstands.');
   if (((s as any).hour ?? 0) < 7  ||  ((s as any).hour ?? 0) >= 23) {
     // TODO-QSP: dynamic text: When you come in, you see that<<$serg_obr>> <a href="exec: gt 'Serge_Shulgin','s...
-    scene.text(`When you come in, you see that${((s as any).serg_obr ?? 0)} <a href="exec: gt 'Serge_Shulgin','sleep'">Sergey</a> is currently on his bed, sound asleep.`);
+    scene.text(`When you come in, you see that${((s as any).serg_obr || '')} <a href="exec: gt 'Serge_Shulgin','sleep'">Sergey</a> is currently on his bed, sound asleep.`);
   } else {
     if (((s as any).hour ?? 0) < 18  ||  ((s as any).hour ?? 0) >= 21) {
       if (((s as any).week ?? 0) < 6  &&  ((s as any).hour ?? 0) < 16) {
-        qspCall(s, 'vasilyhome', 'sleep');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSleep(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         // TODO-QSP: dynamic text: When you come in, you see that<<$serg_obr>> <a href="exec: gt 'Serge_Shulgin','t...
-        scene.text(`When you come in, you see that${((s as any).serg_obr ?? 0)} <a href="exec: gt 'Serge_Shulgin','tv'">Sergey</a> is relaxing on his bed, watching TV.`);
+        scene.text(`When you come in, you see that${((s as any).serg_obr || '')} <a href="exec: gt 'Serge_Shulgin','tv'">Sergey</a> is relaxing on his bed, watching TV.`);
       }
     }
   }
@@ -1793,7 +1793,7 @@ function enterVasilyAsleep1(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'npc_relationship', 'modify', 'A11', (-1));
   // TODO-QSP: dynamic text: What do you want <<$pcs_nickname>>? Can't you see I'm sleeping?!
-  scene.text(`What do you want ${((s as any).pcs_nickname ?? 0)}? Can't you see I'm sleeping?!`);
+  scene.text(`What do you want ${((s as any).pcs_nickname || '')}? Can't you see I'm sleeping?!`);
   scene.text('"Can I lay next to you while I sleep?" you ask.');
   scene.text('"Go sleep on the small couch or just go home, you big baby!" Vasily answers.');
   qspCall(s, 'stat', '');
@@ -1808,24 +1808,24 @@ function enterVasilyAsleep2(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 2;
   qspCall(s, 'stat', '');
   // TODO-QSP: dynamic text: Vasily rubs his eyes. "What do you want <<$pcs_nickname>>?"
-  scene.text(`Vasily rubs his eyes. "What do you want ${((s as any).pcs_nickname ?? 0)}?"`);
+  scene.text(`Vasily rubs his eyes. "What do you want ${((s as any).pcs_nickname || '')}?"`);
   scene.text('"Can I sleep next to you?" you ask. "I can\'t get comfortable on the little sofa."');
   scene.text('He sighs and scoochs over to let you into the bed.');
   if (((s as any).npc_rel ?? 0)?.['A11'] >= 70) {
     qspCall(s, 'willpower', 'sex', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Suggest sex [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suggest sex', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Suggest sex [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Suggest sex', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     if ((!((s as any).shgopsex_vasya_count ?? 0))) {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, I'm beat. Go away and let me sleep."
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, I'm beat. Go away and let me sleep."`);
+      scene.text(`"${((s as any).pcs_nickname || '')}, I'm beat. Go away and let me sleep."`);
       scene.actions([
         { label: 'Sigh', goto: ['vasilyhome', 'hallway'] },
       ]);

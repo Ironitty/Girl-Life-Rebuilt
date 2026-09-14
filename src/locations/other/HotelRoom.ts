@@ -23,7 +23,7 @@ function enterNormal(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Your normal hotel room</b></center>');
   // TODO-QSP: dynamic text: <center>You have paid to stay for <<hotelRoomDays[$region] - daystart>> more nig...
-  scene.text(`<center>You have paid to stay for ${((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? 0)} more nights.</center>`);
+  scene.text(`<center>You have paid to stay for ${((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? '')} more nights.</center>`);
   scene.img('images/locations/pavlovsk/hotel/hotel.room.normal.jpg');
   scene.text('Your hotel room is not very large, but it has everything you need and is quite stylish. The large <a href="exec:gt \'bed\'">double bed</a> takes up most of the room. A modern <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="exec:gt \'mirror\',\'start\'">mirror</a>. The door to the <a href="exec:gt \'HotelRoom\',\'shower1\'">bathroom</a> is to the right.');
   // TODO-QSP: 'Your hotel room also has a <a href="exec:gt ''HotelRoom'',''tv''">TV</a>' + iif(mc_inventory['tech_...
@@ -40,7 +40,7 @@ function enterNormal(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Order room service (0:30) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+        { label: 'Order room service (0:30)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -83,7 +83,7 @@ function enterBetter(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Your luxury room</b></center>');
   // TODO-QSP: dynamic text: <center>You have paid to stay for <<hotelRoomDays[$region] - daystart>> more nig...
-  scene.text(`<center>You have paid to stay for ${((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? 0)} more nights.</center>`);
+  scene.text(`<center>You have paid to stay for ${((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? '')} more nights.</center>`);
   scene.img('images/locations/pavlovsk/hotel/hotel.room.better.jpg');
   scene.text('Your hotel room is not very large, but it has everything you need and is quite stylish. The large <a href="exec:gt \'bed\'">double bed</a> takes up most of the room. A modern <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="exec:gt \'mirror\',\'start\'">mirror</a>. The door to the <a href="exec:gt \'HotelRoom\',\'shower1\'">bathroom</a> is to the right.');
   // TODO-QSP: 'Your hotel room also has a small flat-screen <a href="exec:gt ''HotelRoom'',''tv''">TV</a>'+iif(mc_...
@@ -100,7 +100,7 @@ function enterBetter(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Order room service (0:30) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+        { label: 'Order room service (0:30)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -147,7 +147,7 @@ function enterBest(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'music_actions', 'clear_restrictions');
   scene.text('<center><b>Your Royal Suite</b></center>');
   // TODO-QSP: dynamic text: <center>You have paid to stay for <<hotelRoomDays[$region] - daystart>> more nig...
-  scene.text(`<center>You have paid to stay for ${((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? 0)} more nights.</center>`);
+  scene.text(`<center>You have paid to stay for ${((s as any).hotelRoomDays ?? 0)?.[String((s as any).region ?? 0)] - ((s as any).daystart ?? '')} more nights.</center>`);
   scene.img('images/locations/pavlovsk/hotel/hotel.room.best.jpg');
   scene.text('Your hotel room is quite spacious, and is beautifully furnished; you wonder why a hotel in a town like Pavlovsk even has such a luxurious suite. The gorgeous <a href="exec:gt \'bed\'">double bed</a> takes up most of the room. A modern <a href="exec:gt \'wardrobe\', \'start\'">wardrobe</a> stands near the entrance of the room. Next to the door, you can find a <a href="exec:gt \'mirror\',\'start\'">mirror</a>. The door to the <a href="exec:gt \'HotelRoom\',\'shower1\'">bathroom</a> is to the right.');
   // TODO-QSP: 'Your hotel room also has a huge flat-screen <a href="exec:gt ''HotelRoom'',''tv''">TV</a>'+iif(mc_i...
@@ -164,7 +164,7 @@ function enterBest(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       scene.actions([
-        { label: 'Order room service (0:30) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+        { label: 'Order room service (0:30)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -227,7 +227,7 @@ function enterTherapist(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Order room service (0:30) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+      { label: 'Order room service (0:30)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -328,7 +328,7 @@ function enterTv(s: GameState, scene: SceneBuilder): void {
   if (((s as any).therapistQW ?? 0)?.['hotel_key'] === 3) {
     scene.img('images/locations/pavlovsk/hotel/tv2.jpg');
   } else {
-    scene.img(`images/locations/pavlovsk/hotel/tv${((s as any).HotelRoom ?? 0)}.jpg`);
+    scene.img(`images/locations/pavlovsk/hotel/tv${((s as any).HotelRoom || '')}.jpg`);
   }
   scene.text('You turn on the TV and make yourself comfortable on the bed.');
   if (((s as any).HotelRoom ?? 0)?.[String((s as any).region ?? 0)] === 0  &&  ((s as any).therapistQW ?? 0)?.['hotel_key'] !== 3) {

@@ -1,4 +1,4 @@
-import { qspCall, dynamicGoto } from '../_shared/qspBridge';
+import { qspCall, qspFunc, dynamicGoto } from '../_shared/qspBridge';
 
 // AUTO-GENERATED FILE — DO NOT EDIT, fix the transpiler (scripts/qsp-transpile)
 import type { GameState, ActionDef, LocationDef } from '../../core/types';
@@ -8,7 +8,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if (((s as any).theme ?? 0)?.['name'] === '') {
     if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['name'] = 'Dynamic Default';
     if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['type'] = 'dynamic';
-    qspCall(s, 'themes', 'set_theme', 'Dynamic Default', 'dynamic');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Dynamic Default', 'dynamic']; enterSetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.build();
 }
@@ -34,9 +34,9 @@ function enterMenuToggle(s: GameState, scene: SceneBuilder): void {
 function enterMenuCell(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['name'] = ((s as any).temp_mc_full ?? 0);
   if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['type'] = ((s as any).locArgs?.[2] ?? 0);
-  qspCall(s, 'themes', 'get_theme', 'indoors');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'indoors']; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: dynamic text: '<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:...
-  scene.text(`'<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:' + $temp_mc_bg + '; ' + $temp_mc_sel + 'width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="exec: $cfg_vars['theme_main_name'] = '${((s as any).locArgs?.[1] ?? 0)}' & gs 'themes', 'set_theme', '${((s as any).temp_mc_full ?? 0)}', '${((s as any).locArgs?.[2] ?? 0)}' & gs '$menu_obnovit' & gt 'themes', 'menu'" style="display:block; padding:20px 28px; color:' + $temp_mc_fg + '; text-decoration:none; font-weight:' + $iif($themes_menu_cur = $temp_mc_full, 'bold', 'normal') + ';">${((s as any).locArgs?.[1] ?? 0)}</a></td>'`);
+  scene.text(`'<td bgcolor="' + $temp_mc_bg + '" width="250" align="center" style="background:' + $temp_mc_bg + '; ' + $temp_mc_sel + 'width:250px; text-align:center; white-space:nowrap; border-radius:4px; padding:0; overflow:hidden;"><a href="exec: $cfg_vars['theme_main_name'] = '${((s as any).locArgs?.[1] ?? '')}' & gs 'themes', 'set_theme', '${((s as any).temp_mc_full || '')}', '${((s as any).locArgs?.[2] ?? '')}' & gs '$menu_obnovit' & gt 'themes', 'menu'" style="display:block; padding:20px 28px; color:' + $temp_mc_fg + '; text-decoration:none; font-weight:' + $iif($themes_menu_cur = $temp_mc_full, 'bold', 'normal') + ';">${((s as any).locArgs?.[1] ?? '')}</a></td>'`);
   return;
   // TODO-QSP: end
   scene.build();
@@ -52,7 +52,7 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   }
   if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['name'] = ((s as any).themes_menu_cur ?? 0);
   if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['type'] = ((s as any).themes_menu_mode ?? 0);
-  qspCall(s, 'themes', 'get_theme', 'indoors');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'indoors']; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).bcolor = ((s as any).theme ?? 0)?.['bcolor'];
   (s as any).fcolor = ((s as any).theme ?? 0)?.['fcolor'];
   (s as any).lcolor = ((s as any).theme ?? 0)?.['lcolor'];
@@ -75,57 +75,57 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
   scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
   if (((s as any).cfg_vars ?? 0)?.['themetype'] === 0) {
-    qspCall(s, 'themes', 'menu_cell', 'Default', 'dynamic');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Default', 'dynamic']; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
-    qspCall(s, 'themes', 'menu_cell', 'White', 'static');
-    qspCall(s, 'themes', 'menu_cell', 'Black', 'static');
-    qspCall(s, 'themes', 'menu_cell', 'Modern Grey', 'static');
-    qspCall(s, 'themes', 'menu_cell', 'Custom', 'static');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'White', 'static']; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Black', 'static']; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Modern Grey', 'static']; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Custom', 'static']; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.text('</tr></table></td></tr>');
   // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Catppuccin</b><...
   scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Catppuccin</b></td></tr>\'');
   // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
   scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
-  qspCall(s, 'themes', 'menu_cell', 'Latte', ((s as any).themes_menu_mode ?? 0));
-  qspCall(s, 'themes', 'menu_cell', 'Frappé', ((s as any).themes_menu_mode ?? 0));
-  qspCall(s, 'themes', 'menu_cell', 'Macchiato', ((s as any).themes_menu_mode ?? 0));
-  qspCall(s, 'themes', 'menu_cell', 'Mocha', ((s as any).themes_menu_mode ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Latte', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Frappé', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Macchiato', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Mocha', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('</tr></table></td></tr>');
   // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Nord</b></td></...
   scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Nord</b></td></tr>\'');
   // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
   scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
-  qspCall(s, 'themes', 'menu_cell', 'Nord Light', ((s as any).themes_menu_mode ?? 0));
-  qspCall(s, 'themes', 'menu_cell', 'Nord Dark', ((s as any).themes_menu_mode ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Nord Light', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Nord Dark', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('</tr></table></td></tr>');
   // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Solarized</b></...
   scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Solarized</b></td></tr>\'');
   // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
   scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
-  qspCall(s, 'themes', 'menu_cell', 'Solarized Light', ((s as any).themes_menu_mode ?? 0));
-  qspCall(s, 'themes', 'menu_cell', 'Solarized Dark', ((s as any).themes_menu_mode ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Solarized Light', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Solarized Dark', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('</tr></table></td></tr>');
   // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Tokyo Night</b>...
   scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Tokyo Night</b></td></tr>\'');
   // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
   scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
-  qspCall(s, 'themes', 'menu_cell', 'Tokyo Night Light', ((s as any).themes_menu_mode ?? 0));
-  qspCall(s, 'themes', 'menu_cell', 'Tokyo Night', ((s as any).themes_menu_mode ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Tokyo Night Light', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Tokyo Night', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('</tr></table></td></tr>');
   // TODO-QSP: dynamic text: '<tr><td style="color:' + $tm_label_fg + '; padding:2px 4px;"><b>Rosé Pine</b></...
   scene.text('\'<tr><td style="color:\' + $tm_label_fg + \'; padding:2px 4px;"><b>Rosé Pine</b></td></tr>\'');
   // TODO-QSP: dynamic text: '<tr><td bgcolor="' + $tm_cell_bg + '" style="background:' + $tm_cell_bg + '; pa...
   scene.text('\'<tr><td bgcolor="\' + $tm_cell_bg + \'" style="background:\' + $tm_cell_bg + \'; padding:8px; border-radius:6px;"><table style="border-collapse:separate; border-spacing:16px 0;"><tr>\'');
-  qspCall(s, 'themes', 'menu_cell', 'Rosé Pine Dawn', ((s as any).themes_menu_mode ?? 0));
-  qspCall(s, 'themes', 'menu_cell', 'Rosé Pine', ((s as any).themes_menu_mode ?? 0));
-  qspCall(s, 'themes', 'menu_cell', 'Rosé Pine Moon', ((s as any).themes_menu_mode ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Rosé Pine Dawn', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Rosé Pine', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'Rosé Pine Moon', ((s as any).themes_menu_mode ?? 0)]; enterMenuCell(s, scene); (s as any).locArgs = __savedLocArgs; }
   scene.text('</tr></table></td></tr>');
   scene.text('</table>');
   scene.text('</center>');
   if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['name'] = ((s as any).themes_menu_cur ?? 0);
   if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['type'] = ((s as any).themes_menu_mode ?? 0);
-  qspCall(s, 'themes', 'get_theme', 'indoors');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 'indoors']; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   (s as any).bcolor = ((s as any).theme ?? 0)?.['bcolor'];
   (s as any).fcolor = ((s as any).theme ?? 0)?.['fcolor'];
   (s as any).lcolor = ((s as any).theme ?? 0)?.['lcolor'];
@@ -149,27 +149,27 @@ function enterMenu(s: GameState, scene: SceneBuilder): void {
   scene.text('</td>');
   scene.text('<td valign="top" style="vertical-align:top;">');
   // TODO-QSP: dynamic text: $func('progressbar', 'positive', 100, 0, 0, 0, '', '', '21,41,61,81')
-  scene.text('$func(\'progressbar\', \'positive\', 100, 0, 0, 0, \', \', \'21,41,61,81\')');
+  scene.text(qspFunc(s, 'progressbar', 'positive', 100, 0, 0, 0, '', '', '21,41,61,81'));
   // TODO-QSP: dynamic text: $func('progressbar', 'positive', 80, 0, 0, 0, '', '', '21,41,61,81')
-  scene.text('$func(\'progressbar\', \'positive\', 80, 0, 0, 0, \', \', \'21,41,61,81\')');
+  scene.text(qspFunc(s, 'progressbar', 'positive', 80, 0, 0, 0, '', '', '21,41,61,81'));
   // TODO-QSP: dynamic text: $func('progressbar', 'positive', 60, 0, 0, 0, '', '', '21,41,61,81')
-  scene.text('$func(\'progressbar\', \'positive\', 60, 0, 0, 0, \', \', \'21,41,61,81\')');
+  scene.text(qspFunc(s, 'progressbar', 'positive', 60, 0, 0, 0, '', '', '21,41,61,81'));
   // TODO-QSP: dynamic text: $func('progressbar', 'positive', 40, 0, 0, 0, '', '', '21,41,61,81')
-  scene.text('$func(\'progressbar\', \'positive\', 40, 0, 0, 0, \', \', \'21,41,61,81\')');
+  scene.text(qspFunc(s, 'progressbar', 'positive', 40, 0, 0, 0, '', '', '21,41,61,81'));
   // TODO-QSP: dynamic text: $func('progressbar', 'positive', 20, 0, 0, 0, '', '', '21,41,61,81')
-  scene.text('$func(\'progressbar\', \'positive\', 20, 0, 0, 0, \', \', \'21,41,61,81\')');
+  scene.text(qspFunc(s, 'progressbar', 'positive', 20, 0, 0, 0, '', '', '21,41,61,81'));
   scene.text('</td>');
   scene.text('<td valign="top" style="vertical-align:top; padding-left:32px;">');
   // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 100)
-  scene.text('$func(\'progressbar\', \'mono:accent\', 100)');
+  scene.text(qspFunc(s, 'progressbar', 'mono:accent', 100));
   // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 80)
-  scene.text('$func(\'progressbar\', \'mono:accent\', 80)');
+  scene.text(qspFunc(s, 'progressbar', 'mono:accent', 80));
   // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 60)
-  scene.text('$func(\'progressbar\', \'mono:accent\', 60)');
+  scene.text(qspFunc(s, 'progressbar', 'mono:accent', 60));
   // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 40)
-  scene.text('$func(\'progressbar\', \'mono:accent\', 40)');
+  scene.text(qspFunc(s, 'progressbar', 'mono:accent', 40));
   // TODO-QSP: dynamic text: $func('progressbar', 'mono:accent', 20)
-  scene.text('$func(\'progressbar\', \'mono:accent\', 20)');
+  scene.text(qspFunc(s, 'progressbar', 'mono:accent', 20));
   scene.text('</td>');
   scene.text('</tr></table>');
   return;
@@ -215,14 +215,14 @@ function enterWrapThought(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterOutdoors(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'themes', 'apply', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterApply(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
 }
 
 function enterIndoors(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'themes', 'apply', ((s as any).locArgs?.[0] ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[0] ?? 0)]; enterApply(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'indoors', '');
   return;
   // TODO-QSP: end
@@ -232,7 +232,7 @@ function enterIndoors(s: GameState, scene: SceneBuilder): void {
 function enterApply(s: GameState, scene: SceneBuilder): void {
   if (((s as any).theme ?? 0)?.['type'] === 'dynamic') {
     if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['old_is_dark'] = ((s as any).theme ?? 0)?.['is_dark'];
-    qspCall(s, 'themes', 'get_theme', ((s as any).locArgs?.[1] ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).theme ?? 0)?.['old_is_dark'] !== ((s as any).theme ?? 0)?.['is_dark']) {
       if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['old_is_dark'] = ((s as any).theme ?? 0)?.['is_dark'];
       if (((s as any).curloc ?? 0) !== 'menu_settings') {
@@ -240,7 +240,7 @@ function enterApply(s: GameState, scene: SceneBuilder): void {
       }
     }
   } else {
-    qspCall(s, 'themes', 'get_theme', ((s as any).locArgs?.[1] ?? 0));
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0)]; enterGetTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   (s as any).bcolor = ((s as any).theme ?? 0)?.['bcolor'];
   (s as any).fcolor = ((s as any).theme ?? 0)?.['fcolor'];
@@ -260,7 +260,7 @@ function enterReset(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterSetTheme(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'themes', 'reset');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['name'] = ((s as any).locArgs?.[1] ?? 0);
   if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['type'] = ((s as any).locArgs?.[2] ?? 0);
   if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['fsize'] = 12;
@@ -357,7 +357,7 @@ function enterDefaultTheme(s: GameState, scene: SceneBuilder): void {
 
 function enterGetTheme(s: GameState, scene: SceneBuilder): void {
   (s as any).temp_theme_new_schema = 0;
-  qspCall(s, 'themes', 'default_theme');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDefaultTheme(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).theme ?? 0)?.['type'] === 'dynamic') {
     if (((s as any).theme ?? 0)?.['name'] === 'Dynamic Latte') {
       if (!(s as any).theme) (s as any).theme = {}; (s as any).theme['is_dark'] = 0;

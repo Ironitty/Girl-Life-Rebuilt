@@ -12,7 +12,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 function enterBuyTrainPass(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['trainpass_day']) {
     scene.actions([
-      { label: 'Buy a daily pass (1 day) [+$func(\'money\', \'get_cost_string\', 250)]', handler: (st: GameState) => {
+      { label: 'Buy a daily pass (1 day)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 250) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -24,7 +24,7 @@ function enterBuyTrainPass(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy a weekly pass (7 days) [+$func(\'money\', \'get_cost_string\', 1250)]', handler: (st: GameState) => {
+      { label: 'Buy a weekly pass (7 days)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1250) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -36,7 +36,7 @@ function enterBuyTrainPass(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy a monthly pass (30 days) [+$func(\'money\', \'get_cost_string\', 3750)]', handler: (st: GameState) => {
+      { label: 'Buy a monthly pass (30 days)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3750) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -48,7 +48,7 @@ function enterBuyTrainPass(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy a yearly pass (365 days) [+$func(\'money\', \'get_cost_string\', 32500)]', handler: (st: GameState) => {
+      { label: 'Buy a yearly pass (365 days)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 32500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -70,35 +70,35 @@ function enterBuyTrainPass(s: GameState, scene: SceneBuilder): void {
 function enterBuyTrainTicket(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === 'pc') {
     if (((s as any).locArgs?.[1] ?? 0) !== 'pavlovsk') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'pavlovsk', 'Pavlovsk');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pavlovsk', 'Pavlovsk']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'communal') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'communal', 'the communal village');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'communal', 'the communal village']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'industrial') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'industrial', 'St. Petersburg city industrial area');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'industrial', 'St. Petersburg city industrial area']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'center') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'center', 'St. Petersburg city center');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'center', 'St. Petersburg city center']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } else {
     if (((s as any).locArgs?.[1] ?? 0) !== 'center') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'center', 'St. Petersburg city center');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'center', 'St. Petersburg city center']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'industrial') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'industrial', 'St. Petersburg city industrial area');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'industrial', 'St. Petersburg city industrial area']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'communal') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'communal', 'the communal village');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'communal', 'the communal village']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'pavlovsk') {
-      qspCall(s, 'transport_functions', 'set_train_ticket', ((s as any).locArgs?.[1] ?? 0), 'pavlovsk', 'Pavlovsk');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pavlovsk', 'Pavlovsk']; enterSetTrainTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   return;
@@ -145,26 +145,26 @@ function enterSetTrainWaitTime(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_center'] = 0;
   if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut'] = ((s as any).ARGS ?? 0)[3] * 60 + ((s as any).ARGS ?? 0)[4];
   if (((s as any).locArgs?.[1] ?? 0) !== 'pavlovsk') {
-    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_center'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', ((s as any).locArgs?.[1] ?? 0));
+    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_center'] = (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0) - qspFunc(s, 'transport_functions', 'get_train_timecost', 'center', ((s as any).locArgs?.[1] ?? 0));
     if (((s as any).temp_transportVars ?? 0)?.['totminut_center'] >= 1320  ||  ((s as any).temp_transportVars ?? 0)?.['totminut_center'] < 60) {
-      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_pavlovsk'] = (1442 - ((s as any).temp_transportVars ?? {})?.['totminut_center']) % 30;
+      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_pavlovsk'] = (1442 - (((s as any).temp_transportVars ?? {})?.['totminut_center'] ?? 0)) % 30;
     } else {
       if (((s as any).temp_transportVars ?? 0)?.['totminut_center'] < 240) {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_pavlovsk'] = (1442 - ((s as any).temp_transportVars ?? {})?.['totminut_center']) % 60;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_pavlovsk'] = (1442 - (((s as any).temp_transportVars ?? {})?.['totminut_center'] ?? 0)) % 60;
       } else {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_pavlovsk'] = (1442 - ((s as any).temp_transportVars ?? {})?.['totminut_center']) % 15;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_pavlovsk'] = (1442 - (((s as any).temp_transportVars ?? {})?.['totminut_center'] ?? 0)) % 15;
       }
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 'center') {
-    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_pavlovsk'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', ((s as any).locArgs?.[1] ?? 0));
+    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_pavlovsk'] = (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0) - qspFunc(s, 'transport_functions', 'get_train_timecost', 'pavlovsk', ((s as any).locArgs?.[1] ?? 0));
     if (((s as any).temp_transportVars ?? 0)?.['totminut_pavlovsk'] >= 1320  ||  ((s as any).temp_transportVars ?? 0)?.['totminut_pavlovsk'] < 60) {
-      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_center'] = (1447 - ((s as any).transportVars ?? {})?.['totminut_pavlovsk']) % 30;
+      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_center'] = (1447 - (((s as any).transportVars ?? {})?.['totminut_pavlovsk'] ?? 0)) % 30;
     } else {
       if (((s as any).temp_transportVars ?? 0)?.['totminut_pavlovsk'] < 240) {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_center'] = (1447 - ((s as any).transportVars ?? {})?.['totminut_pavlovsk']) % 60;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_center'] = (1447 - (((s as any).transportVars ?? {})?.['totminut_pavlovsk'] ?? 0)) % 60;
       } else {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_center'] = (1447 - ((s as any).transportVars ?? {})?.['totminut_pavlovsk']) % 15;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['train_wait_center'] = (1447 - (((s as any).transportVars ?? {})?.['totminut_pavlovsk'] ?? 0)) % 15;
       }
     }
   }
@@ -184,8 +184,8 @@ function enterDisplayTrainTimecost(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['destination'] = ((s as any).locArgs?.[2] ?? 0);
   if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = qspFunc(s, 'transport_functions', 'get_train_timecost', ((s as any).dtemp_transportVars ?? 0)?.['origin'], ((s as any).dtemp_transportVars ?? 0)?.['destination']);
   if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = ((s as any).dtemp_transportVars['minutes'] ?? 0) + (qspFunc(s, 'transport_functions', 'get_train_waitcost', ((s as any).dtemp_transportVars ?? 0)?.['origin'], ((s as any).dtemp_transportVars ?? 0)?.['destination']));
-  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['hours'] = ((s as any).dtemp_transportVars ?? {})?.['minutes'] / 60;
-  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = ((s as any).dtemp_transportVars ?? {})?.['minutes'] % 60;
+  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['hours'] = (((s as any).dtemp_transportVars ?? {})?.['minutes'] ?? 0) / 60;
+  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = (((s as any).dtemp_transportVars ?? {})?.['minutes'] ?? 0) % 60;
   return;
   // TODO-QSP: end
   scene.build();
@@ -409,7 +409,7 @@ function enterGetTrainWaitcost(s: GameState, scene: SceneBuilder): void {
 function enterBuyBusPass(s: GameState, scene: SceneBuilder): void {
   if (((s as any).daystart ?? 0) >= ((s as any).transportVars ?? 0)?.['buspass_day']) {
     scene.actions([
-      { label: 'Buy a daily bus pass (1 day) [+$func(\'money\', \'get_cost_string\', 100)]', handler: (st: GameState) => {
+      { label: 'Buy a daily bus pass (1 day)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 100) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -421,7 +421,7 @@ function enterBuyBusPass(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy a weekly bus pass (7 days) [+$func(\'money\', \'get_cost_string\', 500)]', handler: (st: GameState) => {
+      { label: 'Buy a weekly bus pass (7 days)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -433,7 +433,7 @@ function enterBuyBusPass(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy a monthly bus pass (30 days) [+$func(\'money\', \'get_cost_string\', 1500)]', handler: (st: GameState) => {
+      { label: 'Buy a monthly bus pass (30 days)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -445,7 +445,7 @@ function enterBuyBusPass(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy a yearly bus pass (365 days) [+$func(\'money\', \'get_cost_string\', 13000)]', handler: (st: GameState) => {
+      { label: 'Buy a yearly bus pass (365 days)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 13000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -467,63 +467,63 @@ function enterBuyBusPass(s: GameState, scene: SceneBuilder): void {
 function enterBuyBusTicket(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === 'pg') {
     if (((s as any).locArgs?.[1] ?? 0) !== 'community') {
-      qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'community', 'the Pavlovsk community center');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'community', 'the Pavlovsk community center']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'pavstation') {
-      qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'pavstation', 'the Pavlovsk train station');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pavstation', 'the Pavlovsk train station']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'pushkin') {
-      qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'pushkin', 'the old town of Pushkin');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pushkin', 'the old town of Pushkin']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'construction') {
-      qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'construction', 'the construction site');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'construction', 'the construction site']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
-      qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } else {
     if (((s as any).locArgs?.[2] ?? 0) === 'gp') {
       if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
-        qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).locArgs?.[1] ?? 0) !== 'construction') {
-        qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'construction', 'the construction site');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'construction', 'the construction site']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).locArgs?.[1] ?? 0) !== 'pushkin') {
-        qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'pushkin', 'the old town of Pushkin');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pushkin', 'the old town of Pushkin']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).locArgs?.[1] ?? 0) !== 'pavstation') {
-        qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'pavstation', 'the Pavlovsk train station');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'pavstation', 'the Pavlovsk train station']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
       if (((s as any).locArgs?.[1] ?? 0) !== 'community') {
-        qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'community', 'the Pavlovsk community center');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'community', 'the Pavlovsk community center']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
       }
     } else {
       if (((s as any).locArgs?.[2] ?? 0) === 'gs') {
         if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
-          qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
         if (((s as any).locArgs?.[1] ?? 0) !== 'communal') {
-          qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'communal', 'the communal village');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'communal', 'the communal village']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
         if (((s as any).locArgs?.[1] ?? 0) !== 'graveyard') {
-          qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'graveyard', 'the graveyard');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'graveyard', 'the graveyard']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
         if (((s as any).locArgs?.[1] ?? 0) !== 'suburbs') {
-          qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'suburbs', 'the expensive suburb of St. Petersburg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'suburbs', 'the expensive suburb of St. Petersburg']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       } else {
         if (((s as any).locArgs?.[1] ?? 0) !== 'suburbs') {
-          qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'suburbs', 'the expensive suburb of St. Petersburg');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'suburbs', 'the expensive suburb of St. Petersburg']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
         if (((s as any).locArgs?.[1] ?? 0) !== 'graveyard') {
-          qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'graveyard', 'the graveyard');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'graveyard', 'the graveyard']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
         if (((s as any).locArgs?.[1] ?? 0) !== 'communal') {
-          qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'communal', 'the communal village');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'communal', 'the communal village']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
         if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
-          qspCall(s, 'transport_functions', 'set_bus_ticket', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'gadukino', 'the village of Gadukino']; enterSetBusTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -574,37 +574,37 @@ function enterSetBusWaitTime(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut'] = ((s as any).ARGS ?? 0)[3] * 60 + ((s as any).ARGS ?? 0)[4];
   if ((String(';community;pavstation;pushkin;construction;gadukino;').indexOf(String(';\'+$ARGS[1]+\';'))) + 1) {
     if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
-      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_community'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', ((s as any).locArgs?.[1] ?? 0));
+      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_community'] = (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0) - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'communal', ((s as any).locArgs?.[1] ?? 0));
       if (((s as any).temp_transportVars ?? 0)?.['totminut_community'] > 13  &&  ((s as any).temp_transportVars ?? 0)?.['totminut_community'] < 313) {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_gadukino'] = (1753 - ((s as any).temp_transportVars ?? {})?.['totminut_community']) % 1440;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_gadukino'] = (1753 - (((s as any).temp_transportVars ?? {})?.['totminut_community'] ?? 0)) % 1440;
       } else {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_gadukino'] = (1753 - ((s as any).temp_transportVars ?? {})?.['totminut_community']) % 20;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_gadukino'] = (1753 - (((s as any).temp_transportVars ?? {})?.['totminut_community'] ?? 0)) % 20;
       }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'community') {
-      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_gadukino'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', ((s as any).locArgs?.[1] ?? 0));
+      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_gadukino'] = (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0) - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', ((s as any).locArgs?.[1] ?? 0));
       if (((s as any).temp_transportVars ?? 0)?.['totminut'] > 13  &&  ((s as any).temp_transportVars ?? 0)?.['totminut'] < 313) {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_pavlovsk'] = (1753 - ((s as any).temp_transportVars ?? {})?.['totminut']) % 1440;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_pavlovsk'] = (1753 - (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0)) % 1440;
       } else {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_pavlovsk'] = (1753 - ((s as any).temp_transportVars ?? {})?.['totminut']) % 20;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_pavlovsk'] = (1753 - (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0)) % 20;
       }
     }
   }
   if ((String(';gadukino;communal;graveyard;suburbs;').indexOf(String(';\'+$ARGS[1]+\';'))) + 1) {
     if (((s as any).locArgs?.[1] ?? 0) !== 'gadukino') {
-      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_suburbs'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', ((s as any).locArgs?.[1] ?? 0));
+      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_suburbs'] = (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0) - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'suburbs', ((s as any).locArgs?.[1] ?? 0));
       if (((s as any).temp_transportVars ?? 0)?.['totminut_suburbs'] > 1425  ||  ((s as any).temp_transportVars ?? 0)?.['totminut_suburbs'] < 305) {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_gadukino'] = (1745 - ((s as any).temp_transportVars ?? {})?.['totminut_suburbs']) % 1440;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_gadukino'] = (1745 - (((s as any).temp_transportVars ?? {})?.['totminut_suburbs'] ?? 0)) % 1440;
       } else {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_gadukino'] = (1745 - ((s as any).temp_transportVars ?? {})?.['totminut_suburbs']) % 20;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_gadukino'] = (1745 - (((s as any).temp_transportVars ?? {})?.['totminut_suburbs'] ?? 0)) % 20;
       }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'suburbs') {
-      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_gadukino'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', ((s as any).locArgs?.[1] ?? 0));
+      if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_gadukino'] = (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0) - qspFunc(s, 'transport_functions', 'get_bus_timecost', 'gadukino', ((s as any).locArgs?.[1] ?? 0));
       if (((s as any).temp_transportVars ?? 0)?.['totminut_gadukino'] > 1435  ||  ((s as any).temp_transportVars ?? 0)?.['totminut_gadukino'] < 315) {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_suburbs'] = (1755 - ((s as any).temp_transportVars ?? {})?.['totminut_gadukino']) % 1440;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_suburbs'] = (1755 - (((s as any).temp_transportVars ?? {})?.['totminut_gadukino'] ?? 0)) % 1440;
       } else {
-        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_suburbs'] = (1755 - ((s as any).temp_transportVars ?? {})?.['totminut_gadukino']) % 20;
+        if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['bus_wait_suburbs'] = (1755 - (((s as any).temp_transportVars ?? {})?.['totminut_gadukino'] ?? 0)) % 20;
       }
     }
   }
@@ -624,8 +624,8 @@ function enterDisplayBusTimecost(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['destination'] = ((s as any).locArgs?.[2] ?? 0);
   if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = qspFunc(s, 'transport_functions', 'get_bus_timecost', ((s as any).dtemp_transportVars ?? 0)?.['origin'], ((s as any).dtemp_transportVars ?? 0)?.['destination']);
   if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = ((s as any).dtemp_transportVars['minutes'] ?? 0) + (qspFunc(s, 'transport_functions', 'get_bus_waitcost', ((s as any).dtemp_transportVars ?? 0)?.['origin'], ((s as any).dtemp_transportVars ?? 0)?.['destination']));
-  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['hours'] = ((s as any).dtemp_transportVars ?? {})?.['minutes'] / 60;
-  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = ((s as any).dtemp_transportVars ?? {})?.['minutes'] % 60;
+  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['hours'] = (((s as any).dtemp_transportVars ?? {})?.['minutes'] ?? 0) / 60;
+  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = (((s as any).dtemp_transportVars ?? {})?.['minutes'] ?? 0) % 60;
   return;
   // TODO-QSP: end
   scene.build();
@@ -933,7 +933,7 @@ function enterGetBusWaitcost(s: GameState, scene: SceneBuilder): void {
 function enterBuyMetroPass(s: GameState, scene: SceneBuilder): void {
   if (((s as any).transportVars ?? 0)?.['metropass_day'] <= ((s as any).daystart ?? 0)) {
     scene.actions([
-      { label: 'Buy a daily metro pass (1 day) [+$func(\'money\', \'get_cost_string\', 50)]', handler: (st: GameState) => {
+      { label: 'Buy a daily metro pass (1 day)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 50) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -945,7 +945,7 @@ function enterBuyMetroPass(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy a weekly metro pass (7 days) [+$func(\'money\', \'get_cost_string\', 250)]', handler: (st: GameState) => {
+      { label: 'Buy a weekly metro pass (7 days)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 250) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -957,7 +957,7 @@ function enterBuyMetroPass(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy a monthly metro pass (30 days) [+$func(\'money\', \'get_cost_string\', 750)]', handler: (st: GameState) => {
+      { label: 'Buy a monthly metro pass (30 days)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 750) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -969,7 +969,7 @@ function enterBuyMetroPass(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   } },
-      { label: 'Buy a yearly metro pass (365 days) [+$func(\'money\', \'get_cost_string\', 6500)]', handler: (st: GameState) => {
+      { label: 'Buy a yearly metro pass (365 days)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 6500) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -991,35 +991,35 @@ function enterBuyMetroPass(s: GameState, scene: SceneBuilder): void {
 function enterBuyMetroTicket(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[2] ?? 0) === 'si') {
     if (((s as any).locArgs?.[1] ?? 0) !== 'suburbs') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'suburbs', 'Suburbs');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'suburbs', 'Suburbs']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'industrial') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'industrial', 'Industrial area');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'industrial', 'Industrial area']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'residential') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'residential', 'Residential area');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'residential', 'Residential area']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'center') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'center', 'City center');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'center', 'City center']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'island') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'island', 'University area');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'island', 'University area']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } else {
     if (((s as any).locArgs?.[1] ?? 0) !== 'island') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'island', 'University area');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'island', 'University area']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'center') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'center', 'City center');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'center', 'City center']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'residential') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'residential', 'Residential area');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'residential', 'Residential area']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'industrial') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'industrial', 'Industrial area');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'industrial', 'Industrial area']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     if (((s as any).locArgs?.[1] ?? 0) !== 'suburbs') {
-      qspCall(s, 'transport_functions', 'set_metro_ticket', ((s as any).locArgs?.[1] ?? 0), 'suburbs', 'Suburbs');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).locArgs?.[1] ?? 0), 'suburbs', 'Suburbs']; enterSetMetroTicket(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   }
   return;
@@ -1066,19 +1066,19 @@ function enterSetMetroWaitTime(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['metro_wait_island'] = 0;
   if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut'] = ((s as any).ARGS ?? 0)[3] * 60 + ((s as any).ARGS ?? 0)[4];
   if (((s as any).locArgs?.[1] ?? 0) !== 'suburbs') {
-    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_island'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', ((s as any).locArgs?.[1] ?? 0));
+    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_island'] = (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0) - qspFunc(s, 'transport_functions', 'get_metro_timecost', 'island', ((s as any).locArgs?.[1] ?? 0));
     if (((s as any).temp_transportVars ?? 0)?.['totminut_island'] > 1429  ||  ((s as any).temp_transportVars ?? 0)?.['totminut_island'] <= 244) {
-      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['metro_wait_suburbs'] = (1684 - ((s as any).temp_transportVars ?? {})?.['totminut_island']) % 1440;
+      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['metro_wait_suburbs'] = (1684 - (((s as any).temp_transportVars ?? {})?.['totminut_island'] ?? 0)) % 1440;
     } else {
-      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['metro_wait_suburbs'] = (1684 - ((s as any).temp_transportVars ?? {})?.['totminut_island']) % 5;
+      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['metro_wait_suburbs'] = (1684 - (((s as any).temp_transportVars ?? {})?.['totminut_island'] ?? 0)) % 5;
     }
   }
   if (((s as any).locArgs?.[1] ?? 0) !== 'island') {
-    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_suburbs'] = ((s as any).temp_transportVars ?? {})?.['totminut'] - qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', ((s as any).locArgs?.[1] ?? 0));
+    if (!(s as any).temp_transportVars) (s as any).temp_transportVars = {}; (s as any).temp_transportVars['totminut_suburbs'] = (((s as any).temp_transportVars ?? {})?.['totminut'] ?? 0) - qspFunc(s, 'transport_functions', 'get_metro_timecost', 'suburbs', ((s as any).locArgs?.[1] ?? 0));
     if (((s as any).temp_transportVars ?? 0)?.['totminut_suburbs'] > 1426  ||  ((s as any).temp_transportVars ?? 0)?.['totminut_suburbs'] <= 241) {
-      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['metro_wait_island'] = (1681 - ((s as any).temp_transportVars ?? {})?.['totminut_suburbs']) % 1440;
+      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['metro_wait_island'] = (1681 - (((s as any).temp_transportVars ?? {})?.['totminut_suburbs'] ?? 0)) % 1440;
     } else {
-      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['metro_wait_island'] = (1681 - ((s as any).temp_transportVars ?? {})?.['totminut_suburbs']) % 5;
+      if (!(s as any).transportVars) (s as any).transportVars = {}; (s as any).transportVars['metro_wait_island'] = (1681 - (((s as any).temp_transportVars ?? {})?.['totminut_suburbs'] ?? 0)) % 5;
     }
   }
   return;
@@ -1097,8 +1097,8 @@ function enterDisplayMetroTimecost(s: GameState, scene: SceneBuilder): void {
   if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['destination'] = ((s as any).locArgs?.[2] ?? 0);
   if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = qspFunc(s, 'transport_functions', 'get_metro_timecost', ((s as any).dtemp_transportVars ?? 0)?.['origin'], ((s as any).dtemp_transportVars ?? 0)?.['destination']);
   if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = ((s as any).dtemp_transportVars['minutes'] ?? 0) + (qspFunc(s, 'transport_functions', 'get_metro_waitcost', ((s as any).dtemp_transportVars ?? 0)?.['origin'], ((s as any).dtemp_transportVars ?? 0)?.['destination']));
-  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['hours'] = ((s as any).dtemp_transportVars ?? {})?.['minutes'] / 60;
-  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = ((s as any).dtemp_transportVars ?? {})?.['minutes'] % 60;
+  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['hours'] = (((s as any).dtemp_transportVars ?? {})?.['minutes'] ?? 0) / 60;
+  if (!(s as any).dtemp_transportVars) (s as any).dtemp_transportVars = {}; (s as any).dtemp_transportVars['minutes'] = (((s as any).dtemp_transportVars ?? {})?.['minutes'] ?? 0) % 60;
   return;
   // TODO-QSP: end
   scene.build();

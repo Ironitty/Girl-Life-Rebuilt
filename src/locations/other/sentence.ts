@@ -39,7 +39,7 @@ function enterHearing(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/court/entrance.jpg');
   scene.text('You walk into the courthouse, dragging your legs as you join the queue of people waiting to head through the body scanner. You patiently await your turn before heading through to the reception area.');
   // TODO-QSP: dynamic text: "Hello, my name is <<$pcs_firstname>> <<$pcs_lastname>>. I got this summon in th...
-  scene.text(`"Hello, my name is ${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}. I got this summon in the mail," you tell a woman sitting at the desk.`);
+  scene.text(`"Hello, my name is ${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}. I got this summon in the mail," you tell a woman sitting at the desk.`);
   scene.text('She tells you to hand it over and looks through it. "Okay, head to courtroom number 5 and they\'ll call you in when it\'s your turn."');
   scene.text('You nervously nod before finding your way to the designated courtroom.');
   // TODO-QSP: end
@@ -77,7 +77,7 @@ function enterPunishment(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/shared/court/sentence.jpg');
   // TODO-QSP: dynamic text: The judge looks sternly at you. "You've caused quite ruckus, Miss <<$pcs_lastnam...
-  scene.text(`The judge looks sternly at you. "You've caused quite ruckus, Miss ${((s as any).pcs_lastname ?? 0)}. The law is quite stern, even when it comes to petty crimes."`);
+  scene.text(`The judge looks sternly at you. "You've caused quite ruckus, Miss ${((s as any).pcs_lastname || '')}. The law is quite stern, even when it comes to petty crimes."`);
   scene.text('You tremble a little in fear as he continues. "With that said, I believe in a more soft approach and that you can improve yourself by learning from your mistakes."');
   scene.text('You meekly nod and feel a little relieved.');
   // TODO-QSP: gs 'court_sentence_events', 'punishment_start', $policeQW_courthearing_subjects[0]
@@ -95,7 +95,7 @@ function enterPoliceArrest(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/shared/police/police_door.jpg');
   scene.text('There\'s a loud knock at the door and you open it to see two police officers standing in the hallway.');
   // TODO-QSP: dynamic text: "<<$pcs_firstname>> <<$pcs_lastname>>, you're under arrest!" one of them bellows...
-  scene.text(`"${((s as any).pcs_firstname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, you're under arrest!" one of them bellows.`);
+  scene.text(`"${((s as any).pcs_firstname || '')} ${((s as any).pcs_lastname || '')}, you're under arrest!" one of them bellows.`);
   // TODO-QSP: end
   scene.actions([
     { label: 'What?', handler: (st: GameState) => {
@@ -128,7 +128,7 @@ function enterPoliceArrest1(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/court/judge.jpg');
   scene.text('You\'re taken out of holding and over to the courthouse to await your hearing.');
   // TODO-QSP: dynamic text: "It seems you've missed your hearings, Miss <<$pcs_lastname>>. What do you have ...
-  scene.text(`"It seems you've missed your hearings, Miss ${((s as any).pcs_lastname ?? 0)}. What do you have to say for yourself?" the rather stern looking judge asks.`);
+  scene.text(`"It seems you've missed your hearings, Miss ${((s as any).pcs_lastname || '')}. What do you have to say for yourself?" the rather stern looking judge asks.`);
   scene.text('You look around, trying to come up with an excuse, but in the end you decide it\'s best to own up.');
   scene.text('"I have no excuse, your honor…" you meekly answer.');
   // TODO-QSP: policeQW_courthearing_dates[] = -daystart
@@ -148,7 +148,7 @@ function enterPoliceArrest2(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/court/judge.jpg');
   scene.text('You\'re taken out of holding and over to the courthouse to await your hearing.');
   // TODO-QSP: dynamic text: "You've been refusing to pay your fines, Miss <<$pcs_lastname>>. What do you hav...
-  scene.text(`"You've been refusing to pay your fines, Miss ${((s as any).pcs_lastname ?? 0)}. What do you have to say for yourself?" the rather stern looking judge asks.`);
+  scene.text(`"You've been refusing to pay your fines, Miss ${((s as any).pcs_lastname || '')}. What do you have to say for yourself?" the rather stern looking judge asks.`);
   scene.text('You begin to look around, trying to come up with an excuse, but in the end you decide it\'s best to own up.');
   scene.text('"I have no excuse, your honor…" you meekly answer.');
   scene.text('Their eyes piercing through you, the judge clears their throat. "I see. You have thirty days to pay your fine. If you fail to do so, you will be arrested again and given a prison sentence."');
@@ -166,7 +166,7 @@ function enterPoliceArrest3(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/shared/court/judge.jpg');
   scene.text('You\'re taken out of holding and over to the courthouse to await your hearing.');
   // TODO-QSP: dynamic text: "Do you believe yourself to be above the law, Miss <<$pcs_lastname>>? I can assu...
-  scene.text(`"Do you believe yourself to be above the law, Miss ${((s as any).pcs_lastname ?? 0)}? I can assure you that you are not. I sentence you to one year in prison."`);
+  scene.text(`"Do you believe yourself to be above the law, Miss ${((s as any).pcs_lastname || '')}? I can assure you that you are not. I sentence you to one year in prison."`);
   scene.text('You just nod in silence before you\'re hauled away to serve your time.');
   // TODO-QSP: end
   scene.actions([

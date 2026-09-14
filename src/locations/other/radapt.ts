@@ -160,11 +160,11 @@ function enterHome(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).radomirQW) (s as any).radomirQW = {}; (s as any).radomirQW['nush_visit'] = 2;
       qspCall(s, 'npc_relationship', 'modify', 'A144', 'hate');
       // TODO-QSP: dynamic text: She pauses when she sees you and looks surprised to see you. "What are you doing...
-      scene.text(`She pauses when she sees you and looks surprised to see you. "What are you doing here, ${((s as any).pcs_nickname ?? 0)}?"`);
+      scene.text(`She pauses when she sees you and looks surprised to see you. "What are you doing here, ${((s as any).pcs_nickname || '')}?"`);
       scene.text('You know the thing between Rad and her is complicated, but there\'s not much you can do, since she caught you heading to his bedroom. "I just came to see Rad."');
       scene.text('Before she can say anything, Radomir steps out and smiles when he sees you. "What are you girls talking about?"');
       // TODO-QSP: dynamic text: Anushka gives him a sour look. "I was just asking <<$pcs_nickname>> why she was ...
-      scene.text(`Anushka gives him a sour look. "I was just asking ${((s as any).pcs_nickname ?? 0)} why she was here."`);
+      scene.text(`Anushka gives him a sour look. "I was just asking ${((s as any).pcs_nickname || '')} why she was here."`);
       scene.text('Radomir grins and looks really smug. "Don\'t be jealous, babe. This is why we broke up."');
       scene.text('Anushka\'s eyes flash in anger. "We broke up because you\'re a fucking asshole!"');
       scene.text('Radomir says calmly looking as innocent as someone can look. "Babe, calm down!" he says calmly before he slaps her on the ass. "Best ass in Pavlovsk right there."');
@@ -392,13 +392,13 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower0.jpg');
@@ -423,18 +423,18 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower4.jpg');
     scene.text('You don\'t resist and let him pull your tower away, allowing yourself to stand in front of him completely naked. He looks over every inch of your naked body with hungry eyes before looking up at you.');
     // TODO-QSP: dynamic text: "Now look what you've done, " he says as he unzips his pants and pulls out his <...
-    scene.text(`"Now look what you've done, " he says as he unzips his pants and pulls out his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock.`);
+    scene.text(`"Now look what you've done, " he says as he unzips his pants and pulls out his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock.`);
     scene.text('As you look at it, he continues to talk. "Looks like you\'re going to have to suck it now."');
     qspCall(s, 'willpower', 'bj', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/rostislav/post_shower0.jpg');
@@ -507,13 +507,13 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'exhib', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Cover up and tell him to leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Cover up and tell him to leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Cover up and tell him to leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Cover up and tell him to leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower0.jpg');
@@ -535,13 +535,13 @@ function enterBathroom(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse and cover up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and cover up', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse and cover up [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse and cover up', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/resident/apartment/radapt/sex/bathroom/radislav/shower0.jpg');
@@ -650,7 +650,7 @@ function enterFridge(s: GameState, scene: SceneBuilder): void {
   if (((s as any).radbeer_count ?? 0) > 0  &&  ((s as any).radvodka_count ?? 0) > 0  &&  ((s as any).radsup_count ?? 0) > 0) {
   }
   // TODO-QSP: dynamic text: You open the fridge and see:<<$rad_vodka>><<$rad_beer>><<$rad_sup>><<$r_pusto>>
-  scene.text(`You open the fridge and see:${((s as any).rad_vodka ?? 0)}${((s as any).rad_beer ?? 0)}${((s as any).rad_sup ?? 0)}${((s as any).r_pusto ?? 0)}`);
+  scene.text(`You open the fridge and see:${((s as any).rad_vodka || '')}${((s as any).rad_beer || '')}${((s as any).rad_sup || '')}${((s as any).r_pusto || '')}`);
   if (((s as any).radbeer_count ?? 0) > 0) {
     scene.actions([
       { label: 'Have a beer', handler: (st: GameState) => {
@@ -1013,7 +1013,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
       scene.text('He looks at Radomir. "Damn bro, you did good for once. Credit to you for snagging a hottie like this!"');
       scene.text('He turns back to you and leans in close. "Hello. My name\'s Radislav and I\'m this loser\'s, stronger, better looking, bigger… in every way brother. What\'s your name?"');
       // TODO-QSP: dynamic text: Radomir's older brother looks like an older, more masculine jock version of him....
-      scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((s as any).pcs_nickname ?? 0)}…" you reply.`);
+      scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((s as any).pcs_nickname || '')}…" you reply.`);
       scene.text('He smiles. "What are you doing hanging out with a loser like my little bro here? You should be with a real man, like me."');
       scene.text('He oozes confidence, like he\'s never had a girl turn him down.');
       scene.text('Before you can answer, Radomir lunges at him. "Asshole!"');
@@ -1023,7 +1023,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
         scene.text('He looks at Radomir. "Not bad, bro. She\'s almost as hot as Nush… almost. Which is pretty good for you. I still don\'t know what Nush saw in your dumb ass."');
         scene.text('He turns back to you and leans in close. "Hello. My name\'s Radislav, this loser\'s, stronger, better looking, bigger… in every way brother. What\'s your name?"');
         // TODO-QSP: dynamic text: Radomir's older brother looks like an older, more masculine jock version of him....
-        scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((s as any).pcs_nickname ?? 0)}…" you reply.`);
+        scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((s as any).pcs_nickname || '')}…" you reply.`);
         scene.text('He smiles. "What are you doing hanging out with a loser like my little bro here? You should be with a real man, like me."');
         scene.text('He oozes confidence, like he\'s never had a girl turn him down.');
         scene.text('Before you can answer, Radomir lunges at him. "Asshole!"');
@@ -1033,7 +1033,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
           scene.text('He looks at Radomir. "I see you brought home another one of your so-called groupies. You should have thrown this one back and got yourself a good-looking one. Oh wait. I forgot this is the best you can get," he says with a laugh, mocking Radomir.');
           scene.text('He turns back to you and leans in close. "Hello. My name\'s Radislav, this loser\'s, stronger, better looking, bigger… in every way brother. What\'s your name?"');
           // TODO-QSP: dynamic text: Radomir's older brother looks like an older, more masculine jock version of him....
-          scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((s as any).pcs_nickname ?? 0)}…" you reply.`);
+          scene.text(`Radomir's older brother looks like an older, more masculine jock version of him. "${((s as any).pcs_nickname || '')}…" you reply.`);
           scene.text('He smiles. "I guess my little bro is the best you can do, huh?" He says it in such a condescending way, like you\'re completely beneath him.');
           scene.text('Before you can answer, Radomir lunges at him. "Asshole!"');
           scene.text('They\'re soon wrestling in the hall before they end up going back through the doorway Radislav came from.');
@@ -1092,7 +1092,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
       scene.text('He looks back at Radomir. "Very nice, son. She sure is a looker."');
       scene.text('He turns back to you. "Hello. I\'m Rostislav, these knuckleheads\' father. What\'s your name?"');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply.
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}," you reply.`);
+      scene.text(`"${((s as any).pcs_nickname || '')}," you reply.`);
       scene.text('He smiles. "It\'s a pleasure to meet you. You\'re welcome here any time."');
       scene.text('Is he flirting with you in front of his son? It sure feels like it…');
       scene.text('Before you can answer, Radomir walks over. "Come on, let\'s go."');
@@ -1108,7 +1108,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
         scene.text('Radomir doesn\'t answer, but you can tell he\'s very annoyed with his father and brother right now.');
         scene.text('His father turns back to you. "Hello. I\'m Rostislav, these knuckleheads\' father. What\'s your name?"');
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply.
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}," you reply.`);
+        scene.text(`"${((s as any).pcs_nickname || '')}," you reply.`);
         scene.text('He smiles. "It\'s nice to meet you. You\'re welcome here any time."');
         scene.text('Is he flirting with you in front of his son? It sure feels like it…');
         scene.text('Before you can answer, Radomir walks over. "Come on, let\'s go."');
@@ -1118,7 +1118,7 @@ function enterFirstvisit(s: GameState, scene: SceneBuilder): void {
           scene.text('He looks back at Radomir. "You could do worse I suppose. She isn\'t much of a looker, but she\'s cute enough. A warm wet hole is a warm wet hole after all."');
           scene.text('He turns back to you. "Hello. I\'m Rostislav, these knuckleheads\' father. What\'s your name?"');
           // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you reply.
-          scene.text(`"${((s as any).pcs_nickname ?? 0)}," you reply.`);
+          scene.text(`"${((s as any).pcs_nickname || '')}," you reply.`);
           scene.text('He smiles. "It\'s nice to meet you. You\'re welcome here any time."');
           scene.text('Is he flirting with you in front of his son? It sure feels like it…');
           scene.text('Before you can answer, Radomir walks over. "Come on, let\'s go."');

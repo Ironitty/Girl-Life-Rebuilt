@@ -25,13 +25,13 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
     if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = ((s as any).kendraQW['sub'] ?? 0) - (1);
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -42,13 +42,13 @@ function enterEventKendra(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'humiliation', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse again', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse again [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse again', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     qspCall(s, 'npc_relationship', 'modify', 'A84', 'loathe');
     if (!(s as any).kendraQW) (s as any).kendraQW = {}; (s as any).kendraQW['sub'] = (-1);
@@ -193,7 +193,7 @@ function enterAfricanStudiesDjibrilNush(s: GameState, scene: SceneBuilder): void
       scene.text('Anushka strips down to just her panties and takes a seat on his leg again. While you strip down to just your panties as well. "Damn you guys are so fucking hot." Djibril says, while he reaches over and start to rub your clit through your panties, while he rubs Anushka\'s clit through her panties with his other hand. "Got to get these pussies nice and wet, for my big black dick." He says with a cheeky grin after a moment he adds. "Loose the panties now."');
     } else {
       // TODO-QSP: dynamic text: Anushka strips down to just her panties and takes a seat on his leg again. While...
-      scene.text(`Anushka strips down to just her panties and takes a seat on his leg again. While you strip down until you are naked, as you wasn't wearing any panties. "Damn what a dirty little slut you are." Djibril says when he notices you are not wearing panties, while he reaches over and start to rub your bare clit, while he rubs Anushka's clit through her panties. "Got to get these pussies nice and wet, for my big black dick." He says with a cheeky grin after a moment he adds. "Loose the panties like ${((s as any).pcs_nickname ?? 0)}." He tells Anushka.`);
+      scene.text(`Anushka strips down to just her panties and takes a seat on his leg again. While you strip down until you are naked, as you wasn't wearing any panties. "Damn what a dirty little slut you are." Djibril says when he notices you are not wearing panties, while he reaches over and start to rub your bare clit, while he rubs Anushka's clit through her panties. "Got to get these pussies nice and wet, for my big black dick." He says with a cheeky grin after a moment he adds. "Loose the panties like ${((s as any).pcs_nickname || '')}." He tells Anushka.`);
     }
     qspCall(s, 'arousal', 'voyeur_sex', (-1));
     qspCall(s, 'arousal', 'clit_finger', 1);
@@ -325,7 +325,7 @@ function enterAfricanStudiesDjibrilNushBj(s: GameState, scene: SceneBuilder): vo
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/african_studies/djibril/djibril_nush_mff9.jpg');
   // TODO-QSP: dynamic text: Anushka are you both get down on your knees, so Djibril long massive thick black...
-  scene.text(`Anushka are you both get down on your knees, so Djibril long massive thick black cock is right in your faces. You open up your mouth and take the end of his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick in your mouth as you start to suck on it. Anushka for her part kneels next to you and watches you suck his black dick, she seems fairly eager for her turn to suck it. "Oh fuck yeah, that feels so good." Djibril says as he moans slightly.`);
+  scene.text(`Anushka are you both get down on your knees, so Djibril long massive thick black cock is right in your faces. You open up your mouth and take the end of his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick in your mouth as you start to suck on it. Anushka for her part kneels next to you and watches you suck his black dick, she seems fairly eager for her turn to suck it. "Oh fuck yeah, that feels so good." Djibril says as he moans slightly.`);
   qspCall(s, 'arousal', 'bj', 1, ((s as any).npcID ?? 0), 'exhibitionism');
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -340,14 +340,14 @@ function enterAfricanStudiesDjibrilNushBj(s: GameState, scene: SceneBuilder): vo
     qspCall(s, 'stat', '');
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/african_studies/djibril/djibril_nush_mff11.jpg');
     // TODO-QSP: dynamic text: Djibril gets up and lays down on the floor, before grabbing Anushka and pulling ...
-    scene.text(`Djibril gets up and lays down on the floor, before grabbing Anushka and pulling her suddenly over to him, she sequels a moment in surprise as he manhandles her until she is straddling him and then pushes her down. As she lowers herself down, she grabs his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} cock with one hand and lines it up with her pussy. She slowly impales herself, you watch as his black cock slowly disappears inside of her white pussy. She moans loudly as she takes more and more of his cock inside of her. "OH FUCK!… Your so big…" She looks at you, she looks so turned on, as she leans a bit towards you, while she rides Djibril.`);
+    scene.text(`Djibril gets up and lays down on the floor, before grabbing Anushka and pulling her suddenly over to him, she sequels a moment in surprise as he manhandles her until she is straddling him and then pushes her down. As she lowers herself down, she grabs his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} cock with one hand and lines it up with her pussy. She slowly impales herself, you watch as his black cock slowly disappears inside of her white pussy. She moans loudly as she takes more and more of his cock inside of her. "OH FUCK!… Your so big…" She looks at you, she looks so turned on, as she leans a bit towards you, while she rides Djibril.`);
     qspCall(s, 'arousal', 'voyeur_sex', 2);
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Kiss her', handler: (st: GameState) => {
     scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/african_studies/djibril/djibril_nush_mff12.jpg');
     // TODO-QSP: dynamic text: You lean over to meet her, as the two of you kiss. She moans into your mouth, as...
-    scene.text(`You lean over to meet her, as the two of you kiss. She moans into your mouth, as the two of you make out, as she rides Djibrils cock. Amidst this you hear some smacks of flesh on flesh, you are sure he is smacking her ass while she rides him. "Ok hope off, it's ${((s as any).pcs_nickname ?? 0)} turn to ride my dick." Anushka are you stop kissing as she climbs off him, you see his dick glistening and wet from her pussy juices. You could just mount him or you could taste her on him and suck his dick first.`);
+    scene.text(`You lean over to meet her, as the two of you kiss. She moans into your mouth, as the two of you make out, as she rides Djibrils cock. Amidst this you hear some smacks of flesh on flesh, you are sure he is smacking her ass while she rides him. "Ok hope off, it's ${((s as any).pcs_nickname || '')} turn to ride my dick." Anushka are you stop kissing as she climbs off him, you see his dick glistening and wet from her pussy juices. You could just mount him or you could taste her on him and suck his dick first.`);
     qspCall(s, 'arousal', 'voyeur_sex', (-2));
     qspCall(s, 'arousal', 'kiss', 2, ((s as any).npcID1 ?? 0));
     qspCall(s, 'stat', '');
@@ -378,7 +378,7 @@ function enterAfricanStudiesDjibrilNushRidehim(s: GameState, scene: SceneBuilder
   qspCall(s, 'stat', '');
   scene.img('images/characters/pavlovsk/school/girl/anushka/sex/uni/african_studies/djibril/djibril_nush_mff14.jpg');
   // TODO-QSP: dynamic text: You straddle him reverse cowgirl style and slowly lower yourself down, until the...
-  scene.text(`You straddle him reverse cowgirl style and slowly lower yourself down, until the you feel the tip of his wet dick, press against your slit. You lower yourself a bit more and you feel his wet dick easily slide into your wet pussy. As you keep going you feel his ${((s as any).dick ?? 0)}cm ${((s as any).dick_girth ?? 0)} dick stretch your pussy, as it slides in. Anushka places her hand on your back as she says to you. "That's it, take his massive black cock into your white pussy, let it stretch you out, that's it. Keep going." With her encouragement you slide down until his dick is balls deep in your pussy as you start to slowly ride him.`);
+  scene.text(`You straddle him reverse cowgirl style and slowly lower yourself down, until the you feel the tip of his wet dick, press against your slit. You lower yourself a bit more and you feel his wet dick easily slide into your wet pussy. As you keep going you feel his ${((s as any).dick || '')}cm ${((s as any).dick_girth || '')} dick stretch your pussy, as it slides in. Anushka places her hand on your back as she says to you. "That's it, take his massive black cock into your white pussy, let it stretch you out, that's it. Keep going." With her encouragement you slide down until his dick is balls deep in your pussy as you start to slowly ride him.`);
   qspCall(s, 'arousal', 'vaginal', 2, ((s as any).npcID ?? 0));
   qspCall(s, 'stat', '');
   // TODO-QSP: end
@@ -493,7 +493,7 @@ function enterAfricanStudiesDjibrilNushCleanup(s: GameState, scene: SceneBuilder
     (s as any).minut = ((s as any).minut ?? 0) + 3;
     scene.img('images/characters/shared/headshots_main/big144.jpg');
     // TODO-QSP: dynamic text: A few minutes later, Anushka finishes getting herself all cleaned up and and clo...
-    scene.text(`A few minutes later, Anushka finishes getting herself all cleaned up and and clothes back in order. She gives you a knowing little smile. "Well that was fun, at least I had fun. Did you have fun ${((s as any).pcs_nickname ?? 0)}?"`);
+    scene.text(`A few minutes later, Anushka finishes getting herself all cleaned up and and clothes back in order. She gives you a knowing little smile. "Well that was fun, at least I had fun. Did you have fun ${((s as any).pcs_nickname || '')}?"`);
     scene.text('You can\'t help but blush and nod. "Yeah I did, anyways I wanted to see if you wanted to do something now."');
     scene.text('She arches a shapely brow with a inquisitive look on her face. "Like what?"');
     scene.actions([

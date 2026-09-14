@@ -48,11 +48,11 @@ function enterPalec1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   if (((s as any).pantyworntype ?? 0) !== 'none') {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/pc/reactions/fuckyou_underwear.jpg"></cen...
-    scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/pc/reactions/fuckyou_underwear.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/pc/reactions/fuckyou_underwear.jpg"></center>`);
   }
   if (((s as any).pantyworntype ?? 0) === 'none') {
     // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/pc/reactions/fuckyou_naked.jpg"></center>
-    scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/pc/reactions/fuckyou_naked.jpg"></center>`);
+    scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/pc/reactions/fuckyou_naked.jpg"></center>`);
   }
   scene.text('<center>You flip off the neighbor, who quickly heads back indoors.</center>');
   // TODO-QSP: end
@@ -108,13 +108,13 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Flip him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Flip him off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Flip him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Flip him off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -128,13 +128,13 @@ function enterSosed(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'exhib', 'self');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Show off your body [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Show off your body', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Show off your body [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Show off your body', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');

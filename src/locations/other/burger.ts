@@ -55,7 +55,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: gs 'food_menu'
   } },
-    { label: 'Order take-out (0:20) [+$func(\'money\', \'get_cost_string\', 315)]', handler: (st: GameState) => {
+    { label: 'Order take-out (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 315) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -90,7 +90,7 @@ function enterOffice(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', goto: ['burger', 'start'] },
-    { label: 'Repay the debt [+$func(\'money\', \'get_cost_string\', 650000...]', handler: (st: GameState) => {
+    { label: 'Repay the debt', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 650000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -163,7 +163,7 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
   if (((s as any).pcs_apprnc ?? 0) >= 80  &&  (((s as any).job_shifts_total ?? 0)?.['city_diner_dishwasher'] + ((s as any).job_shifts_total ?? 0)?.['city_diner_floor_washer']) >= 7  &&  ((s as any).BurgerQW ?? 0)?.['Level'] < 10) {
     if (((s as any).BurgerQW ?? 0)?.['Level'] === 1) {
       // TODO-QSP: dynamic text: Out of the his office comes the owner of the bistro smiling at you. "<<$pcs_nick...
-      scene.text(`Out of the his office comes the owner of the bistro smiling at you. "${((s as any).pcs_nickname ?? 0)}. My offer still stands. Would you like to go to a restaurant?"`);
+      scene.text(`Out of the his office comes the owner of the bistro smiling at you. "${((s as any).pcs_nickname || '')}. My offer still stands. Would you like to go to a restaurant?"`);
     } else {
       if (((s as any).BurgerQW ?? 0)?.['Level'] === 0) {
         if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['Level'] = 1;
@@ -172,7 +172,7 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
         scene.text('"Don\'t worry", you respond with a smile.');
         scene.text('"Have we met? I am Anatoly Borisovich."');
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>."
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}."`);
+        scene.text(`"${((s as any).pcs_nickname || '')}."`);
         scene.text('Anatoly takes your hand and kisses it.');
         scene.text('"Would you like to dine somewhere outside of this hole?"');
       }
@@ -180,13 +180,13 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['burger', 'start'] },
       ]);
@@ -217,18 +217,18 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     scene.text('"Sorry, I could not resist to take a look at your beauty."');
     scene.text('Looking at the dresses, Anatoly says, ');
     // TODO-QSP: dynamic text: "I think you should take this one. It is the most expensive one. And I think, <<...
-    scene.text(`"I think you should take this one. It is the most expensive one. And I think, ${((s as any).pcs_nickname ?? 0)}, you should be very thankful for such a gift."`);
+    scene.text(`"I think you should take this one. It is the most expensive one. And I think, ${((s as any).pcs_nickname || '')}, you should be very thankful for such a gift."`);
     scene.text('Anatoly\'s eyes point at his pants showing what he wants from you.');
     qspCall(s, 'willpower', 'bj', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Thank you very much. (Deny) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Thank you very much. (Deny)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Thank you very much. (Deny) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Thank you very much. (Deny)', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.text('You grin and say, "Thank you very much." Anatoly flushes and says emphatically, "You know what I mean." He unbuttons his pants and pulls out his hard member.');
@@ -263,7 +263,7 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/car.jpg');
     // TODO-QSP: dynamic text: "Whew, <<$pcs_nickname>>. I'm a little tired. Let's go to a restaurant some othe...
-    scene.text(`"Whew, ${((s as any).pcs_nickname ?? 0)}. I'm a little tired. Let's go to a restaurant some other time." Anatoly tells you, taking you by the hand as he leads you to his car. You quickly get to your home and Anatoly says goodbye to you.`);
+    scene.text(`"Whew, ${((s as any).pcs_nickname || '')}. I'm a little tired. Let's go to a restaurant some other time." Anatoly tells you, taking you by the hand as he leads you to his car. You quickly get to your home and Anatoly says goodbye to you.`);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Out of the car', goto: ['city_residential', ''] },
@@ -325,7 +325,7 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/city/shared/car.jpg');
     // TODO-QSP: dynamic text: You walk out of the boutique with Anatoly Borisovich. "Whew, <<$pcs_nickname>>. ...
-    scene.text(`You walk out of the boutique with Anatoly Borisovich. "Whew, ${((s as any).pcs_nickname ?? 0)}. I'm a little tired. Let's go to a restaurant some other time." Anatoly tells you, taking you by the hand as he leads you to his car. You quickly get to your home and Anatoly says goodbye to you.`);
+    scene.text(`You walk out of the boutique with Anatoly Borisovich. "Whew, ${((s as any).pcs_nickname || '')}. I'm a little tired. Let's go to a restaurant some other time." Anatoly tells you, taking you by the hand as he leads you to his car. You quickly get to your home and Anatoly says goodbye to you.`);
     qspCall(s, 'arousal', 'end');
     scene.actions([
       { label: 'Out of the car', goto: ['city_residential', ''] },
@@ -361,7 +361,7 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).BurgerQW ?? 0)?.['Level'] === 56) {
         // TODO-QSP: dynamic text: When you're finished you are suddenly approached by the manager Ilyushkin. "Okay...
-        scene.text(`When you're finished you are suddenly approached by the manager Ilyushkin. "Okay ${((s as any).pcs_nickname ?? 0)}. I'm sorry. I was wrong about you. I do not know what got into me. We are currently looking for an Assistant Manager. I think you can do it. You have the nature for it. Well? What do you say?"`);
+        scene.text(`When you're finished you are suddenly approached by the manager Ilyushkin. "Okay ${((s as any).pcs_nickname || '')}. I'm sorry. I was wrong about you. I do not know what got into me. We are currently looking for an Assistant Manager. I think you can do it. You have the nature for it. Well? What do you say?"`);
         return;
         scene.actions([
           { label: 'Yes', handler: (st: GameState) => {
@@ -431,7 +431,7 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).BurgerQW ?? 0)?.['Level'] === 50) {
           // TODO-QSP: dynamic text: During your work, you learned that Anatoly Borisovich is away on business affair...
-          scene.text(`During your work, you learned that Anatoly Borisovich is away on business affairs and Ilyushkin is replacing him as the manager. When you are getting ready to go to work Ilyushkin comes out of the manager's office and says in a conspiratorial tone, "Well ${((s as any).pcs_nickname ?? 0)}, you obviously do not want to work for a couple of pennies? Come to me for special work. Special work for special Salary."`);
+          scene.text(`During your work, you learned that Anatoly Borisovich is away on business affairs and Ilyushkin is replacing him as the manager. When you are getting ready to go to work Ilyushkin comes out of the manager's office and says in a conspiratorial tone, "Well ${((s as any).pcs_nickname || '')}, you obviously do not want to work for a couple of pennies? Come to me for special work. Special work for special Salary."`);
           scene.actions([
             { label: 'Go to the manager\'s office', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
@@ -443,13 +443,13 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'sex', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['Level'] = 56;
@@ -458,13 +458,13 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'That\'s bullshit! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'That\'s bullshit!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'That\'s bullshit! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'That\'s bullshit!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['burger', 'start'] },
       ]);
@@ -565,7 +565,7 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
                 { label: 'Go to the manager\'s office', handler: (st: GameState) => {
     if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['Level'] = 65;
     // TODO-QSP: dynamic text: You come to the office, but it is closed. The deputy manager comes over to you a...
-    scene.text(`You come to the office, but it is closed. The deputy manager comes over to you and tells you with a chuckle, "What ${((s as any).pcs_nickname ?? 0)}? Can't work without a dick? I know all about you and our general manager. But he is not here until the end of the week. And if you do not want me to tell other people how you earn a living, then you will go to the office and serve me."`);
+    scene.text(`You come to the office, but it is closed. The deputy manager comes over to you and tells you with a chuckle, "What ${((s as any).pcs_nickname || '')}? Can't work without a dick? I know all about you and our general manager. But he is not here until the end of the week. And if you do not want me to tell other people how you earn a living, then you will go to the office and serve me."`);
     scene.actions([
       { label: 'Nod obediently', handler: (st: GameState) => {
     scene.img('images/locations/city/citycenter/diner/sex/bj21.jpg');
@@ -585,17 +585,17 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
     scene.text('"Ha, listen here slut! My father is the real owner of the bistro and Borisovich is just a hired director. And if he learns that you fuck Borisovich whenever he wants it, it will be very bad for you! So if you want me to keep quiet…"');
     scene.text('After these words, he calls two movers over and says');
     // TODO-QSP: dynamic text: "Guys would you like to blow off some steam on this nymph? Don't worry, she enjo...
-    scene.text(`"Guys would you like to blow off some steam on this nymph? Don't worry, she enjoys it. She is here to serve. Am I right ${((s as any).pcs_nickname ?? 0)}?`);
+    scene.text(`"Guys would you like to blow off some steam on this nymph? Don't worry, she enjoys it. She is here to serve. Am I right ${((s as any).pcs_nickname || '')}?`);
     qspCall(s, 'willpower', 'group', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Refuse [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Refuse', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['Level'] = 61;
   }, goto: ['burger', 'start'] },
@@ -681,7 +681,7 @@ function enterDishes(s: GameState, scene: SceneBuilder): void {
                     if (!(s as any).BurgerQW) (s as any).BurgerQW = {}; (s as any).BurgerQW['sergeyQWServiced1'] = 4;
                   }
                   // TODO-QSP: dynamic text: After you finish, you see Anatoly Borisovich. He nods and tells you "Hello <<$pc...
-                  scene.text(`After you finish, you see Anatoly Borisovich. He nods and tells you "Hello ${((s as any).pcs_nickname ?? 0)}, when you're done, come to me."`);
+                  scene.text(`After you finish, you see Anatoly Borisovich. He nods and tells you "Hello ${((s as any).pcs_nickname || '')}, when you're done, come to me."`);
                   return;
                   scene.actions([
                     { label: 'Leave', goto: ['burger', 'start'] },
@@ -740,13 +740,13 @@ function enterBoss(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'bj', 'resist', 'medium');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['burger', 'start'] },
             ]);
@@ -831,13 +831,13 @@ function enterBossSlut_01(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'bj', 'resist', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
   }, goto: ['burger', 'start'] },
           ]);
@@ -861,7 +861,7 @@ function enterBossSlut_01(s: GameState, scene: SceneBuilder): void {
       } else {
         scene.text('This should not be possible!');
         // TODO-QSP: dynamic text: You should not be able to get here with BurgerQW['Level'] = <<BurgerQW['Level']>...
-        scene.text(`You should not be able to get here with BurgerQW['Level'] = ${((s as any).BurgerQW ?? 0)?.['Level']}`);
+        scene.text(`You should not be able to get here with BurgerQW['Level'] = ${((s as any).BurgerQW ?? 0)?.['Level'] ?? ''}`);
         scene.actions([
           { label: 'Leave', goto: ['burger', 'start'] },
         ]);
@@ -885,14 +885,14 @@ function enterBossSlut_10(s: GameState, scene: SceneBuilder): void {
   if (((s as any).job_status ?? 0)?.['city_diner_secretary'] === 'fired') {
     if (qspFunc(s, 'jobs', 'is_arrival_time', 'city_diner_secretary') === 1) {
       // TODO-QSP: dynamic text: Anatoly Borisovich looks at you sternly, "<<$pcs_nickname>>, you're fired. Go aw...
-      scene.text(`Anatoly Borisovich looks at you sternly, "${((s as any).pcs_nickname ?? 0)}, you're fired. Go away, we're done, I love my wife more than you."`);
+      scene.text(`Anatoly Borisovich looks at you sternly, "${((s as any).pcs_nickname || '')}, you're fired. Go away, we're done, I love my wife more than you."`);
     }
   } else {
     if (((s as any).job_status ?? 0)?.['city_diner_secretary'] === 'employed') {
       if (qspFunc(s, 'jobs', 'is_arrival_time', 'city_diner_secretary') === 1) {
         if ((!((s as any).POffice ?? 0))) {
           // TODO-QSP: dynamic text: Anatoly Borisovich looks at you sternly, "<<$pcs_nickname>>, why aren't you dres...
-          scene.text(`Anatoly Borisovich looks at you sternly, "${((s as any).pcs_nickname ?? 0)}, why aren't you dressed properly? Go home and come back tomorrow dressed appropriately, you're not working today!"`);
+          scene.text(`Anatoly Borisovich looks at you sternly, "${((s as any).pcs_nickname || '')}, why aren't you dressed properly? Go home and come back tomorrow dressed appropriately, you're not working today!"`);
         } else {
           scene.actions([
             { label: 'Work', goto: ['burgerWork', 'start'] },
@@ -925,7 +925,7 @@ function enterBossSlut_10(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'jobs', 'set_employed', 'city_diner_secretary');
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: You agree to become a secretary to Anatoly Borisovich. He takes your CV, makes a...
-    scene.text('You agree to become a secretary to Anatoly Borisovich. He takes your CV, makes a copy of your passport and diploma, and tells you. "Come to work here every weekday, no later than \'+func(\'time\', \'get_time_string\', 9, 0)+\', you must wear an office outfit. You will receive calls, take letters, and copy documents, and you have to do any other general office work as required. You will work until \'+func(\'time\', \'get_time_string\', 17, 0)+\', your salary will be paid into your bank account every month."');
+    scene.text('You agree to become a secretary to Anatoly Borisovich. He takes your CV, makes a copy of your passport and diploma, and tells you. "Come to work here every weekday, no later than 9:00, you must wear an office outfit. You will receive calls, take letters, and copy documents, and you have to do any other general office work as required. You will work until 17:00, your salary will be paid into your bank account every month."');
     scene.actions([
       { label: 'Leave', goto: ['burger', 'start'] },
     ]);

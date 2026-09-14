@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterMaster(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'bdsm_bedwest', 'check_master_events');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckMasterEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_bedwest', 'master');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/masterbed.jpg');
@@ -98,7 +98,7 @@ function enterMasterEvent_4(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterGuest(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'bdsm_bedwest', 'check_guest_events');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCheckGuestEvents(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'core_library', 'setloc', 'bdsm_bedwest', 'guest');
   qspCall(s, 'stat', '');
   scene.img('images/locations/city/suburb/bdsm_club/beda.jpg');

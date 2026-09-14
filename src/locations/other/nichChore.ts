@@ -227,9 +227,9 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
     { label: '<<$nichChoreActCaption>>', handler: (st: GameState) => {
     // TODO-QSP: :nichChoreSkipInspect
     qspCall(s, 'stat', '');
-    scene.img(`${((s as any).nichTempPic ?? 0)}`);
+    scene.img(`${((s as any).nichTempPic || '')}`);
     // TODO-QSP: dynamic text: <<$nichChoreDesc>>
-    scene.text(`${((s as any).nichChoreDesc ?? 0)}`);
+    scene.text(`${((s as any).nichChoreDesc || '')}`);
     if ((!((s as any).nichOutfitState ?? 0))) {
       scene.text('<b><font color = red>You have to change into an appropriate outfit before cleaning up.</font></b>');
     } else {
@@ -252,7 +252,7 @@ function enterInspect(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'nichChore', 'cleanApartmentActions', 0);
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 0]; enterCleanApartmentActions(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
   } },
   ]);
@@ -270,7 +270,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
             scene.img('images/characters/city/tanya/encounter/dom1.jpg');
             scene.text('When you start cleaning Tanya approaches you from behind and smacks you on your butt.');
             // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, don't miss that edge over there." she points at a small ...
-            scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, don't miss that edge over there." she points at a small mess she obviously created on purpose.`);
+            scene.text(`"Hey ${((s as any).pcs_nickname || '')}, don't miss that edge over there." she points at a small mess she obviously created on purpose.`);
             return;
             scene.actions([
               { label: 'Comply', handler: (st: GameState) => {
@@ -596,7 +596,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   (s as any).nichI = 0;
   // TODO-QSP: :nichChoreResultLoop
   if (((s as any).nichRand ?? 0) <= ((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)]) {
-    scene.img(`${((s as any).nichTempPic ?? 0)}`);
+    scene.img(`${((s as any).nichTempPic || '')}`);
     // TODO-QSP: $nichChoreDesc
   } else {
     (s as any).nichRand = ((s as any).nichRand ?? 0) - (((s as any).nichChoreResulChance ?? 0)?.[String((s as any).nichI ?? 0)]);
@@ -624,7 +624,7 @@ function enterWork(s: GameState, scene: SceneBuilder): void {
   } },
     ]);
   } else {
-    qspCall(s, 'nichChore', 'cleanApartmentActions', 1);
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', 1]; enterCleanApartmentActions(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   scene.build();
 }

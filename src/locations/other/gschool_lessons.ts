@@ -34,7 +34,7 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
       (s as any).detention_set = 2;
       scene.img('images/characters/shared/headshots_main/big134.jpg');
       scene.text('The principal is waiting for you in the hall, and with a simple curl of a finger, she summons you to follow her to her office.');
-      qspCall(s, 'gschool_lessons', 'uniform_check');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUniformCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
       scene.actions([
         { label: 'Follow', goto: ['gschool_office', 'principal'] },
       ]);
@@ -52,7 +52,7 @@ function enterMorning(s: GameState, scene: SceneBuilder): void {
             scene.actions([{ label: 'Continue', goto: ['nerd_game_night', 'invite', '\'morning\''] }]);
           } else {
             qspCall(s, 'gschool_gossip', 'morning');
-            qspCall(s, 'gschool_lessons', 'uniform_check');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterUniformCheck(s, scene); (s as any).locArgs = __savedLocArgs; }
             qspCall(s, 'gschool', 'schedule');
             if (((s as any).week ?? 0) === 1  &&  ((s as any).class ?? 0)?.['grade_check_day'] !== ((s as any).daystart ?? 0)) {
               scene.actions([
@@ -515,31 +515,31 @@ function enterGradeCheck(s: GameState, scene: SceneBuilder): void {
   scene.text('Your grades are as follows:');
   scene.text('<table cellpadding="2" cellspacing="0">');
   // TODO-QSP: dynamic text: '<tr><td>Math:</td><td><<$class_grade_desc[''school_math_grade'']>></td><td>' + ...
-  scene.text(`'<tr><td>Math:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_math_grade']}</td><td>' + $func('progressbar', 'positive', class['school_math_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_math_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Math:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_math_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_math_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_math_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>Russian:</td><td><<$class_grade_desc[''school_rus_grade'']>></td><td>' ...
-  scene.text(`'<tr><td>Russian:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_rus_grade']}</td><td>' + $func('progressbar', 'positive', class['school_rus_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_rus_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Russian:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_rus_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_rus_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_rus_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>Literature:</td><td><<$class_grade_desc[''school_lit_grade'']>></td><td...
-  scene.text(`'<tr><td>Literature:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_lit_grade']}</td><td>' + $func('progressbar', 'positive', class['school_lit_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_lit_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Literature:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_lit_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_lit_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_lit_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>Art:</td><td><<$class_grade_desc[''school_art_grade'']>></td><td>' + $f...
-  scene.text(`'<tr><td>Art:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_art_grade']}</td><td>' + $func('progressbar', 'positive', class['school_art_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_art_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Art:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_art_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_art_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_art_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>Biology:</td><td><<$class_grade_desc[''school_bio_grade'']>></td><td>' ...
-  scene.text(`'<tr><td>Biology:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_bio_grade']}</td><td>' + $func('progressbar', 'positive', class['school_bio_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_bio_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Biology:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_bio_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_bio_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_bio_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>English:</td><td><<$class_grade_desc[''school_eng_grade'']>></td><td>' ...
-  scene.text(`'<tr><td>English:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_eng_grade']}</td><td>' + $func('progressbar', 'positive', class['school_eng_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_eng_grade']}</td></tr>'`);
+  scene.text(`<tr><td>English:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_eng_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_eng_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_eng_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>Geography:</td><td><<$class_grade_desc[''school_geo_grade'']>></td><td>...
-  scene.text(`'<tr><td>Geography:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_geo_grade']}</td><td>' + $func('progressbar', 'positive', class['school_geo_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_geo_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Geography:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_geo_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_geo_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_geo_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>Science:</td><td><<$class_grade_desc[''school_sci_grade'']>></td><td>' ...
-  scene.text(`'<tr><td>Science:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_sci_grade']}</td><td>' + $func('progressbar', 'positive', class['school_sci_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_sci_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Science:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_sci_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_sci_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_sci_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>History:</td><td><<$class_grade_desc[''school_his_grade'']>></td><td>' ...
-  scene.text(`'<tr><td>History:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_his_grade']}</td><td>' + $func('progressbar', 'positive', class['school_his_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_his_grade']}</td></tr>'`);
+  scene.text(`<tr><td>History:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_his_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_his_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_his_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>Shop:</td><td><<$class_grade_desc[''school_shop_grade'']>></td><td>' + ...
-  scene.text(`'<tr><td>Shop:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_shop_grade']}</td><td>' + $func('progressbar', 'positive', class['school_shop_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_shop_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Shop:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_shop_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_shop_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_shop_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>Computer:</td><td><<$class_grade_desc[''school_comp_grade'']>></td><td>...
-  scene.text(`'<tr><td>Computer:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_comp_grade']}</td><td>' + $func('progressbar', 'positive', class['school_comp_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_comp_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Computer:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_comp_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_comp_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_comp_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>Music:</td><td><<$class_grade_desc[''school_mus_grade'']>></td><td>' + ...
-  scene.text(`'<tr><td>Music:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_mus_grade']}</td><td>' + $func('progressbar', 'positive', class['school_mus_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_mus_grade']}</td></tr>'`);
+  scene.text(`<tr><td>Music:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_mus_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_mus_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_mus_grade'] ?? ''}</td></tr>`);
   // TODO-QSP: dynamic text: '<tr><td>P.E.:</td><td><<$class_grade_desc[''school_pe_grade'']>></td><td>' + $f...
-  scene.text(`'<tr><td>P.E.:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_pe_grade']}</td><td>' + $func('progressbar', 'positive', class['school_pe_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_pe_grade']}</td></tr>'`);
+  scene.text(`<tr><td>P.E.:</td><td>${((s as any).class_grade_desc ?? 0)?.['school_pe_grade'] ?? ''}</td><td>' + $func('progressbar', 'positive', class['school_pe_grade'], 0, 0, 0, ', 'none', $temp_grade_thr) + '</td><td>${((s as any).class ?? 0)?.['school_pe_grade'] ?? ''}</td></tr>`);
   scene.text('</table>');
   scene.text('A grade of 1 means "Very Poor" and is generally only used for absence. 2 means "Unsatisfactory" and is also a failing grade. 3 means "Satisfactory" and is a passing grade. 4 means "Good". 5 means "Excellent" and is only given to the best students. The number shown on the progress bar (0–100) is the internal variable grade that changes with your in-class actions; the letter grade beside it is the official mark.');
   qspCall(s, 'grades', 'grade above', 'school', 90);

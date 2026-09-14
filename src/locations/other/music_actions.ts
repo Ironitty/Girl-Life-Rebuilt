@@ -9,7 +9,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterStart(s: GameState, scene: SceneBuilder): void {
-  (s as any).ml_time_left = ((s as any).ml_performance ?? {})?.['max_perform_minutes']-((s as any).ml_performance ?? {})?.['performed_minutes'];
+  (s as any).ml_time_left = (((s as any).ml_performance ?? {})?.['max_perform_minutes'] ?? 0)-(((s as any).ml_performance ?? {})?.['performed_minutes'] ?? 0);
   if (((s as any).ml_activities ?? 0)?.['enabled'] === 0  &&  (((s as any).ml_guitar ?? 0)?.['hasguitar']  ||  ((s as any).vokal_lvl ?? 0) > 5)) {
     if (!(s as any).ml_activities) (s as any).ml_activities = {}; (s as any).ml_activities['enabled'] = 1;
   }
@@ -47,7 +47,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
           }
         }
         if (((s as any).ml_guitar ?? 0)?.['hasguitar'] === 1  &&  ((s as any).location_type ?? 0) === 'private') {
-          qspCall(s, 'music_actions', 'put_down_pick_up');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPutDownPickUp(s, scene); (s as any).locArgs = __savedLocArgs; }
         }
       }
     }
@@ -76,24 +76,24 @@ function enterAvailableActions(s: GameState, scene: SceneBuilder): void {
       ]);
     }
   }
-  (s as any).ml_time_left = ((s as any).ml_performance ?? {})?.['max_perform_minutes']-((s as any).ml_performance ?? {})?.['performed_minutes'];
+  (s as any).ml_time_left = (((s as any).ml_performance ?? {})?.['max_perform_minutes'] ?? 0)-(((s as any).ml_performance ?? {})?.['performed_minutes'] ?? 0);
   if (((s as any).location_type ?? 0) === 'public_outdoors') {
-    qspCall(s, 'music_actions', 'not_alone');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterNotAlone(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).access ?? 0) === '') {
     qspCall(s, 'internet_mobile', 'get_access');
   }
-  qspCall(s, 'music_actions', 'play_something');
-  qspCall(s, 'music_actions', 'practice_guitar');
-  qspCall(s, 'music_actions', 'rehearse_sets');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPlaySomething(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPracticeGuitar(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRehearseSets(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).location_type ?? 0) === 'public_outdoors') {
-    qspCall(s, 'music_actions', 'busking');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterBusking(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
-  qspCall(s, 'music_actions', 'record_music');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterRecordMusic(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).access ?? 0) !== 'denied') {
-    qspCall(s, 'music_actions', 'stream_music');
-    qspCall(s, 'music_actions', 'set_up_account');
-    qspCall(s, 'music_actions', 'delete_music');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStreamMusic(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSetUpAccount(s, scene); (s as any).locArgs = __savedLocArgs; }
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterDeleteMusic(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   // TODO-QSP: end
   scene.actions([
@@ -149,13 +149,13 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Play something on the guitar (you are not alone) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Play something on the guitar (you are not alone)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Play something on the guitar (10 minutes) (you are not alone) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Play something on the guitar (10 minutes) (you are not alone)', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -193,13 +193,13 @@ function enterPlaySomething(s: GameState, scene: SceneBuilder): void {
   } else {
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Sing something (you are not alone) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Sing something (you are not alone)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Sing something (10 minutes) (you are not alone) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Sing something (10 minutes) (you are not alone)', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -237,13 +237,13 @@ function enterPracticeGuitar(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Practice guitar (you are not alone) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Practice guitar (you are not alone)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Practice guitar (15 minutes) (you are not alone) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Practice guitar (15 minutes) (you are not alone)', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -282,13 +282,13 @@ function enterBusking(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Start busking [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Start busking', handler: (st: GameState) => {
     // TODO-QSP: $func('wrap', 'neg', '<br>You don''t feel comfortable enough...
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Start busking (60 minutes) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Start busking (60 minutes)', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -346,7 +346,7 @@ function enterStreamMusic(s: GameState, scene: SceneBuilder): void {
   } },
               ]);
             } else {
-              qspCall(s, 'music_actions', 'willpower_cost');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWillpowerCost(s, scene); (s as any).locArgs = __savedLocArgs; }
               if ((!((s as any).will_cost ?? 0))) {
                 scene.actions([
                   { label: 'Live stream (60 minutes)', goto: ['music_onlinemusic', 'live_stream'] },
@@ -354,13 +354,13 @@ function enterStreamMusic(s: GameState, scene: SceneBuilder): void {
               } else {
                 if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                   scene.actions([
-                    { label: 'Live stream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                    { label: 'Live stream', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                   ]);
                 } else {
                   scene.actions([
-                    { label: 'Live stream (60 minutes) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                    { label: 'Live stream (60 minutes)', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 3) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -393,7 +393,7 @@ function enterRecordMusic(s: GameState, scene: SceneBuilder): void {
   } },
       ]);
     } else {
-      qspCall(s, 'music_actions', 'willpower_cost');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWillpowerCost(s, scene); (s as any).locArgs = __savedLocArgs; }
       if ((!((s as any).will_cost ?? 0))) {
         scene.actions([
           { label: 'Record a song with your phone (30 minutes)', goto: ['music_onlinemusic', 'record_song'] },
@@ -401,7 +401,7 @@ function enterRecordMusic(s: GameState, scene: SceneBuilder): void {
       } else {
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Record a song (you are not alone) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Record a song (you are not alone)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
@@ -424,7 +424,7 @@ function enterRecordMusic(s: GameState, scene: SceneBuilder): void {
 function enterEditRecording(s: GameState, scene: SceneBuilder): void {
   if (((s as any).mc_inventory ?? 0)?.['tech_computer'] === 1  &&  ((s as any).mc_inventory ?? 0)?.['tech_webcam'] === 1  &&  ((s as any).ml_studio ?? 0)?.['scarlet-3rd-gen'] === 1) {
     scene.actions([
-      { label: 'Edit a song [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Edit a song', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -458,13 +458,13 @@ function enterRehearseSets(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Rehearse your set (guitar and vocals) (you are not alone) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Rehearse your set (guitar and vocals) (you are not alone)', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Rehearse your set (guitar and vocals, 30 minutes) (you are not alone) [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Rehearse your set (guitar and vocals, 30 minutes) (you are not alone)', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (Math.floor(Math.random() * 2) + 1);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -498,13 +498,13 @@ function enterUploadMusic(s: GameState, scene: SceneBuilder): void {
     } else {
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Upload music [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Upload music', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Upload music [+$func(\'willpower\', \'get_willcost_string\'...]', goto: ['music_onlinemusic', 'uploadmusic'] },
+          { label: 'Upload music', goto: ['music_onlinemusic', 'uploadmusic'] },
         ]);
       }
     }
@@ -525,7 +525,7 @@ function enterDeleteMusic(s: GameState, scene: SceneBuilder): void {
 
 function enterNotAlone(s: GameState, scene: SceneBuilder): void {
   (s as any).ml_not_alone = 1;
-  qspCall(s, 'music_actions', 'willpower_cost');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterWillpowerCost(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

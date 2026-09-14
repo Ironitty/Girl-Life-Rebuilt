@@ -335,16 +335,16 @@ function enterTestsize(s: GameState, scene: SceneBuilder): void {
 
 function enterNpctest(s: GameState, scene: SceneBuilder): void {
   scene.text(' --- init --- ');
-  qspCall(s, 'shortgs', 'testsize');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTestsize(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'npcgeneratec', '', 0, 'stranger', Math.floor(Math.random() * 28) + 18, 1);
   scene.text(' --- gen npc C --- ');
-  qspCall(s, 'shortgs', 'testsize');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTestsize(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'npcpreservec', '', ((s as any).npclastgenerated ?? 0));
   scene.text(' --- sav npc C to npc B --- ');
-  qspCall(s, 'shortgs', 'testsize');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTestsize(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'npccleanc', '', ((s as any).npclastsaved ?? 0));
   scene.text(' --- delete npc B --- ');
-  qspCall(s, 'shortgs', 'testsize');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterTestsize(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -514,15 +514,15 @@ function enterPayments(s: GameState, scene: SceneBuilder): void {
   }
   if ((((s as any).epayments ?? 0)?.['method'] !== 'cash'  &&  ((s as any).epayments ?? 0)?.['method'] !== 'card')  &&  (((s as any).epayments ?? 0)?.['value'] <= ((s as any).money ?? 0)  &&  ((s as any).epayments ?? 0)?.['value'] <= ((s as any).karta ?? 0))) {
     // TODO-QSP: dynamic text: How do you want to pay for the <<$epayments['description']>>? <<$construct_cash>...
-    scene.text(`How do you want to pay for the ${((s as any).epayments ?? 0)?.['description']}? ${((s as any).construct_cash ?? 0)} or ${((s as any).construct_card ?? 0)}`);
+    scene.text(`How do you want to pay for the ${((s as any).epayments ?? 0)?.['description'] ?? ''}? ${((s as any).construct_cash || '')} or ${((s as any).construct_card || '')}`);
   } else {
     if ((((s as any).epayments ?? 0)?.['method'] === 'cash'  ||  ((s as any).epayments ?? 0)?.['method'] === '')  &&  ((s as any).epayments ?? 0)?.['value'] <= ((s as any).money ?? 0)) {
       // TODO-QSP: dynamic text: Pay for the <<$epayments['description']>> with <<$construct_cash>>?
-      scene.text(`Pay for the ${((s as any).epayments ?? 0)?.['description']} with ${((s as any).construct_cash ?? 0)}?`);
+      scene.text(`Pay for the ${((s as any).epayments ?? 0)?.['description'] ?? ''} with ${((s as any).construct_cash || '')}?`);
     } else {
       if ((((s as any).epayments ?? 0)?.['method'] === 'card'  ||  ((s as any).epayments ?? 0)?.['method'] === '')  &&  ((s as any).epayments ?? 0)?.['value'] <= ((s as any).karta ?? 0)) {
         // TODO-QSP: dynamic text: Pay for the <<$epayments['description']>> with your <<$construct_card>>?
-        scene.text(`Pay for the ${((s as any).epayments ?? 0)?.['description']} with your ${((s as any).construct_card ?? 0)}?`);
+        scene.text(`Pay for the ${((s as any).epayments ?? 0)?.['description'] ?? ''} with your ${((s as any).construct_card || '')}?`);
       } else {
         scene.text('You don\'t have enough money in your purse or bank account for this item.');
       }
@@ -564,9 +564,9 @@ function enterPaymentcomplete(s: GameState, scene: SceneBuilder): void {
 
 function enterCalendarDisplay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <b><<$monthName>> <<day>></b>
-  scene.text(`<b>${((s as any).monthName ?? 0)} ${((s as any).day ?? 0)}</b>`);
+  scene.text(`<b>${((s as any).monthName || '')} ${((s as any).day || '')}</b>`);
   // TODO-QSP: dynamic text: <b><<$weekName>></b>
-  scene.text(`<b>${((s as any).weekName ?? 0)}</b>`);
+  scene.text(`<b>${((s as any).weekName || '')}</b>`);
   // TODO-QSP: dynamic text: <b>' + $func('time', 'get_time_string') + '</b>
   scene.text('<b>\' + $func(\'time\', \'get_time_string\') + \'</b>');
   return;
@@ -576,7 +576,7 @@ function enterCalendarDisplay(s: GameState, scene: SceneBuilder): void {
 
 function enterDayDisplay(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: <b><<$weekName>></b>
-  scene.text(`<b>${((s as any).weekName ?? 0)}</b>`);
+  scene.text(`<b>${((s as any).weekName || '')}</b>`);
   // TODO-QSP: dynamic text: <b>' + $func('time', 'get_time_string') + '</b>
   scene.text('<b>\' + $func(\'time\', \'get_time_string\') + \'</b>');
   return;
@@ -846,7 +846,7 @@ function enterGenerateDickSizes(s: GameState, scene: SceneBuilder): void {
   }
   // TODO-QSP: $temp_table += '</table></center>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table ?? 0)}`);
+  scene.text(`${((s as any).temp_table || '')}`);
   return;
   // TODO-QSP: end
   scene.build();

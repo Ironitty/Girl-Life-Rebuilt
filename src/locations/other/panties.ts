@@ -289,7 +289,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).locArgs?.[1] ?? 0) === 'gm'  &&  ((s as any).locArgs?.[2] ?? 0) === 1) {
     if (((s as any).locArgs?.[1] ?? 0) === ((s as any).pantyworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).pantywornnumber ?? 0)) {
-      qspCall(s, 'panties', 'strip');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     return;
   }
@@ -300,7 +300,7 @@ function enterRemoveItem(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: <<$ARGS[1]>>_panties_h[<<ARGS[2]>>] = 0
   // TODO-QSP: "
   if (((s as any).locArgs?.[1] ?? 0) === ((s as any).pantyworntype ?? 0)  &&  ((s as any).locArgs?.[2] ?? 0) === ((s as any).pantywornnumber ?? 0)) {
-    qspCall(s, 'panties', 'strip_code');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
     qspCall(s, 'outfit', 'set_derived_vars');
     (s as any).lastwornpantynumber = 0;
   }
@@ -324,7 +324,7 @@ function enterDispose(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'underwear_bodysuits', 'dispose');
     return;
   }
-  qspCall(s, 'panties', 'remove_item', ((s as any).pantyworntype ?? 0), ((s as any).pantywornnumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).pantyworntype ?? 0), ((s as any).pantywornnumber ?? 0)]; enterRemoveItem(s, scene); (s as any).locArgs = __savedLocArgs; }
   return;
   // TODO-QSP: end
   scene.build();
@@ -376,7 +376,7 @@ function enterMoveToUnwanted(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterRemove(s: GameState, scene: SceneBuilder): void {
-  qspCall(s, 'panties', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -391,7 +391,7 @@ function enterStrip(s: GameState, scene: SceneBuilder): void {
   }
   (s as any).lastwornunderwear = 0;
   (s as any).lastwornpantynumber = ((s as any).pantywornnumber ?? 0);
-  qspCall(s, 'panties', 'strip_code');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStripCode(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -400,8 +400,8 @@ function enterStripCode(s: GameState, scene: SceneBuilder): void {
   (s as any).pantywornnumber = 0;
   (s as any).bodysuitwornnumber = 0;
   (s as any).isprokp = 0;
-  qspCall(s, 'panties', 'reset_PanVars');
-  qspCall(s, 'panties', 'reset_PPanVars');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PanVars(s, scene); (s as any).locArgs = __savedLocArgs; }
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterReset_PPanVars(s, scene); (s as any).locArgs = __savedLocArgs; }
   qspCall(s, 'outfit', 'set_derived_vars');
   // TODO-QSP: end
   scene.build();
@@ -457,7 +457,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
   if (((s as any).locArgs?.[1] ?? 0) === ''  ||  ((s as any).locArgs?.[1] ?? 0) === 'none') {
     // TODO-QSP: exit
   }
-  qspCall(s, 'panties', 'strip');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterStrip(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: gs 'underwear_attributes', $ARGS[1] + '_panties', ARGS[2]
   if ((!((s as any).PanQuality ?? 0))) {
     return;
@@ -506,7 +506,7 @@ function enterWear(s: GameState, scene: SceneBuilder): void {
 function enterWearLastWorn(s: GameState, scene: SceneBuilder): void {
   if (((s as any).lastwornpantytype ?? 0) === '') {
   }
-  qspCall(s, 'panties', 'wear', ((s as any).lastwornpantytype ?? 0), ((s as any).lastwornpantynumber ?? 0));
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ((s as any).lastwornpantytype ?? 0), ((s as any).lastwornpantynumber ?? 0)]; enterWear(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }

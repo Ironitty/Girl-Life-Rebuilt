@@ -17,18 +17,18 @@ function enter(s: GameState, scene: SceneBuilder): void {
   if ((String(';vball_block;vball_rec;vball_serve;vball_set;vball_spike;').indexOf(String(';' + ((s as any).locArgs?.[0] ?? 0) + ';'))) + 1 > 0) {
     if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['statName'] = 'vball';
     if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
-    if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['deg_loss_mult'] = 75 * ((s as any).expdegVars ?? {})?.['deg_loss_mult'] / 100;
+    if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['deg_loss_mult'] = 75 * (((s as any).expdegVars ?? {})?.['deg_loss_mult'] ?? 0) / 100;
   } else {
     if ((Array.isArray((s as any).skl_name) ? ((s as any).skl_name as any[]).indexOf(((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
       if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['statName'] = ((s as any).locArgs?.[0] ?? 0);
       if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['attrArray'] = ((s as any).locArgs?.[0] ?? 0);
-      if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['deg_loss_mult'] = 75 * ((s as any).expdegVars ?? {})?.['deg_loss_mult'] / 100;
+      if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['deg_loss_mult'] = 75 * (((s as any).expdegVars ?? {})?.['deg_loss_mult'] ?? 0) / 100;
     } else {
       if ((Array.isArray((s as any).att_name) ? ((s as any).att_name as any[]).indexOf(((s as any).locArgs?.[0] ?? 0)) : -1) >= 0) {
         if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['statName'] = ((s as any).locArgs?.[0] ?? 0);
         if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['attrArray'] = '';
       } else {
-        scene.text(`Error in gs 'exp_deg': ${((s as any).locArgs?.[0] ?? 0)} is neither a skill nor an attribute`);
+        scene.text(`Error in gs 'exp_deg': ${((s as any).locArgs?.[0] ?? '')} is neither a skill nor an attribute`);
         return;
       }
     }
@@ -43,7 +43,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :traitdegloop
   if (!(s as any).temp_sklattrib) (s as any).temp_sklattrib = {}; (s as any).temp_sklattrib['trait'] = qspUntranslated(s, "traitattskl[temp_sklattrib['trait_index']]", { location: "exp_deg" });
   if (((s as any).temp_sklattrib ?? 0)?.['trait'] !== '') {
-    if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[((s as any).temp_sklattrib ?? {})?.['trait'] + '-' + ((s as any).expdegVars ?? {})?.['statName'] + '-deg_loss']);
+    if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.[(((s as any).temp_sklattrib ?? {})?.['trait'] ?? 0) + '-' + (((s as any).expdegVars ?? {})?.['statName'] ?? 0) + '-deg_loss']);
     if (!(s as any).expdegVars) (s as any).expdegVars = {}; (s as any).expdegVars['deg_loss_mult'] = ((s as any).expdegVars['deg_loss_mult'] ?? 0) + (((s as any).trait_vars ?? 0)?.['all-\' + $expdegVars[\'statName\'] + \'-deg_loss']);
   }
   (s as any).tl = ((s as any).tl ?? 0) + (1);

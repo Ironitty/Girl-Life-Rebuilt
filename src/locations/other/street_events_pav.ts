@@ -56,12 +56,12 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: She has some vitamins for ' + $func('money', 'string_price', tovpay3) + '.
     scene.text('She has some vitamins for \' + $func(\'money\', \'string_price\', tovpay3) + \'.');
     // TODO-QSP: dynamic text: She has a romance novel (' + $func('money', 'string_price', 300) + ')
-    scene.text('She has a romance novel (\' + $func(\'money\', \'string_price\', 300) + \')');
+    scene.text('She has a romance novel (300₽)');
     if (qspFunc(s, 'money', 'can_afford', 300, 'cash') === 1) {
       qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a romance novel', 'romance', 300);
     }
     scene.actions([
-      { label: 'Buy the cosmetics [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
+      { label: 'Buy the cosmetics', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay1 ?? 0), 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -72,7 +72,7 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
     }
   } },
-      { label: 'Buy the lip balm [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
+      { label: 'Buy the lip balm', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay2 ?? 0), 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -82,7 +82,7 @@ function enterMinorNakedHawker(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
     }
   } },
-      { label: 'Buy the vitamins [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
+      { label: 'Buy the vitamins', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay3 ?? 0), 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -126,12 +126,12 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: They have some vitamins for ' + $func('money', 'string_price', tovpay3) + '.
     scene.text('They have some vitamins for \' + $func(\'money\', \'string_price\', tovpay3) + \'.');
     // TODO-QSP: dynamic text: They have a romance novel (' + $func('money', 'string_price', 300) + ')
-    scene.text('They have a romance novel (\' + $func(\'money\', \'string_price\', 300) + \')');
+    scene.text('They have a romance novel (300₽)');
     if (qspFunc(s, 'money', 'can_afford', 300, 'cash') === 1) {
       qspCall(s, 'library_functions', 'set_single_book_buy_act', 'a romance novel', 'romance', 300);
     }
     scene.actions([
-      { label: 'Buy the cosmetics [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
+      { label: 'Buy the cosmetics', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay1 ?? 0), 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -142,7 +142,7 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
     }
   } },
-      { label: 'Buy the lip balm [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
+      { label: 'Buy the lip balm', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay2 ?? 0), 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -152,7 +152,7 @@ function enterMinorImprovisedMarket(s: GameState, scene: SceneBuilder): void {
       scene.actions([{ label: 'Continue', handler: (st: GameState) => { dynamicGoto(st, 'loc'); } }]);
     }
   } },
-      { label: 'Buy the vitamins [+$func(\'money\', \'get_cost_string\', tovpay...]', handler: (st: GameState) => {
+      { label: 'Buy the vitamins', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', ((s as any).tovpay3 ?? 0), 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -177,7 +177,7 @@ function enterMinorOlderWomenShaming(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'mood', 'lower', 'small');
   }
   if (((s as any).trait_vars ?? 0)?.['exhibitionist_exp'] >= 30) {
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (((s as any).trait_vars ?? {})?.['exhibitionist_exp']/5);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((((s as any).trait_vars ?? {})?.['exhibitionist_exp'] ?? 0)/5);
   }
   qspCall(s, 'stat', '');
   // TODO-QSP: $streetev_title

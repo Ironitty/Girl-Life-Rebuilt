@@ -109,13 +109,13 @@ function enterPartywithMira(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'drink', 'resist');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Leave', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'willpower', 'drink', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
@@ -216,7 +216,7 @@ function enterGroupSex(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Mira seems to be just as insatiable as the boys as she races you over to <<$boyd...
     scene.text(`Mira seems to be just as insatiable as the boys as she races you over to ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })}'s cock. She is the first to wrap her lips around it as you are left to try and lick whatever Mira isn't currently shoving down her throat.`);
     // TODO-QSP: dynamic text: You get your turn soon though when <<$boydesc[2]>> says, "Come on Mira, give <<$...
-    scene.text(`You get your turn soon though when ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} says, "Come on Mira, give ${((s as any).pcs_nickname ?? 0)} a chance, there is more than enough for both of you."`);
+    scene.text(`You get your turn soon though when ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} says, "Come on Mira, give ${((s as any).pcs_nickname || '')} a chance, there is more than enough for both of you."`);
     // TODO-QSP: dynamic text: As Mira removes <<$boydesc[2]>>'s cock from her mouth she gives you a little smi...
     scene.text(`As Mira removes ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })}'s cock from her mouth she gives you a little smile and wink. You quickly begin to suck with even more enthusiasm, not wanting to be outdone by Mira.`);
     scene.actions([
@@ -346,7 +346,7 @@ function enterGroupBj(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: Mira seems to be just as insatiable as the boys as she races you over to <<$boyd...
     scene.text(`Mira seems to be just as insatiable as the boys as she races you over to ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })}'s cock. She is the first to wrap her lips around it as you are left to try and lick whatever Mira isn't currently shoving down her throat.`);
     // TODO-QSP: dynamic text: You get your turn soon though when <<$boydesc[2]>> says, "Come on Mira, give <<$...
-    scene.text(`You get your turn soon though when ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} says, "Come on Mira, give ${((s as any).pcs_nickname ?? 0)} a chance, there is more than enough for both of you."`);
+    scene.text(`You get your turn soon though when ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} says, "Come on Mira, give ${((s as any).pcs_nickname || '')} a chance, there is more than enough for both of you."`);
     // TODO-QSP: dynamic text: As Mira removes <<$boydesc[2]>>'s cock from her mouth she gives you a little smi...
     scene.text(`As Mira removes ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })}'s cock from her mouth she gives you a little smile and wink. You quickly begin to suck with even more enthusiasm, not wanting to be outdone by Mira.`);
     scene.actions([
@@ -516,7 +516,7 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$boydesc[1]>> and <<$boydesc[2]>> shout their approval of this idea as well. M...
     scene.text(`${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} shout their approval of this idea as well. Mira slurs a response that you assume was a yes because she begins to undress.`);
     // TODO-QSP: dynamic text: <<$boydesc[0]>>, looks over at you and says, "<<$pcs_nickname>>, why don't you j...
-    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })}, looks over at you and says, "${((s as any).pcs_nickname ?? 0)}, why don't you join her?". ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} start cheering you on as you decide what to do.`);
+    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })}, looks over at you and says, "${((s as any).pcs_nickname || '')}, why don't you join her?". ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} start cheering you on as you decide what to do.`);
     scene.actions([
       { label: 'Join Mira', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[0], 1
@@ -565,7 +565,7 @@ function enterGroupShow(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: <<$boydesc[1]>> and <<$boydesc[2]>> shout their approval of this idea as well. M...
     scene.text(`${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} shout their approval of this idea as well. Mira slurs a response that you assume was a yes because she begins to undress.`);
     // TODO-QSP: dynamic text: <<$boydesc[0]>>, looks over at you and says, "<<$pcs_nickname>>, why don't you j...
-    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })}, looks over at you and says, "${((s as any).pcs_nickname ?? 0)}, why don't you join her?". ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} start cheering you on as you decide what to do.`);
+    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })}, looks over at you and says, "${((s as any).pcs_nickname || '')}, why don't you join her?". ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })} and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} start cheering you on as you decide what to do.`);
     scene.actions([
       { label: 'Join Mira', handler: (st: GameState) => {
     // TODO-QSP: gs 'npc_relationship', 'modify', $boy[0], 1
@@ -726,7 +726,7 @@ function enterGroupAnal(s: GameState, scene: SceneBuilder): void {
     // TODO-QSP: dynamic text: As you walk back to where you left Mira, <<$boydesc[1]>>, and <<$boydesc[2]>> yo...
     scene.text(`As you walk back to where you left Mira, ${qspUntranslated(s, "boydesc[1]", { location: "mitkabuh_group" })}, and ${qspUntranslated(s, "boydesc[2]", { location: "mitkabuh_group" })} you see they are just finishing up with Mira too.`);
     // TODO-QSP: dynamic text: <<$boydesc[0]>> walks up to them and says, "I think I got the better deal here, ...
-    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })} walks up to them and says, "I think I got the better deal here, but maybe you'll get ${((s as any).pcs_nickname ?? 0)} next time."`);
+    scene.text(`${qspUntranslated(s, "boydesc[0]", { location: "mitkabuh_group" })} walks up to them and says, "I think I got the better deal here, but maybe you'll get ${((s as any).pcs_nickname || '')} next time."`);
     if (((s as any).sunWeather ?? 0) === 1) {
       scene.actions([
         { label: 'Sit down outside', goto: ['mitkabuh_group', 'partywithMira'] },

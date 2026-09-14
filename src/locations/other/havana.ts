@@ -22,7 +22,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('You may buy \'+iif(abonement > 0, \'a subscription package\', \'an additional subscription package\')+\' for access to all available facilities at reception.');
   if (((s as any).abonement ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your existing subscription package is valid for <<abonement>> more classes.
-    scene.text(`Your existing subscription package is valid for ${((s as any).abonement ?? 0)} more classes.`);
+    scene.text(`Your existing subscription package is valid for ${((s as any).abonement || '')} more classes.`);
   }
   scene.text('<b>Benefits included in your subscription:</b>');
   scene.text('Running');
@@ -51,7 +51,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     ]);
   } else {
     scene.actions([
-      { label: 'Use the pool [+$func(\'money\', \'get_cost_string\', 150)]', handler: (st: GameState) => {
+      { label: 'Use the pool', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 150) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -115,7 +115,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: $temp_table +=  '</tr>'
   // TODO-QSP: $temp_table +=  '</table></center>'
   // TODO-QSP: dynamic text: <<$temp_table>>
-  scene.text(`${((s as any).temp_table ?? 0)}`);
+  scene.text(`${((s as any).temp_table || '')}`);
   // TODO-QSP: end
   scene.actions([
     { label: 'Leave', handler: (st: GameState) => {
@@ -133,7 +133,7 @@ function enterDressingRoom(s: GameState, scene: SceneBuilder): void {
   scene.text('<b>Attention! Visitors to the sports section must wear appropriate clothing and shoes when using the facilities.</b>');
   if (((s as any).abonement ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your existing subscription package is valid for <<abonement>> more classes.
-    scene.text(`Your existing subscription package is valid for ${((s as any).abonement ?? 0)} more classes.`);
+    scene.text(`Your existing subscription package is valid for ${((s as any).abonement || '')} more classes.`);
   }
   if (((s as any).nichTanya ?? 0)?.['Known'] === 0  &&  ((Math.floor(Math.random() * 100) + 1) <= 20  ||  ((s as any).nichDebug ?? 0) === 1)) {
     scene.text('You notice <a href="exec:gt \'havana\', \'fitgirl\'">a cute girl</a> in the locker room.');
@@ -333,13 +333,13 @@ function enterFitgirl(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'force');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Tease her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Tease her', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Tease her [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Tease her', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'outfit', 'strip_all');
     qspCall(s, 'arousal', 'foreplay', (-5), 'dom', 'lesbian');
@@ -396,13 +396,13 @@ function enterTanyaIntroduction(s: GameState, scene: SceneBuilder): void {
   scene.text('You follow her a few seconds later, but she\'s already started to dress herself.');
   scene.text('"So. Does cute girl have a name?" the girl asks.');
   // TODO-QSP: dynamic text: "I'm <<$pcs_nickname>>," you reply while trying to find your panties.
-  scene.text(`"I'm ${((s as any).pcs_nickname ?? 0)}," you reply while trying to find your panties.`);
+  scene.text(`"I'm ${((s as any).pcs_nickname || '')}," you reply while trying to find your panties.`);
   scene.text('"Looking for these?" she asks and you look up to see her twirling your panties on her finger.');
   scene.text('"Can I have them back please?" you ask while holding out your hand.');
   scene.text('"Nope. You seduced me. I\'ve never been with a girl before, so I think I\'ve earned this as a memento," she replies before she pockets them.');
   scene.text('"I\'m Tanya by the way. I live nearby with my parents. You should come over some time so we can… continue where we left off… I\'m usually home in the late afternoon," she winks before leaving the room.');
   // TODO-QSP: dynamic text: <i>You can now visit Tanya at her parents home in the Downtown area once a day a...
-  scene.text('<i>You can now visit Tanya at her parents home in the Downtown area once a day after \'+func(\'time\', \'get_time_string\', 16, 0)+\'.</i>');
+  scene.text('<i>You can now visit Tanya at her parents home in the Downtown area once a day after 16:00.</i>');
   // TODO-QSP: end
   scene.actions([
     { label: 'Continue', goto: ['havana', 'dressing_room'] },
@@ -420,7 +420,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
   scene.text('There are a lot of different classes and clubs available at the fitness center, all designed to improve physical development.');
   if (((s as any).abonement ?? 0) > 0) {
     // TODO-QSP: dynamic text: Your existing subscription package is valid for <<abonement>> more classes.
-    scene.text(`Your existing subscription package is valid for ${((s as any).abonement ?? 0)} more classes.`);
+    scene.text(`Your existing subscription package is valid for ${((s as any).abonement || '')} more classes.`);
   }
   if (((s as any).start_type ?? 0)?.['loc'] === 'sg') {
     if (((s as any).hour ?? 0) >= 10  &&  ((s as any).hour ?? 0) < 12  &&  ((s as any).week ?? 0) === 7) {
@@ -525,7 +525,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    qspCall(s, 'havana', 'exercise_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Light weights (Build strength)', handler: (st: GameState) => {
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
@@ -542,7 +542,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    qspCall(s, 'havana', 'exercise_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Heavy weights (Build muscle <font color=red>This can lead to extreme strength at a cost to appearance</font>)', handler: (st: GameState) => {
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
@@ -559,7 +559,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    qspCall(s, 'havana', 'exercise_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Squats (Tone your butt)', handler: (st: GameState) => {
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
@@ -576,7 +576,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    qspCall(s, 'havana', 'exercise_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Cross trainer (endurance)', handler: (st: GameState) => {
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
@@ -593,7 +593,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    qspCall(s, 'havana', 'exercise_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Tennis practice (agility)', handler: (st: GameState) => {
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
@@ -610,7 +610,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    qspCall(s, 'havana', 'exercise_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Tennis practice (reactions)', handler: (st: GameState) => {
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
@@ -627,7 +627,7 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    qspCall(s, 'havana', 'exercise_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Yoga (agility)', handler: (st: GameState) => {
     (s as any).abonement = ((s as any).abonement ?? 0) - (1);
@@ -645,14 +645,14 @@ function enterGym(s: GameState, scene: SceneBuilder): void {
         { label: 'Continue', goto: ['havana', 'gym'] },
       ]);
     }
-    qspCall(s, 'havana', 'exercise_end');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
           { label: 'Go to the kickboxing gym', goto: ['havana_kickboxing', 'start'] },
         ]);
       }
     }
   }
-  qspCall(s, 'havana', 'exercise_end');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterExerciseEnd(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -694,7 +694,7 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'force');
       if (((s as any).pcs_willpwr ?? 0) > ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Suck his dick [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Suck his dick', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).guy = ((s as any).guy ?? 0) + (1);
     qspCall(s, 'npcgeneratec', '', 0, 'guy from the gym', Math.floor(Math.random() * 27) + 19);
@@ -725,7 +725,7 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         scene.actions([
-          { label: 'Suck his dick [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Suck his dick', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
@@ -760,13 +760,13 @@ function enterExerciseEnd(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'misc', 'self', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Hit him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Hit him', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Hit him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Hit him', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     scene.text('You jab him as hard as you can in the ribs and quickly squirm out of his grasp as he cries out in pain. You then run to the changing room without looking back.');
@@ -929,12 +929,12 @@ function enterFMR(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/city/citycenter/photo/fotograph.jpg');
   if (((s as any).job_status ?? 0)?.['city_aphrodite_model'] === 'employed') {
     // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>!"
-    scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}!"`);
+    scene.text(`"Hey ${((s as any).pcs_nickname || '')}!"`);
     scene.text('You turn and see a man with several cameras hanging from his neck. You recognize him as one of Aphrodite\'s photographers. Now that you think about it, he\'s been hanging around some of the sports events in which you have participated.');
     scene.text('"The agency sent me to tell you that our sponsors want to give you an opportunity as a fitness model. It seems you\'re getting pretty famous!"');
     scene.text('You smile. The fitness gigs at the agency are paid based not only on your modeling experience, but also your relative sports fame and bodybuild.');
     // TODO-QSP: dynamic text: "Congratulations <<$pcs_nickname>>, you've earned it!" he smiles.
-    scene.text(`"Congratulations ${((s as any).pcs_nickname ?? 0)}, you've earned it!" he smiles.`);
+    scene.text(`"Congratulations ${((s as any).pcs_nickname || '')}, you've earned it!" he smiles.`);
     scene.text('He then turns around and, after waving a final goodbye, leaves.');
     scene.actions([
       { label: 'Leave', goto: ['havana', 'start'] },
@@ -942,7 +942,7 @@ function enterFMR(s: GameState, scene: SceneBuilder): void {
   } else {
     scene.text('You see a man with several cameras hanging from his neck. You vaguely remember him hanging around some of the sports events in which you have participated. He smiles and quickly takes your hand in a handshake.');
     // TODO-QSP: dynamic text: "<<$pcs_lastname>>, isn't it? I'm here to make a proposal. A serious business <i...
-    scene.text(`"${((s as any).pcs_lastname ?? 0)}, isn't it? I'm here to make a proposal. A serious business <i>career-oriented</i> proposal. Would you consider becoming a model?"`);
+    scene.text(`"${((s as any).pcs_lastname || '')}, isn't it? I'm here to make a proposal. A serious business <i>career-oriented</i> proposal. Would you consider becoming a model?"`);
     scene.text('You blink, utterly taken aback. You? A model?! You have the looks, and it\'s not that weird for a woman in the sports career to be offered a job in the model business, but are you going to trust this stranger?');
     scene.text('Sensing your hesitation, the man pushes a business card into your hands. "You don\'t need to give an answer right now. Ask around if you want, and when you\'ve made your decision, come and see us. If you pass some basic tests, you can start a new and very exciting career."');
     scene.text('After waving goodbye, the man leaves and you glance down at the card.');

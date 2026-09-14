@@ -16,13 +16,13 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Slap him hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Slap him hard', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Slap him hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Slap him hard', handler: (st: GameState) => {
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (2);
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
@@ -50,13 +50,13 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Lift your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Lift your skirt', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Tease him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Tease him', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'flash', (-5));
@@ -141,13 +141,13 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'misc', 'self', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Slap him hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Slap him hard', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Slap him hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Slap him hard', handler: (st: GameState) => {
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) - (1);
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[2] = ((s as any).grupvalue[2] ?? 0) + (1);
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[3] = ((s as any).grupvalue[3] ?? 0) - (1);
@@ -174,13 +174,13 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Lift your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Lift your skirt', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Tease him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Tease him', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'flash', (-5));
@@ -253,13 +253,13 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'misc', 'self', 'medium');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Slap him hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Slap him hard', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Slap him hard [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Slap him hard', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (2);
@@ -284,13 +284,13 @@ function enterButtGrab(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'exhib', 'self');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Lift your skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Lift your skirt', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Tease him [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Tease him', handler: (st: GameState) => {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (2);
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'arousal', 'flash', 5);
@@ -379,7 +379,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big10.jpg');
     scene.text('You step away from Dan, pulling out of his reach as you turn around. You point your finger at him. "Don\'t make me hurt you! You know I will."');
     // TODO-QSP: dynamic text: He laughs and steps up closer, crowding you a little, but keeps his hands to him...
-    scene.text(`He laughs and steps up closer, crowding you a little, but keeps his hands to himself. "Come on, ${((s as any).pcs_nickname ?? 0)}. You know you want to have some fun, so stop acting like you're not all hot and bothered by this. We can help you with that itch."`);
+    scene.text(`He laughs and steps up closer, crowding you a little, but keeps his hands to himself. "Come on, ${((s as any).pcs_nickname || '')}. You know you want to have some fun, so stop acting like you're not all hot and bothered by this. We can help you with that itch."`);
     scene.actions([
       { label: 'Back off', handler: (st: GameState) => {
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
@@ -403,7 +403,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. One of them leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
     if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
       // TODO-QSP: dynamic text: On one wall you see written, in particularly large letters, "<b><<$pcs_nickname>...
-      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} = ${((s as any).gnikname ?? 0)}"</b>.`);
+      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} = ${((s as any).gnikname || '')}"</b>.`);
     } else {
       scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
     }
@@ -414,13 +414,13 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A9', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc['lips']>> lips around Vitek's hard cock ...
-    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Vitek moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Vitek seems satisfied and tucks his cock back in his pants before swapping places with Vasily at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Dan\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
     scene.text('He moves aside as well, and you soon finish off Vasily.');
     // TODO-QSP: dynamic text: As you get up off your knees, you hear Dan laugh. "You're the best cock sucker w...
-    scene.text(`As you get up off your knees, you hear Dan laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname ?? 0)}!"`);
+    scene.text(`As you get up off your knees, you hear Dan laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname || '')}!"`);
     scene.text('They leave you alone in the bathroom, more horny than when you started as you clean up and leave.');
     qspCall(s, 'arousal', 'bj', 8, ((s as any).npcID ?? 0), 'group', 'sub');
     qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID1 ?? 0), 'group', 'sub');
@@ -447,7 +447,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy5.jpg');
     // TODO-QSP: dynamic text: "I'll show you what the fuck I want, slut!" Vitek suddenly grabs you by the hair...
-    scene.text(`"I'll show you what the fuck I want, slut!" Vitek suddenly grabs you by the hair and presses your face against a desk. "What I want is your lips around my dick, right now. Everyone already knows you're a ${((s as any).gnikname ?? 0)}, so you better start acting like it or there will be consequences."`);
+    scene.text(`"I'll show you what the fuck I want, slut!" Vitek suddenly grabs you by the hair and presses your face against a desk. "What I want is your lips around my dick, right now. Everyone already knows you're a ${((s as any).gnikname || '')}, so you better start acting like it or there will be consequences."`);
     scene.text('He turns to his friends. "Come on boys, this whore doesn\'t understand her place in life. It\'s about time we show her."');
     if (((s as any).temperson ?? 0) === 'ivan') {
       scene.text('As you try and pull away, Ivan suddenly appears and pulls Vitek off of you. "Leave her alone!"');
@@ -502,13 +502,13 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'willpower', 'bj', 'resist');
               if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                 scene.actions([
-                  { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                  { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                 ]);
               } else {
                 scene.actions([
-                  { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                  { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/resistgop.jpg');
@@ -517,13 +517,13 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Threaten to scream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Threaten to scream', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Threaten to scream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Threaten to scream', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/resistgop.jpg');
@@ -635,7 +635,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. One of them leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
     if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
       // TODO-QSP: dynamic text: On one wall you see written, in particularly large letters, "<b><<$pcs_nickname>...
-      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} = ${((s as any).gnikname ?? 0)}"</b>.`);
+      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} = ${((s as any).gnikname || '')}"</b>.`);
     } else {
       scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
     }
@@ -646,13 +646,13 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A9', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc['lips']>> lips around Vitek's hard cock ...
-    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Vitek moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Vitek seems satisfied and tucks his cock back in his pants before swapping places with Vasily at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Dan\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
     scene.text('He moves aside as well, and you soon finish off Vasily.');
     // TODO-QSP: dynamic text: As you get up off your knees, you hear Dan laugh. "You're the best cock sucker w...
-    scene.text(`As you get up off your knees, you hear Dan laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname ?? 0)}!"`);
+    scene.text(`As you get up off your knees, you hear Dan laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname || '')}!"`);
     scene.text('They leave you alone in the bathroom, more horny than when you started as you clean up and leave.');
     qspCall(s, 'arousal', 'bj', 8, ((s as any).npcID ?? 0), 'group', 'sub');
     qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID1 ?? 0), 'group', 'sub');
@@ -758,7 +758,7 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. One of them leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
     if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
       // TODO-QSP: dynamic text: On one wall you see written, in particularly large letters, "<b><<$pcs_nickname>...
-      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} = ${((s as any).gnikname ?? 0)}"</b>.`);
+      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} = ${((s as any).gnikname || '')}"</b>.`);
     } else {
       scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
     }
@@ -769,13 +769,13 @@ function enterRandGopnic1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A9', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc['lips']>> lips around Vitek's hard cock ...
-    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Vitek moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Vitek seems satisfied and tucks his cock back in his pants before swapping places with Vasily at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Dan\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
     scene.text('He moves aside as well, and you soon finish off Vasily.');
     // TODO-QSP: dynamic text: As you get up off your knees, you hear Dan laugh. "You're the best cock sucker w...
-    scene.text(`As you get up off your knees, you hear Dan laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname ?? 0)}!"`);
+    scene.text(`As you get up off your knees, you hear Dan laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname || '')}!"`);
     scene.text('They leave you alone in the bathroom, more horny than when you started as you clean up and leave.');
     qspCall(s, 'arousal', 'bj', 8, ((s as any).npcID ?? 0), 'group', 'sub');
     qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID1 ?? 0), 'group', 'sub');
@@ -810,7 +810,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/shared/headshots_main/big156.jpg');
     scene.text('You step away from Arkadi, pulling out of his reach as you turn around. You point your finger at him. "Don\'t make me hurt you! You know I will."');
     // TODO-QSP: dynamic text: He laughs and steps up closer again, crowding you a little, but keeps his hands ...
-    scene.text(`He laughs and steps up closer again, crowding you a little, but keeps his hands to himself. "Come on, ${((s as any).pcs_nickname ?? 0)}. You know you want to have some fun, so stop acting like you're not all hot and bothered by this. We can help you with that itch."`);
+    scene.text(`He laughs and steps up closer again, crowding you a little, but keeps his hands to himself. "Come on, ${((s as any).pcs_nickname || '')}. You know you want to have some fun, so stop acting like you're not all hot and bothered by this. We can help you with that itch."`);
     scene.actions([
       { label: 'Back off', handler: (st: GameState) => {
     if (!(s as any).grupvalue) (s as any).grupvalue = {}; (s as any).grupvalue[1] = ((s as any).grupvalue[1] ?? 0) + (1);
@@ -833,7 +833,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. Niko leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
     if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
       // TODO-QSP: dynamic text: On one wall you see written, in particularly large letters, "<b><<$pcs_nickname>...
-      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} = ${((s as any).gnikname ?? 0)}"</b>.`);
+      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} = ${((s as any).gnikname || '')}"</b>.`);
     } else {
       scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
     }
@@ -844,13 +844,13 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A157', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc['lips']>> lips around Arkadi's hard cock...
-    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Arkadi moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Arkadi seems satisfied and tucks his cock back in his pants before swapping places with Niko at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Roman\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
     scene.text('He moves aside as well, and you soon finish off Niko.');
     // TODO-QSP: dynamic text: As you get up off your knees, you hear Arkadi laugh. "You're the best cock sucke...
-    scene.text(`As you get up off your knees, you hear Arkadi laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname ?? 0)}!"`);
+    scene.text(`As you get up off your knees, you hear Arkadi laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname || '')}!"`);
     scene.text('They leave you alone in the bathroom, more horny than when you started as you clean up and leave.');
     qspCall(s, 'arousal', 'bj', 8, ((s as any).npcID ?? 0), 'group', 'sub');
     qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID1 ?? 0), 'group', 'sub');
@@ -877,7 +877,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/rand_scoolboy5.jpg');
     // TODO-QSP: dynamic text: "I'll show you what the fuck I want, slut!" Roman suddenly grabs you by the hair...
-    scene.text(`"I'll show you what the fuck I want, slut!" Roman suddenly grabs you by the hair and presses your face against a desk. "What I want is your lips around my dick, right now. Everyone already knows you're a ${((s as any).gnikname ?? 0)}, so you better start acting like it or there will be consequences."`);
+    scene.text(`"I'll show you what the fuck I want, slut!" Roman suddenly grabs you by the hair and presses your face against a desk. "What I want is your lips around my dick, right now. Everyone already knows you're a ${((s as any).gnikname || '')}, so you better start acting like it or there will be consequences."`);
     scene.text('He turns to his friends and says "Come on boys, this whore doesn\'t understand her place in life. It\'s about time we show her."');
     if (((s as any).temperson ?? 0) === 'ivan') {
       scene.text('As you try and pull away, Ivan suddenly appears and pulls Roman off of you. "Leave her alone!"');
@@ -934,13 +934,13 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'willpower', 'bj', 'resist');
               if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                 scene.actions([
-                  { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                  { label: 'Resist', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                 ]);
               } else {
                 scene.actions([
-                  { label: 'Resist [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                  { label: 'Resist', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/resistgop.jpg');
@@ -949,13 +949,13 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Threaten to scream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Threaten to scream', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Threaten to scream [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Threaten to scream', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/events/resistgop.jpg');
@@ -1069,7 +1069,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. Niko leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
     if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
       // TODO-QSP: dynamic text: On one wall you see written, in particularly large letters, "<b><<$pcs_nickname>...
-      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} = ${((s as any).gnikname ?? 0)}"</b>.`);
+      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} = ${((s as any).gnikname || '')}"</b>.`);
     } else {
       scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
     }
@@ -1080,13 +1080,13 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A157', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc['lips']>> lips around Arkadi's hard cock...
-    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Arkadi moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Arkadi seems satisfied and tucks his cock back in his pants before swapping places with Niko at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Roman\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
     scene.text('He moves aside as well, and you finish off Niko last.');
     // TODO-QSP: dynamic text: As you get up off your knees, you hear Arkadi laugh. "You're the best cock sucke...
-    scene.text(`As you get up off your knees, you hear Arkadi laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname ?? 0)}!"`);
+    scene.text(`As you get up off your knees, you hear Arkadi laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname || '')}!"`);
     scene.text('They leave you alone in the bathroom, more horny than when you started as you clean up and leave.');
     qspCall(s, 'arousal', 'bj', 8, ((s as any).npcID ?? 0), 'group', 'sub');
     qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID1 ?? 0), 'group', 'sub');
@@ -1192,7 +1192,7 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     scene.text('They lead you to the men\'s room and one of the guys drives everyone else out; it\'s just you and the gopniks in here now. One of them leans against the door to block anyone else from coming in while the rest all start unzipping their pants and pulling out their dicks.');
     if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
       // TODO-QSP: dynamic text: On one wall you see written, in particularly large letters, "<b><<$pcs_nickname>...
-      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} = ${((s as any).gnikname ?? 0)}"</b>.`);
+      scene.text(`On one wall you see written, in particularly large letters, "<b>${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} = ${((s as any).gnikname || '')}"</b>.`);
     } else {
       scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
     }
@@ -1203,13 +1203,13 @@ function enterRandGopnic2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A157', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You kneel down and wrap your <<$pc_desc['lips']>> lips around Arkadi's hard cock...
-    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You kneel down and wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel his cum hit your throat and Arkadi moans. "That\'s right bitch! Swallow it all like a good little slut."');
     scene.text('Arkadi seems satisfied and tucks his cock back in his pants before swapping places with Niko at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Roman\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
     scene.text('He moves aside as well, and you soon finish off Niko.');
     // TODO-QSP: dynamic text: As you get up off your knees, you hear Arkadi laugh. "You're the best cock sucke...
-    scene.text(`As you get up off your knees, you hear Arkadi laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname ?? 0)}!"`);
+    scene.text(`As you get up off your knees, you hear Arkadi laugh. "You're the best cock sucker we got, ${((s as any).pcs_nickname || '')}!"`);
     scene.text('They leave you alone in the bathroom, more horny than when you started as you clean up and leave.');
     qspCall(s, 'arousal', 'bj', 8, ((s as any).npcID ?? 0), 'group', 'sub');
     qspCall(s, 'arousal', 'bj', 6, ((s as any).npcID1 ?? 0), 'group', 'sub');
@@ -1245,7 +1245,7 @@ function enterToiletBj1(s: GameState, scene: SceneBuilder): void {
   scene.text('When you arrive at the men\'s room, one of the guys drives everyone else out; it\'s just you and the gopniks in here now. He goes outside and keeps watch while two of the others reach for their pants. Several more come in to watch.');
   if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
     // TODO-QSP: dynamic text: The walls of the restroom are covered in crude texts, quite a few of them involv...
-    scene.text(`The walls of the restroom are covered in crude texts, quite a few of them involving you in some way. On one wall, you see written, in particularly large letters, "<b>${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} = ${((s as any).gnikname ?? 0)}"</b>.`);
+    scene.text(`The walls of the restroom are covered in crude texts, quite a few of them involving you in some way. On one wall, you see written, in particularly large letters, "<b>${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} = ${((s as any).gnikname || '')}"</b>.`);
   } else {
     scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
   }
@@ -1257,7 +1257,7 @@ function enterToiletBj1(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A9', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You know there's only one way they will let you go, so you dutifully kneel down....
-    scene.text(`You know there's only one way they will let you go, so you dutifully kneel down. Vitek takes his cock out of his pants as Dan stands to your right and takes his cock out too. You wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You know there's only one way they will let you go, so you dutifully kneel down. Vitek takes his cock out of his pants as Dan stands to your right and takes his cock out too. You wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Vitek's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel a jet of sperm hit your throat. "Swallow it all, whore. If you miss a drop, you\'re licking it up off the ground," Vitek says in a menacing voice, so you diligently swallow his sperm, doing your best to lick it all up from his dick and your lips.');
     scene.text('Vitek seems satisfied and tucks his cock back in his pants before swapping place with Vasily at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Dan\'s cock and receive another mouthful from him. You carefully swallow his load as well, which earns you a nod of approval and a pat on the head. "Good little whore."');
@@ -1290,7 +1290,7 @@ function enterToiletBj2(s: GameState, scene: SceneBuilder): void {
   scene.text('You know perfectly well that the group of boys are not going to let you escape. You meekly let the boys drag you to the men\'s room, hoping for a miracle to save you. It never comes. When you arrive at the men\'s room, one of the guys drives everyone else out; it\'s just you and the gopniks in here now. He goes outside and keeps watch while two of the others reach for their pants. Several more come in to watch.');
   if (((s as any).fame ?? 0)?.['pav_slut'] > 200) {
     // TODO-QSP: dynamic text: The walls of the restroom are covered in crude texts, quite a few of them involv...
-    scene.text(`The walls of the restroom are covered in crude texts, quite a few of them involving you in some way. On one wall, you see written, in particularly large letters, "<b>${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)} = ${((s as any).gnikname ?? 0)}"</b>.`);
+    scene.text(`The walls of the restroom are covered in crude texts, quite a few of them involving you in some way. On one wall, you see written, in particularly large letters, "<b>${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')} = ${((s as any).gnikname || '')}"</b>.`);
   } else {
     scene.text('The walls of the restroom are covered in crude texts, quite a few of them involving your classmates in some way. <b>"ALBINA BARLOVSKAYA = BUTTSLUT WHORE"</b> stands out amongst the other graffiti.');
   }
@@ -1302,7 +1302,7 @@ function enterToiletBj2(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'npcStat', 'A157', 'b');
     scene.img('images/locations/pavlovsk/school/building/sex/rand_scoolboy6.mp4');
     // TODO-QSP: dynamic text: You know there's only one way they will let you go, so you dutifully kneel down....
-    scene.text(`You know there's only one way they will let you go, so you dutifully kneel down. Arkadi takes his cock out of his pants as Roman stands to your right and takes his cock out too. You wrap your ${((s as any).pc_desc ?? 0)?.['lips']} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
+    scene.text(`You know there's only one way they will let you go, so you dutifully kneel down. Arkadi takes his cock out of his pants as Roman stands to your right and takes his cock out too. You wrap your ${((s as any).pc_desc ?? 0)?.['lips'] ?? ''} lips around Arkadi's hard cock and start to suck. Not forgetting the others, you spend some time alternating between all the cocks, stroking the ones you're not sucking with your hands.`);
     scene.text('You eventually feel a jet of sperm hit your throat and Arkadi seems satisfied as he tucks his cock back in his pants before swapping places with Niko at the door, who comes over and pulls his cock out, ready to get his turn.');
     scene.text('You immediately switch to Roman\'s cock and receive another mouthful. "Swallow it all, whore. If you miss a drop, you\'re licking it up off the ground!" he says menacingly, so you diligently swallow his cum, doing your best to lick it all up from his dick and your lips. He moves aside and you finish off Niko.');
     scene.text('As you get up off your knees, you hear Roman laugh. "Do you understand your place in life now? That place is right here, on your knees, whenever we say so. Got that?"');
@@ -1457,7 +1457,7 @@ function enterBellaGoth(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/bella/notice/bella_stasya1.jpg');
     scene.text('As you\'re walking down the hallway, your goth attire catching more eyes than usual, Bella and Stasya corner you near the bathroom.');
     // TODO-QSP: dynamic text: "What the helll, <<$pcs_nickname>>?" Bella's voice cuts through the hallway nois...
-    scene.text(`"What the helll, ${((s as any).pcs_nickname ?? 0)}?" Bella's voice cuts through the hallway noise. She stops right in front of you, her eyes scanning your new look with disdain.`);
+    scene.text(`"What the helll, ${((s as any).pcs_nickname || '')}?" Bella's voice cuts through the hallway noise. She stops right in front of you, her eyes scanning your new look with disdain.`);
     scene.text('"Are you trying to make a statement? Because all you\'re doing is looking like a… like a… <i>total outcast</i>!"');
     scene.text('Her hand flies up to gesture at your face and attire. "Look at you! You\'re an embarrassment to us!"');
     scene.text('You see Stasya nodding, her confusion turning into a frown of disapproval.');
@@ -1474,7 +1474,7 @@ function enterBellaGoth(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/pavlovsk/school/girl/bella/notice/bella_stasya1.jpg');
       scene.text('As you\'re walking to your next class, still adjusting to your new gothic attire, Bella and Stasya spot you from down the hall. Their eyes narrow as they approach.');
       // TODO-QSP: dynamic text: "Seriously, <<$pcs_nickname>>?" Bella's voice pierces the air, her tone full of ...
-      scene.text(`"Seriously, ${((s as any).pcs_nickname ?? 0)}?" Bella's voice pierces the air, her tone full of disbelief. "Since when did you decide to go all… <i>dark and gloomy</i>?"`);
+      scene.text(`"Seriously, ${((s as any).pcs_nickname || '')}?" Bella's voice pierces the air, her tone full of disbelief. "Since when did you decide to go all… <i>dark and gloomy</i>?"`);
       scene.text('She circles around you, examining your outfit with a critical eye. "You\'re supposed to be one of our star athletes, or at least someone… And now look at you!"');
       scene.text('Stasya looks confused, her eyes darting between Bella and you, "Yeah, like, you used to be so, um, normal?"');
       scene.text('You open your mouth to defend your choice, to explain how this represents a new side of you, but Bella interrupts.');
@@ -1491,7 +1491,7 @@ function enterBellaGoth(s: GameState, scene: SceneBuilder): void {
         scene.img('images/characters/pavlovsk/school/girl/bella/notice/bella_stasya1.jpg');
         scene.text('You\'re adjusting your books in your locker when you hear the clack of Bella\'s heels approaching. Stasya is right behind her with a confused look on her face.');
         // TODO-QSP: dynamic text: "<<$pcs_nickname>>, what the fuck is this shit?" Bella sneers, her eyes scanning...
-        scene.text(`"${((s as any).pcs_nickname ?? 0)}, what the fuck is this shit?" Bella sneers, her eyes scanning you from head to toe. "Did you lose a bet or are you just trying to look like a complete fucking freak now?"`);
+        scene.text(`"${((s as any).pcs_nickname || '')}, what the fuck is this shit?" Bella sneers, her eyes scanning you from head to toe. "Did you lose a bet or are you just trying to look like a complete fucking freak now?"`);
         scene.text('She grabs your chin, forcing you to look at her, "Look at you, all dark and shit. You think this makes you cool? You\'re just a nerd with a bad case of emo."');
         scene.text('Stasya giggles. "Yeah, like, you went from geek to goth in one day! What the hell?"');
         scene.text('You attempt to explain that it\'s just an expression of yourself, but Bella cuts you off. "Spare me your bullshit. This…" She points at your outfit. "Is a fucking disgrace. You look like you crawled out of some shitty B-movie."');
@@ -1507,25 +1507,25 @@ function enterBellaGoth(s: GameState, scene: SceneBuilder): void {
           scene.img('images/characters/pavlovsk/school/girl/bella/notice/bella_stasya1.jpg');
           scene.text('You\'re leaning against your locker, trying to blend into the shadows with your new gothic look when Bella and Stasya approach, their laughter already echoing down the hall.');
           // TODO-QSP: dynamic text: "Look at this fucking mess," Bella spits out, her gaze dripping with scorn. "You...
-          scene.text(`"Look at this fucking mess," Bella spits out, her gaze dripping with scorn. "You think going goth will make you less of a cum dumpster, ${((s as any).pcs_nickname ?? 0)}?"`);
+          scene.text(`"Look at this fucking mess," Bella spits out, her gaze dripping with scorn. "You think going goth will make you less of a cum dumpster, ${((s as any).pcs_nickname || '')}?"`);
           scene.text('She steps closer, her voice lowering to a venomous whisper. "You\'re just adding to your trashy image. You really thought black clothes would cover up how much of a whore you are?"');
           scene.text('Stasya laughs, her voice shrill. "Yeah, like, black lipstick doesn\'t hide the fact you\'ve had more dicks in you than a porn star!"');
           scene.text('You try to defend yourself, to say it\'s just a new look, but Bella isn\'t having it. "Shut your cocksucker mouth. You think this makes you edgy? You\'re still just the school slut, only now you look like you belong in a graveyard after a gangbang."');
           scene.text('Her hand brushes down your outfit in mock disgust. "This isn\'t a statement; it\'s a cry for help. Or are you just hoping to attract the freaks now? Maybe get fucked in the back of a hearse instead of the school janitor\'s closet?"');
           // TODO-QSP: dynamic text: "Oh my god, can you imagine that?!" Stasya giggles. "Her in a coffin, legs open…...
-          scene.text(`"Oh my god, can you imagine that?!" Stasya giggles. "Her in a coffin, legs open… That'd be classic ${((s as any).pcs_nickname ?? 0)}!"`);
+          scene.text(`"Oh my god, can you imagine that?!" Stasya giggles. "Her in a coffin, legs open… That'd be classic ${((s as any).pcs_nickname || '')}!"`);
           scene.text('With a final sneer, Bella steps back. "Keep your skank ass away from us. You\'re nothing but a disgrace, no matter how you dress it up."');
           scene.text('They leave, their laughter echoing down the hall, leaving you to face the stares and whispers of your peers.');
           qspCall(s, 'willpower', 'misc', 'self', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Respond [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Respond', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Respond [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Respond', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -1558,13 +1558,13 @@ function enterBellaGoth(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'willpower', 'misc', 'self', 'easy');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Respond [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Respond', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Respond [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Respond', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).willpowermax = ((s as any).willpowermax ?? 0) + (1);
     qspCall(s, 'stat', '');
@@ -1609,13 +1609,13 @@ function enterCheerleadingNotice(s: GameState, scene: SceneBuilder): void {
         }
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Defend Natasha [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Defend Natasha', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Defend Natasha [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Defend Natasha', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'modify', 'A22', 'dislike');
     qspCall(s, 'npc_relationship', 'modify', 'A139', 'dislike');
@@ -1633,13 +1633,13 @@ function enterCheerleadingNotice(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'misc', 'self', 'easy');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Finish her off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Finish her off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Finish her off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Finish her off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'npc_relationship', 'modify', 'A22', 'love');
     qspCall(s, 'npc_relationship', 'modify', 'A139', 'love');
@@ -1650,7 +1650,7 @@ function enterCheerleadingNotice(s: GameState, scene: SceneBuilder): void {
     scene.text('As Natasha bails down the hallway, you yell after her. "That outfit should be in a fucking museum, loser!"');
     scene.text('Stasya and Bella whip around, falling over themselves laughing.');
     // TODO-QSP: dynamic text: "Damn, <<$pcs_nickname>>, I didn't know you had that kind of savage in you!" Bel...
-    scene.text(`"Damn, ${((s as any).pcs_nickname ?? 0)}, I didn't know you had that kind of savage in you!" Bella says with a wicked grin.`);
+    scene.text(`"Damn, ${((s as any).pcs_nickname || '')}, I didn't know you had that kind of savage in you!" Bella says with a wicked grin.`);
     scene.text('Stasya can\'t stop giggling. "Yeah, you’re like usually all "holier than thou"!"');
     scene.text('They keep laughing, throwing shade and enjoying the drama before Bella flips her hair back and looks at you.');
     scene.text('"Oh, one more thing. Albina kicked some slut off the cheer squad and auditions are coming up. You better show, or it’s going to be one of Albina’s jock friends. Might do you good to drop a few pounds too."');
@@ -1718,18 +1718,18 @@ function enterCheerleadingNotice(s: GameState, scene: SceneBuilder): void {
     scene.text('Stasya just rolls her eyes. "Like, whatever…"');
     scene.text('Seeing she\'s getting nowhere with Stasya, Bella turns towards you. "Before I forget, I have something important to tell you. Long story short, Albina kicked some slut off the cheerleading squad and we thought it would suit you after all the rumors we\'ve heard about your… flexible body."');
     // TODO-QSP: dynamic text: Stasya chimes in. "We both know that she's never gonna get picked. Albina hates ...
-    scene.text(`Stasya chimes in. "We both know that she's never gonna get picked. Albina hates town bicycles, and ${((s as any).pcs_nickname ?? 0)} here is an even bigger slut than that last girl."`);
+    scene.text(`Stasya chimes in. "We both know that she's never gonna get picked. Albina hates town bicycles, and ${((s as any).pcs_nickname || '')} here is an even bigger slut than that last girl."`);
     scene.text('Both girls then start mockingly laughing at you.');
     qspCall(s, 'willpower', 'misc', 'self', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Leave [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Leave', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['gschool_lunch', 'lunch'] },
@@ -1749,7 +1749,7 @@ function enterCheerleadingNotice(s: GameState, scene: SceneBuilder): void {
     scene.text('"Yeah, remember when she was called to the school last year?" Stasya replies.');
     scene.text('"Oh yeah, now I remember. It was just after four when I stepped into the café for a drink before catching the train. I didn\'t see anyone inside and raised my voice, and then it happened…" Bella pauses for dramatic effect.');
     // TODO-QSP: dynamic text: "This woman, <<$pcs_nickname>>'s mom to be exact, rushes out from the backroom, ...
-    scene.text(`"This woman, ${((s as any).pcs_nickname ?? 0)}'s mom to be exact, rushes out from the backroom, her face blushing bright red as she tries buttoning up her messy shirt. Guess who comes out right behind her? The café owner, looking totally smug and satisfied. Fuck, I even remember her breath smelling like cum," Bella smirks.`);
+    scene.text(`"This woman, ${((s as any).pcs_nickname || '')}'s mom to be exact, rushes out from the backroom, her face blushing bright red as she tries buttoning up her messy shirt. Guess who comes out right behind her? The café owner, looking totally smug and satisfied. Fuck, I even remember her breath smelling like cum," Bella smirks.`);
     scene.text('The two girls continue to mock and laugh at you as you hang your head in tearful shame.');
     scene.actions([
       { label: 'Leave', handler: (st: GameState) => {

@@ -62,7 +62,7 @@ function enterMiraPickingTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'miroslava', 'miraclothes');
   // TODO-QSP: dynamic text: "Hi, <<$pcs_nickname>>. I just wanted to tell you to be careful in the forest."
-  scene.text(`"Hi, ${((s as any).pcs_nickname ?? 0)}. I just wanted to tell you to be careful in the forest."`);
+  scene.text(`"Hi, ${((s as any).pcs_nickname || '')}. I just wanted to tell you to be careful in the forest."`);
   scene.text('"It\'s effortless to get lost if you wander away from the forest\'s edge. But, the deeper you go into the forest, the more mushrooms and berries you can find."');
   scene.text('"Also, every morning during summertime, the truck from the city comes to buy mushrooms and berries from the local pickers. I don\'t bother doing it, but I\'m sure you could make some money from that if you wanted to."');
   scene.text('"One more warning, I\'ve heard some other villagers say there are wolves in the forest that come out after dark, so you shouldn\'t stay in the forest after sundown."');
@@ -83,7 +83,7 @@ function enterMiraNudeTalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   qspCall(s, 'miroslava', 'miraclothes');
   // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, guess what I overheard recently," Mira giggles as she wh...
-  scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, guess what I overheard recently," Mira giggles as she whispers in your ear. "Some village elders talked about how walking naked in the woods is said to greatly improve your health and mood."`);
+  scene.text(`"Hey ${((s as any).pcs_nickname || '')}, guess what I overheard recently," Mira giggles as she whispers in your ear. "Some village elders talked about how walking naked in the woods is said to greatly improve your health and mood."`);
   scene.text('"I don\'t know if it\'s the fresh air or just being surrounded by nature, but it did make me feel better."');
   scene.text('"I may have tried it once to see if what they said was true. Maybe we can go together sometime?"');
   // TODO-QSP: end
@@ -103,7 +103,7 @@ function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/characters/gadukino/mira/miraforest4.jpg');
   // TODO-QSP: dynamic text: "<<$pcs_nickname>>, do you remember what I told you about walking in the forest?...
-  scene.text(`"${((s as any).pcs_nickname ?? 0)}, do you remember what I told you about walking in the forest? Why don't we try it out together?" Mira asks.`);
+  scene.text(`"${((s as any).pcs_nickname || '')}, do you remember what I told you about walking in the forest? Why don't we try it out together?" Mira asks.`);
   scene.text('"You mean walking naked in the woods?" you reply.');
   scene.text('"Silly, of course, that," said Mira. "What do you say?"');
   scene.text('"I don\'t know, Mira." It\'s a surprising offer. On the one hand, you are a little afraid to do it, but on the other, it could be exciting. "But what if someone sees us?"');
@@ -112,7 +112,7 @@ function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
   scene.text('Mira turns back to you, "You see, no one is here. We are all alone."');
   scene.text('You hesitantly look around as Mira waits for your reply.');
   // TODO-QSP: dynamic text: "Well, <<$pcs_nickname>>, come on, make up your mind," Mira chirped and started ...
-  scene.text(`"Well, ${((s as any).pcs_nickname ?? 0)}, come on, make up your mind," Mira chirped and started to mess with your clothes, trying to pull them off.`);
+  scene.text(`"Well, ${((s as any).pcs_nickname || '')}, come on, make up your mind," Mira chirped and started to mess with your clothes, trying to pull them off.`);
   scene.text('Finally, looking around to ensure no one is around, you decide to…');
   if (((s as any).pcs_inhib ?? 0) < 25) {
     qspCall(s, 'willpower', 'exhib', 'resist', 'easy');
@@ -127,13 +127,13 @@ function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
   }
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Resist and keep your clothes on [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Resist and keep your clothes on', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Resist and keep your clothes on [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Resist and keep your clothes on', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (5);
     if (((s as any).pcs_inhib ?? 0) < 50) {
@@ -155,7 +155,7 @@ function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/characters/gadukino/mira/miraforest2.jpg');
     // TODO-QSP: dynamic text: Mira pouts at you for refusing to undress for a moment, then she smiles again, "...
-    scene.text(`Mira pouts at you for refusing to undress for a moment, then she smiles again, "Alright then, ${((s as any).pcs_nickname ?? 0)}, we can still just go for a normal walk instead."`);
+    scene.text(`Mira pouts at you for refusing to undress for a moment, then she smiles again, "Alright then, ${((s as any).pcs_nickname || '')}, we can still just go for a normal walk instead."`);
     scene.actions([
       { label: 'Continue', goto: ['gad_forest', 'forest_edge'] },
     ]);
@@ -188,7 +188,7 @@ function enterMiraNudeEvent(s: GameState, scene: SceneBuilder): void {
 function enterMiraMorningWalk(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'Miroslava', 'miraclothes');
   // TODO-QSP: dynamic text: As you walk through the forest, you hear a familiar voice call out, "Hey, <<$pcs...
-  scene.text(`As you walk through the forest, you hear a familiar voice call out, "Hey, ${((s as any).pcs_nickname ?? 0)}, wait up!" You turn around and see Mira excitedly bounding up behind you.`);
+  scene.text(`As you walk through the forest, you hear a familiar voice call out, "Hey, ${((s as any).pcs_nickname || '')}, wait up!" You turn around and see Mira excitedly bounding up behind you.`);
   scene.text('"Want to join me on my walk?" she asks. "I love walking through the forest in the morning."');
   // TODO-QSP: end
   scene.actions([
@@ -422,11 +422,11 @@ function enterPicnic(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if ((!((s as any).PCloSkirt ?? 0))) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest.jpg"...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest.jpg"></center>`);
     }
     if (((s as any).PCloSkirt ?? 0) > 0) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/gadukino/forest/nudeforest1.'+r...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/gadukino/forest/nudeforest1.'+rand(1, 2)+'.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/gadukino/forest/nudeforest1.'+rand(1, 2)+'.jpg"></center>`);
     }
     scene.text('You change into your clothes before anyone spots you.');
     scene.actions([
@@ -468,18 +468,18 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
   if (((s as any).clothingworntype ?? 0) === 'nude') {
     if (((s as any).hunterVars ?? 0)?.['were_met'] === 1) {
       // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, we were all looking forward to seeing you again," Andrei...
-      scene.text(`"Oh, ${((s as any).pcs_nickname ?? 0)}, we were all looking forward to seeing you again," Andrei said with a smile.`);
+      scene.text(`"Oh, ${((s as any).pcs_nickname || '')}, we were all looking forward to seeing you again," Andrei said with a smile.`);
       scene.text('"How about you come back with us to our hut? We were just about to head back there anyways."');
       qspCall(s, 'willpower', 'misc', 'resist', 'hard');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Stay in the forest [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stay in the forest', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Stay in the forest [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Stay in the forest', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'gad_forest', $ReturnAdr
@@ -526,18 +526,18 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
       // TODO-QSP: dynamic text: "What's your name'+iif(pcs_apprnc >= 60, ', beautiful', ')+'?" one of them asks.
       scene.text('"What\'s your name\'+iif(pcs_apprnc >= 60, \', beautiful\', \')+\'?" one of them asks.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>," you answer.
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}," you answer.`);
+      scene.text(`"${((s as any).pcs_nickname || '')}," you answer.`);
       if (((s as any).GadBoy ?? 0)?.['river_gang'] === 0) {
         (s as any).minut = ((s as any).minut ?? 0) + 30;
         qspCall(s, 'stat', '');
         scene.text('"I\'m Andrei," replies the older man, "And these are my friends from the village, Igor and Sergei."');
         // TODO-QSP: dynamic text: "By any chance, is your last name <<$pcs_lastname>>?" he asked. You looked at hi...
-        scene.text(`"By any chance, is your last name ${((s as any).pcs_lastname ?? 0)}?" he asked. You looked at him and nodded.`);
+        scene.text(`"By any chance, is your last name ${((s as any).pcs_lastname || '')}?" he asked. You looked at him and nodded.`);
         // TODO-QSP: dynamic text: Don't be surprised, <<$pcs_nickname>>, you look a lot like your mother when she ...
-        scene.text(`Don't be surprised, ${((s as any).pcs_nickname ?? 0)}, you look a lot like your mother when she was younger. I… Hmmm… very good to know. I'm also from Gadukino." said Andrei.`);
+        scene.text(`Don't be surprised, ${((s as any).pcs_nickname || '')}, you look a lot like your mother when she was younger. I… Hmmm… very good to know. I'm also from Gadukino." said Andrei.`);
         scene.text('After chatting with them for about half an hour, the hunters begin to get up and gather their things.');
         // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, it's time for us to go," said Andrei.
-        scene.text(`"Okay, ${((s as any).pcs_nickname ?? 0)}, it's time for us to go," said Andrei.`);
+        scene.text(`"Okay, ${((s as any).pcs_nickname || '')}, it's time for us to go," said Andrei.`);
         scene.text('"If you want, we will show you our camp," he added after a short pause. "From there, we have made a path back to the village. We can show it to you if you come with us. Or you can stay with us for a bit if you want."');
         scene.actions([
           { label: 'Stay in the forest', goto: ['gad_forest', 'ReturnAdr'] },
@@ -550,7 +550,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).hunterVars) (s as any).hunterVars = {}; (s as any).hunterVars['Rape'] = 1;
         qspCall(s, 'stat', '');
         // TODO-QSP: dynamic text: "What are you doing so far from the village?" asks the older man, looking at you...
-        scene.text(`"What are you doing so far from the village?" asks the older man, looking at you closely, "It's ${((s as any).pcs_nickname ?? 0)} ${((s as any).pcs_lastname ?? 0)}, the local whore."`);
+        scene.text(`"What are you doing so far from the village?" asks the older man, looking at you closely, "It's ${((s as any).pcs_nickname || '')} ${((s as any).pcs_lastname || '')}, the local whore."`);
         scene.text('You look at him with a mixture of surprise and shock.');
         scene.text('"Don\'t be surprised. I\'m also from Gadukino, and you look just like your mother when she was younger, and apparently, you are a whore like her, too," he said.');
         scene.text('You don\'t even remember us. We remember you from that day by the river with Uncle Stepan.');
@@ -572,7 +572,7 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
         (s as any).minut = ((s as any).minut ?? 0) + 30;
         scene.text('After chatting with them for about half an hour, the hunters begin to get up and gather their things.');
         // TODO-QSP: dynamic text: "Okay, <<$pcs_nickname>>, it's time for us to go," said Andrei. "You should pay ...
-        scene.text(`"Okay, ${((s as any).pcs_nickname ?? 0)}, it's time for us to go," said Andrei. "You should pay us another visit sometime, okay?"`);
+        scene.text(`"Okay, ${((s as any).pcs_nickname || '')}, it's time for us to go," said Andrei. "You should pay us another visit sometime, okay?"`);
         scene.actions([
           { label: 'Stay in the forest', goto: ['gad_forest', 'ReturnAdr'] },
           { label: 'Go with them', handler: (st: GameState) => {
@@ -581,18 +581,18 @@ function enterForestHunters(s: GameState, scene: SceneBuilder): void {
         ]);
       } else {
         // TODO-QSP: dynamic text: "Oh, <<$pcs_nickname>>, we were all looking forward to seeing you again," Andrei...
-        scene.text(`"Oh, ${((s as any).pcs_nickname ?? 0)}, we were all looking forward to seeing you again," Andrei said with a smile.`);
+        scene.text(`"Oh, ${((s as any).pcs_nickname || '')}, we were all looking forward to seeing you again," Andrei said with a smile.`);
         scene.text('"How about you come back with us to our hut, we were just about to head back there anyways."');
         qspCall(s, 'willpower', 'misc', 'resist', 'hard');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Stay in the forest [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Stay in the forest', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Stay in the forest [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Stay in the forest', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     // TODO-QSP: gt 'gad_forest', $ReturnAdr
@@ -622,7 +622,7 @@ function enterMitkaTemporaryEvent(s: GameState, scene: SceneBuilder): void {
       scene.img('images/characters/shared/headshots_main/big63.jpg');
       scene.text('While walking through the forest, you meet Mitka. You chat for a bit before saying goodbye. As you walk away, you notice Mira is not with you.');
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you go on. I need to talk to Mitka in private." She says, bl...
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, you go on. I need to talk to Mitka in private." She says, blushing. "He'll take me home."`);
+      scene.text(`"${((s as any).pcs_nickname || '')}, you go on. I need to talk to Mitka in private." She says, blushing. "He'll take me home."`);
       scene.text('"Have fun!" you reply to Mira with a wink.');
       scene.actions([
         { label: 'Continue', goto: ['gad_forest', 'forest_edge'] },

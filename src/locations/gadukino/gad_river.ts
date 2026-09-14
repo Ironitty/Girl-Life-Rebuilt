@@ -237,7 +237,7 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
   scene.img('images/locations/gadukino/river/gadriver.jpg');
   scene.text('The stream quietly flows over the rocks, pleasantly tickling your ears. You gaze at the village that\'s entirely peaceful. There is a sense of serenity about it today.');
   // TODO-QSP: dynamic text: You caught <<fish>> fish.
-  scene.text(`You caught ${((s as any).fish ?? 0)} fish.`);
+  scene.text(`You caught ${((s as any).fish || '')} fish.`);
   if (((s as any).hour ?? 0) < 22) {
     scene.actions([
       { label: 'Throw the bait', handler: (st: GameState) => {
@@ -342,18 +342,18 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
       scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather.');
       if (((s as any).fish_stored ?? 0) >= 10) {
         // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve them. Since you can't ...
-        scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((s as any).fish ?? 0)} away.`);
+        scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((s as any).fish || '')} away.`);
       } else {
         if (((s as any).fish_stored ?? 0) + ((s as any).fish ?? 0) > 10) {
           (s as any).fish = ((s as any).fish ?? 0) - ((10 - ((s as any).fish_stored ?? 0)));
           // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve and store them, fillin...
-          scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((s as any).fish ?? 0)} fish away.`);
+          scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((s as any).fish || '')} fish away.`);
         } else {
           (s as any).fish_stored = ((s as any).fish_stored ?? 0) + (((s as any).fish ?? 0));
           scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather. He sighs heavily, then takes the fish outside to preserve and store them in the root cellar.');
           if (((s as any).fish_stored ?? 0) < 10) {
             // TODO-QSP: dynamic text: There's still space for <<10 - fish_stored>> kg of preserved fish.
-            scene.text(`There's still space for ${10 - ((s as any).fish_stored ?? 0)} kg of preserved fish.`);
+            scene.text(`There's still space for ${10 - ((s as any).fish_stored ?? '')} kg of preserved fish.`);
           } else {
             scene.text('There\'s no more space for preserved fish in the root cellar.');
           }
@@ -372,18 +372,18 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather.');
     if (((s as any).fish_stored ?? 0) >= 10) {
       // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve them. Since you can't ...
-      scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((s as any).fish ?? 0)} away.`);
+      scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((s as any).fish || '')} away.`);
     } else {
       if (((s as any).fish_stored ?? 0) + ((s as any).fish ?? 0) > 10) {
         (s as any).fish = ((s as any).fish ?? 0) - ((10 - ((s as any).fish_stored ?? 0)));
         // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve and store them, fillin...
-        scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((s as any).fish ?? 0)} fish away.`);
+        scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((s as any).fish || '')} fish away.`);
       } else {
         (s as any).fish_stored = ((s as any).fish_stored ?? 0) + (((s as any).fish ?? 0));
         scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather. He sighs heavily, then takes the fish outside to preserve and store them in the root cellar.');
         if (((s as any).fish_stored ?? 0) < 10) {
           // TODO-QSP: dynamic text: There's still space for <<10 - fish_stored>> kg of preserved fish.
-          scene.text(`There's still space for ${10 - ((s as any).fish_stored ?? 0)} kg of preserved fish.`);
+          scene.text(`There's still space for ${10 - ((s as any).fish_stored ?? '')} kg of preserved fish.`);
         } else {
           scene.text('There\'s no more space for preserved fish in the root cellar.');
         }
@@ -424,18 +424,18 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
       scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather.');
       if (((s as any).fish_stored ?? 0) >= 10) {
         // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve them. Since you can't ...
-        scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((s as any).fish ?? 0)} away.`);
+        scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((s as any).fish || '')} away.`);
       } else {
         if (((s as any).fish_stored ?? 0) + ((s as any).fish ?? 0) > 10) {
           (s as any).fish = ((s as any).fish ?? 0) - ((10 - ((s as any).fish_stored ?? 0)));
           // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve and store them, fillin...
-          scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((s as any).fish ?? 0)} fish away.`);
+          scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((s as any).fish || '')} fish away.`);
         } else {
           (s as any).fish_stored = ((s as any).fish_stored ?? 0) + (((s as any).fish ?? 0));
           scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather. He sighs heavily, then takes the fish outside to preserve and store them in the root cellar.');
           if (((s as any).fish_stored ?? 0) < 10) {
             // TODO-QSP: dynamic text: There's still space for <<10 - fish_stored>> kg of preserved fish.
-            scene.text(`There's still space for ${10 - ((s as any).fish_stored ?? 0)} kg of preserved fish.`);
+            scene.text(`There's still space for ${10 - ((s as any).fish_stored ?? '')} kg of preserved fish.`);
           } else {
             scene.text('There\'s no more space for preserved fish in the root cellar.');
           }
@@ -454,18 +454,18 @@ function enterFishing(s: GameState, scene: SceneBuilder): void {
     scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather.');
     if (((s as any).fish_stored ?? 0) >= 10) {
       // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve them. Since you can't ...
-      scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((s as any).fish ?? 0)} away.`);
+      scene.text(`He sighs heavily, then takes the fish outside to preserve them. Since you can't store anymore fish in the root cellar, your grandfather decides to give the remaining ${((s as any).fish || '')} away.`);
     } else {
       if (((s as any).fish_stored ?? 0) + ((s as any).fish ?? 0) > 10) {
         (s as any).fish = ((s as any).fish ?? 0) - ((10 - ((s as any).fish_stored ?? 0)));
         // TODO-QSP: dynamic text: He sighs heavily, then takes the fish outside to preserve and store them, fillin...
-        scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((s as any).fish ?? 0)} fish away.`);
+        scene.text(`He sighs heavily, then takes the fish outside to preserve and store them, filling up the remaining space. He decides to give the remaining ${((s as any).fish || '')} fish away.`);
       } else {
         (s as any).fish_stored = ((s as any).fish_stored ?? 0) + (((s as any).fish ?? 0));
         scene.text('You try to give the rest of the fish to your grandmother, but she takes one look at the intact fish and points at your grandfather. He sighs heavily, then takes the fish outside to preserve and store them in the root cellar.');
         if (((s as any).fish_stored ?? 0) < 10) {
           // TODO-QSP: dynamic text: There's still space for <<10 - fish_stored>> kg of preserved fish.
-          scene.text(`There's still space for ${10 - ((s as any).fish_stored ?? 0)} kg of preserved fish.`);
+          scene.text(`There's still space for ${10 - ((s as any).fish_stored ?? '')} kg of preserved fish.`);
         } else {
           scene.text('There\'s no more space for preserved fish in the root cellar.');
         }

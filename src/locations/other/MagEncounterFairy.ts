@@ -151,7 +151,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
     (s as any).fairychat = ((s as any).fairychat ?? 0) + (1);
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) + (25 * ((s as any).pcs_magik ?? 0));
     qspCall(s, 'mood', 'raise', 'small');
-    qspCall(s, 'MagEncounterFairy', 'fairychattopic');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFairychattopic(s, scene); (s as any).locArgs = __savedLocArgs; }
     if (((s as any).fairyQW ?? 0)?.['skin_increase'] <= 10  &&  ((s as any).fairyQW ?? 0)?.['day'] !== ((s as any).daystart ?? 0)  &&  (!((s as any).fairyshoo ?? 0))) {
       if (((s as any).pcs_skin ?? 0) <= 990) {
         (s as any).pcs_skin = ((s as any).pcs_skin ?? 0) + (10);
@@ -206,20 +206,20 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
     if (((s as any).fairy_surprise ?? 0) === 1) {
       (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) + (5);
       (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-      scene.img(`images/pc/body/nipples/nipples${Math.max(1, Math.min(5, ((s as any).pcs_nips ?? 0) / 20 + 1))}.jpg`);
+      scene.img(`images/pc/body/nipples/nipples${Math.max(1, Math.min(5, ((s as any).pcs_nips ?? '') / 20 + 1))}.jpg`);
       scene.text('You hear a giggle. Suddenly, your nipples get really firm and pointed, and seem to be a bit larger now.');
       scene.text('You can\'t help but rub both breasts, feeling the warm tingling in them, and in your pussy.');
     } else {
       if (((s as any).fairy_surprise ?? 0) === 2) {
         (s as any).pcs_nips = ((s as any).pcs_nips ?? 0) - (5);
-        scene.img(`images/pc/body/nipples/nipples${Math.max(1, Math.min(5, ((s as any).pcs_nips ?? 0) / 20 + 1))}.jpg`);
+        scene.img(`images/pc/body/nipples/nipples${Math.max(1, Math.min(5, ((s as any).pcs_nips ?? '') / 20 + 1))}.jpg`);
         scene.text('You hear a giggle. Suddenly, your nipples get really firm and pointed, yet seem to be smaller than before.');
         scene.text('You can\'t help but rub both breasts, feeling the warm tingling in them, and in your pussy.');
       } else {
         if (((s as any).fairy_surprise ?? 0) === 3) {
           (s as any).clit_size = ((s as any).clit_size ?? 0) + (5);
           (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
-          scene.img(`images/pc/body/clit/clit${Math.max(1, Math.min(5, ((s as any).clit_size ?? 0) / 20 + 1))}.jpg`);
+          scene.img(`images/pc/body/clit/clit${Math.max(1, Math.min(5, ((s as any).clit_size ?? '') / 20 + 1))}.jpg`);
           scene.text('You hear a giggle and you feel a warm tingle at the top of your slit, you reach down and part your pussy lips with your fingers.');
           scene.text('Your clitoris has swollen, and seems to stand out even more than before! You can\'t help but rub all around it, feeling the warm tingling and the moisture build at the entrance.');
           scene.text('The fairy admires the changes she\'s made, and smiles at you, looking again at your puffy pussy and licking her lips.');
@@ -227,7 +227,7 @@ function enterFairyChat(s: GameState, scene: SceneBuilder): void {
         } else {
           if (((s as any).fairy_surprise ?? 0) === 4) {
             (s as any).clit_size = ((s as any).clit_size ?? 0) - (5);
-            scene.img(`images/pc/body/clit/clit${Math.max(1, Math.min(5, ((s as any).clit_size ?? 0) / 20 + 1))}.jpg`);
+            scene.img(`images/pc/body/clit/clit${Math.max(1, Math.min(5, ((s as any).clit_size ?? '') / 20 + 1))}.jpg`);
             scene.text('You hear a giggle and you feel a warm tingle at the top of your slit, you reach down and part your pussy lips with your fingers.');
             scene.text('Your clitoris has shrunk, and seems to more demure than before! You can\'t help but rub all around it, feeling the warm tingling and the moisture build at the entrance.');
           } else {

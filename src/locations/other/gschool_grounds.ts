@@ -35,9 +35,9 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 17) {
       scene.text('All of the boys and girls are standing near the school. Everyone did their best to look good today, wearing their nicest clothes.');
       // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, are you coming to the New Year's Eve party or not?" some...
-      scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, are you coming to the New Year's Eve party or not?" someone calls out to you. "You haven't paid the ${qspFunc(s, 'money', 'string_price', 1000)} entry fee yet!"`);
+      scene.text(`"Hey ${((s as any).pcs_nickname || '')}, are you coming to the New Year's Eve party or not?" someone calls out to you. "You haven't paid the ${qspFunc(s, 'money', 'string_price', 1000)} entry fee yet!"`);
       scene.actions([
-        { label: 'Go to the party [+$func(\'money\', \'get_cost_string\', 1000)]', handler: (st: GameState) => {
+        { label: 'Go to the party', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 1000) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -104,7 +104,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
       // TODO-QSP: dynamic text: Everyone from your year is assembled in the auditorium of the school. Your teach...
-      scene.text(`Everyone from your year is assembled in the auditorium of the school. Your teachers are standing on a platform in front of several rows of chairs where you and your classmates are sitting. Some parents and siblings are sitting in the back rows. You turn your head and see your ${((s as any).npc_nickname ?? 0)?.['A29']} and Kolka sitting among them.`);
+      scene.text(`Everyone from your year is assembled in the auditorium of the school. Your teachers are standing on a platform in front of several rows of chairs where you and your classmates are sitting. Some parents and siblings are sitting in the back rows. You turn your head and see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and Kolka sitting among them.`);
     } else {
       scene.text('Everyone from your year is assembled in the auditorium of the school. Your teachers are standing on a platform in front of several rows of chairs where you and your classmates are sitting. Some parents and siblings are sitting in the back rows. Nobody from your family showed up.');
     }
@@ -112,17 +112,17 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     if (((s as any).class ?? 0)?.['school_grade_average'] >= 90) {
       scene.text('You walk up to the podium and the principal shakes your hand.');
       // TODO-QSP: dynamic text: "I'd like to honor our best student of the year," she announces. "Miss <<$pcs_la...
-      scene.text(`"I'd like to honor our best student of the year," she announces. "Miss ${((s as any).pcs_lastname ?? 0)} here performed exceptionally well in her studies and I think that deserves some recognition."`);
+      scene.text(`"I'd like to honor our best student of the year," she announces. "Miss ${((s as any).pcs_lastname || '')} here performed exceptionally well in her studies and I think that deserves some recognition."`);
       scene.text('She starts applauding and the auditorium quickly joins in.');
       if (qspFunc(s, 'homes_properties', 'has_access', 'parents_home')) {
         // TODO-QSP: dynamic text: As you return to your place, you see your <<$npc_nickname['A29']>> smiling proud...
-        scene.text(`As you return to your place, you see your ${((s as any).npc_nickname ?? 0)?.['A29']} smiling proudly.`);
+        scene.text(`As you return to your place, you see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} smiling proudly.`);
       }
     } else {
       if (((s as any).class ?? 0)?.['school_grade_average'] >= 70) {
         scene.text('You walk up to the podium and the principal shakes your hand before giving you your diploma.');
         // TODO-QSP: dynamic text: "Well done, Miss <<$pcs_lastname>>!" she says before you return to your place.
-        scene.text(`"Well done, Miss ${((s as any).pcs_lastname ?? 0)}!" she says before you return to your place.`);
+        scene.text(`"Well done, Miss ${((s as any).pcs_lastname || '')}!" she says before you return to your place.`);
       } else {
         scene.text('You walk up to the podium and the principal shakes your hand before giving you your diploma.');
         scene.text('You then return to your place.');
@@ -160,7 +160,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
     if (((s as any).class ?? 0)?.['school_grade_average'] >= 70) {
       scene.text('The principal hands you your diploma.');
       // TODO-QSP: dynamic text: "Well done, Miss <<$pcs_lastname>>! Good luck in your future!" she says as she s...
-      scene.text(`"Well done, Miss ${((s as any).pcs_lastname ?? 0)}! Good luck in your future!" she says as she shakes your hand.`);
+      scene.text(`"Well done, Miss ${((s as any).pcs_lastname || '')}! Good luck in your future!" she says as she shakes your hand.`);
     } else {
       scene.text('The principal hands you your diploma.');
       scene.text('"Good luck in your future," she says as she shakes your hand.');
@@ -451,7 +451,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
       if (((s as any).st_count ?? 0) > 0) {
         scene.text('Near the schoolyard, you see: ');
         // TODO-QSP: dynamic text: <table BORDER=1><<$show_table>></tr></table>
-        scene.text(`<table BORDER=1>${((s as any).show_table ?? 0)}</tr></table>`);
+        scene.text(`<table BORDER=1>${((s as any).show_table || '')}</tr></table>`);
       }
     }
     if (((s as any).AlbinaQW ?? 0)?.['albride'] === 0  &&  ((s as any).AlbinaQW ?? 0)?.['RideDaystart'] <= ((s as any).daystart ?? 0)  &&  ((s as any).AlbinaQW ?? 0)?.['Chernov'] > 0  &&  (!((s as any).cheerleaders_on ?? 0))) {
@@ -474,7 +474,7 @@ function enterMain(s: GameState, scene: SceneBuilder): void {
   if (((s as any).strelaDay ?? 0) !== ((s as any).daystart ?? 0)  &&  ((s as any).strelaQW ?? 0) === 1  &&  ((s as any).hour ?? 0) === 14) {
     scene.text('A Mitsubishi Pajero and a BMW drive up to the school gates and strong, muscular men in leather jackets and tracksuits get out of them. They have come to meet Vitek, Dan and Vasily. You watch them talk about something, although you\'re not close enough to hear what it\'s about.');
     // TODO-QSP: dynamic text: You then notice Fedor leaving the school, his face swollen and bruised, and he w...
-    scene.text(`You then notice Fedor leaving the school, his face swollen and bruised, and he waves at you. "${((s as any).pcs_nickname ?? 0)}! Come here, you're my witness!"`);
+    scene.text(`You then notice Fedor leaving the school, his face swollen and bruised, and he waves at you. "${((s as any).pcs_nickname || '')}! Come here, you're my witness!"`);
     scene.actions([
       { label: 'Go and see what he needs', goto: ['strela', ''] },
     ]);
@@ -617,7 +617,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
     if (((s as any).starlet_practice_skipped ?? 0) === 1) {
       qspCall(s, 'npc_relationship', 'modify', 'A23', (-10));
       // TODO-QSP: dynamic text: As you walk down the hallway, you see an annoyed Albina waiting for you, her arm...
-      scene.text(`As you walk down the hallway, you see an annoyed Albina waiting for you, her arms crossed as she glares at you. "Where the fuck were you ${((s as any).pcs_nickname ?? 0)}?! And don't fucking lie to me!"`);
+      scene.text(`As you walk down the hallway, you see an annoyed Albina waiting for you, her arms crossed as she glares at you. "Where the fuck were you ${((s as any).pcs_nickname || '')}?! And don't fucking lie to me!"`);
       scene.text('"Sorry, Albina. I… had a family thing I had to deal with and I didn\'t have time to tell you…" you meekly reply.');
       scene.text('She doesn\'t look completely convinced. "Right… Well if you care about your place on the team, then you\'ll be at the next training session on time. No excuses."');
       scene.text('You nod at her and she gives you a pat on the shoulder before walking away. It looks like you got off lightly this time.');
@@ -626,7 +626,7 @@ function enterBuilding(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'npc_relationship', 'modify', 'A23', (-20));
         scene.text('You notice Albina angrily watching you walk down the hallway towards her and she drags you to the side when you reach her.');
         // TODO-QSP: dynamic text: "Skipping training <i>again</i>, <<$pcs_nickname>>?! I thought I told you that y...
-        scene.text(`"Skipping training <i>again</i>, ${((s as any).pcs_nickname ?? 0)}?! I thought I told you that you were to be there on time <b>no excuses</b>?! I don't care about what miserable story you have to defend yourself with. You either commit to the squad or you're out. This is your final warning ${((s as any).pcs_nickname ?? 0)}, don't fucking test me!"`);
+        scene.text(`"Skipping training <i>again</i>, ${((s as any).pcs_nickname || '')}?! I thought I told you that you were to be there on time <b>no excuses</b>?! I don't care about what miserable story you have to defend yourself with. You either commit to the squad or you're out. This is your final warning ${((s as any).pcs_nickname || '')}, don't fucking test me!"`);
         scene.text('You don\'t have a chance to speak before she storms off. Maybe it\'s best for both of you if you stopped pissing her off?');
       } else {
         if (!(s as any).AlbinaQW) (s as any).AlbinaQW = {}; (s as any).AlbinaQW['StarletsJoined'] = (-1);
@@ -702,20 +702,20 @@ function enterSchoolRun(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['bmi_penalty'] = ((20 - ((s as any).pcs_bmi ?? 0))*(20-((s as any).pcs_bmi ?? 0)));
       }
     }
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).pcs_run ?? 0) - ((s as any).runnerQW ?? {})?.['bmi_penalty'];
+    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).pcs_run ?? 0) - (((s as any).runnerQW ?? {})?.['bmi_penalty'] ?? 0);
     qspCall(s, 'willpower', 'skill_base', 'run', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Give it your best [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Give it your best', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Give it your best [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Give it your best', handler: (st: GameState) => {
     if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).runnerQW['result'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'gschool_grounds', 'SchoolRun_result');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchoolRunResult(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -805,17 +805,17 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
     if (((s as any).runnerQW ?? 0)?.['pav_wins2'] === 0) {
       scene.text('You find Lina at the starting line with a smile on her face. Seeing you, she waves.');
       // TODO-QSP: dynamic text: "Good luck, <<$pcs_nickname>>!" she calls out cheerfully.
-      scene.text(`"Good luck, ${((s as any).pcs_nickname ?? 0)}!" she calls out cheerfully.`);
+      scene.text(`"Good luck, ${((s as any).pcs_nickname || '')}!" she calls out cheerfully.`);
     } else {
       if (((s as any).runnerQW ?? 0)?.['pav_wins2'] === 1) {
         scene.text('You find Lina at the starting line with a smile on her face. Seeing you, she waves.');
         // TODO-QSP: dynamic text: "I'm going to get you this time, <<$pcs_nickname>>!" she says.
-        scene.text(`"I'm going to get you this time, ${((s as any).pcs_nickname ?? 0)}!" she says.`);
+        scene.text(`"I'm going to get you this time, ${((s as any).pcs_nickname || '')}!" she says.`);
       } else {
         if (((s as any).runnerQW ?? 0)?.['pav_wins2'] === 2) {
           scene.text('You find Lina at the starting line with a smile on her face. Seeing you, she waves.');
           // TODO-QSP: dynamic text: "You're not going to get me a third time, <<$pcs_nickname>>!"
-          scene.text(`"You're not going to get me a third time, ${((s as any).pcs_nickname ?? 0)}!"`);
+          scene.text(`"You're not going to get me a third time, ${((s as any).pcs_nickname || '')}!"`);
         }
       }
     }
@@ -854,20 +854,20 @@ function enterSchoolRun2(s: GameState, scene: SceneBuilder): void {
         if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['bmi_penalty'] = ((25 - ((s as any).pcs_bmi ?? 0))*6);
       }
     }
-    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).pcs_run ?? 0) - ((s as any).runnerQW ?? {})?.['bmi_penalty'];
+    if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).pcs_run ?? 0) - (((s as any).runnerQW ?? {})?.['bmi_penalty'] ?? 0);
     qspCall(s, 'willpower', 'skill_base', 'run', 'self', 'hard');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Give it your best [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Give it your best', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Give it your best [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Give it your best', handler: (st: GameState) => {
     if (!(s as any).runnerQW) (s as any).runnerQW = {}; (s as any).runnerQW['result'] = ((s as any).runnerQW['result'] ?? 0) + (10);
     qspCall(s, 'willpower', 'pay', 'self');
-    qspCall(s, 'gschool_grounds', 'SchoolRun2_result');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterSchoolRun2Result(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -979,7 +979,7 @@ function enterChangeRoom(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'stat', '');
   scene.img('images/locations/pavlovsk/school/gym/locker/lockerroom.jpg');
   // TODO-QSP: dynamic text: The locker room is accessed through the school gym and is left unlocked until '+...
-  scene.text('The locker room is accessed through the school gym and is left unlocked until \'+func(\'time\', \'get_time_string\', 18, 30)+\' each day for the use of students using the sports ground for training and events outside school hours. The room is cold, damp and filled with lockers, benches and not much else. You can <a href="exec: gt \'wardrobe\', \'start\'">change your outfit</a> by the lockers here\' + iif(pcs_piercings[\'total\'] > 0, \', and <a href="exec: gt \'piercing_management\', \'main\'">manage your piercings</a>\', \') + \'.');
+  scene.text('The locker room is accessed through the school gym and is left unlocked until 18:30 each day for the use of students using the sports ground for training and events outside school hours. The room is cold, damp and filled with lockers, benches and not much else. You can <a href="exec: gt \'wardrobe\', \'start\'">change your outfit</a> by the lockers here\' + iif(pcs_piercings[\'total\'] > 0, \', and <a href="exec: gt \'piercing_management\', \'main\'">manage your piercings</a>\', \') + \'.');
   if ((((s as any).hour ?? 0) === 18  &&  ((s as any).minut ?? 0) >= 30)  ||  ((s as any).hour ?? 0) > 18) {
     scene.text('The school is closing for the night and you have to leave before you get locked in.');
     return;
@@ -1029,39 +1029,39 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
   if (((s as any).home ?? 0)?.['current'] === 'parents_home') {
     if (((s as any).npc_rel ?? 0)?.['A34'] > 50) {
       // TODO-QSP: dynamic text: You hear your name and turn to see Kolka. "<<$pcs_nickname>>… <<$pcs_nickname>> ...
-      scene.text(`You hear your name and turn to see Kolka. "${((s as any).pcs_nickname ?? 0)}… ${((s as any).pcs_nickname ?? 0)} you won!" Kolka shouts while running towards you with a huge grin. He crashes into you and gives you a tight hug.`);
+      scene.text(`You hear your name and turn to see Kolka. "${((s as any).pcs_nickname || '')}… ${((s as any).pcs_nickname || '')} you won!" Kolka shouts while running towards you with a huge grin. He crashes into you and gives you a tight hug.`);
       scene.text('"Hey, how\'s my favorite brother? Thanks for coming, I wasn\'t aware you knew I was running."');
       scene.text('He grins. "You didn\'t think I spotted you doing all those laps when the school was closed and training at the community center? You\'re always out wearing your sports gear and carrying that water bottle, so you\'re clearly not just meeting friends!"');
     } else {
       // TODO-QSP: dynamic text: You hear your name and turn to find Kolka. "<<$pcs_nickname>>, you won!"
-      scene.text(`You hear your name and turn to find Kolka. "${((s as any).pcs_nickname ?? 0)}, you won!"`);
+      scene.text(`You hear your name and turn to find Kolka. "${((s as any).pcs_nickname || '')}, you won!"`);
       scene.text('"Hey Kolka, I wasn\'t aware you knew I was running."');
       // TODO-QSP: dynamic text: "<<$npc_nickname['A29']>> asked me to keep an eye on what you were doing since y...
-      scene.text(`"${((s as any).npc_nickname ?? 0)?.['A29']} asked me to keep an eye on what you were doing since you're always out in your sports gear with that water bottle, so I asked the coach."`);
+      scene.text(`"${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} asked me to keep an eye on what you were doing since you're always out in your sports gear with that water bottle, so I asked the coach."`);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 4;
     qspCall(s, 'stat', '');
     scene.actions([
       { label: 'Continue', handler: (st: GameState) => {
     // TODO-QSP: dynamic text: At this point, you see your <<$npc_nickname['A29']>> and stepfather approaching.
-    scene.text(`At this point, you see your ${((s as any).npc_nickname ?? 0)?.['A29']} and stepfather approaching.`);
+    scene.text(`At this point, you see your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and stepfather approaching.`);
     if (((s as any).npc_rel ?? 0)?.['A29'] > 50) {
       // TODO-QSP: dynamic text: Your <<$npc_nickname['A29']>> approaches you and gives you a hug. "I know we've ...
-      scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29']} approaches you and gives you a hug. "I know we've had our differences, but I only want the best for you. I'm so proud of you. Why didn't you say something?"`);
+      scene.text(`Your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} approaches you and gives you a hug. "I know we've had our differences, but I only want the best for you. I'm so proud of you. Why didn't you say something?"`);
       if (((s as any).npc_rel ?? 0)?.['A33'] > 50) {
         scene.text('You see Anya coming over behind Kolka. "Go girl! Well done. You should have told me about this during our nightly chats," she says before she gives you a hug.');
       } else {
         // TODO-QSP: dynamic text: You see Anya coming over behind Kolka. "Well done, <<$pcs_nickname>>. Why didn't...
-        scene.text(`You see Anya coming over behind Kolka. "Well done, ${((s as any).pcs_nickname ?? 0)}. Why didn't you say something? That way we'd get to know each other better?"`);
+        scene.text(`You see Anya coming over behind Kolka. "Well done, ${((s as any).pcs_nickname || '')}. Why didn't you say something? That way we'd get to know each other better?"`);
         scene.text('"You\'re always reading and I didn\'t want to disturb you… Sorry."');
         scene.text('"Hey, don\'t worry about it. As I said well done, but I\'d be interested to hear what\'s going on with you, so don\'t worry about disturbing me."');
         scene.text('"Okay. I\'ll try," you say as you give her a hug.');
       }
       // TODO-QSP: dynamic text: Your stepfather now joins the conversation. "Come on <<$pcs_nickname>>, get show...
-      scene.text(`Your stepfather now joins the conversation. "Come on ${((s as any).pcs_nickname ?? 0)}, get showered and changed and we'll meet you outside. We're all going out for dinner to celebrate."`);
+      scene.text(`Your stepfather now joins the conversation. "Come on ${((s as any).pcs_nickname || '')}, get showered and changed and we'll meet you outside. We're all going out for dinner to celebrate."`);
       scene.text('"You don\'t have to do that! I know money is tight and I\'m already so happy you all took the time to come and support me. It means a lot."');
       // TODO-QSP: dynamic text: "No, I insist. I've talked about this with your <<$npc_nickname['A29']>> and she...
-      scene.text(`"No, I insist. I've talked about this with your ${((s as any).npc_nickname ?? 0)?.['A29']} and she agrees. It's not often we get the chance to do something like this and we think that some quality family time would be good for all of us."`);
+      scene.text(`"No, I insist. I've talked about this with your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and she agrees. It's not often we get the chance to do something like this and we think that some quality family time would be good for all of us."`);
       (s as any).minut = ((s as any).minut ?? 0) + 4;
       qspCall(s, 'stat', '');
       scene.actions([
@@ -1095,7 +1095,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.img('images/locations/pavlovsk/school/grounds/restaurant_family.jpg');
     scene.text('At the local Del Parco restaurant, you all spend a few hours enjoying your meal as your family encourages you to continue and improve, but stressing that they\'re very proud of what you\'ve achieved so far.');
     // TODO-QSP: dynamic text: Your stepfather orders some wine and although your <<$npc_nickname['A29']>> give...
-    scene.text(`Your stepfather orders some wine and although your ${((s as any).npc_nickname ?? 0)?.['A29']} gives him a disapproving look, he gives you a glass so you can toast your victory.`);
+    scene.text(`Your stepfather orders some wine and although your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} gives him a disapproving look, he gives you a glass so you can toast your victory.`);
     scene.text('At the end of a very enjoyable meal and some quality family time, you thank them again for their kindness before there\'s a big family hug and you all return home.');
     (s as any).minut = ((s as any).minut ?? 0) + 90;
     qspCall(s, 'stat', '');
@@ -1111,13 +1111,13 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: "<<$pcs_nickname>>, you won! Well done!" your <<$npc_nickname['A29']>> shouts as...
-      scene.text(`"${((s as any).pcs_nickname ?? 0)}, you won! Well done!" your ${((s as any).npc_nickname ?? 0)?.['A29']} shouts as she approaches.`);
+      scene.text(`"${((s as any).pcs_nickname || '')}, you won! Well done!" your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} shouts as she approaches.`);
       scene.text('"Thanks. And thanks for coming too."');
       scene.text('"I know that we have our differences, but I haven\'t stopped caring about you and I asked Kolka to let me know if he saw you around as I kept seeing you heading out in your sports gear with your water bottle and wondered what you were doing," she replies.');
       // TODO-QSP: dynamic text: You're a little lost for words, so your <<$npc_nickname['A29']>> continues. "He ...
-      scene.text(`You're a little lost for words, so your ${((s as any).npc_nickname ?? 0)?.['A29']} continues. "He told me he's seen you running at the track when the school was closed and training at the community center, so I asked the coach. Anyway I'm so proud of you! Why didn't you say something?"`);
+      scene.text(`You're a little lost for words, so your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} continues. "He told me he's seen you running at the track when the school was closed and training at the community center, so I asked the coach. Anyway I'm so proud of you! Why didn't you say something?"`);
       // TODO-QSP: dynamic text: When you don't answer, your <<$npc_nickname['A29']>> continues. "Come on, get sh...
-      scene.text(`When you don't answer, your ${((s as any).npc_nickname ?? 0)?.['A29']} continues. "Come on, get showered and changed and I'll meet you outside."`);
+      scene.text(`When you don't answer, your ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} continues. "Come on, get showered and changed and I'll meet you outside."`);
       scene.text('Anya and Kolka give you a friendly wave and leave.');
       (s as any).minut = ((s as any).minut ?? 0) + 4;
       qspCall(s, 'stat', '');
@@ -1132,9 +1132,9 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     scene.img('images/shared/home/bathroom/dush.mp4');
     scene.text('After showering and changing, you head out and greet your mother. "Thanks for coming. It means a lot to me."');
     // TODO-QSP: dynamic text: "Of course I'd come, <<$pcs_nickname>>! I just want the best for you and I'm pro...
-    scene.text(`"Of course I'd come, ${((s as any).pcs_nickname ?? 0)}! I just want the best for you and I'm proud of you. Come on, let's go out for a bite to eat. I think we need to have a chat."`);
+    scene.text(`"Of course I'd come, ${((s as any).pcs_nickname || '')}! I just want the best for you and I'm proud of you. Come on, let's go out for a bite to eat. I think we need to have a chat."`);
     // TODO-QSP: dynamic text: "You don't have to, <<$npc_nickname['A29']>>. I'm just glad you came."
-    scene.text(`"You don't have to, ${((s as any).npc_nickname ?? 0)?.['A29']}. I'm just glad you came."`);
+    scene.text(`"You don't have to, ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I'm just glad you came."`);
     scene.text('"It\'s fine. I want to see if we can patch things up between us."');
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
@@ -1168,19 +1168,19 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       scene.text('Your mother sighs and a tear starts rolling down her cheek. "I know. Maybe I was a bit harsh, but I don\'t want you to repeat my mistakes. I want you to have the chance to go to university and make a better life for yourself."');
       scene.text('Your mother accepts that she may have been a bit harsh and apologizes. You tell her that you\'ll try your best at school and also reassure her that you\'re taking precautions.');
       // TODO-QSP: dynamic text: Your mother gets up and comes over to hug you. "Thanks <<$pcs_nickname>>, that's...
-      scene.text(`Your mother gets up and comes over to hug you. "Thanks ${((s as any).pcs_nickname ?? 0)}, that's all I can ask. I'll try to be more supportive too. Just please talk to me if you're worried about anything."`);
+      scene.text(`Your mother gets up and comes over to hug you. "Thanks ${((s as any).pcs_nickname || '')}, that's all I can ask. I'll try to be more supportive too. Just please talk to me if you're worried about anything."`);
       scene.text('After the meal and chat, you both feel relieved and emotionally drained, but happier.');
     } else {
       scene.text('At the station cafe, your mother selects a corner spot away from the main area so you can keep your chat private.');
       scene.text('You both initially have some general small talk during which she again congratulates you on your win and explains that she wants the best for you and will help in any way she can, but she doesn\'t want you staying out late as you could get into trouble. She continues by saying that she wants you to go to university so that you can make a better life for yourself.');
       // TODO-QSP: dynamic text: Although you're a little annoyed that she's still treating you like a child, you...
-      scene.text(`Although you're a little annoyed that she's still treating you like a child, you do appreciate her concern. "I know ${((s as any).npc_nickname ?? 0)?.['A29']} and I'm sorry that you get worried when I get back a little late, but you know what time the disco finishes and that I'll never be home by midnight unless I leave earlier than my friends. They would laugh at me having to be home early for bedtime!"`);
+      scene.text(`Although you're a little annoyed that she's still treating you like a child, you do appreciate her concern. "I know ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} and I'm sorry that you get worried when I get back a little late, but you know what time the disco finishes and that I'll never be home by midnight unless I leave earlier than my friends. They would laugh at me having to be home early for bedtime!"`);
       scene.text('Your mother thinks it through for a moment. "Okay, I can accept that. I\'m also aware that you\'re nearly 18, but that won\'t stop me from worrying. Maybe I\'ve been a bit harsh in my approach out of habit with Anya but, like I said, I only want the best for you. Can you at least try to meet me halfway on this and do your best in school too?"');
       // TODO-QSP: dynamic text: Unsure how to respond, you sigh. "Okay <<$npc_nickname['A29']>>, I'll try. It's ...
-      scene.text(`Unsure how to respond, you sigh. "Okay ${((s as any).npc_nickname ?? 0)?.['A29']}, I'll try. It's just that it can get a bit overbearing."`);
+      scene.text(`Unsure how to respond, you sigh. "Okay ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}, I'll try. It's just that it can get a bit overbearing."`);
       scene.text('Your mother continues. "Okay, let\'s just try to get our relationship back to a good place. Please promise me that you\'ll do your best in school too. Also, no matter what please know that you can always talk to me if something is worrying you. Please know that I do love you and want the best for you."');
       // TODO-QSP: dynamic text: This is the closest you've felt to your mother for ages, so you get up and give ...
-      scene.text(`This is the closest you've felt to your mother for ages, so you get up and give her a hug. "Thanks ${((s as any).npc_nickname ?? 0)?.['A29']}. I'm glad we had this chat to clear the air. I love you too and it'll be good to have my ${((s as any).npc_nickname ?? 0)?.['A29']} back."`);
+      scene.text(`This is the closest you've felt to your mother for ages, so you get up and give her a hug. "Thanks ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''}. I'm glad we had this chat to clear the air. I love you too and it'll be good to have my ${((s as any).npc_nickname ?? 0)?.['A29'] ?? ''} back."`);
       scene.text('She hugs you back and you both finish your meals with some more relaxed conversation. After that, you both feel much relieved and emotionally drained, but happier.');
     }
     qspCall(s, 'npc_relationship', 'set', 'A29', 50);
@@ -1203,7 +1203,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     if (((s as any).npc_rel ?? 0)?.['A33'] > 50) {
       scene.text('You hear your sister shout your name and look around.');
       // TODO-QSP: dynamic text: "Hey <<$pcs_nickname>>, go girl well done!" She comes over and gives you a hug. ...
-      scene.text(`"Hey ${((s as any).pcs_nickname ?? 0)}, go girl well done!" She comes over and gives you a hug. "This calls for a celebration. Let's go for a few beers! You can always burn it off later."`);
+      scene.text(`"Hey ${((s as any).pcs_nickname || '')}, go girl well done!" She comes over and gives you a hug. "This calls for a celebration. Let's go for a few beers! You can always burn it off later."`);
       scene.text('"Thanks for coming, sis. It means a lot."');
       scene.text('"I wasn\'t going to miss the opportunity and a possible little celebration with my little sis, was I?"');
       scene.text('"Okay cool. Yeah, I\'m up for that. Let me go and shower and change first."');
@@ -1242,7 +1242,7 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
       if (((s as any).stat ?? 0)?.['boyfriends_current'] > 0  ||  ((s as any).stat ?? 0)?.['girlfriends_current']) {
         qspCall(s, 'npcStat', '', ((s as any).temp_npcID ?? 0));
         // TODO-QSP: dynamic text: You hear <<$npcdesc>> shouting your name and jog over to meet them. You both emb...
-        scene.text(`You hear ${((s as any).npcdesc ?? 0)} shouting your name and jog over to meet them. You both embrace with a cuddle and a kiss on the cheek.`);
+        scene.text(`You hear ${((s as any).npcdesc || '')} shouting your name and jog over to meet them. You both embrace with a cuddle and a kiss on the cheek.`);
         scene.text('"Hey love, well done."');
         scene.text('"Thanks. And thanks for coming, it means a lot."');
         scene.text('"Of course, I\'d come and support you. Now go and get freshened up and we\'ll go out, my treat and you choose."');
@@ -1258,9 +1258,9 @@ function enterFamilyExtension(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_hairbsh = 1;
     scene.img('images/shared/home/bathroom/dush.mp4');
     // TODO-QSP: dynamic text: Rejoining <<$npcdesc>>, you both have a passionate embrace as most folks have go...
-    scene.text(`Rejoining ${((s as any).npcdesc ?? 0)}, you both have a passionate embrace as most folks have gone.`);
+    scene.text(`Rejoining ${((s as any).npcdesc || '')}, you both have a passionate embrace as most folks have gone.`);
     // TODO-QSP: dynamic text: <<$npcdesc>> then says "Well done again <<$pcs_nickname>>, but I have something ...
-    scene.text(`${((s as any).npcdesc ?? 0)} then says "Well done again ${((s as any).pcs_nickname ?? 0)}, but I have something I have to do that won't wait. See you soon."`);
+    scene.text(`${((s as any).npcdesc || '')} then says "Well done again ${((s as any).pcs_nickname || '')}, but I have something I have to do that won't wait. See you soon."`);
     (s as any).minut = ((s as any).minut ?? 0) + 10;
     qspCall(s, 'stat', '');
     scene.actions([

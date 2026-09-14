@@ -234,13 +234,13 @@ function enterRestrooms(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'willpower', 'exhib', 'self', 'medium');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Go to the mens restroom [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Go to the mens restroom', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Go to the mens restroom [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Go to the mens restroom', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
   }, goto: ['office', 'mens_restrooms'] },
@@ -932,7 +932,7 @@ function enterInterview(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'jobs', 'set_employed', 'city_office_secretary');
       scene.text('"Yes, I\'ll take the job. Thank you very much!" you tell her.');
       // TODO-QSP: dynamic text: "Excellent! Here's your welcome packet. Make sure to come to work wearing the ap...
-      scene.text('"Excellent! Here\'s your welcome packet. Make sure to come to work wearing the appropriate clothes. Work starts at \' + func(\'time\', \'get_time_string\', 9, 0) + \', but it\'s okay to show up as early as \' + func(\'time\', \'get_time_string\', 8, 0) + \'. It\'s not okay to leave before \' + func(\'time\', \'get_time_string\', 17, 0) + \', other than to get lunch. If you leave work early, then you won\'t be paid for the day." After a few more pleasantries, you gather your stuff and leave.');
+      scene.text('"Excellent! Here\'s your welcome packet. Make sure to come to work wearing the appropriate clothes. Work starts at 9:00, but it\'s okay to show up as early as 8:00. It\'s not okay to leave before 17:00, other than to get lunch. If you leave work early, then you won\'t be paid for the day." After a few more pleasantries, you gather your stuff and leave.');
     } else {
       scene.text('"Sorry, I\'m already committed to another job schedule," you say, glancing at your planner.');
       scene.text('"I understand," she replies politely. "If your schedule opens up, feel free to reapply."');

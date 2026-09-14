@@ -15,7 +15,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).focH_max = Math.floor(Math.random() * 49) + 312;
     // TODO-QSP: !! 13-15 days including menstruation
   }
-  qspCall(s, 'femcyc', 'femcyc_errhdl');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterFemcycErrhdl(s, scene); (s as any).locArgs = __savedLocArgs; }
   if (((s as any).rcntorgzm ?? 0) === 1) {
     if (((s as any).rcntorgzmtmp ?? 0) === 1) {
       (s as any).rcntorgzm = 0;
@@ -251,22 +251,22 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'lact_lib', 'breastcycle');
   }
   if (((s as any).cycle ?? 0) <= 0) {
-    qspCall(s, 'femcyc', 'cyc0');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCyc0(s, scene); (s as any).locArgs = __savedLocArgs; }
   } else {
     if (((s as any).cycle ?? 0) === 1) {
-      qspCall(s, 'femcyc', 'cyc1');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCyc1(s, scene); (s as any).locArgs = __savedLocArgs; }
     } else {
       if (((s as any).cycle ?? 0) === 2) {
-        qspCall(s, 'femcyc', 'cyc2');
+        { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCyc2(s, scene); (s as any).locArgs = __savedLocArgs; }
       } else {
         if (((s as any).cycle ?? 0) === 3) {
-          qspCall(s, 'femcyc', 'cyc3');
+          { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCyc3(s, scene); (s as any).locArgs = __savedLocArgs; }
         } else {
           if (((s as any).cycle ?? 0) === 4) {
-            qspCall(s, 'femcyc', 'cyc4');
+            { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterCyc4(s, scene); (s as any).locArgs = __savedLocArgs; }
           } else {
             if (((s as any).cycle ?? 0) === 5) {
-              qspCall(s, 'femcyc', 'preg');
+              { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPreg(s, scene); (s as any).locArgs = __savedLocArgs; }
             }
           }
         }

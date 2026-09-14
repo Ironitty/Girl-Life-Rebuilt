@@ -13,7 +13,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     (s as any).kolkaseepornday = ((s as any).daystart ?? 0);
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     (s as any).seepornofut = ((s as any).seepornofut ?? 0) + (1);
-    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((((s as any).seepornofut ?? 0) + ((s as any).stat ?? {})?.['mast']) * 2);
+    (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + ((((s as any).seepornofut ?? 0) + (((s as any).stat ?? {})?.['mast'] ?? 0)) * 2);
     qspCall(s, 'stat', '');
     if (((s as any).evgenQW ?? 0) >= 4  &&  ((s as any).fame ?? 0)?.['pav_slut'] >= 150) {
       scene.actions([{ label: 'Continue', goto: ['seeporn', 'SeePornPalevo'] }]);
@@ -31,17 +31,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
             qspCall(s, 'stat', '');
             scene.img('images/shared/home/tv/seeporn.mp4');
             // TODO-QSP: dynamic text: The boys intensely watch porn. You notice that they are all clearly aroused. Zhe...
-            scene.text(`The boys intensely watch porn. You notice that they are all clearly aroused. Zhendos asks, "${((s as any).pcs_nickname ?? 0)}, want to put that mouth of yours to use?"`);
+            scene.text(`The boys intensely watch porn. You notice that they are all clearly aroused. Zhendos asks, "${((s as any).pcs_nickname || '')}, want to put that mouth of yours to use?"`);
             qspCall(s, 'willpower', 'bj', 'resist', 'medium');
             if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
               scene.actions([
-                { label: 'Tell them to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Tell them to fuck off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
               ]);
             } else {
               scene.actions([
-                { label: 'Tell them to fuck off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                { label: 'Tell them to fuck off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/fuckoff2.jpg');
@@ -92,15 +92,15 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     scene.text('Soon, you find a secluded spot, and Kolka says, "This looks good. Bend over."');
     if (((s as any).see_rand1 ?? 0) < 5) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/shared/sex/public/boysex.jpg"></center>
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/shared/sex/public/boysex.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/shared/sex/public/boysex.jpg"></center>`);
     }
     if (((s as any).see_rand1 ?? 0) >= 5  &&  ((s as any).see_rand1 ?? 0) < 30) {
       // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/shared/sex/public/publ1,<...
-      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? 0)} src="images/shared/sex/public/publ1,${Math.floor(Math.random() * 3) + 0}.mp4"></video></center>`);
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh || '')} src="images/shared/sex/public/publ1,${Math.floor(Math.random() * 3) + 0}.mp4"></video></center>`);
     }
     if (((s as any).see_rand1 ?? 0) >= 30) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/shared/sex/public/publ1,<<rand(0,6)>>.jpg...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/shared/sex/public/publ1,${Math.floor(Math.random() * 7) + 0}.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/shared/sex/public/publ1,${Math.floor(Math.random() * 7) + 0}.jpg"></center>`);
     }
     scene.text('You let your brother fuck you from behind.');
     qspCall(s, 'dinSex', 'wear_condom');
@@ -122,17 +122,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
               qspCall(s, 'stat', '');
               scene.img('images/locations/pavlovsk/school/grounds/seeporn/seeporn.jpg');
               // TODO-QSP: dynamic text: The boys intensely watch porn. You notice the bulges in their pants. Zhendos sud...
-              scene.text(`The boys intensely watch porn. You notice the bulges in their pants. Zhendos suddenly takes your hand and holds it against his groin, and Mishan does the same with your other hand. Your brother Kolka laughs nervously. Mishan tells you conspiratorially, "${((s as any).pcs_nickname ?? 0)}, wank us off."`);
+              scene.text(`The boys intensely watch porn. You notice the bulges in their pants. Zhendos suddenly takes your hand and holds it against his groin, and Mishan does the same with your other hand. Your brother Kolka laughs nervously. Mishan tells you conspiratorially, "${((s as any).pcs_nickname || '')}, wank us off."`);
               qspCall(s, 'willpower', 'hj', 'resist', 'medium');
               if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                 scene.actions([
-                  { label: 'Pull your hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                  { label: 'Pull your hands away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                 ]);
               } else {
                 scene.actions([
-                  { label: 'Pull your hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                  { label: 'Pull your hands away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/fuckoff2.jpg');
@@ -164,7 +164,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.img('images/locations/pavlovsk/school/grounds/seeporn/sex/seeporncumhj.jpg');
     // TODO-QSP: dynamic text: You shout, "You assholes, all over my legs!" but the boys are blissfully sprawle...
-    scene.text(`You shout, "You assholes, all over my legs!" but the boys are blissfully sprawled on the couch. "Great handjob ${((s as any).pcs_nickname ?? 0)}, such small, soft hands."`);
+    scene.text(`You shout, "You assholes, all over my legs!" but the boys are blissfully sprawled on the couch. "Great handjob ${((s as any).pcs_nickname || '')}, such small, soft hands."`);
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'sports'] },
     ]);
@@ -207,7 +207,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                 qspCall(s, 'stat', '');
                 scene.img('images/locations/pavlovsk/school/grounds/seeporn/seeporn.jpg');
                 // TODO-QSP: dynamic text: The boys intensely watch porn. You notice the bulges in their pants. Zhendos sud...
-                scene.text(`The boys intensely watch porn. You notice the bulges in their pants. Zhendos suddenly takes your hand and holds it against his groin, and Mishan does the same with your other hand. Your brother Kolka laughs nervously. Mishan says conspiratorially, "${((s as any).pcs_nickname ?? 0)}, wank us off."`);
+                scene.text(`The boys intensely watch porn. You notice the bulges in their pants. Zhendos suddenly takes your hand and holds it against his groin, and Mishan does the same with your other hand. Your brother Kolka laughs nervously. Mishan says conspiratorially, "${((s as any).pcs_nickname || '')}, wank us off."`);
                 return;
                 scene.actions([
                   { label: 'What the fuck?', handler: (st: GameState) => {
@@ -217,13 +217,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'willpower', 'hj', 'resist', 'medium');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Pull your hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull your hands away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Pull your hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Pull your hands away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/fuckoff2.jpg');
@@ -254,7 +254,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.img('images/locations/pavlovsk/school/grounds/seeporn/sex/seeporncumhj.jpg');
     // TODO-QSP: dynamic text: You shout, "You assholes, all over my legs!" but the boys are blissfully sprawle...
-    scene.text(`You shout, "You assholes, all over my legs!" but the boys are blissfully sprawled on the couch. "Great handjob ${((s as any).pcs_nickname ?? 0)}, such small, soft hands."`);
+    scene.text(`You shout, "You assholes, all over my legs!" but the boys are blissfully sprawled on the couch. "Great handjob ${((s as any).pcs_nickname || '')}, such small, soft hands."`);
     scene.actions([
       { label: 'Leave', goto: ['gschool_grounds', 'sports'] },
     ]);
@@ -274,13 +274,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                   qspCall(s, 'willpower', 'foreplay', 'resist', 'medium');
                   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                     scene.actions([
-                      { label: 'Pull his hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                      { label: 'Pull his hands away', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                     ]);
                   } else {
                     scene.actions([
-                      { label: 'Pull his hands away [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                      { label: 'Pull his hands away', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/fuckoff2.jpg');
@@ -310,17 +310,17 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
                     scene.img('images/shared/home/tv/seeporn.mp4');
                     scene.text('The boys intensely watch porn. You notice, their boners straining to get out of their pants.');
                     // TODO-QSP: dynamic text: Zhendos, looking at the porn, asks you, "Have you ever done that, <<$pcs_nicknam...
-                    scene.text(`Zhendos, looking at the porn, asks you, "Have you ever done that, ${((s as any).pcs_nickname ?? 0)}?"`);
+                    scene.text(`Zhendos, looking at the porn, asks you, "Have you ever done that, ${((s as any).pcs_nickname || '')}?"`);
                     qspCall(s, 'willpower', 'misc', 'resist', 'medium');
                     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
                       scene.actions([
-                        { label: 'Tell him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                        { label: 'Tell him off', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
                       ]);
                     } else {
                       scene.actions([
-                        { label: 'Tell him off [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+                        { label: 'Tell him off', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
     scene.img('images/pc/reactions/fuckoff2.jpg');
@@ -371,17 +371,17 @@ function enterSeePornPalevo(s: GameState, scene: SceneBuilder): void {
     (s as any).boyseeporn = ((s as any).boyseeporn ?? 0) + (1);
     qspCall(s, 'stat', '');
     // TODO-QSP: dynamic text: Zhendos suggests, "<<$pcs_nickname>>, how about putting that mouth to work? Kolk...
-    scene.text(`Zhendos suggests, "${((s as any).pcs_nickname ?? 0)}, how about putting that mouth to work? Kolka told us how you entertained the guys in the park, so there's no need to act all innocent. Unless of course, you want everyone to know."`);
+    scene.text(`Zhendos suggests, "${((s as any).pcs_nickname || '')}, how about putting that mouth to work? Kolka told us how you entertained the guys in the park, so there's no need to act all innocent. Unless of course, you want everyone to know."`);
     scene.actions([
       { label: 'Say nothing', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
     if (((s as any).see_rand1 ?? 0) < 30) {
       // TODO-QSP: dynamic text: <center><img <<$set_imgh>> src="images/locations/pavlovsk/school/grounds/seeporn...
-      scene.text(`<center><img ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/school/grounds/seeporn/sex/seepornblowbang.jpg"></center>`);
+      scene.text(`<center><img ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/school/grounds/seeporn/sex/seepornblowbang.jpg"></center>`);
     }
     if (((s as any).see_rand1 ?? 0) >= 30) {
       // TODO-QSP: dynamic text: <center><video autoplay loop <<$set_imgh>> src="images/locations/pavlovsk/school...
-      scene.text(`<center><video autoplay loop ${((s as any).set_imgh ?? 0)} src="images/locations/pavlovsk/school/grounds/seeporn/sex/seepornbro0,${Math.floor(Math.random() * 3) + 0}.mp4"></video></center>`);
+      scene.text(`<center><video autoplay loop ${((s as any).set_imgh || '')} src="images/locations/pavlovsk/school/grounds/seeporn/sex/seepornbro0,${Math.floor(Math.random() * 3) + 0}.mp4"></video></center>`);
     }
     scene.text('Your silence is taken as consent. Zhendos gets his dick out and pulls your face toward it, and you dutifully wrap your lips around it and begin to suck.');
     scene.text('Your brother Kolka and Mishan also get their members out and stand around you. You start to masturbate and suck dick. You find the unusual and awkward situation a little exciting.');
@@ -425,18 +425,18 @@ function enterSeePornPalevo(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'npcStat', 'A58');
       qspCall(s, 'npcStat', 'A59', 'a');
       // TODO-QSP: dynamic text: Zhendos suggests, "<<$pcs_nickname>>, are you going to serve us like you did wit...
-      scene.text(`Zhendos suggests, "${((s as any).pcs_nickname ?? 0)}, are you going to serve us like you did with the kids in the park? Want to see if you can take two cocks in your mouth?"`);
+      scene.text(`Zhendos suggests, "${((s as any).pcs_nickname || '')}, are you going to serve us like you did with the kids in the park? Want to see if you can take two cocks in your mouth?"`);
       scene.text('You realize your brother could not resist and told his friends. Hopefully only them.');
       qspCall(s, 'willpower', 'bj', 'resist', 'medium');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'I don\'t think so! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'I don\'t think so!', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'I don\'t think so! [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'I don\'t think so!', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'resist');
     if (!(s as any).brotherQW) (s as any).brotherQW = {}; (s as any).brotherQW['refused_seeporn_bj'] = 1;
     qspCall(s, 'stat', '');

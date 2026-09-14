@@ -134,7 +134,7 @@ function enterKrr2x(s: GameState, scene: SceneBuilder): void {
     ]);
   }
   if (((s as any).psiho ?? 0) === 3  &&  (!((s as any).psi1day ?? 0))) {
-    qspCall(s, 'koncepod', 'pavser7');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterPavser7(s, scene); (s as any).locArgs = __savedLocArgs; }
   }
   if (((s as any).psi1day ?? 0) === 1) {
     scene.text('Continue');
@@ -187,14 +187,14 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
       { label: 'Who are you?', handler: (st: GameState) => {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (30);
     qspCall(s, 'stat', '');
-    scene.img('\'+func(\'$face_image\')+\'');
+    scene.img('+func(\'$face_image\')+');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('You exhale slowly, retreating toward the door and trying to pull yourself together. "You scared me," you continue, trying to stop your voice from shaking. "I recognize you—you\'re the man from the park. How did you get in here?"');
     scene.text('"Through the door," he replies, his voice deep and resonant. You stop at the doorway. You could just leave, but something makes you hesitate.');
     scene.actions([
       { label: 'I feel foolish…', handler: (st: GameState) => {
     qspCall(s, 'stat', '');
-    scene.img('\'+func(\'$face_image\')+\'');
+    scene.img('+func(\'$face_image\')+');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"I left the door open. But I didn\'t hear you come in."');
     scene.text('"I was here before you," his voice scrapes slightly.');
@@ -205,7 +205,7 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
       { label: 'I\'m looking at old houses', handler: (st: GameState) => {
     (s as any).arnksg = 1;
     qspCall(s, 'stat', '');
-    scene.img('\'+func(\'$face_image\')+\'');
+    scene.img('+func(\'$face_image\')+');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"I\'m considering renting an apartment in this building," he says.');
     scene.text('"Are you planning to rent here?" you ask.');
@@ -215,7 +215,7 @@ function enterStr2x(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_hairbsh = 1;
     (s as any).psihb = 0;
     qspCall(s, 'stat', '');
-    scene.img('\'+func(\'$face_image\')+\'');
+    scene.img('+func(\'$face_image\')+');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('You automatically smooth your hair, using the glass door as a mirror.');
     scene.text('A fleeting thought crosses your mind—I\'m being foolish—but it quickly vanishes.');
@@ -369,7 +369,7 @@ function enterBdr2x(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - (50);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
     qspCall(s, 'stat', '');
-    scene.img('\'+func(\'$face_image\')+\'');
+    scene.img('+func(\'$face_image\')+');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"No," he replies, "the ottoman will stay where it is."');
     scene.text('It sounds like an order. Rude, firm, and clear.');
@@ -420,7 +420,7 @@ function enterPavser7(s: GameState, scene: SceneBuilder): void {
 }
 
 function enterPavser8(s: GameState, scene: SceneBuilder): void {
-  scene.img('\'+func(\'$face_image\')+\'');
+  scene.img('+func(\'$face_image\')+');
   (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (10);
   (s as any).pcs_mana = ((s as any).pcs_mana ?? 0) - 50;
   qspCall(s, 'stat', '');
@@ -441,7 +441,7 @@ function enterPavser8(s: GameState, scene: SceneBuilder): void {
     (s as any).pcs_mana = ((s as any).manamax ?? 0);
     (s as any).pcs_horny = ((s as any).pcs_horny ?? 0) + (20);
     qspCall(s, 'stat', '');
-    scene.img('\'+func(\'$face_image\')+\'');
+    scene.img('+func(\'$face_image\')+');
     scene.img('images/characters/pushkin/pavser/pavserjil.jpg');
     scene.text('"I thought you\'d left."');
     scene.text('"I locked the door."');
@@ -635,7 +635,7 @@ function enterReadNoticeBoard(s: GameState, scene: SceneBuilder): void {
     scene.text('"I want to look at it first. If it\'s too much hassle to do your job, I can leave."');
     scene.text('"OK then you can go look at the apartment. It\'s upstairs, room 17. I will not go with you, my legs ache."');
     // TODO-QSP: dynamic text: What an unpleasant man. He has you sign a registrar and then says, "Follow me <<...
-    scene.text(`What an unpleasant man. He has you sign a registrar and then says, "Follow me ${((s as any).pcs_firstname ?? 0)}."`);
+    scene.text(`What an unpleasant man. He has you sign a registrar and then says, "Follow me ${((s as any).pcs_firstname || '')}."`);
     scene.text('You follow him through the dimly lit lobby and down a corridor. You can hear barely discernible sounds from various apartments, merging into ghostly mutterings that set the hair on the back of your neck on end. You hear one that almost sounds like it\'s whispering, "Run."');
     scene.text('Stopping by an old dresser, the old man rummages through a drawer, "Looks like you are in luck my dear…"');
     scene.text('The old man puts a key in your hand, "Here."');

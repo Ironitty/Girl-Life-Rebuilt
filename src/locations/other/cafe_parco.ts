@@ -14,7 +14,7 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
   scene.text('<center><b>Cafe "Del Parco"</b></center>');
   scene.img('images/locations/pavlovsk/park/cafe/caffe_del_parco\' + iif(hour > 20 or hour < 7, \'_night\', \') + \'.jpg');
   // TODO-QSP: dynamic text: The newly opened cafe "Del Parco", with its striking facade, lots of tables and ...
-  scene.text('The newly opened cafe "Del Parco", with its striking facade, lots of tables and a summer terrace. Opening hours are between \' + $func(\'time\', \'get_time_string\', 14, 0) + \' and \' + $func(\'time\', \'get_time_string\', 21, 0) + \'.');
+  scene.text('The newly opened cafe "Del Parco", with its striking facade, lots of tables and a summer terrace. Opening hours are between 14:00 and 21:00.');
   if (((s as any).hour ?? 0) >= 14  &&  ((s as any).hour ?? 0) < 21) {
     scene.actions([
       { label: 'Enter the cafe', goto: ['cafe_parco', 'inner'] },
@@ -113,7 +113,7 @@ function enterInner(s: GameState, scene: SceneBuilder): void {
     { label: 'Order from the menu (0:05)', handler: (st: GameState) => {
     // TODO-QSP: gs 'food_menu'
   } },
-    { label: 'Order take-out (0:20) [+$func(\'money\', \'get_cost_string\', 350)]', handler: (st: GameState) => {
+    { label: 'Order take-out (0:20)', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 350) === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {

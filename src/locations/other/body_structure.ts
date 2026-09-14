@@ -449,7 +449,7 @@ function enterDefaultSetClassTransform(s: GameState, scene: SceneBuilder): void 
     }
   }
   if (((s as any).cheatVars ?? 0)?.['fix_bi_set'] / 10 % 10 !== 9) {
-    (s as any).result = (((s as any).cheatVars ?? {})?.['fix_bi_set'] / 10 % 10) * 100 + ((s as any).result ?? 0) % 100;
+    (s as any).result = ((((s as any).cheatVars ?? {})?.['fix_bi_set'] ?? 0) / 10 % 10) * 100 + ((s as any).result ?? 0) % 100;
   }
   (s as any).result = ((s as any).result ?? 0) + (((s as any).base_result ?? 0));
   // TODO-QSP: end

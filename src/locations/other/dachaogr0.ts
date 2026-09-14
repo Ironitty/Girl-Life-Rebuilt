@@ -40,7 +40,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
               ]);
             }
             scene.actions([
-              { label: 'Pay them [+$func(\'money\', \'get_cost_string\', 3000, ...]', handler: (st: GameState) => {
+              { label: 'Pay them', handler: (st: GameState) => {
     if (qspFunc(s, 'money', 'can_afford', 3000, 'cash') === 0) {
       s.scene = { ...s.scene, mainText: String((s as any).noMoney || ''), curActs: [] };
     } else {
@@ -48,7 +48,7 @@ function enter(s: GameState, scene: SceneBuilder): void {
       if (!(s as any).exhib) (s as any).exhib = {}; (s as any).exhib['status'] = 16;
       qspCall(s, 'stat', '');
       // TODO-QSP: dynamic text: You paid the workers ' + $func('money', 'string_price', 3000) + '.
-      scene.text('You paid the workers \' + $func(\'money\', \'string_price\', 3000) + \'.');
+      scene.text('You paid the workers 3000₽.');
       scene.actions([
         { label: 'To lodge', handler: (st: GameState) => {
     (st as any).minut = ((st as any).minut ?? 0) + 15;

@@ -25,10 +25,10 @@ function enterStart(s: GameState, scene: SceneBuilder): void {
     (s as any).firewood = ((s as any).firewood ?? 0) + (Math.floor(Math.random() * 5) + 2);
     if (((s as any).firewood ?? 0) < 15) {
       // TODO-QSP: dynamic text: You have <<firewood>> pieces of firewood and should probably grab some more to k...
-      scene.text(`You have ${((s as any).firewood ?? 0)} pieces of firewood and should probably grab some more to keep the fire going.`);
+      scene.text(`You have ${((s as any).firewood || '')} pieces of firewood and should probably grab some more to keep the fire going.`);
     } else {
       // TODO-QSP: dynamic text: You have <<firewood>> pieces of firewood and should have enough firewood to get ...
-      scene.text(`You have ${((s as any).firewood ?? 0)} pieces of firewood and should have enough firewood to get a fire going.`);
+      scene.text(`You have ${((s as any).firewood || '')} pieces of firewood and should have enough firewood to get a fire going.`);
     }
     (s as any).minut = ((s as any).minut ?? 0) + 15;
     qspCall(s, 'stat', '');

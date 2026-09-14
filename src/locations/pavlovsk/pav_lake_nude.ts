@@ -75,13 +75,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Take off your clothes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Take off your clothes', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Take off your clothes [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Take off your clothes', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 5;
     (s as any).sauna_stripped = 0;
     if (((s as any).pcs_inhib ?? 0) < 60) {
@@ -273,13 +273,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
         qspCall(s, 'willpower', 'voyeur', 'self');
         if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
           scene.actions([
-            { label: 'Watch couple on the beach [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Watch couple on the beach', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
           ]);
         } else {
           scene.actions([
-            { label: 'Watch couple on the beach [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+            { label: 'Watch couple on the beach', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'voyeur', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -313,13 +313,13 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
           qspCall(s, 'willpower', 'voyeur', 'self', 'easy');
           if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
             scene.actions([
-              { label: 'Spy on other nudists on the beach [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Spy on other nudists on the beach', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
             ]);
           } else {
             scene.actions([
-              { label: 'Spy on other nudists on the beach [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+              { label: 'Spy on other nudists on the beach', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'voyeur', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
     qspCall(s, 'stat', '');
@@ -412,13 +412,13 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'self');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Go back to the beach [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Go back to the beach', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Go to the beach [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Go to the beach', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self');
     qspCall(s, 'willpower', 'pay', 'self');
   }, goto: ['pav_lake_nude', ''] },
@@ -514,7 +514,7 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You spend 30 minutes relaxing in the sauna.');
     if (((s as any).month ?? 0) === 12  ||  ((s as any).month ?? 0) < 3) {
-      qspCall(s, 'pav_lake_nude', 'ice_plunge');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIcePlunge(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Leave', goto: ['pav_lake_nude', 'sauna'] },
@@ -533,13 +533,13 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Use the sauna [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Use the sauna', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Use the sauna [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Use the sauna', handler: (st: GameState) => {
     (s as any).minut = ((s as any).minut ?? 0) + 30;
     qspCall(s, 'mood', 'raise', 'tiny');
     if (((s as any).sauna_daystart ?? 0) !== ((s as any).daystart ?? 0)) {
@@ -560,7 +560,7 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
     }
     scene.text('You spend 30 minutes relaxing in the sauna.');
     if (((s as any).month ?? 0) === 12  ||  ((s as any).month ?? 0) < 3) {
-      qspCall(s, 'pav_lake_nude', 'ice_plunge');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIcePlunge(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Leave', goto: ['pav_lake_nude', 'sauna'] },
@@ -599,13 +599,13 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
     }
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Use the sauna [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Use the sauna', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Use the sauna [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Use the sauna', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'self', 'easy');
     qspCall(s, 'willpower', 'pay', 'self');
     (s as any).minut = ((s as any).minut ?? 0) + 30;
@@ -629,7 +629,7 @@ function enterSauna(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'stat', '');
     scene.text('You spend 30 minutes relaxing in the sauna.');
     if (((s as any).month ?? 0) === 12  ||  ((s as any).month ?? 0) < 3) {
-      qspCall(s, 'pav_lake_nude', 'ice_plunge');
+      { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterIcePlunge(s, scene); (s as any).locArgs = __savedLocArgs; }
     }
     scene.actions([
       { label: 'Leave', goto: ['pav_lake_nude', 'sauna'] },

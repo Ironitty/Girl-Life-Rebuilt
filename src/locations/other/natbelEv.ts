@@ -54,7 +54,7 @@ function enterNatbelGo(s: GameState, scene: SceneBuilder): void {
     }
     (s as any).NatashaLoc = 2;
     qspCall(s, 'stat', '');
-    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A16']} ${((s as any).npc_lastname ?? 0)?.['A16']}</b></center>`);
+    scene.text(`<center><b>${((s as any).npc_firstname ?? 0)?.['A16'] ?? ''} ${((s as any).npc_lastname ?? 0)?.['A16'] ?? ''}</b></center>`);
     scene.img('images/characters/shared/headshots_main/big16.jpg');
     scene.text('It takes you 10 minutes to walk to Natasha\'s apartment. You discuss all the small stuff in your lives that amuse you.');
     if (((s as any).NatbelQW ?? 0)?.['QWstage'] < 2) {
@@ -131,11 +131,11 @@ function enterSnack(s: GameState, scene: SceneBuilder): void {
       scene.text('As you walk into the kitchen, you see a woman sitting at the dining table having a cup of tea.');
       scene.text('"Oh, I didn\'t know we had company. Do you go to school with Natasha?"');
       // TODO-QSP: dynamic text: "Yes, I'm <<$pcs_nickname>>. We're in the same class."
-      scene.text(`"Yes, I'm ${((s as any).pcs_nickname ?? 0)}. We're in the same class."`);
+      scene.text(`"Yes, I'm ${((s as any).pcs_nickname || '')}. We're in the same class."`);
       // TODO-QSP: dynamic text: "It's nice to meet a friend of Natasha's. I'm her mother <<$npc_firstname['A191'...
-      scene.text(`"It's nice to meet a friend of Natasha's. I'm her mother ${((s as any).npc_firstname ?? 0)?.['A191']}, but you can call me ${((s as any).npc_nickname ?? 0)?.['A191']}."`);
+      scene.text(`"It's nice to meet a friend of Natasha's. I'm her mother ${((s as any).npc_firstname ?? 0)?.['A191'] ?? ''}, but you can call me ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}."`);
       // TODO-QSP: dynamic text: "Pleased to meet you, <<$npc_nickname['A191']>>."
-      scene.text(`"Pleased to meet you, ${((s as any).npc_nickname ?? 0)?.['A191']}."`);
+      scene.text(`"Pleased to meet you, ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}."`);
       scene.actions([
         { label: 'Back to her room', handler: (st: GameState) => {
     (st as any).NatashaLoc = 2;
@@ -143,11 +143,11 @@ function enterSnack(s: GameState, scene: SceneBuilder): void {
       ]);
     } else {
       // TODO-QSP: dynamic text: As you walk into the kitchen, you see <<$npc_nickname['A191']>> sitting at the d...
-      scene.text(`As you walk into the kitchen, you see ${((s as any).npc_nickname ?? 0)?.['A191']} sitting at the dining table having a cup of tea.`);
+      scene.text(`As you walk into the kitchen, you see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} sitting at the dining table having a cup of tea.`);
       // TODO-QSP: dynamic text: "Oh, I didn't know we had company. How are you <<$pcs_nickname>>?"
-      scene.text(`"Oh, I didn't know we had company. How are you ${((s as any).pcs_nickname ?? 0)}?"`);
+      scene.text(`"Oh, I didn't know we had company. How are you ${((s as any).pcs_nickname || '')}?"`);
       // TODO-QSP: dynamic text: "Hi <<$npc_nickname['A191']>>, I'm doing well. How about you?"
-      scene.text(`"Hi ${((s as any).npc_nickname ?? 0)?.['A191']}, I'm doing well. How about you?"`);
+      scene.text(`"Hi ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}, I'm doing well. How about you?"`);
       scene.text('"I can\'t complain honey."');
       scene.text('Natasha, holding some snacks and your drinks cuts in: "Well, we have to get back to our studies mom."');
       scene.actions([
@@ -238,65 +238,65 @@ function enterNatMotherState(s: GameState, scene: SceneBuilder): void {
 
 function enterAskState(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: dynamic text: As you step into the apartment, you strike up a brief conversation with <<$npc_n...
-  scene.text(`As you step into the apartment, you strike up a brief conversation with ${((s as any).npc_nickname ?? 0)?.['A191']}.`);
+  scene.text(`As you step into the apartment, you strike up a brief conversation with ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}.`);
   if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 1) {
     // TODO-QSP: dynamic text: "You look a bit under the weather today <<$npc_nickname['A191']>>. Are you feeli...
-    scene.text(`"You look a bit under the weather today ${((s as any).npc_nickname ?? 0)?.['A191']}. Are you feeling ok?"`);
+    scene.text(`"You look a bit under the weather today ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}. Are you feeling ok?"`);
     scene.text('"I\'ve had a migraine all day. I think I\'ll go relax on the couch for now. Would you be a dear and keep the music down tonight?"');
     scene.text('"Of course, we\'ll be careful not to disturb your rest."');
   } else {
     if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 2) {
       // TODO-QSP: dynamic text: "You look cheerful today <<$npc_nickname['A191']>>."
-      scene.text(`"You look cheerful today ${((s as any).npc_nickname ?? 0)?.['A191']}."`);
+      scene.text(`"You look cheerful today ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}."`);
       scene.text('"Oh, it\'s just a pleasant day today."');
     } else {
       if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 3) {
         if ((!(Math.floor(Math.random() * 2) + 0))) {
           // TODO-QSP: dynamic text: "Wow, <<$npc_nickname['A191']>>. Did you dress up just for me? Or is there a luc...
-          scene.text(`"Wow, ${((s as any).npc_nickname ?? 0)?.['A191']}. Did you dress up just for me? Or is there a lucky guy involved?" You say with a wink.`);
+          scene.text(`"Wow, ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}. Did you dress up just for me? Or is there a lucky guy involved?" You say with a wink.`);
           // TODO-QSP: dynamic text: "Thank you, <<$pcs_nickname>>. That's the kind of reaction I'm hoping for." She ...
-          scene.text(`"Thank you, ${((s as any).pcs_nickname ?? 0)}. That's the kind of reaction I'm hoping for." She says with a slight blush on her cheeks.`);
+          scene.text(`"Thank you, ${((s as any).pcs_nickname || '')}. That's the kind of reaction I'm hoping for." She says with a slight blush on her cheeks.`);
         } else {
           // TODO-QSP: dynamic text: "Wow, <<$npc_nickname['A191']>>. That looks really good on you." You say after a...
-          scene.text(`"Wow, ${((s as any).npc_nickname ?? 0)?.['A191']}. That looks really good on you." You say after admiring her attire.`);
+          scene.text(`"Wow, ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}. That looks really good on you." You say after admiring her attire.`);
           // TODO-QSP: dynamic text: "Thank you <<$pcs_nickname>>. That's the kind of reaction I'm hoping for."
-          scene.text(`"Thank you ${((s as any).pcs_nickname ?? 0)}. That's the kind of reaction I'm hoping for."`);
+          scene.text(`"Thank you ${((s as any).pcs_nickname || '')}. That's the kind of reaction I'm hoping for."`);
         }
       } else {
         if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 4) {
           // TODO-QSP: dynamic text: "Wow, <<$npc_nickname['A191']>>. Did you just come from a party? Or is the party...
-          scene.text(`"Wow, ${((s as any).npc_nickname ?? 0)?.['A191']}. Did you just come from a party? Or is the party in here?" You say with a wink.`);
+          scene.text(`"Wow, ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}. Did you just come from a party? Or is the party in here?" You say with a wink.`);
           // TODO-QSP: dynamic text: "Well <<$pcs_nickname>>, just between you and me, sometimes a girl can use a dri...
-          scene.text(`"Well ${((s as any).pcs_nickname ?? 0)}, just between you and me, sometimes a girl can use a drink."`);
+          scene.text(`"Well ${((s as any).pcs_nickname || '')}, just between you and me, sometimes a girl can use a drink."`);
         } else {
           if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 5) {
             // TODO-QSP: dynamic text: "<<$npc_nickname['A191']>>… You uhm… you look a bit upset, is something wrong?"
-            scene.text(`"${((s as any).npc_nickname ?? 0)?.['A191']}… You uhm… you look a bit upset, is something wrong?"`);
+            scene.text(`"${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}… You uhm… you look a bit upset, is something wrong?"`);
             if (((s as any).NatbelQW ?? 0)?.['pregday'] > 0  &&  (((s as any).daystart ?? 0)-((s as any).NatbelQW ?? 0)?.['pregday']) > 90) {
               scene.text('"Natasha\'s been acting a bit strange lately." She suddenly looks at you intently. "Y-You\'d tell me if something important is going on right?"');
             } else {
               // TODO-QSP: dynamic text: "Just one of those days <<$pcs_nickname>>. Just go on and hang out with Natasha....
-              scene.text(`"Just one of those days ${((s as any).pcs_nickname ?? 0)}. Just go on and hang out with Natasha. I'll be fine."`);
+              scene.text(`"Just one of those days ${((s as any).pcs_nickname || '')}. Just go on and hang out with Natasha. I'll be fine."`);
             }
           } else {
             if (((s as any).NatbelQW ?? 0)?.['MotherState'] === 6) {
               // TODO-QSP: dynamic text: "<<$npc_nickname['A191']>>… You uhm… don't look very pleased to see me. Did I… I...
-              scene.text(`"${((s as any).npc_nickname ?? 0)?.['A191']}… You uhm… don't look very pleased to see me. Did I… Is it something I did?"`);
+              scene.text(`"${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}… You uhm… don't look very pleased to see me. Did I… Is it something I did?"`);
               if (((s as any).NatbelQW ?? 0)?.['pregday'] > 0  &&  (((s as any).daystart ?? 0)-((s as any).NatbelQW ?? 0)?.['pregday']) > 120) {
                 // TODO-QSP: dynamic text: "Well <<$pcs_nickname>>, I'm still trying to adjust to the fact that my daughter...
-                scene.text(`"Well ${((s as any).pcs_nickname ?? 0)}, I'm still trying to adjust to the fact that my daughter is pregnant. Excuse me if I haven't embraced that little fact yet."`);
+                scene.text(`"Well ${((s as any).pcs_nickname || '')}, I'm still trying to adjust to the fact that my daughter is pregnant. Excuse me if I haven't embraced that little fact yet."`);
                 if (qspFunc(s, 'body_din', 'pregnancyVisibility') === 1) {
                   // TODO-QSP: dynamic text: "I don't know what you girls were thinking. The least you could have done was us...
-                  scene.text(`"I don't know what you girls were thinking. The least you could have done was use protection. Getting pregnant when you're ${((s as any).age ?? 0)}, you're not ready to raise a baby!" She says angrily, looking at your obviously swollen belly.`);
+                  scene.text(`"I don't know what you girls were thinking. The least you could have done was use protection. Getting pregnant when you're ${((s as any).age || '')}, you're not ready to raise a baby!" She says angrily, looking at your obviously swollen belly.`);
                   scene.text('You lower your head at the accusation in her tone and mumble "S-Sorry…" as you pass by her into the hallway.');
                 } else {
                   scene.text('"I-I\'m sure Natasha is smart enough to do what\'s right for the baby. She\'s so kind and smart, she\'ll definitely make a good mother."');
                   // TODO-QSP: dynamic text: <<$npc_nickname['A191']>> lowers her head and looks away from you as you pass by...
-                  scene.text(`${((s as any).npc_nickname ?? 0)?.['A191']} lowers her head and looks away from you as you pass by her into the hallway.`);
+                  scene.text(`${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} lowers her head and looks away from you as you pass by her into the hallway.`);
                 }
               } else {
                 // TODO-QSP: dynamic text: "Oh no, <<$pcs_nickname>>. It's about work. Nothing for you to worry about."
-                scene.text(`"Oh no, ${((s as any).pcs_nickname ?? 0)}. It's about work. Nothing for you to worry about."`);
+                scene.text(`"Oh no, ${((s as any).pcs_nickname || '')}. It's about work. Nothing for you to worry about."`);
               }
             }
           }
@@ -326,19 +326,19 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'force', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Lift her skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Lift her skirt', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Lift her skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Lift her skirt', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/natasha/skirt.jpg');
     scene.text('You can\'t stop yourself from pulling up her skirt as she turns to grab your bag. "Cute panties Natasha, they match the stockings."');
     // TODO-QSP: dynamic text: Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm...
-    scene.text(`Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm… Thank you ${((s as any).pcs_nickname ?? 0)}." She lets out in a whisper.`);
+    scene.text(`Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm… Thank you ${((s as any).pcs_nickname || '')}." She lets out in a whisper.`);
     scene.text('Not wanting to lose your mule to school you let her skirt fall down again and head to school.');
     scene.actions([
       { label: 'Go to school', handler: (st: GameState) => {
@@ -352,19 +352,19 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'exhib', 'force', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Lift her skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Lift her skirt', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Lift her skirt [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Lift her skirt', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'exhib', 'force', 'easy');
     qspCall(s, 'willpower', 'pay', 'force');
     scene.img('images/characters/pavlovsk/school/girl/natasha/skirt.jpg');
     scene.text('You can\'t stop yourself from pulling up her skirt as she turns to grab your bag. "Cute panties Natasha, they match the stockings."');
     // TODO-QSP: dynamic text: Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm...
-    scene.text(`Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm… Thank you ${((s as any).pcs_nickname ?? 0)}." She says, blushing at you prettily.`);
+    scene.text(`Natasha looks over her shoulder at you with a faint blush on her cheeks. "I… Uhm… Thank you ${((s as any).pcs_nickname || '')}." She says, blushing at you prettily.`);
     scene.text('"We have some time before school." You tell her while you start pulling off her skirt and panties.');
     scene.text('"Today you\'ll be wearing them a little differently." You say, pushing her back on the couch. "Open your legs."');
     scene.text('Natasha obediently opens her legs for you. Showing off her pretty pussy. Not wasting any time you start playing with her, first rubbing her lips, then focussing more on her clit as you watch closely while Natasha\'s pussy gets wetter and wetter.');
@@ -375,7 +375,7 @@ function enterCarrybooks(s: GameState, scene: SceneBuilder): void {
     scene.text('You stop playing with her pussy and grab her panties, handing them over to her. "Put them inside your pussy."');
     scene.text('Natasha looks at you in confusion for a second but then starts to slowly push them into her pussy.');
     // TODO-QSP: dynamic text: When there's only enough left to easily grab on in case you'd want to pull them ...
-    scene.text(`When there's only enough left to easily grab on in case you'd want to pull them out she stops and looks at you expectantly. "Like this ${((s as any).pcs_nickname ?? 0)}?"`);
+    scene.text(`When there's only enough left to easily grab on in case you'd want to pull them out she stops and looks at you expectantly. "Like this ${((s as any).pcs_nickname || '')}?"`);
     scene.text('You reach down and push the last bit inside as well, holding them in with your finger for a bit before pulling your finger out again.');
     scene.text('"This is how you\'ll wear your panties for me at school today Natasha." You tell her. "Now put your skirt back on or we\'ll be late.');
     scene.actions([
@@ -433,19 +433,19 @@ function enterLaundry(s: GameState, scene: SceneBuilder): void {
   scene.text('You walk in and see Natasha just turning on the machine. She turns around and sees you in the doorway.');
   if (((s as any).NatbelQW ?? 0)?.['cucumber'] === 0  ||  ((s as any).NatbelQW ?? 0)?.['QWstage'] < 10) {
     // TODO-QSP: dynamic text: "Oh hey <<$pcs_nickname>>, let's go to my room"
-    scene.text(`"Oh hey ${((s as any).pcs_nickname ?? 0)}, let's go to my room"`);
+    scene.text(`"Oh hey ${((s as any).pcs_nickname || '')}, let's go to my room"`);
     return;
   }
   qspCall(s, 'willpower', 'mast', 'force', 'easy');
   if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
     scene.actions([
-      { label: 'Make her play with a cucumber [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make her play with a cucumber', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
     ]);
   } else {
     scene.actions([
-      { label: 'Make her play with a cucumber [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+      { label: 'Make her play with a cucumber', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'force');
     if (((s as any).NatbelQW ?? 0)?.['QWstage'] === 10) {
       if (!(s as any).NatbelQW) (s as any).NatbelQW = {}; (s as any).NatbelQW['QWstage'] = 11;
@@ -505,13 +505,13 @@ function enterShowerspy(s: GameState, scene: SceneBuilder): void {
       qspCall(s, 'willpower', 'voyeur', 'self', 'easy');
       if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
         scene.actions([
-          { label: 'Get a closer look [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Get a closer look', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
         ]);
       } else {
         scene.actions([
-          { label: 'Get a closer look [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+          { label: 'Get a closer look', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'pay', 'self');
     scene.img('images/characters/pavlovsk/school/girl/natasha/sex/natshowerspy02.jpg');
     scene.text('Wanting to get a better look you step into the bathroom and close the door behind you.');
@@ -552,13 +552,13 @@ function enterShowerspy(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha36.jpg');
     scene.text('You open the bathroom door as quietly as you can and peer through the crack to see Natasha taking her shower.');
     // TODO-QSP: dynamic text: Natasha spots you and grins. "So <<$pcs_nickname>>, come to spy on me eh? How ab...
-    scene.text(`Natasha spots you and grins. "So ${((s as any).pcs_nickname ?? 0)}, come to spy on me eh? How about you come and join me?"`);
+    scene.text(`Natasha spots you and grins. "So ${((s as any).pcs_nickname || '')}, come to spy on me eh? How about you come and join me?"`);
     scene.text('You smile and respond. "Well now that didn\'t take you long did it? Missing my sexy body already I take it?"');
     scene.text('At this she goes bright red as you undress and join her starting off with a long kiss then you both start lathering each other.');
     qspCall(s, 'arousal', 'erotic_nudity', 10, 'lesbian');
     qspCall(s, 'arousal', 'flash', (-2), 'lesbian');
     qspCall(s, 'arousal', 'kiss', (-1), 'lesbian');
-    qspCall(s, 'natbelEv', 'shower_escalation');
+    { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerEscalation(s, scene); (s as any).locArgs = __savedLocArgs; }
   } },
       ]);
     }
@@ -574,7 +574,7 @@ function enterShowerevent1(s: GameState, scene: SceneBuilder): void {
   qspCall(s, 'npcStat', 'A16');
   (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (1);
   // TODO-QSP: dynamic text: Despite the pattering noise of the running water, you hear the bathroom door ope...
-  scene.text(`Despite the pattering noise of the running water, you hear the bathroom door open and look over to see ${((s as any).npc_nickname ?? 0)?.['A191']} walking into the bathroom.`);
+  scene.text(`Despite the pattering noise of the running water, you hear the bathroom door open and look over to see ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} walking into the bathroom.`);
   scene.text('"Sorry dear, you didn\'t answer my knock, and I have to go."');
   if (((s as any).deodorant_on ?? 0) === 1) {
     qspCall(s, 'sweat', 'remove_deo');
@@ -586,13 +586,13 @@ function enterShowerevent1(s: GameState, scene: SceneBuilder): void {
     (s as any).inhib_exp = ((s as any).inhib_exp ?? 0) + (3);
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/shower02.jpg');
     // TODO-QSP: dynamic text: Looking straight at her you give her a smile, then put your leg up, giving her t...
-    scene.text(`Looking straight at her you give her a smile, then put your leg up, giving her the perfect view of the front of your wet, naked body. "${((s as any).npc_nickname ?? 0)?.['A191']}", you begin immediately, "I wanted a woman's opinion on this. Do you think my breasts are big enough?"`);
+    scene.text(`Looking straight at her you give her a smile, then put your leg up, giving her the perfect view of the front of your wet, naked body. "${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}", you begin immediately, "I wanted a woman's opinion on this. Do you think my breasts are big enough?"`);
     // TODO-QSP: dynamic text: <<$npc_nickname['A191']>> looks at your exposed body for a few seconds with a sl...
-    scene.text(`${((s as any).npc_nickname ?? 0)?.['A191']} looks at your exposed body for a few seconds with a slight blush on her cheeks.`);
+    scene.text(`${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} looks at your exposed body for a few seconds with a slight blush on her cheeks.`);
     // TODO-QSP: dynamic text: "<<$pcs_nickname>>, there's nothing wrong with the size of your breasts."
-    scene.text(`"${((s as any).pcs_nickname ?? 0)}, there's nothing wrong with the size of your breasts."`);
+    scene.text(`"${((s as any).pcs_nickname || '')}, there's nothing wrong with the size of your breasts."`);
     // TODO-QSP: dynamic text: You get back to showering making sure to pay special attention to your breasts. ...
-    scene.text(`You get back to showering making sure to pay special attention to your breasts. ${((s as any).npc_nickname ?? 0)?.['A191']} sits down on the toilet, and you can hear the sound of her peeing. You get turned on a bit, taking glances at her. Finally, she gets up, flushes and washes her hands before leaving you alone again in the bathroom.`);
+    scene.text(`You get back to showering making sure to pay special attention to your breasts. ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} sits down on the toilet, and you can hear the sound of her peeing. You get turned on a bit, taking glances at her. Finally, she gets up, flushes and washes her hands before leaving you alone again in the bathroom.`);
     qspCall(s, 'arousal', 'flash', 2, 'lesbian');
     qspCall(s, 'arousal', 'erotic_nudity', 3, 'lesbian');
     qspCall(s, 'arousal', 'end');
@@ -607,9 +607,9 @@ function enterShowerevent1(s: GameState, scene: SceneBuilder): void {
     { label: 'Let her', handler: (st: GameState) => {
     scene.img('images/locations/pavlovsk/resident/apartment/natbelapt/sex/shower01.jpg');
     // TODO-QSP: dynamic text: You angle your body away from the door as you say: "Oh it's no problem <<$npc_ni...
-    scene.text(`You angle your body away from the door as you say: "Oh it's no problem ${((s as any).npc_nickname ?? 0)?.['A191']}. It's your home."`);
+    scene.text(`You angle your body away from the door as you say: "Oh it's no problem ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''}. It's your home."`);
     // TODO-QSP: dynamic text: You get back to showering with your back turned to <<$npc_nickname['A191']>> as ...
-    scene.text(`You get back to showering with your back turned to ${((s as any).npc_nickname ?? 0)?.['A191']} as you hear her pee. You feel a bit awkward while you listen to her urinate, flush, and then wash her hands before finally the door clicks shut again.`);
+    scene.text(`You get back to showering with your back turned to ${((s as any).npc_nickname ?? 0)?.['A191'] ?? ''} as you hear her pee. You feel a bit awkward while you listen to her urinate, flush, and then wash her hands before finally the door clicks shut again.`);
     scene.actions([
       { label: 'Get out of the shower', goto: ['natbelapt', 'bathroom'] },
     ]);
@@ -623,10 +623,10 @@ function enterStinkyShower(s: GameState, scene: SceneBuilder): void {
   (s as any).minut = ((s as any).minut ?? 0) + 10;
   scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha36.jpg');
   // TODO-QSP: dynamic text: "Oh <<$pcs_nickname>>! How do I put this? You need a shower!" Natasha goes red s...
-  scene.text(`"Oh ${((s as any).pcs_nickname ?? 0)}! How do I put this? You need a shower!" Natasha goes red somewhat embarrassed at telling you that.`);
+  scene.text(`"Oh ${((s as any).pcs_nickname || '')}! How do I put this? You need a shower!" Natasha goes red somewhat embarrassed at telling you that.`);
   scene.text('"Yeah, I guess I do sorry, was in a rush and didn\'t have time. Erm… Join me?"');
   // TODO-QSP: dynamic text: "Are you sure <<$pcs_nickname>>?"
-  scene.text(`"Are you sure ${((s as any).pcs_nickname ?? 0)}?"`);
+  scene.text(`"Are you sure ${((s as any).pcs_nickname || '')}?"`);
   scene.text('"Absolutely! That was never in doubt!" You respond smiling.');
   scene.text('You both head to the bathroom and undress. Natasha turns the shower on pausing for a passionate kiss before getting in and lathering each other.');
   qspCall(s, 'arousal', 'erotic_nudity', (-2), 'lesbian');
@@ -634,7 +634,7 @@ function enterStinkyShower(s: GameState, scene: SceneBuilder): void {
   (s as any).noshampoo = 1;
   qspCall(s, 'din_van', 'showerdin');
   qspCall(s, 'stat', '');
-  qspCall(s, 'natbelEv', 'shower_escalation');
+  { const __savedLocArgs = (s as any).locArgs; (s as any).locArgs = ['', ]; enterShowerEscalation(s, scene); (s as any).locArgs = __savedLocArgs; }
   // TODO-QSP: end
   scene.build();
 }
@@ -656,7 +656,7 @@ function enterShowerEscalation(s: GameState, scene: SceneBuilder): void {
     scene.img('images/characters/pavlovsk/school/girl/natasha/events/kissing_games/natasha38.jpg');
     scene.text('It\'s not long before you lean forward and push your arse back into Natasha\'s pussy and start grinding on her.');
     // TODO-QSP: dynamic text: Oh! Fuck! <<$pcs_nickname>>! I'm going to…"
-    scene.text(`Oh! Fuck! ${((s as any).pcs_nickname ?? 0)}! I'm going to…"`);
+    scene.text(`Oh! Fuck! ${((s as any).pcs_nickname || '')}! I'm going to…"`);
     scene.text('You decide to pull back at the last second…');
     qspCall(s, 'arousal', 'foreplay', 5, 'lesbian');
     qspCall(s, 'stat', '');
@@ -680,7 +680,7 @@ function enterShowerEscalation(s: GameState, scene: SceneBuilder): void {
     scene.text('Every muscle in your body tightens and pulsate. Your pussy is soaking as your vagina pulses uncontrollably.');
     scene.text('Suddenly juices pour from Natasha\'s clit as you both reach an orgasm simultaneously and bite your lips so as not to scream.');
     // TODO-QSP: dynamic text: As you slowly come down in your afterglow and cuddle up Natasha whispers to you ...
-    scene.text(`As you slowly come down in your afterglow and cuddle up Natasha whispers to you with a cheeky grin. "Umm, that was nice ${((s as any).pcs_nickname ?? 0)}, we'll have to have a repeat performance at some point."`);
+    scene.text(`As you slowly come down in your afterglow and cuddle up Natasha whispers to you with a cheeky grin. "Umm, that was nice ${((s as any).pcs_nickname || '')}, we'll have to have a repeat performance at some point."`);
     scene.text('You give her a hug as you reply. "Yep, 100% but we\'ll need to be careful we don\'t end up too wrinkly from all the water."');
     qspCall(s, 'arousal', 'kiss', 1, 'lesbian');
     qspCall(s, 'arousal', 'trib', 5, 'lesbian', 'no_orgasm_msg');

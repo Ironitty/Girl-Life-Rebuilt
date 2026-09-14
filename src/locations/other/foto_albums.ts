@@ -27,10 +27,10 @@ function enterModelPortraits(s: GameState, scene: SceneBuilder): void {
   // TODO-QSP: :model_loop
   if (((s as any).model ?? 0)?.['rank'] === (11 - ((s as any).model_i ?? 0))) {
     // TODO-QSP: dynamic text: <a href="exec:gt 'foto_albums', 'sveta'"><<model_i>>. <<$model['firstname']>> <<...
-    scene.text(`<a href="exec:gt 'foto_albums', 'sveta'">${((s as any).model_i ?? 0)}. ${((s as any).model ?? 0)?.['firstname']} ${qspUntranslated(s, "mid(model['lastname'], 1, 1)", { location: "foto_albums" })}.</a>`);
+    scene.text(`<a href="exec:gt 'foto_albums', 'sveta'">${((s as any).model_i || '')}. ${((s as any).model ?? 0)?.['firstname'] ?? ''} ${qspUntranslated(s, "mid(model['lastname'], 1, 1)", { location: "foto_albums" })}.</a>`);
   } else {
     // TODO-QSP: dynamic text: <a href="exec:gt 'foto_albums', '<<$temp_base_ranking_link[model_i]>>'"><<model_...
-    scene.text(`<a href="exec:gt 'foto_albums', '${((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)]}'">${((s as any).model_i ?? 0)}. ${((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)]}</a>`);
+    scene.text(`<a href="exec:gt 'foto_albums', '${((s as any).temp_base_ranking_link ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}'">${((s as any).model_i || '')}. ${((s as any).temp_base_ranking_name ?? 0)?.[String((s as any).model_i ?? 0)] ?? ''}</a>`);
   }
   (s as any).model_i = ((s as any).model_i ?? 0) + (1);
   if (((s as any).model_i ?? 0) < 11) {
@@ -52,7 +52,7 @@ function enterSetAlbumText(s: GameState, scene: SceneBuilder): void {
       scene.img('images/locations/city/citycenter/photo/portraits/albums.jpg');
       scene.text('Here is the shelf that has the albums of the top 10 models. You saw it before when you first joined the studio, but something has changed. You read the names from left to right and your heart stops when you see the final name.');
       // TODO-QSP: dynamic text: "<<$model['firstname']>> <<$mid($model['lastname'], 1, 1)>>."
-      scene.text(`"${((s as any).model ?? 0)?.['firstname']} ${qspUntranslated(s, "mid(model['lastname'], 1, 1)", { location: "foto_albums" })}."`);
+      scene.text(`"${((s as any).model ?? 0)?.['firstname'] ?? ''} ${qspUntranslated(s, "mid(model['lastname'], 1, 1)", { location: "foto_albums" })}."`);
       scene.text('That\'s your name! You\'re one of the top 10 models of the studio!');
     } else {
       if (((s as any).locArgs?.[1] ?? 0) === 2) {

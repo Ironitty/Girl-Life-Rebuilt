@@ -11,7 +11,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
   if ((!((s as any).bobrand ?? 0))) {
   }
   // TODO-QSP: dynamic text: <<$tempval>> drop to your knees automatically and quickly pull his pants down wi...
-  scene.text(`${((s as any).tempval ?? 0)} drop to your knees automatically and quickly pull his pants down without even thinking about it. His cock is still flaccid, but you close your lips around it anyway, doing the best you can to arouse him. You slowly feel his cock grow hard inside your mouth and obediently suck him off until you feel several warm jets of sperm land on the back of your throat.${((s as any).tempval2 ?? 0)}`);
+  scene.text(`${((s as any).tempval || '')} drop to your knees automatically and quickly pull his pants down without even thinking about it. His cock is still flaccid, but you close your lips around it anyway, doing the best you can to arouse him. You slowly feel his cock grow hard inside your mouth and obediently suck him off until you feel several warm jets of sperm land on the back of your throat.${((s as any).tempval2 || '')}`);
   if ((!((s as any).locArgs?.[0] ?? 0))) {
     (s as any).dick = 16;
     qspCall(s, 'cum_call', 'mouth', 'A47', 1);
@@ -58,7 +58,7 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     qspCall(s, 'arousal', 'end');
     scene.img('images/characters/city/bobka/sex/anal.jpg');
     // TODO-QSP: dynamic text: You feel <<$boydesc>>'s cum spread inside you when he finally stops thrusting. W...
-    scene.text(`You feel ${((s as any).boydesc ?? 0)}'s cum spread inside you when he finally stops thrusting. When he pulls out of you, some of his cum slowly trickles out of your gaping asshole.`);
+    scene.text(`You feel ${((s as any).boydesc || '')}'s cum spread inside you when he finally stops thrusting. When he pulls out of you, some of his cum slowly trickles out of your gaping asshole.`);
     scene.text('Bobka tosses you a syringe, and tells you to get lost.');
     scene.actions([
       { label: 'Inject yourself with the drugs ', goto: ['city_bobka', 'inject'] },
@@ -73,18 +73,18 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/characters/city/bobka/sex/rimming.jpg');
     // TODO-QSP: dynamic text: <<$tempval>> drop to your knees before Bobka and look at him questioningly, soft...
-    scene.text(`${((s as any).tempval ?? 0)} drop to your knees before Bobka and look at him questioningly, softly muttering you'll do whatever he wants you to do.`);
+    scene.text(`${((s as any).tempval || '')} drop to your knees before Bobka and look at him questioningly, softly muttering you'll do whatever he wants you to do.`);
     scene.text('Bobka lies back and lifts his legs, exposing his ass to you. "Start licking, bitch! If you know what\'s good for you…"');
     qspCall(s, 'willpower', 'bj', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Lick his ass reluctantly [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Lick his ass reluctantly', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Lick his ass reluctantly [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Lick his ass reluctantly', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'bj', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -102,20 +102,20 @@ function enterDefault(s: GameState, scene: SceneBuilder): void {
     }
     scene.img('images/characters/city/bobka/sex/knees.jpg');
     // TODO-QSP: dynamic text: <<$tempval>> drop to your knees before Bobka and look at him questioningly, soft...
-    scene.text(`${((s as any).tempval ?? 0)} drop to your knees before Bobka and look at him questioningly, softly muttering you'll do whatever he wants you to do.`);
+    scene.text(`${((s as any).tempval || '')} drop to your knees before Bobka and look at him questioningly, softly muttering you'll do whatever he wants you to do.`);
     // TODO-QSP: dynamic text: "I don't need you today," he tells you and your heart sinks. "I do need to piss,...
     scene.text(`"I don't need you today," he tells you and your heart sinks. "I do need to piss, though… Might as well use you. I'll even give you a chance to earn some extra money: I'll give you ${qspFunc(s, 'money', 'string_profit', 100)} if you open your mouth and swallow it all."`);
     scene.text('He pulls his cock out of his pants.');
     qspCall(s, 'willpower', 'swallow', 'resist');
     if (((s as any).pcs_willpwr ?? 0) < ((s as any).will_cost ?? 0)) {
       scene.actions([
-        { label: 'Let him pee on your face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Let him pee on your face', handler: (st: GameState) => {
     st.scene = { ...st.scene, mainText: String((st as any).noWillpower || ''), curActs: [] };
   } },
       ]);
     } else {
       scene.actions([
-        { label: 'Let him pee on your face [+$func(\'willpower\', \'get_willcost_string\'...]', handler: (st: GameState) => {
+        { label: 'Let him pee on your face', handler: (st: GameState) => {
     qspCall(s, 'willpower', 'swallow', 'resist');
     qspCall(s, 'willpower', 'pay', 'resist');
     qspCall(s, 'stat', '');
@@ -137,11 +137,11 @@ function enterInject(s: GameState, scene: SceneBuilder): void {
   }
   scene.img('images/locations/city/residential/den/crackwhore.jpg');
   // TODO-QSP: dynamic text: You desperately grab the syringe and inject yourself<<$tempval>>.
-  scene.text(`You desperately grab the syringe and inject yourself${((s as any).tempval ?? 0)}.`);
+  scene.text(`You desperately grab the syringe and inject yourself${((s as any).tempval || '')}.`);
   scene.text('Meanwhile, Bobka is looking down at you haughtily, shaking his head while laughing softly. "Another happy customer. Just like you\'re going to make a lot of customers happy one day…"');
   if ((!((s as any).HaveMetBobka ?? 0))) {
     // TODO-QSP: dynamic text: "By the way, I'm Bobka. Who are you?"<br>The drug is quickly clouding your mind,...
-    scene.text(`"By the way, I'm Bobka. Who are you?"<br>The drug is quickly clouding your mind, and you barely register him talking. "${((s as any).pcs_nickname ?? 0)}…" you softly mutter.`);
+    scene.text(`"By the way, I'm Bobka. Who are you?"<br>The drug is quickly clouding your mind, and you barely register him talking. "${((s as any).pcs_nickname || '')}…" you softly mutter.`);
     (s as any).HaveMetBobka = 1;
   }
   // TODO-QSP: end
@@ -216,7 +216,7 @@ function enterRimming5(s: GameState, scene: SceneBuilder): void {
   scene.text('He scolds you when you slowly pull back. "Aren\'t you forgetting something, slut?" he asks as he waves his softening cock in front of your face.');
   scene.text('With a deep sigh, you take his flaccid penis in your mouth and lick it clean. After spending so much time around his anus, the taste of his cum is almost pleasant in comparison.');
   // TODO-QSP: dynamic text: He scoffs when he sees the hopeful look in your eyes. "That was… disappointing, ...
-  scene.text(`He scoffs when he sees the hopeful look in your eyes. "That was… disappointing, ${((s as any).pcs_nickname ?? 0)}. Show some more enthusiasm next time! Remember that heroin whores can't afford to be squeamish."`);
+  scene.text(`He scoffs when he sees the hopeful look in your eyes. "That was… disappointing, ${((s as any).pcs_nickname || '')}. Show some more enthusiasm next time! Remember that heroin whores can't afford to be squeamish."`);
   scene.text('While he looks hesitant for a while, he eventually he hands you a syringe.');
   // TODO-QSP: end
   scene.actions([
